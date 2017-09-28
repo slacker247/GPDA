@@ -1,0 +1,185 @@
+
+The Martini Toolkit HOWTO
+
+
+1. Introduction
+
+The Martini Toolkit is a framework designed to allow a user to display a
+graph in various visualization styles. It contains a number of classes and
+interfaces which will hopefully make this a very straightforward task.
+
+
+2. Installation
+
+To use the Martini Toolkit, you will need to include martini.jar (or the
+compiled classes) in your CLASSPATH environment variable. You will also
+need an installation of TomSawyer on your system.
+
+
+3. Major Classes
+
+The toolkit currently contains the following classes:
+
+3.a. DrawableGraph, DrawableNode and DrawableEdge
+
+  The DrawableGraph class encapsulates a graph the user wishes to
+  visualize. A DrawableGraph contains DrawableNodes and DrawableEdges. A
+  DrawableNode may be created without connecting edges, but a DrawableEdges
+  may only be created between existing DrawableNodes.
+
+  A DrawableGraph may be created in memory by your code, by calling
+  createEdge() and createNode() methods repeatedly. It may also be created
+  by using the included GML I/O classes to parse the graph from a GML file
+  (see 3.e.).
+
+3.b. GraphPanel
+
+  The GraphPanel class is a graph display JComponent. It is a subclass of
+  JPanel, and may be used wherever a JPanel can be used in a swing user
+  application. For example, the user may wish to add a GraphPanel inside of
+  a ScrollPanel, or a SplitPanel.
+
+  A GraphPanel is instantiated with a GraphUI class (see 3.c.),
+  which specifies the look and feel to use for this instance of
+  GraphPanel.
+
+  Once you have created a DrawableGraph and a GraphPanel, you may link them
+  together by calling the setDrawableGraph() method on the GraphPanel
+  instance you have created. You should also choose a layout style to use
+  with this instance of GraphPanel and layout the graph by calling the
+  setLayout() and layoutGraph() methods.
+
+  These steps are essential to all Martini applications. To tailor your
+  GraphPanel for a specific GraphUI (or look-and-feel) class however, you
+  should consult the documentation for the specific GraphUI implementation
+  for the specific behaviors of the graph elements (nodes and edges).
+
+  3.b.1. Scaling
+
+    GraphPanel also supports scaling. You may scale the graph displayed by
+	 calling setScale(double scale) method. It is up to the application
+	 programmer to restrict the maximum and minimum scales allowable in any
+	 given GraphPanel instance. Caveat: It is important to note that in the
+	 current implementation if you scale a graph up too high you may run
+	 out of memory. If this happens you can increase the maximum memory
+	 allowance of your Java VM with the -Xm option, and/or restrict how much
+	 the graph can be scaled.
+
+
+3.c. DrawableGraphElement Properties and GraphUI (Look-and-Feel) Classes
+
+  A GraphUI implementation is responsible for drawing the specific graph
+  elements (nodes and edges, and perhaps additional decorations). It is
+  also responsible for testing and generating input events associated with
+  these graph elements.
+
+  A GraphUI implementation must be specified when you create a GraphPanel.
+
+  The Martini toolkit provides a few GraphUI implementations (greenpill,
+  bluebox, etc..) but you may also wish to implement your own. {See the
+  GraphUI documentation on how to create your own implementation.] Each
+  GraphUI implementation will use a set of DrawableNode and DrawableEdge
+  properties specific to the implementation. Therefore you should consult
+  the documentation for the GraphUI implementation you're using to decide
+  how to set these properties.
+
+  A GraphUI implementation also determines which types of events will be
+  emitted from a GraphPanel. The user should consult the GraphUI's
+  implementation for the types of events it may generate via the
+  GraphPanel.
+
+  If a GraphUI implementation decides a graph element has received a mouse
+  event from the user, it will wrap it in a DrawableGraphMouseEvent
+  instance and dispatch it to any listener registered with the graph element
+  type. For example, you may register a mouse event listener for graph
+  elements of type "NODE" by calling addDrawableGraphMouseEventListener().
+  Your implementation of MouseEventListener will then be invoked whenever
+  the "NODE" graph element drawn by the current GraphUI implementation
+  receives a mouse event from the user. Consult the GraphUI implementation's
+  documentation on which events it will emit.
+
+3.d. MarqueePane
+
+  The toolkit also comes with a MarqueePane class which you may use to add
+  marquee functionalities to your GraphPanel application. The MarqueePane
+  will allow the user of your application to make marquee selections in the
+  GraphPanel, and send MultipleSelectionEvents to your listener via the
+  GraphPanel.
+
+  One way to use the MarqueePane with a GraphPanel is to place the two
+  components in a JLayeredPane, so the MarqueePane is on top of the
+  GraphPanel. Remember to use the OverlayLayout manager for your
+  JLayeredPane so the two components will overlap correctly. For example, a
+  method for setting up a MarqueePane in your Martini application may look
+  something like this:
+
+    public void addMarqueePane(GraphPanel gp, MarqueePane mp)
+	 {
+      // assumes you have a JLayeredPane member
+	   _layeredPane.setLayout(new OverlayLayout(_myFrame);
+
+		// add GraphPanel and MarqueePane to the layer
+		_layeredPane.add(gp, JLayeredPane.DEFAULT_LAYER);
+		_layeredPane.add(mp, JLayeredPane.DRAG_LAYER);
+
+		// connect the MarqueePane with GraphPanel
+		mp.setEventSource(gp);
+    }
+
+  Now you may use _layeredPane wherever you would use a GraphPanel, and get
+  marqueeing behavior from it.
+
+
+3.e. GMLInput and GMLOutput
+
+  The GMLInput class can parse an incoming GML stream and construct a
+  DrawableGraph from the stream. The GMLOutput class can export a
+  DrawableGraph into a GML stream which may then be saved to file or
+  transmitted.
+
+3.f. Pan-and-Scan
+
+  (mat?)
+
+
+4. Writing a Martini Application
+
+  See the included source, com/appliedminds/martinix/SampleGraph.java for
+  an example of a Martini application. Here are the basic steps:
+
+  4.a. First create a GraphPanel with a GraphUI implementation. In our case
+       we chose the GreenPillUI graphUI implementation:
+
+    GraphPanel _gpanel = new GraphPanel(new GreenPillUI(null));
+
+  4.b. Next create a DrawableGraph and tell GraphPanel to visualize it:
+
+    _gpanel.setDrawableGraph(getMyGraph());
+
+  4.c. Choose a layout style to use initially. You may change the layout
+       style later and call layoutGraph() to change the look:
+
+    _gpanel.setLayout(new TSHierarchicalLayout());
+
+  4.d. You may set the scale to something other than the default 1.0:
+
+    _gpanel.setScale(2.4);
+
+  4.e. Register your event handlers. The GreenPillUI look and feel we're
+       using knows about decorations "NODE", "NODE_TEXT", "EDGE", and
+		 "EDGE_BUBBLE". So to register an event handler for NODE you would
+		 write something like this:
+
+    _gpanel.addDrawableGraphMouseEventListener
+        ("NODE", 
+         new DrawableGraphMouseEventListener() {
+           public boolean handleDrawableGraphMouseEvent
+                              (DrawableGraphMouseEvent e) 
+           {           
+             System.out.println("Got node event: " + e.toString());
+             return(false);
+           }
+        });
+
+  Now you may display _gpanel in your UI hierarchy, as if you were using a
+  JPanel.

@@ -1,0 +1,93 @@
+SPINS
+
+A.	Flying units will enter aircraft/aircrew status and munitions status no later than 0600 daily for combat plans to update APS databases.
+
+B.	Instructions for target update
+	
+	1.	For scheduled CAS and INT missions, supported commands will forward (one hour prior to TOT for CAS and two hours prior to TOT for INT) update information as to target type, coordinates and weather to the complying command.
+
+C.	Instructions for alert (on call) MSNS. (XCAS/GCAS/XCAP/GDCA/GREC/ETC)
+
+	1.	For on call MSNS, the time in the ATO TOT fields is the beginning of the alert period (MSTART time) and the times in the ATO TFT fields is the end of the alert period (MSTOP time).
+
+	2.	On call MSNS cannot launch prior to the MSTART time (time in TOT field) and on call MSN A/C must RTB and land NLT MSTOP time (time in TFT field).  This procedure is necessary to allow A/C adequate turn time for subsequent MSNS.
+
+	Note: The CAFMS sortie utilization flow routine does not reflect over tasking properly for alert sorties because ATO
+
+ATO Review
+
+	TOT and TFT fields are used for MSTART and MSTOP times rather than TOT/TFT times.
+
+D.	Instructions for turning aircraft:  WOCS will ensure that A/C returning from MSNS are combat quick-turned.
+
+E.	Instructions for directing GCAS alert times within alert periods.
+
+	1.	The 602 AOC, 712 ASOC, MAG-39 TACC and CTF 40 CIC will direct alert times in the ATO for initial GCAS MSNS (i.e. for 0600 hrs.).
+
+	2.	WOCS will enter alert times for subsequent missions in CAFMS as directed by 682 ASOC, 712 ASOC and MASS 3 DASC.  For example at 0700 hrs WOCS will enter alerts for GCAS MSNS with alert blocks beginning at 0700 hrs.
+
+	3.	The 682 ASOC, 712 ASOC and MASS 3 DASC will determine and direct 30M, 15M, 10M, 5M, RUN, or A/B alert times for subsequent GCAS MSNS for which they are given OPCON (i.e. after initial GCAS MSNS - 0600 hrs) as necessary to provide the fastest response time in satisfying approved immediate CAS request.
+	
+	4.	The 682 ASOC, 712 ASOC and MASS 4 DASC will direct GCAS alert times (including establishing airborne alerts) by notifying the appropriate WOC to change or establish specific alert times for specific GCAS MSNS within an alert period.
+
+	WOCS, after directed by the appropriate ASOC/DASC and upon establishing MSNS on alert times, will immediately enter the alert status in CAFMS (i.e. ABN, RUN, 5M, 10M, 15M, 30M).
+
+F.	Instructions for directing GDCA alert times within alert periods.
+
+	1.	The 602 AOC in coordination with MAG 39 TACC and CTF 40 CIC (AW) will direct alert times in the ATO for initial GDCA MSNS (i.e. for 0600 hrs).
+
+	2.	The 728 ACS (CRC), MACS 1 TAOC and CTF 40 CIC (AW), for missions under their OPCON will:
+
+		A)	Determine and direct alert times for subsequent GDCA MSNS (i.e. after - initial GDCA MSNS - 0600 hrs) as necessary to provide the fastest response to engaging threat A/C.
+
+		B)	Direct GDCA alert times (including establishing airborne alerts) by notifying the appropriate WOC to change or establish specific alert times for specific GDCA MSNS within alert periods.
+
+	3.	WOCS, after directed by the appropriate control agency and upon establishing MSNS on alert times, will immediately enter the alert status in CAFMS (i.e. ABN, RUN, 5M, 10M, 15M, 20M, or 30M).
+
+G.	Instructions for generating additional GCAS/GDCA MSNS.
+
+	1.	Missions planned for an alert period which RTB and land prior to the end of the alert period will be combat quick turned and may be recommitted by the controlling agency provided they can RTB and land prior to the MSTOP (TFT) specified for the alert period.
+
+	2.	For recommitted A/C, the appropriate control agency will assign new MSNNO/ call signs.
+
+B.	Instructions for add-ons to MSNS: request data, for add-ons to airborne MSNS will be passed to the pilot by radio or radio relay.
+
+I.	Instructions for IFF/SIF identification criteria.
+
+	1.	IFF/SIF mode II/III codes, as directed in each ATO, will be effective for operations on the date of the ATO.
+
+	2.	IFF/SIF procedures: see current air defense/airspace control plan (JTF-X OPLAN 4, ANNEX V, PG V-4-A-1).
+
+	3.	Identification criteria: see current air defense/airspace control plan (JTF-X OPLAN 4, ANNEX V).
+
+J.	Instructions for airspace control.
+
+	1.	Orbit areas and CAP points contained in the ATO and ATO general remarks are included for missions tasking only and are not to be considered as established special purpose airspace.  Special purpose airspace will be established with airspace control orders (ACOS) based on approved airspace control means request (ACMREQ).
+
+	2.	Units/agencies will submit request to establish special purpose airspace to the sector II airspace control center on airspace control means request (ACMREQ) as soon as requirements are determined.
+
+	3.	Airspace control orders (ACOS) will list special purpose airspace measures to include name, coordinates, lower/ upper altitudes, effective times, call sign/frequencies of control agency and restrictions.
+
+	4.	WOCS will maintain an airspace control map depicting special purpose areas directed by ACOS.
+
+	5.	Pilots, during mission planning, will review the current airspace control map, make necessary notes and comply with restrictions during MSNS through coordination with the designated control agency.
+
+	6.	Both ASOCS will ensure AFACS or GFACS coordinate with DIV AICS for CAS mission aircraft entering respective DIV AO.  AFACS/GFACS will obtain air traffic advisories and status of fires from AIC and brief the inbound CAS mission commander.  Also, the AFACS/GFACS will advice the AIC of the number/type aircraft entering the AO, the ingress/egress flight routes and when the CAS A/C are out of the AO.
+
+	7.	ATO altitude (ALT) field:  if the ALT for a MSN is listed in the ATO as 0, then the pilot will fly ALT or flight levels as prescribed by the airspace control order.  If an ALT, for a MSN, is listed as other than 0, then the pilot will fly enroute as prescribed by the airspace control order and fly the ATO listed ALT while on station/orbit.
+
+E.	Instructions for landing within 21st corps, 2nd corps, 5 MEF FWD, and TF40 air missions listed in the ATO:
+
+	1.	21st/2nd corps
+
+	A)	BCE plans (in coordination with 21st and 2nd corps CMCPS) will input RC12 missions in the ATO thru CAFMS.  These MSNS are for information only and control will be retained by 21 MI BDE and 22 MI BDE.
+
+	B)	BCE OPS (in coordination with 21 corps CMCP/21 MI BDE and 2nd CORPS CMCP/22 MI BDE) will input ATD, TOT/OS, ATOT, INFREP, LDG, MSNREP, and deviations into CAFMS. This will be accomplished to centrally maintain current AMSN statuses.
+
+	2.	5 MEF FWD/TF40
+
+	A)	TACC/CIC will input tasked missions into the ATO thru CAFMS. Control of these missions will be retained by the TACC/CIC any adjustments to scheduled missions will be made by the TACC/CIC or as directed by the JFACC.
+
+	B)	TACC/CIC will input ATD, TOT/OS, ATOT, INFREP, LDG, MSNREP, and deviations thru CAFMS. This will be accomplished to centrally maintain current AMSN statuses.
+
+End of Special Instructions

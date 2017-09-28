@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 161 (msg:"MISC SNMP NT UserList"; content:"|2b 06 10 40 14 d1 02 19|"; classtype:attempted-recon; sid:516; rev:2;)

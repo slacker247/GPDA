@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible MyRomeo Worm"; content: "Sorry... Hey you !"; sid:727;  classtype:misc-activity; rev:3;)

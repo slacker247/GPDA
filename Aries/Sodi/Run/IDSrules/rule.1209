@@ -1,0 +1,1 @@
+alert tcp $HTTP_SERVERS 80 -> $EXTERNAL_NET any (msg:"WEB-MISC Invalid URL"; content:"Invalid URL"; nocase; flags:A+; classtype:attempted-recon; sid:1200; rev:1;)

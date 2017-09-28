@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP PING Network Toolbox 3 Windows"; content:"|3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d|";itype:8;depth:32; reference:arachnids,161; sid:377;  classtype:misc-activity; rev:4;)

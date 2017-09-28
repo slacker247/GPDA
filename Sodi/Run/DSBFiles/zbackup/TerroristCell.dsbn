@@ -1,0 +1,172 @@
+# Tree height, Name, Discrete, Start time, End time, Time unit
+6  Terrorist  0  0.0  0.0  M
+
+6     Information_Sources
+  Acquire_Explosives           blah_blah_blah
+  Recruit_Terrorists           blah_blah_blah
+  Train_Comm_Specialists       blah_blah_blah
+  Infiltrate_Airport_Security  blah_blah_blah
+  Establish_Training_Camp      blah_blah_blah
+  Acquire_Financial_Asset      blah_blah_blah
+
+6     Events
+  Explosions             blah_blah_blah
+  Deployments            blah_blah_blah
+  Comm_Disruptions       blah_blah_blah
+  Hijacking              blah_blah_blah
+  Training               blah_blah_blah
+  Financial_Transaction  blah_blah_blah
+
+5     Activities
+  Ground_Attack   blah_blah_blah
+  Air_Attack      blah_blah_blah
+  Comm_Attack     blah_blah_blah
+  Propaganda      blah_blah_blah
+  Funds_Transfer  blah_blah_blah
+
+6     Tactical_Objectives
+  Disrupt_Infrastructure  blah_blah_blah
+  Destroy_Icons           blah_blah_blah
+  Inflict_Casualities     blah_blah_blah
+  Acquire_Territory       blah_blah_blah
+  Deploy_WMD              blah_blah_blah
+  Incite_Riots            blah_blah_blah
+
+4     Operational_Objectives
+  Overthrow_Government   blah_blah_blah
+  Demoralize_Poplulace   blah_blah_blah
+  Control_Media          blah_blah_blah
+  Bankrupt_Corporations  blah_blah_blah
+
+2     Strategic_Objectives
+  Win_Holy_War      blah_blah_blah   0.75     100.0
+  Instill_Beliefs   blah_blah_blah   0.75     100.0
+
+true    B and D matrices are listed separately
+#B   E0      E1      E2      E3      E4      E5
+   0.400   0.600   0.000   0.000   0.000   0.000   -- H0_0
+
+   0.000   1.000   0.000   0.000   0.000   0.000   -- H0_1
+
+   0.000   0.000   1.000   0.000   0.000   0.000   -- H0_2
+
+   0.000   0.000   0.900   0.100   0.000   0.000   -- H0_3
+
+   0.000   0.000   0.000   0.200   0.800   0.000   -- H0_4
+
+   0.000   0.000   0.000   0.000   0.000   1.000   -- H0_5
+
+
+#D   E0      E1      E2      E3      E4      E5
+   0.400   0.600   0.000   0.000   0.000   0.000   -- H0_0
+
+   0.000   1.000   0.000   0.000   0.000   0.000   -- H0_1
+
+   0.000   0.000   1.000   0.000   0.000   0.000   -- H0_2
+
+   0.000   0.000   0.900   0.100   0.000   0.000   -- H0_3
+
+   0.000   0.000   0.000   0.200   0.800   0.000   -- H0_4
+
+   0.000   0.000   0.000   0.000   0.000   1.000   -- H0_5
+
+
+#B  H0_0    H0_1    H0_2    H0_3    H0_4    H0_5
+   1.000   0.000   0.000   0.000   0.000   0.000   -- H1_0
+
+   0.000   1.000   0.000   0.000   0.000   0.000   -- H1_1
+
+   0.000   0.000   1.000   0.000   0.000   0.000   -- H1_2
+
+   0.000   0.000   0.000   1.000   0.000   0.000   -- H1_3
+
+   0.000   0.000   0.000   0.000   0.300   0.700   -- H1_4
+
+
+#D  H0_0    H0_1    H0_2    H0_3    H0_4    H0_5
+   1.000   0.000   0.000   0.000   0.000   0.000   -- H1_0
+
+   0.000   1.000   0.000   0.000   0.000   0.000   -- H1_1
+
+   0.000   0.000   1.000   0.000   0.000   0.000   -- H1_2
+
+   0.000   0.000   0.000   1.000   0.000   0.000   -- H1_3
+
+   0.000   0.000   0.000   0.000   0.300   0.700   -- H1_4
+
+
+#B  H1_0    H1_1    H1_2    H1_3    H1_4
+   0.500   0.500   0.300   0.000   0.300   -- H2_0
+
+   0.800   1.000   0.000   0.000   0.000   -- H2_1
+
+   0.800   0.800   0.000   0.000   0.000   -- H2_2
+
+   0.200   0.200   0.000   0.000   0.000   -- H2_3
+
+   0.000   0.500   0.000   0.000   0.000   -- H2_4
+
+   0.000   0.000   0.000   0.600   0.000   -- H2_5
+
+
+#D  H1_0    H1_1    H1_2    H1_3    H1_4
+   0.500   0.500   0.300   0.000   0.000   -- H2_0
+
+   0.800   1.000   0.000   0.000   0.000   -- H2_1
+
+   0.800   0.800   1.000   0.000   0.000   -- H2_2
+
+   0.200   0.200   0.000   0.000   0.000   -- H2_3
+
+   0.000   0.200   0.200   0.000   0.000   -- H2_4
+
+   0.000   0.000   0.000   0.600   0.000   -- H2_5
+
+
+#B  H2_0    H2_1    H2_2    H2_3    H2_4    H2_5
+   1.000   0.000   0.000   0.600   0.200   0.800   -- H3_0
+
+   0.000   0.400   0.600   0.000   0.400   0.600   -- H3_1
+
+   0.800   0.000   0.000   0.000   0.000   0.000   -- H3_2
+
+   0.800   0.000   0.200   0.000   0.000   0.000   -- H3_3
+
+
+#D  H2_0    H2_1    H2_2    H2_3    H2_4    H2_5
+   1.000   0.000   0.000   0.000   0.200   0.800   -- H3_0
+
+   0.000   0.000   0.000   0.000   0.000   0.600   -- H3_1
+
+   0.800   0.000   0.000   0.000   0.000   0.000   -- H3_2
+
+   0.800   0.000   0.000   0.000   0.000   0.000   -- H3_3
+
+
+#B  H3_0    H3_1    H3_2    H3_3
+   1.000   0.000   0.000   0.500   -- A0
+
+   0.000   0.300   1.000   0.000   -- A1
+
+
+#D  H3_0    H3_1    H3_2    H3_3
+   1.000   0.000   0.000   0.500   -- A0
+
+   0.000   0.300   1.000   0.000   -- A1
+
+
+9  Possibilities
+0.00  0.00  impossible
+0.00  0.05  extremely_unlikely
+0.05  0.20  very_low_chance
+0.20  0.38  small_chance
+0.38  0.60  may
+0.60  0.79  meaningful_chance
+0.79  0.95  most_likely
+0.95  0.99  extremely_likely
+1.00  1.00  certain
+
+#  Evidence labels follow. Must be 3, each < 4 chars
+  Lat      Lon     Alt
+#  Default time units follow. Must be: Sec, Min, Hour, or Days
+  Min

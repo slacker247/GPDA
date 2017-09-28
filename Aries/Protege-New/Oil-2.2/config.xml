@@ -1,0 +1,96 @@
+<?xml version='1.0'?>
+<!--  This file configures OilEd's parsers and renderers. Parsers are -->
+<!--  specified within the <parsers> section. Each entry is of the form: -->
+
+<!--  <parser class="CLASS" extension="EXT" description="DESC"/> -->
+
+<!--  This informs OilEd that class CLASS is an Oil Parser (i.e. implements -->
+<!--  the uk.ac.man.cs.img.oil.parser.Parser interface) that expects to find -->
+<!--  files of type DESC, which it looks for using extension EXT.  -->
+
+<!--  Similarly, each <renderers> section has a number of renderers -->
+<!--  (implementors of uk.ac.man.cs.img.oil.out.Renderer), each of which in -->
+<!--  turn specifies the menuItem text that it should appear under. The -->
+<!--  entire <renderers> section also specifies the overall heading for the -->
+<!--  menu bar.  -->
+
+<!--  Configuration file for OilEd  -->
+<config>
+
+<parsers>
+    <parser class="uk.ac.man.cs.img.oil.parser.rdfs_oil_2000_11_10.Parser" 
+      extension=".rdfs"
+      description="OIL RDFS"/> 
+    <parser class="uk.ac.man.cs.img.oil.parser.daml_oil_2001_03.Parser" 
+      extension=".daml" 
+      description="DAML+OIL (2001-03)"/> 
+    <parser class="uk.ac.man.cs.img.oil.parser.daml_oil_2000_12.Parser" 
+      extension=".daml" 
+      description="DAML+OIL (2000-12)"/> 
+    <parser class="uk.ac.man.cs.img.oil.parser.text.Parser" 
+      extension=".oil" 
+      description="OIL Text"/>
+</parsers>
+
+<renderers menu="Export" mnemonic="e">
+<!-- Standard Renderer -->
+  <renderer class="uk.ac.man.cs.img.oil.output.text.Renderer"
+	    menuItem="Oil Text"
+	    extension=".oil"
+	    description="Oil Text"/>
+
+<!-- RDFS Renderer -->
+  <renderer class="uk.ac.man.cs.img.oil.output.rdfs_oil_2000_11_10.Renderer"
+  menuItem="OIL RDFS"
+  extension=".rdfs"
+  description="OIL RDFS"/>
+
+<!-- Simple RDFS Renderer -->
+  <renderer class="uk.ac.man.cs.img.oil.output.rdfs.Renderer"
+  menuItem="Simple RDFS"
+  extension=".rdfs"
+  description="RDFS"/>
+
+<!-- DAML+OIL Renderer -->
+  <renderer class="uk.ac.man.cs.img.oil.output.daml_oil_2001_03.Renderer"
+  menuItem="DAML+OIL (2001-03)"
+  extension=".daml"
+  description="DAML+OIL"/>
+
+<!-- DAML+OIL Renderer -->
+  <renderer class="uk.ac.man.cs.img.oil.output.daml_oil_2000_12.Renderer"
+  menuItem="DAML+OIL (2000-12)"
+  extension=".daml"
+  description="DAML+OIL"/>
+
+<!-- SHIQ Renderer -->
+  <renderer class="uk.ac.man.cs.img.oil.output.shiq.Renderer"
+  menuItem="SHIQ"
+  extension=".shq"
+  description="SHIQ"/>
+
+<!-- HTML Renderer -->
+  <renderer class="uk.ac.man.cs.img.oil.output.html.Renderer"
+   menuItem="HTML"
+   extension=".html"
+   description="HTML"/>
+
+<!-- Dotty Renderer -->
+  <renderer class="uk.ac.man.cs.img.oil.output.graph.DottyRenderer"
+  menuItem="Dotty"
+  extension=".dot"
+  description="Dotty"/>
+
+<!-- Dotty Renderer -->
+<!--    <renderer class="uk.ac.man.cs.img.oil.output.graph.IndividualDottyRenderer" -->
+<!--    menuItem="Individual Graph" -->
+<!--    extension=".dot" -->
+<!--    description="Individual Graph"/> -->
+
+</renderers>
+</config>
+
+
+
+
+

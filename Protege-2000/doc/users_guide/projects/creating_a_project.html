@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Creating and Updating a Project</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="images/serving_nerd.gif" width="48" height="48"> Creating a Project<br>
+<img src="images/header_line.gif" width="590" height="6"></h1>
+
+<p>To create a new Protégé-2000 project:</p>
+
+<ol>
+  <li>Select <strong>New</strong> from the <strong>Project</strong>
+    menu <i>or</i> click the New Project button <img border="0" src="images/NewProject.gif" width="16" height="15">.&nbsp;</li>
+  <li>Select the format you want for your Protégé-2000 files from the Select
+    Format dialog and click OK.<br>
+    There are three basic formats that are always displayed:<br>
+    <b>Standard Text Files</b> (the default) creates project files in Protégé-2000
+    format. These can also be viewed with any text editor or word processor.<br>
+    <b>JDBC Database</b> creates the project as a table in a JDBC database. To
+    do this you must have a database installed and configured on your system.
+    See <a href="saving_a_database_project.html">Saving a Database Project</a>
+    for more information.<br>
+    <b>Resource Description Framework (RDF)</b> saves the project in RDF format.
+    See <a href="saving_RDF_project.html">Saving an RDF Project</a> as well as <a href="../rdf_support.html"> RDF Support in Protégé-2000</a>
+    for more information.<br>
+    If your version of Protégé-2000 has been customized to support additional
+    formats, then you will also see them in this list.</li>
+  <li>An initialized knowledge base will be created which contains the system classes rooted in
+    :THING. No instances will be created. You can then structure your project by
+    creating your classes and slots. (See <a href="../classes/creating_a_class.html">Creating a New Class</a>
+    and <a href="../slots/creating_a_slot.html">Creating a Slot</a> for more information.)&nbsp;</li>
+  <li>To save the project to disk, select <strong>Save</strong>
+from the <strong>Project</strong> menu.&nbsp;</li>
+  <li>Enter a name for your project in the Project line of the dialog box. This is the
+    name of your project (.pprj) file. The same name will automatically be
+    entered as the name for your ontology and instance files, unless you change
+    it.&nbsp;</li>
+</ol>
+
+<p>No matter which format you choose, the information specific to the Protégé-2000 interface is saved in a <b>pprj</b> (<b>P</b>rotégé <b>pr</b>o<b>j</b>ect)
+file. You can create, open, and save your projects directly via the <b>pprj</b>
+file. You do not need to name or access the other file types unless you wish to
+build a project.</p>
+
+<h2>Internal Project Structure</h2>
+
+<p>Internally, there are additional files which contain further information
+about the ontology and instances of the project. When you open a <b>pprj</b>
+file, Protégé-2000 automatically loads these files.</p>
+
+<p>By default, the additional files are saved in text format:</p>
+
+<ul>
+  <li>a text file containing the class and slot information, given the extension <b>pont</b>
+    (<b>P</b>rotégé <b>ont</b>ology).</li>
+  <li>a text file containing the instance information, given the extension <b>pins</b>
+    (<b>P</b>rotégé <b>ins</b>tances).</li>
+</ul>
+
+<p>You can also choose to save your project as a <a href="saving_a_database_project.html">database</a>
+or in <a href="../rdf_support.html">RDF format</a>.
+In the case of a database, the class/slot and instance information are saved in a single
+table in a JDBC database. In the case of RDF format, the class/slot and instance information are saved
+as separate RDF files. In either case, Protégé-2000 still uses the <b>pprj</b> file to
+access the project.&nbsp;</p>
+
+<hr>
+
+<p><font size="3">Next: <a href="opening_a_project.html">Opening a Project</a></font></p>
+
+<p><a href="index.html"><font size="3">Project Table of Contents</font></a></p>
+</body>
+</html>

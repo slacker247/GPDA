@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS isc$data attempt";flags: A+; content:".idc|3a3a|$data"; nocase; reference:bugtraq,307; reference:cve,CVE-1999-0874; classtype:web-application-attack; sid:1020; rev:3;)

@@ -1,0 +1,393 @@
+random_parameters {
+  logical change_script T
+  float change_script_rate 600.0
+}
+
+random_types {
+
+}
+
+two_random_types {
+  type carrier
+  type AWACS
+}
+
+no_random_types {
+  type f14
+  type f15
+  type f16
+  type f18
+  type f117
+  type B1
+  type B52
+  type mig
+  type AWACS
+  type DC10
+  type 747
+  type piper
+  type blue_cruise
+  type red_cruise
+}
+
+f14 {
+  int n 14
+  float start_time 59000.0
+  float max_vel 0.6
+  float cruise_vel 0.516
+  float max_alt 18.3
+  float cross_section 1.0
+  float flyout_range 1000.0
+  string sensor tactical_radar
+  int icon 51
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+f15 {
+  int n 15
+  float start_time 59000.0
+  float max_vel 0.6
+  float cruise_vel 0.516
+  float max_alt 18.3
+  float cross_section 1.0
+  float flyout_range 1000.0
+  string sensor tactical_radar
+  int icon 51
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+f16 {
+  int n 16
+  float start_time 59000.0
+  float max_vel 0.6
+  float cruise_vel 0.516
+  float max_alt 18.3
+  float cross_section 1.0
+  float flyout_range 1000.0
+  string sensor tactical_radar
+  int icon 51
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+f18 {
+  int n 18
+  float start_time 59000.0
+  float max_vel 0.6
+  float cruise_vel 0.516
+  float max_alt 18.3
+  float cross_section 1.0
+  float flyout_range 1000.0
+  string sensor tactical_radar
+  int icon 51
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+f117 {
+  int n 17
+  float start_time 59000.0
+  float max_vel 0.6
+  float cruise_vel 0.516
+  float max_alt 18.3
+  float cross_section 1.0
+  float flyout_range 1000.0
+  string sensor tactical_radar
+  int icon 51
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+B1 {
+  int n 11
+  float start_time 59000.0
+  float max_vel 0.4
+  float cruise_vel 0.3
+  float max_alt 18.3
+  float cross_section 1.0
+  float flyout_range 1000.0
+  string sensor tactical_radar
+  int icon 51
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+B52 {
+  int n 5
+  float start_time 59000.0
+  float max_vel 0.4
+  float cruise_vel 0.3
+  float max_alt 18.3
+  float cross_section 1.0
+  float flyout_range 1000.0
+  string sensor tactical_radar
+  int icon 51
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+mig {
+  int n 3
+  float start_time 59000.0
+  float max_vel 0.6
+  float cruise_vel 0.516
+  float max_alt 18.3
+  float cross_section 1.0
+  float flyout_range 1000.0
+  string sensor tactical_radar
+  int icon 70
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+AWACS {
+  int n 1
+  float start_time 59000.0
+  float max_vel 0.172
+  float cruise_vel 0.1376
+  float max_alt 15.24
+  float cross_section 1.0
+  float flyout_range 1000.0
+  string sensor AWACS_radar
+  int icon 68
+  logical north T
+  logical east F
+  float lat_deg 45.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+DC10 {
+  int n 100
+  float start_time 59000.0
+  float max_vel 0.172
+  float cruise_vel 0.1376
+  float max_alt 9.0
+  float cross_section 1.0
+  float flyout_range 1000.0
+  string sensor NULL
+  int icon 104
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+747 {
+  int n 747
+  float start_time 59000.0
+  float max_vel 0.172
+  float cruise_vel 0.1376
+  float max_alt 9.0
+  float cross_section 1.0
+  float flyout_range 1000.0
+  string sensor NULL
+  int icon 101
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+piper {
+  int n 100
+  float start_time 59000.0
+  float max_vel 0.0688
+  float cruise_vel 0.0344
+  float max_alt 6.0
+  float cross_section 1.0
+  float flyout_range 1000.0
+  string sensor NULL
+  int icon 97
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+carrier {
+  int n 1
+  float start_time 60000.0
+  float max_vel 0.0688
+  float cruise_vel 0.0344
+  float max_alt 0.1
+  float cross_section 1.0
+  float flyout_range 1000.0
+  string sensor tactical_radar
+  int icon 97
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 125.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+tank {
+  int n 1
+  float start_time 60000.0
+  float max_vel 0.0688
+  float cruise_vel 0.0344
+  float max_alt 0.1
+  float cross_section 1.0
+  float flyout_range 1000.0
+  string sensor tactical_radar
+  int icon 29
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 115.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+blue_cruise {
+  int n 32
+  float start_time 59000.0
+  float max_vel 0.4
+  float cruise_vel 0.3
+  float max_alt 1.0
+  float cross_section 1.0
+  float flyout_range 1000.0
+  string sensor cruise_sensor
+  int icon 66
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+red_cruise {
+  int n 32
+  float start_time 59000.0
+  float max_vel 0.4
+  float cruise_vel 0.3
+  float max_alt 1.0
+  float cross_section 1.0
+  float flyout_range 1000.0
+  string sensor cruise_sensor
+  int icon 55
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+tactical_radar {
+  float scan_time 1.0
+  float rmin 0.100
+  float rmax 500.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed F
+  logical los T
+  float error 1.0
+  int icon -1
+}
+
+AWACS_radar {
+  float scan_time 1.0
+  float rmin 10.0
+  float rmax 926.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed F
+  logical los T
+  float error 2.0
+  int icon -1
+}
+
+cruise_sensor {
+  float scan_time 1.0
+  float rmin 0.010
+  float rmax 150.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed F
+  logical los T
+  float error 0.1
+  int icon -1
+}
+
+NULL {
+}
+

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI perlshop.cgi access";flags: A+; uricontent:"/perlshop.cgi"; nocase;classtype:attempted-recon; sid:840; rev:1;)

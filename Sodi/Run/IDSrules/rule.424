@@ -1,0 +1,1 @@
+alert tcp $HOME_NET any -> $EXTERNAL_NET 27374 (msg:"MISC ramen worm outgoing"; flags: A+; content: "GET "; depth: 8; nocase;reference:arachnids,461;classtype:bad-unknown; sid:514; rev:1;)

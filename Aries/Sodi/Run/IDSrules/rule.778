@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS /usr/bin/cpp command attempt"; flags:A+; content:"/usr/bin/cpp";nocase; sid:1345; rev:1; classtype:web-application-attack;)

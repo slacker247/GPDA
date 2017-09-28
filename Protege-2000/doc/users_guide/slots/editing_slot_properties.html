@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title>Editing Slot Properties</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="../classes/images/serving_nerd.gif" WIDTH="48" HEIGHT="48"> Editing Slot Properties<br>
+<img src="../classes/images/header_line.gif" width="590" height="6"></h1>
+
+<p>You can edit the properties of a newly created or existing slot using the <a href="slot_form.html">Slot Form</a>.&nbsp;</p>
+
+<h2 align="left"><a name="slotname"></a>Slot Name</h2>
+
+<p align="left"><font size="3">To change the name of a slot, edit the text in the </font><strong>Name</strong><font size="3"> field.&nbsp;</font>Slot names are case sensitive. <font size="3">To distinguish
+slot names from class names, a </font>recommended<font size="3"> convention is to make
+slot names lowercase.&nbsp;</font></p>
+
+<h2 align="left"><a name="cardinality"></a>Cardinality</h2>
+
+<p>To change whether or not a slot can be composed of more than one item, select a
+different option from the <strong>Cardinality menu</strong>.&nbsp;
+
+<ul>
+  <li><strong>Single </strong>indicates that the value of a slot can contain at most one
+    item.&nbsp;</li>
+  <li><strong>Multiple </strong>indicates that the value of a slot may contain any number of
+    items. For example, the slot <b>keywords</b> in the class <b>Article</b> allows multiple
+    values. This means an instance of <b>Article</b> can have more than one keyword. <b>Multiple</b>
+    means that the slot value is a list of objects.</li>
+</ul>
+
+<p><b>NOTE</b>: If you are editing the slot for a specific class, and the slot is
+inherited, you cannot change the cardinality from <b>Single</b> to <b>Multiple</b>.</p>
+
+<h2 align="left"><a name="type"></a>Value Type</h2>
+
+<p>To change the value type of the slot, select a different type from <a href="value_type_menu.html">the Value Type menu</a>. The available types are summarized in
+the following table:</p>
+<div align="center"><center>
+
+<table border="1" cellpadding="0" cellspacing="0" width="610" bordercolor="#000000">
+  <tr>
+    <td width="68" bgcolor="#C0C0C0"><p align="center"><b>Type</b></td>
+    <td width="362" bgcolor="#C0C0C0"><p align="center"><b>Description</b></td>
+    <td width="174" bgcolor="#C0C0C0"><p align="center"><b>Examples</b></td>
+  </tr>
+  <tr>
+    <td width="68" bgcolor="#FFFFFF">Any</td>
+    <td width="362" bgcolor="#FFFFFF">Any of the types below (logical Union)</td>
+    <td width="174" bgcolor="#FFFFFF">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="68" bgcolor="#FFFFFF">Boolean</td>
+    <td width="362" bgcolor="#FFFFFF">Logical Value</td>
+    <td width="174" bgcolor="#FFFFFF">True, False</td>
+  </tr>
+  <tr>
+    <td width="68" bgcolor="#FFFFFF">Class</td>
+    <td width="362" bgcolor="#FFFFFF">Class in the knowledge base</td>
+    <td width="174" bgcolor="#FFFFFF">Organization</td>
+  </tr>
+  <tr>
+    <td width="68" bgcolor="#FFFFFF">Float</td>
+    <td width="362" bgcolor="#FFFFFF">Number with a decimal point</td>
+    <td width="174" bgcolor="#FFFFFF">1.0, 3.4e10, -0.3e-3</td>
+  </tr>
+  <tr>
+    <td width="68" bgcolor="#FFFFFF">Instance</td>
+    <td width="362" bgcolor="#FFFFFF">Instance of a class in the knowledge base</td>
+    <td width="174" bgcolor="#FFFFFF">instance_00010</td>
+  </tr>
+  <tr>
+    <td width="68" bgcolor="#FFFFFF">Integer</td>
+    <td width="362" bgcolor="#FFFFFF">Whole number</td>
+    <td width="174" bgcolor="#FFFFFF">1, 2, -4</td>
+  </tr>
+  <tr>
+    <td width="68" bgcolor="#FFFFFF">String</td>
+    <td width="362" bgcolor="#FFFFFF">List of alphanumeric characters, possibly including
+    spaces</td>
+    <td width="174" bgcolor="#FFFFFF">&quot;John Doe&quot;</td>
+  </tr>
+  <tr>
+    <td width="68" bgcolor="#FFFFFF">Symbol</td>
+    <td width="362" bgcolor="#FFFFFF">Enumerated list of values, which may not include spaces </td>
+    <td width="174" bgcolor="#FFFFFF">red, blue and green</td>
+  </tr>
+</table>
+</center></div>
+
+<p><b>NOTE</b>: If you are editing the slot from a specific class, and the slot is
+inherited, the following restrictions apply:
+
+<ul>
+  <li>For an inherited slot of type <b>Any</b>, you can select any <i>one</i> of the other
+    types.</li>
+  <li>For an inherited slot of a value type other than <b>Any</b>, you <i>cannot</i> change
+    the type of the slot. However, for slots of type <b>Class</b>, <b>Instance</b>, or <b>Symbol</b>,
+    you can change the choices in the associated <b>Allowed</b> menu.</li>
+</ul>
+
+<p>When a value type of <b><a href="value_type_menu.html#Class">Class</a></b>, <b><a href="value_type_menu.html#Instance">Instance</a></b>, or <b><a href="value_type_menu.html#Symbol">Symbol</a></b> is selected, an additional pane appears
+below <a href="value_type_menu.html">the Value Type menu</a>, as follows:</p>
+<div align="left">
+
+<table border="0" width="100%">
+  <tr>
+    <td width="26%"><b><u>Value Type</u></b></td>
+    <td width="74%"><b><u>Associated Pane</u></b></td>
+  </tr>
+  <tr>
+    <td width="26%"><b><a href="value_type_menu.html#Class">Class</a></b></td>
+    <td width="74%">The <b>Allowed Parents</b> pane. See <a href="value_type_menu.html#AddRemoveClassParents">Allowed Parents</a> in the <a href="value_type_menu.html">Value Type menu</a> for information on how to add and remove
+    allowed parents.</td>
+  </tr>
+  <tr>
+    <td width="26%"><b><a href="value_type_menu.html#Instance">Instance</a></b></td>
+    <td width="74%">The <b>Allowed Classes</b> pane. See <a href="value_type_menu.html#AddRemoveAllowedInstance">Allowed Classes</a> in the <a href="value_type_menu.html">Value Type menu</a> for information on how to add and remove
+    allowed classes.</td>
+  </tr>
+  <tr>
+    <td width="26%"><b><a href="value_type_menu.html#Symbol">Symbol</a></b> </td>
+    <td width="74%">The <b>Allowed Values</b> pane. See <a href="value_type_menu.html#AddRemoveAllowedInstance">Allowed Values</a> in the <a href="value_type_menu.html">Value Type menu</a> for information on how to add and remove
+    allowed values.</td>
+  </tr>
+</table>
+</div>
+
+<p>For more information, see <a href="value_type_menu.html">The Value Type Menu</a>.</p>
+
+<h2><a name="constraints"></a>Constraints (optional)</h2>
+
+<p>Class constraints are defined programatically. See <a href="../constraints.html">Constraints</a>
+for more information.&nbsp;</p>
+
+<h2><a name="defaults"></a>Defaults (optional)</h2>
+
+<p>Allows you to specify the default value(s) for a slot. When an instance is created for
+a class that has a slot with a defined default, the default value is automatically entered
+as the value of the slot. The default value can then be changed or overwritten.</p>
+
+<p>For a slot with <b>Single</b> cardinality, <b>Defaults</b> must be a single value or no
+value; for a slot with <b>Multiple</b> cardinality, <b>Defaults</b> can be more than one
+item.</p>
+
+<p>When present, any <b>Defaults</b> are displayed in the second-to-last column of the <a href="../classes/template_slot_pane.html">Template Slots pane</a> in the <a href="../classes/classes_tab.html">Classes tab</a>.</p>
+
+<h2><a name="minimum"></a>Minimum (optional)</h2>
+
+<p>For a slot of type <strong>Integer</strong> or <strong>Float</strong>, you can change
+the minimum value by typing the new value in the <b>Minimum</b> field. If you are editing
+the slot for a specific class, and the slot is inherited, the new minimum value must be <i>greater
+than or equal to</i> the inherited minimum.</p>
+
+<h2><a name="maximum"></a>Maximum (optional)</h2>
+
+<p>For a slot of type <strong>Integer</strong> or <strong>Float</strong>, you can change
+the maximum value by typing the new value in the <b>Maximum</b> field.&nbsp;If you are
+editing the slot for a specific class, and the slot is inherited, the new maximum value
+must be <i>less than or equal to</i> the inherited maximum.&nbsp;</p>
+
+<h2><a name="documentation"></a>Documentation (optional)</h2>
+
+<p align="left"><font size="3">You can change the text description of the slot directly in
+the documentation field.</font></p>
+
+<hr>
+
+<p><font size="3">Next: <a href="removing_a_slot.html">Removing a Slot From a Class</a></font></p>
+
+<p><a href="index.html"><font size="3">Slots Table of Contents</font></a></p>
+</body>
+</html>

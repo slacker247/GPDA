@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC enumdsn attempt";flags: A+; content:"xp_enumdsn"; nocase; classtype:web-application-attack; sid:1058; rev:2;)

@@ -1,0 +1,156 @@
+[iow]
+Information_Operations_Warfare     # Domain description
+#
+#   Labels for the status area
+#
+MISSION_STATUS
+  Alert_Lvl:                  5                  G
+  Firewall                    4                  G
+  DoS                         0                  G
+  Network:                    NIPRNET            G
+  Msn_Constraints             None               G
+  IOW_Task_Order:             IOW-16Jul01        G
+  Current_OpPlan:             OpPlan-1411.8      G
+#
+#   Labels for the Mission Summary area
+#
+ATTACK_SUMMARY
+  Web_Defacements             5
+  DoS_Attacks                 12
+  Sys._Penetrations           0
+  Trojan_Horses               3
+  Ping_Saturations            1
+  Detected_Viruses            5
+  Intrusions                  8
+  DNS_Attacks                 5
+#
+#   Labels for the Assets Summary area
+#
+    2    Def._Summary
+Firewalls
+DoS
+    2    Off._Summary
+Firewalls
+DoS
+#
+# ------------------------------------------------------------------
+#
+[nmd]
+Offense/Defense_Intgration         # Domain description
+#
+#   Labels for the status area
+#
+MISSION_STATUS
+  DEFCON                      5         G
+  RP                          2         G
+  DEA                         Hold      G
+  ROE                         N-America G
+  Msn_Constraints             None      G
+  Mission_Obj                 Current   G
+  Execution_Plan              Area-Def  G
+#
+#   Labels for the Mission Summary area
+#
+MISSION_SUMMARY  
+  Tot_Exp_Threats             25
+  Tot_Exp_Targets             25
+  Tot_Targets_Killed          12
+  Cur_Exp_Targets             13
+  No._of_Leakers              0
+  Targets_in_Track            5
+  Targets_Engaged             4
+  Not_Engaged                 1
+#
+#   Labels for the Assets Summary area
+#
+    1    Def._Summary
+GBI
+    6    Off._Summary
+ICBM
+SLBM
+Bomber
+Recce
+C&C
+Tanker
+#
+# -----------------------------------------------------------------
+#
+[aoc]
+Air_Operations_Center              # Domain description
+#
+#   Labels for the status area
+#
+MISSION_STATUS
+  DEFCON:                     5                  G
+  JAOP                        _                  G
+  GAT                         _                  G
+  Area:                       DPRK               G
+  SPIN_Constraint             SPIN-16Jul01       G
+  Air_Task_Order:             ATO-16Jul01        G
+  Current_MAAP:               MAAP-1411-8        G
+#
+#   Labels for the Mission Summary area
+#
+MISSION_SUMMARY
+  Tot_Exp_Threats             25
+  Tot_Exp_Targets             25
+  Tot_Targets_Killed          12
+  Cur_Exp_Targets             13
+  No._of_Leakers              0
+  Targets_in_Track            5
+  Targets_Engaged             4
+  Not_Engaged                 1
+#
+#   Labels for the Assets Summary area
+#
+    4    Def._Summary
+Fighter
+PAC3
+Aegis
+Thaad
+    4    Off._Summary
+Fighter
+Bomber
+Aegis
+SLBM
+#
+# ------------------------------------------------------------------
+#
+[doh]
+Homeland_Defense                   # Domain description
+#
+#   Labels for the status area
+#
+STATUS
+  DEFCON:                     5                  G
+  JAOP                        _                  G
+  GAT                         _                  G
+  Area:                       DPRK               G
+  Msn_Constraints             None               G
+  Air_Task_Order:             ATO-16Jul01        G
+  Current_MAAP:               MAAP-1411.8        G
+#
+#   Labels for the Mission Summary area
+#
+MISSION_SUMMARY
+  Tot_Exp_Threats             25
+  Tot_Exp_Targets             25
+  Tot_Targets_Killed          12
+  Cur_Exp_Targets             13
+  No._of_Leakers              0
+  Targets_in_Track            5
+  Targets_Engaged             4
+  Not_Engaged                 1
+#
+#   Labels for the Assets Summary area
+#
+    4    Def._Summary
+Fighter
+PAC3
+Aegis
+Thaad
+    4    Off._Summary
+Fighter
+Bomber
+Aegis
+SLBM

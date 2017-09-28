@@ -1,0 +1,49 @@
+   14
+# Action                    Type      Arena     Wpn     SVbr    ARbr    DMbr   SVrb    ARrb    DMrb     rDE
+#
+Strategic_Defend(C)       Defend     Strategic  (C)      0.8     0.9     0.7    1.0     0.1     0.7     7.2
+Tactical_Defend(C)        Defend     Tactical   (C)      0.8     0.9     0.8    1.0     0.1     0.9     6.4
+Strategic_Preempt(N)      Preempt    Strategic  (N)      1.0     0.9     0.9    0.2     0.9     0.7     5.7
+Tactical_Preempt(N)       Preempt    Tactical   (N)      1.0     0.9     0.9    0.1     0.9     0.7    12.9
+Strategic_Preempt(C)      Preempt    Strategic  (C)      1.0     0.9     0.3    0.5     0.9     0.7     0.9
+Tactical_Preempt(C)       Preempt    Tactical   (C)      1.0     0.9     0.7    0.4     0.9     0.7     2.5
+Strategic_Destroy(N)      Destroy    Strategic  (N)      0.6     0.8     0.7    0.4     0.9     0.7     1.4
+Tactical_Destroy(N)       Destroy    Tactical   (N)      0.6     0.9     0.8    0.2     0.9     0.7     3.3
+Strategic_Destroy(C)      Destroy    Strategic  (C)      0.6     0.8     0.7    0.8     0.9     0.7     0.7
+Tactical_Destroy(C)       Destroy    Tactical   (C)      0.6     0.9     0.8    0.6     0.9     0.7     1.1
+Strategic_Retaliate(N)    Retaliate  Strategic  (N)      0.5     0.8     0.9    1.0     0.9     0.7     0.6
+Tactical_Retaliate(N)     Retaliate  Tactical   (N)      0.5     0.9     0.7    1.0     0.9     0.7     0.5
+Strategic_Deny(V)         Deny       Strategic  (V)      0.9     0.9     0.4    0.9     0.9     0.7     0.7
+Tactical_Deny(V)          Deny       Tactical   (V)      0.9     0.9     0.5    0.9     0.9     0.7     1.6
+#
+# Factors:
+#   a = SVbr = Pre-launch survivability (Blue on Red)
+#   b = ARbr = Probability of Arrival (Blue on Red)
+#   c = DMbr = Probability of Damage (Blue on Red)
+#   d = SVrb = Pre-launch survivability (Red on Blue)
+#   e = ARrb = Probability of Arrival (Red on Blue)
+#   f = DMrb = Probability of Damage (Red on Blue)
+#
+#   rDE = (a ? b ? c )/(d ? e ? f)
+#
+# Notes:
+#   1) (N)=Nuclear, (C)=Conventional, (B)=Biological, (H)= Chemical, (V)=Covert
+#
+# Target Classes:
+#   1 = Missile launch sites
+#   2 = Air bases
+#   3 = Sub bases
+#   4 = Nuclear facilities
+#   5 = Chemical facilities
+#   6 = Biological facilities
+#   7 = Command & Control facilities
+#   8 = Population centers
+#   9 = Time critical target
+#  10 = Other
+#
+# Weights:
+#   1 = Low
+#   2 = Medium
+#   3 = High
+#   4 = Critical
+<EOF>

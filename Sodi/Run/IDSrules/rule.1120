@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC BigBrother access"; flags: A+; uricontent:"/bb-hostsvc.sh?HOSTSVC"; nocase; classtype:attempted-recon; sid:1105; rev:1;)

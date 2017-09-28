@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS File permission canonicalization"; uricontent:"/scripts/..%c1%9c../"; flags: A+; nocase; classtype:web-application-attack;  sid:983; rev:2;)

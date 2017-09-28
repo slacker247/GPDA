@@ -1,0 +1,300 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>DIS Data Dictionary: Entity State PDU</TITLE>
+
+
+
+</HEAD>
+
+<BODY>
+
+<h1> DIS Data Dictionary - PDU Data</h1><i>Created by <a
+
+href="http://huachuca-jdbe.army.mil/">JDBE</a> at Ft. Huachuca,
+
+Arizona</i><br clear=all><p><dl><dd>
+
+<p>
+
+<b>Current standard:  IEEE 1278.1</b>
+
+<p><BR><H4>Entity State PDU</H4>
+
+<B>Size: </B>1280<BR>
+
+<B>Description: </B>Information about a particular Entity State shall be communicated by issuing an Entity State PDU..  The Entity State PDU shall contain the following fields:<BR>
+
+(1) PDU Header - This field shall contain data common to all DIS PDUs.  The PDU Header shall be represented by the PDU Header Record (see 5.3.24).<BR>
+
+(2) Entity Identification - This field shall identify the entity issuing the PDU.  This field shall be represented by an Entity Identifier Record (see 5.3.14).<BR>
+
+(3) Force Identification - This field shall identify the force to which the issuing entity belongs.  This field shall be represented by an 8-bit enumeration (see Section 4 in Document IST-CR-93-19).<BR>
+
+(4) Number of Articulation Parameters - This field shall specify the number of articulation parameters required for the specification of the presence and state of all articulated parts.  This field shall be represented by an 8-bit unsigned integer (see Annex A).  The maximum number of Articulated Parameter Records in an Entity State PDU is a function of the maximum PDU size specified in the Standard for Interactive Simulation - Communication Architecture for Distributed Interactive Simulation, and is defined as follows<BR>
+
+  nmax = (Max PDU size - 1152) / 128<BR>
+
+  nmax = 78 for the current communication architecture standard.<BR>
+
+(5) Entity Type - This field shall identify the entity type to be displayed by members of the same force as the issuing entity.  This field shall be represented by an Entity Type Record (see 5.3.16, and Section 6 in Document IST-CR-93-19).<BR>
+
+(6) Alternate Entity Type - This field shall identify the entity type to be displayed by members of forces other than that of the issuing entity.  This field shall be represented by an Entity Type Record (see 5.3.16 and Section 4 in Document IST-CR-93-19).<BR>
+
+(7) Entity Linear Velocity - This field shall specify an entity's linear velocity.  The coordinate system for an entities' linear velocity depends on the dead reckoning algorithm used.  For additional detail see annex B.  This field shall be represented by a Linear Velocity Vector Record (see 5.3.32.3).<BR>
+
+(8) Entity Location - This field shall specify an entity 's physical location in the simulated world.  This field shall be represented by a World Coordinates Record (see 5.3.33).<BR>
+
+(9) Entity Orientation - This field shall specify an entity's orientation.  This field shall be represented by an Euler Angles Record (see 5.3.17).<BR>
+
+(10) Entity Appearance - This field shall specify the dynamic changes to the entity's appearance attributes.  This field shall be represented by an Entity Appearance Record.  The values for the field contained in this record are defined in Section 3 in Document IST-CR-93-19.<BR>
+
+(11) Dead Reckoning Parameters - This field will be used to provide parameters for dead reckoning the position and orientation of the entity.  Dead Reckoning algorithm in use, Entity Acceleration, and Angular Velocity shall be included as part of the dead reckoning parameters.  One- hundred twenty bits are reserved for other parameters that are currently undefined.<BR>
+
+  (a) Dead Reckoning Algorithm - This field shall specify the dead reckoning algorithm in use by the issuing entity.  This field shall be represented by an    8-bit enumeration.  Values for this enumeration are defined in Section 7 in Document IST-CR-93-19.<BR>
+
+  (b) Other Parameters - This field shall specify other required dead reckoning parameters to be determined.  This field shall consist of 120 bits.<BR>
+
+  (c) Entity Linear Acceleration - This field shall specify an entity's linear acceleration.  This field shall be represented by a Linear Acceleration Vector Record (see 5.3.32.2).<BR>
+
+  (d) Entity Angular Velocity - This field shall specify an entity's angular velocity.  This field shall be represented by an Angular Velocity Vector Record (see 5.3.2).<BR>
+
+(12) Entity Marking - This field shall identify any unique markings on an entity (for example, a bumper number or country symbol).  This field shall be represented by an Entity Marking Record (see 5.3.15).<BR>
+
+(13) Capabilities - This field shall specify the entity's capabilities.  This field shall be represented by an Entity Capabilities Record (see 5.3.13 and Section 4 in Document IST-CR-93-19).<BR>
+
+(14) Articulation Parameters - This field shall specify the parameter values for representation of each articulated or attached part.  Each articulation shall be represented by an Articulation Parameter Record (see 5.3.5 and Annex A).<BR>
+
+<P>
+
+<H3>PDU Components:</H3>
+
+<TABLE BORDER> <TR><TH ALIGN=CENTER>Item Name</TH>
+
+<TH ALIGN=CENTER>Bit Length</TH>
+
+<TH ALIGN=CENTER>Opt</TH>
+
+<TH ALIGN=CENTER>Opt Ctl</TH>
+
+<TH ALIGN=CENTER>Rpt</TH>
+
+<TH ALIGN=CENTER>Rpt Ctl</TH>
+
+</TR>
+
+<TR><TD><A HREF="7.htm" >PDU Header Record</A></TD>
+
+<TD>96</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="2c.htm" >Entity ID Record</A></TD>
+
+<TD>48</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="21.htm" >Force ID Field</A></TD>
+
+<TD>8</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="30.htm" ># of Articulation Parameters (n) Field</A></TD>
+
+<TD>8</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="28.htm" >Entity Type Record</A></TD>
+
+<TD>64</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="28.htm" >Alternative Entity Type Record</A></TD>
+
+<TD>64</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="34.htm" >Entity Linear Velocity Record</A></TD>
+
+<TD>96</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="19.htm" >Entity Location Record</A></TD>
+
+<TD>192</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="35.htm" >Entity Orientation Record</A></TD>
+
+<TD>96</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="36.htm" >Entity Appearance Record</A></TD>
+
+<TD>32</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="37.htm" >Dead Reckoning Parameters Record</A></TD>
+
+<TD>320</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="64.htm" >Entity Marking record</A></TD>
+
+<TD>96</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="67.htm" >Entity Capabilities Record</A></TD>
+
+<TD>32</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="6d.htm" >Articulation Parameter Record</A></TD>
+
+<TD>128</TD>
+
+<TD>Yes</TD>
+
+<TD>Number of Articulation Parameters</TD>
+
+<TD>Yes</TD>
+
+<TD>Number of Articulation Parameters</TD>
+
+</TR>
+
+ </TABLE>
+
+<HR><i>For questions regarding the content of the DIS Data
+
+Dictionary, <br>please contact Jeff Wicks, <a href="mailto:jwicks@ist.ucf.edu">jwicks@ist.ucf.edu</a></i><p><i>Other problems may be reported to the WebMaster,<a
+
+href="mailto:www@sc.ist.ucf.edu">www@sc.ist.ucf.edu</a></i><br>
+
+<hr>
+
+Generated by the DIS Data Dictionary
+
+
+
+</BODY>
+
+</HTML>
+

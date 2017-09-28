@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible wscript.KakWorm"; content: "filename=\"KAK.HTA""; nocase; reference:MCAFEE,10509; sid:751;  classtype:misc-activity; rev:3;)

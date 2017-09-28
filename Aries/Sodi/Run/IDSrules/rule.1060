@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS multiple decode attempt"; flags:A+; uricontent:"%5c"; uricontent:".."; reference:cve,CAN-2001-0333; classtype:web-application-attack; sid:970; rev:2;)

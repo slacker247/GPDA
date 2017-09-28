@@ -1,0 +1,67 @@
+/*
+ *
+ *   Device Independent Bitmap definitions for OpenGL.
+ *
+ */
+
+/*
+ * Include necessary headers.
+ */
+
+#ifndef _BITMAP_H_
+#define _BITMAP_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
+
+#include <GL/gl.h>
+
+typedef short  WORD;
+typedef int    DWORD;
+typedef long   LONG;
+
+typedef struct BITMAPFILEHEADER {
+  char        bfType[2];                // "BM"
+  DWORD       bfSize;                   // Size of file in bytes
+  WORD        bfReserved1;              // Reserved, always 0
+  WORD        bfReserved2;              // Reserved, always 0
+  DWORD       bfOffBits;                // Offset to image in bytes
+};
+
+typedef struct BITMAPINFOHEADER {
+  DWORD       biSize;                  // Size of BITMAPINFOHEADER in bytes
+  LONG        biWidth;                 // Width of image in pixels
+  LONG        biHeight;                // Height of image in pixels
+  WORD        biPlanes;                // # of color planes (always 1)
+  WORD        biBitCount;              // # of color bits
+  DWORD       biCompression;           // Type of compression used
+  DWORD       biSizeImage;             // Size of image in bytes
+  LONG        biXPelsPerMeter;         // Horizontal pixels per meter
+  LONG        biYPelsPerMeter;         // Vertical pixels per meter
+  DWORD       biClrUsed;               // Number of colors used
+  DWORD       biClrImportant;          // Number of 'important' colors
+};
+
+typedef struct BITMAPINFO {
+  BITMAPINFOHEADER  bmiHeader;
+};
+
+/*
+ * Make this header file work with C and C++ source code...
+ */
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+extern void	*LoadDIBitmap(char *filename, BITMAPINFO **info);
+extern int	SaveDIBitmap(char *filename, BITMAPINFO *info, void *bits);
+extern void	*ReadDIBitmap(BITMAPINFO **info);
+
+extern GLubyte	*ConvertRGB(BITMAPINFO *info, void *bits);
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+
+#endif /* !_BITMAP_H_ */

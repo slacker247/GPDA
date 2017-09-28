@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP chameleon overflow"; content: "HELP "; nocase; flags: A+; dsize: >500; depth: 5; reference:bugtraq,2387; reference:arachnids,266; reference:cve,CAN-1999-0261; classtype:attempted-admin; sid:657; rev:2;)

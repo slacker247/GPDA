@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI dcforum.cgi access"; uricontent:"/dcforum.cgi"; flags:a+;classtype:attempted-recon; sid:818; rev:2;)

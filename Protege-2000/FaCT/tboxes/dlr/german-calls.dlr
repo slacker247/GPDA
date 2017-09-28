@@ -1,0 +1,22 @@
+;;; Telecom Italia German Calls Model (Source 5)
+
+;;; Relations
+
+(defprimrelationship service-call_5 2)
+
+(impliesrel service-call_5 (and ($1 2 Service_5) ($2 2 Call_5)))
+
+;;; Entities
+
+(defprimconcept Service_5)
+(defprimconcept Call_5)
+
+;;; Assert cardinality constraints
+(implies Service_5 (atleast 1 $1 service-call_5))
+(implies Call_5 (and (atleast 1 $2 service-call_5) (atmost 1 $2 service-call_5)))
+
+;;; Integrity constraints
+(impliesrel service-call_5 service-call)
+
+(implies Service_5 Service)
+(implies Call_5 Call)

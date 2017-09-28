@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI info2www access";flags: A+; uricontent:"/info2www"; nocase; reference:bugtraq,1995; reference:cve,CVE-1999-0266; classtype:attempted-recon; sid:827; rev:2;)

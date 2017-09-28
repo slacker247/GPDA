@@ -1,0 +1,90 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Saving a Database Project</title>
+</head>
+
+<body>
+<h1>
+<img src="images/serving_nerd.gif" width="48" height="48">
+Saving a Database Project
+<img src="images/header_line.gif" width="590" height="6">
+</h1>
+
+<p>You can save a Prot&eacute;g&eacute;-2000 project as a single table in a JDBC database. Before you do this, you 
+will need to do the following:</p>
+	<ul>
+  		<li>Make sure you have a database program installed on your system.</li>
+  		<li>Make sure you have a JDBC driver that is compatible with your database and the version of the 
+		Java VM that you are using.  If you are using Microsoft Access, you don't need to acquire a JDBC
+		driver since it's already bundled into the JDK.  You can also ignore the third bulleted item in 
+		this list.</li>
+  		<li>Rename the driver to be &quot;driver.jar&quot; (or &quot;driver1.jar&quot; or 
+        &quot;driver2.jar&quot; if you have several).&nbsp; Add this driver to the 
+        Protege-2000 installation directory (NOT the plugins directory).</li>
+	</ul>
+
+<p><b>Note:</b> When a project is saved in a JDBC database, back-end changes to the database (for example, 
+changes to slots, classes, and instances) are committed as soon as they are made. However, changes to 
+the User Interface (which is stored in the .pprj file) are not committed until you press the Save button.</p>
+
+<!-- <p>Once you have set up your JDBC database, you can save your Prot&eacute;g&eacute;-2000 project as a database 
+files in one of two ways:
+	<ul>
+  		<li>When the project is first created, by selecting <b>JDBC Database</b> in the Select Format dialog box.</li>
+  		<li>By selecting <b>Save in Format...</b> from the <b>Project</b> menu and then selecting <b>JDBC Database</b> 
+		in the Select Format dialog box.</li>
+	</ul>
+</p>
+ -->
+ 
+<!-- <p>After you have chosen your format, choose the name and location for the project as follows:</p> -->
+
+To save a project using the JDBC database project format:
+<ol>
+	<!-- <li>When you have selected <b>JDBC Database</b>, the Single Table JDBC Database dialog box is 
+	displayed:
+	<br><br><img border="0" src="images/SaveDatabase.gif" width="468" height="392"><br><br></li>
+ 	-->	
+	
+	<li><a href="creating_a_project.html">Create a new project</a> using the JDBC database project 
+	format.</li><br><br>
+	
+ 	<li>Choose the menu item Project -> Save or click the Save button on the toolbar to bring up the 
+	&quot;JDBC Database&quot; dialog:
+	<br><br><img border="0" src="images/SaveDatabase.gif" width="468" height="392"><br><br></li>
+
+	<li>To select or change the name or location of the <b>pprj</b> file, enter the information you 
+	want in the <b>Project</b> line of the dialog box. Be sure to give the file a <b>pprj</b> extension. 
+	To browse for a new location, click the 
+    <img border="0" src="images/Add.gif" width="19" height="19"> 
+	button. If you do not specify a location for the project, by default, the project is saved in the 
+	directory where Prot&eacute;g&eacute;-2000 is installed.</li><br><br>
+	
+	<li>Enter the class name of your JDBC driver in the <b>JDBC Driver</b> line of the dialog box. The 
+	class name can be found in the documentation provided with your particular driver. For Microsoft 
+	Access, use: sun.jdbc.odbc.JdbcOdbcDriver.</li><br><br>
+ 		
+	<li>Enter the URL for your database in the <b>JDBC URL</b> line. For Microsoft Access, navigate 
+	to the &quot;ODBC Data Source Administrator&quot; dialog via the Control Panel and add a User DSN for your 
+	Access database. If you're unfamiliar with how to find this dialog or how to add a User DSN, please refer 
+	to Microsoft Windows Help. Your URL will look like: jdbc:odbc:&lt;User DSN name&gt;</li><br><br>
+
+	<li>Type a name for the table in the <b>Table</b> line of the dialog box.  Please note that this is a 
+	required field.</li><br><br>
+
+	<li>If your database requires a username and/or password, enter these in the appropriate lines of 
+	the dialog box.</li><br><br>
+
+	<li>Click OK.</li>
+</ol>
+
+<p>You can store multiple projects in the same database by giving their tables different names.</p>
+
+<hr>
+<p><font size="3">Next: <a href="saving_RDF_project.html">Saving an RDF Project</a></font></p>
+<p><a href="index.html"><font size="3">Project Table of Contents</font></a></p>
+</body>
+</html>

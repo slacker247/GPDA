@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible Bubbleboy Worm"; content:"BubbleBoy is back!"; reference:MCAFEE,10418; sid:775;  classtype:misc-activity; rev:3;)

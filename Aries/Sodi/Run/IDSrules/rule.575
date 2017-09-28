@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN nmap fingerprint attempt";flags:SFPU; reference:arachnids,05; classtype:attempted-recon; sid:629; rev:1;)

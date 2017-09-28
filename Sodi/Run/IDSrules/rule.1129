@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC ICQ webserver DOS";flags: A+; uricontent:".html/......"; nocase; reference:cve,CVE-1999-0474; classtype:attempted-dos; sid:1115; rev:2;)

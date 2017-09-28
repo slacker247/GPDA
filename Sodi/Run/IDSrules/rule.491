@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 32771:34000 (msg:"RPC DOS ttdbserv solaris"; flags: A+; content: "|00 01 86 F3 00 00 00 01 00 00 00 0F 00 00 00 01|";offset: 16; depth: 32; reference:bugtraq,122; reference:arachnids,241; reference:cve,CVE-1999-0003; classtype:attempted-dos; sid:572; rev:2;)

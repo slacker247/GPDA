@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible scr Worm"; content: ".scr"; nocase; sid:729;  classtype:misc-activity; rev:3;)

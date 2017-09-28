@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Changing the Metaclass of a Class</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="../images/serving_nerd.gif" width="48" height="48"> Changing the
+Metaclass of a Class<br>
+<img src="../images/header_line.gif" width="590" height="6"></h1>
+
+<p><b>Note: </b>Before you create and use metaclasses, you should be confident
+with the basic Protégé interface and be comfortable designing a project, and
+creating and modifying classes, slots, forms and instances.</p>
+
+<p>For any existing class in your project, you can change the metaclass you use
+for that class. This gives the class and the Class Form the attributes defined
+by the new metaclass. New classes that you create as subclasses of the class
+will also use the new metaclass. However, existing subclasses will continue to
+use their previously assigned metaclass unless you specifically change it.&nbsp;</p>
+
+<p>This example uses the wines project, which includes a Wine template that
+supplies metaclass structure.&nbsp;</p>
+
+<p>To change the metaclass of an existing class:</p>
+
+<ol>
+  <li><font size="3">In the <a href="../class_relationship_pane.html">Class Relationship Pane</a>,
+    click on the class that you want to change.&nbsp;<br>
+    <img border="0" src="images/change7.gif" width="273" height="211"></font></li>
+  <li><font size="3">Click the right mouse button and select &quot;Change
+    metaclass...&quot;&nbsp;<br>
+    </font><img border="0" src="images/change5.gif" width="261" height="187"></li>
+  <li><font size="3">A dialog box displays the Concrete metaclasses, which are
+    the classes you can use. You cannot use the Abstract metaclasses in this
+    way. Note that if the class currently uses a non-standard class, you can
+    revert to :STANDARD-CLASS.<br>
+    </font><img border="0" src="images/change8.gif" width="328" height="170"></li>
+  <li><font size="3">Select the metaclass that has the properties that you want
+    and click OK.&nbsp;<br>
+    The highlighted class will now have the Class Form and properties determined
+    by the selected metaclass.&nbsp;</font></li>
+</ol>
+
+<hr>
+
+<p><font size="3">Next:&nbsp;<a href="change_meta_sub.html">Changing the Metaclass of Subclasses</a> </font></p>
+
+<p><a href="../index.html"><font size="3">Classes Table of Contents</font></a></p>
+</body>
+</html>

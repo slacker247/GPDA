@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI dumpenv.pl access";flags: A+; uricontent:"/dumpenv.pl"; nocase;classtype:attempted-recon; sid:869; rev:1;)

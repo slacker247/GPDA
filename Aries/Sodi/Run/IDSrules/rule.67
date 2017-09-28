@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET 60000 -> $HOME_NET 2140 (msg:"BACKDOOR DeepThroat 3.1 Keylogger on Server ON"; content:"KeyLogger Is Enabled On port"; reference:arachnids,106; sid:165;  classtype:misc-activity; rev:3;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 139 (msg:"MS-SQL PIPES xp_cmdshell - program execution"; content: "x|00|p|00|_|00|c|00|m|00|d|00|s|00|h|00|e|00|l|00|l|00|"; nocase; flags: AP; offset: 32; offset: 32; classtype:attempted-user; sid:681; rev:1;)

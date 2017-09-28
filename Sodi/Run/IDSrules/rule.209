@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 139 (msg:"EXPLOIT x86 linux samba overflow";flags: A+; content:"|eb2f 5feb 4a5e 89fb 893e 89f2|"; reference:bugtraq,1816; reference:cve,CVE-1999-0811; reference:cve,CVE-1999-0182; classtype:attempted-admin; sid:292; rev:2;)

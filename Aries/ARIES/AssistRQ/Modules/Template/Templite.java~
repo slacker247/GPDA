@@ -1,0 +1,436 @@
+/*
+ *  Template.java
+ *
+ *
+ * Copyright (c) 2000-2001, The University of Sheffield.
+ *
+ * This file is part of GATE (see http://gate.ac.uk/), and is free
+ * software, licenced under the GNU Library General Public License,
+ * Version 2, June1991.
+ *
+ * A copy of this licence is included in the distribution in the file
+ * licence.html, and is also available at http://gate.ac.uk/gate/licence.html.
+ *
+ *  Jeff McCartney, 6/6/2002
+ *
+ *  $Id: Template.jav,v 1.2 2001/11/14 17:15:43 oana Exp $
+ */
+//package Modules.Template;
+
+import java.util.*;
+import java.io.*;
+import java.net.*;
+
+import gate.*;
+import gate.creole.*;
+import gate.util.*;
+import gate.corpora.*;
+import gate.annotation.*;
+import gate.jape.*;
+
+
+/** 
+ * This class is the implementation of the resource TEMPLATE.
+ */ 
+ 
+public class Templite  extends AbstractLanguageAnalyser
+  implements ProcessingResource
+{
+   public String
+      WORKING_DIR = "/home/jeffmac/AssistRQ/";
+   public String 
+      Current_Rules = "Test";
+   public static final String
+      TEMP_DOCUMENT_PARAMETER_NAME = "document";
+
+   public Boolean DEBUG = new Boolean(true);
+   public String debug = "false";
+   public URL workingdir;
+   public String inputfile, Input_File = "fields.ini";
+   public String outputfile, Output_File = "temp.txt";
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+   ///////Paramater that is being passed in from the creole.xml file
+   ///////This function is needed with the param Both the func name and the param 
+   /////// having the same name as the param from *.xml
+   public void setDebug(String debug)
+   {
+       DEBUG = new Boolean(debug);
+   }
+   
+   public void setWorkingdir(URL workingdir)
+   {
+      WORKING_DIR = workingdir.getPath();
+   }
+   public void setInputfile(String inputfile)
+   {
+       Input_File = inputfile;
+   }
+   public void setOutputfile(String outputfile)
+   {
+       Output_File = outputfile;
+   }
+   public void setCurrentrules(String currentrules)
+   {
+       Current_Rules = currentrules;
+   }
+   public String getDebug()
+   {
+       return DEBUG.toString();
+   }
+   
+   public URL getWorkingdir()
+   {
+      return workingdir;
+   }
+   public String getInputfile()
+   {
+       return Input_File;
+   }
+   public String getOutputfile()
+   {
+       return Output_File;
+   }
+   public String getCurrentrules()
+   {
+       return Current_Rules;
+   }
+
+///////////////  End of params  /////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+   protected static ArrayList m_Al_Fields = new ArrayList();
+   Field m_A_Fields[] = new Field[100];
+   Field m_Fields = new Field();
+   
+   AnnotationSet m_NameAllAnnots = null;
+         
+   FileWriter m_Output;
+
+   //Runs the function FileInput to bring in the field info from fields.ini
+   //Is the first function called when loaded
+   public Resource init() throws ResourceInstantiationException
+   {
+   	fireStatusChanged("Loading " + Input_File + " file...");
+        m_Al_Fields.clear();
+   	    
+   	FileInput();
+   	return super.init(); 
+   }
+   
+   //Main driver
+   public void execute() throws ExecutionException
+   {
+       m_A_Fields = (Field[])m_Al_Fields.toArray(m_A_Fields);
+       if(DEBUG.booleanValue())
+       {
+           Out.prln(document.getName()); // Out put to the message window
+       }
+       
+       int x = 0;
+       while(m_A_Fields[x] != null)
+       {
+           AnnotOut(x);
+           x++;
+       }
+              
+       FileOutput();
+       fireProcessFinished();
+   }
+   
+   public void reInit() throws ResourceInstantiationException
+   {
+       init();
+   }
+   
+   //Executes the supplied jape grammar rule within the fields.ini
+   public void RunJape(URL url)
+   {
+       if(DEBUG.booleanValue())
+       {
+           Out.prln("Running Jape Grammer...");
+       }
+       if(url == null)
+       {
+          Out.prln("No file at location!!!!");
+          return;
+       }
+       try
+       {
+           Batch batch = new Batch(url, "UTF-8");
+           batch.transduce(document);
+       }catch (JapeException je)
+       {
+           if(DEBUG.booleanValue())
+           {
+               je.printStackTrace(Err.getPrintWriter());
+               Out.prln(url.toString() + "\nThe Jape grammer is invalid!");
+           }
+           return;
+       }catch (ExecutionException ee)
+       {
+           Out.prln("Some kind of Execution error in RunJape():" + ee);
+           return;
+       }
+       if(DEBUG.booleanValue())
+       {
+           Out.prln("Ran Successfully!!");
+       }
+   }
+   
+   // Gets and displays the annotations of the current doc to the messages pane
+   public void AnnotOut(int x) throws ExecutionException
+   {
+       if(DEBUG.booleanValue())
+       {
+           Out.prln("Reading Annotations for Type: " + m_A_Fields[x].AnnotType);
+       }
+       fireStatusChanged("Reading Annotations for Type: " + m_A_Fields[x].AnnotType);
+       
+       fireStatusChanged("Running Jape Grammar:" + m_A_Fields[x].JapeUrl);
+       RunJape(m_A_Fields[x].JapeUrl);
+
+       m_A_Fields[x].Words = GetAnnotations(m_A_Fields[x].AnnotType);
+       
+       if(DEBUG.booleanValue())
+       {
+           ListIterator ItrNames = m_A_Fields[x].Words.listIterator();
+           while(ItrNames.hasNext())
+           {
+               Out.prln(m_A_Fields[x].AnnotType + ": " + ItrNames.next());
+           }
+       }
+   }
+   
+   //Brings in the fields from the file fields.ini and stores them in the class Field
+   public void FileInput()
+   {
+   	String Temp = "";
+   	StringBuffer inchar = new StringBuffer();
+   	int i = 0, count = 0;
+   	FileReader Input = null;
+   	Field tmp_Fields = new Field();
+   	
+   	try
+   	{
+   	    Input = new FileReader(WORKING_DIR + "Rules_Words/" + Current_Rules +"/" + Input_File);
+   	}catch(IOException ioe)
+   	{
+   	    Out.prln("IO error:" + ioe);
+   	}
+   	
+	//loops through the file Fields.ini until the end of file
+        while(i != -1)
+   	{
+   	    String FieldName = "", AnnotType = "", JapeUrl = "";
+
+	    //Gets the three strings: Field name, Annot type, location of grammers
+   	    for(int x = 0; x < 3; x ++)
+   	    {
+   	    	if(i == ' ' || i == '\n')
+   	    		i = 0;
+   	    		
+   	    	//Gets a single string of above mentioned Fields
+   	    	while(i != ' ' && i != -1 && i != '\n')
+   	    	{
+   	    		try
+   	    		{
+   	    			i = Input.read();
+   	    		}catch(IOException ioe)
+   	    		{
+   	    			Out.prln("IO error:" + ioe);
+   	    		}
+   	    		if(i != -1 && i != '\n' && i != ' ')
+   	    		   inchar.append((char)i);
+   	    	}
+   	    	Temp = inchar.toString();
+   	    	
+   	    	// assigns extracted string from file and stores it to current Field class
+   	    	if(Temp != "")
+   	    	{
+   	    		switch(x)
+   	    		{
+   	    			case 0:
+   	    				//assign to Fields class the Field name
+   	    				FieldName = Temp;
+   	    				if(DEBUG.booleanValue())
+   	    				{
+   	    				    Out.prln("first: " + Temp);
+   	    				}
+   	    				break;
+   	    			case 1:
+   	    				//assign to m_Fields class the AnnotType
+   	    				AnnotType = Temp;
+   	    				if(DEBUG.booleanValue())
+   	    				{
+   	    				    Out.prln("Second: " + Temp);
+   	    				}
+   	    				break;
+   	    			case 2:
+   	    				//assign to m_Fields class the Jape grammer
+   	    				JapeUrl = "file:" + WORKING_DIR +"Rules_Words/" + Temp;
+   	    				if(DEBUG.booleanValue())
+   	    				{
+   	    				    Out.prln("Third: " + Temp);
+   	    				}
+   	    				break;
+   	    		}
+   	    		Temp = "";
+   	    		inchar.delete(0, inchar.length());
+   	    	}
+   	    }
+   	    //create a new Class of Field in Fields ArrayList
+   	    m_Al_Fields.add(new Field(FieldName, AnnotType, JapeUrl));
+   	    fireProgressChanged(count*20);
+   	    count++;
+   	}
+   	try{Input.close();}
+   	catch(IOException ioe){Out.prln("IO error:" + ioe);}
+   }
+   
+   //Formats the fields to the appropriate style and outputs it to a file *.tag
+   public void FileOutput()
+   {
+       fireStatusChanged("Outputting to the file");
+       String Record = "I'm still Testing!!!!!!!";
+       int x = 0, y = 1, max_Annots = 0;
+       max_Annots = MaxSize();  //some function that calculates the maximum number of Annotations
+       try
+       {
+           m_Output = new FileWriter(WORKING_DIR + Output_File, false);
+       }catch (IOException ioe)
+       {
+           Out.prln("IO error:" + ioe);
+       }
+       
+       while(m_A_Fields[y] != null)
+       {
+           //Record = "";
+           try
+           {
+               //if string not at end write string to file
+               //do the if for each field(varArray) until the end of all vars
+               m_Output.write("+ " + m_A_Fields[y].FieldName + "\n");
+           }catch (IOException ioe)
+           {
+               Out.prln("IO error:" + ioe);
+           }
+           while(x < max_Annots)
+           {
+               try
+               {
+                   m_Output.write("> " + m_A_Fields[y].Words.get(x) + "\n");
+                   //Record += m_A_Fields[y].Words.get(x) + " ";
+               }catch(IndexOutOfBoundsException e)
+               {
+                   Record += "N/A ";
+               }catch (IOException ioe)
+               {
+                   Out.prln("IO error:" + ioe);
+               }
+               x++;
+           }
+           x = 0;
+           fireProgressChanged(y *20);
+           y++;
+       }
+       try
+       {
+           m_Output.close();
+       }catch (IOException ioe)
+       {
+           Out.prln("IO error:" + ioe);
+       }
+   }
+   
+   //Extracts the supplied(Type) Annotations "words" from the current text and returns them
+   public ArrayList GetAnnotations(String Type) throws ExecutionException
+   {
+       ArrayList Names = new ArrayList();
+       m_NameAllAnnots = document.getAnnotations();
+       AnnotationSet nameAnnots = m_NameAllAnnots.get(Type);
+       String annotString = null;
+
+       if ((nameAnnots == null) || nameAnnots.isEmpty())
+       {
+           if(DEBUG.booleanValue())
+           {
+               Out.prln("No annotations with type " + Type);
+           }
+           return Names;
+       }
+       	   
+       Iterator iterNames = nameAnnots.iterator();
+       int count = 0;
+       
+       while(iterNames.hasNext())
+       {
+           Annotation nameAnnot = (Annotation) iterNames.next();
+           Integer id = nameAnnot.getId();
+           
+           try
+           {
+               annotString = document.getContent().getContent(
+               nameAnnot.getStartNode().getOffset(),
+               nameAnnot.getEndNode().getOffset()
+               ).toString();
+           }catch (InvalidOffsetException ioe)
+           {
+               throw new ExecutionException
+                             ("Invalid offset of the annotation");
+           }//end try catch
+              
+           //check and correct for m_Output i.e. remove and replace spaces with underscores
+           //and remove newline characters.
+           fireProgressChanged(count *20);
+           count++;
+           String temp = annotString.replace('\n', ' ');
+           Names.add(temp.replace(' ', '_'));
+       }//end while
+       return Names;
+   }   	
+   
+   //Returns the Maximum number of Annotations "words" throughout the Fields
+   public int MaxSize()
+   {
+       int y = 0, max = 0;
+       while(m_A_Fields[y] != null)
+       {
+           if( max < m_A_Fields[y].Words.size())
+           {
+               max = m_A_Fields[y].Words.size();
+           }
+           y++;
+       }
+       return max;
+   }
+       
+} // class Template
+
+class Field
+{
+    Field(){}
+    Field(String Field, String Annot, String Url)
+    {
+        FieldName = Field;
+        AnnotType = Annot;
+        try{
+        JapeUrl = new URL(Url);
+        }catch(MalformedURLException Me)
+        {Out.prln("Bad file name or location.");}
+    }
+    ArrayList Words = new ArrayList();
+    String AnnotType;
+    URL JapeUrl;
+    String FieldName;
+    public void AnnotType(String Temp){ AnnotType = Temp;}
+    public void JapeUrl(String Temp)
+    {
+        JapeUrl = Field.class.getResource(Temp);
+        Out.prln(Temp);
+        Out.prln(JapeUrl);
+    }
+    public void FieldName(String Temp)
+    {
+        FieldName = Temp;
+    }
+}

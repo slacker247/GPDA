@@ -1,0 +1,160 @@
+; Wed Apr 12 13:41:27 PDT 2000
+
+
+(defclass :CLIPS_TOP_LEVEL_SLOT_CLASS
+	(is-a USER)
+	(role concrete)
+	(single-slot upper_left_corner
+		(type INSTANCE)
+;+		(allowed-classes Point)
+		(create-accessor read-write))
+	(single-slot lower_right_corner
+		(type INSTANCE)
+;+		(allowed-classes Point)
+		(create-accessor read-write))
+	(single-slot y
+		(type INTEGER)
+		(create-accessor read-write))
+	(single-slot x
+		(type INTEGER)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot location
+		(type INSTANCE)
+;+		(allowed-classes Rectangle)
+		(create-accessor read-write))
+	(single-slot node_slot
+		(type INSTANCE)
+;+		(allowed-classes :STANDARD-SLOT)
+		(create-accessor read-write))
+	(single-slot main_panel_width
+		(type INTEGER)
+		(create-accessor read-write))
+	(single-slot main_panel_height
+		(type INTEGER)
+		(create-accessor read-write))
+	(multislot layout_information
+		(type INSTANCE)
+;+		(allowed-classes ObjectLocation)
+		(create-accessor read-write))
+	(single-slot last_divider_location
+		(type INTEGER)
+		(create-accessor read-write))
+	(multislot connectors
+		(type INSTANCE)
+;+		(allowed-classes Connector)
+		(create-accessor read-write))
+	(single-slot second_object_slot_pointer
+;+		(comment "Used for diagrams. This contains a slot . The system automatically inserts the fist_object as the slot value of this slot at the second_object.\n\nImplicit in here is the restriction that this slot must be an own slot of the second_object (and must take instance values)\n")
+		(type INSTANCE)
+;+		(allowed-classes :STANDARD-SLOT)
+		(create-accessor read-write))
+	(single-slot first_object_slot_pointer
+;+		(comment "Used for diagrams. This contains a slot . The system automatically inserts the second_object as the slot value of this slot at the first_object.\n\nImplicit in here is the restriction that this slot must be an own slot of the first_object (and must take instance values)\n")
+		(type INSTANCE)
+;+		(allowed-classes :STANDARD-SLOT)
+		(create-accessor read-write))
+	(single-slot second_object
+		(type INSTANCE)
+;+		(allowed-classes :THING)
+		(create-accessor read-write))
+	(single-slot first_object
+		(type INSTANCE)
+;+		(allowed-classes :THING)
+		(create-accessor read-write)))
+
+(defclass Diagram_Entity
+	(is-a USER)
+	(role concrete))
+
+(defclass Connector "This is the abstract superclass for all connectors. To create a specific connector class (for a network), you must subclass Connector (using Connector_Metaclass). "
+	(is-a Diagram_Entity)
+	(role abstract)
+	(single-slot second_object
+		(type INSTANCE)
+;+		(allowed-classes :THING)
+		(create-accessor read-write))
+	(single-slot first_object
+		(type INSTANCE)
+;+		(allowed-classes :THING)
+		(create-accessor read-write)))
+
+(defclass Connector_Metaclass
+	(is-a :STANDARD-CLASS Diagram_Entity)
+	(role concrete)
+	(single-slot second_object_slot_pointer
+;+		(comment "Used for diagrams. This contains a slot . The system automatically inserts the fist_object as the slot value of this slot at the second_object.\n\nImplicit in here is the restriction that this slot must be an own slot of the second_object (and must take instance values)\n")
+		(type INSTANCE)
+;+		(allowed-classes :STANDARD-SLOT)
+		(create-accessor read-write))
+	(single-slot first_object_slot_pointer
+;+		(comment "Used for diagrams. This contains a slot . The system automatically inserts the second_object as the slot value of this slot at the first_object.\n\nImplicit in here is the restriction that this slot must be an own slot of the first_object (and must take instance values)\n")
+		(type INSTANCE)
+;+		(allowed-classes :STANDARD-SLOT)
+		(create-accessor read-write)))
+
+(defclass Network
+	(is-a Diagram_Entity)
+	(role abstract)
+	(single-slot main_panel_width
+		(type INTEGER)
+		(create-accessor read-write))
+	(multislot layout_information
+		(type INSTANCE)
+;+		(allowed-classes ObjectLocation)
+		(create-accessor read-write))
+	(single-slot main_panel_height
+		(type INTEGER)
+		(create-accessor read-write))
+	(single-slot last_divider_location
+		(type INTEGER)
+		(create-accessor read-write))
+	(multislot connectors
+		(type INSTANCE)
+;+		(allowed-classes Connector)
+		(create-accessor read-write)))
+
+(defclass Network_Metaclass
+	(is-a :STANDARD-CLASS Diagram_Entity)
+	(role concrete)
+	(single-slot node_slot
+		(type INSTANCE)
+;+		(allowed-classes :STANDARD-SLOT)
+		(create-accessor read-write)))
+
+(defclass ObjectLocation
+	(is-a Diagram_Entity)
+	(role concrete)
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot location
+		(type INSTANCE)
+;+		(allowed-classes Rectangle)
+		(create-accessor read-write)))
+
+(defclass Point
+	(is-a Diagram_Entity)
+	(role concrete)
+	(single-slot y
+		(type INTEGER)
+		(create-accessor read-write))
+	(single-slot x
+		(type INTEGER)
+		(create-accessor read-write)))
+
+(defclass Rectangle
+	(is-a Diagram_Entity)
+	(role concrete)
+	(single-slot upper_left_corner
+		(type INSTANCE)
+;+		(allowed-classes Point)
+		(create-accessor read-write))
+	(single-slot lower_right_corner
+		(type INSTANCE)
+;+		(allowed-classes Point)
+		(create-accessor read-write)))

@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible eurocalculator.exe file"; content: "filename="; content:"eurocalculator.exe"; nocase; sid:737;  classtype:misc-activity; rev:3;)

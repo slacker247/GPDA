@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC wwwboard.pl access"; uricontent:"/wwwboard.pl"; nocase; flags: A+; reference:bugtraq,1795; reference:cve,CVE-1999-0953; classtype:attempted-recon; sid:1175; rev:2;)

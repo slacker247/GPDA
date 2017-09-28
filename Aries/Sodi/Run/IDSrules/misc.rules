@@ -1,0 +1,25 @@
+# (C) Copyright 2001, Martin Roesch, Brian Caswell, et al.  All rights reserved.
+# $Id: misc.rules,v 1.20 2001/10/29 01:52:54 roesch Exp $
+#-----------
+# MISC RULES
+#-----------
+
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"MISC Large ICMP Packet"; dsize: >800; reference:arachnids,246; classtype:bad-unknown; sid:499; rev:1;)
+alert ip $EXTERNAL_NET any -> $HOME_NET any (msg:"MISC source route lssr"; ipopts:lsrr; reference:bugtraq,646; reference:cve,CVE-1999-0909; reference:arachnids,418; classtype:bad-unknown; sid:500; rev:2;)
+alert ip $EXTERNAL_NET any -> $HOME_NET any (msg:"MISC source route lssre"; ipopts:lsrre; reference:bugtraq,646; reference:cve,CVE-1999-0909; reference:arachnids,420; classtype:bad-unknown; sid:501; rev:2;)
+alert ip $EXTERNAL_NET any -> $HOME_NET any (msg:"MISC source route ssrr"; ipopts: ssrr ;reference:arachnids,422; classtype:bad-unknown; sid:502; rev:1;)
+alert tcp $EXTERNAL_NET 20 -> $HOME_NET :1023 (msg:"MISC Source Port 20 to <1024"; flags:S; reference:arachnids,06; classtype:bad-unknown; sid:503; rev:2;)
+alert tcp $EXTERNAL_NET 53 -> $HOME_NET :1023 (msg:"MISC source port 53 to <1024"; flags:S; reference:arachnids,07; classtype:bad-unknown; sid:504; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 1417 (msg:"MISC Insecure TIMBUKTU Password"; content: "|05 00 3E|"; flags: A+; depth: 16; reference:arachnids,229; classtype:bad-unknown; sid:505; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 27374 (msg:"MISC ramen worm incoming"; flags: A+; content: "GET "; depth: 8; nocase;reference:arachnids,460; classtype:bad-unknown; sid:506; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 5631 (msg:"MISC PCAnywhere Attempted Administrator Login";flags: A+; content:"ADMINISTRATOR"; classtype:attempted-admin; sid:507; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 70 (msg:"MISC gopher proxy"; content: "ftp|3a|"; content: "@/"; depth:4; flags: A+; nocase; reference:arachnids,409; classtype:bad-unknown; sid:508; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 80 (msg:"MISC PCCS mysql database admin tool"; flags: A+; content: "pccsmysqladm/incs/dbconnect.inc"; nocase; depth: 36;reference:arachnids,300; classtype:attempted-user; sid:509; rev:1;)
+alert tcp $HOME_NET 5631 -> $EXTERNAL_NET any (msg:"MISC Invalid PCAnywhere Login"; content:"Invalid login"; offset:5; depth:13; flags:A+; classtype:unsuccessful-user; sid:511; rev:1;)
+alert tcp $HOME_NET 5632 -> $EXTERNAL_NET any (msg:"MISC PCAnywhere Failed Login";flags: A+; content:"Invalid login"; depth: 16; reference:arachnids,240; classtype:unsuccessful-user; sid:512; rev:1;)
+alert tcp $HOME_NET 7161 -> $EXTERNAL_NET any (msg:"MISC Cisco Catalyst Remote Access"; flags:SA; reference:arachnids,129; reference:cve,CVE-1999-0430; classtype:bad-unknown; sid:513; rev:1;)
+alert tcp $HOME_NET any -> $EXTERNAL_NET 27374 (msg:"MISC ramen worm outgoing"; flags: A+; content: "GET "; depth: 8; nocase;reference:arachnids,461;classtype:bad-unknown; sid:514; rev:1;)
+alert udp $EXTERNAL_NET any -> $HOME_NET 161 (msg:"MISC SNMP NT UserList"; content:"|2b 06 10 40 14 d1 02 19|"; classtype:attempted-recon; sid:516; rev:2;)
+alert udp $EXTERNAL_NET any -> $HOME_NET 177 (msg:"MISC xdmcp query"; content: "|00 01 00 03 00 01 00|";reference:arachnids,476; classtype:attempted-recon; sid:517; rev:1;)
+alert udp $EXTERNAL_NET any -> $HOME_NET any (msg:"MISC Large UDP Packet"; dsize: >4000; reference:arachnids,247; classtype:bad-unknown; sid:521; rev:1;)
+alert ip $EXTERNAL_NET any -> $HOME_NET any (msg:"MISC Tiny Fragments"; fragbits:M; dsize: < 25; classtype:bad-unknown; sid:522; rev:1;)

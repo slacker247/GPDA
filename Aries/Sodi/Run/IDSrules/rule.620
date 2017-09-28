@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP vrfy decode";flags: A+; content:"vrfy decode"; nocase; reference:arachnids,373; classtype:attempted-recon; sid:672; rev:1;)

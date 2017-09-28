@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 8080 (msg:"EXPLOIT delegate proxy overflow"; content: "whois|3a|//"; nocase; flags: A+; dsize: >1000; reference:arachnids,267; classtype:attempted-admin; sid:305; rev:3; reference:bugtraq,808; reference:cve,CVE-2000-0165;)

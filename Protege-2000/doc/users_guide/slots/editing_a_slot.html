@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Editing a Slot</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="../classes/images/serving_nerd.gif" WIDTH="48" HEIGHT="48"> 
+Viewing a Slot<br>
+<img src="../classes/images/header_line.gif" width="590" height="6"></h1>
+
+<p>You can view and edit a slot at two levels:</p>
+
+<ul>
+  <li><a href="editing_a_slot.html#toplevel">View/edit the top-level properties of a slot</a>. This
+    changes the slot everywhere it appears, including the <a href="slots_tab.html">Slots
+    Tab</a> and all the classes that reference the slot.</li>
+  <li><a href="editing_a_slot.html#classlevel">View/edit the slot at a class</a>. This creates overrides
+    that appear at the class and any subclasses. The slot remains unchanged at
+    the <font size="3"><a href="slots_tab.html">Slots Tab</a>, any superclasses,
+    and any unrelated classes. A slot with overrides is shown with an <img border="0" src="../classes/images/OverriddenSlot.gif" width="11" height="16">
+    override icon in the </font><a href="../classes/template_slot_pane.html">Template Slots pane</a>.</li>
+</ul>
+
+<p>In either case, you can edit the properties of the slot directly in the <a href="slot_form.html">Slot Form</a>.
+See <a href="editing_slot_properties.html">Editing Slot Properties</a> for more
+information. Any changes you enter into the Slot Form take effect
+immediately. To make the changes permanent, save the project by selecting
+<b>Save</b> from the <b>Project</b> menu.&nbsp;</p>
+
+<p align="center"><map name="FPMap0">
+<area href="editing_a_slot.html#slotname" shape="rect" coords="4, 29, 208, 84">
+<area href="editing_a_slot.html#cardinality" shape="rect" coords="4, 90, 207, 147">
+<area href="editing_a_slot.html#type" shape="rect" coords="7, 152, 206, 209">
+<area href="editing_a_slot.html#constraints" shape="rect" coords="210, 31, 403, 142">
+<area href="editing_a_slot.html#defaults" shape="rect" coords="212, 147, 403, 266">
+<area href="editing_a_slot.html#minimum" shape="rect" coords="208, 273, 305, 320">
+<area href="editing_a_slot.html#maximum" shape="rect" coords="310, 272, 402, 323">
+<area href="editing_a_slot.html#documentation" shape="rect" coords="406, 32, 606, 325"></map><img border="0" src="../classes/images/CreateSlot.gif" usemap="editing_a_slot.html#FPMap0" width="611" height="330"></p>
+
+<h2><a name="toplevel"></a>Viewing a Slot at the Top-Level</h2>
+<p>You can edit the top-level properties of a slot directly from the <font size="3"><a href="slots_tab.html">Slots
+Tab</a> or by using the top-level View </font><img border="0" src="../classes/images/ViewTopLevelSlot.gif" width="15" height="15">
+button at the <a href="../classes/template_slot_pane.html">Template Slots pane</a>. Editing
+at the top-level changes the definition of the slot. The changes appear
+everywhere the slot occurs, including the <a href="slots_tab.html">Slots Tab</a>
+and all the classes that reference the slot.</p>
+<p>To edit the top-level properties of a slot from the <font size="3"><a href="slots_tab.html"><b>Slots
+Tab</b></a></font>:</p>
+<ol>
+  <li>Select the slot you wish to edit in
+    the Slot pane of the <font size="3"><a href="slots_tab.html">Slots Tab</a>.&nbsp;</font></li>
+  <li>Click the <font size="3"> View </font><img border="0" src="../classes/images/View.gif" width="15" height="15"> 
+    <a href="slot_buttons.html">slot button</a>. This opens the <a href="slot_form.html">Slot Form</a>
+    for the selected slot.&nbsp;</li>
+</ol>
+
+<p>To edit the top-level properties of a slot from the <a href="../classes/template_slot_pane.html"><b>Template Slots pane</b></a>
+in the <a href="../classes/classes_tab.html">Classes Tab</a>:</p>
+
+<ol>
+  <li>Select a class in the <a href="../classes/class_relationship_pane.html">Class
+    Relationship pane</a> in the <a href="../classes/classes_tab.html">Classes tab</a>.</li>
+  <li>Select the slot you wish to edit in the <a href="../classes/template_slot_pane.html">Template Slots pane</a>.</li>
+  <li>Click the <font size="3">View Top-Level Slot </font><img border="0" src="../classes/images/ViewTopLevelSlot.gif" width="15" height="15">
+    <a href="../classes/template_slot_buttons.html">Template Slot
+    button</a> at the upper right of the template <a href="../classes/template_slot_pane.html">Template Slots pane</a>&nbsp;<i>
+    or </i>double-click the slot and make sure View top-level slot is selected
+    in the Select Slot View dialog box, then click OK.<br>
+    This opens the <a href="slot_form.html">Slot Form</a>
+    for the selected slot. Note that there may be restrictions on the edits that
+    can be performed on an inherited slot.</li>
+</ol>
+<h2><a name="classlevel"></a>Viewing a Slot at a Class</h2>
+
+<p>You can also edit a slot at the class level. Class-level
+modifications only affect the slot at the current class and its subclasses. To edit the slot properties for a specific class:</p>
+
+<ol>
+  <li>Select a class in the <a href="../classes/class_relationship_pane.html">Class
+    Relationship pane</a> in the <a href="../classes/classes_tab.html">Classes tab</a>.</li>
+  <li>Select the slot you wish to edit in the <a href="../classes/template_slot_pane.html">Template Slots pane</a>.</li>
+  <li>Click the <font size="3">View Slot at Class </font><img border="0" src="../classes/images/ViewSlotAtClass.gif" width="15" height="15"> 
+    <a href="../classes/template_slot_buttons.html">Slot
+    button</a> at the upper right of the <a href="../classes/template_slot_pane.html">Template Slots pane</a><i>
+    or </i>double-click the slot and make sure View slot at class is selected in
+    the Select Slot View dialog box, then click OK. This opens the <a href="slot_form.html">Slot Form</a>
+    for the selected slot. Note that there may be restrictions on the edits that
+    can be performed on an inherited slot.</li>
+</ol>
+<p>A slot that has been edited at a class is shown with an override <img border="0" src="../classes/images/OverriddenSlot.gif" width="11" height="16">
+icon in the <a href="../classes/template_slot_pane.html">Template Slots pane</a>.</p>
+
+<hr>
+
+<p><font size="3">Next: <a href="editing_slot_properties.html">Editing Slot
+Properties</a></font></p>
+
+<p><a href="index.html"><font size="3"> Slots Table of Contents</font></a></p>
+</body>
+</html>

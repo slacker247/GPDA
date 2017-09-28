@@ -1,0 +1,264 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The Value Type Menu</title>
+</head>
+
+<body>
+
+<h1><img src="../classes/images/serving_nerd.gif" width="48" height="48">  The Value Type
+Menu<br>
+<img src="../classes/images/header_line.gif" width="590" height="6"></h1>
+<p>The Value Type menu in the <a href="slot_form.html">Slot Form</a> allows you
+to select the slot type, which determines the kind of values that the slot may
+hold.&nbsp;When a value type of <b>Class</b>, <b>Instance</b>, or <b> Symbol</b> is selected, an additional pane appears
+below the <b>Value Type</b>  menu.</p>
+<p align="center"><map name="FPMap0">
+<area href="value_type_menu.html#Any" shape="rect" coords="4, 48, 198, 67">
+<area href="value_type_menu.html#Boolean" shape="rect" coords="0, 67, 198, 87">
+<area href="value_type_menu.html#Class" shape="rect" coords="0, 86, 197, 107">
+<area href="value_type_menu.html#Float" shape="rect" coords="2, 106, 198, 124">
+<area href="value_type_menu.html#Instance" shape="rect" coords="3, 123, 198, 146">
+<area href="value_type_menu.html#Integer" shape="rect" coords="3, 144, 198, 165">
+<area href="value_type_menu.html#String" shape="rect" coords="1, 163, 198, 183">
+<area href="value_type_menu.html#Symbol" shape="rect" coords="3, 183, 198, 201"></map><img border="0" src="../classes/images/Value_Type.gif" usemap="value_type_menu.html#FPMap0" width="199" height="203"></p>
+<p align="left">When you are creating instances for a slot, the slot type also
+determines how the slot is displayed in the <a href="../instances/instances_form.html">Instances
+Form</a>. See the <a href="../instances/standard_fields.html">Standard
+Widgets</a> for more information about instances and type.</p>
+<h2><a name="Any">Any</a></h2>
+<p>A value type of <b>Any</b> means the slot can take any one of the other
+values:&nbsp;<b>Boolean</b>, <b>Class</b>, <b>Float</b>, <b>Instance</b>, <b>Integer</b>,
+<b>String</b>, or <b> Symbol</b>. If a class inherits a slot of type <b>Any</b>,
+then the slot may be modified by restricting it to a specific one of the other
+types. This is the only case where the actual value type of an inherited slot
+can be changed.</p>
+<p><b>Any</b> allows you to create a generic slot for a high-level class and
+then determine the actual value type at a lower level. For example, suppose you
+are modeling a taxonomy for all the vertebrates in an ecosystem, with specific
+species as the instances. You could create the slot <b>Diet</b> at the <b>Vertebrate</b>
+class level. Then for the subclass <b>Carnivore</b>, you could restrict the <b>Diet</b>
+slot to type <b><a href="value_type_menu.html#Instance">Instance</a></b>, so that you could select
+specific species already in your taxonomy as the diet. On the other hand, for
+the subclass <b>Herbivore</b>, you could restrict the <b>Diet</b> slot to type <b><a href="value_type_menu.html#Symbol">Symbol</a></b>
+and list possible food plants by name.</p>
+<p>A class with a slot of type <b>Any</b> cannot have instances.</p>
+<h2><a name="Boolean">Boolean</a></h2>
+<p>A <b>Boolean</b> slot can holds a logical Boolean value, that is, a value
+that is either true or false. An instance of a class with a Boolean slot
+displays the slot as a checkbox. For example, the <b>Personals_Ad</b> class
+contains the Boolean slot <b>Urgent</b>; the <b>Silly</b> instance of <b>Personals_Ad</b>
+is not Urgent, while the <b>M137</b> instance is:</p>
+<div align="left">
+  <table border="0" width="100%">
+    <tr>
+      <td width="50%"><img border="0" src="../classes/images/Boolean_False.gif" align="right" width="65" height="23"></td>
+      <td width="50%">&nbsp;not <b>Urgent</b></td>
+    </tr>
+    <tr>
+      <td width="50%"><img border="0" src="../classes/images/Boolean_True.gif" align="right" width="66" height="23"></td>
+      <td width="50%">&nbsp;<b>Urgent</b></td>
+    </tr>
+  </table>
+</div>
+<h2><a name="Class">Class</a></h2>
+<p>A slot of type <b>Class</b> has classes as values. More specifically, when <b>Class</b>
+is selected as the value type, the <b> Allowed Parents</b> pane is displayed. A
+slot or an instance then takes one of these classes or any of their subclasses
+as the value(s) of the slot.</p>
+<p align="center"><img border="0" src="../classes/images/allowed_parents.gif" width="206" height="179"></p>
+<p>For example, suppose you have created a knowledge base which includes, among
+other information:&nbsp;</p>
+<ul>
+  <li>the superclass <b>Drugs</b>, which contains prescription drugs as classes</li>
+  <li>the concrete class <b>Patients</b>, which has instances which are patients</li>
+</ul>
+<p>You can create the slot <b>medications</b> in the class <b>Patients</b> and
+make it of type <b>Class</b>, with <b>Drugs</b> as the <b>Allowed Parents</b>.
+Then when a user creates an instance, they can choose the medications from the
+list of prescription drugs that appear as subclasses of <b>Drugs</b>.</p>
+<h3><a name="AddRemoveClassParents"></a>The Allowed Parents Pane</h3>
+<p align="left">Buttons at the top of the <b>Allowed Parents</b> pane let you
+add and remove classes from the list of allowed parents for a slot of type <b>Class</b>.</p>
+<p align="left">To add allowed parents for a slot of type <b>Class</b>:&nbsp;</p>
+<ol>
+  <li>
+    <p align="left">Click the Add <img border="0" src="../classes/images/Add.gif" width="19" height="19"> button
+    at the top of the <b>Allowed Parents</b> pane. A <b>Select Classes</b>
+    window shows the list of classes in your knowledge base, in the usual
+    subclass hierarchy.&nbsp;</li>
+  <li>
+    <p align="left">Select one or more classes. To highlight multiple classes,
+    hold down the Ctrl key while clicking each class. To highlight a range of
+    classes, click the first class, then hold down the Shift key and click the
+    last class in the range.</li>
+  <li>
+    <p align="left">Click OK.</li>
+</ol>
+<p>To remove a superclass from the list of allowed parents for a slot of type <b>Class</b>:</p>
+<ol>
+  <li>
+    <p align="left">Select the classes to remove. To highlight multiple classes,
+    hold down the Ctrl key while clicking each class. To highlight a range of
+    classes, click the first class, then hold down the Shift key and click the
+    last class in the range.</li>
+  <li>
+    <p align="left">Click the Remove <img border="0" src="../classes/images/Remove.gif" width="19" height="19">
+    button at the top of the <b>Allowed Parents</b> pane.</li>
+</ol>
+<h2><a name="Float">Float</a></h2>
+<p>A slot of type <b>Float</b> has numbers as values; these numbers may include
+a decimal point. Values of type <b>Float</b> are stored on your system as
+floating point values, and are only as accurate as your system.&nbsp;</p>
+<p>When entering a <b>Float</b> value for an instance, you can use decimal point
+or exponential representation. You can enter positive and negative values. For
+example:</p>
+<div align="left">
+  <table border="0" width="100%">
+    <tr>
+      <td width="31%"><b>Representation</b></td>
+      <td width="69%"><b>Description</b></td>
+    </tr>
+    <tr>
+      <td width="31%">1234.56</td>
+      <td width="69%">Standard decimal notation.</td>
+    </tr>
+    <tr>
+      <td width="31%">1.23456E3</td>
+      <td width="69%">Exponential notation, shorthand for 1.23456 · 10<sup>3</sup>.
+        Represents 1234.56</td>
+    </tr>
+    <tr>
+      <td width="31%">-1234.56</td>
+      <td width="69%">Negative number.</td>
+    </tr>
+    <tr>
+      <td width="31%">1.23456E-3</td>
+      <td width="69%">Exponential notation with a negative exponent, shorthand
+        for 1.23456 · 10<sup>-3</sup>. Represents 0.00123456.</td>
+    </tr>
+  </table>
+</div>
+<p>For convenience in typing, users can enter a lower case <b>e</b> instead of
+an uppercase <b>E</b>.&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p>For slots of type <b>Float</b>, you can also enter a <b>Minimum</b> and/or <b>Maximum</b>
+value. See <a href="slot_form.html">The Slot Form</a> for more information.</p>
+<h2><a name="Instance">Instance</a></h2>
+<p>A slot of type <b>Instance</b> has instances as values. More specifically,
+when <b>Instance</b> is selected as the value type, the <b> Allowed Classes </b>pane
+is displayed. An instance of the class with this slot then takes instances of
+the allowed classes or their subclasses as the value(s) of the slot.</p>
+<p align="center"><img border="0" src="../classes/images/Value_instance1.gif" width="198" height="19"></p>
+<p align="center"><img border="0" src="../classes/images/Value_Instance2.gif" width="205" height="179"></p>
+<p>In the Newspaper example, the slot <b>responsible_for</b> in the class <b>Editor</b>
+takes instances of the class <b>Employee</b> as values. The instance <b>Chief_Honcho</b>
+is responsible for three instances which are descended from <b>Employee</b>: <b>Mr.
+Science</b>, <b>Sports Nut</b>, and <b>Ms Gardiner</b>.</p>
+<p align="center"><img border="0" src="../classes/images/Value_Instance3.gif" width="246" height="15"></p>
+<p align="center"><img border="0" src="../classes/images/Value_Instance4.gif" width="247" height="159"></p>
+<h3>&nbsp;<a name="AddRemoveAllowedInstance"></a>The Allowed Classes Pane</h3>
+<p align="left">Buttons at the top right of the <b>Allowed Classes </b>pane let
+you add and remove classes from the list of allowed classes for a slot of type <b>Instance</b>.</p>
+<p align="left">To add allowed classes for a slot of type <b>Instance</b>:&nbsp;</p>
+<ol>
+  <li>
+    <p align="left">Click the Add <img border="0" src="../classes/images/Add.gif" width="19" height="19"> button
+    at the top of the <b>Allowed Classes </b>pane. A <b>Select Instances </b>window
+    shows the list of classes in your knowledge base, in the usual subclass
+    hierarchy.&nbsp;</li>
+  <li>
+    <p align="left">Select one or more classes. To highlight multiple classes,
+    hold down the Ctrl key while clicking each class. To highlight a range of
+    classes, click the first class, then hold down the Shift key and click the
+    last class in the range.</li>
+  <li>
+    <p align="left">Click OK.</li>
+</ol>
+<p>To remove a class from the list of allowed classes for a slot of type <b>Instance</b>:</p>
+<ol>
+  <li>
+    <p align="left">Select the classes to remove. To highlight multiple classes,
+    hold down the Ctrl key while clicking each class. To highlight a range of
+    classes, click the first class, then hold down the Shift key and click the
+    last class in the range.</li>
+  <li>
+    <p align="left">Click the Remove <img border="0" src="../classes/images/Remove.gif" width="19" height="19">
+    button at the top of the <b>Allowed Classes </b>pane.</li>
+</ol>
+<h2><a name="Integer">Integer</a></h2>
+<p>A slot of type <b>Integer</b> has numbers as values for an instance; these
+numbers cannot include a decimal point. Values of type <b>Integer</b> are stored
+on your system as integer values. You can enter positive and negative
+values.&nbsp;</p>
+<p>For slots of type <b>Integer</b>, you can also enter a <b>Minimum</b> and/or <b>Maximum</b>
+value. See <a href="slot_form.html">The Slot Form</a> for more information.</p>
+<h2><a name="String">String</a></h2>
+<p>A slot of type <b>String</b> has text strings as values. You can enter ASCII
+characters for an instance, including upper and lowercase letters, numbers, the
+basic symbols on the keyboard, such as !, _, and %. <b>String</b> values can
+also include spaces.</p>
+<h2>The <a name="Symbol">Symbol</a> Value Type</h2>
+<p>A slot of type <b>Symbol</b> allows you to create a pre-set list of strings;
+an instance of a class chooses from among these strings. More specifically, when
+<b>Symbol</b> is selected as the value type, the <b> Allowed Values </b>pane is
+displayed. An instance then takes string(s) from among the allowed values as the
+value(s) of the slot.</p>
+<p align="center"><img border="0" src="../classes/images/Value_Symbol1.gif" width="252" height="20"></p>
+<p align="center"><img border="0" src="../classes/images/Value_Symbol2.gif" width="199" height="176"></p>
+<p>For example, the <b>weekday</b> slot at the class <b>Prototype_Newspaper</b>
+allows you to choose from among the seven days of the week: Sunday, Monday,
+Tuesday, Wednesday, Thursday, Friday, Saturday, and Sunday. Then an instance has
+a pop-up menu that allows a user to choose one of the symbol values for the
+slot:</p>
+<p align="center"><img border="0" src="../classes/images/Value_Symbol3.gif" width="240" height="203"></p>
+<h3><a name="AddRemoveEditAllowedSymbols"></a>The Allowed Values Pane</h3>
+<p>Buttons at the top right of the <b>Allowed Values</b> pane let you add, edit,
+and remove values from the list of allowed values for a slot of type <b>Symbol</b>.&nbsp;</p>
+<p>To add a value to the list of available values for a slot:</p>
+<ol>
+  <li>
+    <p align="left">Click the Create <img border="0" src="../classes/images/Create.gif" width="15" height="15">
+    button at the top of the <b>Allowed Values </b>pane.&nbsp;</li>
+  <li>
+    <p align="left">Type the string you want in the <b>Create Symbol </b>window.
+    You can enter ASCII characters, including upper and lowercase letters,
+    numbers, and other common characters, such as !, _, and %.&nbsp;</li>
+  <li>
+    <p align="left">Click OK.</li>
+</ol>
+<p>To edit a pre-existing value:</p>
+<ol>
+  <li>
+    <p align="left">Click the View <img border="0" src="../classes/images/View.gif" width="15" height="15"> button
+    at the top of the <b>Allowed Values </b>pane.&nbsp;</li>
+  <li>
+    <p align="left">Edit the string in the <b>Edit Symbol </b>window.&nbsp;</li>
+  <li>
+    <p align="left">Click OK.</li>
+</ol>
+
+<p>To remove a value from the list of values:</p>
+
+<ol>
+  <li>
+    <p align="left">Select the values to remove. To highlight multiple values,
+    hold down the Ctrl key while clicking each value. To highlight a range of values,
+    click the first value, then hold down the Shift key and click the last value
+    in the range.</li>
+  <li>
+    <p align="left">Click the Remove <img border="0" src="../classes/images/Remove.gif" width="19" height="19">
+    button at the top of the <b>Allowed Values </b>pane.</li>
+</ol>
+
+<hr align="left">
+
+<p>Next: <a href="creating_a_slot.html">Creating a Slot</a></p>
+
+<p><a href="index.html"> Slots Table of Contents</a></p>
+
+</body>
+
+</html>

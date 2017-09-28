@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT overflow";flags: A+; content:"|5057 440A 2F69|"; classtype:attempted-admin; sid:340; rev:1;)

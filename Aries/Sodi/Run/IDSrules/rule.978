@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE /_vti_bin/ access";flags: A+; uricontent:"/_vti_bin/"; nocase; classtype:web-application-activity; sid:1288; rev:2;)

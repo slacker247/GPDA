@@ -1,0 +1,15 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+
+Rule: Day
+(
+    {Token.kind == number}
+    {Token.string == "/"}
+    {Token.kind == number}
+)
+:Day 
+-->
+:Day.Day = {}

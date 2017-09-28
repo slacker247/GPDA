@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI calendar access";flags: A+; uricontent:"/calendar"; nocase; classtype:attempted-recon; sid:882; rev:1;)

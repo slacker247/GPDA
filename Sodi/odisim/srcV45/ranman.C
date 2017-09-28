@@ -1,0 +1,287 @@
+
+
+#include <stdio.h>
+#include <memory.h>
+#include <math.h>
+#include "ranman.H"
+#include "def.h"
+#include "defunc.H"
+
+#include "change_script_mess.H"
+#include "sensor_model.H"
+
+/************************************************************************
+* C_RANMAN : construct a ranman object					*
+************************************************************************/
+C_RANMAN::C_RANMAN() {
+  int i,j;
+  int index;
+  int temp;
+  double tt;
+  double R[3];
+  double latitude, longitude;
+  double lat_deg, lat_min, lat_sec;
+  double lon_deg, lon_min, lon_sec;
+  int ranicon;
+  int on_off;
+  int magnet;
+  int offset;
+  int next_node;
+  int seedy;
+  char *sensor_name;
+  C_SENSOR_MODEL *sensor_model;
+  C_BASETYPE *basetype;
+  C_BASETYPE *rantype;
+  C_BASETYPE *senstype;
+
+  RANDOM_AIR = object_type("RANDOM_AIR");
+
+//...... get general parameters
+
+  basetype = parameters_parser->get_basetype("parameters");
+  interact = basetype->get_logical("interact");
+  on_off = basetype->get_logical("on_off");
+  magnet = basetype->get_logical("magnet");
+  test_prox = basetype->get_logical("test_prox");
+
+//...... get random parameters
+
+  basetype = random_parser->get_basetype("random_parameters");
+  change_script = basetype->get_logical("change_script");
+  change_script_rate = basetype->get_float("change_script_rate");
+
+//...... get random types
+
+  basetype = random_parser->get_basetype("random_types");
+
+  n_rantypes = basetype->get_ntypes();
+
+  type_name = new char *[n_rantypes];
+  n_each_type = new int[n_rantypes];
+  n_loc_type = new int[n_rantypes];
+  n_each_start = new float[n_rantypes];
+
+//...... loop over the rantypes and create the buffer space for storage
+
+  N_TOT = 0;
+  rantype = basetype->get_first_type();
+  for (i=0; i<n_rantypes; i++) {
+
+    type_name[i] = rantype->get_name();
+    n_each_type[i] = rantype->get_int("n");
+    n_each_start[i] = rantype->get_float("start_time");
+    N_TOT += n_each_type[i];
+
+    rantype = basetype->get_next_type();
+
+  }
+
+//...... construct the ran simulation objects
+
+  first_id = TOTAL_OBJECTS;
+  N_LOC = deal_me(N_TOT, offset);
+  ranobj = new C_RANOBJ[N_LOC];
+
+//...... set up how many objects to create for each type
+
+  temp = 0;
+  for (i=0; i<n_rantypes; i++) {
+
+    if ((n_each_type[i] - offset) > 0) {
+      n_loc_type[i] = (n_each_type[i] - offset) / N_NODES;
+      if ((n_each_type[i] - offset) % N_NODES) n_loc_type[i]++;
+    }else{
+      n_loc_type[i] = 0;
+    }
+
+    next_node = (n_each_type[i] - offset + NODE + N_NODES) % N_NODES;
+    offset = (NODE - next_node + N_NODES) % N_NODES;
+    temp += n_loc_type[i];
+
+  }
+
+//...... check to see if we all agree
+
+/*
+  for (i=0; i<n_rantypes; i++) {
+    temp = n_loc_type[i];
+    scombine(&temp,SUMINT,sizeof(temp),1);
+    if (temp != n_each_type[i]) {
+      fprintf(stderr,"Error(ranman) wrong number of type %d\n",i);
+    }
+  }
+*/
+
+//...... initialize the ranobj objects
+
+  index = 0;
+  rantype = basetype->get_first_type();
+  for (i=0; i<n_rantypes; i++) {
+
+    ranicon = rantype->get_int("icon");
+    sensor_name = rantype->get_string("sensor");
+    senstype = random_parser->get_basetype(sensor_name);
+
+    for (j=0; j<n_loc_type[i]; j++) {
+
+/*
+      temp = ranobj[index].get_GLOBAL_ID() - first_id;
+      tt = 10.0 * double(temp) / double(N_TOT);
+      temp = int(tt);
+      tt = temp * 10;
+*/
+
+      seedy = ranobj[index].get_SEED();
+      RANDOM->set_seed(seedy);
+      RANDOM->set_float_limits(0.0, 100.0);
+//      tt = RANDOM->get_random_float();
+      tt = (double)n_each_start[i];
+
+      lat_deg = rantype->get_float("lat_deg");
+      lat_min = rantype->get_float("lat_min");
+      lat_sec = rantype->get_float("lat_sec");
+      lon_deg = rantype->get_float("lon_deg");
+      lon_min = rantype->get_float("lon_min");
+      lon_sec = rantype->get_float("lon_sec");
+      latitude  = (lat_deg + lat_min/60.0 + lat_sec/3600.0) * 0.017453292;
+      longitude = (lon_deg + lon_min/60.0 + lon_sec/3600.0) * 0.017453292;
+      if (!rantype->get_logical("north")) latitude *= -1.0;
+      if (!rantype->get_logical("east")) longitude *= -1.0;
+
+      ranobj[index].latlon_to_xyz(latitude,longitude,R);
+      ranobj[index].set_start_position(R);
+      ranobj[index].set_start_time(tt);
+      ranobj[index].set_magnet(magnet);
+      ranobj[index].init_ranobj(rantype);
+      ranobj[index].set_on_off(on_off);
+      ranobj[index].set_icon(ranicon);
+
+      if (strcmp(senstype->get_name(), "NULL")) {
+        sensor_model = new C_SENSOR_MODEL();
+        sensor_model->init(senstype);
+	ranobj[index].set_sensor_model(sensor_model);
+      }
+
+      seedy = RANDOM->get_seed();
+      ranobj[index].set_SEED(seedy);
+
+      index++;
+
+    }
+
+    rantype = basetype->get_next_type();
+
+  }
+
+  if (index != N_LOC) {
+    fprintf(stderr,"Error, (ranman) confused ran objects\n");
+  }
+
+//...... tell SPEEDES about the ranobj
+
+  TOTAL_OBJECTS += N_TOT;
+  reserve_n_objects(N_LOC);
+  for (i=0; i<N_LOC; i++) define_object(&ranobj[i]);
+  set_interact();
+
+  printf("RANMAN object created with %2d types (%4d %4d N_LOC)\n",
+	n_rantypes, N_LOC, index);
+
+}
+
+/************************************************************************
+* init_events : initialize events for the grid element objects		*
+************************************************************************/
+void C_RANMAN::init_events() {
+  int i;
+  double tim;
+  C_EOM *e;
+  CHANGE_SCRIPT_MESS *change_script_mess;
+  int NEXT_SCRIPT;
+  int UPDATE_GRID;
+  int MOVING_COVERAGE;
+  int TEST_PROX;
+  int CHANGE_SCRIPT;
+  int EXT_GRAPHICS_SCRIPT;
+
+  printf("RANMAN initializing ...\n");
+
+  NEXT_SCRIPT	  = event_type("NEXT_SCRIPT");
+  UPDATE_GRID	  = event_type("UPDATE_GRID");
+  MOVING_COVERAGE = event_type("MOVING_COVERAGE");
+  TEST_PROX 	  = event_type("TEST_PROX");
+  CHANGE_SCRIPT   = event_type("CHANGE_SCRIPT");
+  EXT_GRAPHICS_SCRIPT = event_type("EXT_GRAPHICS_SCRIPT");
+
+  for (i=0; i<N_LOC; i++) {
+    e = ranobj[i].get_current_segment();
+    if (e != NULL) {
+      tim = ranobj[i].get_start_time();
+
+      schedule (0.0, EXT_GRAPHICS_SCRIPT, RANDOM_AIR, i, NODE);
+//      schedule (tim, EXT_GRAPHICS_SCRIPT, RANDOM_AIR, i, NODE);
+
+//...... update the random movers script
+
+      schedule (e->get_endtime(), NEXT_SCRIPT, RANDOM_AIR, i, NODE);
+
+//...... change script to test interactive motion
+
+      if (change_script) {
+        change_script_mess = (CHANGE_SCRIPT_MESS *) schedule (
+		e->get_start_time() + change_script_rate, CHANGE_SCRIPT,
+		RANDOM_AIR, i, NODE);
+        change_script_mess->repeat_flag = 1;
+      }
+
+//...... update grid for proximity detection
+
+      schedule (e->get_start_time() - 0.0, UPDATE_GRID, RANDOM_AIR, i, NODE);
+
+//...... moving coverage and test prox for random movers with sensors
+
+      if (ranobj[i].get_sensor_model() != NULL) {
+        schedule (GONE * (e->get_start_time()), MOVING_COVERAGE,
+				RANDOM_AIR, i, NODE);
+
+        if ((N_NODES == 1) && (test_prox)) {
+          schedule (1000.0, TEST_PROX, RANDOM_AIR, i, NODE);
+        }
+
+      }
+
+    }
+  }
+
+}
+
+/************************************************************************
+* get_nodid : get the local object id and node from the global id	*
+************************************************************************/
+void C_RANMAN::get_nodid(int oi, int &n, int &i) {
+  int j;
+
+  j = oi - first_id;
+  i = j / N_NODES;
+  n = (j + first_node) % N_NODES;
+
+}
+
+/************************************************************************
+* get_local_id : get the local object id from the global id		*
+************************************************************************/
+int C_RANMAN::get_local_id(int u_id) {
+  int i,j,k;
+
+  i = u_id - ranobj[0].get_GLOBAL_ID();
+  j = (i + N_NODES) % N_NODES;
+
+  if (j == 0) {
+    k = i / N_NODES;
+  }else{
+    k = -1;
+  }
+
+  return k;
+
+}

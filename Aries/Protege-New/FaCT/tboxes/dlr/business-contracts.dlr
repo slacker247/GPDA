@@ -1,0 +1,54 @@
+;;; Telecom Italia Business Contracts Model
+
+;;; Relations
+
+(defprimrelationship has-location_2 2)
+(defprimrelationship contract-customer-service_2 3)
+(defprimrelationship service-call_2 2)
+
+(impliesrel has-location_2 (and ($1 2 Customer_2) ($2 2 Location_2)))
+(impliesrel contract-customer-service_2 (and ($1 3 Customer_2) ($2 3 Contract_2) 
+					     ($3 3 Service_2)))
+(impliesrel service-call_2 (and ($1 2 Service_2) ($2 2 Call_2)))
+
+;;; Entities
+
+(defprimconcept Location_2)
+(defprimconcept Customer_2)
+(defprimconcept Contract_2)
+(defprimconcept Service_2)
+(defprimconcept Call_2)
+
+;;; Assert cardinality constraints
+(implies Location_2 (and (atleast 1 $2 has-location_2) 
+			 (atmost 1 $2 has-location_2)))
+(implies Customer_2 (and (atleast 1 $1 has-location_2)
+			 (atleast 1 $1 contract-customer-service_2)))
+(implies Contract_2 (and (atleast 1 $2 contract-customer-service_2) 
+			 (atmost 1 $2 contract-customer-service_2)))
+(implies Call_2 (and (atleast 1 $2 service-call_2) (atmost 1 $2 service-call_2)))
+
+;;; Integrity constraints
+(impliesrel has-location_2 located-in)
+(impliesrel contract-customer-service_2 agreement)
+(impliesrel service-call_2 service-call)
+
+(implies Location_2 Location)
+(implies Customer_2 Company)
+(implies Contract_2 Contract)
+(implies Service_2 Service)
+(implies Call_2 Call)
+
+;;; Additional constraint specified by Maurizio
+(implies Customer_2
+	 (and Company
+	      (some $1 (and agreement 
+			    ($2 3 (and contract 
+				       (some $1 (and contract-company 
+						     ($2 2 Telecom-company)))))))))
+(implies (and Company
+	      (some $1 (and agreement 
+			    ($2 3 (and contract 
+				       (some $1 (and contract-company 
+						     ($2 2 Telecom-company))))))))
+	 Customer_2)

@@ -1,0 +1,10 @@
+parameters {
+
+  string input_file arcticsubs.pdu
+  logical label_track F
+  logical drop_track F
+  logical show_r2 T
+  logical keep_links T
+  int delay_secs 0
+}
+

@@ -1,0 +1,73 @@
+digraph generated {
+  ratio=fill;
+  ranksep=1.5;
+  node [style=filled];
+  top[color=yellow];
+
+  "big_veggie"[color=coral,fontcolor=black];
+  "herbivore"-> {  "big_veggie"; };
+  "large_animal"-> {  "big_veggie"; };
+
+  "indian_elephant"[color=coral,fontcolor=black];
+  "elephant"-> {  "indian_elephant"; };
+
+  "animal"[color=yellow,fontcolor=black];
+  {top} ->"animal";
+
+  "branch"[color=yellow,fontcolor=black];
+  {top} ->"branch";
+
+  "african_animal"[color=coral,fontcolor=black];
+  "animal"-> {  "african_animal"; };
+
+  "adult_elephant"[color=coral,fontcolor=black];
+  "elephant"-> {  "adult_elephant"; };
+
+  "continent"[color=yellow,fontcolor=black];
+  {top} ->"continent";
+
+  "elephant"[color=yellow,fontcolor=black];
+  "animal"-> {  "elephant"; };
+
+  "leaf"[color=yellow,fontcolor=black];
+  {top} ->"leaf";
+
+  "lion"[color=yellow,fontcolor=black];
+  "animal"-> {  "lion"; };
+
+  "tree"[color=yellow,fontcolor=black];
+  "plant"-> {  "tree"; };
+
+  "giraffe"[color=yellow,fontcolor=black];
+  "animal"-> {  "giraffe"; };
+
+  "carnivore"[color=coral,fontcolor=black];
+  "animal"-> {  "carnivore"; };
+
+  "hungry_lion"[color=coral,fontcolor=black];
+  "lion"-> {  "hungry_lion"; };
+
+  "plant"[color=yellow,fontcolor=black];
+  {top} ->"plant";
+
+  "african_elephant"[color=coral,fontcolor=black];
+  "elephant"-> {  "african_elephant"; };
+
+  "asian_animal"[color=coral,fontcolor=black];
+  "animal"-> {  "asian_animal"; };
+
+  "kenyan_elephant"[color=yellow,fontcolor=black];
+  "elephant"-> {  "kenyan_elephant"; };
+
+  "country"[color=yellow,fontcolor=black];
+  {top} ->"country";
+
+  "tasty_plant"[color=coral,fontcolor=black];
+  "plant"-> {  "tasty_plant"; };
+
+  "large_animal"[color=coral,fontcolor=black];
+  "animal"-> {  "large_animal"; };
+
+  "herbivore"[color=coral,fontcolor=black];
+  "animal"-> {  "herbivore"; };
+}

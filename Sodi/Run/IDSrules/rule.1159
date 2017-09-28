@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC cat%20 access";flags: A+; content:"cat%20"; nocase; reference:cve,CVE-1999-0039; reference:bugtraq,374; classtype:attempted-recon; sid:1147; rev:2;)

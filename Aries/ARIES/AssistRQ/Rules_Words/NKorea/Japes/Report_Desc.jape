@@ -1,0 +1,22 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Report_Desc
+
+{Token.string == "From"}
+{Token.string == ":"}
+({SpaceToken})*
+{Report_Name}
+{Token.string == "@"}
+(
+      {Token.kind == word}
+)
+:Report_Desc 
+
+{Token.string == "."}
+
+ -->
+:Report_Desc.Report_Desc = {}
+

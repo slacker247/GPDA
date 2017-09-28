@@ -1,0 +1,246 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>DIS Data Dictionary: Signal PDU</TITLE>
+
+
+
+</HEAD>
+
+<BODY>
+
+<h1> DIS Data Dictionary - PDU Data</h1><i>Created by <a
+
+href="http://huachuca-jdbe.army.mil/">JDBE</a> at Ft. Huachuca,
+
+Arizona</i><br clear=all><p><dl><dd>
+
+<p>
+
+<b>Current standard:  IEEE 1278.1</b>
+
+<p><BR><H4>Signal PDU</H4>
+
+<B>Size: </B>272<BR>
+
+<B>Description: </B>The actual transmission of voice, audio or other data shall be communicated by issuing a Signal PDU. The Signal PDU shall contain the following fields:<BR>
+
+<BR>
+
+a) PDU Header - This field shall contain data common to all DIS PDUs. The PDU Header shall be represented by the PDU Header Record described in 5.3.24.<BR>
+
+b) Entity ID - This field shall identify the entity that is the source of the radio transmission. The source entity may either represent the radio itself or represent an entity (such as a vehicle) which contains the radio. This field shall be represented by an Entity Identifier Record (see 5.3.14).<BR>
+
+c) Radio ID - This field shall identify a particular radio within a given entity. This field shall be represented by a 16-bit unsigned integer. The Entity ID, Radio ID pair associates each Signal PDU with the preceding Transmitter PDU that contains the same Entity ID, Radio ID pair. The combination of Entity ID and Radio ID uniquely identifies a particular radio within a simulation exercise. <BR>
+
+d) Encoding Scheme - This field shall specify the encoding used in the Data field of this PDU. The Encoding Scheme shall be composed of a 2-bit field specifying the encoding class and a 14-bit field specifying either the encoding type, or the number of TDL messages contained in this Signal PDU (see Table 57).<BR>
+
+ <BR>
+
+                              Table 57-- Encoding Scheme<BR>
+
+                 Bits 14-15                    Bits 0-13<BR>
+
+                 Encoding Class            Encoding Type or Number of TDL <BR>
+
+                                                    Messages<BR>
+
+<BR>
+
+The two most significant bits of the encoding scheme shall enumerate the following encoding classes. The valid values of encoding classes are enumerated in Section 9 of EBV-DOC.<BR>
+
+The fourteen least significant bits of the encoding scheme shall represent encoding type when the encoding class is encoded audio. The valid values of encoding type are enumerated in Section 9 of EBV-DOC.<BR>
+
+The fourteen least significant bits of the encoding scheme shall be zero when the encoding class is not encoded audio and the TDL Type (see 5.4.8.2(e)) is zero.<BR>
+
+Otherwise, the fourteen least significant bits of the encoding scheme shall represent the number of tactical data link messages contained in the data section of the Signal PDU.<BR>
+
+A special requirement applies to the choice of encoding scheme when analog modulated audio communication is simulated. The sample rate is in samples per second for audio data. The bit rate is in bits per second for digital data. The interpretation of the Data field of the Signal PDU shall depend on the value of encoding class, as specified in 5.4.8.2 (i). <BR>
+
+e) TDL Type - This field shall specify the TDL Type as a 16-bit enumeration field when the encoding class is the raw binary, audio, application - specific, or database index representation of a TDL Message. When the data field is not representing a TDL Message, this field shall be set to zero (see Section 9 in EBV-DOC for enumeration of the TDL Type field).<BR>
+
+f) Sample Rate - This field shall specify either (1) the sample rate in samples per second if the encoding class is encoded audio or (2) the data rate in bits per second for data transmissions. If the Encoding Class is database index, this field shall be zero. This field shall be represented by a 32-bit unsigned integer.<BR>
+
+g) Data Length - This field shall specify the number of bits of digital voice audio or digital data being sent in this Signal PDU. This field shall be represented by a 16-bit unsigned integer. If the Encoding Class is database index, the Data Length field shall contain the value 96.<BR>
+
+h) Samples - This field shall specify the number of samples in this PDU. This field shall be represented by a 16-bit unsigned integer. If the Encoding Class is not encoded audio, this field shall be zero.<BR>
+
+i) Data - This field shall specify the audio or digital data conveyed by the radio transmission. The interpretation of the Data field depends on the value of the Encoding Scheme (see 5.4.8.2(d)) and TDL Type (see 5.4.8.2(e)) fields.<BR>
+
+If the encoding class is encoded audio, the Data field shall be interpreted as containing audio information digitally-encoded as specified by the Encoding Type.<BR>
+
+If the encoding class is raw binary data, the format of the data shall be specified by the TDL Type field (5.4.8.2(e)).<BR>
+
+If the encoding class is application-specific data, the first 32-bits of the Data field shall specify a user protocol identification number (see Section 9 in EBV-DOC for enumeration of user protocol Ids). The remainder of the Data field shall be interpreted as specified by the user protocol. If the encoding class is database index, the Data field shall be composed of three fields:<BR>
+
+<BR>
+
+     1) A 32-bit integer (data bytes 0-3) index into a predefined database of  <BR>
+
+         pre-recorded data.<BR>
+
+     2) A 32-bit integer (data bytes 4-7) specifying the offset in milliseconds<BR>
+
+        from the start of the index data.<BR>
+
+     3) A 32-bit integer (data bytes 8-11) indicating the duration of the<BR>
+
+         transmission in milliseconds from the indexed offset.<BR>
+
+<BR>
+
+The length of the valid data contained in this field shall be the value of the Data Length field. The Data field shall be zero-padded to ensure overall PDU length compliance (see 5.4.1)<BR>
+
+<BR>
+
+The Signal PDU is represented on Table 58.<BR>
+
+<P>
+
+<H3>PDU Components:</H3>
+
+<TABLE BORDER> <TR><TH ALIGN=CENTER>Item Name</TH>
+
+<TH ALIGN=CENTER>Bit Length</TH>
+
+<TH ALIGN=CENTER>Opt</TH>
+
+<TH ALIGN=CENTER>Opt Ctl</TH>
+
+<TH ALIGN=CENTER>Rpt</TH>
+
+<TH ALIGN=CENTER>Rpt Ctl</TH>
+
+</TR>
+
+<TR><TD><A HREF="7.htm" >PDU Header Record</A></TD>
+
+<TD>96</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="2c.htm" >Entity Identifier Record</A></TD>
+
+<TD>48</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="dd.htm" >Radio ID Field</A></TD>
+
+<TD>16</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="f5.htm" >Encoding Scheme Record</A></TD>
+
+<TD>16</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="fa.htm" >TDL Type field</A></TD>
+
+<TD>16</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="f8.htm" >Sample Rate field</A></TD>
+
+<TD>32</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="fb.htm" >Data Length field</A></TD>
+
+<TD>16</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="fc.htm" >Samples field</A></TD>
+
+<TD>16</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+ </TABLE>
+
+<HR><i>For questions regarding the content of the DIS Data
+
+Dictionary, <br>please contact Jeff Wicks, <a href="mailto:jwicks@ist.ucf.edu">jwicks@ist.ucf.edu</a></i><p><i>Other problems may be reported to the WebMaster,<a
+
+href="mailto:www@sc.ist.ucf.edu">www@sc.ist.ucf.edu</a></i><br>
+
+<hr>
+
+Generated by the DIS Data Dictionary
+
+
+
+</BODY>
+
+</HTML>
+

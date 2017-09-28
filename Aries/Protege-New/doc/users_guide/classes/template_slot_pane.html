@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>The Template Slots Pane</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="images/serving_nerd.gif" WIDTH="48" HEIGHT="48">  The Template Slots Pane<br>
+<img src="images/header_line.gif" width="590" height="6"></h1>
+
+<p>The Template Slots pane at the bottom of the <a href="class_form.html">Class
+Form</a> displays the
+direct and inherited slots for the selected class. <font size="3"> Slots, which
+represent properties of your class, are a crucial part of your knowledge base.&nbsp; </font></p>
+
+<p><font size="3">The Template Slots pane provides the following information:</font></p>
+
+<ol>
+  <li><font size="3">The <a href="template_slot_buttons.html" target="_blank">Template
+    Slot Buttons</a>, which allow you to view, create, clear, and add slots.</font></li>
+  <li><font size="3">The <a href="#slot_menu">Template Slot Menu</a>, which has
+    the same actions as the Template Slot Buttons.</font></li>
+  <li><font size="3">The <a href="template_slot_pane.html#slot_icons">Slot Icons</a>, which give
+    information about the slot.</font></li>
+  <li><font size="3">The <a href="template_slot_pane.html#slot_summary">Slot Summary Columns</a>, which
+    summarize the information which was entered </font> or edited in the <a href="../slots/slot_form.html">Slot
+Form</a> or <a href="../slots/slots_tab.html"> Slots Tab</a>.</li>
+</ol>
+
+<p>In
+the example, <strong> Editor </strong> has several slots which
+appear in the Template Slots pane.</p>
+
+<p align="center"><img border="0" src="images/template_slots.gif" width="652" height="257"></p>
+
+<h3 align="left"><a name="slot_buttons"></a>The Template Slot Buttons</h3>
+
+<p align="left">The buttons at the upper right of the Template Slots pane allow
+you to edit, override, add, and remove slots. See the separate <a href="template_slot_buttons.html">Template Slot Buttons</a> 
+topic for more information.</p>
+
+<p>You can also view, create, and delete slots, as well as view back-references,
+directly from the <a href="../slots/slots_tab.html">Slots Tab</a>. See the <a href="../slots/slot_buttons.html">Slot
+Buttons</a> for more information.</p>
+
+<h3><a name="slot_menu"></a>The Template Slot Menu</h3>
+
+<p>Right-clicking anywhere in the Template Slots pane brings up the Template
+Slot menu, which allows you to edit, override, add, and remove slots. These are
+the same actions provided by the Template Slot Buttons. See the <a href="template_slot_buttons.html">Template Slot Buttons</a> 
+topic for more information.</p>
+
+<p align="center"><img border="0" src="images/temp_slot_menu.gif" width="229" height="111"></p>
+
+<h3 align="left"><a name="slot_icons"></a>The Slot Icons</h3>
+
+<p align="left">The icons at the left of the column indicate where the slot was
+created.&nbsp;</p>
+
+<div align="left">
+  <table border="0" width="100%">
+    <tr>
+      <td width="12%"><img border="0" src="images/SlotInherited.gif" align="left" width="15" height="16"></td>
+      <td width="88%">A gray icon means that the slot is inherited from one of the selected class's ancestors. Inherited slots can be edited but not
+        deleted. <strong>byname</strong> is an inherited slot.&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="12%"><img border="0" src="images/SlotDirect.gif" align="left" width="17" height="18"></td>
+      <td width="88%">A blue icon means that the slot is &quot;direct&quot;,
+        that is, it was created directly on the selected class. <strong>responsible_for
+        </strong>is a direct slot.</td>
+    </tr>
+  </table>
+</div>
+
+<p>An icon to the right of the column indicates a slot that has been modified:</p>
+  <table border="0" width="100%">
+    <tr>
+      <td width="12%"><img border="0" src="images/OverriddenSlot.gif" width="11" height="16"></td>
+      <td width="88%">An O (override) means that the slot has been modified at
+        the class. If the slot was created directly and modified later, this
+        icon is still displayed.</td>
+    </tr>
+    <tr>
+      <td width="12%"><img border="0" src="../images/InverseSlot.gif" width="11" height="16"></td>
+      <td width="88%">An I (inverse) means the slot has an inverse slot. Inverse
+        slots allow you to link two slots in a reciprocal relationship. See <a href="../slots/inverse_slots.html">Understanding Inverse Slots</a>
+        for more information.</td>
+    </tr>
+  </table>
+
+<h3 align="left"><a name="slot_summary"></a>Slot Summary Columns</h3>
+
+<p align="left">The remaining columns in the Slot Templates Pane summarize the
+information that was entered or edited in the <a href="../slots/slot_form.html">Slot
+Form</a> or <a href="../slots/slots_tab.html"> Slots Tab</a>.</p>
+
+<div align="left">
+  <table border="0" width="100%">
+    <tr>
+      <td width="26%"><b><u>Column</u></b></td>
+      <td width="74%"><b><u>Meaning</u></b></td>
+    </tr>
+    <tr>
+      <td width="26%"><b>Slot Name</b></td>
+      <td width="74%">Displays the name of the slot.</td>
+    </tr>
+    <tr>
+      <td width="26%"><b>Type<br>
+        </b></td>
+      <td width="74%">Indicates the kind of values that the slot may hold.
+        Available types are: <b>Any</b>, <b>Boolean</b>, <b>Class</b>, <b>Float</b>,
+        <b>Instance</b>, <b>Integer</b>, <b>String</b>, and <b>Symbol</b>. See <a href="../slots/value_type_menu.html">The Value Type Menu</a>
+        for more information.</td>
+    </tr>
+    <tr>
+      <td width="26%"><b>Cardinality</b></td>
+      <td width="74%">Indicates whether a slot value can consist of <b>Multiple</b>
+        items or must be a <b>Single</b> item.</td>
+    </tr>
+    <tr>
+      <td width="26%"><b>Other Facets</b></td>
+      <td width="74%">Displays any other facets defined in the <a href="../slots/slot_form.html">Slot
+Form</a> or <a href="../slots/slots_tab.html"> Slots Tab</a>. The content of this column depends on the type of the slot. For type
+Integer slots, for example, the range can be displayed in the last column. For type
+Instance slots the allowed classes are displayed. The <strong>published_in</strong> slot
+is an Instance slot with an allowed class of <strong>Newspaper</strong>. This
+        column also indicates any required values or defaults.</td>
+    </tr>
+  </table>
+</div>
+
+<hr>
+
+<p>Next: <a href="template_slot_buttons.html"><font size="3">The Template Slot Buttons</font></a></p>
+
+<p><a href="index.html">Classes Table of Contents</a></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+</body>
+</html>

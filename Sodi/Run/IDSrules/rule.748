@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible NewApt.Worm - cupid2.exe"; content: "filename=\"CUPID2.EXE\""; nocase; reference:MCAFEE,10540; sid:791;  classtype:misc-activity; rev:3;)

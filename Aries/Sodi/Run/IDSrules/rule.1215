@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC htgrep access"; flags:A+; uricontent:"/htgrep"; classtype:attempted-recon; sid:1207; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"DOS Land attack"; id:3868; seq: 3868; flags:S; classtype:attempted-dos; sid:269; rev:1;)

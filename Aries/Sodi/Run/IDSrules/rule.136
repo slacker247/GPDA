@@ -1,0 +1,1 @@
+alert icmp $HOME_NET any -> $EXTERNAL_NET any (msg:"DDOS Stacheldraht server-response-gag"; content: "|73 69 63 6B 65 6E|"; itype: 0; icmp_id: 669; reference:arachnids,195; classtype:attempted-dos; sid:225; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC /cgi-bin/jj attempt"; uricontent:"/cgi-bin/jj"; nocase; flags: A+; reference:bugtraq,2002; reference:cve,CVE-1999-0260; classtype:attempted-recon; sid:1174; rev:2;)

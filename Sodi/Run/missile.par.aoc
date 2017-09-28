@@ -1,0 +1,2839 @@
+no_missiles {
+}
+
+missiles {
+  type 1103
+}
+
+1072 {
+  string missile_type SCUD
+  string init_position NoDong
+  string final_position Taejon
+  float launch_time 60000.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+2101 {
+  string missile_type SCUD
+  string init_position NoDong
+  string final_position Taejon1
+  float launch_time 60000.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+2102 {
+  string missile_type SCUD
+  string init_position NoDong
+  string final_position Taejon2
+  float launch_time 60000.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+1102 {
+  string missile_type SCUD
+  string init_position BlueSub
+  string final_position NoDong
+  float launch_time 60090.0
+  float random_distance 1.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+1103 {
+  string missile_type SCUD
+  string init_position Aegis-E
+  string final_position TEL-1 
+  float launch_time 60240.0
+  float random_distance 1.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+NoDong {
+  logical north T
+  logical east T
+  float lat_deg 40.0
+  float lat_min 50.0
+  float lat_sec 0
+  float lon_deg 129.0
+  float lon_min 40.0
+  float lon_sec 0
+} 
+
+Taejon {
+  logical north T
+  logical east T
+  float lat_deg 36.0
+  float lat_min 20.0
+  float lat_sec 0
+  float lon_deg 127.0
+  float lon_min 28.0
+  float lon_sec 0
+} 
+
+Taejon1 {
+  logical north T
+  logical east T
+  float lat_deg 36.0
+  float lat_min 50.0
+  float lat_sec 0
+  float lon_deg 127.0
+  float lon_min 48.0
+  float lon_sec 0
+} 
+
+Taejon2 {
+  logical north T
+  logical east T
+  float lat_deg 36.0
+  float lat_min 0.0
+  float lat_sec 0
+  float lon_deg 127.0
+  float lon_min 0.0
+  float lon_sec 0
+} 
+
+TEL-1 {
+  logical north T
+  logical east T
+  float lat_deg 38.2
+  float lat_min 0.0
+  float lat_sec 0
+  float lon_deg 125.5
+  float lon_min 0.0
+  float lon_sec 0
+} 
+
+BlueSub {
+  logical north T
+  logical east T
+  float lat_deg 37.5
+  float lat_min 0.0
+  float lat_sec 0
+  float lon_deg 132.0
+  float lon_min 0.0
+  float lon_sec 0
+}
+
+Aegis-E {
+  logical north T
+  logical east T
+  float lat_deg 36.5
+  float lat_min 0.0
+  float lat_sec 0
+  float lon_deg 125.5
+  float lon_min 0.0
+  float lon_sec 0
+}
+
+arctic_missiles {
+  type Arctic_Sub1_1
+  type Arctic_Sub2_2
+  type Arctic_Sub3_3
+  type Arctic_Sub1_4
+  type Arctic_Sub2_5
+  type Arctic_Sub3_6
+  type Arctic_Sub1_7
+  type Arctic_Sub2_8
+
+}
+
+Arctic_Sub1_1 {
+  string missile_type SS18
+  string init_position Arctic_Sub1
+  string final_position Los_Angeles
+  float launch_time 60000.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub1_2 {
+  string missile_type SS18
+  string init_position Arctic_Sub1
+  string final_position San_Francisco
+  float launch_time 60050.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub1_3 {
+  string missile_type SS18
+  string init_position Arctic_Sub1
+  string final_position Colorado_Springs
+  float launch_time 60100.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub1_4 {
+  string missile_type SS18
+  string init_position Arctic_Sub1
+  string final_position Chicago
+  float launch_time 60150.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub1_5 {
+  string missile_type SS18
+  string init_position Arctic_Sub1
+  string final_position New_York
+  float launch_time 60200.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub1_6 {
+  string missile_type SS18
+  string init_position Arctic_Sub1
+  string final_position Huntsville
+  float launch_time 60250.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub1_7 {
+  string missile_type SS18
+  string init_position Arctic_Sub1
+  string final_position Atlanta
+  float launch_time 60300.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub1_8 {
+  string missile_type SS18
+  string init_position Arctic_Sub1
+  string final_position St_Louis
+  float launch_time 60350.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub1_9 {
+  string missile_type SS18
+  string init_position Arctic_Sub1
+  string final_position Boston
+  float launch_time 60400.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub1_10 {
+  string missile_type SS18
+  string init_position Arctic_Sub1
+  string final_position Washington_DC
+  float launch_time 60450.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub1_11 {
+  string missile_type SS18
+  string init_position Arctic_Sub1
+  string final_position Portland
+  float launch_time 60500.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub1_12 {
+  string missile_type SS18
+  string init_position Arctic_Sub1
+  string final_position Seattle
+  float launch_time 60550.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub1_13 {
+  string missile_type SS18
+  string init_position Arctic_Sub1
+  string final_position Detroit
+  float launch_time 60600.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub1_14 {
+  string missile_type SS18
+  string init_position Arctic_Sub1
+  string final_position Denver
+  float launch_time 60650.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub1_15 {
+  string missile_type SS18
+  string init_position Arctic_Sub1
+  string final_position Philadelphia
+  float launch_time 60700.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub1_16 {
+  string missile_type SS18
+  string init_position Arctic_Sub1
+  string final_position Houston
+  float launch_time 60750.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub2_1 {
+  string missile_type SS18
+  string init_position Arctic_Sub2
+  string final_position Los_Angeles
+  float launch_time 60000.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub2_2 {
+  string missile_type SS18
+  string init_position Arctic_Sub2
+  string final_position San_Francisco
+  float launch_time 60050.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub2_3 {
+  string missile_type SS18
+  string init_position Arctic_Sub2
+  string final_position Colorado_Springs
+  float launch_time 60100.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub2_4 {
+  string missile_type SS18
+  string init_position Arctic_Sub2
+  string final_position Chicago
+  float launch_time 60150.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub2_5 {
+  string missile_type SS18
+  string init_position Arctic_Sub2
+  string final_position New_York
+  float launch_time 60200.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub2_6 {
+  string missile_type SS18
+  string init_position Arctic_Sub2
+  string final_position Huntsville
+  float launch_time 60250.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub2_7 {
+  string missile_type SS18
+  string init_position Arctic_Sub2
+  string final_position Atlanta
+  float launch_time 60300.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub2_8 {
+  string missile_type SS18
+  string init_position Arctic_Sub2
+  string final_position St_Louis
+  float launch_time 60350.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub2_9 {
+  string missile_type SS18
+  string init_position Arctic_Sub2
+  string final_position Boston
+  float launch_time 60400.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub2_10 {
+  string missile_type SS18
+  string init_position Arctic_Sub2
+  string final_position Washington_DC
+  float launch_time 60450.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub2_11 {
+  string missile_type SS18
+  string init_position Arctic_Sub2
+  string final_position Portland
+  float launch_time 60500.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub2_12 {
+  string missile_type SS18
+  string init_position Arctic_Sub2
+  string final_position Seattle
+  float launch_time 60550.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub2_13 {
+  string missile_type SS18
+  string init_position Arctic_Sub2
+  string final_position Detroit
+  float launch_time 60600.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub2_14 {
+  string missile_type SS18
+  string init_position Arctic_Sub2
+  string final_position Denver
+  float launch_time 60650.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub2_15 {
+  string missile_type SS18
+  string init_position Arctic_Sub2
+  string final_position Philadelphia
+  float launch_time 60700.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub2_16 {
+  string missile_type SS18
+  string init_position Arctic_Sub2
+  string final_position Houston
+  float launch_time 60750.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub3_1 {
+  string missile_type SS18
+  string init_position Arctic_Sub3
+  string final_position Los_Angeles
+  float launch_time 60000.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub3_2 {
+  string missile_type SS18
+  string init_position Arctic_Sub3
+  string final_position San_Francisco
+  float launch_time 60050.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub3_3 {
+  string missile_type SS18
+  string init_position Arctic_Sub3
+  string final_position Colorado_Springs
+  float launch_time 60100.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub3_4 {
+  string missile_type SS18
+  string init_position Arctic_Sub3
+  string final_position Chicago
+  float launch_time 60150.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub3_5 {
+  string missile_type SS18
+  string init_position Arctic_Sub3
+  string final_position New_York
+  float launch_time 60200.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub3_6 {
+  string missile_type SS18
+  string init_position Arctic_Sub3
+  string final_position Huntsville
+  float launch_time 60250.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub3_7 {
+  string missile_type SS18
+  string init_position Arctic_Sub3
+  string final_position Atlanta
+  float launch_time 60300.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub3_8 {
+  string missile_type SS18
+  string init_position Arctic_Sub3
+  string final_position St_Louis
+  float launch_time 60350.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub3_9 {
+  string missile_type SS18
+  string init_position Arctic_Sub3
+  string final_position Boston
+  float launch_time 60400.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub3_10 {
+  string missile_type SS18
+  string init_position Arctic_Sub3
+  string final_position Washington_DC
+  float launch_time 60450.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub3_11 {
+  string missile_type SS18
+  string init_position Arctic_Sub3
+  string final_position Portland
+  float launch_time 60500.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub3_12 {
+  string missile_type SS18
+  string init_position Arctic_Sub3
+  string final_position Seattle
+  float launch_time 60550.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub3_13 {
+  string missile_type SS18
+  string init_position Arctic_Sub3
+  string final_position Detroit
+  float launch_time 60600.0
+  float random_distance 10.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub3_14 {
+  string missile_type SS18
+  string init_position Arctic_Sub3
+  string final_position Denver
+  float launch_time 60650.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub3_15 {
+  string missile_type SS18
+  string init_position Arctic_Sub3
+  string final_position Philadelphia
+  float launch_time 60700.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+Arctic_Sub3_16 {
+  string missile_type SS18
+  string init_position Arctic_Sub3
+  string final_position Houston
+  float launch_time 60750.0
+  float random_distance 100.0
+  float apogee 500.0
+  float est_tof 600.0
+}
+
+intmiss1 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43600.0
+  float random_distance 1.0
+}
+
+intmiss2 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43650.0
+  float random_distance 1.0
+}
+
+intmiss3 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Santa_Fe
+  float launch_time 43700.0
+  float random_distance 1.0
+}
+
+intmiss4 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43750.0
+  float random_distance 1.0
+}
+
+intmiss5 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position New_York
+  float launch_time 43800.0
+  float random_distance 1.0
+}
+
+
+
+sub1miss1 {
+  string missile_type SS18
+  string init_position sub1
+  string final_position Washington_DC
+  float launch_time 43600.0
+  float random_distance 200.0
+}
+
+sub1miss2 {
+  string missile_type SS09
+  string init_position sub1
+  string final_position Washington_DC
+  float launch_time 43630.0
+  float random_distance 200.0
+}
+
+sub1miss3 {
+  string missile_type SS09
+  string init_position sub1
+  string final_position Washington_DC
+  float launch_time 43660.0
+  float random_distance 200.0
+}
+
+sub1miss4 {
+  string missile_type SS09
+  string init_position sub1
+  string final_position Washington_DC
+  float launch_time 43690.0
+  float random_distance 200.0
+}
+
+sub1miss5 {
+  string missile_type SS09
+  string init_position sub1
+  string final_position Washington_DC
+  float launch_time 43720.0
+  float random_distance 200.0
+}
+
+sub1miss6 {
+  string missile_type SS09
+  string init_position sub1
+  string final_position New_York
+  float launch_time 43750.0
+  float random_distance 200.0
+}
+
+sub1miss7 {
+  string missile_type SS09
+  string init_position sub1
+  string final_position New_York
+  float launch_time 43780.0
+  float random_distance 200.0
+}
+
+sub1miss8 {
+  string missile_type SS09
+  string init_position sub1
+  string final_position New_York
+  float launch_time 43810.0
+  float random_distance 200.0
+}
+
+sub1miss9 {
+  string missile_type SS09
+  string init_position sub1
+  string final_position New_York
+  float launch_time 43840.0
+  float random_distance 200.0
+}
+
+sub1miss10 {
+  string missile_type SS09
+  string init_position sub1
+  string final_position New_York
+  float launch_time 43870.0
+  float random_distance 200.0
+}
+
+sub1miss11 {
+  string missile_type SS09
+  string init_position sub1
+  string final_position Jacksonville
+  float launch_time 43900.0
+  float random_distance 200.0
+}
+
+sub1miss12 {
+  string missile_type SS09
+  string init_position sub1
+  string final_position Jacksonville
+  float launch_time 43930.0
+  float random_distance 200.0
+}
+
+sub1miss13 {
+  string missile_type SS09
+  string init_position sub1
+  string final_position Jacksonville
+  float launch_time 43960.0
+  float random_distance 200.0
+}
+
+sub1miss14 {
+  string missile_type SS09
+  string init_position sub1
+  string final_position Jacksonville
+  float launch_time 43990.0
+  float random_distance 200.0
+}
+
+sub1miss15 {
+  string missile_type SS09
+  string init_position sub1
+  string final_position Jacksonville
+  float launch_time 44020.0
+  float random_distance 200.0
+}
+
+Krutogorova1 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43200.0
+  float random_distance 200.0
+}
+
+Krutogorova2 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43210.0
+  float random_distance 200.0
+}
+
+Krutogorova3 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43220.0
+  float random_distance 200.0
+}
+
+Krutogorova4 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43230.0
+  float random_distance 200.0
+}
+
+Krutogorova5 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43240.0
+  float random_distance 200.0
+}
+
+Krutogorova6 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43250.0
+  float random_distance 200.0
+}
+
+Krutogorova7 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43260.0
+  float random_distance 200.0
+}
+
+Krutogorova8 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43270.0
+  float random_distance 200.0
+}
+
+Krutogorova9 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43280.0
+  float random_distance 200.0
+}
+
+Krutogorova10 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43290.0
+  float random_distance 200.0
+}
+
+Krutogorova11 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43300.0
+  float random_distance 200.0
+}
+
+Krutogorova12 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43310.0
+  float random_distance 200.0
+}
+
+Krutogorova13 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43320.0
+  float random_distance 200.0
+}
+
+Krutogorova14 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43330.0
+  float random_distance 200.0
+}
+
+Krutogorova15 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43340.0
+  float random_distance 200.0
+}
+
+Krutogorova16 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43350.0
+  float random_distance 200.0
+}
+
+Krutogorova17 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43360.0
+  float random_distance 200.0
+}
+
+Krutogorova18 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43370.0
+  float random_distance 200.0
+}
+
+Krutogorova19 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43380.0
+  float random_distance 200.0
+}
+
+Krutogorova20 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43390.0
+  float random_distance 200.0
+}
+
+Krutogorova21 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43400.0
+  float random_distance 200.0
+}
+
+Krutogorova22 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43410.0
+  float random_distance 200.0
+}
+
+Krutogorova23 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43420.0
+  float random_distance 200.0
+}
+
+Krutogorova24 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43430.0
+  float random_distance 200.0
+}
+
+Krutogorova25 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43440.0
+  float random_distance 200.0
+}
+
+Krutogorova26 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43450.0
+  float random_distance 200.0
+}
+
+Krutogorova27 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43460.0
+  float random_distance 200.0
+}
+
+Krutogorova28 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43470.0
+  float random_distance 200.0
+}
+
+Krutogorova29 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43480.0
+  float random_distance 200.0
+}
+
+Krutogorova30 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43490.0
+  float random_distance 200.0
+}
+
+Krutogorova31 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43500.0
+  float random_distance 200.0
+}
+
+Krutogorova32 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43510.0
+  float random_distance 200.0
+}
+
+Krutogorova33 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43520.0
+  float random_distance 200.0
+}
+
+Krutogorova34 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43530.0
+  float random_distance 200.0
+}
+
+Krutogorova35 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43540.0
+  float random_distance 200.0
+}
+
+Krutogorova36 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43550.0
+  float random_distance 200.0
+}
+
+Krutogorova37 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43560.0
+  float random_distance 200.0
+}
+
+Krutogorova38 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43570.0
+  float random_distance 200.0
+}
+
+Krutogorova39 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43580.0
+  float random_distance 200.0
+}
+
+Krutogorova40 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Los_Angeles
+  float launch_time 43590.0
+  float random_distance 200.0
+}
+
+Krutogorova41 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43200.0
+  float random_distance 200.0
+}
+
+Krutogorova42 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43210.0
+  float random_distance 200.0
+}
+
+Krutogorova43 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43220.0
+  float random_distance 200.0
+}
+
+Krutogorova44 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43230.0
+  float random_distance 200.0
+}
+
+Krutogorova45 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43240.0
+  float random_distance 200.0
+}
+
+Krutogorova46 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43250.0
+  float random_distance 200.0
+}
+
+Krutogorova47 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43260.0
+  float random_distance 200.0
+}
+
+Krutogorova48 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43270.0
+  float random_distance 200.0
+}
+
+Krutogorova49 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43280.0
+  float random_distance 200.0
+}
+
+Krutogorova50 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43290.0
+  float random_distance 200.0
+}
+
+Krutogorova51 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43300.0
+  float random_distance 200.0
+}
+
+Krutogorova52 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43310.0
+  float random_distance 200.0
+}
+
+Krutogorova53 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43320.0
+  float random_distance 200.0
+}
+
+Krutogorova54 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43330.0
+  float random_distance 200.0
+}
+
+Krutogorova55 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43340.0
+  float random_distance 200.0
+}
+
+Krutogorova56 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43350.0
+  float random_distance 200.0
+}
+
+Krutogorova57 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43360.0
+  float random_distance 200.0
+}
+
+Krutogorova58 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43370.0
+  float random_distance 200.0
+}
+
+Krutogorova59 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43380.0
+  float random_distance 200.0
+}
+
+Krutogorova60 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43390.0
+  float random_distance 200.0
+}
+
+Krutogorova61 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43400.0
+  float random_distance 200.0
+}
+
+Krutogorova62 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43410.0
+  float random_distance 200.0
+}
+
+Krutogorova63 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43420.0
+  float random_distance 200.0
+}
+
+Krutogorova64 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43430.0
+  float random_distance 200.0
+}
+
+Krutogorova65 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43440.0
+  float random_distance 200.0
+}
+
+Krutogorova66 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43450.0
+  float random_distance 200.0
+}
+
+Krutogorova67 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43460.0
+  float random_distance 200.0
+}
+
+Krutogorova68 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43470.0
+  float random_distance 200.0
+}
+
+Krutogorova69 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43480.0
+  float random_distance 200.0
+}
+
+Krutogorova70 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43490.0
+  float random_distance 200.0
+}
+
+Krutogorova71 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43500.0
+  float random_distance 200.0
+}
+
+Krutogorova72 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43510.0
+  float random_distance 200.0
+}
+
+Krutogorova73 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43520.0
+  float random_distance 200.0
+}
+
+Krutogorova74 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43530.0
+  float random_distance 200.0
+}
+
+Krutogorova75 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43540.0
+  float random_distance 200.0
+}
+
+Krutogorova76 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43550.0
+  float random_distance 200.0
+}
+
+Krutogorova77 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43560.0
+  float random_distance 200.0
+}
+
+Krutogorova78 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43570.0
+  float random_distance 200.0
+}
+
+Krutogorova79 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43580.0
+  float random_distance 200.0
+}
+
+Krutogorova80 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Cheyenne_Mountain
+  float launch_time 43590.0
+  float random_distance 200.0
+}
+
+Krutogorova81 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43200.0
+  float random_distance 200.0
+}
+
+Krutogorova82 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43210.0
+  float random_distance 200.0
+}
+
+Krutogorova83 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43220.0
+  float random_distance 200.0
+}
+
+Krutogorova84 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43230.0
+  float random_distance 200.0
+}
+
+Krutogorova85 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43240.0
+  float random_distance 200.0
+}
+
+Krutogorova86 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43250.0
+  float random_distance 200.0
+}
+
+Krutogorova87 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43260.0
+  float random_distance 200.0
+}
+
+Krutogorova88 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43270.0
+  float random_distance 200.0
+}
+
+Krutogorova89 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43280.0
+  float random_distance 200.0
+}
+
+Krutogorova90 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43290.0
+  float random_distance 200.0
+}
+
+Krutogorova91 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43300.0
+  float random_distance 200.0
+}
+
+Krutogorova92 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43310.0
+  float random_distance 200.0
+}
+
+Krutogorova93 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43320.0
+  float random_distance 200.0
+}
+
+Krutogorova94 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43330.0
+  float random_distance 200.0
+}
+
+Krutogorova95 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43340.0
+  float random_distance 200.0
+}
+
+Krutogorova96 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43350.0
+  float random_distance 200.0
+}
+
+Krutogorova97 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43360.0
+  float random_distance 200.0
+}
+
+Krutogorova98 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43370.0
+  float random_distance 200.0
+}
+
+Krutogorova99 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43380.0
+  float random_distance 200.0
+}
+
+Krutogorova100 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43390.0
+  float random_distance 200.0
+}
+
+Krutogorova101 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43400.0
+  float random_distance 200.0
+}
+
+Krutogorova102 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43410.0
+  float random_distance 200.0
+}
+
+Krutogorova103 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43420.0
+  float random_distance 200.0
+}
+
+Krutogorova104 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43430.0
+  float random_distance 200.0
+}
+
+Krutogorova105 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43440.0
+  float random_distance 200.0
+}
+
+Krutogorova106 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43450.0
+  float random_distance 200.0
+}
+
+Krutogorova107 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43460.0
+  float random_distance 200.0
+}
+
+Krutogorova108 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43470.0
+  float random_distance 200.0
+}
+
+Krutogorova109 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43480.0
+  float random_distance 200.0
+}
+
+Krutogorova110 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43490.0
+  float random_distance 200.0
+}
+
+Krutogorova111 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43500.0
+  float random_distance 200.0
+}
+
+Krutogorova112 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43510.0
+  float random_distance 200.0
+}
+
+Krutogorova113 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43520.0
+  float random_distance 200.0
+}
+
+Krutogorova114 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43530.0
+  float random_distance 200.0
+}
+
+Krutogorova115 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43540.0
+  float random_distance 200.0
+}
+
+Krutogorova116 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43550.0
+  float random_distance 200.0
+}
+
+Krutogorova117 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43560.0
+  float random_distance 200.0
+}
+
+Krutogorova118 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43570.0
+  float random_distance 200.0
+}
+
+Krutogorova119 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43580.0
+  float random_distance 200.0
+}
+
+Krutogorova120 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Huntsville
+  float launch_time 43590.0
+  float random_distance 200.0
+}
+
+Krutogorova121 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43200.0
+  float random_distance 200.0
+}
+
+Krutogorova122 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43210.0
+  float random_distance 200.0
+}
+
+Krutogorova123 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43220.0
+  float random_distance 200.0
+}
+
+Krutogorova124 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43230.0
+  float random_distance 200.0
+}
+
+Krutogorova125 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43240.0
+  float random_distance 200.0
+}
+
+Krutogorova126 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43250.0
+  float random_distance 200.0
+}
+
+Krutogorova127 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43260.0
+  float random_distance 200.0
+}
+
+Krutogorova128 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43270.0
+  float random_distance 200.0
+}
+
+Krutogorova129 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43280.0
+  float random_distance 200.0
+}
+
+Krutogorova130 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43290.0
+  float random_distance 200.0
+}
+
+Krutogorova131 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43300.0
+  float random_distance 200.0
+}
+
+Krutogorova132 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43310.0
+  float random_distance 200.0
+}
+
+Krutogorova133 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43320.0
+  float random_distance 200.0
+}
+
+Krutogorova134 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43330.0
+  float random_distance 200.0
+}
+
+Krutogorova135 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43340.0
+  float random_distance 200.0
+}
+
+Krutogorova136 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43350.0
+  float random_distance 200.0
+}
+
+Krutogorova137 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43360.0
+  float random_distance 200.0
+}
+
+Krutogorova138 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43370.0
+  float random_distance 200.0
+}
+
+Krutogorova139 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43380.0
+  float random_distance 200.0
+}
+
+Krutogorova140 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43390.0
+  float random_distance 200.0
+}
+
+Krutogorova141 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43400.0
+  float random_distance 200.0
+}
+
+Krutogorova142 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43410.0
+  float random_distance 200.0
+}
+
+Krutogorova143 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43420.0
+  float random_distance 200.0
+}
+
+Krutogorova144 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43430.0
+  float random_distance 200.0
+}
+
+Krutogorova145 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43440.0
+  float random_distance 200.0
+}
+
+Krutogorova146 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43450.0
+  float random_distance 200.0
+}
+
+Krutogorova147 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43460.0
+  float random_distance 200.0
+}
+
+Krutogorova148 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43470.0
+  float random_distance 200.0
+}
+
+Krutogorova149 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43480.0
+  float random_distance 200.0
+}
+
+Krutogorova150 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43490.0
+  float random_distance 200.0
+}
+
+Krutogorova151 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43500.0
+  float random_distance 200.0
+}
+
+Krutogorova152 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43510.0
+  float random_distance 200.0
+}
+
+Krutogorova153 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43520.0
+  float random_distance 200.0
+}
+
+Krutogorova154 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43530.0
+  float random_distance 200.0
+}
+
+Krutogorova155 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43540.0
+  float random_distance 200.0
+}
+
+Krutogorova156 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43550.0
+  float random_distance 200.0
+}
+
+Krutogorova157 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43560.0
+  float random_distance 200.0
+}
+
+Krutogorova158 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43570.0
+  float random_distance 200.0
+}
+
+Krutogorova159 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43580.0
+  float random_distance 200.0
+}
+
+Krutogorova160 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Portland
+  float launch_time 43590.0
+  float random_distance 200.0
+}
+
+Krutogorova161 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43200.0
+  float random_distance 200.0
+}
+
+Krutogorova162 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43210.0
+  float random_distance 200.0
+}
+
+Krutogorova163 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43220.0
+  float random_distance 200.0
+}
+
+Krutogorova164 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43230.0
+  float random_distance 200.0
+}
+
+Krutogorova165 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43240.0
+  float random_distance 200.0
+}
+
+Krutogorova166 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43250.0
+  float random_distance 200.0
+}
+
+Krutogorova167 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43260.0
+  float random_distance 200.0
+}
+
+Krutogorova168 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43270.0
+  float random_distance 200.0
+}
+
+Krutogorova169 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43280.0
+  float random_distance 200.0
+}
+
+Krutogorova170 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43290.0
+  float random_distance 200.0
+}
+
+Krutogorova171 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43300.0
+  float random_distance 200.0
+}
+
+Krutogorova172 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43310.0
+  float random_distance 200.0
+}
+
+Krutogorova173 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43320.0
+  float random_distance 200.0
+}
+
+Krutogorova174 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43330.0
+  float random_distance 200.0
+}
+
+Krutogorova175 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43340.0
+  float random_distance 200.0
+}
+
+Krutogorova176 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43350.0
+  float random_distance 200.0
+}
+
+Krutogorova177 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43360.0
+  float random_distance 200.0
+}
+
+Krutogorova178 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43370.0
+  float random_distance 200.0
+}
+
+Krutogorova179 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43380.0
+  float random_distance 200.0
+}
+
+Krutogorova180 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43390.0
+  float random_distance 200.0
+}
+
+Krutogorova181 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43400.0
+  float random_distance 200.0
+}
+
+Krutogorova182 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43410.0
+  float random_distance 200.0
+}
+
+Krutogorova183 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43420.0
+  float random_distance 200.0
+}
+
+Krutogorova184 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43430.0
+  float random_distance 200.0
+}
+
+Krutogorova185 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43440.0
+  float random_distance 200.0
+}
+
+Krutogorova186 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43450.0
+  float random_distance 200.0
+}
+
+Krutogorova187 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43460.0
+  float random_distance 200.0
+}
+
+Krutogorova188 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43470.0
+  float random_distance 200.0
+}
+
+Krutogorova189 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43480.0
+  float random_distance 200.0
+}
+
+Krutogorova190 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43490.0
+  float random_distance 200.0
+}
+
+Krutogorova191 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43500.0
+  float random_distance 200.0
+}
+
+Krutogorova192 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43510.0
+  float random_distance 200.0
+}
+
+Krutogorova193 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43520.0
+  float random_distance 200.0
+}
+
+Krutogorova194 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43530.0
+  float random_distance 200.0
+}
+
+Krutogorova195 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43540.0
+  float random_distance 200.0
+}
+
+Krutogorova196 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43550.0
+  float random_distance 200.0
+}
+
+Krutogorova197 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43560.0
+  float random_distance 200.0
+}
+
+Krutogorova198 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43570.0
+  float random_distance 200.0
+}
+
+Krutogorova199 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43580.0
+  float random_distance 200.0
+}
+
+Krutogorova200 {
+  string missile_type SS18
+  string init_position Krutogorova
+  string final_position Washington_DC
+  float launch_time 43590.0
+  float random_distance 200.0
+}
+
+sub1 {
+  logical north T
+  logical east F
+  float lat_deg 25.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 60.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Krutogorova {
+  logical north T
+  logical east T
+  float lat_deg 55.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 156.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Washington_DC {
+  logical north T
+  logical east F
+  float lat_deg 38.5
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 77.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Cheyenne_Mountain {
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+Huntsville {
+  logical north T
+  logical east F
+  float lat_deg 34.44
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 86.36
+  float lon_min 0
+  float lon_sec 0
+}
+
+New_York {
+  logical north T
+  logical east F
+  float lat_deg 40.4
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 73.58
+  float lon_min 0
+  float lon_sec 0
+}
+
+Portland {
+  logical north T
+  logical east F
+  float lat_deg 45.31
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 122.41
+  float lon_min 0
+  float lon_sec 0
+}
+
+Jacksonville {
+  logical north T
+  logical east F
+  float lat_deg 30.2
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 81.4
+  float lon_min 0
+  float lon_sec 0
+}
+
+Los_Angeles {
+  logical north T
+  logical east F
+  float lat_deg 34.03
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 118.14
+  float lon_min 0
+  float lon_sec 0
+}
+
+Santa_Fe {
+  logical north T
+  logical east F
+  float lat_deg 35.4
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 106.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+San_Francisco {
+  logical north T
+  logical east F
+  float lat_deg 37.45
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 122.26
+  float lon_min 0
+  float lon_sec 0
+}
+
+Chicago {
+  logical north T
+  logical east F
+  float lat_deg 41
+  float lat_min 53
+  float lat_sec 0
+  float lon_deg 87
+  float lon_min 40
+  float lon_sec 0
+}
+
+Colorado_Springs {
+  logical north T
+  logical east F
+  float lat_deg 38
+  float lat_min 55
+  float lat_sec 0
+  float lon_deg 104
+  float lon_min 50
+  float lon_sec 0
+}
+
+Atlanta {
+  logical north T
+  logical east F
+  float lat_deg 33
+  float lat_min 50
+  float lat_sec 0
+  float lon_deg 84
+  float lon_min 24
+  float lon_sec 0
+}
+
+St_Louis {
+  logical north T
+  logical east F
+  float lat_deg 38
+  float lat_min 40
+  float lat_sec 0
+  float lon_deg 90
+  float lon_min 12
+  float lon_sec 0
+}
+
+Boston {
+  logical north T
+  logical east F
+  float lat_deg 42
+  float lat_min 20
+  float lat_sec 0
+  float lon_deg 71
+  float lon_min 0
+  float lon_sec 0
+}
+
+Seattle {
+  logical north T
+  logical east F
+  float lat_deg 47
+  float lat_min 41
+  float lat_sec 0
+  float lon_deg 122
+  float lon_min 15
+  float lon_sec 0
+}
+
+Detroit {
+  logical north T
+  logical east F
+  float lat_deg 42
+  float lat_min 23
+  float lat_sec 0
+  float lon_deg 83
+  float lon_min 5
+  float lon_sec 0
+}
+
+Denver {
+  logical north T
+  logical east F
+  float lat_deg 39
+  float lat_min 45
+  float lat_sec 0
+  float lon_deg 105
+  float lon_min 0
+  float lon_sec 0
+}
+
+Philadelphia {
+  logical north T
+  logical east F
+  float lat_deg 40
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 75
+  float lon_min 10
+  float lon_sec 0
+}
+
+Houston {
+  logical north T
+  logical east F
+  float lat_deg 29
+  float lat_min 50
+  float lat_sec 0
+  float lon_deg 95
+  float lon_min 20
+  float lon_sec 0
+}
+
+Tel_Aviv {
+  logical north T
+  logical east T
+  float lat_deg 32.03
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 34.46
+  float lon_min 0
+  float lon_sec 0
+}
+
+Jerusalem {
+  logical north T
+  logical east T
+  float lat_deg 31.46
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 35.14
+  float lon_min 0
+  float lon_sec 0
+}
+
+Baghdad {
+  logical north T
+  logical east T
+  float lat_deg 33
+  float lat_min 20
+  float lat_sec 0
+  float lon_deg 44
+  float lon_min 30
+  float lon_sec 0
+}
+
+Peta_Tiqwa {
+  logical north T
+  logical east T
+  float lat_deg 32
+  float lat_min 6
+  float lat_sec 0
+  float lon_deg 34
+  float lon_min 53
+  float lon_sec 0
+}
+
+Kirkuk {
+  logical north T
+  logical east T
+  float lat_deg 35
+  float lat_min 30
+  float lat_sec 0
+  float lon_deg 44
+  float lon_min 21
+  float lon_sec 0
+}
+
+Al_Basra {
+  logical north T
+  logical east T
+  float lat_deg 30
+  float lat_min 30
+  float lat_sec 0
+  float lon_deg 47
+  float lon_min 50
+  float lon_sec 0
+}
+
+Ar_Rutbah {
+  logical north T
+  logical east T
+  float lat_deg 33
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 40
+  float lon_min 15
+  float lon_sec 0
+}
+
+Al_Jawf {
+  logical north T
+  logical east T
+  float lat_deg 29
+  float lat_min 55
+  float lat_sec 0
+  float lon_deg 39
+  float lon_min 40
+  float lon_sec 0
+}
+
+Pyongyang {
+  logical north T
+  logical east T
+  float lat_deg 39
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 125
+  float lon_min 30
+  float lon_sec 0
+}
+
+Hakodate {
+  logical north T
+  logical east T
+  float lat_deg 41
+  float lat_min 45
+  float lat_sec 0
+  float lon_deg 140
+  float lon_min 44
+  float lon_sec 0
+}
+
+Tokyo {
+  logical north T
+  logical east T
+  float lat_deg 35
+  float lat_min 45
+  float lat_sec 0
+  float lon_deg 139
+  float lon_min 45
+  float lon_sec 0
+}
+
+Kyoto {
+  logical north T
+  logical east T
+  float lat_deg 35
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 135
+  float lon_min 45
+  float lon_sec 0
+}
+
+Osaka {
+  logical north T
+  logical east T
+  float lat_deg 34
+  float lat_min 40
+  float lat_sec 0
+  float lon_deg 135
+  float lon_min 30
+  float lon_sec 0
+}
+
+Yokohama {
+  logical north T
+  logical east T
+  float lat_deg 35
+  float lat_min 27
+  float lat_sec 0
+  float lon_deg 139
+  float lon_min 28
+  float lon_sec 0
+}
+
+Hitachi {
+  logical north T
+  logical east T
+  float lat_deg 36
+  float lat_min 36
+  float lat_sec 0
+  float lon_deg 140
+  float lon_min 39
+  float lon_sec 0
+}
+
+Nagasaki {
+  logical north T
+  logical east T
+  float lat_deg 32
+  float lat_min 47
+  float lat_sec 0
+  float lon_deg 129
+  float lon_min 50
+  float lon_sec 0
+}
+
+Hiroshima {
+  logical north T
+  logical east T
+  float lat_deg 34
+  float lat_min 24
+  float lat_sec 0
+  float lon_deg 132
+  float lon_min 30
+  float lon_sec 0
+}
+
+Arctic_Sub1 {
+  logical north T
+  logical east T
+  float lat_deg 87
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Arctic_Sub2 {
+  logical north T
+  logical east T
+  float lat_deg 85
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 75
+  float lon_min 0
+  float lon_sec 0
+}
+
+Arctic_Sub3 {
+  logical north T
+  logical east T
+  float lat_deg 86
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 150
+  float lon_min 0
+  float lon_sec 0
+}
+

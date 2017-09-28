@@ -1,0 +1,1 @@
+alert tcp $HTTP_SERVERS 80 -> $EXTERNAL_NET any (msg:"WEB-MISC 403 Forbidden";flags: A+; content:"HTTP/1.1 403"; classtype:attempted-recon; sid:1201; rev:1;)

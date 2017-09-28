@@ -1,0 +1,21 @@
+digraph G {
+	node [style=filled];
+SAMPLE1_G;
+ 	SAMPLE1_G [color=white];
+	SAMPLE1_G -> Sub_1;
+ 	Sub_1 [color=green1];
+	Sub_1 -> Sub_2;
+ 	Sub_2 [color=ivory2, shape=box];
+	Sub_2 -> Sub_4;
+ 	Sub_4 [color=orange1, shape=box];
+	Sub_4 -> Sub_5;
+ 	Sub_1 -> Sub_5;
+ 	SAMPLE1_G -> Sub_3;
+ 	Sub_3 [color=green1, shape=box];
+	Sub_3 -> Sub_5;
+ 	Sub_5 [color=ivory2, shape=box];
+	Sub_5 -> Sub_6;
+ 	Sub_6 [color=orange1, shape=box];
+	Sub_6 -> Sub_7;
+ 	Sub_7 [color=lightblue, shape=box];
+}

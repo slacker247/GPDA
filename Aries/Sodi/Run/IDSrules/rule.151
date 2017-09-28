@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 20433 (msg:"DDOS shaft agent to handler"; content: "alive"; reference:arachnids,256; classtype:attempted-dos; sid:240; rev:1;)

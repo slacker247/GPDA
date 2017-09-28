@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC search.vts access"; flags:A+; uricontent:"/search.vts"; classtype:attempted-recon; sid:1202; rev:1;)

@@ -1,0 +1,74 @@
+#
+#   A Reporter's Questions record consists of 52 fields organized
+#   as a set of 4 common fields, 44 reporter's questions fields
+#   organized into 7 groups, and 4 admin fields.
+#
+#   -------------------------------------------------------------
+#	#  =>  Comment
+#	+  =>  Group label
+#	-  =>  Reporter's Question field name (Not used in form)
+#	>  =>  Reporter's Question field name & Widget label
+#
+#	Use '_' where ' ' (space) wanted
+#
+#   ---------------------  IW-DCI Mission  ---------------------
+#
+- Case_ID
+- Hypothesis
+- Belief
+- Disbelief
++ Who_(People_&_Groups)
+> Report_Org
+> Report_Affil
+> Report_Desc
+> Report_Name
+> Enemy_Org
+> Enemy_Affil
+> Enemy_Desc
+> Enemy_Name
+> Ally_Org
+> Ally_Affil
+> Ally_Desc
+> Ally_Name
++ 3rd_Party
+> Party_Org
+> Party_Affil
+> Party_Desc
+> Party_Name
++ Where_(Location)
+> Region
+> Nation
+> Locale
+> City
+> Structure
+> Latitude
+> Longitude
+> Altitude
++ What_(Activities_&_Events)
+> Subject
+> Action
+> Objective
++ Why_(Goal/Intent/Purpose)
+> Strategic
+> Operation
+> Tactical
+> Task
++ How_(Means_&_Methods)
+> Method
+> Desc_1
+> Desc_2
+> Desc_3
+> Casualties
+> Injuries
+> Cost
+> Adjective
++ When_(Time_&_Duration)
+> Start_Time
+> End_Time
+> Duration
+> Time_Frame
+- ?
+- Info-ID
+- Prepared
+- Prep-Date
+- Mission

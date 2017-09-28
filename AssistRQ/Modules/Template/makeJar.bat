@@ -1,0 +1,1 @@
+/usr/bin/jar cf Templite.jar Templite.class Field.class

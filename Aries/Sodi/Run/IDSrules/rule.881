@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI w2tvars.pm access";flags: A+; uricontent:"/w3tvars.pm"; nocase; classtype:attempted-recon; sid:878; rev:1;)

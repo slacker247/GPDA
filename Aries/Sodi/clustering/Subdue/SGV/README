@@ -1,0 +1,12 @@
+Subdue Graph Visualizer (SGV)
+
+The SGV consists of a Java server and a modified Subdue client.  See the
+report in SGV_report.doc for details.  To run the system on a graph file,
+say 'points' with graphic annotations, first make sure the 'points' file is
+in both the subdue and java directories.  Then execute:
+
+  subdue-4.2.d.8.sgv/Subdue -display points
+  java java/Server
+
+Subdue should connect to the server and begin running, sending
+substructures to be displayed to the server.

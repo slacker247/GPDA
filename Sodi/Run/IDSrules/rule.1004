@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS achg.htr access";flags: A+; uricontent:"/iisadmpwd/achg.htr"; nocase; reference:cve,CVE-1999-0407; reference:bugtraq,2110; classtype:web-application-activity; sid:991; rev:3;)

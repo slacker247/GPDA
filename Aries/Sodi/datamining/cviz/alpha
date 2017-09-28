@@ -1,0 +1,4 @@
+#!/bin/csh
+setenv CLASSPATH ctour.jar
+java -mx90M Alpha $1 $2
+

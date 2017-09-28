@@ -1,0 +1,314 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>The Slot Form</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="../classes/images/serving_nerd.gif" WIDTH="48" HEIGHT="48"> The Slot Form<br>
+<img src="../classes/images/header_line.gif" width="590" height="6"></h1>
+
+<p>The Slot Form can be used to define and edit the attributes of a slot.&nbsp;The Slot
+Form for the selected slot is displayed in the Slot Edit Pane at the right of the
+<a href="slots_tab.html"> Slots Tab</a>. The Slot Form can also be displayed as a free-standing window as
+follows:&nbsp; </p>
+
+<ul>
+  <li>When you highlight a slot in the <a href="slots_tab.html"> Slots Tab</a>
+    and then click the View <img border="0" src="../classes/images/View.gif" width="16" height="16">
+    <a href="slot_buttons.html">slot button</a>.&nbsp;</li>
+  <li>When you create a new slot for a highlighted class by clicking the Create <img border="0" src="../classes/images/Create.gif" width="15" height="16">
+    button in the <a href="../classes/template_slot_pane.html">Template
+Slots pane</a> of the <a href="../classes/classes_tab.html"> Classes tab</a>.</li>
+  <li>When you highlight a slot in the <a href="../classes/template_slot_pane.html">Template
+Slots pane</a> and then click the Top-Level View <img border="0" src="../classes/images/ViewTopLevelSlot.gif" width="15" height="15">or
+    the Class-Level View <img border="0" src="../classes/images/ViewSlotAtClass.gif" width="15" height="15"> <a href="../classes/template_slot_buttons.html">Template
+    Slot button</a>.&nbsp;</li>
+</ul>
+
+<p>In the example below, the slot <strong>urgent</strong>  for the class <b>Article</b>
+was double-clicked in the <a href="../classes/template_slot_pane.html">Template Slots pane</a>. The slot form displays a <strong>Boolean</strong> Type,
+with <b>Single</b> Cardinality, and a
+text documentation pane of the <strong>urgent</strong> slot.</p>
+
+<p align="center"><!--webbot bot="ImageMap" startspan
+text=" (9,171) (201, 235) {Additional pane  appears
+when Value Type is
+Class, Instance, or Symbol} {Times New Roman} 12 I #000000 CT 0  " border="0"
+src="images/slot_form.gif" u-originalsrc="images/slot_form.gif"
+u-overlaysrc="_overlay/slot_form.html_txt_slot_form.gif" --><img border="0" src="_derived/slot_form.html_txt_slot_form.gif" width="611" height="316"><!--webbot
+bot="ImageMap" i-checksum="29757" endspan --></p>
+
+<p>A slot can be used for more than one class. Each slot has a top-level (system) description; the system description can be specialized for a
+specific class. The scope of your edits depends on how you access the Slot Form. See <a href="editing_a_slot.html">Viewing a Slot</a> 
+ for more information: </p>
+
+<ul>
+  <li>When you access the Slot Form via the <a href="slots_tab.html"> Slots Tab</a>
+    or via the Top-Level View <img border="0" src="../classes/images/ViewTopLevelSlot.gif" width="15" height="15">
+    button in the <a href="../classes/template_slot_pane.html">Template
+Slots pane</a> of the <a href="../classes/classes_tab.html"> Classes tab</a>, you can view and edit the
+    top-level description; these modifications
+affect the slot for any class where it occurs.&nbsp;</li>
+  <li> When you access the Slot Form via
+the Class-Level View <img border="0" src="../classes/images/ViewSlotAtClass.gif" width="15" height="15"> button in
+    the <a href="../classes/template_slot_pane.html">Template
+Slots pane</a> of the <a href="../classes/classes_tab.html"> Classes tab</a>, you can view
+and edit the slot properties for the currently highlighted class. Class-level
+modifications only affect the slot at the current class and its subclasses.&nbsp;This
+    type of editing is called overriding.</li>
+</ul>
+
+<p>The Slot Form displays the following information for a slot: </p>
+
+<ol>
+  <li>The <a href="#note">Note Icons</a>, which allow you to add notes.</li>
+  <li>The <a href="slot_form.html#slotname"> Name</a> of the slot.</li>
+  <li>The <a href="slot_form.html#type"> Value Type</a> of the slot.</li>
+  <li>The <a href="slot_form.html#cardinality"> Cardinality</a> of the slot.</li>
+  <li>(optional) The <a href="slot_form.html#minimum"> Minimum</a> and <a href="slot_form.html#maximum"> Maximum</a> values for the slot. These fields are
+    only relevant to certain slot types.</li>
+  <li>(optional) Any <a href="slot_form.html#documentation"> Documentation</a> that has been entered for the slot.</li>
+  <li>(optional) Any <a href="#inverse"> Inverse Slots</a> for the slot.</li>
+  <li>(optional) Any <a href="#templatevalue">Template Values</a> that have been defined for the slot.</li>
+  <li>(optional) Any <a href="slot_form.html#defaults">Defaults</a> that have been defined for the slot.</li>
+</ol>
+
+<p><a name="extrapane"></a>For certain value types, an additional pane appears
+below the <b>Value Type</b> pane:</p>
+
+<ol>
+  <li>For type Class, the Allowed Parents pane appears.</li>
+  <li>For type Instance, the Allowed Classes pane appears.</li>
+  <li>For type Symbol, the Allowed Symbols pane appears.</li>
+</ol>
+
+<h2 align="left"><a name="note"></a>Note Icons</h2>
+
+<p align="left">The note icons, <img border="0" src="../projects/images/CreateYellow.gif" width="8" height="9">
+<img border="0" src="../projects/images/DeleteYellow.gif" width="10" height="10">, at the upper right
+of the form allow you to add and remove yellow sticky notes to your class. The
+note is always displayed along with the form. For information on how to add
+notes to any frame (class, instance, or slot), see <a href="../projects/yellow_stickies.html">Working with
+Notes</a>.</p>
+
+<h2 align="left"><a name="slotname"></a>Slot Name</h2>
+
+<p align="left"><font size="3">You can edit the slot name directly in the </font><strong>Name</strong><font size="3"> 
+field. </font>Slot names are case-sensitive. <font size="3"> A </font>recommended<font size="3"> convention is to make
+slot names lowercase, and with words separated with an underscore (_).&nbsp;</font></p>
+
+<h2 align="left"><a name="type"></a>Value Type</h2>
+
+<p>The <b>Type</b> of the slot determines the kind of values that the slot may
+hold. The available types are summarized in the following table:</p>
+<div align="center"><center>
+
+<table border="1" cellpadding="0" cellspacing="0" width="610" bordercolor="#000000">
+  <tr>
+    <td width="68" bgcolor="#C0C0C0"><p align="center"><b>Type</b></td>
+    <td width="362" bgcolor="#C0C0C0"><p align="center"><b>Description</b></td>
+    <td width="174" bgcolor="#C0C0C0"><p align="center"><b>Examples</b></td>
+  </tr>
+  <tr>
+    <td width="68" bgcolor="#FFFFFF">Any</td>
+    <td width="362" bgcolor="#FFFFFF">Any of the types below (logical Union)</td>
+    <td width="174" bgcolor="#FFFFFF">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="68" bgcolor="#FFFFFF">Boolean</td>
+    <td width="362" bgcolor="#FFFFFF">Logical Value</td>
+    <td width="174" bgcolor="#FFFFFF">True, False</td>
+  </tr>
+  <tr>
+    <td width="68" bgcolor="#FFFFFF">Class</td>
+    <td width="362" bgcolor="#FFFFFF">Class in the knowledge base</td>
+    <td width="174" bgcolor="#FFFFFF">Organization</td>
+  </tr>
+  <tr>
+    <td width="68" bgcolor="#FFFFFF">Float</td>
+    <td width="362" bgcolor="#FFFFFF">Number with a decimal point</td>
+    <td width="174" bgcolor="#FFFFFF">1.0, 3.4e10, -0.3e-3</td>
+  </tr>
+  <tr>
+    <td width="68" bgcolor="#FFFFFF">Instance</td>
+    <td width="362" bgcolor="#FFFFFF">Instance of a class in the knowledge base</td>
+    <td width="174" bgcolor="#FFFFFF">instance_00010</td>
+  </tr>
+  <tr>
+    <td width="68" bgcolor="#FFFFFF">Integer</td>
+    <td width="362" bgcolor="#FFFFFF">Whole number</td>
+    <td width="174" bgcolor="#FFFFFF">1, 2, -4</td>
+  </tr>
+  <tr>
+    <td width="68" bgcolor="#FFFFFF">String</td>
+    <td width="362" bgcolor="#FFFFFF">String of alphanumeric characters, possibly including
+    spaces</td>
+    <td width="174" bgcolor="#FFFFFF">&quot;John Doe&quot;</td>
+  </tr>
+  <tr>
+    <td width="68" bgcolor="#FFFFFF">Symbol</td>
+    <td width="362" bgcolor="#FFFFFF">List of values, which may not
+      include spaces </td>
+    <td width="174" bgcolor="#FFFFFF">red, blue and green</td>
+  </tr>
+</table>
+</center></div>
+
+<p>For a full description of the types, see <a href="value_type_menu.html">The
+Value Type Menu</a>.&nbsp;</p>
+
+<h2 align="left"><a name="cardinality"></a>Cardinality</h2>
+
+<p>The <strong>Cardinality field</strong> allows you to specify the number of values
+allowed or required for the slot.&nbsp;The default configuration allows the slot
+to have at most one value, that is, it can have one value or no value.</p>
+
+<p align="center"><img border="0" src="images/cardinality.gif" width="201" height="84"></p>
+
+<p align="left">You can change the default by entering a positive whole number
+in the <b>at least</b> and/or <b>at most </b>options, or by selecting the <b>multiple</b>
+option with no <b>at most</b> value.</p>
+
+<ul>
+  <li> <b>required/at least</b> sets the minimum number of values for the slot.
+    To use this, enter a positive whole number in the <b>at least</b> entry bar.
+    Most common is to set <b>at least</b> equal to one, which requires a value
+    for the slot. For example, a setting of <b>at least</b> equal to 1 <i>and</i>
+    <b>at most</b> equal to 1 means that the slot must have exactly one value.
+    If you enter a value for <b>at least</b>, <b>required</b> is automatically
+    selected. If you set <b>at least</b> greater than one, <b>multiple</b> is
+    automatically selected.</li>
+  <li> <b>multiple/at most</b> means that the slot can contain multiple values,
+    but that there is a limit to the number of values. If you set <b>at most</b>
+    greater than one, <b>multiple</b> is automatically selected.</li>
+  <li> <strong>multiple</strong> with <i>no</i> <b>at most</b> value indicates that
+the value of a slot may contain any number of items. (For example, the slot <b>keywords</b>
+    in the class <b>Article</b> allows multiple values. This means an instance
+    of <b>Article</b> can have more than one keyword.) <b>multiple</b> is stored
+    as a list, and duplicate values are allowed, although their use is
+    uncommon.&nbsp;</li>
+</ul>
+
+<h2><a name="minimum"></a>Minimum (optional)</h2>
+
+<p>This field is applicable only to slots of type <strong>Integer</strong>  or <strong>Float</strong>.&nbsp;</p>
+
+<p><b>Minimum</b> allows you to specify a minimum value for your slot. When an instance is
+created for a class with this slot, the value of the slot must be greater than
+or equal to the minimum. For example, a minimum of zero means instances cannot have negative
+values. Together, <b>Minimum</b> and <b>Maximum</b> can be used to define an
+allowable range.&nbsp;</p>
+
+<p>When present, the <b> Minimum</b> value is displayed in the last column of the <a href="../classes/template_slot_pane.html">Template
+Slots pane</a>.</p>
+
+<h2><a name="maximum"></a>Maximum (optional)</h2>
+
+<p>This field is applicable only to slots of type <strong>Integer</strong>  or <strong>Float</strong>.&nbsp;</p>
+
+<p><b>Maximum</b> allows you to specify a maximum value for your slot. When an instance is
+created for a class with this slot, the value of the slot must be less than or
+equal to the
+maximum. Together, <b>Minimum</b> and <b>Maximum</b> can be used to define an
+allowable range.&nbsp;</p>
+
+<p>When present, the <b>Maximum</b> value is displayed in the last column of the <a href="../classes/template_slot_pane.html">Template
+Slots pane</a>.</p>
+
+<h2><a name="documentation"></a>Documentation (optional)</h2>
+
+<p align="left"><font size="3">The <b> Documentation</b> field allows you to enter
+a text description of the slot. Filling in this field is optional but
+is recommended to make maintaining the knowledge base easier.</font></p>
+
+<p>See <a href="slot_buttons.html">The Slot Buttons</a> and <a href="../classes/template_slot_buttons.html">The
+Template Slot Buttons</a> for the operations you can perform on
+slots.</p>
+
+<h2><a name="inverse"></a>Inverse Slot (optional)</h2>
+
+<p>Only available for slots of type Class or Instance. Allows you to create a
+reciprocal relationship between two slots. If this relationship is set up
+correctly, assigning a value (i.e., a specific class or instance) to the slot
+for one instance automatically assigns the instance as a value to the
+appropriate inverse slot. For example, the &quot;direct superclass/direct
+subclass&quot; relationship is actually an inverse slot relationship. See&nbsp;</p>
+
+<p>Inverse slots are designated by an Inverse <img border="0" src="../images/InverseSlot.gif" width="11" height="16">
+icon to the right of the slot.</p>
+
+<h2><a name="templatevalue"></a>Template Values (optional)</h2>
+
+<p>Allows you to specify the value(s) for a slot at the class level. This value
+is filled in for all classes and instances that use or inherit the slot. A
+template value is a required value; it can <i>not</i> be changed or overridden at the instance level.
+For a value that can be overridden, use <b>Defaults</b> instead.</p>
+
+<p>The number of <b>Template Values</b> should not exceed the <b>at most</b>
+value for the <b><a href="#cardinality">Cardinality</a></b> of the slot.</p>
+<p>When present, any <b>Template Values</b> are displayed in the Other Facets column
+of the <a href="../classes/template_slot_pane.html">Template
+Slots pane</a> in the <a href="../classes/classes_tab.html">Classes tab</a>.
+They also appear automatically in the slot value field of the Class Form or
+Instance Form of any class or instance created with that slot.</p>
+
+<h2><a name="defaults"></a>Defaults (optional)</h2>
+
+<p>Allows you to specify the default value(s) for a slot. When an instance is
+created for a class that has a slot with a defined default, the default value is
+automatically entered as the value of the slot. The default value can then be
+changed or overwritten.</p>
+
+<p>The number of <b>Defaults</b> should not exceed the <b>at most</b> value for
+the <b><a href="#cardinality">Cardinality</a></b> of the slot.</p>
+
+<p>When present, any <b>Defaults</b> are displayed in the Other Facets column
+of the <a href="../classes/template_slot_pane.html">Template
+Slots pane</a> in the <a href="../classes/classes_tab.html">Classes tab</a>.
+They also appear automatically in the appropriate slot value field of any
+instance created with that default.</p>
+
+<h2 align="left"><a name="Viewing Multiple Slots">Viewing Several Slots</a></h2>
+
+<p align="left">To view the information for <font size="3">several slots </font>at once, select the
+slots at the <a href="slots_tab.html">Slots Tab</a> and click the View <img border="0" src="../classes/images/View.gif" width="15" height="15">
+<a href="slot_buttons.html">slot button</a> to open the Slot Form for each
+class.
+    To highlight multiple slots, hold down the Ctrl key while clicking each
+slot. To highlight a range of slots, click the first slot, then hold
+    down the Shift key and click the last slot in the range.&nbsp;You can also
+view multiple slots using the Top-Level View <img border="0" src="../classes/images/ViewTopLevelSlot.gif" width="15" height="15">
+or Class-Level View <img border="0" src="../classes/images/ViewSlotAtClass.gif" width="15" height="15"> <a href="../classes/template_slot_buttons.html">template
+slots buttons</a> in the <a href="../classes/template_slot_pane.html">Template Slots pane</a>.</p>
+
+<p align="left"><font size="3">Opening a new slot form does not close the previous form.
+This allows you to compare the attributes for two or more slots. Edits can be
+made directly in any open form.</font></p>
+
+<p align="left"><font size="3">If you have multiple forms open, you can manage
+them as follows:</font></p>
+
+<ul>
+  <li>
+    <p align="left"><font size="3">Cascade multiple forms&nbsp; by clicking the
+    Cascade <img border="0" src="../classes/images/Cascade.gif" width="16" height="15"> button below the main menu
+    bar, or by selecting <b>Cascade Windows</b> from the <b>Windows</b>
+    menu..&nbsp;</font></li>
+  <li>
+    <p align="left"><font size="3">Close all open forms by clicking the <b>CloseAllWindows</b>
+    <img border="0" src="../classes/images/CloseAllWindows.gif" width="16" height="15"> button below the main menu
+    bar, or by selecting <b>Close All Windows</b> from the <b>Windows </b>menu.</font></li>
+</ul>
+
+<hr>
+
+<p>Next: <a href="value_type_menu.html">The Value Type Menu</a></p>
+
+<p><a href="index.html"> Slots Table of Contents</a></p>
+</body>
+</html>

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC cpshost.dll access";flags: A+; uricontent:"/scripts/cpshost.dll"; nocase; classtype:attempted-recon; sid:1128; rev:1;)

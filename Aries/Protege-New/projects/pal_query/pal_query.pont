@@ -1,0 +1,45 @@
+; Thu Jun 13 16:55:40 PDT 2002
+; 
+;+ (version "1.8")
+;+ (build "Build 942")
+
+
+(defclass :CLIPS_TOP_LEVEL_SLOT_CLASS
+	(is-a USER)
+	(role concrete)
+	(multislot SLOT-QUERIES
+		(type INSTANCE)
+;+		(allowed-classes QUERY)
+		(create-accessor read-write)))
+
+(defclass QUERYABLE-CLASS
+	(is-a :STANDARD-CLASS)
+	(role concrete)
+	(multislot SLOT-QUERIES
+		(type INSTANCE)
+;+		(allowed-classes QUERY)
+		(create-accessor read-write)))
+
+(defclass QUERY
+	(is-a :SYSTEM-CLASS)
+	(role abstract))
+
+(defclass PAL-QUERY
+	(is-a QUERY)
+	(role concrete)
+	(single-slot :PAL-STATEMENT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :PAL-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :PAL-RANGE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :PAL-DESCRIPTION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

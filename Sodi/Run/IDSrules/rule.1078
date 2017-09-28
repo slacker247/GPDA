@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC filelist attempt";flags: A+; content:"xp_filelist"; nocase; classtype:web-application-attack; sid:1059; rev:2;)

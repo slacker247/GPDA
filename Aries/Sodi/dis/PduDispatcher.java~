@@ -1,0 +1,704 @@
+/*
+ * PduDispatcher.java
+ *
+ * Created on June 19, 2003, 11:17 AM
+ */
+
+import java.util.*;
+import java.net.*;
+import javax.swing.*;
+import java.io.*;
+
+import PDUs.*;
+import disEnumerations.*;
+
+/**
+ *
+ * @author  s824685
+ */
+public class PduDispatcher {
+    
+  private boolean DEBUG = true;
+  protected static Hashtable	pduSubscriberScriptNodesHashtable = new Hashtable();
+  protected DatagramStreamBuffer datagramStreamBuffer = null;
+  public java.util.Date Time = new java.util.Date();
+  private Thread runThread = null;
+  private String IPDisNetwork = "127.0.0.1";
+  private String PortDisNetwork = "62040";
+  private String IPDestination = "127.0.0.1";
+  private String PortDestination = "8127";
+  private String ListenForPDU = "";
+  private String[] Settings = new String[20];
+  private Entity[] Entities = new Entity[100];
+
+  /** Creates a new instance of PduDispatcher */
+    public PduDispatcher() {
+
+      // read in the config file and set the variables to the values
+      try
+      {
+          readSettings();
+          readEntities();
+      }catch(Exception e)
+      {
+          e.printStackTrace();
+      }
+      
+      IPDestination = Settings[0];
+      PortDestination = Settings[1];
+      try{
+      datagramStreamBuffer = new DatagramStreamBuffer(Settings[2], Integer.valueOf(Settings[3]).intValue());//"127.0.0.1", 8910);  
+      }catch(Exception e){e.printStackTrace();}
+      System.out.println("Using MultiCast: " + datagramStreamBuffer.getUsingMulticast());
+      System.out.println("MultiCast Address: " + datagramStreamBuffer.getMulticastAddress());
+      datagramStreamBuffer.setParentClass(this);
+      datagramStreamBuffer.resumeReading();
+      runThread = new Thread(datagramStreamBuffer);
+      runThread.start();
+    }
+    
+    /**
+     *  This allows configuration settings to be read in from a flat file.
+     */
+    public void readSettings() throws Exception
+    {
+        FileInputStream iInStream = new FileInputStream("Settings.ini");
+        BufferedReader br = new BufferedReader(
+                            new InputStreamReader(iInStream));
+        String sTemp = br.readLine();
+        int count = 0;
+        do
+        {
+            if(sTemp.length() != 0)
+            if(sTemp.charAt(0) != '[')
+            {
+                for(int i = 0; i < sTemp.length(); i++)
+                {
+                    if(sTemp.charAt(i) == '=')
+                        sTemp = sTemp.substring(i+2);
+                }
+                Settings[count] = sTemp;
+            System.out.println("Settings[" + (count) + "]:" + Settings[count] + ":");
+                count++;
+            }
+            sTemp = br.readLine();
+        }while(sTemp != null);
+        iInStream.close();
+    }
+    
+    public void readEntities() throws Exception
+    {
+        FileInputStream iInStream = new FileInputStream("Entities.ini");
+        BufferedReader br = new BufferedReader(
+                            new InputStreamReader(iInStream));
+        String sTemp = br.readLine();
+        do
+        {
+            String Entity = "";
+            String Mission = "";
+            int flag = 0;
+            if(sTemp.length() != 0)
+            {
+                for(int i = 0; i < sTemp.length(); i++)
+                {
+                    if(sTemp.charAt(i) != ' ' && flag == 0)
+                        Entity += sTemp.charAt(i);
+                    else
+                        flag = 1;
+                    if(flag == 1 && sTemp.charAt(i) != ' ')
+                        Mission += sTemp.charAt(i);
+                }
+                Entities[Integer.parseInt(Entity)] = new Entity();
+                Entities[Integer.parseInt(Entity)].setMissionID(Mission);
+            System.out.println("Entity :" + Entity + " :" + Mission + ":");
+            }
+            sTemp = br.readLine();
+        }while(sTemp != null);
+        iInStream.close();
+    }
+    
+    /**
+     * singleRunLoop() is called via doRun when threading, or via the invoking application if not threading
+     * (e.g. due to IE security restrictions).
+     */
+
+    public void singleReadLoop ()
+    {
+	Vector			newPdus;
+	Enumeration		enumeration;
+	ProtocolDataUnit	pdu;
+ 	Vector			subscribers = null;
+ 	EntityID		eid_1 = new EntityID ();
+	EntityID		eid_2 = new EntityID ();
+	boolean			subscriberFound = false;
+        float                   disbelief = 0.0f;
+        int                     duration = 0;
+
+	debug ("started singleReadLoop");
+
+	try { //  catchAllException to diagnose run-time errors while VRML browser continues
+
+	        newPdus = receivedPdus();
+
+		if (newPdus.size() > 0)
+			debug ("got " + newPdus.size() + " PDUs this cycle");
+		else
+			debug ("[20th cycle] got " + newPdus.size() + " PDUs this cycle");
+
+                LabelName.setText("Number of PDU's: " + newPdus.size());
+		enumeration = newPdus.elements();
+
+		while (enumeration.hasMoreElements() )
+		{
+			pdu = (ProtocolDataUnit) enumeration.nextElement();
+
+                        //System.out.println("---------------------------------");
+                        //pdu.printValues(1, System.out);
+                        //System.out.println("---------------------------------");
+			debug (pdu.pduName () + " received (type " + (pdu.getPduType()).intValue() + ")");
+				
+			switch ((pdu.getPduType()).intValue())
+			{
+			  case  PduTypeField.ENTITYSTATE:   //in the settings array 4
+                              if(Settings[4].equalsIgnoreCase("1"))
+                              {
+				eid_1 = ((EntityStatePdu)pdu).getEntityID();
+				eid_2 = null;
+                                
+                                WorldCoordinate loc = ((EntityStatePdu)pdu).getEntityLocation();
+                                Entities[eid_1.getEntityID().intValue()].incrementCount();
+                                Entities[eid_1.getEntityID().intValue()].setLatitude((float)loc.getX());
+                                Entities[eid_1.getEntityID().intValue()].setLongitude((float)loc.getY());
+                                    
+                                System.out.println("Type of entity: " + ((EntityStatePdu)pdu).getMarking());
+	       			System.out.println("entityStatePdu.getEntityID: " + eid_1);
+                                
+                                //for loop to parse the time stamp;
+                                try
+                                {
+                                    Time.setYear(Integer.valueOf(Settings[14]).intValue());
+                                    Time.setMonth(Integer.valueOf(Settings[15]).intValue());
+                                    Time.setDate(Integer.valueOf(Settings[16]).intValue());
+                                    Time.setHours(Integer.valueOf(Settings[17]).intValue());
+                                    Time.setMinutes(Integer.valueOf(Settings[18]).intValue());
+                                    Time.setSeconds(Integer.valueOf(Settings[19]).intValue());
+                                }catch(Exception e)
+                                {
+                                    System.out.println("TimeStamp failure.");
+                                    e.printStackTrace();
+                                }
+
+                                Time.setTime(Time.getTime() + ((EntityStatePdu)pdu).getTimestamp().longValue());
+                                System.out.println("TimeStamp: " + Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds());
+                                String time = Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds();
+
+                                belief = 0.62f;
+                                // Hypothesis dependant on number of times entity has been tracked
+
+                                String hyp = "JSTARS";
+                                boolean send = false;
+                                if(Entities[eid_1.getEntityID().intValue()].getCount() == 1)
+                                {
+                                    hyp = "JSTARS";
+                                    belief = 0.4f;
+                                    send = true;
+                                }
+                                else if(Entities[eid_1.getEntityID().intValue()].getCount() == 5)
+                                {
+                                    hyp = "JSTARS";
+                                    belief = 0.6f;
+                                    send = true;
+                                }
+                                else if(Entities[eid_1.getEntityID().intValue()].getCount() == 10)
+                                {
+                                    hyp = "JSTARS";
+                                    belief = 0.8f;
+                                    send = true;
+                                }
+                                else if(Entities[eid_1.getEntityID().intValue()].getCount() == 15)
+                                {
+                                    hyp = "MC2A";
+                                    belief = 0.87f;
+                                    send = true;
+                                }
+                                if(send)
+                                {
+                                    String msg = hyp + " " + belief + " " + disbelief + " " + 
+					time + " " + duration + " " +
+					Entities[eid_1.getEntityID().intValue()].getLatitude() + " " +
+					Entities[eid_1.getEntityID().intValue()].getLongitude() + " 50.0";
+                                    String byteStream = "MTIX GPDA " +
+					Entities[eid_1.getEntityID().intValue()].getMissionID() +
+					" 105 0 " + msg.length() + " " + msg;
+
+                                    sendMessage(byteStream);
+                                }
+                              }
+	       			break;
+
+			  case  PduTypeField.FIRE:   //in the settings array 5
+                              if(Settings[5].equalsIgnoreCase("1"))
+                              {
+				eid_1 = ((FirePdu)pdu).getFiringEntityID ();
+				eid_2 = ((FirePdu)pdu).getTargetEntityID ();  // perhaps unknown to shooter
+	       			System.out.println(	"firePdu.getFiringEntityID: " + eid_1 + ", " +
+	       				"firePdu.getTargetEntityID: " + eid_2);
+                                
+                                //for loop to parse the time stamp;
+                                try
+                                {
+                                    Time.setYear(Integer.valueOf(Settings[14]).intValue());
+                                    Time.setMonth(Integer.valueOf(Settings[15]).intValue());
+                                    Time.setDate(Integer.valueOf(Settings[16]).intValue());
+                                    Time.setHours(Integer.valueOf(Settings[17]).intValue());
+                                    Time.setMinutes(Integer.valueOf(Settings[18]).intValue());
+                                    Time.setSeconds(Integer.valueOf(Settings[19]).intValue());
+                                }catch(Exception e)
+                                {
+                                    System.out.println("TimeStamp failure.");
+                                    e.printStackTrace();
+                                }
+
+                                Time.setTime(Time.getTime() + ((FirePdu)pdu).getTimestamp().longValue());
+                                System.out.println("TimeStamp: " + Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds());
+                                String time = Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds();
+
+                                belief = 0.97f;
+                                // Hyppthesis = Fighter
+                                String msg = "Fighter" + " " + belief + " " + disbelief + " " + time + " " + duration;
+                                String byteStream = "MTIX GPDA " + Entities[eid_2.getEntityID().intValue()].getMissionID() + " 105 0 " + msg.length() + " " + msg;
+
+                                sendMessage(byteStream);
+                              }
+                              break;
+
+			  case  PduTypeField.DETONATION:   //in the settings array 6
+                              if(Settings[6].equalsIgnoreCase("1"))
+                              {
+				eid_1 = ((DetonationPdu)pdu).getFiringEntityID();
+				eid_2 = ((DetonationPdu)pdu).getTargetEntityID();
+	       			System.out.println("detonationPdu.getFiringEntityID: " + eid_1);
+	       			System.out.println("detonationPdu.getTargetEntityID: " + eid_2);
+                                //This is the data to be sent with the appropriate format.
+ 
+                                //for loop to parse the time stamp;
+                                try
+                                {
+                                    Time.setYear(Integer.valueOf(Settings[14]).intValue());
+                                    Time.setMonth(Integer.valueOf(Settings[15]).intValue());
+                                    Time.setDate(Integer.valueOf(Settings[16]).intValue());
+                                    Time.setHours(Integer.valueOf(Settings[17]).intValue());
+                                    Time.setMinutes(Integer.valueOf(Settings[18]).intValue());
+                                    Time.setSeconds(Integer.valueOf(Settings[19]).intValue());
+                                }catch(Exception e)
+                                {
+                                    System.out.println("TimeStamp failure.");
+                                    e.printStackTrace();
+                                }
+
+                                Time.setTime(Time.getTime() + ((DetonationPdu)pdu).getTimestamp().longValue());
+                                System.out.println("TimeStamp: " + Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds());
+                                String time = Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds();
+                                
+                                /////////// The code that sets the belief ////////////////////////////////////////
+                                // How close it is to the Target entity.  based on distance it will calculate 
+                                //belief value.
+                                //
+                                double x = java.lang.Math.abs(Entities[eid_2.getEntityID().intValue()].getLatitude() - ((DetonationPdu)pdu).getLocationInWorldCoordinate().getX());
+                                double y = java.lang.Math.abs(Entities[eid_2.getEntityID().intValue()].getLongitude() - ((DetonationPdu)pdu).getLocationInWorldCoordinate().getY());
+                                double dist = (x + y)/2;
+                                if (dist < 5)
+                                    belief = 0.97f;
+                                else if (dist < 10)
+                                    belief = 0.65f;
+                                else
+                                    belief = 0.24f;
+                                /////////// End of Code that sets the belief /////////////////////////////////////
+                                
+                                // hypothesis = Space;
+                                String msg = "Space" + " " + belief + " " + disbelief + " " + time + " " + duration;
+                                String byteStream = "MTIX GPDA " + Entities[eid_2.getEntityID().intValue()].getMissionID() + " 105 0 " + msg.length() + " " + msg;
+
+                                sendMessage(byteStream);
+                              }
+	       			break;
+
+			  case  PduTypeField.COLLISION:   //in the settings array 7
+                              if(Settings[7].equalsIgnoreCase("1"))
+                              {
+				eid_1 = ((CollisionPdu)pdu).getIssuingEntityID ();
+	       			eid_2 = ((CollisionPdu)pdu).getCollidingEntityID (); // perhaps unknown to sender
+				System.out.println(	"collisionPdu.getIssuingEntityID:   " + Entities[eid_1.getEntityID().intValue()] + ", " +
+	       				"collisionPdu.getCollidingEntityID: " + Entities[eid_2.getEntityID().intValue()]);
+
+                                //for loop to parse the time stamp;
+                                try
+                                {
+                                    Time.setYear(Integer.valueOf(Settings[14]).intValue());
+                                    Time.setMonth(Integer.valueOf(Settings[15]).intValue());
+                                    Time.setDate(Integer.valueOf(Settings[16]).intValue());
+                                    Time.setHours(Integer.valueOf(Settings[17]).intValue());
+                                    Time.setMinutes(Integer.valueOf(Settings[18]).intValue());
+                                    Time.setSeconds(Integer.valueOf(Settings[19]).intValue());
+                                }catch(Exception e)
+                                {
+                                    System.out.println("TimeStamp failure.");
+                                    e.printStackTrace();
+                                }
+
+                                Time.setTime(Time.getTime() + ((CollisionPdu)pdu).getTimestamp().longValue());
+                                System.out.println("TimeStamp: " + Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds());
+                                String time = Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds();
+                              }
+	       			break;
+        			
+			  case  PduTypeField.COMMENT:   //in the settings array 8
+                              if(Settings[8].equalsIgnoreCase("1"))
+                              {
+				eid_1 = ((CommentPdu)pdu).getOriginatingEntityID ();
+				eid_2 = null;
+	       			System.out.println("commentPdu.getEntityID: " + eid_1);
+
+                                //for loop to parse the time stamp;
+                                try
+                                {
+                                    Time.setYear(Integer.valueOf(Settings[14]).intValue());
+                                    Time.setMonth(Integer.valueOf(Settings[15]).intValue());
+                                    Time.setDate(Integer.valueOf(Settings[16]).intValue());
+                                    Time.setHours(Integer.valueOf(Settings[17]).intValue());
+                                    Time.setMinutes(Integer.valueOf(Settings[18]).intValue());
+                                    Time.setSeconds(Integer.valueOf(Settings[19]).intValue());
+                                }catch(Exception e)
+                                {
+                                    System.out.println("TimeStamp failure.");
+                                    e.printStackTrace();
+                                }
+
+                                Time.setTime(Time.getTime() + ((CommentPdu)pdu).getTimestamp().longValue());
+                                System.out.println("TimeStamp: " + Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds());
+                                String time = Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds();
+                              }
+	       			break;
+
+			  case  PduTypeField.CREATEENTITY:   //in the settings array 9
+                              if(Settings[9].equalsIgnoreCase("1"))
+                              {
+				eid_1 = ((CreateEntityPdu)pdu).getOriginatingEntityID ();
+				eid_2 = null;
+	       			System.out.println("createEntityPdu.getEntityID: " + eid_1);
+
+                                //for loop to parse the time stamp;
+                                try
+                                {
+                                    Time.setYear(Integer.valueOf(Settings[14]).intValue());
+                                    Time.setMonth(Integer.valueOf(Settings[15]).intValue());
+                                    Time.setDate(Integer.valueOf(Settings[16]).intValue());
+                                    Time.setHours(Integer.valueOf(Settings[17]).intValue());
+                                    Time.setMinutes(Integer.valueOf(Settings[18]).intValue());
+                                    Time.setSeconds(Integer.valueOf(Settings[19]).intValue());
+                                }catch(Exception e)
+                                {
+                                    System.out.println("TimeStamp failure.");
+                                    e.printStackTrace();
+                                }
+
+                                Time.setTime(Time.getTime() + ((CreateEntityPdu)pdu).getTimestamp().longValue());
+                                System.out.println("TimeStamp: " + Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds());
+                                String time = Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds();
+                              }
+	       			break;
+
+			  case  PduTypeField.REMOVEENTITY:   //in the settings array 10
+                              if(Settings[10].equalsIgnoreCase("1"))
+                              {
+				eid_1 = ((RemoveEntityPdu)pdu).getOriginatingEntityID ();
+				eid_2 = null;
+	       			System.out.println("removeEntityPdu.getEntityID: " + eid_1);
+
+                                //for loop to parse the time stamp;
+                                try
+                                {
+                                    Time.setYear(Integer.valueOf(Settings[14]).intValue());
+                                    Time.setMonth(Integer.valueOf(Settings[15]).intValue());
+                                    Time.setDate(Integer.valueOf(Settings[16]).intValue());
+                                    Time.setHours(Integer.valueOf(Settings[17]).intValue());
+                                    Time.setMinutes(Integer.valueOf(Settings[18]).intValue());
+                                    Time.setSeconds(Integer.valueOf(Settings[19]).intValue());
+                                }catch(Exception e)
+                                {
+                                    System.out.println("TimeStamp failure.");
+                                    e.printStackTrace();
+                                }
+
+                                Time.setTime(Time.getTime() + ((RemoveEntityPdu)pdu).getTimestamp().longValue());
+                                System.out.println("TimeStamp: " + Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds());
+                                String time = Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds();
+                              }
+	       			break;
+
+			  // RadioCommunicationsFamily (change these trace calls to debug once tested...)
+
+	       		  case  PduTypeField.SIGNAL:   //in the settings array 11
+                              if(Settings[11].equalsIgnoreCase("1"))
+                              {
+				eid_1 = ((SignalPdu)pdu).getEntityID ();
+				System.out.println("signalPdu.getEntityID: " + eid_1 +   ", .getRadioID: " +
+					((SignalPdu)pdu).getRadioID ());
+
+                                //for loop to parse the time stamp;
+                                try
+                                {
+                                    Time.setYear(Integer.valueOf(Settings[14]).intValue());
+                                    Time.setMonth(Integer.valueOf(Settings[15]).intValue());
+                                    Time.setDate(Integer.valueOf(Settings[16]).intValue());
+                                    Time.setHours(Integer.valueOf(Settings[17]).intValue());
+                                    Time.setMinutes(Integer.valueOf(Settings[18]).intValue());
+                                    Time.setSeconds(Integer.valueOf(Settings[19]).intValue());
+                                }catch(Exception e)
+                                {
+                                    System.out.println("TimeStamp failure.");
+                                    e.printStackTrace();
+                                }
+
+                                Time.setTime(Time.getTime() + ((SignalPdu)pdu).getTimestamp().longValue());
+                                System.out.println("TimeStamp: " + Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds());
+                                String time = Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds();
+
+                                String msg = "Damage_" + Entities[eid_1.getEntityID().intValue()] + " " + belief + " " + disbelief + " " + time + " " + duration;
+                                String byteStream = "MTIX GPDA " + Entities[eid_1.getEntityID().intValue()].getMissionID() + " 105 0 " + msg.length() + " " + msg;
+
+                                belief += .97f;
+                                sendMessage(byteStream);
+                              }
+	       			break;
+				
+	       		  case  PduTypeField.RECEIVER:   //in the settings array 12
+                              if(Settings[12].equalsIgnoreCase("1"))
+                              {
+				eid_1 = ((ReceiverPdu)pdu).getEntityID ();
+				System.out.println("receiverPdu.getEntityID: " + eid_1 + ", .getRadioID: " +
+				                              ((ReceiverPdu)pdu).getRadioID ());
+                                
+                                //for loop to parse the time stamp;
+                                try
+                                {
+                                    Time.setYear(Integer.valueOf(Settings[14]).intValue());
+                                    Time.setMonth(Integer.valueOf(Settings[15]).intValue());
+                                    Time.setDate(Integer.valueOf(Settings[16]).intValue());
+                                    Time.setHours(Integer.valueOf(Settings[17]).intValue());
+                                    Time.setMinutes(Integer.valueOf(Settings[18]).intValue());
+                                    Time.setSeconds(Integer.valueOf(Settings[19]).intValue());
+                                }catch(Exception e)
+                                {
+                                    System.out.println("TimeStamp failure.");
+                                    e.printStackTrace();
+                                }
+
+                                Time.setTime(Time.getTime() + ((ReceiverPdu)pdu).getTimestamp().longValue());
+                                System.out.println("TimeStamp: " + Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds());
+                                String time = Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds();
+                              }
+	       			break;
+				
+	       		  case  PduTypeField.TRANSMITTER:   //in the settings array 13
+                              if(Settings[13].equalsIgnoreCase("1"))
+                              {
+				eid_1 = ((TransmitterPdu)pdu).getEntityID ();
+				System.out.println("transmitterPdu.getEntityID: " + eid_1 + ", .getRadioID: " +
+					                      ((TransmitterPdu)pdu).getRadioID ());
+                                
+                                //for loop to parse the time stamp;
+                                try
+                                {
+                                    Time.setYear(Integer.valueOf(Settings[14]).intValue());
+                                    Time.setMonth(Integer.valueOf(Settings[15]).intValue());
+                                    Time.setDate(Integer.valueOf(Settings[16]).intValue());
+                                    Time.setHours(Integer.valueOf(Settings[17]).intValue());
+                                    Time.setMinutes(Integer.valueOf(Settings[18]).intValue());
+                                    Time.setSeconds(Integer.valueOf(Settings[19]).intValue());
+                                }catch(Exception e)
+                                {
+                                    System.out.println("TimeStamp failure.");
+                                    e.printStackTrace();
+                                }
+
+                                Time.setTime(Time.getTime() + ((TransmitterPdu)pdu).getTimestamp().longValue());
+                                System.out.println("TimeStamp: " + Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds());
+                                String time = Time.getYear() + ":" + Time.getMonth() + ":" + Time.getDate() + ":" + Time.getHours() + ":" + Time.getMinutes() + ":" + Time.getSeconds();
+                              }
+	       			break;
+				
+			  // Some other type of PDU.
+
+			  default:
+			  	System.out.println("don't know how to handle PDU of type " + pdu.getPduType().intValue()
+				         + " = " + PduTypeField.toString (pdu.getPduType().intValue()));
+	       			break;
+
+	       		} // End of switch by PDU type
+
+			// Find the list of subscribed objects for this entityID. We get back a Vector
+			// from this operation, and forward the PDU to all of the objects in the list.
+			
+			// To prevent duplicate rendering, and because secondary entities might be unknown:
+			//    Collision PDUs only go to the entity detecting and announcing the collision
+			//	with itself, not to the entity being collided with.
+			//    Fire PDUs only go to the firing entities.
+
+// combine ReceiverPduScriptNode.java, SignalPduScriptNode.java, TransmitterPduScriptNode.java (similar to EspduTransform.java)
+// then use those DIS -> script node values to draw BeamCones etc. in the correspondingly named PROTOs:
+// Transmitting entities will be the scene graph nodes that do the actual drawing, to avoid double-drawing of visualization geometry
+// don't forget to update javadoc words and diagram at the top of this class
+
+                }   // end of while enumeration, all PDUs in this bunch have been handled
+	}
+	catch (Exception catchAllException)
+	{
+		trace ("singleReadLoop() exception: " + catchAllException);
+		catchAllException.printStackTrace();
+		setDEBUG (true);
+	}
+	debug ("finished singleReadLoop");
+    }
+
+    public float belief = 0.2f;
+    public void sendMessage(String msg)
+    {
+        String byteStream = msg + "\0";
+        /** This one sends the data to the test bed via message passing and
+        * that the test bed is local
+        */
+        try
+        {
+          System.out.println("Sending this to Local Host: " + byteStream.toString());
+            InetAddress host = null;
+            host = host.getByName(IPDestination);
+            int port = Integer.valueOf(PortDestination).intValue();
+          System.out.println("Sending to Local Host on : " + host.getHostAddress() + "/" + port);
+          System.out.println("DataGram before");
+            DatagramSocket outSocket = new DatagramSocket();
+            byte buf[] = byteStream.getBytes();
+            DatagramPacket datagram = new DatagramPacket(buf, byteStream.length());
+            datagram.setPort(port);
+            datagram.setAddress(host);
+            datagram.setLength(byteStream.length());
+            outSocket.send(datagram);
+          System.out.println("Data [" + byteStream.toString() + "] sent to " + host.toString());
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+    Returns a vector of all the PDUs received since the last time we
+    asked. Queries the underlying DatagramStreamBuffer for this information.
+    */
+
+    public Vector receivedPdus()
+    {  
+      Vector      newDatagrams,     // raw datagrams we get from the datagramStreamBuffer
+                  pduVector;        // the above, "promoted" to PDU objects
+      Enumeration datagramEnumeration;
+
+      // get datagrams from the underlying datagramStreamBuffer, which is synchronized with itself
+
+      //  newDatagrams = datagramStreamBuffer.receivedDatagrams(); // renamed
+      newDatagrams = datagramStreamBuffer.getPackets();
+      pduVector = new Vector();
+
+      // Step through the vector, translating each datagram into a PDU of whatever type.
+
+      datagramEnumeration = newDatagrams.elements();
+      while(datagramEnumeration.hasMoreElements())
+      {
+        byte                datagramData[] = (byte[])datagramEnumeration.nextElement();
+        ProtocolDataUnit    aPdu;
+
+        aPdu = ProtocolDataUnit.byteArrayToPdu(datagramData);
+        if(aPdu != null)
+        {
+            // Save in list
+            pduVector.addElement(aPdu);
+            debug ("pduVector.addElement(aPdu)");
+        }
+      }
+
+      return pduVector;
+    } // end of receivedPdus
+
+    /**
+      Debugging output. Pass in a string, and it gets printed out on the console.
+      You can pass in strings such as "foo " + bar.getName().
+    */
+
+    protected void debug (String pDiagnostic)
+    {
+	if (DEBUG)
+	{
+  		System.out.println("PduDispatcher: " + pDiagnostic);
+  		System.out.flush (); // ensure threaded output goes to console promptly
+	}
+    }
+
+    /**
+      Guaranteed trace output. Pass in a string, and it gets printed out on the console.
+      You can pass in strings such as "foo " + bar.getName().
+    */
+
+    protected void trace (String pDiagnostic)
+    {
+            System.out.println("EntityDispatcher: " + pDiagnostic);
+            System.out.flush();
+    }
+
+    /**
+     *  Set debugging flag
+     */
+    public void setDEBUG (boolean pDEBUG)
+    {
+	DEBUG = pDEBUG;
+ 
+	trace ("setDEBUG " + pDEBUG);
+    }
+    
+    public void stopReading()
+    {
+        datagramStreamBuffer.stopReading();
+    }
+
+    public JLabel LabelName = new JLabel();
+
+    public static void main(String args[])
+    {
+        final PduDispatcher pd = new PduDispatcher();
+        JDialog mainwind = new JDialog();
+        mainwind.setTitle("PDU pump");
+        pd.LabelName.setText("Testing");
+        JButton BTN_OK = new JButton();
+        BTN_OK.setText("Get PDU");
+        BTN_OK.setVisible(false);
+        BTN_OK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pd.singleReadLoop();
+            }
+        });
+        JButton BTN_Cancel = new JButton();
+        BTN_Cancel.setText("Close");
+        BTN_Cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pd.stopReading();
+                System.exit(0);
+            }
+        });
+        mainwind.getContentPane().setLayout(null);
+        mainwind.getContentPane().add(pd.LabelName);
+        pd.LabelName.setBounds(2, 16, 140, 9);
+        mainwind.getContentPane().add(BTN_OK);
+        BTN_OK.setBounds(30, 60, 90, 20);
+        mainwind.getContentPane().add(BTN_Cancel);
+        BTN_Cancel.setBounds(150, 60, 90, 20);
+        mainwind.setSize(270, 130);
+        mainwind.show();
+    }
+}

@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Photuris (Reserved)"; itype: 40; icode: 0; sid:429;  classtype:misc-activity; rev:4;)

@@ -1,0 +1,1623 @@
+Only in src: .missman.C.swp
+Only in src: Main.C
+Only in src: Main.o
+diff -r src/Makefile srcV45/Makefile
+4c4
+< 
+---
+>  
+8c8
+< 
+---
+>  
+10c10
+< 
+---
+>  
+13,15c13,15
+< 	$(SPSLIBPATH2)/lib_shmem.a \
+< 	$(SPSLIBPATH2)/lib_utilities.a
+< 
+---
+>         $(SPSLIBPATH2)/lib_shmem.a \
+>         $(SPSLIBPATH2)/lib_utilities.a
+>  
+17,20c17,20
+< CFLAGS = -g -DFUNCPROTO -I../include -I/usr/local/include \
+< 	-I$(SPEEDESHOME)/src/comm -I$(SPEEDESHOME)/src/utilities \
+< 	-I$(SPEEDESHOME)/src/speedes -I/usr/include/g++
+< 
+---
+> CFLAGS = -g -fpermissive -DFUNCPROTO -I../include -I/usr/local/include \
+>         -I$(SPEEDESHOME)/src/comm -I$(SPEEDESHOME)/src/utilities \
+>         -I$(SPEEDESHOME)/src/speedes -I/usr/include/g++
+>  
+23c23
+< 
+---
+>  
+30,31c30,31
+< CORE_CC = Main.C \
+< 	PlugInProx.C \
+---
+> CORE_CC = event_types.C \
+> 	object_types.C \
+46d45
+< 	apogee.C \
+159c158
+< EXTMOD_CC =
+---
+> EXTMOD_CC = 
+169c168
+< #prox = $(SPEEDESHOME)/demos/prox
+---
+> #prox=$(SPEEDESHOME)/demos/prox
+191c190
+< 
+---
+>  
+194c193
+< 
+---
+>  
+198,199c197,198
+< 
+< $(CORE_OBJS): 
+---
+>  
+> $(CORE_OBJS):
+202c201
+< 
+---
+>  
+206,208d204
+< 
+< testrsd: $(CORE_OBJS) $(LIB)
+< 	$(CC) -o testrsd $(CFLAGS) -Dc_plusplus -D$(ARCH) test.C -L./ -lprox $(SPSLIBS) $(LDFLAGS)
+Only in src: Makefile~
+Only in src: PlugInProx.C
+Only in src: PlugInProx.o
+diff -r src/add_det.C srcV45/add_det.C
+16,18c16,19
+< extern int ADD_DET;
+< extern int TRACK_OUT;
+< extern int CENTER;
+---
+> int C_ADD_DET::done = 0;
+> int C_ADD_DET::ADD_DET = 0;
+> int C_ADD_DET::TRACK_OUT = 0;
+> int C_ADD_DET::CENTER = 0;
+25c26,35
+< C_ADD_DET::C_ADD_DET() {}
+---
+> C_ADD_DET::C_ADD_DET() {
+> 
+>   if (!done) {
+>     ADD_DET = event_type("ADD_DET");
+>     TRACK_OUT = event_type("TRACK_OUT");
+>     CENTER = object_type("CENTER");
+>     done = 1;
+>   }
+> 
+> }
+Binary files src/add_det.o and srcV45/add_det.o differ
+diff -r src/add_e2e.C srcV45/add_e2e.C
+23,25c23,26
+< extern int ADD_E2E;
+< extern int ADD_M2S;
+< extern int EOMAN_SCRIPT;
+---
+> int C_ADD_E2E::done = 0;
+> int C_ADD_E2E::ADD_E2E = 0;
+> int C_ADD_E2E::ADD_M2S = 0;
+> int C_ADD_E2E::EOMAN_SCRIPT = 0;
+30c31,40
+< C_ADD_E2E::C_ADD_E2E() {}
+---
+> C_ADD_E2E::C_ADD_E2E() {
+> 
+>   if (!done) {
+>     done = 1;
+>     ADD_E2E = event_type("ADD_E2E");
+>     ADD_M2S = event_type("ADD_M2S");
+>     EOMAN_SCRIPT = event_type("EOMAN_SCRIPT");
+>   }
+> 
+> }
+Binary files src/add_e2e.o and srcV45/add_e2e.o differ
+diff -r src/add_m2g.C srcV45/add_m2g.C
+17,19c17,21
+< extern int GRID;
+< extern int ADD_M2G;
+< extern int ADD_S2M;
+---
+> 
+> int C_ADD_M2G::done = 0;
+> int C_ADD_M2G::ADD_M2G = 0;
+> int C_ADD_M2G::ADD_S2M = 0;
+> int C_ADD_M2G::GRID = 0;
+24a27,34
+> 
+>   if (!done) {
+>     done = 1;
+>     GRID = object_type("GRID");
+>     ADD_M2G = event_type("ADD_M2G");
+>     ADD_S2M = event_type("ADD_S2M");
+>   }
+> 
+25a36
+> 
+Binary files src/add_m2g.o and srcV45/add_m2g.o differ
+diff -r src/add_m2s.C srcV45/add_m2s.C
+17,18c17,20
+< extern int ADD_M2S;
+< extern int SCAN;
+---
+> 
+> int C_ADD_M2S::done = 0;
+> int C_ADD_M2S::ADD_M2S = 0;
+> int C_ADD_M2S::SCAN = 0;
+23c25,33
+< C_ADD_M2S::C_ADD_M2S() {}
+---
+> C_ADD_M2S::C_ADD_M2S() {
+> 
+>   if (!done) {
+>     done = 1;
+>     ADD_M2S = event_type("ADD_M2S");
+>     SCAN = event_type("SCAN");
+>   }
+> 
+> }
+Binary files src/add_m2s.o and srcV45/add_m2s.o differ
+diff -r src/add_s2e.C srcV45/add_s2e.C
+22,23c22,25
+< extern int ADD_S2E;
+< extern int ADD_M2S;
+---
+> 
+> int C_ADD_S2E::done = 0;
+> int C_ADD_S2E::ADD_S2E = 0;
+> int C_ADD_S2E::ADD_M2S = 0;
+28c30,38
+< C_ADD_S2E::C_ADD_S2E() {}
+---
+> C_ADD_S2E::C_ADD_S2E() {
+> 
+>   if (!done) {
+>     done = 1;
+>     ADD_S2E = event_type("ADD_S2E");
+>     ADD_M2S = event_type("ADD_M2S");
+>   }
+> 
+> }
+Binary files src/add_s2e.o and srcV45/add_s2e.o differ
+diff -r src/add_s2g.C srcV45/add_s2g.C
+17,19c17,21
+< extern int ADD_S2G;
+< extern int ADD_S2M;
+< extern int GRID;
+---
+> 
+> int C_ADD_S2G::done = 0;
+> int C_ADD_S2G::ADD_S2G = 0;
+> int C_ADD_S2G::ADD_S2M = 0;
+> int C_ADD_S2G::GRID = 0;
+24a27,34
+> 
+>   if (!done) {
+>     done = 1;
+>     ADD_S2G = event_type("ADD_S2G");
+>     ADD_S2M = event_type("ADD_S2M");
+>     GRID = object_type("GRID");
+>   }
+> 
+25a36
+> 
+Binary files src/add_s2g.o and srcV45/add_s2g.o differ
+diff -r src/add_s2m.C srcV45/add_s2m.C
+21a22,26
+> int C_ADD_S2M::ADD_S2M = 0;
+> int C_ADD_S2M::ADD_E2E = 0;
+> int C_ADD_S2M::ADD_S2E = 0;
+> int C_ADD_S2M::GRID = 0;
+> int C_ADD_S2M::EOMAN = 0;
+24,29d28
+< extern int GRID;
+< extern int EOMAN;
+< extern int ADD_S2M;
+< extern int ADD_E2E;
+< extern int ADD_S2E;
+< 
+36a36,40
+>     GRID = object_type("GRID");
+>     EOMAN = object_type("EOMAN");
+>     ADD_S2M = event_type("ADD_S2M");
+>     ADD_E2E = event_type("ADD_E2E");
+>     ADD_S2E = event_type("ADD_S2E");
+Binary files src/add_s2m.o and srcV45/add_s2m.o differ
+Only in src: apogee.C
+Only in src: apogee.o
+diff -r src/base_scan.C srcV45/base_scan.C
+20,22c20,23
+< extern int COM;
+< extern int GRAPHICS;
+< extern int SEND_MESSAGE;
+---
+> int C_BASE_SCAN::done = 0;
+> int C_BASE_SCAN::COM = 0;
+> int C_BASE_SCAN::GRAPHICS = 0;
+> int C_BASE_SCAN::SEND_MESSAGE = 0;
+27a29,36
+> 
+>   if (!done) {
+>     done = 1;
+>     COM = object_type("COM");
+>     GRAPHICS = object_type("GRAPHICS");
+>     SEND_MESSAGE = event_type("SEND_MESSAGE");
+>   }
+> 
+28a38
+> 
+Binary files src/base_scan.o and srcV45/base_scan.o differ
+Binary files src/base_space.o and srcV45/base_space.o differ
+Binary files src/base_stage.o and srcV45/base_stage.o differ
+Binary files src/bus.o and srcV45/bus.o differ
+diff -r src/ccc_plan.C srcV45/ccc_plan.C
+15,18c15,19
+< extern int GBI;
+< extern int MISSILE;
+< extern int CCC_PLAN;
+< extern int SHOOT_GBI;
+---
+> int C_CCC_PLAN::done = 0;
+> int C_CCC_PLAN::CCC_PLAN = 0;
+> int C_CCC_PLAN::SHOOT_GBI = 0;
+> int C_CCC_PLAN::GBI = 0;
+> int C_CCC_PLAN::MISSILE = 0;
+23c24,34
+< C_CCC_PLAN::C_CCC_PLAN() {}
+---
+> C_CCC_PLAN::C_CCC_PLAN() {
+> 
+>   if (!done) {
+>     done = 1;
+>     GBI = object_type("GBI");
+>     MISSILE = object_type("MISSILE");
+>     CCC_PLAN = event_type("CCC_PLAN");
+>     SHOOT_GBI = event_type("SHOOT_GBI");
+>   }
+> 
+> }
+Binary files src/ccc_plan.o and srcV45/ccc_plan.o differ
+diff -r src/centerman.C srcV45/centerman.C
+12,14d11
+< extern int EXT_GRAPHICS_DEFINE;
+< extern int CENTER;
+< 
+29a27,28
+> 
+>   CENTER = object_type("CENTER");
+Binary files src/centerman.o and srcV45/centerman.o differ
+Binary files src/centobj.o and srcV45/centobj.o differ
+diff -r src/change_prox.C srcV45/change_prox.C
+17,20c17,21
+< extern int EOMAN;
+< extern int GRID;
+< extern int ADD_E2E;
+< extern int NEXT_SCRIPT;
+---
+> int C_CHANGE_PROX::done = 0;
+> int C_CHANGE_PROX::ADD_E2E = 0;
+> int C_CHANGE_PROX::NEXT_SCRIPT = 0;
+> int C_CHANGE_PROX::GRID = 0;
+> int C_CHANGE_PROX::EOMAN = 0;
+25c26,36
+< C_CHANGE_PROX::C_CHANGE_PROX() {}
+---
+> C_CHANGE_PROX::C_CHANGE_PROX() {
+> 
+>   if (!done) {
+>     EOMAN = object_type("EOMAN");
+>     GRID = object_type("GRID");
+>     ADD_E2E = event_type("ADD_E2E");
+>     NEXT_SCRIPT = event_type("NEXT_SCRIPT");
+>     done = 1;
+>   }
+> 
+> }
+103,104c114
+<   schedule (e->get_endtime(), NEXT_SCRIPT, OBJECT_TYPE, LOCAL_ID,
+< 	    NODE);
+---
+>   schedule (e->get_endtime(), NEXT_SCRIPT, OBJECT_TYPE, LOCAL_ID, NODE);
+Binary files src/change_prox.o and srcV45/change_prox.o differ
+diff -r src/change_script.C srcV45/change_script.C
+18,19c18,20
+< extern int RANDOM_AIR;
+< extern int CHANGE_SCRIPT;
+---
+> int C_CHANGE_SCRIPT::done = 0;
+> int C_CHANGE_SCRIPT::CHANGE_SCRIPT = 0;
+> int C_CHANGE_SCRIPT::RANDOM_AIR = 0;
+24c25,33
+< C_CHANGE_SCRIPT::C_CHANGE_SCRIPT() {}
+---
+> C_CHANGE_SCRIPT::C_CHANGE_SCRIPT() {
+> 
+>   if (!done) {
+>     done = 1;
+>     RANDOM_AIR = object_type("RANDOM_AIR");
+>     CHANGE_SCRIPT = event_type("CHANGE_SCRIPT");
+>   }
+> 
+> }
+Binary files src/change_script.o and srcV45/change_script.o differ
+diff -r src/comman.C srcV45/comman.C
+32a33,34
+>   COM = object_type("COM");
+> 
+Binary files src/comman.o and srcV45/comman.o differ
+Binary files src/comobj.o and srcV45/comobj.o differ
+diff -r src/convert.C srcV45/convert.C
+86,87c86,87
+<   if (lon < -PI) lon += TWOPI;
+<   if (lon >  PI) lon -= TWOPI;
+---
+>   if (lon < -M_PI) lon += TWOPI;
+>   if (lon >  M_PI) lon -= TWOPI;
+116,117c116,117
+<   if (lon < -PI) lon += TWOPI;
+<   if (lon >  PI) lon -= TWOPI;
+---
+>   if (lon < -M_PI) lon += TWOPI;
+>   if (lon >  M_PI) lon -= TWOPI;
+Binary files src/convert.o and srcV45/convert.o differ
+diff -r src/def.h srcV45/def.h
+4d3
+< #ifndef __IBMCPP__
+8d6
+< #endif
+diff -r src/del_mfg.C srcV45/del_mfg.C
+18,20c18,21
+< extern int DEL_MFG;
+< extern int DEL_SFM;
+< extern int GRID;
+---
+> int C_DEL_MFG::done = 0;
+> int C_DEL_MFG::DEL_MFG = 0;
+> int C_DEL_MFG::DEL_SFM = 0;
+> int C_DEL_MFG::GRID = 0;
+25a27,34
+> 
+>   if (!done) {
+>     done = 1;
+>     DEL_MFG = event_type("DEL_MFG");
+>     DEL_SFM = event_type("DEL_SFM");
+>     GRID = object_type("GRID");
+>   }
+> 
+26a36
+> 
+Binary files src/del_mfg.o and srcV45/del_mfg.o differ
+diff -r src/del_mfs.C srcV45/del_mfs.C
+18c18,19
+< extern int DEL_MFS;
+---
+> int C_DEL_MFS::done = 0;
+> int C_DEL_MFS::DEL_MFS = 0;
+23c24,31
+< C_DEL_MFS::C_DEL_MFS() {}
+---
+> C_DEL_MFS::C_DEL_MFS() {
+> 
+>   if (!done) {
+>     done = 1;
+>     DEL_MFS = event_type("DEL_MFS");
+>   }
+> 
+> }
+Binary files src/del_mfs.o and srcV45/del_mfs.o differ
+diff -r src/del_sfe.C srcV45/del_sfe.C
+23,24c23,25
+< extern int DEL_SFE;
+< extern int DEL_MFS;
+---
+> int C_DEL_SFE::done = 0;
+> int C_DEL_SFE::DEL_SFE = 0;
+> int C_DEL_SFE::DEL_MFS = 0;
+29c30,38
+< C_DEL_SFE::C_DEL_SFE() {}
+---
+> C_DEL_SFE::C_DEL_SFE() {
+> 
+>   if (!done) {
+>     done = 1;
+>     DEL_SFE = event_type("DEL_SFE");
+>     DEL_MFS = event_type("DEL_MFS");
+>   }
+> 
+> }
+Binary files src/del_sfe.o and srcV45/del_sfe.o differ
+diff -r src/del_sfg.C srcV45/del_sfg.C
+18,19c18,21
+< extern int DEL_SFM;
+< extern int GRID;
+---
+> int C_DEL_SFG::done = 0;
+> int C_DEL_SFG::DEL_SFG = 0;
+> int C_DEL_SFG::DEL_SFM = 0;
+> int C_DEL_SFG::GRID = 0;
+24a27,34
+> 
+>   if (!done) {
+>     done = 1;
+>     DEL_SFG = event_type("DEL_SFG");
+>     DEL_SFM = event_type("DEL_SFM");
+>     GRID = object_type("GRID");
+>   }
+> 
+25a36
+> 
+Binary files src/del_sfg.o and srcV45/del_sfg.o differ
+diff -r src/del_sfm.C srcV45/del_sfm.C
+21a22,25
+> int C_DEL_SFM::DEL_SFM = 0;
+> int C_DEL_SFM::GRID = 0;
+> int C_DEL_SFM::EOMAN = 0;
+> int C_DEL_SFM::DEL_SFE = 0;
+24,28d27
+< extern int GRID;
+< extern int EOMAN;
+< extern int DEL_SFM;
+< extern int DEL_SFE;
+< 
+35a35,38
+>     GRID = object_type("GRID");
+>     EOMAN = object_type("EOMAN");
+>     DEL_SFM = event_type("DEL_SFM");
+>     DEL_SFE = event_type("DEL_SFE");
+Binary files src/del_sfm.o and srcV45/del_sfm.o differ
+Binary files src/dsp_model.o and srcV45/dsp_model.o differ
+diff -r src/dspman.C srcV45/dspman.C
+16,20d15
+< extern int FIXED_COVERAGE;
+< extern int DSP;
+< extern int TEST_PROX;
+< extern int EXT_GRAPHICS_DEFINE;
+< 
+57a53
+>   DSP = object_type("DSP");
+Binary files src/dspman.o and srcV45/dspman.o differ
+Binary files src/dspobj.o and srcV45/dspobj.o differ
+Binary files src/eom.o and srcV45/eom.o differ
+Binary files src/eoman.o and srcV45/eoman.o differ
+diff -r src/eoman_script.C srcV45/eoman_script.C
+20,23c20,24
+< extern int EOMAN;
+< extern int EOMAN_SCRIPT;
+< extern int ADD_M2S;
+< extern int DEL_MFS;
+---
+> int C_EOMAN_SCRIPT::done = 0;
+> int C_EOMAN_SCRIPT::EOMAN_SCRIPT = 0;
+> int C_EOMAN_SCRIPT::ADD_M2S = 0;
+> int C_EOMAN_SCRIPT::DEL_MFS = 0;
+> int C_EOMAN_SCRIPT::EOMAN = 0;
+28c29,41
+< C_EOMAN_SCRIPT::C_EOMAN_SCRIPT() {}
+---
+> C_EOMAN_SCRIPT::C_EOMAN_SCRIPT() {
+> 
+>   if (!done) {
+>     done = 1;
+>     EOMAN = object_type("EOMAN");
+>     EOMAN_SCRIPT = event_type("EOMAN_SCRIPT");
+>     ADD_M2S = event_type("ADD_M2S");
+>     DEL_MFS = event_type("DEL_MFS");
+>   }
+> 
+> //  set_lazy();
+> 
+> }
+Binary files src/eoman_script.o and srcV45/eoman_script.o differ
+diff -r src/eomanman.C srcV45/eomanman.C
+14a15,16
+>   EOMAN = object_type("EOMAN");
+> 
+Binary files src/eomanman.o and srcV45/eomanman.o differ
+Only in srcV45: event_types.C
+Only in srcV45: event_types.o
+diff -r src/ext_graphics_define.C srcV45/ext_graphics_define.C
+18,20c18,21
+< extern int EXT_GRAPHICS_DEFINE;
+< extern int GRAPHICS;
+< extern int DSP;
+---
+> int C_EXT_GRAPHICS_DEFINE::done = 0;
+> int C_EXT_GRAPHICS_DEFINE::EXT_GRAPHICS_DEFINE = 0;
+> int C_EXT_GRAPHICS_DEFINE::GRAPHICS = 0;
+> int C_EXT_GRAPHICS_DEFINE::DSP = 0;
+25c26,35
+< C_EXT_GRAPHICS_DEFINE::C_EXT_GRAPHICS_DEFINE() {}
+---
+> C_EXT_GRAPHICS_DEFINE::C_EXT_GRAPHICS_DEFINE() {
+> 
+>   if (!done) {
+>     done = 1;
+>     EXT_GRAPHICS_DEFINE = event_type("EXT_GRAPHICS_DEFINE");
+>     GRAPHICS = object_type("GRAPHICS");
+>     DSP = object_type("DSP");
+>   }
+> 
+> }
+Binary files src/ext_graphics_define.o and srcV45/ext_graphics_define.o differ
+diff -r src/ext_graphics_gvt.C srcV45/ext_graphics_gvt.C
+16,22c16,19
+< extern int GRAPHICS;
+< extern int EXT_GRAPHICS_GVT;
+< extern int RSD_SOCKET;
+< /* Changed by RVI on 9/23 along with the change of
+<    ext_graphics_gvt_mess to a pointer rather than non-pointer.  This
+<    was done so that a bunch of statistics info could be tacked on to
+<    the end of this message */
+---
+> int C_EXT_GRAPHICS_GVT::done = 0;
+> int C_EXT_GRAPHICS_GVT::EXT_GRAPHICS_GVT = 0;
+> int C_EXT_GRAPHICS_GVT::RSD_SOCKET = 0;
+> int C_EXT_GRAPHICS_GVT::GRAPHICS = 0;
+27a25,36
+> 
+>   if (!done) {
+>     done = 1;
+>     GRAPHICS = object_type("GRAPHICS");
+>     EXT_GRAPHICS_GVT = event_type("EXT_GRAPHICS_GVT");
+>     RSD_SOCKET = event_type("RSD_SOCKET");
+> 
+>     /* Changed by RVI on 9/23 along with the change of
+>      ext_graphics_gvt_mess to a pointer rather than non-pointer.  This
+>      was done so that a bunch of statistics info could be tacked on to
+>      the end of this message */
+>   }
+31a41
+>   
+78c88
+<   cerr << "External Graphics at time " << TIME_TAG << endl;
+---
+>   //cerr << "External Graphics at time " << TIME_TAG << endl;
+155,156d164
+< 
+< fprintf(stderr, "C_EXT_GRAPHICS_GVT::perm_process called\n");
+Binary files src/ext_graphics_gvt.o and srcV45/ext_graphics_gvt.o differ
+diff -r src/ext_graphics_script.C srcV45/ext_graphics_script.C
+19,20c19,21
+< extern int EXT_GRAPHICS_SCRIPT;
+< extern int GRAPHICS;
+---
+> int C_EXT_GRAPHICS_SCRIPT::done = 0;
+> int C_EXT_GRAPHICS_SCRIPT::EXT_GRAPHICS_SCRIPT = 0;
+> int C_EXT_GRAPHICS_SCRIPT::GRAPHICS = 0;
+25c26,34
+< C_EXT_GRAPHICS_SCRIPT::C_EXT_GRAPHICS_SCRIPT() {}
+---
+> C_EXT_GRAPHICS_SCRIPT::C_EXT_GRAPHICS_SCRIPT() {
+> 
+>   if (!done) {
+>     done = 1;
+>     EXT_GRAPHICS_SCRIPT = event_type("EXT_GRAPHICS_SCRIPT");
+>     GRAPHICS = object_type("GRAPHICS");
+>   }
+> 
+> }
+105c114
+< /*  Uncomment by DRE - 02/09/01 */
+---
+> /*
+108c117
+< /* */
+---
+> */
+149c158
+< /* Uncomment by DRE - 02/09/01 */
+---
+> /*
+152c161
+< /* */
+---
+> */
+154c163
+<   ext_graphics_link_output->EM_socket = graphobj->get_socket();
+---
+> //  ext_graphics_link_output->EM_socket = graphobj->get_socket();
+174d182
+< 
+177d184
+< 
+Binary files src/ext_graphics_script.o and srcV45/ext_graphics_script.o differ
+diff -r src/ext_lanl_bp.C srcV45/ext_lanl_bp.C
+18a19,24
+> int C_EXT_LANL_BP::done = 0;
+> int C_EXT_LANL_BP::EXT_LANL_BP = 0;
+> int C_EXT_LANL_BP::CCC_PLAN = 0;
+> int C_EXT_LANL_BP::CENTER = 0;
+> int C_EXT_LANL_BP::GBI = 0;
+> 
+22,26d27
+< extern int EXT_LANL_BP;
+< extern int CCC_PLAN;
+< extern int GBI;
+< extern int CENTER;
+< 
+30c31,41
+< C_EXT_LANL_BP::C_EXT_LANL_BP() {}
+---
+> C_EXT_LANL_BP::C_EXT_LANL_BP() {
+> 
+>   if (!done) {
+>     done = 1;
+>     EXT_LANL_BP = event_type("EXT_LANL_BP");
+>     CCC_PLAN = event_type("CCC_PLAN");
+>     GBI = object_type("GBI");
+>     CENTER = object_type("CENTER");
+>   }
+> 
+> }
+129,130c140,141
+<       track->get_true_state(P,V);
+< //      track->get_est_state(P,V);
+---
+> //      track->get_true_state(P,V);
+>       track->get_est_state(P,V);
+138,139d148
+< 	  fprintf(stderr, "LANL msg ID= %d  P= %lf %lf %lf  V= %lf %lf %lf TYP= %d\n",
+< 	  track->get_id(),P[0],P[1],P[2],V[0],V[1],V[2], track->get_object_type());
+Binary files src/ext_lanl_bp.o and srcV45/ext_lanl_bp.o differ
+diff -r src/ext_tracker.C srcV45/ext_tracker.C
+19,20c19,21
+< extern int EXT_TRACKER;
+< extern int CENTER;
+---
+> int C_EXT_TRACKER::done = 0;
+> int C_EXT_TRACKER::EXT_TRACKER = 0;
+> int C_EXT_TRACKER::CENTER = 0;
+25a27,33
+> 
+>   if (!done) {
+>     done = 1;
+>     EXT_TRACKER = event_type("EXT_TRACKER");
+>     CENTER = object_type("CENTER");
+>   }
+> 
+26a35
+> 
+Binary files src/ext_tracker.o and srcV45/ext_tracker.o differ
+Only in src: extra_src
+Binary files src/eye_model.o and srcV45/eye_model.o differ
+diff -r src/eyeman.C srcV45/eyeman.C
+12,16d11
+< extern int MOVING_COVERAGE;
+< extern int EYE;
+< extern int TEST_PROX;
+< extern int EXT_GRAPHICS_SCRIPT;
+< 
+57a53
+>   EYE = object_type("EYE");
+Binary files src/eyeman.o and srcV45/eyeman.o differ
+Binary files src/eyeobj.o and srcV45/eyeobj.o differ
+diff -r src/fixed_coverage.C srcV45/fixed_coverage.C
+14,16c14,17
+< extern int FIXED_COVERAGE;
+< extern int ADD_S2G;
+< extern int GRID;
+---
+> int C_FIXED_COVERAGE::done = 0;
+> int C_FIXED_COVERAGE::FIXED_COVERAGE = 0;
+> int C_FIXED_COVERAGE::ADD_S2G = 0;
+> int C_FIXED_COVERAGE::GRID = 0;
+21c22,31
+< C_FIXED_COVERAGE::C_FIXED_COVERAGE() {}
+---
+> C_FIXED_COVERAGE::C_FIXED_COVERAGE() {
+> 
+>   if (!done) {
+>     done = 1;
+>     FIXED_COVERAGE = event_type("FIXED_COVERAGE");
+>     ADD_S2G = event_type("ADD_S2G");
+>     GRID = object_type("GRID");
+>   }
+> 
+> }
+Binary files src/fixed_coverage.o and srcV45/fixed_coverage.o differ
+Binary files src/free_grevt.o and srcV45/free_grevt.o differ
+Binary files src/freeobjs.o and srcV45/freeobjs.o differ
+Binary files src/freeoms.o and srcV45/freeoms.o differ
+diff -r src/fuse_tracks.C srcV45/fuse_tracks.C
+14,15c14,16
+< extern int FUSE_TRACKS;
+< extern int REMOVE_TRACKS;
+---
+> int C_FUSE_TRACKS::done = 0;
+> int C_FUSE_TRACKS::FUSE_TRACKS = 0;
+> int C_FUSE_TRACKS::REMOVE_TRACKS = 0;
+20c21,31
+< C_FUSE_TRACKS::C_FUSE_TRACKS() {}
+---
+> C_FUSE_TRACKS::C_FUSE_TRACKS() {
+> 
+>   if (!done) {
+>     done = 1;
+>     FUSE_TRACKS = event_type("FUSE_TRACKS");
+>     REMOVE_TRACKS = event_type("REMOVE_TRACKS");
+>   }
+> 
+> //  set_lazy();
+> 
+> }
+Binary files src/fuse_tracks.o and srcV45/fuse_tracks.o differ
+Binary files src/gbi.o and srcV45/gbi.o differ
+diff -r src/gbiman.C srcV45/gbiman.C
+13,16d12
+< extern int EXT_GRAPHICS_DEFINE;
+< extern int FIXED_COVERAGE;
+< extern int GBI;
+< 
+39a36,37
+> 
+>   GBI = object_type("GBI");
+Binary files src/gbiman.o and srcV45/gbiman.o differ
+Binary files src/gbiobj.o and srcV45/gbiobj.o differ
+Binary files src/gr_add_eom.o and srcV45/gr_add_eom.o differ
+Binary files src/gr_del_eom.o and srcV45/gr_del_eom.o differ
+Binary files src/gr_event.o and srcV45/gr_event.o differ
+Binary files src/gr_kill.o and srcV45/gr_kill.o differ
+Binary files src/gr_link.o and srcV45/gr_link.o differ
+diff -r src/graphman.C srcV45/graphman.C
+18,20c18,20
+<   first_time = parameters->get_float("first_time");
+<   start_time = parameters->get_float("start_time");
+<   cycle_time = parameters->get_float("cycle_time");
+---
+>   first_time = (double)parameters->get_float("first_time");
+>   start_time = (double)parameters->get_float("start_time");
+>   cycle_time = (double)parameters->get_float("cycle_time");
+21a22
+>   GRAPHICS = object_type("GRAPHICS");
+Binary files src/graphman.o and srcV45/graphman.o differ
+Binary files src/graphobj.o and srcV45/graphobj.o differ
+Binary files src/greatcirc.o and srcV45/greatcirc.o differ
+Binary files src/grid.o and srcV45/grid.o differ
+diff -r src/gridman.C srcV45/gridman.C
+13,15d12
+< extern int SHOW_MEM;
+< extern int GRID;
+< 
+28a26
+>   GRID = object_type("GRID");
+109a108,109
+>   int SHOW_MEM;
+> 
+112a113
+>     SHOW_MEM = event_type("SHOW_MEM");
+Binary files src/gridman.o and srcV45/gridman.o differ
+Binary files src/ground_radar.o and srcV45/ground_radar.o differ
+Only in srcV45: init
+Binary files src/int_bus.o and srcV45/int_bus.o differ
+Binary files src/int_stage.o and srcV45/int_stage.o differ
+Binary files src/intgbi.o and srcV45/intgbi.o differ
+Binary files src/intss18.o and srcV45/intss18.o differ
+diff -r src/kepler.C srcV45/kepler.C
+7d6
+< #include "def.h"
+12a12
+> #define TWOPI   (6.283185307)	/* two times PI				*/
+15d14
+< 
+326c325
+<   if(truean_impact < PI){      // then you have truean of launch, not impact
+---
+>   if(truean_impact < M_PI){      // then you have truean of launch, not impact
+331c330
+<   if(ean_impact < PI){         // then you have ean of launch, not impact
+---
+>   if(ean_impact < M_PI){         // then you have ean of launch, not impact
+Binary files src/kepler.o and srcV45/kepler.o differ
+diff -r src/kill.C srcV45/kill.C
+17,19c17,20
+< extern int GBI;
+< extern int GRAPHICS;
+< extern int KILL;
+---
+> int C_KILL::done = 0;
+> int C_KILL::KILL = 0;
+> int C_KILL::GBI = 0;
+> int C_KILL::GRAPHICS = 0;
+24c25,34
+< C_KILL::C_KILL() {}
+---
+> C_KILL::C_KILL() {
+> 
+>   if (!done) {
+>     done = 1;
+>     GBI = object_type("GBI");
+>     GRAPHICS = object_type("GRAPHICS");
+>     KILL = event_type("KILL");
+>   }
+> 
+> }
+152c162
+< 	(int)SIMOBJ->get_GLOBAL_ID(), (int)ext_graphics_kill_output.EM_flag);
+---
+> 	SIMOBJ->get_GLOBAL_ID(), ext_graphics_kill_output.EM_flag);
+Binary files src/kill.o and srcV45/kill.o differ
+Binary files src/libprox.a and srcV45/libprox.a differ
+Binary files src/link.o and srcV45/link.o differ
+Binary files src/locobj.o and srcV45/locobj.o differ
+Binary files src/loiter.o and srcV45/loiter.o differ
+diff -r src/mat_equ.C srcV45/mat_equ.C
+7d6
+< #include <iostream.h>
+32,33c31,32
+<       cerr << "Warning, precision problem |v1+v2| / (|v1|+|v2|) = "
+< 	   << (double)temp << "\n";
+---
+>       fprintf(stderr,"Warning, precision problem |v1+v2| / (|v1|+|v2|) = %lg\n",
+> 		temp);
+39c38,39
+<         cerr << "Warning, precision problem (v2/v1) = " << (double)temp << "\n";
+---
+>         fprintf(stderr,"Warning, precision problem (v2/v1) = %lg\n",
+> 		temp);
+57c57
+<       cerr << (double)a[i][j] << " ";
+---
+>       fprintf(stderr,"%7lf ",a[i][j]);
+59c59
+<     cerr << "\n";
+---
+>     fprintf(stderr,"\n");
+61c61
+<   cerr << "\n";
+---
+>   fprintf(stderr,"\n");
+83,84c83
+<       cerr << "Warning, verify comes up with " << (double)temp << " for row "
+< 	   << i << "\n";
+---
+>       fprintf(stderr, "Warning, verify comes up with %lf for row %d\n",temp,i);
+409c408
+< int main() {
+---
+> main() {
+Binary files src/mat_equ.o and srcV45/mat_equ.o differ
+diff -r src/memsize.C srcV45/memsize.C
+40c40
+< int main() {
+---
+> main() {
+diff -r src/missile.C srcV45/missile.C
+40,46d39
+< extern int apogee (double t_no_use,
+<             double r1[],
+<             double tgt[],
+<             double hapo,
+<             double *tof,
+<             double v1[]      );
+< 
+222c215
+< 			  double lonf, double Hapogee, double est_tof) {
+---
+> 				double lonf) {
+237c230
+<   return aim_eci(t, ri, rf, latf, lonf, Hapogee, est_tof);
+---
+>   return aim_eci(t, ri, rf);
+246,248c239
+< 				 double r0[3], double rimp[3],
+<                                  double latf, double lonf,
+<                                  double Hapogee, double est_tof) {
+---
+> 				 double r0[3], double rimp[3]) {
+258d248
+<   double ll[3];
+386c376
+<     } else {
+---
+>     }else{
+404c394
+<     fprintf(stderr, "--- Stage %d: %f %f %f\n", i+1, vt[0], vt[1], vt[2]);
+---
+> 
+406d395
+<   stage->init_V1(vt);
+416c405
+<     fprintf(stderr,"Bad aim parameters, booster crashing\n");
+---
+> //    fprintf(stderr,"Bad aim parameters, booster crashing\n");
+445,446c434
+< int C_MISSILE::aim_eci(double t, double r0[3], double r1[3], double latf,
+<                        double lonf, double Hapogee, double est_tof) {
+---
+> int C_MISSILE::aim_eci(double t, double r0[3], double r1[3]) {
+463d450
+<   double vt[3], rt[3], ll[3];
+466d452
+<   C_BASE_STAGE *stage;
+484c470
+<   fprintf(stderr,"Aiming distance = %f\n",d);
+---
+> //  fprintf(stderr,"Aiming distance = %f\n",d);
+513c499
+<     fprintf(stderr,"Error, (MISSILE) could not aim: target out of range\n");
+---
+> //    fprintf(stderr,"Error, (MISSILE) could not aim: target out of range\n");
+539,540c525
+<         newtimp1 = set_aim_angles(theta, phi, vscale, r0, rimp,
+<                                   latf, lonf, Hapogee, est_tof);
+---
+>         newtimp1 = set_aim_angles(theta, phi, vscale, r0, rimp);
+618,619c603
+<       newtimp1 = set_aim_angles(theta, phi, vscale, r0, rimp,
+<                                 latf, lonf, Hapogee, est_tof);
+---
+>       newtimp1 = set_aim_angles(theta, phi, vscale, r0, rimp);
+685,705d668
+< //...... last stage burnout complete, modify Vel if apogee specified
+< 
+<   if (Hapogee > 0.0) {
+<      stage = get_stage(nstages);
+<      stage->get_V1(vt);            // Get velocity at end of last stage
+<      stage->get_R1(rt);            // Get position at end of last stage
+<      double speed = sqrt(vt[0]*vt[0] + vt[1]*vt[1] + vt[2]*vt[2]); 
+<      fprintf(stderr, "--- Initial Burnout velocity: %f %f %f (%f Kps)\n", 
+<              vt[0], vt[1], vt[2], speed); 
+<      ll[0] = latf*180.0/M_PI;
+<      ll[1] = lonf*180.0/M_PI;
+<      ll[2] = 0.0; 
+<      double tof = est_tof; 
+<      int irc = apogee(-1.0, rt, ll, Hapogee, &tof, vt);
+<      fprintf(stderr, "--- APOGEE returns %d\n", irc);
+<      speed = sqrt(vt[0]*vt[0] + vt[1]*vt[1] + vt[2]*vt[2]); 
+<      fprintf(stderr, "--- Apogee Burnout velocity: %f %f %f (%f Kps)\n", 
+<              vt[0], vt[1], vt[2], speed);
+<      if (irc > 0) stage->init_V1(vt);
+<   }
+< 
+863a827
+> 
+908c872
+<     } else {
+---
+>     }else{
+990c954
+<     impact_time = set_aim_angles(theta, phi, 0.0, r0, r1, 0.0, 0.0, 0.0, 0.0);
+---
+>     impact_time = set_aim_angles(theta, phi, 0.0, r0, r1);
+1316c1280
+<   //vscale = 0.0;
+---
+>   vscale = 0.0;
+1318c1282
+<   //phi = 0.0;
+---
+>   phi = 0.0;
+1320c1284
+<   timp_ground = set_aim_angles(theta, phi, vscale, r0, r1, 0.0, 0.0, -1.0, 0.0);
+---
+>   timp_ground = set_aim_angles(theta, phi, vscale, r0, r1);
+1342a1307,1308
+>   fprintf(stderr,"AIM GBI> r0 is %f %f %f\n", r0[0], r0[1], r0[2]);
+>   fprintf(stderr,"AIM GBI> r1 is %f %f %f\n", r1[0], r1[1], r1[2]);
+1448c1414
+<   double /*a0,*/a1,a2,a3;
+---
+>   double a0,a1,a2,a3;
+1519c1485
+<     //a0 = r_A;
+---
+>     a0 = r_A;
+Only in src: missile.C~
+Binary files src/missile.o and srcV45/missile.o differ
+diff -r src/missman.C srcV45/missman.C
+12,18d11
+< extern int NEXT_SCRIPT;
+< extern int MISSILE;
+< extern int EXT_GRAPHICS_SCRIPT;
+< extern int UPDATE_GRID;
+< extern int MOVING_COVERAGE;
+< extern int TEST_PROX;
+< 
+44,45c37,38
+<   double est_tof;                    // Estimated time-of-flight
+<   double Hapogee;                    // Height of apogee (Km)
+---
+> 
+>   MISSILE = object_type("MISSILE");
+132,134c125
+<       Hapogee = missile_name->get_float("apogee");
+<       est_tof = missile_name->get_float("est_tof");
+<       missobj[index].aim(launch_time,lati,loni,latf,lonf,Hapogee,est_tof);
+---
+>       missobj[index].aim(launch_time,lati,loni,latf,lonf);
+189,190c180
+<       schedule (0.0, EXT_GRAPHICS_SCRIPT, MISSILE, i,
+< 		NODE);
+---
+>       schedule (0.0, EXT_GRAPHICS_SCRIPT, MISSILE, i, NODE);
+192,193c182
+<       schedule (e->get_endtime(), NEXT_SCRIPT, MISSILE,
+< 		i, NODE);
+---
+>       schedule (e->get_endtime(), NEXT_SCRIPT, MISSILE, i, NODE);
+196,197c185
+<       schedule (e->get_start_time()-0.0, UPDATE_GRID,
+< 		MISSILE, i, NODE);
+---
+>       schedule (e->get_start_time()-0.0, UPDATE_GRID, MISSILE, i, NODE);
+201c189
+< 		  MISSILE, i, NODE);
+---
+> 				MISSILE, i, NODE);
+Only in src: missman.C~
+Binary files src/missman.o and srcV45/missman.o differ
+diff -r src/missobj.C srcV45/missobj.C
+79,80c79
+< void C_MISSOBJ::aim(double t, double lai, double loi, double laf, double lof,
+<                     double Hapogee, double est_tof) {
+---
+> void C_MISSOBJ::aim(double t, double lai, double loi, double laf, double lof) {
+90c89
+<     status = missile->aim_latlon(0.0, lati, loni, latf, lonf, Hapogee, est_tof);
+---
+>     status = missile->aim_latlon(0.0, lati, loni, latf, lonf);
+92c91
+<     status = missile->aim_latlon(launch_time, lati, loni, latf, lonf, Hapogee, est_tof);
+---
+>     status = missile->aim_latlon(launch_time, lati, loni, latf, lonf);
+96a96
+> 
+140d139
+<   FILE *outfp;
+157d155
+<   char filename[128];
+191,193d188
+< 
+<   sprintf(filename, "%s.jdn", NAME);
+<   outfp = fopen(filename, "w");
+194a190
+> 
+198,203c194,197
+<     fprintf(stdout,
+<       "%s t= %f Pxyz= %f %f %f Vxyz= %f %f %f Alt= %f Vel= %f\n",
+<       NAME,t,X[0],X[1],X[2],V[0],V[1],V[2],alt,vel);
+< 	fprintf(outfp, "%f %s %s %d %f %f %f %s %d %f %f %f %f %f\n",
+< 		    t, "J 3.6 0 0", NAME, 15, X[0]*1000.0, X[1]*1000.0, X[2]*1000.0,
+< 			"RV", 4, 90.0, 50.0, 30.0, alt, vel);
+---
+>     fprintf(stderr,
+>       "Missile: t= %f, Pxyz = %f %f %f, Vxyz = %f %f %f, Alt = %f, Spd = %f\n",
+>       t,X[0],X[1],X[2],V[0],V[1],V[2],alt,vel);
+> 
+206d199
+<   fclose(outfp);
+Only in src: missobj.C~
+Binary files src/missobj.o and srcV45/missobj.o differ
+diff -r src/mover.C srcV45/mover.C
+59c59
+<   random_position(start_position);
+---
+>   //random_position(start_position);
+69d68
+<     sequence++;
+70a70
+>     sequence++;
+98a99
+>   e->set_icon(icon);
+Binary files src/mover.o and srcV45/mover.o differ
+diff -r src/moving_coverage.C srcV45/moving_coverage.C
+16,19c16,20
+< extern int MOVING_COVERAGE;
+< extern int ADD_S2G;
+< extern int DEL_SFG;
+< extern int GRID;
+---
+> int C_MOVING_COVERAGE::done = 0;
+> int C_MOVING_COVERAGE::MOVING_COVERAGE = 0;
+> int C_MOVING_COVERAGE::ADD_S2G = 0;
+> int C_MOVING_COVERAGE::DEL_SFG = 0;
+> int C_MOVING_COVERAGE::GRID = 0;
+24a26,34
+> 
+>   if (!done) {
+>     done = 1;
+>     MOVING_COVERAGE = event_type("MOVING_COVERAGE");
+>     ADD_S2G = event_type("ADD_S2G");
+>     DEL_SFG = event_type("DEL_SFG");
+>     GRID = object_type("GRID");
+>   }
+> 
+25a36
+> 
+Binary files src/moving_coverage.o and srcV45/moving_coverage.o differ
+diff -r src/next_script.C srcV45/next_script.C
+13c13,14
+< extern int NEXT_SCRIPT;
+---
+> int C_NEXT_SCRIPT::done = 0;
+> int C_NEXT_SCRIPT::NEXT_SCRIPT = 0;
+18c19,28
+< C_NEXT_SCRIPT::C_NEXT_SCRIPT() {}
+---
+> C_NEXT_SCRIPT::C_NEXT_SCRIPT() {
+> 
+>   if (!done) {
+>     NEXT_SCRIPT = event_type("NEXT_SCRIPT");
+>     done = 1;
+>   }
+> 
+> //  set_lazy();
+> 
+> }
+73,74c83
+<     schedule(eom->get_endtime(), NEXT_SCRIPT, OBJECT_TYPE, LOCAL_ID,
+< 	     NODE);
+---
+>     schedule(eom->get_endtime(), NEXT_SCRIPT, OBJECT_TYPE, LOCAL_ID, NODE);
+Binary files src/next_script.o and srcV45/next_script.o differ
+diff -r src/nostateman.C srcV45/nostateman.C
+13a14
+>   NOSTATE = object_type("NOSTATE");
+Binary files src/nostateman.o and srcV45/nostateman.o differ
+Binary files src/nostateobj.o and srcV45/nostateobj.o differ
+diff -r src/oagman.C srcV45/oagman.C
+14,18d13
+< extern int NEXT_SCRIPT;
+< extern int OAG;
+< extern int UPDATE_GRID;
+< extern int EXT_GRAPHICS_SCRIPT;
+<    
+157,162c152,154
+<       schedule( e->get_endtime(), NEXT_SCRIPT, OAG, i,
+< 		NODE);
+<       schedule( e->get_start_time()-0.0, UPDATE_GRID,
+< 		OAG, i, NODE);
+<       schedule( e->get_start_time(), EXT_GRAPHICS_SCRIPT,
+< 		OAG, i, NODE );
+---
+>       schedule( e->get_endtime(), NEXT_SCRIPT, OAG, i, NODE);
+>       schedule( e->get_start_time()-0.0, UPDATE_GRID, OAG, i, NODE);
+>       schedule( e->get_start_time(), EXT_GRAPHICS_SCRIPT, OAG, i, NODE );
+Binary files src/oagman.o and srcV45/oagman.o differ
+Binary files src/oagobj.o and srcV45/oagobj.o differ
+Only in srcV45: object_types.C
+Only in srcV45: object_types.o
+Binary files src/odisim and srcV45/odisim differ
+Binary files src/parsman.o and srcV45/parsman.o differ
+Only in src: ranman.C.new
+Only in srcV45: ranman.C.ok
+Only in src: ranman.C~
+Binary files src/ranman.o and srcV45/ranman.o differ
+Binary files src/ranobj.o and srcV45/ranobj.o differ
+diff -r src/receive_message.C srcV45/receive_message.C
+15,16c15,17
+< extern int COM;
+< extern int RECEIVE_MESSAGE;
+---
+> int C_RECEIVE_MESSAGE::done = 0;
+> int C_RECEIVE_MESSAGE::RECEIVE_MESSAGE = 0;
+> int C_RECEIVE_MESSAGE::COM = 0;
+21c22,32
+< C_RECEIVE_MESSAGE::C_RECEIVE_MESSAGE() {}
+---
+> C_RECEIVE_MESSAGE::C_RECEIVE_MESSAGE() {
+> 
+>   if (!done) {
+>     done = 1;
+>     RECEIVE_MESSAGE = event_type("RECEIVE_MESSAGE");
+>     COM = object_type("COM");
+>   }
+> 
+> //  set_lazy();
+> 
+> }
+Binary files src/receive_message.o and srcV45/receive_message.o differ
+diff -r src/remove_tracks.C srcV45/remove_tracks.C
+13c13,14
+< extern int REMOVE_TRACKS;
+---
+> int C_REMOVE_TRACKS::done = 0;
+> int C_REMOVE_TRACKS::REMOVE_TRACKS = 0;
+18c19,28
+< C_REMOVE_TRACKS::C_REMOVE_TRACKS() {}
+---
+> C_REMOVE_TRACKS::C_REMOVE_TRACKS() {
+> 
+>   if (!done) {
+>     done = 1;
+>     REMOVE_TRACKS = event_type("REMOVE_TRACKS");
+>   }
+> 
+> //  set_lazy();
+> 
+> }
+Binary files src/remove_tracks.o and srcV45/remove_tracks.o differ
+diff -r src/rsd_socket.C srcV45/rsd_socket.C
+11c11,12
+< extern int RSD_SOCKET;
+---
+> int C_RSD_SOCKET::done = 0;
+> int C_RSD_SOCKET::RSD_SOCKET = 0;
+16c17,24
+< C_RSD_SOCKET::C_RSD_SOCKET() {}
+---
+> C_RSD_SOCKET::C_RSD_SOCKET() {
+> 
+>   if (!done) {
+>     done = 1;
+>     RSD_SOCKET = event_type("RSD_SOCKET");
+>   }
+> 
+> }
+Binary files src/rsd_socket.o and srcV45/rsd_socket.o differ
+diff -r src/scan.C srcV45/scan.C
+25,28c25,26
+< extern int COM;
+< extern int GRAPHICS;
+< extern int SEND_MESSAGE;
+< extern int SCAN;
+---
+> int C_SCAN::done = 0;
+> int C_SCAN::SCAN = 0;
+30,32c28
+< static int CCMESS = 1; /* If set to 1, it allows the lanl_bp to shoot.
+< 			  Also slows down the simulation significantly
+< 			  if it is set to 1 */
+---
+> static int CCMESS = 1; // Allows the lanl_bp to shoot
+37c33,40
+< C_SCAN::C_SCAN() {}
+---
+> C_SCAN::C_SCAN() {
+> 
+>   if (!done) {
+>     SCAN = event_type("SCAN");
+>     done = 1;
+>   }
+> 
+> }
+Binary files src/scan.o and srcV45/scan.o differ
+diff -r src/scan_eye.C srcV45/scan_eye.C
+23,27c23,25
+< extern int COM;
+< extern int DSP;
+< extern int GRAPHICS;
+< extern int SCAN_EYE;
+< extern int SEND_MESSAGE;
+---
+> int C_SCAN_EYE::done = 0;
+> int C_SCAN_EYE::SCAN_EYE = 0;
+> int C_SCAN_EYE::DSP = 0;
+36c34,42
+< C_SCAN_EYE::C_SCAN_EYE() {}
+---
+> C_SCAN_EYE::C_SCAN_EYE() {
+> 
+>   if (!done) {
+>     SCAN_EYE = event_type("SCAN_EYE");
+>     DSP = object_type("DSP");
+>     done = 1;
+>   }
+> 
+> }
+Binary files src/scan_eye.o and srcV45/scan_eye.o differ
+diff -r src/scan_gbi.C srcV45/scan_gbi.C
+24,27c24,25
+< extern int COM;
+< extern int GRAPHICS;
+< extern int SEND_MESSAGE;
+< extern int SCAN_GBI;
+---
+> int C_SCAN_GBI::done = 0;
+> int C_SCAN_GBI::SCAN_GBI = 0;
+34c32,39
+< C_SCAN_GBI::C_SCAN_GBI() {}
+---
+> C_SCAN_GBI::C_SCAN_GBI() {
+> 
+>   if (!done) {
+>     SCAN_GBI = event_type("SCAN_GBI");
+>     done = 1;
+>   }
+> 
+> }
+Binary files src/scan_gbi.o and srcV45/scan_gbi.o differ
+Binary files src/scud.o and srcV45/scud.o differ
+diff -r src/send_message.C srcV45/send_message.C
+15,17c15,18
+< extern int SEND_MESSAGE;
+< extern int RECEIVE_MESSAGE;
+< extern int COM;
+---
+> int C_SEND_MESSAGE::done = 0;
+> int C_SEND_MESSAGE::SEND_MESSAGE = 0;
+> int C_SEND_MESSAGE::RECEIVE_MESSAGE = 0;
+> int C_SEND_MESSAGE::COM = 0;
+22c23,34
+< C_SEND_MESSAGE::C_SEND_MESSAGE() {}
+---
+> C_SEND_MESSAGE::C_SEND_MESSAGE() {
+> 
+>   if (!done) {
+>     done = 1;
+>     SEND_MESSAGE = event_type("SEND_MESSAGE");
+>     RECEIVE_MESSAGE = event_type("RECEIVE_MESSAGE");
+>     COM = object_type("COM");
+>   }
+> 
+> //  set_lazy();
+> 
+> }
+Binary files src/send_message.o and srcV45/send_message.o differ
+diff -r src/sensman.C srcV45/sensman.C
+15,19d14
+< extern int EXT_GRAPHICS_DEFINE;
+< extern int SENSOR;
+< extern int TEST_PROX;
+< extern int FIXED_COVERAGE;
+< 
+56a52
+>   SENSOR = object_type("SENSOR");
+214a211
+> 
+Binary files src/sensman.o and srcV45/sensman.o differ
+Binary files src/sensobj.o and srcV45/sensobj.o differ
+Binary files src/sensor_model.o and srcV45/sensor_model.o differ
+diff -r src/shoot.C srcV45/shoot.C
+28c28
+< int main() {
+---
+> main() {
+diff -r src/shoot_gbi.C srcV45/shoot_gbi.C
+17,22c17,23
+< extern int GBI;
+< extern int GRID;
+< extern int KILL;
+< extern int SHOOT_GBI;
+< extern int ADD_S2M;
+< extern int EXT_GRAPHICS_SCRIPT;
+---
+> int C_SHOOT_GBI::done = 0;
+> int C_SHOOT_GBI::SHOOT_GBI = 0;
+> int C_SHOOT_GBI::ADD_S2M = 0;
+> int C_SHOOT_GBI::GRID = 0;
+> int C_SHOOT_GBI::GBI = 0;
+> int C_SHOOT_GBI::KILL = 0;
+> int C_SHOOT_GBI::EXT_GRAPHICS_SCRIPT = 0;
+27c28,40
+< C_SHOOT_GBI::C_SHOOT_GBI() {}
+---
+> C_SHOOT_GBI::C_SHOOT_GBI() {
+> 
+>   if (!done) {
+>     done = 1;
+>     GBI = object_type("GBI");
+>     GRID = object_type("GRID");
+>     KILL = event_type("KILL");
+>     SHOOT_GBI = event_type("SHOOT_GBI");
+>     ADD_S2M = event_type("ADD_S2M");
+>     EXT_GRAPHICS_SCRIPT = event_type("EXT_GRAPHICS_SCRIPT");
+>   }
+> 
+> }
+147,148c160
+<     schedule (GONE*TIME_TAG, EXT_GRAPHICS_SCRIPT, OBJECT_TYPE,
+< 	      LOCAL_ID, NODE);
+---
+>     schedule (GONE*TIME_TAG, EXT_GRAPHICS_SCRIPT, OBJECT_TYPE, LOCAL_ID, NODE);
+Binary files src/shoot_gbi.o and srcV45/shoot_gbi.o differ
+diff -r src/show_mem.C srcV45/show_mem.C
+13,14c13,15
+< extern int GRID;
+< extern int SHOW_MEM;
+---
+> int C_SHOW_MEM::done = 0;
+> int C_SHOW_MEM::SHOW_MEM = 0;
+> int C_SHOW_MEM::GRID = 0;
+19a21,27
+> 
+>   if (!done) {
+>     done = 1;
+>     GRID = object_type("GRID");
+>     SHOW_MEM = event_type("SHOW_MEM");
+>   }
+> 
+20a29
+> 
+Binary files src/show_mem.o and srcV45/show_mem.o differ
+diff -r src/sp_graphics.C srcV45/sp_graphics.C
+27c27
+< #define NOISY
+---
+> //#define NOISY
+39,42c39,42
+<   cycle_time = parameters->get_float("cycle_time");
+<   start_time = parameters->get_float("start_time");
+<   first_time = parameters->get_float("first_time");
+<   tend = parameters->get_float("tend");
+---
+>   cycle_time = (double)parameters->get_float("cycle_time");
+>   start_time = (double)parameters->get_float("start_time");
+>   first_time = (double)parameters->get_float("first_time");
+>   tend = (double)parameters->get_float("tend");
+82d81
+<   fprintf(stderr, "Get ID of %s\n", name);
+84d82
+<   fprintf(stderr, "Alloc the out message space\n");
+86d83
+<   fprintf(stderr, "Fill it up\n");
+93d89
+<   fprintf(stderr, "Let SPEEDES know that GRAPHICS is alive\n");
+97d92
+<     fprintf(stderr, "No answer from SPEEDES, setting GVT = %f\n", gvt);
+257d251
+< 		printf("No. of links is %d\n", nlinks);
+267,268d260
+< 	  printf("  Link %d  from %d to %d\n", i, glink[i].sensor_unique_id,
+< 	          glink[i].track_unique_id);
+Binary files src/sp_graphics.o and srcV45/sp_graphics.o differ
+Binary files src/sp_object.o and srcV45/sp_object.o differ
+Binary files src/sp_state.o and srcV45/sp_state.o differ
+Binary files src/spline6.o and srcV45/spline6.o differ
+Binary files src/ss09.o and srcV45/ss09.o differ
+Binary files src/ss18.o and srcV45/ss18.o differ
+Binary files src/ss24.o and srcV45/ss24.o differ
+Binary files src/stage.o and srcV45/stage.o differ
+diff -r src/stereo_track.C srcV45/stereo_track.C
+639,640c639,640
+<     cerr << "Chi Squared with " << n_detections
+< 	 << " measurements = " << (double)chi_squared << "\n";
+---
+>     fprintf(stderr,"Chi Squared with %d measurements = %lg\n",
+> 	n_detections, chi_squared);
+642c642,643
+<     cerr << "RMS with " << n_detections << " measurements = " << rms << "\n";
+---
+>     fprintf(stderr,"RMS with %d measurements = %g\n",
+> 	n_detections, rms);
+644,645c645
+<     cerr << "Bias = " << (double) bias[0] << ", " << (double)bias[1]
+< 	 << ", " <<(double) bias[2] << "\n";
+---
+>     fprintf(stderr,"Bias = %lg, %lg, %lg\n",bias[0],bias[1],bias[2]);
+Binary files src/stereo_track.o and srcV45/stereo_track.o differ
+Binary files src/stop.o and srcV45/stop.o differ
+Only in src: temp_process
+diff -r src/test.C srcV45/test.C
+4c4
+< int main() {
+---
+> main() {
+diff -r src/test_prox.C srcV45/test_prox.C
+16,18c16,19
+< extern int RANDOM_AIR;
+< extern int SENSOR;
+< extern int TEST_PROX;
+---
+> int C_TEST_PROX::done = 0;
+> int C_TEST_PROX::SENSOR = 0;
+> int C_TEST_PROX::RANDOM_AIR = 0;
+> int C_TEST_PROX::TEST_PROX = 0;
+23c24,33
+< C_TEST_PROX::C_TEST_PROX() {}
+---
+> C_TEST_PROX::C_TEST_PROX() {
+> 
+>   if (!done) {
+>     done = 1;
+>     RANDOM_AIR = object_type("RANDOM_AIR");
+>     SENSOR = object_type("SENSOR");
+>     TEST_PROX = event_type("TEST_PROX");
+>   }
+> 
+> }
+Binary files src/test_prox.o and srcV45/test_prox.o differ
+Only in src: testrsd
+diff -r src/track.C srcV45/track.C
+36c36
+<   fprintf(stderr,"Error , True Error %f\n\n",Terr);
+---
+>   fprintf(stderr,"Error %f, True Error %f\n\n",error,Terr);
+Binary files src/track.o and srcV45/track.o differ
+Binary files src/track1.o and srcV45/track1.o differ
+Binary files src/track2.o and srcV45/track2.o differ
+Binary files src/track3.o and srcV45/track3.o differ
+diff -r src/track_in.C srcV45/track_in.C
+12c12,13
+< extern int TRACK_IN;
+---
+> int C_TRACK_IN::done = 0;
+> int C_TRACK_IN::TRACK_IN = 0;
+17a19,24
+> 
+>   if (!done) {
+>     TRACK_IN = event_type("TRACK_IN");
+>     done = 1;
+>   }
+> 
+18a26
+> 
+Binary files src/track_in.o and srcV45/track_in.o differ
+diff -r src/track_out.C srcV45/track_out.C
+14,16c14,17
+< extern int TRACK_OUT;
+< extern int TRACK_PROC;
+< extern int NOSTATE;
+---
+> int C_TRACK_OUT::done = 0;
+> int C_TRACK_OUT::TRACK_OUT = 0;
+> int C_TRACK_OUT::TRACK_PROC = 0;
+> int C_TRACK_OUT::NOSTATE = 0;
+23c24,33
+< C_TRACK_OUT::C_TRACK_OUT() {}
+---
+> C_TRACK_OUT::C_TRACK_OUT() {
+> 
+>   if (!done) {
+>     TRACK_OUT = event_type("TRACK_OUT");
+>     TRACK_PROC = event_type("TRACK_PROC");
+>     NOSTATE = object_type("NOSTATE");
+>     done = 1;
+>   }
+> 
+> }
+Binary files src/track_out.o and srcV45/track_out.o differ
+diff -r src/track_proc.C srcV45/track_proc.C
+13,14c13,15
+< extern int TRACK_PROC;
+< extern int TRACK_IN;
+---
+> int C_TRACK_PROC::done = 0;
+> int C_TRACK_PROC::TRACK_PROC = 0;
+> int C_TRACK_PROC::TRACK_IN = 0;
+19a21,27
+> 
+>   if (!done) {
+>     TRACK_PROC = event_type("TRACK_PROC");
+>     TRACK_IN = event_type("TRACK_IN");
+>     done = 1;
+>   }
+> 
+20a29
+> 
+Binary files src/track_proc.o and srcV45/track_proc.o differ
+diff -r src/tracker.C srcV45/tracker.C
+27c27
+< int main() {
+---
+> main() {
+diff -r src/update_grid.C srcV45/update_grid.C
+21,24c21,25
+< extern int UPDATE_GRID;
+< extern int ADD_M2G;
+< extern int DEL_MFG;
+< extern int GRID;
+---
+> int C_UPDATE_GRID::done = 0;
+> int C_UPDATE_GRID::UPDATE_GRID = 0;
+> int C_UPDATE_GRID::ADD_M2G = 0;
+> int C_UPDATE_GRID::DEL_MFG = 0;
+> int C_UPDATE_GRID::GRID = 0;
+29c30,40
+< C_UPDATE_GRID::C_UPDATE_GRID() {}
+---
+> C_UPDATE_GRID::C_UPDATE_GRID() {
+> 
+>   if (!done) {
+>     done = 1;
+>     UPDATE_GRID = event_type("UPDATE_GRID");
+>     ADD_M2G = event_type("ADD_M2G");
+>     DEL_MFG = event_type("DEL_MFG");
+>     GRID = object_type("GRID");
+>   }
+> 
+> }
+Binary files src/update_grid.o and srcV45/update_grid.o differ

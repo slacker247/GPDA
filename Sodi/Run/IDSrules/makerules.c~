@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <memory.h>
+#include <math.h> 
+#include <time.h>
+
+main(int argc, char *argv[])
+{
+FILE *sitefp;
+int  i;
+char tgttemp[1024];
+char source[32];
+char chnext[32];
+char chagain[32];
+
+	sitefp = fopen("Intel.file", "r");
+
+	fgets(tgttemp, 1024, sitefp);
+	fgets(tgttemp, 1024, sitefp);
+	fgets(tgttemp, 1024, sitefp);
+	printf("%s\n", tgttemp);
+	for (i=0; i<3; i++) {
+	  sscanf(tgttemp, "%s", source);
+	  printf("%s\n", source);
+	}
+
+	fclose(sitefp);
+}

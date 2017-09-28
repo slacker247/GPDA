@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC txt2html attempt"; flags:A+; uricontent:"/txt2html.cgi"; nocase; content:"/../../../../"; classtype:attempted-admin; sid:1305; rev:1;)

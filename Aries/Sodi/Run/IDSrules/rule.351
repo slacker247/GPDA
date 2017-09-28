@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Photuris (Valid Security Parameters, But Authentication Failed)"; itype: 40; icode: 2; sid:431;  classtype:misc-activity; rev:4;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI day5datanotifier.cgi access";flags: A+; uricontent:"/day5datanotifier.cgi"; nocase;classtype:attempted-recon; sid:864; rev:1;)

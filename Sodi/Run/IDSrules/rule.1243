@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC whisker head";flags: A+; content:"HEAD/./"; classtype:attempted-recon; sid:1139; rev:1;)

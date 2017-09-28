@@ -1,0 +1,40 @@
+# (C) Copyright 2001, Martin Roesch, Brian Caswell, et al.  All rights reserved.
+# $Id: web-coldfusion.rules,v 1.11 2001/10/29 01:52:54 roesch Exp $
+#---------------------
+# WEB-COLDFUSION RULES
+#---------------------
+#
+
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION cfcache.map access";flags: A+; uricontent:"/cfcache.map"; nocase; reference:bugtraq,917; reference:cve,CVE-2000-0057; classtype:attempted-recon; sid:903; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION exampleapp application.cfm";flags: A+; uricontent:"/cfdocs/exampleapp/email/application.cfm"; nocase;reference:bugtraq,1021; classtype:attempted-recon; sid:904; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION application.cfm access";flags: A+; uricontent:"/cfdocs/exampleapp/publish/admin/application.cfm"; nocase;reference:bugtraq,1021; classtype:attempted-recon; sid:905; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION getfile.cfm access";flags: A+; uricontent:"/cfdocs/exampleapp/email/getfile.cfm"; nocase;reference:bugtraq,229; classtype:attempted-recon; sid:906; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION addcontent.cfm access";flags: A+; uricontent:"/cfdocs/exampleapp/publish/admin/addcontent.cfm"; nocase; classtype:attempted-recon; sid:907; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION administrator access"; uricontent:"/cfide/administrator/index.cfm"; nocase; flags:A+; classtype:attempted-recon; sid:908; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION datasource username attempt";flags: A+; content:"CF_SETDATASOURCEUSERNAME()"; nocase; reference:bugtraq,550; classtype:web-application-attack; sid:909; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION fileexists.cfm access";flags: A+; uricontent:"/cfdocs/snippets/fileexists.cfm"; nocase; reference:bugtraq,550; classtype:attempted-recon; sid:910; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION exprcalc access";flags: A+; uricontent:"/cfdocs/expeval/exprcalc.cfm"; nocase; reference:cve,CVE-1999-0455; reference:bugtraq,550; classtype:attempted-recon; sid:911; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION parks access"; flags: A+; uricontent:"/cfdocs/examples/parks/detail.cfm"; nocase; reference:bugtraq,550; classtype:attempted-recon; sid:912; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION cfappman access"; flags: A+; uricontent:"/cfappman/index.cfm"; nocase; reference:bugtraq,550; classtype:attempted-recon; sid:913; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION beaninfo access";flags: A+; uricontent:"/cfdocs/examples/cvbeans/beaninfo.cfm"; nocase; reference:bugtraq,550; classtype:attempted-recon; sid:914; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION evaluate.cfm access";flags: A+; uricontent:"/cfdocs/snippets/evaluate.cfm"; nocase; reference:bugtraq,550; classtype:attempted-recon; sid:915; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION getodbcdsn access";flags: A+; content:"CFUSION_GETODBCDSN()"; nocase; reference:bugtraq,550; classtype:web-application-attack; sid:916; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION db connections flush attempt";flags: A+; content:"CFUSION_DBCONNECTIONS_FLUSH()"; nocase; reference:bugtraq,550; classtype:web-application-attack; sid:917; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION expeval access";flags: A+; uricontent:"/cfdocs/expeval/"; nocase; reference:bugtraq,550; reference:cve,CAN-1999-0477; classtype:attempted-user; sid:918; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION datasource passwordattempt";flags: A+; content:"CF_SETDATASOURCEPASSWORD()"; nocase; reference:bugtraq,550; classtype:web-application-attack; sid:919; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION datasource attempt";flags: A+; content:"CF_ISCOLDFUSIONDATASOURCE()"; nocase; reference:bugtraq,550; classtype:web-application-attack; sid:920; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION admin encrypt attempt";flags: A+; content:"CFUSION_ENCRYPT()"; nocase; reference:bugtraq,550; classtype:web-application-attack; sid:921; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION displayfile access";flags: A+; uricontent:"/cfdocs/expeval/displayopenedfile.cfm"; nocase; reference:bugtraq,550; classtype:web-application-attack; sid:922; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION getodbcin attempt";flags: A+; content:"CFUSION_GETODBCINI()"; nocase; reference:bugtraq,550; classtype:web-application-attack; sid:923; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION admin decrypt attempt";flags: A+; content:"CFUSION_DECRYPT()"; nocase; reference:bugtraq,550; classtype:web-application-attack; sid:924; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION mainframeset access";flags: A+; uricontent:"/cfdocs/examples/mainframeset.cfm"; nocase; reference:bugtraq,550; classtype:attempted-recon; sid:925; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION set odbc ini attempt";flags: A+; content:"CFUSION_SETODBCINI()"; nocase;reference:bugtraq,550; classtype:web-application-attack; sid:926; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION settings refresh attempt";flags: A+; content:"CFUSION_SETTINGS_REFRESH()"; nocase;reference:bugtraq,550; classtype:web-application-attack; sid:927; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION exampleapp access";flags: A+; uricontent:"/cfdocs/exampleapp/"; nocase; classtype:attempted-recon; sid:928; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION verify mai access";flags: A+; content:"CFUSION_VERIFYMAIL()"; nocase; reference:bugtraq,550; classtype:attempted-user; sid:929; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION snippets attempt attempt"; flags:A+; uricontent:"/cfdocs/snippets/"; nocase; reference:bugtraq,550; classtype:attempted-recon; sid:930; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION cfmlsyntaxcheck.cfm access";flags: A+; uricontent:"/cfdocs/cfmlsyntaxcheck.cfm"; nocase; reference:bugtraq,550; classtype:attempted-recon; sid:931; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION application.cfm access"; flags: A+; uricontent: "/application.cfm"; nocase; reference:bugtraq,550; reference:arachnids,268; reference:cve,CAN-2000-0189; classtype:attempted-recon; sid:932; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION onrequestend.cfm access"; flags: A+; uricontent: "/onrequestend.cfm"; nocase; reference:bugtraq,550; reference:arachnids,269; reference:cve,CAN-2000-0189; classtype:attempted-recon; sid:933; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION startstop DOS access"; uricontent:"/cfide/administrator/startstop.html"; nocase; flags: A+; reference:bugtraq,247; classtype:web-application-attack; sid:935; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION gettempdirectory.cfm access ";flags: A+; uricontent:"/cfdocs/snippets/gettempdirectory.cfm"; nocase; reference:bugtraq,550; classtype:attempted-recon; sid:936; rev:1;)

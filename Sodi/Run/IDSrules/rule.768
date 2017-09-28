@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS kill command attempt"; flags:A+; content:"/bin/kill";nocase; sid:1335; rev:1; classtype:web-application-attack;)

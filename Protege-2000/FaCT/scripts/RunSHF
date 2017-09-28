@@ -1,0 +1,21 @@
+#!/bin/sh
+# The reasoner is set within this file instead of using
+# the REASONER variable defined in the 'environment' script.
+
+. `dirname $0`/environment
+
+REASONER=fact
+echo "Running ${REASONER} Lisp server in directory ${LISPDIR}"
+APP="${REASONER}-app"
+
+
+# Arguments: -- [-nocorba] [-startjava] [-file <filename>] [-name <string>] [-nsIOR <string>] [-http <port>]
+
+cmd="${LISPDIR}/${APP}/${APP}"
+appargs="-startjava -http ${NSPORT} -name ${LISPNAME}"
+
+if [ -n "$DEBUG" ]; then
+    echo "${cmd} -- ${appargs}"
+else
+    eval exec ${cmd} -- ${appargs}
+fi

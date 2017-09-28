@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC SmartWin CyberOffice Shopping Cart access";flags: A+; uricontent:"_private/shopping_cart.mdb"; reference:bugtraq,1734; classtype:web-application-attack; sid:1098; rev:2;)

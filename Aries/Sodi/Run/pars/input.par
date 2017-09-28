@@ -1,0 +1,10 @@
+parameters {
+  string input_file korea.jdn
+  logical label_track T
+  logical drop_track T
+  logical show_r2 T
+  logical keep_links F
+  int delay_secs 0
+  float starttime 43000.000000
+  float endtime 100000.000000
+}

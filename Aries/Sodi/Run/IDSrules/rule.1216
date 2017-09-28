@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC responder.cgi access"; flags:A+; uricontent:"/responder.cgi"; classtype:attempted-recon; sid:1208; rev:1;)

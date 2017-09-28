@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS Unicode2.pl script (File permission canonicalization)"; uricontent:"/sensepost.exe"; flags: A+; nocase; classtype:web-application-activity; sid:989; rev:2;)

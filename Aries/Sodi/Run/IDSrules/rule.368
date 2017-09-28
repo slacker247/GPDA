@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Timestamp Request"; itype: 13; icode: 0; sid:453;  classtype:misc-activity; rev:4;)

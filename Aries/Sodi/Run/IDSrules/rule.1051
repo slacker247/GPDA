@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS srchadm access";flags: A+; uricontent:"/srchadm"; nocase; classtype:web-application-activity; sid:1040; rev:2;)

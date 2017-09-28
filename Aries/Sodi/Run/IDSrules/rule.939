@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION startstop DOS access"; uricontent:"/cfide/administrator/startstop.html"; nocase; flags: A+; reference:bugtraq,247; classtype:web-application-attack; sid:935; rev:2;)

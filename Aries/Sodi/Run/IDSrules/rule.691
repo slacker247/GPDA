@@ -1,0 +1,1 @@
+alert tcp any any -> any 25 (msg:"Virus - Possible QAZ Worm Calling Home"; content:"nongmin_cn"; reference:MCAFEE,98775; sid:733;  classtype:misc-activity; rev:3;)

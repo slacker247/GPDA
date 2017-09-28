@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI wais.p access";flags: A+; uricontent:"/wais.pl";nocase;classtype:attempted-recon; sid:850; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI bash access";flags: A+; uricontent:"/bash"; nocase; reference:cve,CAN-1999-0509; classtype:attempted-recon; sid:885; rev:1;)

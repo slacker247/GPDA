@@ -1,0 +1,136 @@
+<!-- ********************************************************************** -->
+<!--                                   PrologTab                            -->
+<!--                                   build file                           -->
+<!-- ********************************************************************** -->
+
+<project name="PrologTab" default="all" basedir=".">
+  <property name="name" value="prologtab" />  
+  <property name="version" value="0.1.0" />  
+  <property name="build" value="build" />
+  <property name="lib" value="lib" />
+  <property name="dist" value="dist" />
+  <property name="source" value="src" />
+  <property name="doc" value="doc" />
+  <property name="deprecation" value="off" />
+  
+  <property name="package-zip" value="${name}-${version}.zip" />
+  <property name="plugin-jar" value="${name}-${version}.jar" />
+  <property name="pprj-name" value="PrologTabProject" />
+  <property name="protege-home" value="e:/Program Files/Protege-2000/" />
+  
+  <property name="protege-jar" value="protege.jar" />
+  <property name="gnuprolog-mods" value="gnuprolog-mods" />
+  <property name="gnuprolog-jar" value="gnuprolog-0.1.0-with-mods.jar" />
+  
+  <!-- =============================== -->
+  <!--     CLASSPATH used to build     -->
+  <!-- =============================== -->
+
+  <path id="project.class.path">
+     <pathelement path="${protege-home}/${protege-jar}" />
+     <pathelement path="${gnuprolog-mods}/${gnuprolog-jar}" />
+  </path>
+ 
+  <target name="clean">
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+    <delete file="${package-zip}"/>
+  </target>
+
+  <target name="init">
+    <tstamp/>
+    <mkdir dir="${build}"/>
+    <mkdir dir="${build}/plugin"/>
+    <mkdir dir="${dist}"/>
+  </target>
+  
+  <target name="src_zip" depends="init">
+    <zip zipfile="${dist}/${name}-src-${version}.zip" basedir="${basedir}/${source}" includes="protegex/**/*">
+    </zip> 
+  </target>
+
+  <target name="gnuprolog_mods_zip" depends="init">
+    <zip zipfile="${dist}/${gnuprolog-mods}.zip" basedir="${basedir}/${gnuprolog-mods}" includes="gnu/**/*">
+    </zip> 
+  </target>
+
+  <target name="project_zip" depends="init">
+    <zip zipfile="${dist}/${name}-pprj-${version}.zip" basedir="${basedir}/${source}" includes="${pprj-name}.*">
+    </zip> 
+  </target>
+
+  <target name="complete_zip" depends="src_zip,project_zip,gnuprolog_mods_zip,build">
+    <copy file="build.xml" todir="${dist}" />
+    <copy file="readme.txt" todir="${dist}" />
+    <copy file="${gnuprolog-mods}/${gnuprolog-jar}" todir="${dist}" />
+    <zip zipfile="${package-zip}" basedir="${dist}">
+    </zip> 
+  </target>
+
+  <target name="javadoc" depends="init">
+    <delete dir="${build}/apidocs"/>
+    <mkdir dir="${build}/apidocs"/>
+    <javadoc private="true"
+             destdir="${build}/apidocs"
+             sourcepath="${basedir}/${source}"
+             packagenames="protegex.prologtab.*,protegex.prologtab.gnuprolog.*"
+             classpath="${project.class.path}"
+             author="true"
+             use="true"
+             header="&lt;a href='http://prologtab.sourceforge.net'&gt; Prolog Tab Plug-in &lt;/a&gt;"
+             footer="&lt;a href='http://prologtab.sourceforge.net'&gt; Prolog Tab Plug-in &lt;/a&gt;"
+    />
+  </target>
+
+  <target name="devel" depends="init"
+    description="Compiles all java files." >
+    <javac srcdir="${source}" 
+           destdir="${build}/plugin"
+           debug="off"
+           deprecation="${deprecation}" 
+           optimize="on" >
+      <classpath refid="project.class.path" />
+    </javac>
+  </target>
+
+   <target name="jar" depends="devel" 
+    description="Build the jar file." >
+    
+    <!-- Create the manifest file -->
+    <touch file="${build}/plugin-manifest.mf" />
+    <echo file="${build}/plugin-manifest.mf">Manifest-Version: 1.0&#13;&#10;&#13;&#10;Name: protegex.prologtab.gnuprolog.GNUPrologJavaTab.class&#13;&#10;Tab-Widget: True&#13;&#10;</echo>    
+
+
+    <jar jarfile="${dist}/${plugin-jar}" 
+         manifest="${build}/plugin-manifest.mf" 
+            basedir="${build}/plugin">
+      <fileset dir="${build}/plugin" includes="/protegex/**" />
+    </jar>
+    <delete file="${build}/plugin-manifest.mf" />
+
+ </target>
+
+  <target name="help">
+  <echo>
+---------------------------------------------------------------------
+PrologTab build file...
+---------------------------------------------------------------------
+
+Build options :
+jar      : Create jar file for plugin compiled in release mode.
+build    : Clean and build plugin
+clean    : Remove all compiled and generated files
+all      : Clean, build and install plugin
+    </echo>
+  </target>
+
+  <target name="build" depends="clean,jar" 
+    description="Build the plugin jar file." />
+
+ <target name="all" depends="build,complete_zip" 
+    description="Build the plugin jar file and install into the Protege plugins directory.">
+    <copy file="${dist}/${plugin-jar}" tofile="${protege-home}/plugins/${plugin-jar}" />
+    <copy file="${gnuprolog-mods}/${gnuprolog-jar}" tofile="${protege-home}/plugins/${gnuprolog-jar}" />
+ </target>
+
+</project>

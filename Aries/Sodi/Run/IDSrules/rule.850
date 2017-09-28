@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI view-source directory traversal";flags: A+; uricontent:"/view-source"; nocase; content:"../"; nocase; reference:cve,CVE-1999-0174;classtype:web-application-attack; sid:848; rev:2;)

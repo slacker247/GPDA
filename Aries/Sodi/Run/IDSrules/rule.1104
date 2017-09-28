@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC eXtropia webstore directory traversal"; flags: A+; uricontent:"/web_store.cgi"; content:"page=../"; reference:bugtraq,1774; classtype:web-application-attack; sid:1088; rev:2;)

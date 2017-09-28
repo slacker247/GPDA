@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC ministats admin access"; flags:A+; uricontent:"/ministats/admin.cgi"; nocase; classtype:attempted-recon; sid:1215; rev:1;)

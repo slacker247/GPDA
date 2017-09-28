@@ -1,0 +1,1408 @@
+<== Focus MAIN
+==> Focus MAIN
+:== ?*defcon* ==> 5 <== 5
+:== ?*rp* ==> 2 <== 2
+:== ?*dea* ==> "Hold" <== "Hold"
+:== ?*roe* ==> "N. America" <== "N. America"
+:== ?*msn_obj* ==> "Current" <== "Current"
+:== ?*bp* ==> "General Umberella" <== "General Umberella"
+:== ?*ccc_defcon* ==> 5 <== 5
+:== ?*ccc_rp* ==> 2 <== 2
+:== ?*ccc_dea* ==> "Hold" <== "Hold"
+:== ?*ccc_msn_obj* ==> "Current" <== "Current"
+:== ?*ccc_bp* ==> "General Umberella" <== "General Umberella"
+:== ?*ccc_roe* ==> "N. America" <== "N. America"
+:== ?*bmdc_defcon* ==> 5 <== 5
+:== ?*bmdc_rp* ==> 2 <== 2
+:== ?*bmdc_dea* ==> "Hold" <== "Hold"
+:== ?*bmdc_msn_obj* ==> "Current" <== "Current"
+:== ?*bmdc_bp* ==> "General Umberella" <== "General Umberella"
+==> instance [initial-object] of INITIAL-OBJECT
+==> instance [CCC_DO] of MAIN::PLAYER
+==> instance [FU_DR] of MAIN::PLAYER
+==> f-0     (initial-fact) CF 1.00 
+==> f-1     (phase_control (phase nil) (phase-after initialize monitor)) CF 1.00 
+==> f-2     (phase_control (phase nil) (phase-after monitor assess)) CF 1.00 
+==> f-3     (phase_control (phase nil) (phase-after assess replan)) CF 1.00 
+==> f-4     (phase_control (phase nil) (phase-after replan execute)) CF 1.00 
+==> f-5     (Authority (change DEFCON)) CF 1.00 
+==> f-6     (Authority (change DEA)) CF 1.00 
+==> f-7     (Authority (change RP)) CF 1.00 
+==> f-8     (Authority (change ROE)) CF 1.00 
+==> f-9     (Contact (hierarchy subordinate) (ID "BMDC" "DR")) CF 1.00 
+==> f-10    (Contact (hierarchy subordinate) (ID "FU" "DR")) CF 1.00 
+==> f-11    (Weapons (GBI_farm_num 1101)) CF 1.00 
+==> f-12    (Authority (change DEFCON)) CF 1.00 
+==> f-13    (Authority (change MSN_OBJ)) CF 1.00 
+==> f-14    (Authority (change BP)) CF 1.00 
+==> f-15    (Authority (change DEA)) CF 1.00 
+==> f-16    (Authority (change RP)) CF 1.00 
+==> f-17    (Contact (hierarchy superior) (ID "CCC" "DO")) CF 1.00 
+==> f-18    (Contact (hierarchy subordinate) (ID "FU" "DR")) CF 1.00 
+==> f-19    (Contact (hierarchy superior) (ID "CCC" "DO")) CF 1.00 
+==> f-20    (Contact (hierarchy superior) (ID "BMDC" "DR")) CF 1.00 
+==> instance [msg_body] of INTEGER_PROMPT
+==> f-21    (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> instance [SimCmdr] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+==> instance [msg_header] of MSG_HEADER
+==> instance [msg] of MESSAGE
+FIRE    1 Get_OP: [msg_header],f-21
+==> f-22    (opcode 0) CF 1.00 
+FIRE    2 OP_INIT_SC: f-21,f-22
+==> f-23    (node "BMDC") CF 1.00 
+==> f-24    (position "DR") CF 1.00 
+==> f-25    (active 1) CF 1.00 
+==> f-26    (opcode 502) CF 1.00 
+FIRE    3 change-phase: f-21,f-1
+<== f-21    (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-27    (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    4 change-phase: f-27,f-2
+<== f-27    (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-28    (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    5 change-phase: f-28,f-3
+<== f-28    (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-29    (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE    6 change-phase: f-29,f-4
+<== f-29    (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-30    (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE    7 Remove_Opcode: f-30,f-22
+<== f-22    (opcode 0) CF 1.00 
+FIRE    8 Return_Header: f-30,f-26
+FIRE    9 OP_RTRN_ACK: f-30,f-26,[msg_header]
+<== f-26    (opcode 502) CF 1.00 
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of INTEGER_PROMPT
+==> f-31    (return message) CF 1.00 
+FIRE   10 Return_Message: f-30,f-31
+<== f-30    (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN
+==> instance [msn_obj] of MSN_OBJ
+==> f-32    (phase_control (phase initialize) (phase-after)) CF 1.00 
+<== instance [SimCmdr] of PLAYER
+==> instance [SimCmdr] of PLAYER
+<== instance [BattlePlanner] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+<== instance [msg_header] of MSG_HEADER
+==> instance [msg_header] of MSG_HEADER
+<== instance [msg] of MESSAGE
+==> instance [msg] of MESSAGE
+==> Focus MAIN
+FIRE    1 Get_OP: [msg_header],f-32
+==> f-33    (opcode 301) CF 1.00 
+FIRE    2 OP_INIT_MO: f-32,f-33
+==> instance [gen1] of MSN_OBJ
+<== instance [msn_obj] of MSN_OBJ
+==> f-34    (opcode 502) CF 1.00 
+FIRE    3 change-phase: f-32,f-1
+<== f-32    (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-35    (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    4 change-phase: f-35,f-2
+<== f-35    (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-36    (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    5 change-phase: f-36,f-3
+<== f-36    (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-37    (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE    6 change-phase: f-37,f-4
+<== f-37    (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-38    (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE    7 Remove_Opcode: f-38,f-33
+<== f-33    (opcode 301) CF 1.00 
+FIRE    8 Return_Header: f-38,f-34
+FIRE    9 OP_RTRN_ACK: f-38,f-34,[msg_header]
+<== f-34    (opcode 502) CF 1.00 
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of INTEGER_PROMPT
+FIRE   10 Return_Message: f-38,f-31
+<== f-38    (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN
+==> instance [msn_obj] of MSN_OBJ
+==> f-39    (phase_control (phase initialize) (phase-after)) CF 1.00 
+<== instance [SimCmdr] of PLAYER
+==> instance [SimCmdr] of PLAYER
+<== instance [BattlePlanner] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+<== instance [msg_header] of MSG_HEADER
+==> instance [msg_header] of MSG_HEADER
+<== instance [msg] of MESSAGE
+==> instance [msg] of MESSAGE
+==> Focus MAIN
+FIRE    1 Get_OP: [msg_header],f-39
+==> f-40    (opcode 301) CF 1.00 
+FIRE    2 OP_INIT_MO: f-39,f-40
+==> instance [gen2] of MSN_OBJ
+<== instance [msn_obj] of MSN_OBJ
+==> f-41    (opcode 502) CF 1.00 
+FIRE    3 change-phase: f-39,f-1
+<== f-39    (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-42    (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    4 change-phase: f-42,f-2
+<== f-42    (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-43    (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    5 change-phase: f-43,f-3
+<== f-43    (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-44    (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE    6 change-phase: f-44,f-4
+<== f-44    (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-45    (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE    7 Remove_Opcode: f-45,f-40
+<== f-40    (opcode 301) CF 1.00 
+FIRE    8 Return_Header: f-45,f-41
+FIRE    9 OP_RTRN_ACK: f-45,f-41,[msg_header]
+<== f-41    (opcode 502) CF 1.00 
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of INTEGER_PROMPT
+FIRE   10 Return_Message: f-45,f-31
+<== f-45    (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN
+==> instance [bp] of BATTLE_PLAN
+==> f-46    (phase_control (phase initialize) (phase-after)) CF 1.00 
+<== instance [SimCmdr] of PLAYER
+==> instance [SimCmdr] of PLAYER
+<== instance [BattlePlanner] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+<== instance [msg_header] of MSG_HEADER
+==> instance [msg_header] of MSG_HEADER
+<== instance [msg] of MESSAGE
+==> instance [msg] of MESSAGE
+==> Focus MAIN
+FIRE    1 Get_OP: [msg_header],f-46
+==> f-47    (opcode 302) CF 1.00 
+FIRE    2 OP_INIT_BP: f-46,f-47
+==> instance [gen3] of BATTLE_PLAN
+<== instance [bp] of BATTLE_PLAN
+==> f-48    (opcode 502) CF 1.00 
+FIRE    3 change-phase: f-46,f-1
+<== f-46    (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-49    (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    4 change-phase: f-49,f-2
+<== f-49    (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-50    (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    5 change-phase: f-50,f-3
+<== f-50    (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-51    (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE    6 change-phase: f-51,f-4
+<== f-51    (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-52    (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE    7 Remove_Opcode: f-52,f-47
+<== f-47    (opcode 302) CF 1.00 
+FIRE    8 Return_Header: f-52,f-48
+FIRE    9 OP_RTRN_ACK: f-52,f-48,[msg_header]
+<== f-48    (opcode 502) CF 1.00 
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of INTEGER_PROMPT
+FIRE   10 Return_Message: f-52,f-31
+<== f-52    (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN
+==> instance [bp] of BATTLE_PLAN
+==> f-53    (phase_control (phase initialize) (phase-after)) CF 1.00 
+<== instance [SimCmdr] of PLAYER
+==> instance [SimCmdr] of PLAYER
+<== instance [BattlePlanner] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+<== instance [msg_header] of MSG_HEADER
+==> instance [msg_header] of MSG_HEADER
+<== instance [msg] of MESSAGE
+==> instance [msg] of MESSAGE
+==> Focus MAIN
+FIRE    1 Get_OP: [msg_header],f-53
+==> f-54    (opcode 302) CF 1.00 
+FIRE    2 OP_INIT_BP: f-53,f-54
+==> instance [gen4] of BATTLE_PLAN
+<== instance [bp] of BATTLE_PLAN
+==> f-55    (opcode 502) CF 1.00 
+FIRE    3 change-phase: f-53,f-1
+<== f-53    (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-56    (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    4 change-phase: f-56,f-2
+<== f-56    (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-57    (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    5 change-phase: f-57,f-3
+<== f-57    (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-58    (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE    6 change-phase: f-58,f-4
+<== f-58    (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-59    (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE    7 Remove_Opcode: f-59,f-54
+<== f-54    (opcode 302) CF 1.00 
+FIRE    8 Return_Header: f-59,f-55
+FIRE    9 OP_RTRN_ACK: f-59,f-55,[msg_header]
+<== f-55    (opcode 502) CF 1.00 
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of INTEGER_PROMPT
+FIRE   10 Return_Message: f-59,f-31
+<== f-59    (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN
+==> instance [wa] of WEAPONS
+==> instance [gbi_farm] of GBI_FARM
+==> instance [gen5] of GBI_FARM
+<== instance [gbi_farm] of GBI_FARM
+==> instance [gbi_farm] of GBI_FARM
+==> instance [gen6] of GBI_FARM
+<== instance [gbi_farm] of GBI_FARM
+==> instance [gbi_farm] of GBI_FARM
+==> instance [gen7] of GBI_FARM
+<== instance [gbi_farm] of GBI_FARM
+==> instance [gbi_farm] of GBI_FARM
+==> instance [gen8] of GBI_FARM
+<== instance [gbi_farm] of GBI_FARM
+==> instance [gbi_farm] of GBI_FARM
+==> instance [gen9] of GBI_FARM
+<== instance [gbi_farm] of GBI_FARM
+==> f-60    (phase_control (phase initialize) (phase-after)) CF 1.00 
+<== instance [SimCmdr] of PLAYER
+==> instance [SimCmdr] of PLAYER
+<== instance [BattlePlanner] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+<== instance [msg_header] of MSG_HEADER
+==> instance [msg_header] of MSG_HEADER
+<== instance [msg] of MESSAGE
+==> instance [msg] of MESSAGE
+==> Focus MAIN
+FIRE    1 Get_OP: [msg_header],f-60
+==> f-61    (opcode 303) CF 1.00 
+FIRE    2 OP_INIT_WA: f-60,f-61,[gen9]
+==> f-62    (wa 60) CF 1.00 
+==> f-63    (opcode 502) CF 1.00 
+FIRE    3 OP_INIT_WA: f-60,f-61,[gen8]
+==> f-64    (wa 25) CF 1.00 
+FIRE    4 OP_INIT_WA: f-60,f-61,[gen7]
+==> f-65    (wa 6) CF 1.00 
+FIRE    5 OP_INIT_WA: f-60,f-61,[gen6]
+==> f-66    (wa 1) CF 1.00 
+FIRE    6 OP_INIT_WA: f-60,f-61,[gen5]
+==> f-67    (wa 2) CF 1.00 
+FIRE    7 change-phase: f-60,f-1
+<== f-60    (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-68    (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    8 change-phase: f-68,f-2
+<== f-68    (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-69    (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    9 change-phase: f-69,f-3
+<== f-69    (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-70    (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   10 change-phase: f-70,f-4
+<== f-70    (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-71    (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   11 Remove_Opcode: f-71,f-61
+<== f-61    (opcode 303) CF 1.00 
+FIRE   12 Return_Header: f-71,f-63
+FIRE   13 OP_RTRN_ACK: f-71,f-63,[msg_header]
+<== f-63    (opcode 502) CF 1.00 
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of INTEGER_PROMPT
+FIRE   14 Return_Message: f-71,f-31
+<== f-71    (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN
+==> instance [bp] of BATTLE_PLAN
+==> instance [msn_obj] of MSN_OBJ
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of STATE
+==> f-72    (phase_control (phase initialize) (phase-after)) CF 1.00 
+<== instance [SimCmdr] of PLAYER
+==> instance [SimCmdr] of PLAYER
+<== instance [BattlePlanner] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+<== instance [msg_header] of MSG_HEADER
+==> instance [msg_header] of MSG_HEADER
+<== instance [msg] of MESSAGE
+==> instance [msg] of MESSAGE
+==> Focus MAIN
+FIRE    1 Get_OP: [msg_header],f-72
+==> f-73    (opcode 100) CF 1.00 
+FIRE    2 OP_DB_STATUS: f-72,f-73,[msg_body]
+:== ?*defcon* ==> 5 <== 5
+:== ?*rp* ==> 2 <== 2
+:== ?*dea* ==> "Hold" <== "Hold"
+:== ?*roe* ==> "N. America" <== "N. America"
+:== ?*msn_obj* ==> "Current" <== "Current"
+:== ?*bp* ==> "General Umberella" <== "General Umberella"
+==> f-74    (opcode 502) CF 1.00 
+FIRE    3 change-phase: f-72,f-1
+<== f-72    (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-75    (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    4 change-phase: f-75,f-2
+<== f-75    (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-76    (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    5 change-phase: f-76,f-3
+<== f-76    (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-77    (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE    6 change-phase: f-77,f-4
+<== f-77    (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-78    (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE    7 Remove_Opcode: f-78,f-73
+<== f-73    (opcode 100) CF 1.00 
+FIRE    8 Return_Header: f-78,f-74
+FIRE    9 OP_RTRN_ACK: f-78,f-74,[msg_header]
+<== f-74    (opcode 502) CF 1.00 
+<== instance [msg_body] of STATE
+==> instance [msg_body] of INTEGER_PROMPT
+FIRE   10 Return_Message: f-78,f-31
+<== f-78    (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of MISSILE_TRACK
+==> f-79    (phase_control (phase initialize) (phase-after)) CF 1.00 
+<== instance [SimCmdr] of PLAYER
+==> instance [SimCmdr] of PLAYER
+<== instance [BattlePlanner] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+<== instance [msg_header] of MSG_HEADER
+==> instance [msg_header] of MSG_HEADER
+<== instance [msg] of MESSAGE
+==> instance [msg] of MESSAGE
+==> Focus MAIN
+FIRE    1 Get_OP: [msg_header],f-79
+==> f-80    (opcode 130) CF 1.00 
+FIRE    2 change-phase: f-79,f-1
+<== f-79    (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-81    (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 OP_MISSILE_TRACK_NEW: f-81,f-80,[msg_body],
+==> f-82    (track_id "11:22:33") CF 1.00 
+==> instance [gen10] of MISSILE_TRACK
+==> f-83    (assess ROE) CF 1.00 
+==> f-84    (assess DEA) CF 1.00 
+==> f-85    (assess DEFCON) CF 1.00 
+==> f-86    (assess RP) CF 1.00 
+FIRE    4 OP_MISSILE_TRACK_UPDATE: f-81,f-80,[msg_body],[gen10]
+<== f-80    (opcode 130) CF 1.00 
+<== instance [gen10] of MISSILE_TRACK
+==> instance [gen10] of MISSILE_TRACK
+FIRE    5 change-phase: f-81,f-2
+<== f-81    (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-87    (phase_control (phase assess) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+==> Focus CCC_DO from BMDC_DR
+FIRE    6 roe_assess: f-87,f-8,[msg_body],f-83
+:== ?*ccc_roe* ==> "CONUS" <== "N. America"
+ROE is CONUS
+<== Focus CCC_DO to BMDC_DR
+FIRE    7 dea_assess: f-87,[MAIN::msg_body],f-84
+<== f-84    (assess DEA) CF 1.00 
+:== ?*bmdc_dea* ==> "Free" <== "Hold"
+==> f-88    (change DEA) CF 1.00 
+<== Focus BMDC_DR to MAIN
+FIRE    8 rp_assess: f-87,f-86
+<== f-86    (assess RP) CF 1.00 
+==> f-89    (change RP) CF 1.00 
+FIRE    9 change-phase: f-87,f-3
+<== f-87    (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-90    (phase_control (phase replan) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+==> Focus CCC_DO from BMDC_DR
+FIRE   10 Propose_ROE: f-90,f-8,f-83,[SimCmdr],f-9
+==> instance [gen11] of MAIN::MSG_HEADER
+==> f-91    (change ROE) CF 1.00 
+<== Focus CCC_DO to BMDC_DR
+FIRE   11 Propose_DEA: f-90,f-15,[MAIN::FU_DR],f-18
+==> instance [gen12] of MAIN::MSG_HEADER
+FIRE   12 Propose_DEA: f-90,f-15,[MAIN::CCC_DO],f-17
+==> instance [gen13] of MAIN::MSG_HEADER
+<== Focus BMDC_DR to MAIN
+FIRE   13 Ack_SC: f-90,[gen13],[CCC_DO]
+==> f-92    (opcode 103) CF 1.00 
+==> Focus CCC_DO from MAIN
+FIRE   14 CCC_Ack: f-90,f-92,[gen13]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+FIRE   15 Propose_ROE: f-90,f-8,f-83,[FU_DR],f-10
+==> instance [gen14] of MAIN::MSG_HEADER
+<== Focus CCC_DO to MAIN
+FIRE   16 Ack_SC: f-90,[gen14],[FU_DR]
+==> f-93    (opcode 104) CF 1.00 
+==> Focus FU_DR from MAIN
+FIRE   17 FU_Ack: f-90,f-93,[gen14]
+<== instance [Ack_body] of INTEGER_PROMPT
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+<== instance [Ack_msg] of MESSAGE
+==> instance [Ack_msg] of MAIN::MESSAGE
+FIRE   18 FU_Ack: f-90,f-92,[gen14]
+<== instance [Ack_body] of INTEGER_PROMPT
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+<== instance [Ack_msg] of MESSAGE
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus FU_DR to MAIN
+FIRE   19 Accept_Ack: f-90,[Ack_msg],[gen14],[CCC_DO],f-93
+==> f-94    (Acked "FU" "DR") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen14] of MSG_HEADER
+==> Focus CCC_DO from MAIN
+FIRE   20 CCC_Ack: f-90,f-93,[gen13]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus CCC_DO to MAIN
+FIRE   21 Accept_Ack: f-90,[Ack_msg],[gen13],[SimCmdr],f-93
+==> f-95    (Acked "CCC" "DO") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen13] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+FIRE   22 Acks_Accept: f-90,,f-93
+==> f-96    (done acks) CF 1.00 
+:== ?*defcon* ==> 5 <== 5
+FIRE   23 Clear_Acks: f-90,f-96,f-95,f-93
+<== f-95    (Acked "CCC" "DO") CF 1.00 
+FIRE   24 Clear_Acks: f-90,f-96,f-94,f-93
+<== f-94    (Acked "FU" "DR") CF 1.00 
+FIRE   25 Final_Ack_Clear: f-90,f-96,,f-93
+==> f-97    (opcode 502) CF 1.00 
+<== f-96    (done acks) CF 1.00 
+<== f-93    (opcode 104) CF 1.00 
+<== Focus BMDC_DR to MAIN
+FIRE   26 Ack_SC: f-90,[gen12],[FU_DR]
+==> Focus FU_DR from MAIN
+FIRE   27 FU_Ack: f-90,f-92,[gen12]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus FU_DR to MAIN
+FIRE   28 Accept_Ack: f-90,[Ack_msg],[gen12],[SimCmdr],f-92
+==> f-98    (Acked "FU" "DR") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen12] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+<== Focus BMDC_DR to MAIN
+FIRE   29 Ack_SC: f-90,[gen11],[SimCmdr]
+==> f-99    (opcode 104) CF 1.00 
+==> Focus BMDC_DR from MAIN
+FIRE   30 BMDC_Ack: f-90,f-99,[gen11]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+FIRE   31 BMDC_Ack: f-90,f-92,[gen11]
+<== instance [Ack_body] of INTEGER_PROMPT
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+<== instance [Ack_msg] of MESSAGE
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus BMDC_DR to MAIN
+FIRE   32 Accept_Ack: f-90,[Ack_msg],[gen11],[CCC_DO],f-99
+==> f-100   (Acked "BMDC" "DR") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen11] of MSG_HEADER
+==> Focus CCC_DO from MAIN
+FIRE   33 Acks_Accept: f-90,,f-99
+==> f-101   (done acks) CF 1.00 
+:== ?*roe* ==> "CONUS" <== "N. America"
+==> f-102   (ROE (roe met)) CF 1.00 
+FIRE   34 Clear_Acks: f-90,f-101,f-100,f-99
+<== f-100   (Acked "BMDC" "DR") CF 1.00 
+FIRE   35 Clear_Acks: f-90,f-101,f-98,f-99
+<== f-98    (Acked "FU" "DR") CF 1.00 
+FIRE   36 Final_Ack_Clear: f-90,f-101,,f-99
+<== f-101   (done acks) CF 1.00 
+<== f-99    (opcode 104) CF 1.00 
+<== Focus CCC_DO to MAIN
+FIRE   37 change-phase: f-90,f-4
+<== f-90    (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-103   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   38 Remove_Opcode: f-103,f-92
+<== f-92    (opcode 103) CF 1.00 
+FIRE   39 Return_Header: f-103,f-97
+FIRE   40 OP_RTRN_ACK: f-103,f-97,[msg_header]
+<== f-97    (opcode 502) CF 1.00 
+<== instance [msg_body] of MISSILE_TRACK
+==> instance [msg_body] of INTEGER_PROMPT
+FIRE   41 Return_Message: f-103,f-31
+<== f-103   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of STRING_PROMPT
+==> f-104   (phase_control (phase initialize) (phase-after)) CF 1.00 
+<== instance [SimCmdr] of PLAYER
+==> instance [SimCmdr] of PLAYER
+<== instance [BattlePlanner] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+<== instance [msg_header] of MSG_HEADER
+==> instance [msg_header] of MSG_HEADER
+<== instance [msg] of MESSAGE
+==> instance [msg] of MESSAGE
+==> Focus MAIN
+FIRE    1 Get_OP: [msg_header],f-104
+==> f-105   (opcode 104) CF 1.00 
+FIRE    2 change-phase: f-104,f-1
+<== f-104   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-106   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 OP_ROE: f-106,f-105,[msg_header]
+<== f-105   (opcode 104) CF 1.00 
+==> f-107   (opcode 502) CF 1.00 
+FIRE    4 change-phase: f-106,f-2
+<== f-106   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-108   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+FIRE    5 defcon_assess: f-108,[gen10],f-102,f-85
+<== f-102   (ROE (roe met)) CF 1.00 
+<== f-85    (assess DEFCON) CF 1.00 
+:== ?*bmdc_defcon* ==> 1 <== 5
+<== Focus BMDC_DR to MAIN
+FIRE    6 change-phase: f-108,f-3
+<== f-108   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-109   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+FIRE    7 Propose_DEFCON: f-109,f-12,[FU_DR],f-18
+==> instance [gen15] of MAIN::MSG_HEADER
+FIRE    8 Propose_DEFCON: f-109,f-12,[CCC_DO],f-17
+==> instance [gen16] of MAIN::MSG_HEADER
+FIRE    9 Propose_DEA: f-109,f-15,[FU_DR],f-18
+==> instance [gen17] of MAIN::MSG_HEADER
+FIRE   10 Propose_DEA: f-109,f-15,[CCC_DO],f-17
+==> instance [gen18] of MAIN::MSG_HEADER
+<== Focus BMDC_DR to MAIN
+FIRE   11 Ack_SC: f-109,[gen18],[CCC_DO]
+==> f-110   (opcode 103) CF 1.00 
+==> Focus CCC_DO from MAIN
+FIRE   12 CCC_Ack: f-109,f-110,[gen18]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus CCC_DO to MAIN
+FIRE   13 Accept_Ack: f-109,[Ack_msg],[gen18],[SimCmdr],f-110
+==> f-111   (Acked "CCC" "DO") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen18] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+<== Focus BMDC_DR to MAIN
+FIRE   14 Ack_SC: f-109,[gen17],[FU_DR]
+==> Focus FU_DR from MAIN
+FIRE   15 FU_Ack: f-109,f-110,[gen17]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus FU_DR to MAIN
+FIRE   16 Accept_Ack: f-109,[Ack_msg],[gen17],[SimCmdr],f-110
+==> f-112   (Acked "FU" "DR") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen17] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+FIRE   17 Acks_Accept: f-109,,f-110
+==> f-113   (done acks) CF 1.00 
+:== ?*defcon* ==> 1 <== 5
+FIRE   18 Clear_Acks: f-109,f-113,f-112,f-110
+<== f-112   (Acked "FU" "DR") CF 1.00 
+FIRE   19 Clear_Acks: f-109,f-113,f-111,f-110
+<== f-111   (Acked "CCC" "DO") CF 1.00 
+FIRE   20 Final_Ack_Clear: f-109,f-113,,f-110
+<== f-113   (done acks) CF 1.00 
+<== f-110   (opcode 103) CF 1.00 
+<== Focus BMDC_DR to MAIN
+FIRE   21 Ack_SC: f-109,[gen16],[CCC_DO]
+==> f-114   (opcode 101) CF 1.00 
+==> Focus CCC_DO from MAIN
+FIRE   22 CCC_Ack: f-109,f-114,[gen16]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus CCC_DO to MAIN
+FIRE   23 Accept_Ack: f-109,[Ack_msg],[gen16],[SimCmdr],f-114
+==> f-115   (Acked "CCC" "DO") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen16] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+<== Focus BMDC_DR to MAIN
+FIRE   24 Ack_SC: f-109,[gen15],[FU_DR]
+==> Focus FU_DR from MAIN
+FIRE   25 FU_Ack: f-109,f-114,[gen15]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus FU_DR to MAIN
+FIRE   26 Accept_Ack: f-109,[Ack_msg],[gen15],[SimCmdr],f-114
+==> f-116   (Acked "FU" "DR") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen15] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+FIRE   27 Acks_Accept: f-109,,f-114
+==> f-117   (done acks) CF 1.00 
+:== ?*defcon* ==> 1 <== 1
+FIRE   28 Clear_Acks: f-109,f-117,f-116,f-114
+<== f-116   (Acked "FU" "DR") CF 1.00 
+FIRE   29 Clear_Acks: f-109,f-117,f-115,f-114
+<== f-115   (Acked "CCC" "DO") CF 1.00 
+FIRE   30 Final_Ack_Clear: f-109,f-117,,f-114
+<== f-117   (done acks) CF 1.00 
+<== f-114   (opcode 101) CF 1.00 
+<== Focus BMDC_DR to MAIN
+FIRE   31 change-phase: f-109,f-4
+<== f-109   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-118   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   32 Return_Header: f-118,f-107
+FIRE   33 OP_RTRN_ACK: f-118,f-107,[msg_header]
+<== f-107   (opcode 502) CF 1.00 
+<== instance [msg_body] of STRING_PROMPT
+==> instance [msg_body] of INTEGER_PROMPT
+FIRE   34 Return_Message: f-118,f-31
+<== f-118   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of MISSILE_TRACK
+==> f-119   (phase_control (phase initialize) (phase-after)) CF 1.00 
+<== instance [SimCmdr] of PLAYER
+==> instance [SimCmdr] of PLAYER
+<== instance [BattlePlanner] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+<== instance [msg_header] of MSG_HEADER
+==> instance [msg_header] of MSG_HEADER
+<== instance [msg] of MESSAGE
+==> instance [msg] of MESSAGE
+==> Focus MAIN
+FIRE    1 Get_OP: [msg_header],f-119
+==> f-120   (opcode 130) CF 1.00 
+FIRE    2 change-phase: f-119,f-1
+<== f-119   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-121   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 OP_MISSILE_TRACK_UPDATE: f-121,f-120,[msg_body],[gen10]
+<== f-120   (opcode 130) CF 1.00 
+<== instance [gen10] of MISSILE_TRACK
+==> instance [gen10] of MISSILE_TRACK
+==> f-122   (assess DEA) CF 1.00 
+==> f-123   (assess DEFCON) CF 1.00 
+==> f-124   (assess RP) CF 1.00 
+FIRE    4 change-phase: f-121,f-2
+<== f-121   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-125   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+==> Focus CCC_DO from BMDC_DR
+FIRE    5 roe_assess: f-125,f-8,[msg_body],f-83
+:== ?*ccc_roe* ==> "CONUS" <== "CONUS"
+ROE is CONUS
+<== Focus CCC_DO to BMDC_DR
+FIRE    6 dea_assess: f-125,[MAIN::msg_body],f-122
+<== f-122   (assess DEA) CF 1.00 
+:== ?*bmdc_dea* ==> "Free" <== "Free"
+<== Focus BMDC_DR to MAIN
+FIRE    7 rp_assess: f-125,f-124
+<== f-124   (assess RP) CF 1.00 
+FIRE    8 change-phase: f-125,f-3
+<== f-125   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-126   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+FIRE    9 Propose_DEA: f-126,f-15,[FU_DR],f-18
+==> instance [gen19] of MAIN::MSG_HEADER
+FIRE   10 Propose_DEA: f-126,f-15,[CCC_DO],f-17
+==> instance [gen20] of MAIN::MSG_HEADER
+<== Focus BMDC_DR to MAIN
+FIRE   11 Ack_SC: f-126,[gen20],[CCC_DO]
+==> f-127   (opcode 103) CF 1.00 
+==> Focus CCC_DO from MAIN
+FIRE   12 CCC_Ack: f-126,f-127,[gen20]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus CCC_DO to MAIN
+FIRE   13 Accept_Ack: f-126,[Ack_msg],[gen20],[SimCmdr],f-127
+==> f-128   (Acked "CCC" "DO") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen20] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+<== Focus BMDC_DR to MAIN
+FIRE   14 Ack_SC: f-126,[gen19],[FU_DR]
+==> Focus FU_DR from MAIN
+FIRE   15 FU_Ack: f-126,f-127,[gen19]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus FU_DR to MAIN
+FIRE   16 Accept_Ack: f-126,[Ack_msg],[gen19],[SimCmdr],f-127
+==> f-129   (Acked "FU" "DR") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen19] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+FIRE   17 Acks_Accept: f-126,,f-127
+==> f-130   (done acks) CF 1.00 
+:== ?*defcon* ==> 1 <== 1
+FIRE   18 Clear_Acks: f-126,f-130,f-129,f-127
+<== f-129   (Acked "FU" "DR") CF 1.00 
+FIRE   19 Clear_Acks: f-126,f-130,f-128,f-127
+<== f-128   (Acked "CCC" "DO") CF 1.00 
+FIRE   20 Final_Ack_Clear: f-126,f-130,,f-127
+==> f-131   (opcode 502) CF 1.00 
+<== f-130   (done acks) CF 1.00 
+<== f-127   (opcode 103) CF 1.00 
+<== Focus BMDC_DR to MAIN
+FIRE   21 change-phase: f-126,f-4
+<== f-126   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-132   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   22 Return_Header: f-132,f-131
+FIRE   23 OP_RTRN_ACK: f-132,f-131,[msg_header]
+<== f-131   (opcode 502) CF 1.00 
+<== instance [msg_body] of MISSILE_TRACK
+==> instance [msg_body] of INTEGER_PROMPT
+FIRE   24 Return_Message: f-132,f-31
+<== f-132   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of ENGAGEMENT
+==> f-133   (phase_control (phase initialize) (phase-after)) CF 1.00 
+<== instance [SimCmdr] of PLAYER
+==> instance [SimCmdr] of PLAYER
+<== instance [BattlePlanner] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+<== instance [msg_header] of MSG_HEADER
+==> instance [msg_header] of MSG_HEADER
+<== instance [msg] of MESSAGE
+==> instance [msg] of MESSAGE
+==> Focus MAIN
+FIRE    1 Get_OP: [msg_header],f-133
+==> f-134   (opcode 108) CF 1.00 
+FIRE    2 change-phase: f-133,f-1
+<== f-133   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-135   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 OP_NEW_ENGMT: f-135,f-134,[msg_body],
+==> f-136   (eng_id 1) CF 1.00 
+==> instance [gen21] of ENGAGEMENT
+==> f-137   (assess MSN_OBJ) CF 1.00 
+==> f-138   (assess BP) CF 1.00 
+FIRE    4 OP_UPDATE_ENGMT: f-135,f-134,[msg_body],[gen21]
+<== f-134   (opcode 108) CF 1.00 
+<== instance [gen21] of ENGAGEMENT
+==> instance [gen21] of ENGAGEMENT
+FIRE    5 change-phase: f-135,f-2
+<== f-135   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-139   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    6 change-phase: f-139,f-3
+<== f-139   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-140   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+FIRE    7 Propose_DEA: f-140,f-15,[FU_DR],f-18
+==> instance [gen22] of MAIN::MSG_HEADER
+FIRE    8 Propose_DEA: f-140,f-15,[CCC_DO],f-17
+==> instance [gen23] of MAIN::MSG_HEADER
+<== Focus BMDC_DR to MAIN
+FIRE    9 Ack_SC: f-140,[gen23],[CCC_DO]
+==> f-141   (opcode 103) CF 1.00 
+==> Focus CCC_DO from MAIN
+FIRE   10 CCC_Ack: f-140,f-141,[gen23]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus CCC_DO to MAIN
+FIRE   11 Accept_Ack: f-140,[Ack_msg],[gen23],[SimCmdr],f-141
+==> f-142   (Acked "CCC" "DO") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen23] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+<== Focus BMDC_DR to MAIN
+FIRE   12 Ack_SC: f-140,[gen22],[FU_DR]
+==> Focus FU_DR from MAIN
+FIRE   13 FU_Ack: f-140,f-141,[gen22]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus FU_DR to MAIN
+FIRE   14 Accept_Ack: f-140,[Ack_msg],[gen22],[SimCmdr],f-141
+==> f-143   (Acked "FU" "DR") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen22] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+FIRE   15 Acks_Accept: f-140,,f-141
+==> f-144   (done acks) CF 1.00 
+:== ?*defcon* ==> 1 <== 1
+FIRE   16 Clear_Acks: f-140,f-144,f-143,f-141
+<== f-143   (Acked "FU" "DR") CF 1.00 
+FIRE   17 Clear_Acks: f-140,f-144,f-142,f-141
+<== f-142   (Acked "CCC" "DO") CF 1.00 
+FIRE   18 Final_Ack_Clear: f-140,f-144,,f-141
+==> f-145   (opcode 502) CF 1.00 
+<== f-144   (done acks) CF 1.00 
+<== f-141   (opcode 103) CF 1.00 
+<== Focus BMDC_DR to MAIN
+FIRE   19 change-phase: f-140,f-4
+<== f-140   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-146   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   20 Return_Header: f-146,f-145
+FIRE   21 OP_RTRN_ACK: f-146,f-145,[msg_header]
+<== f-145   (opcode 502) CF 1.00 
+<== instance [msg_body] of ENGAGEMENT
+==> instance [msg_body] of INTEGER_PROMPT
+FIRE   22 Return_Message: f-146,f-31
+<== f-146   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of ENGAGEMENT
+==> f-147   (phase_control (phase initialize) (phase-after)) CF 1.00 
+<== instance [SimCmdr] of PLAYER
+==> instance [SimCmdr] of PLAYER
+<== instance [BattlePlanner] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+<== instance [msg_header] of MSG_HEADER
+==> instance [msg_header] of MSG_HEADER
+<== instance [msg] of MESSAGE
+==> instance [msg] of MESSAGE
+==> Focus MAIN
+FIRE    1 Get_OP: [msg_header],f-147
+==> f-148   (opcode 108) CF 1.00 
+FIRE    2 change-phase: f-147,f-1
+<== f-147   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-149   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 OP_UPDATE_ENGMT: f-149,f-148,[msg_body],[gen21]
+<== f-148   (opcode 108) CF 1.00 
+<== instance [gen21] of ENGAGEMENT
+==> instance [gen21] of ENGAGEMENT
+FIRE    4 change-phase: f-149,f-2
+<== f-149   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-150   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+FIRE    5 msn_obj_assess: f-150,f-137,[gen21],[gen10],[gen5],f-11,f-67
+==> f-151   (replan_prob 0.25) CF 1.00 
+<== f-137   (assess MSN_OBJ) CF 1.00 
+==> f-152   (change MSN_OBJ) CF 1.00 
+<== Focus BMDC_DR to MAIN
+FIRE    6 change-phase: f-150,f-3
+<== f-150   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-153   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+FIRE    7 Propose_DEA: f-153,f-15,[FU_DR],f-18
+==> instance [gen24] of MAIN::MSG_HEADER
+FIRE    8 Propose_DEA: f-153,f-15,[CCC_DO],f-17
+==> instance [gen25] of MAIN::MSG_HEADER
+<== Focus BMDC_DR to MAIN
+FIRE    9 Ack_SC: f-153,[gen25],[CCC_DO]
+==> f-154   (opcode 103) CF 1.00 
+==> Focus CCC_DO from MAIN
+FIRE   10 CCC_Ack: f-153,f-154,[gen25]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus CCC_DO to MAIN
+FIRE   11 Accept_Ack: f-153,[Ack_msg],[gen25],[SimCmdr],f-154
+==> f-155   (Acked "CCC" "DO") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen25] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+<== Focus BMDC_DR to MAIN
+FIRE   12 Ack_SC: f-153,[gen24],[FU_DR]
+==> Focus FU_DR from MAIN
+FIRE   13 FU_Ack: f-153,f-154,[gen24]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus FU_DR to MAIN
+FIRE   14 Accept_Ack: f-153,[Ack_msg],[gen24],[SimCmdr],f-154
+==> f-156   (Acked "FU" "DR") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen24] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+FIRE   15 Acks_Accept: f-153,,f-154
+==> f-157   (done acks) CF 1.00 
+:== ?*defcon* ==> 1 <== 1
+FIRE   16 Clear_Acks: f-153,f-157,f-156,f-154
+<== f-156   (Acked "FU" "DR") CF 1.00 
+FIRE   17 Clear_Acks: f-153,f-157,f-155,f-154
+<== f-155   (Acked "CCC" "DO") CF 1.00 
+FIRE   18 Final_Ack_Clear: f-153,f-157,,f-154
+==> f-158   (opcode 502) CF 1.00 
+<== f-157   (done acks) CF 1.00 
+<== f-154   (opcode 103) CF 1.00 
+<== Focus BMDC_DR to MAIN
+FIRE   19 change-phase: f-153,f-4
+<== f-153   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-159   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   20 Return_Header: f-159,f-158
+FIRE   21 OP_RTRN_ACK: f-159,f-158,[msg_header]
+<== f-158   (opcode 502) CF 1.00 
+<== instance [msg_body] of ENGAGEMENT
+==> instance [msg_body] of INTEGER_PROMPT
+FIRE   22 Return_Message: f-159,f-31
+<== f-159   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of ENGAGEMENT
+==> f-160   (phase_control (phase initialize) (phase-after)) CF 1.00 
+<== instance [SimCmdr] of PLAYER
+==> instance [SimCmdr] of PLAYER
+<== instance [BattlePlanner] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+<== instance [msg_header] of MSG_HEADER
+==> instance [msg_header] of MSG_HEADER
+<== instance [msg] of MESSAGE
+==> instance [msg] of MESSAGE
+==> Focus MAIN
+FIRE    1 Get_OP: [msg_header],f-160
+==> f-161   (opcode 108) CF 1.00 
+FIRE    2 change-phase: f-160,f-1
+<== f-160   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-162   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 OP_UPDATE_ENGMT: f-162,f-161,[msg_body],[gen21]
+<== f-161   (opcode 108) CF 1.00 
+<== instance [gen21] of ENGAGEMENT
+==> instance [gen21] of ENGAGEMENT
+==> f-163   (assess MSN_OBJ) CF 1.00 
+FIRE    4 change-phase: f-162,f-2
+<== f-162   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-164   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+FIRE    5 msn_obj_assess: f-164,f-163,[gen21],[gen10],[gen5],f-11,f-67
+==> f-165   (replan_prob 0.5183999982833862) CF 1.00 
+<== f-163   (assess MSN_OBJ) CF 1.00 
+<== Focus BMDC_DR to MAIN
+FIRE    6 change-phase: f-164,f-3
+<== f-164   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-166   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+FIRE    7 Propose_DEA: f-166,f-15,[FU_DR],f-18
+==> instance [gen26] of MAIN::MSG_HEADER
+FIRE    8 Propose_DEA: f-166,f-15,[CCC_DO],f-17
+==> instance [gen27] of MAIN::MSG_HEADER
+<== Focus BMDC_DR to MAIN
+FIRE    9 Ack_SC: f-166,[gen27],[CCC_DO]
+==> f-167   (opcode 103) CF 1.00 
+==> Focus CCC_DO from MAIN
+FIRE   10 CCC_Ack: f-166,f-167,[gen27]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus CCC_DO to MAIN
+FIRE   11 Accept_Ack: f-166,[Ack_msg],[gen27],[SimCmdr],f-167
+==> f-168   (Acked "CCC" "DO") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen27] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+<== Focus BMDC_DR to MAIN
+FIRE   12 Ack_SC: f-166,[gen26],[FU_DR]
+==> Focus FU_DR from MAIN
+FIRE   13 FU_Ack: f-166,f-167,[gen26]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus FU_DR to MAIN
+FIRE   14 Accept_Ack: f-166,[Ack_msg],[gen26],[SimCmdr],f-167
+==> f-169   (Acked "FU" "DR") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen26] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+FIRE   15 Acks_Accept: f-166,,f-167
+==> f-170   (done acks) CF 1.00 
+:== ?*defcon* ==> 1 <== 1
+FIRE   16 Clear_Acks: f-166,f-170,f-169,f-167
+<== f-169   (Acked "FU" "DR") CF 1.00 
+FIRE   17 Clear_Acks: f-166,f-170,f-168,f-167
+<== f-168   (Acked "CCC" "DO") CF 1.00 
+FIRE   18 Final_Ack_Clear: f-166,f-170,,f-167
+==> f-171   (opcode 502) CF 1.00 
+<== f-170   (done acks) CF 1.00 
+<== f-167   (opcode 103) CF 1.00 
+<== Focus BMDC_DR to MAIN
+FIRE   19 change-phase: f-166,f-4
+<== f-166   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-172   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   20 Return_Header: f-172,f-171
+FIRE   21 OP_RTRN_ACK: f-172,f-171,[msg_header]
+<== f-171   (opcode 502) CF 1.00 
+<== instance [msg_body] of ENGAGEMENT
+==> instance [msg_body] of INTEGER_PROMPT
+FIRE   22 Return_Message: f-172,f-31
+<== f-172   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN
+==> f-173   (phase_control (phase initialize) (phase-after)) CF 1.00 
+<== instance [SimCmdr] of PLAYER
+==> instance [SimCmdr] of PLAYER
+<== instance [BattlePlanner] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+<== instance [msg_header] of MSG_HEADER
+==> instance [msg_header] of MSG_HEADER
+<== instance [msg] of MESSAGE
+==> instance [msg] of MESSAGE
+==> Focus MAIN
+FIRE    1 Get_OP: [msg_header],f-173
+==> f-174   (opcode 107) CF 1.00 
+FIRE    2 change-phase: f-173,f-1
+<== f-173   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-175   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 OP_WA: f-175,f-174,[gen9],f-67
+<== f-67    (wa 2) CF 1.00 
+<== f-174   (opcode 107) CF 1.00 
+==> f-176   (opcode 502) CF 1.00 
+FIRE    4 change-phase: f-175,f-2
+<== f-175   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-177   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    5 change-phase: f-177,f-3
+<== f-177   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-178   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+FIRE    6 Propose_DEA: f-178,f-15,[FU_DR],f-18
+==> instance [gen28] of MAIN::MSG_HEADER
+FIRE    7 Propose_DEA: f-178,f-15,[CCC_DO],f-17
+==> instance [gen29] of MAIN::MSG_HEADER
+<== Focus BMDC_DR to MAIN
+FIRE    8 Ack_SC: f-178,[gen29],[CCC_DO]
+==> f-179   (opcode 103) CF 1.00 
+==> Focus CCC_DO from MAIN
+FIRE    9 CCC_Ack: f-178,f-179,[gen29]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus CCC_DO to MAIN
+FIRE   10 Accept_Ack: f-178,[Ack_msg],[gen29],[SimCmdr],f-179
+==> f-180   (Acked "CCC" "DO") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen29] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+<== Focus BMDC_DR to MAIN
+FIRE   11 Ack_SC: f-178,[gen28],[FU_DR]
+==> Focus FU_DR from MAIN
+FIRE   12 FU_Ack: f-178,f-179,[gen28]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus FU_DR to MAIN
+FIRE   13 Accept_Ack: f-178,[Ack_msg],[gen28],[SimCmdr],f-179
+==> f-181   (Acked "FU" "DR") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen28] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+FIRE   14 Acks_Accept: f-178,,f-179
+==> f-182   (done acks) CF 1.00 
+:== ?*defcon* ==> 1 <== 1
+FIRE   15 Clear_Acks: f-178,f-182,f-181,f-179
+<== f-181   (Acked "FU" "DR") CF 1.00 
+FIRE   16 Clear_Acks: f-178,f-182,f-180,f-179
+<== f-180   (Acked "CCC" "DO") CF 1.00 
+FIRE   17 Final_Ack_Clear: f-178,f-182,,f-179
+<== f-182   (done acks) CF 1.00 
+<== f-179   (opcode 103) CF 1.00 
+<== Focus BMDC_DR to MAIN
+FIRE   18 change-phase: f-178,f-4
+<== f-178   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-183   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   19 Return_Header: f-183,f-176
+FIRE   20 OP_RTRN_ACK: f-183,f-176,[msg_header]
+<== f-176   (opcode 502) CF 1.00 
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of INTEGER_PROMPT
+FIRE   21 Return_Message: f-183,f-31
+<== f-183   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of ENGAGEMENT
+==> f-184   (phase_control (phase initialize) (phase-after)) CF 1.00 
+<== instance [SimCmdr] of PLAYER
+==> instance [SimCmdr] of PLAYER
+<== instance [BattlePlanner] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+<== instance [msg_header] of MSG_HEADER
+==> instance [msg_header] of MSG_HEADER
+<== instance [msg] of MESSAGE
+==> instance [msg] of MESSAGE
+==> Focus MAIN
+FIRE    1 Get_OP: [msg_header],f-184
+==> f-185   (opcode 108) CF 1.00 
+FIRE    2 change-phase: f-184,f-1
+<== f-184   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-186   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 OP_UPDATE_ENGMT: f-186,f-185,[msg_body],[gen21]
+<== f-185   (opcode 108) CF 1.00 
+<== instance [gen21] of ENGAGEMENT
+==> instance [gen21] of ENGAGEMENT
+==> f-187   (assess MSN_OBJ) CF 1.00 
+FIRE    4 change-phase: f-186,f-2
+<== f-186   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-188   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+FIRE    5 msn_obj_assess: f-188,f-187,[gen21],[gen10],[gen5],f-11,f-66
+==> f-189   (replan_prob 0.1200000047683716) CF 1.00 
+<== f-187   (assess MSN_OBJ) CF 1.00 
+<== Focus BMDC_DR to MAIN
+FIRE    6 change-phase: f-188,f-3
+<== f-188   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-190   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+FIRE    7 Propose_DEA: f-190,f-15,[FU_DR],f-18
+==> instance [gen30] of MAIN::MSG_HEADER
+FIRE    8 Propose_DEA: f-190,f-15,[CCC_DO],f-17
+==> instance [gen31] of MAIN::MSG_HEADER
+<== Focus BMDC_DR to MAIN
+FIRE    9 Ack_SC: f-190,[gen31],[CCC_DO]
+==> f-191   (opcode 103) CF 1.00 
+==> Focus CCC_DO from MAIN
+FIRE   10 CCC_Ack: f-190,f-191,[gen31]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus CCC_DO to MAIN
+FIRE   11 Accept_Ack: f-190,[Ack_msg],[gen31],[SimCmdr],f-191
+==> f-192   (Acked "CCC" "DO") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen31] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+<== Focus BMDC_DR to MAIN
+FIRE   12 Ack_SC: f-190,[gen30],[FU_DR]
+==> Focus FU_DR from MAIN
+FIRE   13 FU_Ack: f-190,f-191,[gen30]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus FU_DR to MAIN
+FIRE   14 Accept_Ack: f-190,[Ack_msg],[gen30],[SimCmdr],f-191
+==> f-193   (Acked "FU" "DR") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen30] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+FIRE   15 Acks_Accept: f-190,,f-191
+==> f-194   (done acks) CF 1.00 
+:== ?*defcon* ==> 1 <== 1
+FIRE   16 Clear_Acks: f-190,f-194,f-193,f-191
+<== f-193   (Acked "FU" "DR") CF 1.00 
+FIRE   17 Clear_Acks: f-190,f-194,f-192,f-191
+<== f-192   (Acked "CCC" "DO") CF 1.00 
+FIRE   18 Final_Ack_Clear: f-190,f-194,,f-191
+==> f-195   (opcode 502) CF 1.00 
+<== f-194   (done acks) CF 1.00 
+<== f-191   (opcode 103) CF 1.00 
+<== Focus BMDC_DR to MAIN
+FIRE   19 change-phase: f-190,f-4
+<== f-190   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-196   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   20 Return_Header: f-196,f-195
+FIRE   21 OP_RTRN_ACK: f-196,f-195,[msg_header]
+<== f-195   (opcode 502) CF 1.00 
+<== instance [msg_body] of ENGAGEMENT
+==> instance [msg_body] of INTEGER_PROMPT
+FIRE   22 Return_Message: f-196,f-31
+<== f-196   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN
+==> f-197   (phase_control (phase initialize) (phase-after)) CF 1.00 
+<== instance [SimCmdr] of PLAYER
+==> instance [SimCmdr] of PLAYER
+<== instance [BattlePlanner] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+<== instance [msg_header] of MSG_HEADER
+==> instance [msg_header] of MSG_HEADER
+<== instance [msg] of MESSAGE
+==> instance [msg] of MESSAGE
+==> Focus MAIN
+FIRE    1 Get_OP: [msg_header],f-197
+==> f-198   (opcode 107) CF 1.00 
+FIRE    2 change-phase: f-197,f-1
+<== f-197   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-199   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 OP_WA: f-199,f-198,[gen9],f-66
+<== f-66    (wa 1) CF 1.00 
+<== f-198   (opcode 107) CF 1.00 
+==> f-200   (opcode 502) CF 1.00 
+FIRE    4 change-phase: f-199,f-2
+<== f-199   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-201   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    5 change-phase: f-201,f-3
+<== f-201   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-202   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+FIRE    6 Propose_DEA: f-202,f-15,[FU_DR],f-18
+==> instance [gen32] of MAIN::MSG_HEADER
+FIRE    7 Propose_DEA: f-202,f-15,[CCC_DO],f-17
+==> instance [gen33] of MAIN::MSG_HEADER
+<== Focus BMDC_DR to MAIN
+FIRE    8 Ack_SC: f-202,[gen33],[CCC_DO]
+==> f-203   (opcode 103) CF 1.00 
+==> Focus CCC_DO from MAIN
+FIRE    9 CCC_Ack: f-202,f-203,[gen33]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus CCC_DO to MAIN
+FIRE   10 Accept_Ack: f-202,[Ack_msg],[gen33],[SimCmdr],f-203
+==> f-204   (Acked "CCC" "DO") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen33] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+<== Focus BMDC_DR to MAIN
+FIRE   11 Ack_SC: f-202,[gen32],[FU_DR]
+==> Focus FU_DR from MAIN
+FIRE   12 FU_Ack: f-202,f-203,[gen32]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus FU_DR to MAIN
+FIRE   13 Accept_Ack: f-202,[Ack_msg],[gen32],[SimCmdr],f-203
+==> f-205   (Acked "FU" "DR") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen32] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+FIRE   14 Acks_Accept: f-202,,f-203
+==> f-206   (done acks) CF 1.00 
+:== ?*defcon* ==> 1 <== 1
+FIRE   15 Clear_Acks: f-202,f-206,f-205,f-203
+<== f-205   (Acked "FU" "DR") CF 1.00 
+FIRE   16 Clear_Acks: f-202,f-206,f-204,f-203
+<== f-204   (Acked "CCC" "DO") CF 1.00 
+FIRE   17 Final_Ack_Clear: f-202,f-206,,f-203
+<== f-206   (done acks) CF 1.00 
+<== f-203   (opcode 103) CF 1.00 
+<== Focus BMDC_DR to MAIN
+FIRE   18 change-phase: f-202,f-4
+<== f-202   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-207   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   19 Return_Header: f-207,f-200
+FIRE   20 OP_RTRN_ACK: f-207,f-200,[msg_header]
+<== f-200   (opcode 502) CF 1.00 
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of INTEGER_PROMPT
+FIRE   21 Return_Message: f-207,f-31
+<== f-207   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of ENGAGEMENT
+==> f-208   (phase_control (phase initialize) (phase-after)) CF 1.00 
+<== instance [SimCmdr] of PLAYER
+==> instance [SimCmdr] of PLAYER
+<== instance [BattlePlanner] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+<== instance [msg_header] of MSG_HEADER
+==> instance [msg_header] of MSG_HEADER
+<== instance [msg] of MESSAGE
+==> instance [msg] of MESSAGE
+==> Focus MAIN
+FIRE    1 Get_OP: [msg_header],f-208
+==> f-209   (opcode 108) CF 1.00 
+FIRE    2 change-phase: f-208,f-1
+<== f-208   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-210   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 OP_UPDATE_ENGMT: f-210,f-209,[msg_body],[gen21]
+<== f-209   (opcode 108) CF 1.00 
+<== instance [gen21] of ENGAGEMENT
+==> instance [gen21] of ENGAGEMENT
+==> f-211   (assess MSN_OBJ) CF 1.00 
+FIRE    4 change-phase: f-210,f-2
+<== f-210   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-212   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+FIRE    5 msn_obj_assess: f-212,f-211,[gen21],[gen10],[gen5],f-11,f-65
+==> f-213   (replan_prob 2.985984711914133e-06) CF 1.00 
+<== f-211   (assess MSN_OBJ) CF 1.00 
+<== Focus BMDC_DR to MAIN
+FIRE    6 change-phase: f-212,f-3
+<== f-212   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-214   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+FIRE    7 Propose_DEA: f-214,f-15,[FU_DR],f-18
+==> instance [gen34] of MAIN::MSG_HEADER
+FIRE    8 Propose_DEA: f-214,f-15,[CCC_DO],f-17
+==> instance [gen35] of MAIN::MSG_HEADER
+<== Focus BMDC_DR to MAIN
+FIRE    9 Ack_SC: f-214,[gen35],[CCC_DO]
+==> f-215   (opcode 103) CF 1.00 
+==> Focus CCC_DO from MAIN
+FIRE   10 CCC_Ack: f-214,f-215,[gen35]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus CCC_DO to MAIN
+FIRE   11 Accept_Ack: f-214,[Ack_msg],[gen35],[SimCmdr],f-215
+==> f-216   (Acked "CCC" "DO") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen35] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+<== Focus BMDC_DR to MAIN
+FIRE   12 Ack_SC: f-214,[gen34],[FU_DR]
+==> Focus FU_DR from MAIN
+FIRE   13 FU_Ack: f-214,f-215,[gen34]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus FU_DR to MAIN
+FIRE   14 Accept_Ack: f-214,[Ack_msg],[gen34],[SimCmdr],f-215
+==> f-217   (Acked "FU" "DR") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen34] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+FIRE   15 Acks_Accept: f-214,,f-215
+==> f-218   (done acks) CF 1.00 
+:== ?*defcon* ==> 1 <== 1
+FIRE   16 Clear_Acks: f-214,f-218,f-217,f-215
+<== f-217   (Acked "FU" "DR") CF 1.00 
+FIRE   17 Clear_Acks: f-214,f-218,f-216,f-215
+<== f-216   (Acked "CCC" "DO") CF 1.00 
+FIRE   18 Final_Ack_Clear: f-214,f-218,,f-215
+==> f-219   (opcode 502) CF 1.00 
+<== f-218   (done acks) CF 1.00 
+<== f-215   (opcode 103) CF 1.00 
+<== Focus BMDC_DR to MAIN
+FIRE   19 change-phase: f-214,f-4
+<== f-214   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-220   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   20 Return_Header: f-220,f-219
+FIRE   21 OP_RTRN_ACK: f-220,f-219,[msg_header]
+<== f-219   (opcode 502) CF 1.00 
+<== instance [msg_body] of ENGAGEMENT
+==> instance [msg_body] of INTEGER_PROMPT
+FIRE   22 Return_Message: f-220,f-31
+<== f-220   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN
+==> f-221   (phase_control (phase initialize) (phase-after)) CF 1.00 
+<== instance [SimCmdr] of PLAYER
+==> instance [SimCmdr] of PLAYER
+<== instance [BattlePlanner] of PLAYER
+==> instance [BattlePlanner] of PLAYER
+<== instance [msg_header] of MSG_HEADER
+==> instance [msg_header] of MSG_HEADER
+<== instance [msg] of MESSAGE
+==> instance [msg] of MESSAGE
+==> Focus MAIN
+FIRE    1 Get_OP: [msg_header],f-221
+==> f-222   (opcode 107) CF 1.00 
+FIRE    2 change-phase: f-221,f-1
+<== f-221   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-223   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 OP_WA: f-223,f-222,[gen9],f-65
+<== f-65    (wa 6) CF 1.00 
+<== f-222   (opcode 107) CF 1.00 
+==> f-224   (opcode 502) CF 1.00 
+FIRE    4 change-phase: f-223,f-2
+<== f-223   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-225   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    5 change-phase: f-225,f-3
+<== f-225   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-226   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> Focus BMDC_DR from MAIN
+FIRE    6 Propose_DEA: f-226,f-15,[FU_DR],f-18
+==> instance [gen36] of MAIN::MSG_HEADER
+FIRE    7 Propose_DEA: f-226,f-15,[CCC_DO],f-17
+==> instance [gen37] of MAIN::MSG_HEADER
+<== Focus BMDC_DR to MAIN
+FIRE    8 Ack_SC: f-226,[gen37],[CCC_DO]
+==> f-227   (opcode 103) CF 1.00 
+==> Focus CCC_DO from MAIN
+FIRE    9 CCC_Ack: f-226,f-227,[gen37]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus CCC_DO to MAIN
+FIRE   10 Accept_Ack: f-226,[Ack_msg],[gen37],[SimCmdr],f-227
+==> f-228   (Acked "CCC" "DO") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen37] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+<== Focus BMDC_DR to MAIN
+FIRE   11 Ack_SC: f-226,[gen36],[FU_DR]
+==> Focus FU_DR from MAIN
+FIRE   12 FU_Ack: f-226,f-227,[gen36]
+==> instance [Ack_body] of MAIN::INTEGER_PROMPT
+==> instance [Ack_msg] of MAIN::MESSAGE
+<== Focus FU_DR to MAIN
+FIRE   13 Accept_Ack: f-226,[Ack_msg],[gen36],[SimCmdr],f-227
+==> f-229   (Acked "FU" "DR") CF 1.00 
+<== instance [Ack_msg] of MESSAGE
+<== instance [Ack_body] of INTEGER_PROMPT
+<== instance [gen36] of MSG_HEADER
+==> Focus BMDC_DR from MAIN
+FIRE   14 Acks_Accept: f-226,,f-227
+==> f-230   (done acks) CF 1.00 
+:== ?*defcon* ==> 1 <== 1
+FIRE   15 Clear_Acks: f-226,f-230,f-229,f-227
+<== f-229   (Acked "FU" "DR") CF 1.00 
+FIRE   16 Clear_Acks: f-226,f-230,f-228,f-227
+<== f-228   (Acked "CCC" "DO") CF 1.00 
+FIRE   17 Final_Ack_Clear: f-226,f-230,,f-227
+<== f-230   (done acks) CF 1.00 
+<== f-227   (opcode 103) CF 1.00 
+<== Focus BMDC_DR to MAIN
+FIRE   18 change-phase: f-226,f-4
+<== f-226   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-231   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   19 Return_Header: f-231,f-224
+FIRE   20 OP_RTRN_ACK: f-231,f-224,[msg_header]
+<== f-224   (opcode 502) CF 1.00 
+<== instance [msg_body] of INTEGER_PROMPT
+==> instance [msg_body] of INTEGER_PROMPT
+FIRE   21 Return_Message: f-231,f-31
+<== f-231   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== Focus MAIN

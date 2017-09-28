@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Mobile Registration Request"; itype: 35; icode: 0; sid:423;  classtype:misc-activity; rev:4;)

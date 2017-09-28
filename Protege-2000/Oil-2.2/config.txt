@@ -1,0 +1,42 @@
+Configuring OiLEd.
+==================
+
+OilEd can be configured to use alternative rendering and parsing
+classes. This is specified in the config.xml file which is
+loaded in at startup time. Appropriate menu items will then be added
+to the tool. 
+
+For example, if you never want to use the GML renderer and would
+rather have that removed, or don't intend to use earlier DAML+OIL
+schema, these could be removed (or commented out) of the configuration
+file.
+
+Parsing
+-------
+
+Parsers should implement the interface
+
+uk.ac.man.cs.img.oil.parser.Parser
+
+Parsers are specified within the <parsers> section. Each entry is of
+the form: 
+
+<parser class="CLASS" extension="EXT" description="DESC"/>
+
+This informs OilEd that class CLASS is an Oil Parser that expects to
+find files of type DESC, which it looks for using extension EXT.
+
+Rendering
+---------
+
+Renderers for export should implement the interface
+
+uk.ac.man.cs.img.oil.output.Renderer. 
+
+Renderers can be grouped together into collections which will fall
+under one menu item on the main menu bar. Each <renderers> section has
+a number of renderers, each of which in turn specifies the menuItem
+text that it should appear under. The entire <renderers> section also
+specifies the overall heading for the menu bar.
+
+

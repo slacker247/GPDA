@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC PageService access";flags: A+; content:"?PageServices"; nocase; reference:bugtraq,1063; reference:cve,CVE-1999-0269; classtype:attempted-recon; sid:1123; rev:2;)

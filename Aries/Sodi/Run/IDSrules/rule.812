@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI yabb access"; flags: A+; uricontent: "/YaBB.pl"; content: "../";reference:arachnids,462; classtype:attempted-recon; sid:806; rev:1;)

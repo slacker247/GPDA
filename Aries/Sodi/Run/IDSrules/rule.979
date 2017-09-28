@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS webdav file lock attempt"; flags:A+; content:"LOCK "; offset:0; depth:5; reference:bugtraq,2736; classtype:web-application-activity; sid:969; rev:1;)

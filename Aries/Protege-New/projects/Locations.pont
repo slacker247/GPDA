@@ -1,0 +1,140 @@
+; Thu May 02 02:57:02 BRT 2002
+; 
+;+ (version "1.7")
+;+ (build "Build 917")
+
+
+(defclass :CLIPS_TOP_LEVEL_SLOT_CLASS
+	(is-a USER)
+	(role concrete)
+	(multislot Keywords
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot City-Of-Address
+		(type INSTANCE)
+;+		(allowed-classes City)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Compliment
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot State-code
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is-Part-Of
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(inverse-slot has-Parts)
+		(create-accessor read-write))
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(inverse-slot is-Part-Of)
+		(create-accessor read-write))
+	(multislot Street
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot ZIP
+		(type INTEGER)
+		(range 1 100000000)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Location "This is a very simple ontology of places. The good advantages of it are the instances of all the countries and American states. A few countries are bound to incorrect continents, but we are reviewing them."
+	(is-a USER)
+	(role abstract))
+
+(defclass Country "Country has-Parts states or cities. "
+	(is-a Location)
+	(role concrete)
+	(multislot Keywords
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot is-Part-Of
+		(type INSTANCE)
+;+		(allowed-classes Continent)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes City State)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass State
+	(is-a Location)
+	(role concrete)
+	(single-slot State-code
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is-Part-Of
+		(type INSTANCE)
+;+		(allowed-classes Country)
+		(create-accessor read-write))
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes City)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass City "Cities are part of countries or states."
+	(is-a Location)
+	(role concrete)
+	(multislot Keywords
+		(type STRING)
+		(create-accessor read-write))
+	(multislot is-Part-Of
+		(type INSTANCE)
+;+		(allowed-classes Country State)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Address
+	(is-a Location)
+	(role concrete)
+	(multislot Compliment
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot ZIP
+		(type INTEGER)
+		(range 1 100000000)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot City-Of-Address
+		(type INSTANCE)
+;+		(allowed-classes City)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Street
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Continent
+	(is-a Location)
+	(role concrete)
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes Country)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))

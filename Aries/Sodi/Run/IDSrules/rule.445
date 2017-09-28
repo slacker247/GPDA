@@ -1,0 +1,1 @@
+alert tcp $HOME_NET any -> $EXTERNAL_NET 1863 (msg:"INFO msn chat access";flags: A+; content:"|746578742F706C61696E|"; depth:100; classtype:not-suspicious; sid:540; rev:2;)

@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 21 <- $EXTERNAL_NET any (msg:"BACKDOOR ADMw0rm ftp retrieval";flags: A+; content:"USERw0rm|0D0A|"; reference:arachnids,01; sid:144;  classtype:misc-activity; rev:3;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:"EXPLOIT imap x86 linux overflow";flags: A+; content:"|89d8 40cd 80e8 c8ff ffff|/";reference:bugtraq,130; reference:cve,CVE-1999-0005; classtype:attempted-admin; sid:295; rev:1;)

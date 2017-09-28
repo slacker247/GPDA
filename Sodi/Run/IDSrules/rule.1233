@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 1812 (msg:"WEB-MISC VirusWall access"; flags:A+; uricontent:"/catinfo"; nocase; reference:bugtraq,2579; classtype:attempted-recon; sid:1232; rev:1;)

@@ -1,0 +1,1065 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "http://www.web3D.org/TaskGroups/x3d/translation/x3d-compromise.dtd"
+                     "file://localhost/C:/www.web3D.org/TaskGroups/x3d/translation/x3d-compromise.dtd">
+<X3D>
+  <Header>
+    <meta content="RadioCommunicationsPrototypes.xml" name="filename"/>
+    <meta content="Don Brutzman and Dave Laflam" name="authors"/>
+    <meta content="7 December 2000" name="revised"/>
+    <meta
+      content="Prototype definitions for ReceiverPdu SignalPdu and TransmitterPdu, all of which share share RadioCommunicationsPduScriptNode class" name="description"/>
+    <meta
+      content="http://web.nps.navy.mil/~brutzman/vrtp/mil/navy/nps/dis/RadioCommunicationsPrototypes.xml" name="url"/>
+    <meta
+      content="X3D-Edit, http://www.web3D.org/TaskGroups/x3d/translation/README.X3D-Edit.html" name="generator"/>
+  </Header>
+
+  <Scene><!--============================================================
+      --><ProtoDeclare name="ReceiverPdu"><!--set whichGeometry to
+        -1         for no geometry, 0 for text trace, 1 for default
+        geometry--><field IS="ReceiverPduGeometrySwitch.whichChoice"
+        name="whichGeometry" type="Integer" value="0"
+        vrml97Hint="exposedField"/><!--Initialization
+        fields--><field IS="ReceiverPduScriptNode.readInterval"
+        name="readInterval" type="Time" value="2" vrml97Hint="field"/>
+      <field IS="ReceiverPduScriptNode.writeInterval"
+        name="writeInterval" type="Time" value="0" vrml97Hint="field"/>
+      <field IS="ReceiverPduScriptNode.siteID" name="siteID"
+        type="Integer" value="14" vrml97Hint="field"/>
+      <field IS="ReceiverPduScriptNode.applicationID"
+        name="applicationID" type="Integer" value="17" vrml97Hint="field"/>
+      <field IS="ReceiverPduScriptNode.entityID" name="entityID"
+        type="Integer" value="9" vrml97Hint="field"/>
+      <field IS="ReceiverPduScriptNode.address" name="address"
+        type="String" value="224.2.181.145" vrml97Hint="field"/>
+      <field IS="ReceiverPduScriptNode.port" name="port" type="Integer"
+        value="62040" vrml97Hint="field"/>
+      <field IS="ReceiverPduScriptNode.multicastRelayHost"
+        name="multicastRelayHost" type="String"
+        value="devo.cs.nps.navy.mil" vrml97Hint="field"/>
+      <field IS="ReceiverPduScriptNode.multicastRelayPort"
+        name="multicastRelayPort" type="Integer" value="8010" vrml97Hint="field"/>
+      <field IS="ReceiverPduScriptNode.rtpHeaderExpected"
+        name="rtpHeaderExpected" type="Boolean" value="false" vrml97Hint="field"/>
+      <field IS="ReceiverPduScriptNode.traceJava" name="traceJava"
+        type="Boolean" value="false" vrml97Hint="field"/><!--Generic
+        events--><field IS="ReceiverPduScriptNode.active" name="active"
+        type="Boolean" vrml97Hint="eventOut"/>
+      <field IS="ReceiverPduScriptNode.timestamp" name="timestamp"
+        type="Time" vrml97Hint="eventOut"/>
+      <field IS="ReceiverPduScriptNode.rtpHeaderHeard"
+        name="rtpHeaderHeard" type="Boolean"
+        vrml97Hint="eventOut"/><!--RadioCommunicationsFamily
+        events--><field IS="ReceiverPduScriptNode.radioID"
+        name="radioID" type="Integer"
+        vrml97Hint="eventOut"/><!--ReceiverPdu fields--><field
+        IS="ReceiverPduScriptNode.receiverPower" name="receiverPower"
+        type="Float" vrml97Hint="eventOut"/>
+      <field IS="ReceiverPduScriptNode.receiverState"
+        name="receiverState" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="ReceiverPduScriptNode.transmitterSiteID"
+        name="transmitterSiteID" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="ReceiverPduScriptNode.transmitterApplicationID"
+        name="transmitterApplicationID" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="ReceiverPduScriptNode.transmitterEntityID"
+        name="transmitterEntityID" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="ReceiverPduScriptNode.transmitterRadioID"
+        name="transmitterRadioID" type="Integer"
+        vrml97Hint="eventOut"/><!--First node inside a
+        PrototypeDeclaration is the node type of the
+        ProtoInstance--><Switch
+          DEF="ReceiverPduGeometrySwitch"><!--whichChoice -1
+          is no rendering, choice 0 is text trace, choice 1 is default
+            geometry--><choice><!--whichGeometry 0 is trace text showing
+            PDU values--><Group>
+            <children>
+              <Viewpoint description="Receiver Pdu Observer" position="0 0 15"/>
+              <NavigationInfo type="&quot;EXAMINE&quot; &quot;ANY&quot;"/><!--ReceiverOutput3dTraceText--><Group>
+                <children><!--Directions text--><Transform translation="0 6 0">
+                    <children>
+                      <Shape>
+                        <geometry>
+                          <Text string="&quot;Open Java Console to see PDU trace messages&quot;&#10;&quot;Netscape..Communicator..Tools..Java Console&quot;">
+                            <fontStyle>
+                              <FontStyle DEF="FONT1"
+                                justify="&quot;MIDDLE&quot; &quot;BEGIN&quot;" size="0.5"/>
+                            </fontStyle>
+                          </Text>
+                        </geometry>
+                        <appearance>
+                          <Appearance>
+                            <material>
+                              <Material diffuseColor="0 0.4 0.8"/>
+                            </material>
+                          </Appearance>
+                        </appearance>
+                      </Shape>
+                    </children>
+                  </Transform><!--Pdu type text--><Transform translation="0 4.75 0">
+                    <children>
+                      <Shape>
+                        <geometry>
+                          <Text string="Receiver PDU values">
+                            <fontStyle>
+                              <FontStyle USE="FONT1"/>
+                            </fontStyle>
+                          </Text>
+                        </geometry>
+                        <appearance><!--GreenAppearance not DEF-ed and
+                            re-USE-d because each PrototypeDeclaration
+                            is an independent template.  Nodes defined
+                            within one PrototypeDeclaration are not
+                            visible withing the others, because these
+                            are "cookie cutters" rather than instances.visible--><Appearance>
+                            <material>
+                              <Material diffuseColor="0 0.8 0.4"/>
+                            </material>
+                          </Appearance>
+                        </appearance>
+                      </Shape>
+                    </children>
+                  </Transform><!--Output text--><Transform translation="0 4 0">
+                    <children>
+                      <Shape>
+                        <geometry><!--This text will get updated by the
+                            script                   when eventOut
+                            active is set to a value--><Text
+                            DEF="ReceiverOutput1" string="Receiver output uninitialized">
+                            <fontStyle>
+                              <FontStyle USE="FONT1"/>
+                            </fontStyle>
+                          </Text>
+                        </geometry>
+                        <appearance>
+                          <Appearance>
+                            <material>
+                              <Material diffuseColor="0.8 0.8 0"/>
+                            </material>
+                          </Appearance>
+                        </appearance>
+                      </Shape>
+                    </children>
+                  </Transform>
+                </children>
+              </Group>
+              <Script DEF="ReceiverOutputAssembler1"><!--surprising
+                  limit on                   MFString:  10
+                  strings--><field name="messageResult" type="Strings" vrml97Hint="eventOut"/>
+                <field name="active" type="Boolean" vrml97Hint="eventIn"/>
+                <field name="timestamp" type="Time" vrml97Hint="eventIn"/>
+                <field name="rtpHeaderHeard" type="Boolean" vrml97Hint="eventIn"/>
+                <field name="radioID" type="Integer" vrml97Hint="eventIn"/>
+                <field name="receiverPower" type="Float" vrml97Hint="eventIn"/>
+                <field name="receiverState" type="Integer" vrml97Hint="eventIn"/>
+                <field name="transmitterSiteID" type="Integer" vrml97Hint="eventIn"/>
+                <field name="transmitterApplicationID" type="Integer" vrml97Hint="eventIn"/>
+                <field name="transmitterEntityID" type="Integer" vrml97Hint="eventIn"/>
+<field name="transmitterRadioID" type="Integer" vrml97Hint="eventIn"/><![CDATA[javascript:
+
+function initialize ()
+{
+	value='awaiting PDU';
+	messageResult  [0] = 'active=' + value;
+	messageResult  [1] = 'timestamp=' + value;
+	messageResult  [2] = 'rtpHeaderHeard=' + value;
+	messageResult  [3] = 'radioID=' + value;
+	messageResult  [4] = 'receiverPower=' + value;
+	messageResult  [5] = 'receiverState=' + value;
+	messageResult  [6] = 'transmitterSiteID=' + value;
+	messageResult  [7] = 'transmitterApplicationID=' + value;
+	messageResult  [8] = 'transmitterEntityID=' + value;
+	messageResult  [9] = 'transmitterRadioID=' + value;
+}
+function active 			(value, ts) { messageResult [0] = 'active=' + value; }
+function timestamp			(value, ts) { messageResult [1] = 'timestamp=' + value; }
+function rtpHeaderHeard			(value, ts) { messageResult [2] = 'rtpHeaderHeard=' + value; }
+function radioID			(value, ts) { messageResult [3] = 'radioID=' + value; }
+function receiverPower			(value, ts) { messageResult [4] = 'receiverPower=' + value; }
+function receiverState			(value, ts) { messageResult [5] = 'receiverState=' + value; }
+function transmitterSiteID		(value, ts) { messageResult [6] = 'transmitterSiteID=' + value; }
+function transmitterApplicationID	(value, ts) { messageResult [7] = 'transmitterApplicationID=' + value; }
+function transmitterEntityID		(value, ts) { messageResult [8] = 'transmitterEntityID=' + value; }
+function transmitterRadioID 		(value, ts) { messageResult [9] = 'transmitterRadioID=' + value; }]]></Script>
+            </children>
+          </Group><!--Further geometry representations go here--></choice>
+      </Switch><!--The Script follows the Switch, since the first node
+        in the file determines the node type of this
+        prototype--><!--Fields in the Script are directly mapped to the
+        PrototypeDeclare field-tag interfaces by using the IS
+        construct--><Script DEF="ReceiverPduScriptNode"
+        directOutput="true" mustEvaluate="true"
+          url="RadioCommunicationsPduScriptNode.class"><!--Valid values
+          for radioPduType are ReceiverPdu, SignalPdu and
+          TransmitterPdu--><field name="radioPduType" type="String"
+          value="ReceiverPdu" vrml97Hint="field"/><!--Initialization
+          fields--><field name="readInterval" type="Time" vrml97Hint="field"/>
+        <field name="writeInterval" type="Time" vrml97Hint="field"/>
+        <field name="siteID" type="Integer" vrml97Hint="field"/>
+        <field name="applicationID" type="Integer" vrml97Hint="field"/>
+        <field name="entityID" type="Integer" vrml97Hint="field"/>
+        <field name="address" type="String" vrml97Hint="field"/>
+        <field name="port" type="Integer" vrml97Hint="field"/>
+        <field name="multicastRelayHost" type="String" vrml97Hint="field"/>
+        <field name="multicastRelayPort" type="Integer" vrml97Hint="field"/>
+        <field name="rtpHeaderExpected" type="Boolean" vrml97Hint="field"/>
+        <field name="traceJava" type="Boolean"
+          vrml97Hint="field"/><!--Generic events--><field name="update"
+          type="Time" vrml97Hint="eventIn"/>
+        <field name="active" type="Boolean" vrml97Hint="eventOut"/>
+        <field name="timestamp" type="Time" vrml97Hint="eventOut"/>
+        <field name="rtpHeaderHeard" type="Boolean"
+          vrml97Hint="eventOut"/><!--RadioCommunicationsFamily
+          events--><field name="radioID" type="Integer"
+          vrml97Hint="eventOut"/><!--SignalPdu fields--><field
+          name="receiverPower" type="Float" vrml97Hint="eventOut"/>
+        <field name="receiverState" type="Integer" vrml97Hint="eventOut"/>
+        <field name="transmitterSiteID" type="Integer" vrml97Hint="eventOut"/>
+        <field name="transmitterApplicationID" type="Integer" vrml97Hint="eventOut"/>
+        <field name="transmitterEntityID" type="Integer" vrml97Hint="eventOut"/>
+        <field name="transmitterRadioID" type="Integer" vrml97Hint="eventOut"/>
+      </Script><!--Clocks stimulate the processEvents() method in the
+        Script code, resulting in DIS PDU reads/writes.  The 'update'
+        eventIn is implicit (i.e. no corresponding Java method is
+        needed).--><TimeSensor DEF="ReceiverPduReadIntervalClock"
+        cycleInterval="1" enabled="true" loop="true"/>
+      <TimeSensor DEF="ReceiverPduWriteIntervalClock" cycleInterval="0"
+        enabled="false" loop="true"/>
+      <ROUTE fromField="cycleTime"
+        fromNode="ReceiverPduReadIntervalClock" toField="update" toNode="ReceiverPduScriptNode"/>
+      <ROUTE fromField="cycleTime"
+        fromNode="ReceiverPduWriteIntervalClock" toField="update"
+        toNode="ReceiverPduScriptNode"/><!--These ROUTEs         connect
+        the PDU Script node to the geometryChoice=0 text
+        output--><ROUTE fromField="active"
+        fromNode="ReceiverPduScriptNode" toField="active" toNode="ReceiverOutputAssembler1"/>
+      <ROUTE fromField="timestamp" fromNode="ReceiverPduScriptNode"
+        toField="timestamp" toNode="ReceiverOutputAssembler1"/>
+      <ROUTE fromField="rtpHeaderHeard" fromNode="ReceiverPduScriptNode"
+        toField="rtpHeaderHeard" toNode="ReceiverOutputAssembler1"/>
+      <ROUTE fromField="radioID" fromNode="ReceiverPduScriptNode"
+        toField="radioID" toNode="ReceiverOutputAssembler1"/>
+      <ROUTE fromField="receiverPower" fromNode="ReceiverPduScriptNode"
+        toField="receiverPower" toNode="ReceiverOutputAssembler1"/>
+      <ROUTE fromField="receiverState" fromNode="ReceiverPduScriptNode"
+        toField="receiverState" toNode="ReceiverOutputAssembler1"/>
+      <ROUTE fromField="transmitterSiteID"
+        fromNode="ReceiverPduScriptNode" toField="transmitterSiteID" toNode="ReceiverOutputAssembler1"/>
+      <ROUTE fromField="transmitterApplicationID"
+        fromNode="ReceiverPduScriptNode"
+        toField="transmitterApplicationID" toNode="ReceiverOutputAssembler1"/>
+      <ROUTE fromField="transmitterEntityID"
+        fromNode="ReceiverPduScriptNode" toField="transmitterEntityID" toNode="ReceiverOutputAssembler1"/>
+      <ROUTE fromField="transmitterRadioID"
+        fromNode="ReceiverPduScriptNode" toField="transmitterRadioID" toNode="ReceiverOutputAssembler1"/>
+      <ROUTE fromField="messageResult"
+        fromNode="ReceiverOutputAssembler1" toField="string"
+        toNode="ReceiverOutput1"/><!--ROUTEs for further
+        geometry representations go
+      here--></ProtoDeclare><!--============================================================
+      --><ProtoDeclare name="SignalPdu"><!--set whichGeometry to
+        -1         for no geometry, 0 for text trace, 1 for default
+        geometry--><field IS="SignalPduGeometrySwitch.whichChoice"
+        name="whichGeometry" type="Integer" value="0"
+        vrml97Hint="exposedField"/><!--Initialization
+        fields--><field IS="SignalPduScriptNode.readInterval"
+        name="readInterval" type="Time" value="2" vrml97Hint="field"/>
+      <field IS="SignalPduScriptNode.writeInterval" name="writeInterval"
+        type="Time" value="0" vrml97Hint="field"/>
+      <field IS="SignalPduScriptNode.siteID" name="siteID"
+        type="Integer" value="14" vrml97Hint="field"/>
+      <field IS="SignalPduScriptNode.applicationID" name="applicationID"
+        type="Integer" value="17" vrml97Hint="field"/>
+      <field IS="SignalPduScriptNode.entityID" name="entityID"
+        type="Integer" value="9" vrml97Hint="field"/>
+      <field IS="SignalPduScriptNode.address" name="address"
+        type="String" value="224.2.181.145" vrml97Hint="field"/>
+      <field IS="SignalPduScriptNode.port" name="port" type="Integer"
+        value="62040" vrml97Hint="field"/>
+      <field IS="SignalPduScriptNode.multicastRelayHost"
+        name="multicastRelayHost" type="String"
+        value="devo.cs.nps.navy.mil" vrml97Hint="field"/>
+      <field IS="SignalPduScriptNode.multicastRelayPort"
+        name="multicastRelayPort" type="Integer" value="8010" vrml97Hint="field"/>
+      <field IS="SignalPduScriptNode.rtpHeaderExpected"
+        name="rtpHeaderExpected" type="Boolean" value="false" vrml97Hint="field"/>
+      <field IS="SignalPduScriptNode.traceJava" name="traceJava"
+        type="Boolean" value="false" vrml97Hint="field"/><!--Generic
+        events--><field IS="SignalPduScriptNode.active" name="active"
+        type="Boolean" vrml97Hint="eventOut"/>
+      <field IS="SignalPduScriptNode.timestamp" name="timestamp"
+        type="Time" vrml97Hint="eventOut"/>
+      <field IS="SignalPduScriptNode.rtpHeaderHeard"
+        name="rtpHeaderHeard" type="Boolean"
+        vrml97Hint="eventOut"/><!--RadioCommunicationsFamily
+        events--><field IS="SignalPduScriptNode.radioID" name="radioID"
+        type="Integer" vrml97Hint="eventOut"/><!--SignalPdu
+        fields--><field IS="SignalPduScriptNode.encodingScheme"
+        name="encodingScheme" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="SignalPduScriptNode.tdlType" name="tdlType"
+        type="Integer" vrml97Hint="eventOut"/>
+      <field IS="SignalPduScriptNode.sampleRate" name="sampleRate"
+        type="Integer" vrml97Hint="eventOut"/>
+      <field IS="SignalPduScriptNode.samples" name="samples"
+        type="Integer" vrml97Hint="eventOut"/>
+      <field IS="SignalPduScriptNode.dataLength" name="dataLength"
+        type="Integer" vrml97Hint="eventOut"/>
+      <field IS="SignalPduScriptNode.data00" name="data00"
+        type="Integer" vrml97Hint="eventOut"/>
+      <field IS="SignalPduScriptNode.data01" name="data01"
+        type="Integer" vrml97Hint="eventOut"/>
+      <field IS="SignalPduScriptNode.data02" name="data02"
+        type="Integer" vrml97Hint="eventOut"/>
+      <field IS="SignalPduScriptNode.data03" name="data03"
+        type="Integer" vrml97Hint="eventOut"/>
+      <field IS="SignalPduScriptNode.data04" name="data04"
+        type="Integer" vrml97Hint="eventOut"/>
+      <field IS="SignalPduScriptNode.data05" name="data05"
+        type="Integer" vrml97Hint="eventOut"/>
+      <field IS="SignalPduScriptNode.data06" name="data06"
+        type="Integer" vrml97Hint="eventOut"/>
+      <field IS="SignalPduScriptNode.data07" name="data07"
+        type="Integer" vrml97Hint="eventOut"/>
+      <field IS="SignalPduScriptNode.data08" name="data08"
+        type="Integer" vrml97Hint="eventOut"/>
+      <field IS="SignalPduScriptNode.data09" name="data09"
+        type="Integer" vrml97Hint="eventOut"/>
+      <field IS="SignalPduScriptNode.data10" name="data10"
+        type="Integer" vrml97Hint="eventOut"/><!--First node inside a
+        PrototypeDeclaration is the node type of the
+        ProtoInstance--><Switch
+          DEF="SignalPduGeometrySwitch"><!--whichChoice -1           is
+          no rendering, choice 0 is text trace, choice 1 is default
+            geometry--><choice><!--whichGeometry 0 is trace text showing
+            PDU values--><Group>
+            <children>
+              <Viewpoint description="Signal Pdu Observer" position="0 0 15"/>
+              <NavigationInfo type="&quot;EXAMINE&quot; &quot;ANY&quot;"/><!--SignalOutput3dTraceText--><Group>
+                <children><!--Directions text--><Transform translation="0 6 0">
+                    <children>
+                      <Shape>
+                        <geometry>
+                          <Text string="&quot;Open Java Console to see PDU trace messages&quot;&#10;&quot;Netscape..Communicator..Tools..Java Console&quot;">
+                            <fontStyle>
+                              <FontStyle DEF="FONT2"
+                                justify="&quot;MIDDLE&quot; &quot;BEGIN&quot;" size="0.5"/>
+                            </fontStyle>
+                          </Text>
+                        </geometry>
+                        <appearance>
+                          <Appearance>
+                            <material>
+                              <Material diffuseColor="0 0.4 0.8"/>
+                            </material>
+                          </Appearance>
+                        </appearance>
+                      </Shape>
+                    </children>
+                  </Transform><!--Pdu type text--><Transform translation="0 4.75 0">
+                    <children>
+                      <Shape>
+                        <geometry>
+                          <Text string="Signal PDU values">
+                            <fontStyle>
+                              <FontStyle USE="FONT2"/>
+                            </fontStyle>
+                          </Text>
+                        </geometry>
+                        <appearance>
+                          <Appearance>
+                            <material>
+                              <Material diffuseColor="0 0.8 0.4"/>
+                            </material>
+                          </Appearance>
+                        </appearance>
+                      </Shape>
+                    </children>
+                  </Transform><!--Output text--><Transform translation="0 4 0">
+                    <children>
+                      <Shape>
+                        <geometry><!--This text will get updated by the
+                            script                   when eventOut
+                            active is set to a value--><Text
+                            DEF="SignalOutput1" string="Signal Output1 unset">
+                            <fontStyle>
+                              <FontStyle USE="FONT2"/>
+                            </fontStyle>
+                          </Text>
+                        </geometry>
+                        <appearance>
+                          <Appearance DEF="YellowAppearance2">
+                            <material>
+                              <Material diffuseColor="0.8 0.8 0"/>
+                            </material>
+                          </Appearance>
+                        </appearance>
+                      </Shape>
+                    </children>
+                  </Transform>
+                  <Transform translation="0 -1 0">
+                    <children>
+                      <Shape>
+                        <geometry>
+                          <Text DEF="SignalOutput2" string="Signal Output2 unset">
+                            <fontStyle>
+                              <FontStyle USE="FONT2"/>
+                            </fontStyle>
+                          </Text>
+                        </geometry>
+                        <appearance>
+                          <Appearance USE="YellowAppearance2"/>
+                        </appearance>
+                      </Shape>
+                    </children>
+                  </Transform>
+                </children>
+              </Group>
+              <Script DEF="SignalOutputAssembler1"><!--surprising limit
+                  on                   MFString:  10
+                  strings--><field name="messageResult" type="Strings" vrml97Hint="eventOut"/>
+                <field name="active" type="Boolean" vrml97Hint="eventIn"/>
+                <field name="timestamp" type="Time" vrml97Hint="eventIn"/>
+                <field name="rtpHeaderHeard" type="Boolean" vrml97Hint="eventIn"/>
+                <field name="radioID" type="Integer" vrml97Hint="eventIn"/>
+                <field name="encodingScheme" type="Integer" vrml97Hint="eventIn"/>
+                <field name="tdlType" type="Integer" vrml97Hint="eventIn"/>
+                <field name="sampleRate" type="Integer" vrml97Hint="eventIn"/>
+                <field name="samples" type="Integer" vrml97Hint="eventIn"/>
+                <field name="dataLength" type="Integer" vrml97Hint="eventIn"/>
+<field name="data00" type="Integer" vrml97Hint="eventIn"/><![CDATA[javascript:
+
+function initialize ()
+{
+	value='awaiting PDU';
+	messageResult  [0] = 'active=' + value;
+	messageResult  [1] = 'timestamp=' + value;
+	messageResult  [2] = 'rtpHeaderHeard=' + value;
+	messageResult  [3] = 'radioID=' + value;
+	messageResult  [4] = 'encodingScheme=' + value;
+	messageResult  [5] = 'tdlType=' + value;
+	messageResult  [6] = 'sampleRate=' + value;
+	messageResult  [7] = 'samples=' + value;
+	messageResult  [8] = 'dataLength=' + value;
+	messageResult  [9] = 'data00=' + value;
+}
+function active 	(value, ts) { messageResult [0] = 'active=' + value; }
+function timestamp	(value, ts) { messageResult [1] = 'timestamp=' + value; }
+function rtpHeaderHeard	(value, ts) { messageResult [2] = 'rtpHeaderHeard=' + value; }
+function radioID	(value, ts) { messageResult [3] = 'radioID=' + value; }
+function encodingScheme	(value, ts) { messageResult [4] = 'encodingScheme=' + value; }
+function tdlType	(value, ts) { messageResult [5] = 'tdlType=' + value; }
+function sampleRate	(value, ts) { messageResult [6] = 'sampleRate=' + value; }
+function samples	(value, ts) { messageResult [7] = 'samples=' + value; }
+function dataLength	(value, ts) { messageResult [8] = 'dataLength=' + value; }
+function data00  	(value, ts) { messageResult [9] = 'data00=' + value; }]]></Script>
+              <Script DEF="SignalOutputAssembler2">
+                <field name="messageResult" type="Strings" vrml97Hint="eventOut"/>
+                <field name="data01" type="Integer" vrml97Hint="eventIn"/>
+                <field name="data02" type="Integer" vrml97Hint="eventIn"/>
+                <field name="data03" type="Integer" vrml97Hint="eventIn"/>
+                <field name="data04" type="Integer" vrml97Hint="eventIn"/>
+                <field name="data05" type="Integer" vrml97Hint="eventIn"/>
+                <field name="data06" type="Integer" vrml97Hint="eventIn"/>
+                <field name="data07" type="Integer" vrml97Hint="eventIn"/>
+                <field name="data08" type="Integer" vrml97Hint="eventIn"/>
+                <field name="data09" type="Integer" vrml97Hint="eventIn"/>
+<field name="data10" type="Integer" vrml97Hint="eventIn"/><![CDATA[javascript:
+
+function initialize ()
+{
+	messageResult [0] = 'data01=' + value;
+	messageResult [1] = 'data02=' + value;
+	messageResult [2] = 'data03=' + value;
+	messageResult [3] = 'data04=' + value;
+	messageResult [4] = 'data05=' + value;
+	messageResult [5] = 'data06=' + value;
+	messageResult [6] = 'data07=' + value;
+	messageResult [7] = 'data08=' + value;
+	messageResult [8] = 'data09=' + value;
+	messageResult [9] = 'data10=' + value;
+}
+function data01 	(value, ts) { messageResult [0] = 'data01=' + value; }
+function data02 	(value, ts) { messageResult [1] = 'data02=' + value; }
+function data03 	(value, ts) { messageResult [2] = 'data03=' + value; }
+function data04 	(value, ts) { messageResult [3] = 'data04=' + value; }
+function data05 	(value, ts) { messageResult [4] = 'data05=' + value; }
+function data06 	(value, ts) { messageResult [5] = 'data06=' + value; }
+function data07 	(value, ts) { messageResult [6] = 'data07=' + value; }
+function data08 	(value, ts) { messageResult [7] = 'data08=' + value; }
+function data09 	(value, ts) { messageResult [8] = 'data09=' + value; }
+function data10 	(value, ts) { messageResult [9] = 'data10=' + value; }
+    ]]></Script>
+            </children>
+          </Group><!--Further geometry representations go here--></choice>
+      </Switch><!--The Script follows the Switch, since the first node
+        in the file determines the node type of this
+        prototype--><!--Fields in the Script are directly mapped to the
+        PrototypeDeclare field-tag interfaces by using the IS
+        construct--><Script DEF="SignalPduScriptNode"
+        directOutput="true" mustEvaluate="true"
+          url="RadioCommunicationsPduScriptNode.class"><!--Valid values
+          for radioPduType are ReceiverPdu, SignalPdu and
+          TransmitterPdu--><field name="radioPduType" type="String"
+          value="SignalPdu" vrml97Hint="field"/><!--Initialization
+          fields--><field name="readInterval" type="Time" vrml97Hint="field"/>
+        <field name="writeInterval" type="Time" vrml97Hint="field"/>
+        <field name="siteID" type="Integer" vrml97Hint="field"/>
+        <field name="applicationID" type="Integer" vrml97Hint="field"/>
+        <field name="entityID" type="Integer" vrml97Hint="field"/>
+        <field name="address" type="String" vrml97Hint="field"/>
+        <field name="port" type="Integer" vrml97Hint="field"/>
+        <field name="multicastRelayHost" type="String" vrml97Hint="field"/>
+        <field name="multicastRelayPort" type="Integer" vrml97Hint="field"/>
+        <field name="rtpHeaderExpected" type="Boolean" vrml97Hint="field"/>
+        <field name="traceJava" type="Boolean"
+          vrml97Hint="field"/><!--Generic events--><field name="update"
+          type="Time" vrml97Hint="eventIn"/>
+        <field name="active" type="Boolean" vrml97Hint="eventOut"/>
+        <field name="timestamp" type="Time" vrml97Hint="eventOut"/>
+        <field name="rtpHeaderHeard" type="Boolean"
+          vrml97Hint="eventOut"/><!--RadioCommunicationsFamily
+          events--><field name="radioID" type="Integer"
+          vrml97Hint="eventOut"/><!--SignalPdu fields--><field
+          name="encodingScheme" type="Integer" vrml97Hint="eventOut"/>
+        <field name="tdlType" type="Integer" vrml97Hint="eventOut"/>
+        <field name="sampleRate" type="Integer" vrml97Hint="eventOut"/>
+        <field name="samples" type="Integer" vrml97Hint="eventOut"/>
+        <field name="dataLength" type="Integer" vrml97Hint="eventOut"/>
+        <field name="data00" type="Integer" vrml97Hint="eventOut"/>
+        <field name="data01" type="Integer" vrml97Hint="eventOut"/>
+        <field name="data02" type="Integer" vrml97Hint="eventOut"/>
+        <field name="data03" type="Integer" vrml97Hint="eventOut"/>
+        <field name="data04" type="Integer" vrml97Hint="eventOut"/>
+        <field name="data05" type="Integer" vrml97Hint="eventOut"/>
+        <field name="data06" type="Integer" vrml97Hint="eventOut"/>
+        <field name="data07" type="Integer" vrml97Hint="eventOut"/>
+        <field name="data08" type="Integer" vrml97Hint="eventOut"/>
+        <field name="data09" type="Integer" vrml97Hint="eventOut"/>
+        <field name="data10" type="Integer" vrml97Hint="eventOut"/>
+      </Script><!--Clocks stimulate the processEvents() method in the
+        Script code, resulting in DIS PDU reads/writes.  The 'update'
+        eventIn is implicit (i.e. no corresponding Java method is
+        needed).--><TimeSensor DEF="SignalPduReadIntervalClock"
+        cycleInterval="1" enabled="true" loop="true"/>
+      <TimeSensor DEF="SignalPduWriteIntervalClock" cycleInterval="0"
+        enabled="false" loop="true"/>
+      <ROUTE fromField="cycleTime" fromNode="SignalPduReadIntervalClock"
+        toField="update" toNode="SignalPduScriptNode"/>
+      <ROUTE fromField="cycleTime"
+        fromNode="SignalPduWriteIntervalClock" toField="update"
+        toNode="SignalPduScriptNode"/><!--These ROUTEs         connect
+        the PDU Script node to the geometryChoice=0 text
+        output--><ROUTE fromField="active"
+        fromNode="SignalPduScriptNode" toField="active" toNode="SignalOutputAssembler1"/>
+      <ROUTE fromField="timestamp" fromNode="SignalPduScriptNode"
+        toField="timestamp" toNode="SignalOutputAssembler1"/>
+      <ROUTE fromField="rtpHeaderHeard" fromNode="SignalPduScriptNode"
+        toField="rtpHeaderHeard" toNode="SignalOutputAssembler1"/>
+      <ROUTE fromField="radioID" fromNode="SignalPduScriptNode"
+        toField="radioID" toNode="SignalOutputAssembler1"/>
+      <ROUTE fromField="encodingScheme" fromNode="SignalPduScriptNode"
+        toField="encodingScheme" toNode="SignalOutputAssembler1"/>
+      <ROUTE fromField="tdlType" fromNode="SignalPduScriptNode"
+        toField="tdlType" toNode="SignalOutputAssembler1"/>
+      <ROUTE fromField="sampleRate" fromNode="SignalPduScriptNode"
+        toField="sampleRate" toNode="SignalOutputAssembler1"/>
+      <ROUTE fromField="samples" fromNode="SignalPduScriptNode"
+        toField="samples" toNode="SignalOutputAssembler1"/>
+      <ROUTE fromField="dataLength" fromNode="SignalPduScriptNode"
+        toField="dataLength" toNode="SignalOutputAssembler1"/>
+      <ROUTE fromField="data00" fromNode="SignalPduScriptNode"
+        toField="data00" toNode="SignalOutputAssembler1"/>
+      <ROUTE fromField="data01" fromNode="SignalPduScriptNode"
+        toField="data01" toNode="SignalOutputAssembler2"/>
+      <ROUTE fromField="data02" fromNode="SignalPduScriptNode"
+        toField="data02" toNode="SignalOutputAssembler2"/>
+      <ROUTE fromField="data03" fromNode="SignalPduScriptNode"
+        toField="data03" toNode="SignalOutputAssembler2"/>
+      <ROUTE fromField="data04" fromNode="SignalPduScriptNode"
+        toField="data04" toNode="SignalOutputAssembler2"/>
+      <ROUTE fromField="data05" fromNode="SignalPduScriptNode"
+        toField="data05" toNode="SignalOutputAssembler2"/>
+      <ROUTE fromField="data06" fromNode="SignalPduScriptNode"
+        toField="data06" toNode="SignalOutputAssembler2"/>
+      <ROUTE fromField="data07" fromNode="SignalPduScriptNode"
+        toField="data07" toNode="SignalOutputAssembler2"/>
+      <ROUTE fromField="data08" fromNode="SignalPduScriptNode"
+        toField="data08" toNode="SignalOutputAssembler2"/>
+      <ROUTE fromField="data09" fromNode="SignalPduScriptNode"
+        toField="data09" toNode="SignalOutputAssembler2"/>
+      <ROUTE fromField="data10" fromNode="SignalPduScriptNode"
+        toField="data10" toNode="SignalOutputAssembler2"/>
+      <ROUTE fromField="messageResult" fromNode="SignalOutputAssembler1"
+        toField="string" toNode="SignalOutput1"/>
+      <ROUTE fromField="messageResult" fromNode="SignalOutputAssembler2"
+        toField="string" toNode="SignalOutput2"/><!--ROUTEs for further
+        geometry representations go
+      here--></ProtoDeclare><!--============================================================
+      --><ProtoDeclare name="TransmitterPdu"><!--set whichGeometry to
+        -1         for no geometry, 0 for text trace, 1 for default
+        geometry--><field IS="TransmitterPduGeometrySwitch.whichChoice"
+        name="whichGeometry" type="Integer" value="0"
+        vrml97Hint="exposedField"/><!--Initialization
+        fields--><field IS="TransmitterPduScriptNode.readInterval"
+        name="readInterval" type="Time" value="2" vrml97Hint="field"/>
+      <field IS="TransmitterPduScriptNode.writeInterval"
+        name="writeInterval" type="Time" value="0" vrml97Hint="field"/>
+      <field IS="TransmitterPduScriptNode.siteID" name="siteID"
+        type="Integer" value="14" vrml97Hint="field"/>
+      <field IS="TransmitterPduScriptNode.applicationID"
+        name="applicationID" type="Integer" value="17" vrml97Hint="field"/>
+      <field IS="TransmitterPduScriptNode.entityID" name="entityID"
+        type="Integer" value="9" vrml97Hint="field"/>
+      <field IS="TransmitterPduScriptNode.address" name="address"
+        type="String" value="224.2.181.145" vrml97Hint="field"/>
+      <field IS="TransmitterPduScriptNode.port" name="port"
+        type="Integer" value="62040" vrml97Hint="field"/>
+      <field IS="TransmitterPduScriptNode.multicastRelayHost"
+        name="multicastRelayHost" type="String"
+        value="devo.cs.nps.navy.mil" vrml97Hint="field"/>
+      <field IS="TransmitterPduScriptNode.multicastRelayPort"
+        name="multicastRelayPort" type="Integer" value="8010" vrml97Hint="field"/>
+      <field IS="TransmitterPduScriptNode.rtpHeaderExpected"
+        name="rtpHeaderExpected" type="Boolean" value="false" vrml97Hint="field"/>
+      <field IS="TransmitterPduScriptNode.traceJava" name="traceJava"
+        type="Boolean" value="false" vrml97Hint="field"/><!--Generic
+        events--><field IS="TransmitterPduScriptNode.active"
+        name="active" type="Boolean" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.timestamp" name="timestamp"
+        type="Time" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.rtpHeaderHeard"
+        name="rtpHeaderHeard" type="Boolean"
+        vrml97Hint="eventOut"/><!--RadioCommunicationsFamily
+        events--><field IS="TransmitterPduScriptNode.radioID"
+        name="radioID" type="Integer"
+        vrml97Hint="eventOut"/><!--TransmitterPdu fields--><field
+        IS="TransmitterPduScriptNode.antennaLocation"
+        name="antennaLocation" type="Vector3Float" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.antennaPatternLength"
+        name="antennaPatternLength" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.antennaPatternType"
+        name="antennaPatternType" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.cryptoKeyId"
+        name="cryptoKeyId" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.cryptoSytem"
+        name="cryptoSytem" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.frequency" name="frequency"
+        type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.inputSource"
+        name="inputSource" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.lengthOfModulationParameters"
+        name="lengthOfModulationParameters" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.modulationTypeDetail"
+        name="modulationTypeDetail" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.modulationTypeMajor"
+        name="modulationTypeMajor" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.modulationTypeSpreadSpectrum"
+        name="modulationTypeSpreadSpectrum" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.modulationTypeSystem"
+        name="modulationTypeSystem" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.power" name="power"
+        type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.radioEntityTypeCategory"
+        name="radioEntityTypeCategory" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.radioEntityTypeCountry"
+        name="radioEntityTypeCountry" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.radioEntityTypeDomain"
+        name="radioEntityTypeDomain" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.radioEntityTypeKind"
+        name="radioEntityTypeKind" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.radioEntityTypeNomenclature"
+        name="radioEntityTypeNomenclature" type="Integer" vrml97Hint="eventOut"/>
+      <field
+        IS="TransmitterPduScriptNode.radioEntityTypeNomenclatureVersion"
+        name="radioEntityTypeNomenclatureVersion" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.relativeAntennaLocation"
+        name="relativeAntennaLocation" type="Vector3Float" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.transmitFrequencyBandwidth"
+        name="transmitFrequencyBandwidth" type="Integer" vrml97Hint="eventOut"/>
+      <field IS="TransmitterPduScriptNode.transmitState"
+        name="transmitState" type="Integer"
+        vrml97Hint="eventOut"/><!--First node inside a
+        PrototypeDeclaration is the node type of the
+        ProtoInstance--><Switch
+          DEF="TransmitterPduGeometrySwitch"><!--whichChoice -1
+          is no rendering, choice 0 is text trace, choice 1 is default
+            geometry--><choice><!--whichGeometry 0 is trace text showing
+            PDU values--><Group>
+            <children>
+              <Viewpoint description="Transmitter Pdu Observer" position="0 0 15"/>
+              <NavigationInfo type="&quot;EXAMINE&quot; &quot;ANY&quot;"/><!--TransmitterOutput3dTraceText--><Group>
+                <children><!--Directions text--><Transform translation="0 6 0">
+                    <children>
+                      <Shape>
+                        <geometry>
+                          <Text string="&quot;Open Java Console to see PDU trace messages&quot;&#10;&quot;Netscape..Communicator..Tools..Java Console&quot;">
+                            <fontStyle>
+                              <FontStyle DEF="FONT3"
+                                justify="&quot;MIDDLE&quot; &quot;BEGIN&quot;" size="0.5"/>
+                            </fontStyle>
+                          </Text>
+                        </geometry>
+                        <appearance>
+                          <Appearance>
+                            <material>
+                              <Material diffuseColor="0 0.4 0.8"/>
+                            </material>
+                          </Appearance>
+                        </appearance>
+                      </Shape>
+                    </children>
+                  </Transform><!--Pdu type text--><Transform translation="0 4.75 0">
+                    <children>
+                      <Shape>
+                        <geometry>
+                          <Text string="Transmitter PDU values">
+                            <fontStyle>
+                              <FontStyle USE="FONT3"/>
+                            </fontStyle>
+                          </Text>
+                        </geometry>
+                        <appearance>
+                          <Appearance>
+                            <material>
+                              <Material diffuseColor="0 0.8 0.4"/>
+                            </material>
+                          </Appearance>
+                        </appearance>
+                      </Shape>
+                    </children>
+                  </Transform><!--Output text--><Transform translation="0 4 0">
+                    <children>
+                      <Shape>
+                        <geometry><!--This text will get updated by the
+                            script                   when eventOut
+                            active is set to a value--><Text
+                            DEF="TransmitterOutput1" string="Transmitter Output1 unset">
+                            <fontStyle>
+                              <FontStyle USE="FONT3"/>
+                            </fontStyle>
+                          </Text>
+                        </geometry>
+                        <appearance>
+                          <Appearance DEF="YellowAppearance3">
+                            <material>
+                              <Material diffuseColor="0.8 0.8 0"/>
+                            </material>
+                          </Appearance>
+                        </appearance>
+                      </Shape>
+                    </children>
+                  </Transform>
+                  <Transform translation="0 -1 0">
+                    <children>
+                      <Shape>
+                        <geometry>
+                          <Text DEF="TransmitterOutput2" string="Transmitter Output2 unset">
+                            <fontStyle>
+                              <FontStyle USE="FONT3"/>
+                            </fontStyle>
+                          </Text>
+                        </geometry>
+                        <appearance>
+                          <Appearance USE="YellowAppearance3"/>
+                        </appearance>
+                      </Shape>
+                    </children>
+                  </Transform>
+                  <Transform translation="0 -6 0">
+                    <children>
+                      <Shape>
+                        <geometry>
+                          <Text DEF="TransmitterOutput3" string="Transmitter Output2 unset">
+                            <fontStyle>
+                              <FontStyle USE="FONT3"/>
+                            </fontStyle>
+                          </Text>
+                        </geometry>
+                        <appearance>
+                          <Appearance USE="YellowAppearance3"/>
+                        </appearance>
+                      </Shape>
+                    </children>
+                  </Transform>
+                </children>
+              </Group>
+              <Script DEF="TransmitterOutputAssembler1"><!--surprising
+                  limit on                   MFString:  10
+                  strings--><field name="messageResult" type="Strings" vrml97Hint="eventOut"/>
+                <field name="active" type="Boolean" vrml97Hint="eventIn"/>
+                <field name="timestamp" type="Time" vrml97Hint="eventIn"/>
+                <field name="rtpHeaderHeard" type="Boolean" vrml97Hint="eventIn"/>
+                <field name="radioID" type="Integer" vrml97Hint="eventIn"/>
+                <field name="antennaLocation" type="Vector3Float" vrml97Hint="eventIn"/>
+                <field name="antennaPatternLength" type="Integer" vrml97Hint="eventIn"/>
+                <field name="antennaPatternType" type="Integer" vrml97Hint="eventIn"/>
+                <field name="cryptoKeyId" type="Integer" vrml97Hint="eventIn"/>
+                <field name="cryptoSytem" type="Integer" vrml97Hint="eventIn"/>
+<field name="frequency" type="Integer" vrml97Hint="eventIn"/><![CDATA[javascript:
+
+function initialize ()
+{
+	value='awaiting PDU';
+	messageResult  [0] = 'active=' + value;
+	messageResult  [1] = 'timestamp=' + value;
+	messageResult  [2] = 'rtpHeaderHeard=' + value;
+	messageResult  [3] = 'radioID=' + value;
+	messageResult  [4] = 'antennaLocation=' + value;
+	messageResult  [5] = 'antennaPatternLength=' + value;
+	messageResult  [6] = 'antennaPatternType=' + value;
+	messageResult  [7] = 'cryptoKeyId=' + value;
+	messageResult  [8] = 'cryptoSytem=' + value;
+	messageResult  [9] = 'frequency=' + value;
+}
+function active 		(value, ts) { messageResult [0] = 'active=' + value; }
+function timestamp		(value, ts) { messageResult [1] = 'timestamp=' + value; }
+function rtpHeaderHeard		(value, ts) { messageResult [2] = 'rtpHeaderHeard=' + value; }
+function radioID		(value, ts) { messageResult [3] = 'radioID=' + value; }
+function antennaLocation	(value, ts) { messageResult [4] = 'antennaLocation=' + value; }
+function antennaPatternLength	(value, ts) { messageResult [5] = 'antennaPatternLength=' + value; }
+function antennaPatternType	(value, ts) { messageResult [6] = 'antennaPatternType=' + value; }
+function cryptoKeyId		(value, ts) { messageResult [7] = 'cryptoKeyId=' + value; }
+function cryptoSytem		(value, ts) { messageResult [8] = 'cryptoSytem=' + value; }
+function frequency  		(value, ts) { messageResult [9] = 'frequency=' + value; }]]></Script>
+              <Script DEF="TransmitterOutputAssembler2">
+                <field name="messageResult" type="Strings" vrml97Hint="eventOut"/>
+                <field name="inputSource" type="Integer" vrml97Hint="eventIn"/>
+                <field name="lengthOfModulationParameters"
+                  type="Integer" vrml97Hint="eventIn"/>
+                <field name="modulationTypeDetail" type="Integer" vrml97Hint="eventIn"/>
+                <field name="modulationTypeMajor" type="Integer" vrml97Hint="eventIn"/>
+                <field name="modulationTypeSpreadSpectrum"
+                  type="Integer" vrml97Hint="eventIn"/>
+                <field name="modulationTypeSystem" type="Integer" vrml97Hint="eventIn"/>
+                <field name="power" type="Integer" vrml97Hint="eventIn"/>
+                <field name="radioEntityTypeCategory" type="Integer" vrml97Hint="eventIn"/>
+                <field name="radioEntityTypeCountry" type="Integer" vrml97Hint="eventIn"/>
+<field name="radioEntityTypeDomain" type="Integer" vrml97Hint="eventIn"/><![CDATA[javascript:
+
+function initialize ()
+{
+	messageResult [0] = 'inputSource=' + value;
+	messageResult [1] = 'lengthOfModulationParameters=' + value;
+	messageResult [2] = 'modulationTypeDetail=' + value;
+	messageResult [3] = 'modulationTypeMajor=' + value;
+	messageResult [4] = 'modulationTypeSpreadSpectrum=' + value;
+	messageResult [5] = 'modulationTypeSystem=' + value;
+	messageResult [6] = 'power=' + value;
+	messageResult [7] = 'radioEntityTypeCategory=' + value;
+	messageResult [8] = 'radioEntityTypeCountry=' + value;
+	messageResult [9] = 'radioEntityTypeDomain=' + value;
+}
+function inputSource 			(value, ts) { messageResult [0] = 'inputSource=' + value; }
+function lengthOfModulationParameters 	(value, ts) { messageResult [1] = 'lengthOfModulationParameters=' + value; }
+function modulationTypeDetail		(value, ts) { messageResult [2] = 'modulationTypeDetail=' + value; }
+function modulationTypeMajor 		(value, ts) { messageResult [3] = 'modulationTypeMajor=' + value; }
+function modulationTypeSpreadSpectrum 	(value, ts) { messageResult [4] = 'modulationTypeSpreadSpectrum=' + value; }
+function modulationTypeSystem		(value, ts) { messageResult [5] = 'modulationTypeSystem=' + value; }
+function power	 			(value, ts) { messageResult [6] = 'power=' + value; }
+function radioEntityTypeCategory 	(value, ts) { messageResult [7] = 'radioEntityTypeCategory=' + value; }
+function radioEntityTypeCountry 	(value, ts) { messageResult [8] = 'radioEntityTypeCountry=' + value; }
+function radioEntityTypeDomain 		(value, ts) { messageResult [9] = 'radioEntityTypeDomain=' + value; }
+              ]]></Script>
+              <Script DEF="TransmitterOutputAssembler3">
+                <field name="messageResult" type="Strings" vrml97Hint="eventOut"/>
+                <field name="radioEntityTypeKind" type="Integer" vrml97Hint="eventIn"/>
+                <field name="radioEntityTypeNomenclature" type="Integer" vrml97Hint="eventIn"/>
+                <field name="radioEntityTypeNomenclatureVersion"
+                  type="Integer" vrml97Hint="eventIn"/>
+                <field name="relativeAntennaLocation"
+                  type="Vector3Float" vrml97Hint="eventIn"/>
+                <field name="transmitFrequencyBandwidth" type="Integer" vrml97Hint="eventIn"/>
+<field name="transmitState" type="Integer" vrml97Hint="eventIn"/><![CDATA[javascript:
+
+function initialize ()
+{
+	messageResult [0] = 'radioEntityTypeKind=' + value;
+	messageResult [1] = 'radioEntityTypeNomenclature=' + value;
+	messageResult [2] = 'radioEntityTypeNomenclatureVersion=' + value;
+	messageResult [3] = 'relativeAntennaLocation=' + value;
+	messageResult [4] = 'transmitFrequencyBandwidth=' + value;
+	messageResult [5] = 'transmitState=' + value;
+}
+function radioEntityTypeKind 			(value, ts) { messageResult [0] = 'radioEntityTypeKind=' + value; }
+function radioEntityTypeNomenclature 		(value, ts) { messageResult [1] = 'radioEntityTypeNomenclature=' + value; }
+function radioEntityTypeNomenclatureVersion 	(value, ts) { messageResult [2] = 'radioEntityTypeNomenclatureVersion=' + value; }
+function relativeAntennaLocation 		(value, ts) { messageResult [3] = 'relativeAntennaLocation=' + value; }
+function transmitFrequencyBandwidth		(value, ts) { messageResult [4] = 'transmitFrequencyBandwidth=' + value; }
+function transmitState	 			(value, ts) { messageResult [5] = 'transmitState=' + value; }
+              ]]></Script>
+            </children>
+          </Group><!--Further geometry representations go here--></choice>
+      </Switch><!--The Script follows the Switch, since the first node
+        in the file determines the node type of this
+        prototype--><!--Fields in the Script are directly mapped to the
+        PrototypeDeclare field-tag interfaces by using the IS
+        construct--><Script DEF="TransmitterPduScriptNode"
+        directOutput="true" mustEvaluate="true"
+          url="RadioCommunicationsPduScriptNode.class"><!--Valid values
+          for radioPduType are ReceiverPdu, SignalPdu and
+          TransmitterPdu--><field name="radioPduType" type="String"
+          value="TransmitterPdu" vrml97Hint="field"/><!--Initialization
+          fields--><field name="readInterval" type="Time" vrml97Hint="field"/>
+        <field name="writeInterval" type="Time" vrml97Hint="field"/>
+        <field name="siteID" type="Integer" vrml97Hint="field"/>
+        <field name="applicationID" type="Integer" vrml97Hint="field"/>
+        <field name="entityID" type="Integer" vrml97Hint="field"/>
+        <field name="address" type="String" vrml97Hint="field"/>
+        <field name="port" type="Integer" vrml97Hint="field"/>
+        <field name="multicastRelayHost" type="String" vrml97Hint="field"/>
+        <field name="multicastRelayPort" type="Integer" vrml97Hint="field"/>
+        <field name="rtpHeaderExpected" type="Boolean" vrml97Hint="field"/>
+        <field name="traceJava" type="Boolean"
+          vrml97Hint="field"/><!--Generic events--><field name="update"
+          type="Time" vrml97Hint="eventIn"/>
+        <field name="active" type="Boolean" vrml97Hint="eventOut"/>
+        <field name="timestamp" type="Time" vrml97Hint="eventOut"/>
+        <field name="rtpHeaderHeard" type="Boolean"
+          vrml97Hint="eventOut"/><!--RadioCommunicationsFamily
+          events--><field name="radioID" type="Integer"
+          vrml97Hint="eventOut"/><!--SignalPdu fields--><field
+          name="antennaLocation" type="Vector3Float" vrml97Hint="eventOut"/>
+        <field name="antennaPatternLength" type="Integer" vrml97Hint="eventOut"/>
+        <field name="antennaPatternType" type="Integer" vrml97Hint="eventOut"/>
+        <field name="cryptoKeyId" type="Integer" vrml97Hint="eventOut"/>
+        <field name="cryptoSytem" type="Integer" vrml97Hint="eventOut"/>
+        <field name="frequency" type="Integer" vrml97Hint="eventOut"/>
+        <field name="inputSource" type="Integer" vrml97Hint="eventOut"/>
+        <field name="lengthOfModulationParameters" type="Integer" vrml97Hint="eventOut"/>
+        <field name="modulationTypeDetail" type="Integer" vrml97Hint="eventOut"/>
+        <field name="modulationTypeMajor" type="Integer" vrml97Hint="eventOut"/>
+        <field name="modulationTypeSpreadSpectrum" type="Integer" vrml97Hint="eventOut"/>
+        <field name="modulationTypeSystem" type="Integer" vrml97Hint="eventOut"/>
+        <field name="power" type="Integer" vrml97Hint="eventOut"/>
+        <field name="radioEntityTypeCategory" type="Integer" vrml97Hint="eventOut"/>
+        <field name="radioEntityTypeCountry" type="Integer" vrml97Hint="eventOut"/>
+        <field name="radioEntityTypeDomain" type="Integer" vrml97Hint="eventOut"/>
+        <field name="radioEntityTypeKind" type="Integer" vrml97Hint="eventOut"/>
+        <field name="radioEntityTypeNomenclature" type="Integer" vrml97Hint="eventOut"/>
+        <field name="radioEntityTypeNomenclatureVersion" type="Integer" vrml97Hint="eventOut"/>
+        <field name="relativeAntennaLocation" type="Vector3Float" vrml97Hint="eventOut"/>
+        <field name="transmitFrequencyBandwidth" type="Integer" vrml97Hint="eventOut"/>
+        <field name="transmitState" type="Integer" vrml97Hint="eventOut"/>
+      </Script><!--Clocks stimulate the processEvents() method in the
+        Script code, resulting in DIS PDU reads/writes.  The 'update'
+        eventIn is implicit (i.e. no corresponding Java method is
+        needed).--><TimeSensor DEF="TransmitterPduReadIntervalClock"
+        cycleInterval="1" enabled="true" loop="true"/>
+      <TimeSensor DEF="TransmitterPduWriteIntervalClock"
+        cycleInterval="0" enabled="false" loop="true"/>
+      <ROUTE fromField="cycleTime"
+        fromNode="TransmitterPduReadIntervalClock" toField="update" toNode="TransmitterPduScriptNode"/>
+      <ROUTE fromField="cycleTime"
+        fromNode="TransmitterPduWriteIntervalClock" toField="update"
+        toNode="TransmitterPduScriptNode"/><!--These ROUTEs
+        connect the PDU Script node to the geometryChoice=0 text
+        output--><ROUTE fromField="active"
+        fromNode="TransmitterPduScriptNode" toField="active" toNode="TransmitterOutputAssembler1"/>
+      <ROUTE fromField="timestamp" fromNode="TransmitterPduScriptNode"
+        toField="timestamp" toNode="TransmitterOutputAssembler1"/>
+      <ROUTE fromField="rtpHeaderHeard"
+        fromNode="TransmitterPduScriptNode" toField="rtpHeaderHeard" toNode="TransmitterOutputAssembler1"/>
+      <ROUTE fromField="radioID" fromNode="TransmitterPduScriptNode"
+        toField="radioID" toNode="TransmitterOutputAssembler1"/>
+      <ROUTE fromField="antennaLocation"
+        fromNode="TransmitterPduScriptNode" toField="antennaLocation" toNode="TransmitterOutputAssembler1"/>
+      <ROUTE fromField="antennaPatternLength"
+        fromNode="TransmitterPduScriptNode"
+        toField="antennaPatternLength" toNode="TransmitterOutputAssembler1"/>
+      <ROUTE fromField="antennaPatternType"
+        fromNode="TransmitterPduScriptNode" toField="antennaPatternType" toNode="TransmitterOutputAssembler1"/>
+      <ROUTE fromField="cryptoKeyId" fromNode="TransmitterPduScriptNode"
+        toField="cryptoKeyId" toNode="TransmitterOutputAssembler1"/>
+      <ROUTE fromField="cryptoSytem" fromNode="TransmitterPduScriptNode"
+        toField="cryptoSytem" toNode="TransmitterOutputAssembler1"/>
+      <ROUTE fromField="frequency" fromNode="TransmitterPduScriptNode"
+        toField="frequency" toNode="TransmitterOutputAssembler1"/>
+      <ROUTE fromField="inputSource" fromNode="TransmitterPduScriptNode"
+        toField="inputSource" toNode="TransmitterOutputAssembler2"/>
+      <ROUTE fromField="lengthOfModulationParameters"
+        fromNode="TransmitterPduScriptNode"
+        toField="lengthOfModulationParameters" toNode="TransmitterOutputAssembler2"/>
+      <ROUTE fromField="modulationTypeDetail"
+        fromNode="TransmitterPduScriptNode"
+        toField="modulationTypeDetail" toNode="TransmitterOutputAssembler2"/>
+      <ROUTE fromField="modulationTypeMajor"
+        fromNode="TransmitterPduScriptNode"
+        toField="modulationTypeMajor" toNode="TransmitterOutputAssembler2"/>
+      <ROUTE fromField="modulationTypeSpreadSpectrum"
+        fromNode="TransmitterPduScriptNode"
+        toField="modulationTypeSpreadSpectrum" toNode="TransmitterOutputAssembler2"/>
+      <ROUTE fromField="modulationTypeSystem"
+        fromNode="TransmitterPduScriptNode"
+        toField="modulationTypeSystem" toNode="TransmitterOutputAssembler2"/>
+      <ROUTE fromField="power" fromNode="TransmitterPduScriptNode"
+        toField="power" toNode="TransmitterOutputAssembler2"/>
+      <ROUTE fromField="radioEntityTypeCategory"
+        fromNode="TransmitterPduScriptNode"
+        toField="radioEntityTypeCategory" toNode="TransmitterOutputAssembler2"/>
+      <ROUTE fromField="radioEntityTypeCountry"
+        fromNode="TransmitterPduScriptNode"
+        toField="radioEntityTypeCountry" toNode="TransmitterOutputAssembler2"/>
+      <ROUTE fromField="radioEntityTypeDomain"
+        fromNode="TransmitterPduScriptNode"
+        toField="radioEntityTypeDomain" toNode="TransmitterOutputAssembler2"/>
+      <ROUTE fromField="radioEntityTypeKind"
+        fromNode="TransmitterPduScriptNode"
+        toField="radioEntityTypeKind" toNode="TransmitterOutputAssembler3"/>
+      <ROUTE fromField="radioEntityTypeNomenclature"
+        fromNode="TransmitterPduScriptNode"
+        toField="radioEntityTypeNomenclature" toNode="TransmitterOutputAssembler3"/>
+      <ROUTE fromField="radioEntityTypeNomenclatureVersion"
+        fromNode="TransmitterPduScriptNode"
+        toField="radioEntityTypeNomenclatureVersion" toNode="TransmitterOutputAssembler3"/>
+      <ROUTE fromField="relativeAntennaLocation"
+        fromNode="TransmitterPduScriptNode"
+        toField="relativeAntennaLocation" toNode="TransmitterOutputAssembler3"/>
+      <ROUTE fromField="transmitFrequencyBandwidth"
+        fromNode="TransmitterPduScriptNode"
+        toField="transmitFrequencyBandwidth" toNode="TransmitterOutputAssembler3"/>
+      <ROUTE fromField="transmitState"
+        fromNode="TransmitterPduScriptNode" toField="transmitState" toNode="TransmitterOutputAssembler3"/>
+      <ROUTE fromField="messageResult"
+        fromNode="TransmitterOutputAssembler1" toField="string" toNode="TransmitterOutput1"/>
+      <ROUTE fromField="messageResult"
+        fromNode="TransmitterOutputAssembler2" toField="string" toNode="TransmitterOutput2"/>
+      <ROUTE fromField="messageResult"
+        fromNode="TransmitterOutputAssembler3" toField="string"
+        toNode="TransmitterOutput3"/><!--ROUTEs for further
+        geometry representations go
+      here--></ProtoDeclare><!--============================================================
+      --><!--Default content--><Group>
+      <children>
+        <Transform translation="-15 15 0">
+          <children>
+            <ProtoInstance name="ReceiverPdu"/>
+          </children>
+        </Transform>
+        <Transform translation="-15 -15 0">
+          <children>
+            <ReceiverPdu nodeTypeHint="Switch"/>
+          </children>
+        </Transform>
+        <Transform translation="0 15 0">
+          <children>
+            <ProtoInstance name="SignalPdu"/>
+          </children>
+        </Transform>
+        <Transform translation="0 -15 0">
+          <children>
+            <SignalPdu/>
+          </children>
+        </Transform>
+        <Transform translation="15 15 0">
+          <children>
+            <ProtoInstance name="TransmitterPdu"/>
+          </children>
+        </Transform>
+        <Transform translation="15 -15 0">
+          <children>
+            <TransmitterPdu/>
+          </children>
+        </Transform>
+      </children>
+    </Group>
+  </Scene>
+</X3D>

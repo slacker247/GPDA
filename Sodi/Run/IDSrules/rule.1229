@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC WebPALS attempt"; flags:A+; uricontent:"/pals-cgi"; nocase; content:"documentName="; classtype:attempted-recon; reference:cve,CAN-2001-0217; reference:bugtraq,2372; sid:1222; rev:1;)

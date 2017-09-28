@@ -1,0 +1,368 @@
+<?xml version="1.0"?>
+
+<!-- 
+  =======================================================================
+    Martini ant build file
+  ======================================================================= 
+-->
+
+<project name="martini" default="compileandcopy">
+<!-- 
+       ===================================================================
+         Set the properties related to the source tree
+       =================================================================== 
+  -->
+
+  <!-- 
+       LEAVE THIS SET TO JIKES! 
+       IF YOU WANT TO USE MODERN SPECIFY IT ON THE COMMAND LINE.
+   --> 
+  <property name="build.compiler" value="jikes"/>
+
+
+  <!-- from user's environment -->
+  <property name="java.home" value="${JAVA_HOME}"/>
+  <property name="jikes.path" value="${JIKESBIN}"/>
+
+
+  <!-- input directories -->
+  <property name="base.dir" value="."/>
+  <property name="src.dir" value="${base.dir}/src"/>
+  <property name="lib.dir" value="${base.dir}/lib"/>
+
+
+  <!-- output directories -->
+  <property name="build.dir" value="${base.dir}/build" />
+  <property name="classes.dir.out" value="${build.dir}/classes" /> 
+  <property name="lib.dir.out" value="${build.dir}/lib" />
+  <property name="jars.dir.out" value="${build.dir}/jars" />
+  <property name="javadoc.dir" value="${build.dir}/javadoc" />
+  <property name="releases.dir" value="${build.dir}/releases" />
+
+
+  <!-- output jar file names -->
+  <property name="bne.jar" value="bne.jar"/>
+
+
+  <!-- output tar file names -->
+  <property name="bne.release.tar" value="bne-release-iteration-YY-ZZ.tar"/>
+
+
+  <!-- output gz file names -->
+  <property name="bne.release.tar.gz" value="bne-release-iteration-YY-ZZ.tar.gz"/>
+
+
+  <path id="project.build.classpath">
+    <pathelement location="${java.home}/lib/rt.jar"/>
+    <pathelement location="${lib.dir}/junit.jar"/>
+    <pathelement location="${lib.dir}/am_core.jar"/>
+    <pathelement location="${lib.dir}/jdom.jar"/>
+    <pathelement location="${lib.dir}/royere.jar"/>
+    <pathelement location="${classes.dir.out}"/>
+  </path>
+
+
+  <path id="project.runtime.classpath">
+    <pathelement location="${classes.dir.out}"/>
+    <pathelement location="${lib.dir}/junit.jar"/>
+    <pathelement location="${lib.dir}/am_core.jar"/>
+    <pathelement location="${lib.dir}/jdom.jar"/>
+    <pathelement location="${lib.dir}/royere.jar"/>
+  </path>
+
+
+  <!-- start the clock and set up our directory hierarchy-->
+  <target name="init">
+   <tstamp/>
+   <mkdir dir="${build.dir}" />
+   <mkdir dir="${classes.dir.out}" />
+   <mkdir dir="${jars.dir.out}" />
+   <mkdir dir="${javadoc.dir}" />
+   <mkdir dir="${releases.dir}" />
+  </target>
+
+
+  <!-- Our default target. -->
+  <target name="compileandcopy" depends="init,copynonjava,copyjars,compile" />
+
+
+  <!-- Just compile the code -->
+  <target name="compile" depends="init">
+    <javac srcdir="${src.dir}"
+	   destdir="${classes.dir.out}"
+	   debug="on"
+	   deprecation="on"
+	   classpathref="project.build.classpath"/>
+  </target>
+
+
+  <!-- Copy jar files to build/lib and build/webapp/webinf/lib output directories -->
+  <target name="copyjars" depends="init, copy_all_jar_files" />
+
+
+  <!-- Copy all jar files to the build/lib directory -->
+  <!-- This must include all the jars needed by the client apps -->
+  <target name="copy_all_jar_files" depends="init">
+    <copy todir="${lib.dir.out}">
+       <fileset dir="${lib.dir}">
+          <include name="am_core.jar"/>
+          <include name="jdom.jar"/>
+          <include name="royere.jar"/>
+       </fileset>
+    </copy>
+  </target>
+
+
+  <!-- Copy any property files nestled in the source to the target tree -->
+  <!-- Copy any data from the source directory that is not a java file -->
+  <target name="copynonjava" depends="init">
+    <copy todir="${classes.dir.out}">
+       <fileset dir="${src.dir}">
+          <include name="**/*.png" />
+          <include name="**/*.gif" />
+          <include name="**/*.ttf" />
+          <include name="**/*.xml" />
+          <include name="**/*.wav" />
+          <include name="**/*.au" />
+          <include name="**/*.properties" />
+        <include name="**/*.html" />
+       </fileset>
+    </copy>
+  </target>
+
+
+  <!-- Generate QA release jar files -->
+  <target name="jars" depends="init, copynonjava, bnejar" />
+
+
+  <!-- Generate QA release files -->
+  <target name="releases" depends="init">
+<echo>
+ **
+ ** Building "releases" for the current iteration.
+ ** Please build the "clean" and "jars" targets
+ ** first, manually.
+ **
+</echo>
+
+    <!-- the BNE release -->
+    <tar tarfile="${releases.dir}/${bne.release.tar}">
+      <tarfileset dir="${base.dir}" mode="755">
+        <include name="bne.sh" />
+        <include name="launchBneFromJar.sh" />
+        <include name="launchBneFromJar.bat" />
+      </tarfileset>
+      <!-- sample graphs -->
+      <tarfileset dir="${base.dir}">
+        <include name="testdata/bne_sample.gml" />
+      </tarfileset>
+      <!-- must include relative paths so shell scripts will work -->
+      <tarfileset dir="${base.dir}">
+        <include name="build/lib/am_core.jar" />
+        <include name="build/lib/jdom.jar" />
+        <include name="build/lib/royere.jar" />
+        <include name="build/jars/${bne.jar}" />
+      </tarfileset>
+    </tar>
+    <gzip zipfile="${releases.dir}/${bne.release.tar.gz}" src="${releases.dir}/${bne.release.tar}" />
+
+<echo>
+ **
+ ** Please rename the zip files according
+ ** to the following convention:
+ **
+ ** XXX-release-iteration-YY-ZZ.zip
+ **
+ ** where XXX is the app abbreviation, YY is the
+ ** iteration number, and ZZ is the build attempt
+ ** for the iteration.
+ **
+ ** Also, please tag the entire CVS repository once for each release file:
+ **
+ ** cd ..
+ ** cvs tag bne-release-iteration-16-02
+ **
+ ** for example.
+ **
+</echo>
+  </target>
+
+
+  <!-- jar file for the "hypothesis map viewer" applet -->
+  <target name="bnejar" depends="init, compileandcopy">
+    <jar jarfile="${jars.dir.out}/${bne.jar}"
+	 basedir="${classes.dir.out}"
+	 includes="com/appliedminds/hmv/**/*.*,
+	 com/appliedminds/martini/**/*.*,
+	 com/appliedminds/martinix/**/*.*"
+	 manifest="${lib.dir}/MANIFEST.MF.bne"/>
+  </target>
+
+
+  <!-- Generate some documentations -->
+  <target name="dox" depends="init">
+    <javadoc packagenames="com.appliedminds.*"
+	     useexternalfile="yes"
+	     sourcepath="${src.dir}"
+	     destdir="${javadoc.dir}"
+	     author="true"
+	     version="true"
+	     windowtitle="Appliedminds Javadoc"
+	     classpathref="project.runtime.classpath">
+      <doctitle><![CDATA[The Martini Toolkit]]></doctitle>
+      <header><![CDATA[The Martini Toolkit]]></header>
+      <bottom><![CDATA[<font size=-1>&copy; Applied Minds, Inc., 2001;</font>]]></bottom>
+      <link href="http://ref:8080/ref/j2sdk1.3.1/docs/api" />
+      <link href="http://ref:8080/ref/servlet22/api" />
+      <link href="http://ref:8080/ref/junit3.7/javadoc" />
+      <link href="http://ref:8080/ref/jdom_b7/apidocs" />
+      <link href="http://ref:8080/ref/j2sdkee1.2.1/doc/api" />
+      <link href="http://ref:8080/amdoc/javadoc/core" />
+    </javadoc>
+  </target>
+
+
+  <!-- build everything -->
+  <target name="buildall" depends="init,compileandcopy,copynonjava,jars">
+  </target>
+
+
+  <target name="build" depends="buildall"/>
+
+
+  <!-- generate the test case names and save in $HOME/.junitsession -->
+  <target name="gentestnames" depends="init">
+    <property name="junit.findout" value="/tmp/find.out"/>
+    <property name="junit.sedout" value="/tmp/sed.out"/>
+
+    <exec executable="find"
+	  dir="${classes.dir.out}"
+	  output="${junit.findout}">
+      <arg line="com -name *Test.class"/>
+    </exec>
+
+    <exec executable="sed" output="${junit.sedout}">
+      <arg line="-e 's/\//\./g' -e 's/\.class//' ${junit.findout}"/>
+    </exec>
+
+    <exec executable="sort" output="${user.home}/.junitsession">
+      <arg value="${junit.sedout}"/>
+    </exec>
+
+    <delete file="${junit.findout}"/>
+    <delete file="${junit.sedout}"/>
+  </target>
+
+
+  <!-- 
+   # generate the test case names for martini tests only and 
+   # save in $HOME/.junitsession 
+   -->
+  <target name="genmartinitestnames" depends="init">
+    <property name="junit.findout" value="/tmp/find.out"/>
+    <property name="junit.sedout" value="/tmp/sed.out"/>
+    <property name="junit.awkout" value="/tmp/awk.out"/>
+
+    <exec executable="find"
+	  dir="${classes.dir.out}"
+	  output="${junit.findout}">
+      <arg line="com -name *Test.class"/>
+    </exec>
+
+    <exec executable="sed" output="${junit.sedout}">
+      <arg line="-e 's/\//\./g' -e 's/\.class//' ${junit.findout}"/>
+    </exec>
+
+    <!-- remove all lines we do not care about -->
+    <exec executable="awk" output="${junit.awkout}">
+      <arg line="'/martini/ || /martinix/ || /bne/ || /nh/ || /tmv/ { print $$1 }' ${junit.sedout}" />
+    </exec>
+
+    <exec executable="sort" output="${user.home}/.junitsession">
+      <arg value="${junit.awkout}"/>
+    </exec>
+
+    <delete file="${junit.findout}"/>
+    <delete file="${junit.sedout}"/>
+    <delete file="${junit.awkout}"/>
+  </target>
+
+
+  <!-- run unit tests for vge and everything -->
+  <target name="testrunner" depends="init,compileandcopy,gentestnames">
+
+    <java classname="junit.swingui.TestRunner"
+	  classpathref="project.runtime.classpath"
+	  fork="true">
+      <jvmarg value="-Duser.home=${user.home}"/>
+      <jvmarg value="-Djunit.sndG=${lib.dir}/happy.wav"/>
+      <jvmarg value="-Djunit.sndR=${lib.dir}/sad.wav"/>
+    </java>
+  </target>
+
+
+  <!-- Clean up class files -->
+  <target name="clean">
+    <delete failonerror="false" dir="${jars.dir.out}" />
+    <delete failonerror="false" dir="${classes.dir.out}" />
+  </target>
+
+
+  <!-- clean jar files -->
+  <target name="cleanjars">
+    <delete failonerror="false">
+       <fileset dir="${jars.dir.out}" includes="${am.jar}"/>
+    </delete>
+  </target>
+
+
+  <!-- clean up javadoc files -->
+  <target name="cleandox">
+    <delete failonerror="false" dir="${javadoc.dir}"/>
+  </target>
+
+
+  <!-- clean up everything -->
+  <target name="cleanall" depends="clean,cleanjars,cleandox">
+    <delete failonerror="false" dir="${build.dir}" />
+  </target>
+
+
+  <!-- some helpful instructions. show the user which targets are available -->
+  <target name="help">
+    <echo>
+=================
+VMW Build Targets:
+=================
+ 
+ant           - copy various property files, and compile all the code.
+                (aka: compileandcopy)
+
+ant compile   - compile all the java files in the current directory hierarchy
+             
+ant jars      - builds the OFFICIAL QA DISTRIBUTION of the jar files.
+
+ant releases  - builds the OFFICIAL QA DISTRIBUTION of the rpm and zip files,
+                including sample data files and third party libraries.
+
+ant dox       - bulid all javadoc files
+
+ant buildall  - compile, build jars and javadocs
+
+ant clean     - clean up all class files
+
+ant cleanjars - remove generated jar files
+
+ant cleandox  - remove generated javadoc files
+
+ant cleanall  - clean up the whole build tree
+
+===================
+To Build with Original javac:
+===================
+ant -Dbuild.compiler=modern [target]
+    </echo>
+  </target>
+
+</project>
+

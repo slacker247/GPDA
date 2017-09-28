@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 666 -> $EXTERNAL_NET 1024: (msg:"BACKDOOR SatansBackdoor.2.0.Beta"; content: "Remote|3A| You are connected to me."; flags:A+;  reference:arachnids,316; sid:118;  classtype:misc-activity; rev:3;)

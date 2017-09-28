@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS MSProxy access";flags: A+; uricontent:"/scripts/proxy/w3proxy.dll"; nocase; classtype:web-application-activity; sid:986; rev:2;)

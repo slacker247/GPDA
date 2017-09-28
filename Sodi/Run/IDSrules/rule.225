@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"EXPLOIT sniffit overflow"; flags: A+; content: "from|3A 90 90 90 90 90 90 90 90 90 90 90|"; nocase; dsize: >512; reference:bugtraq,1158; reference:cve,CAN-2000-0343; reference:arachnids,273; classtype:attempted-admin; sid:309; rev:2;)

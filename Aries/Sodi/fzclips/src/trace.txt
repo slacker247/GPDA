@@ -1,0 +1,2279 @@
+==> f-34    (env set) CF 1.00 
+FIRE    4 change-phase: f-27,f-1
+<== f-27    (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-35    (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    5 Low_Missile_Threat: f-35,
+==> f-36    (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+FIRE    6 Low_Potential_Threat: f-35,
+==> f-37    (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+FIRE    7 Done_Fuzzify: f-35,f-29,
+==> f-38    (intel fuzzified) CF 1.00 
+FIRE    8 Final_Fuzzify: f-35,f-38,
+<== f-38    (intel fuzzified) CF 1.00 
+FIRE    9 Initial_Intel: f-35,
+==> f-39    (Total_Intel_Threat (threat ???)) CF 1.00 
+	( (4.0 0.0) (4.25 0.125) (4.5 0.5) (4.75 0.875) (5.0 1.0) 
+	  (5.25 0.875) (5.5 0.5) (5.75 0.125) (6.0 0.0)  )
+FIRE   10 change-phase: f-35,f-2
+<== f-35    (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-40    (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE   11 TSL_5: f-40,f-36,f-39,f-37
+==> f-41    (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+FIRE   12 change-phase: f-40,f-3
+<== f-40    (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-42    (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   13 change-phase: f-42,f-4
+<== f-42    (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-43    (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   14 Remove_Opcode: f-43,f-28
+<== f-28    (opcode 0) CF 1.00 
+==> f-44    (removed opcode) CF 1.00 
+FIRE   15 Final_Opcode: f-43,f-33,f-44
+<== f-44    (removed opcode) CF 1.00 
+FIRE   16 Return_Header: f-43,f-33
+FIRE   17 OP_RTRN_DCN: f-43,f-33,[msg_header]
+<== f-33    (opcode 501) CF 1.00 
+==> f-45    (return message) CF 1.00 
+FIRE   18 Return_Message: f-43,f-45,f-29
+<== f-43    (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-29    (time 1234.5) CF 1.00 
+<== f-45    (return message) CF 1.00 
+==> f-46    (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-46
+==> f-47    (opcode 301) CF 1.00 
+==> f-48    (time 1234.599975585938) CF 1.00 
+FIRE    2 OP_INIT_MO: f-46,f-47
+==> f-49    (opcode 502) CF 1.00 
+FIRE    3 change-phase: f-46,f-1
+<== f-46    (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-50    (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    4 Low_Missile_Threat: f-50,
+<== f-36    (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+==> f-51    (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+FIRE    5 Low_Potential_Threat: f-50,
+<== f-37    (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+==> f-52    (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+FIRE    6 Done_Fuzzify: f-50,f-48,
+==> f-53    (intel fuzzified) CF 1.00 
+FIRE    7 Final_Fuzzify: f-50,f-53,
+<== f-53    (intel fuzzified) CF 1.00 
+FIRE    8 change-phase: f-50,f-2
+<== f-50    (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-54    (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    9 TSL_5: f-54,f-51,f-39,f-52
+<== f-41    (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+==> f-55    (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+FIRE   10 change-phase: f-54,f-3
+<== f-54    (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-56    (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   11 change-phase: f-56,f-4
+<== f-56    (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-57    (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   12 Remove_Opcode: f-57,f-47
+<== f-47    (opcode 301) CF 1.00 
+==> f-58    (removed opcode) CF 1.00 
+FIRE   13 Final_Opcode: f-57,f-49,f-58
+<== f-58    (removed opcode) CF 1.00 
+FIRE   14 Return_Header: f-57,f-49
+FIRE   15 OP_RTRN_ACK: f-57,f-49,[msg_header]
+<== f-49    (opcode 502) CF 1.00 
+==> f-59    (return message) CF 1.00 
+FIRE   16 Return_Message: f-57,f-59,f-48
+<== f-57    (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-48    (time 1234.599975585938) CF 1.00 
+<== f-59    (return message) CF 1.00 
+==> f-60    (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-60
+==> f-61    (opcode 301) CF 1.00 
+==> f-62    (time 1234.699951171875) CF 1.00 
+FIRE    2 OP_INIT_MO: f-60,f-61
+==> f-63    (opcode 502) CF 1.00 
+FIRE    3 change-phase: f-60,f-1
+<== f-60    (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-64    (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    4 Low_Missile_Threat: f-64,
+<== f-51    (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+==> f-65    (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+FIRE    5 Low_Potential_Threat: f-64,
+<== f-52    (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+==> f-66    (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+FIRE    6 Done_Fuzzify: f-64,f-62,
+==> f-67    (intel fuzzified) CF 1.00 
+FIRE    7 Final_Fuzzify: f-64,f-67,
+<== f-67    (intel fuzzified) CF 1.00 
+FIRE    8 change-phase: f-64,f-2
+<== f-64    (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-68    (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    9 TSL_5: f-68,f-65,f-39,f-66
+<== f-55    (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+==> f-69    (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+FIRE   10 change-phase: f-68,f-3
+<== f-68    (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-70    (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   11 change-phase: f-70,f-4
+<== f-70    (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-71    (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   12 Remove_Opcode: f-71,f-61
+<== f-61    (opcode 301) CF 1.00 
+==> f-72    (removed opcode) CF 1.00 
+FIRE   13 Final_Opcode: f-71,f-63,f-72
+<== f-72    (removed opcode) CF 1.00 
+FIRE   14 Return_Header: f-71,f-63
+FIRE   15 OP_RTRN_ACK: f-71,f-63,[msg_header]
+<== f-63    (opcode 502) CF 1.00 
+==> f-73    (return message) CF 1.00 
+FIRE   16 Return_Message: f-71,f-73,f-62
+<== f-71    (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-62    (time 1234.699951171875) CF 1.00 
+<== f-73    (return message) CF 1.00 
+==> f-74    (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-74
+==> f-75    (opcode 302) CF 1.00 
+==> f-76    (time 1234.800048828125) CF 1.00 
+FIRE    2 OP_INIT_BP: f-74,f-75
+==> f-77    (opcode 502) CF 1.00 
+FIRE    3 change-phase: f-74,f-1
+<== f-74    (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-78    (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    4 Low_Missile_Threat: f-78,
+<== f-65    (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+==> f-79    (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+FIRE    5 Low_Potential_Threat: f-78,
+<== f-66    (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+==> f-80    (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+FIRE    6 Done_Fuzzify: f-78,f-76,
+==> f-81    (intel fuzzified) CF 1.00 
+FIRE    7 Final_Fuzzify: f-78,f-81,
+<== f-81    (intel fuzzified) CF 1.00 
+FIRE    8 change-phase: f-78,f-2
+<== f-78    (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-82    (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    9 TSL_5: f-82,f-79,f-39,f-80
+<== f-69    (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+==> f-83    (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+FIRE   10 change-phase: f-82,f-3
+<== f-82    (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-84    (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   11 change-phase: f-84,f-4
+<== f-84    (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-85    (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   12 Remove_Opcode: f-85,f-75
+<== f-75    (opcode 302) CF 1.00 
+==> f-86    (removed opcode) CF 1.00 
+FIRE   13 Final_Opcode: f-85,f-77,f-86
+<== f-86    (removed opcode) CF 1.00 
+FIRE   14 Return_Header: f-85,f-77
+FIRE   15 OP_RTRN_ACK: f-85,f-77,[msg_header]
+<== f-77    (opcode 502) CF 1.00 
+==> f-87    (return message) CF 1.00 
+FIRE   16 Return_Message: f-85,f-87,f-76
+<== f-85    (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-76    (time 1234.800048828125) CF 1.00 
+<== f-87    (return message) CF 1.00 
+==> f-88    (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-88
+==> f-89    (opcode 302) CF 1.00 
+==> f-90    (time 1234.900024414062) CF 1.00 
+FIRE    2 OP_INIT_BP: f-88,f-89
+==> f-91    (opcode 502) CF 1.00 
+FIRE    3 change-phase: f-88,f-1
+<== f-88    (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-92    (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    4 Low_Missile_Threat: f-92,
+<== f-79    (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+==> f-93    (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+FIRE    5 Low_Potential_Threat: f-92,
+<== f-80    (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+==> f-94    (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+FIRE    6 Done_Fuzzify: f-92,f-90,
+==> f-95    (intel fuzzified) CF 1.00 
+FIRE    7 Final_Fuzzify: f-92,f-95,
+<== f-95    (intel fuzzified) CF 1.00 
+FIRE    8 change-phase: f-92,f-2
+<== f-92    (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-96    (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    9 TSL_5: f-96,f-93,f-39,f-94
+<== f-83    (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+==> f-97    (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+FIRE   10 change-phase: f-96,f-3
+<== f-96    (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-98    (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   11 change-phase: f-98,f-4
+<== f-98    (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-99    (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   12 Remove_Opcode: f-99,f-89
+<== f-89    (opcode 302) CF 1.00 
+==> f-100   (removed opcode) CF 1.00 
+FIRE   13 Final_Opcode: f-99,f-91,f-100
+<== f-100   (removed opcode) CF 1.00 
+FIRE   14 Return_Header: f-99,f-91
+FIRE   15 OP_RTRN_ACK: f-99,f-91,[msg_header]
+<== f-91    (opcode 502) CF 1.00 
+==> f-101   (return message) CF 1.00 
+FIRE   16 Return_Message: f-99,f-101,f-90
+<== f-99    (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-90    (time 1234.900024414062) CF 1.00 
+<== f-101   (return message) CF 1.00 
+==> f-102   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-102
+==> f-103   (opcode 303) CF 1.00 
+==> f-104   (time 1235.0) CF 1.00 
+FIRE    2 OP_INIT_WA: f-102,f-103,[gen9],[gen2]
+==> f-105   (Weapons (id 3131) (msn_obj "Alternate") (wa 78)) CF 1.00 
+==> f-106   (opcode 502) CF 1.00 
+FIRE    3 OP_INIT_WA: f-102,f-103,[gen9],[gen1]
+==> f-107   (Weapons (id 3131) (msn_obj "Current") (wa 76)) CF 1.00 
+FIRE    4 OP_INIT_WA: f-102,f-103,[gen8],[gen2]
+==> f-108   (Weapons (id 3121) (msn_obj "Alternate") (wa 48)) CF 1.00 
+FIRE    5 OP_INIT_WA: f-102,f-103,[gen8],[gen1]
+==> f-109   (Weapons (id 3121) (msn_obj "Current") (wa 46)) CF 1.00 
+FIRE    6 OP_INIT_WA: f-102,f-103,[gen7],[gen2]
+==> f-110   (Weapons (id 3111) (msn_obj "Alternate") (wa 10)) CF 1.00 
+FIRE    7 OP_INIT_WA: f-102,f-103,[gen7],[gen1]
+==> f-111   (Weapons (id 3111) (msn_obj "Current") (wa 8)) CF 1.00 
+FIRE    8 OP_INIT_WA: f-102,f-103,[gen6],[gen2]
+==> f-112   (Weapons (id 3101) (msn_obj "Alternate") (wa 0)) CF 1.00 
+FIRE    9 OP_INIT_WA: f-102,f-103,[gen6],[gen1]
+==> f-113   (Weapons (id 3101) (msn_obj "Current") (wa -2)) CF 1.00 
+FIRE   10 OP_INIT_WA: f-102,f-103,[gen5],[gen2]
+==> f-114   (Weapons (id 1101) (msn_obj "Alternate") (wa 4)) CF 1.00 
+FIRE   11 OP_INIT_WA: f-102,f-103,[gen5],[gen1]
+==> f-115   (Weapons (id 1101) (msn_obj "Current") (wa 2)) CF 1.00 
+FIRE   12 change-phase: f-102,f-1
+<== f-102   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-116   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE   13 Low_Missile_Threat: f-116,
+<== f-93    (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+==> f-117   (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+FIRE   14 Low_Potential_Threat: f-116,
+<== f-94    (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+==> f-118   (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+FIRE   15 Done_Fuzzify: f-116,f-104,
+==> f-119   (intel fuzzified) CF 1.00 
+FIRE   16 Final_Fuzzify: f-116,f-119,
+<== f-119   (intel fuzzified) CF 1.00 
+FIRE   17 change-phase: f-116,f-2
+<== f-116   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-120   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE   18 TSL_5: f-120,f-117,f-39,f-118
+<== f-97    (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+==> f-121   (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+FIRE   19 change-phase: f-120,f-3
+<== f-120   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-122   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   20 change-phase: f-122,f-4
+<== f-122   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-123   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   21 Remove_Opcode: f-123,f-103
+<== f-103   (opcode 303) CF 1.00 
+==> f-124   (removed opcode) CF 1.00 
+FIRE   22 Final_Opcode: f-123,f-106,f-124
+<== f-124   (removed opcode) CF 1.00 
+FIRE   23 Return_Header: f-123,f-106
+FIRE   24 OP_RTRN_ACK: f-123,f-106,[msg_header]
+<== f-106   (opcode 502) CF 1.00 
+==> f-125   (return message) CF 1.00 
+FIRE   25 Return_Message: f-123,f-125,f-104
+<== f-123   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-104   (time 1235.0) CF 1.00 
+<== f-125   (return message) CF 1.00 
+==> f-126   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-126
+==> f-127   (opcode 100) CF 1.00 
+==> f-128   (time 1235.099975585938) CF 1.00 
+FIRE    2 OP_DB_STATUS: f-126,f-127,[msg_body]
+==> f-129   (opcode 502) CF 1.00 
+FIRE    3 change-phase: f-126,f-1
+<== f-126   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-130   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    4 Low_Missile_Threat: f-130,
+<== f-117   (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+==> f-131   (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+FIRE    5 Low_Potential_Threat: f-130,
+<== f-118   (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+==> f-132   (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+FIRE    6 Done_Fuzzify: f-130,f-128,
+==> f-133   (intel fuzzified) CF 1.00 
+FIRE    7 Final_Fuzzify: f-130,f-133,
+<== f-133   (intel fuzzified) CF 1.00 
+FIRE    8 change-phase: f-130,f-2
+<== f-130   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-134   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    9 TSL_5: f-134,f-131,f-39,f-132
+<== f-121   (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+==> f-135   (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+FIRE   10 change-phase: f-134,f-3
+<== f-134   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-136   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   11 change-phase: f-136,f-4
+<== f-136   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-137   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   12 Remove_Opcode: f-137,f-127
+<== f-127   (opcode 100) CF 1.00 
+==> f-138   (removed opcode) CF 1.00 
+FIRE   13 Final_Opcode: f-137,f-129,f-138
+<== f-138   (removed opcode) CF 1.00 
+FIRE   14 Return_Header: f-137,f-129
+FIRE   15 OP_RTRN_ACK: f-137,f-129,[msg_header]
+<== f-129   (opcode 502) CF 1.00 
+==> f-139   (return message) CF 1.00 
+FIRE   16 Return_Message: f-137,f-139,f-128
+<== f-137   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-128   (time 1235.099975585938) CF 1.00 
+<== f-139   (return message) CF 1.00 
+==> f-140   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-140
+==> f-141   (opcode 150) CF 1.00 
+==> f-142   (time 1235.199951171875) CF 1.00 
+FIRE    2 change-phase: f-140,f-1
+<== f-140   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-143   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 Low_Missile_Threat: f-143,
+<== f-131   (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+==> f-144   (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+FIRE    4 Low_Potential_Threat: f-143,
+<== f-132   (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+==> f-145   (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+FIRE    5 OP_INTEL_INFO: f-143,f-141,[msg_body]
+FIRE    6 OP_INTEL_INFO: f-143,f-141,[msg_body]
+FIRE    7 Degrade_Intel: f-143,[gen13],f-142
+==> f-146   (degraded " S" 1 -276.0) CF 1.00 
+FIRE    8 Remove_old_Intel: f-143,[gen13]
+FIRE    9 Degrade_Intel: f-143,[gen12],f-142
+==> f-147   (degraded "OS" 1 -276.0) CF 1.00 
+FIRE   10 Remove_old_Intel: f-143,[gen12]
+FIRE   11 Done_Fuzzify: f-143,f-142,
+==> f-148   (intel fuzzified) CF 1.00 
+FIRE   12 change-phase: f-143,f-2
+<== f-143   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-149   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE   13 TSL_5: f-149,f-144,f-39,f-145
+<== f-135   (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+==> f-150   (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+FIRE   14 change-phase: f-149,f-3
+<== f-149   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-151   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   15 change-phase: f-151,f-4
+<== f-151   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-152   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   16 Remove_Opcode: f-152,f-141
+<== f-141   (opcode 150) CF 1.00 
+==> f-153   (removed opcode) CF 1.00 
+FIRE   17 Rtn_Decision: f-152,f-153,
+==> f-154   (opcode 501) CF 1.00 
+FIRE   18 Final_Opcode: f-152,f-154,f-153
+<== f-153   (removed opcode) CF 1.00 
+FIRE   19 Return_Header: f-152,f-154
+FIRE   20 OP_RTRN_DCN: f-152,f-154,[msg_header]
+<== f-154   (opcode 501) CF 1.00 
+==> f-155   (return message) CF 1.00 
+FIRE   21 Return_Message: f-152,f-155,f-142
+<== f-152   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-142   (time 1235.199951171875) CF 1.00 
+<== f-155   (return message) CF 1.00 
+==> f-156   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-156
+==> f-157   (opcode 150) CF 1.00 
+==> f-158   (time 1235.300048828125) CF 1.00 
+FIRE    2 change-phase: f-156,f-1
+<== f-156   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-159   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 Low_Missile_Threat: f-159,
+<== f-144   (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+==> f-160   (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+FIRE    4 Low_Potential_Threat: f-159,
+<== f-145   (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+==> f-161   (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+FIRE    5 OP_INTEL_INFO: f-159,f-157,[msg_body]
+FIRE    6 Degrade_Intel: f-159,[gen15],f-158
+==> f-162   (degraded " S" 2 -252.0) CF 1.00 
+FIRE    7 Remove_old_Intel: f-159,[gen15]
+FIRE    8 Done_Fuzzify: f-159,f-158,
+FIRE    9 change-phase: f-159,f-2
+<== f-159   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-163   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE   10 TSL_5: f-163,f-160,f-39,f-161
+<== f-150   (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+==> f-164   (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+FIRE   11 change-phase: f-163,f-3
+<== f-163   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-165   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   12 change-phase: f-165,f-4
+<== f-165   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-166   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   13 Remove_Opcode: f-166,f-157
+<== f-157   (opcode 150) CF 1.00 
+==> f-167   (removed opcode) CF 1.00 
+FIRE   14 Rtn_Decision: f-166,f-167,
+==> f-168   (opcode 501) CF 1.00 
+FIRE   15 Final_Opcode: f-166,f-168,f-167
+<== f-167   (removed opcode) CF 1.00 
+FIRE   16 Return_Header: f-166,f-168
+FIRE   17 OP_RTRN_DCN: f-166,f-168,[msg_header]
+<== f-168   (opcode 501) CF 1.00 
+==> f-169   (return message) CF 1.00 
+FIRE   18 Return_Message: f-166,f-169,f-158
+<== f-166   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-158   (time 1235.300048828125) CF 1.00 
+<== f-169   (return message) CF 1.00 
+==> f-170   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-170
+==> f-171   (opcode 150) CF 1.00 
+==> f-172   (time 1235.400024414062) CF 1.00 
+FIRE    2 change-phase: f-170,f-1
+<== f-170   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-173   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 Low_Missile_Threat: f-173,
+<== f-160   (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+==> f-174   (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+FIRE    4 Low_Potential_Threat: f-173,
+<== f-161   (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+==> f-175   (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+FIRE    5 OP_INTEL_INFO: f-173,f-171,[msg_body]
+FIRE    6 Degrade_Intel: f-173,[gen17],f-172
+==> f-176   (degraded "OS" 2 -228.0) CF 1.00 
+FIRE    7 Remove_old_Intel: f-173,[gen17]
+FIRE    8 Done_Fuzzify: f-173,f-172,
+FIRE    9 change-phase: f-173,f-2
+<== f-173   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-177   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE   10 TSL_5: f-177,f-174,f-39,f-175
+<== f-164   (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+==> f-178   (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+FIRE   11 change-phase: f-177,f-3
+<== f-177   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-179   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   12 change-phase: f-179,f-4
+<== f-179   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-180   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   13 Remove_Opcode: f-180,f-171
+<== f-171   (opcode 150) CF 1.00 
+==> f-181   (removed opcode) CF 1.00 
+FIRE   14 Rtn_Decision: f-180,f-181,
+==> f-182   (opcode 501) CF 1.00 
+FIRE   15 Final_Opcode: f-180,f-182,f-181
+<== f-181   (removed opcode) CF 1.00 
+FIRE   16 Return_Header: f-180,f-182
+FIRE   17 OP_RTRN_DCN: f-180,f-182,[msg_header]
+<== f-182   (opcode 501) CF 1.00 
+==> f-183   (return message) CF 1.00 
+FIRE   18 Return_Message: f-180,f-183,f-172
+<== f-180   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-172   (time 1235.400024414062) CF 1.00 
+<== f-183   (return message) CF 1.00 
+==> f-184   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-184
+==> f-185   (opcode 150) CF 1.00 
+==> f-186   (time 1235.449951171875) CF 1.00 
+FIRE    2 change-phase: f-184,f-1
+<== f-184   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-187   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 Low_Missile_Threat: f-187,
+<== f-174   (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+==> f-188   (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+FIRE    4 Low_Potential_Threat: f-187,
+<== f-175   (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+==> f-189   (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+FIRE    5 OP_INTEL_INFO: f-187,f-185,[msg_body]
+FIRE    6 Degrade_Intel: f-187,[gen19],f-186
+==> f-190   (degraded "OS" 3 -180.0) CF 1.00 
+FIRE    7 Remove_old_Intel: f-187,[gen19]
+FIRE    8 Done_Fuzzify: f-187,f-186,
+FIRE    9 change-phase: f-187,f-2
+<== f-187   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-191   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE   10 TSL_5: f-191,f-188,f-39,f-189
+<== f-178   (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+==> f-192   (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+FIRE   11 change-phase: f-191,f-3
+<== f-191   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-193   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   12 change-phase: f-193,f-4
+<== f-193   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-194   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   13 Remove_Opcode: f-194,f-185
+<== f-185   (opcode 150) CF 1.00 
+==> f-195   (removed opcode) CF 1.00 
+FIRE   14 Rtn_Decision: f-194,f-195,
+==> f-196   (opcode 501) CF 1.00 
+FIRE   15 Final_Opcode: f-194,f-196,f-195
+<== f-195   (removed opcode) CF 1.00 
+FIRE   16 Return_Header: f-194,f-196
+FIRE   17 OP_RTRN_DCN: f-194,f-196,[msg_header]
+<== f-196   (opcode 501) CF 1.00 
+==> f-197   (return message) CF 1.00 
+FIRE   18 Return_Message: f-194,f-197,f-186
+<== f-194   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-186   (time 1235.449951171875) CF 1.00 
+<== f-197   (return message) CF 1.00 
+==> f-198   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-198
+==> f-199   (opcode 140) CF 1.00 
+==> f-200   (time 1235.5) CF 1.00 
+FIRE    2 change-phase: f-198,f-1
+<== f-198   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-201   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 Low_Missile_Threat: f-201,
+<== f-188   (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+==> f-202   (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+FIRE    4 OP_POTENTIAL_EVENT: f-201,f-199,f-200,[msg_body],f-6,f-10,,f-189
+<== f-189   (Total_Potential_Threat (threat low)) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.5 0.03125) (30.0 0.0)  )
+==> f-203   (Total_Potential_Threat (threat [ ??? ] OR [ low ])) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.24 0.04082) (27.75 0.125) (28.5 0.5) 
+	  (29.25 0.875) (30.0 1.0) (30.75 0.875) (31.5 0.5) (32.25 0.125) 
+	  (33.0 0.0)  )
+==> f-204   (Potential_Threat (country "China") (event_time 496.5) (threat ???)) CF 1.00 
+	( (27.0 0.0) (27.75 0.125) (28.5 0.5) (29.25 0.875) (30.0 1.0) 
+	  (30.75 0.875) (31.5 0.5) (32.25 0.125) (33.0 0.0)  )
+FIRE    5 Done_Fuzzify: f-201,f-200,
+FIRE    6 change-phase: f-201,f-2
+<== f-201   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-205   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    7 TSL_5: f-205,f-202,f-39,f-203
+<== f-192   (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+==> f-206   (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+FIRE    8 TSL_4: f-205,f-202,f-39,f-203
+<== f-206   (Threat_Severity_Level Threat_Level_5) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1875 0.03125) (0.2 0.0)  )
+
+==> f-207   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0)  )
+
+FIRE    9 Assess_RP: f-205,f-207
+==> f-208   (change RP) CF 1.00 
+FIRE   10 Assess_DEFCON_4: f-205,f-207
+==> f-209   (change DEFCON) CF 1.00 
+FIRE   11 change-phase: f-205,f-3
+<== f-205   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-210   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   12 Propose_DEFCON: f-210,f-18,f-209,[FU_DR],f-24
+==> f-211   (Change (propose DEFCON)) CF 1.00 
+FIRE   13 Propose_DEFCON: f-210,f-18,f-209,[CCC_DO],f-23
+FIRE   14 Propose_RP: f-210,f-22,f-208,[FU_DR],f-24
+==> f-212   (Change (propose RP)) CF 1.00 
+FIRE   15 Propose_RP: f-210,f-22,f-208,[CCC_DO],f-23
+FIRE   16 Ack_SC: f-210,f-212
+FIRE   17 CCC_Ack: f-210,[gen24]
+FIRE   18 FU_Ack: f-210,[MAIN::gen23]
+FIRE   19 Accept_Ack: f-210,f-212
+<== f-212   (Change (propose RP)) CF 1.00 
+==> f-213   (Acked "FU" "DR" RP) CF 1.00 
+==> f-214   (Acked "CCC" "DO" RP) CF 1.00 
+FIRE   20 Ack_SC: f-210,f-211
+FIRE   21 CCC_Ack: f-210,[gen22]
+FIRE   22 FU_Ack: f-210,[MAIN::gen21]
+FIRE   23 Accept_Ack: f-210,f-211
+<== f-211   (Change (propose DEFCON)) CF 1.00 
+==> f-215   (Acked "FU" "DR" DEFCON) CF 1.00 
+==> f-216   (Acked "CCC" "DO" DEFCON) CF 1.00 
+FIRE   24 change-phase: f-210,f-4
+<== f-210   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-217   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   25 Clear_Int_messages: f-217,[gen31]
+FIRE   26 Clear_Int_messages: f-217,[gen29]
+FIRE   27 Clear_Int_messages: f-217,[gen27]
+FIRE   28 Clear_Int_messages: f-217,[gen25]
+FIRE   29 Remove_Opcode: f-217,f-199
+<== f-199   (opcode 140) CF 1.00 
+==> f-218   (removed opcode) CF 1.00 
+FIRE   30 Rtn_Decision: f-217,f-218,
+==> f-219   (opcode 501) CF 1.00 
+FIRE   31 Final_Opcode: f-217,f-219,f-218
+<== f-218   (removed opcode) CF 1.00 
+FIRE   32 Return_Header: f-217,f-219
+FIRE   33 OP_RTRN_DCN: f-217,f-219,[msg_header]
+<== f-219   (opcode 501) CF 1.00 
+==> f-220   (return message) CF 1.00 
+FIRE   34 Return_Message: f-217,f-220,f-200
+<== f-217   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-200   (time 1235.5) CF 1.00 
+<== f-220   (return message) CF 1.00 
+==> f-221   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-221
+==> f-222   (opcode 140) CF 1.00 
+==> f-223   (time 1235.900024414062) CF 1.00 
+FIRE    2 change-phase: f-221,f-1
+<== f-221   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-224   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 Low_Missile_Threat: f-224,
+<== f-202   (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+==> f-225   (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+FIRE    4 OP_POTENTIAL_EVENT: f-224,f-222,f-223,[msg_body],f-6,f-11,,f-203
+<== f-203   (Total_Potential_Threat (threat [ ??? ] OR [ low ])) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.24 0.04082) (27.75 0.125) (28.5 0.5) 
+	  (29.25 0.875) (30.0 1.0) (30.75 0.875) (31.5 0.5) (32.25 0.125) 
+	  (33.0 0.0)  )
+==> f-226   (Total_Potential_Threat (threat [ ??? ] OR [ [ ??? ] OR [ low ] ])) CF 1.00 
+	( (10.0 1.0) (12.5 0.9688) (15.0 0.875) (17.5 0.7188) (20.0 0.5) 
+	  (22.5 0.2812) (25.0 0.125) (27.24 0.04082) (27.75 0.125) (28.5 0.5) 
+	  (29.25 0.875) (30.0 1.0) (30.75 0.875) (31.5 0.5) (32.25 0.125) 
+	  (33.0 0.0) (52.0 0.0) (52.75 0.125) (53.5 0.5) (54.25 0.875) 
+	  (55.0 1.0) (55.75 0.875) (56.5 0.5) (57.25 0.125) (58.0 0.0)  )
+==> f-227   (Potential_Threat (country "China") (event_time 496.9000244140625) (threat ???)) CF 1.00 
+	( (52.0 0.0) (52.75 0.125) (53.5 0.5) (54.25 0.875) (55.0 1.0) 
+	  (55.75 0.875) (56.5 0.5) (57.25 0.125) (58.0 0.0)  )
+FIRE    5 Done_Fuzzify: f-224,f-223,
+FIRE    6 change-phase: f-224,f-2
+<== f-224   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-228   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    7 TSL_5: f-228,f-225,f-39,f-226
+<== f-207   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0)  )
+
+==> f-229   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0)  )
+
+FIRE    8 TSL_4: f-228,f-225,f-39,f-226
+<== f-229   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0)  )
+
+==> f-230   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0)  )
+
+FIRE    9 change-phase: f-228,f-3
+<== f-228   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-231   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   10 Propose_DEFCON: f-231,f-18,f-209,[FU_DR],f-24
+==> f-232   (Change (propose DEFCON)) CF 1.00 
+FIRE   11 Propose_DEFCON: f-231,f-18,f-209,[CCC_DO],f-23
+FIRE   12 Propose_RP: f-231,f-22,f-208,[FU_DR],f-24
+==> f-233   (Change (propose RP)) CF 1.00 
+FIRE   13 Propose_RP: f-231,f-22,f-208,[CCC_DO],f-23
+FIRE   14 Ack_SC: f-231,f-233
+FIRE   15 CCC_Ack: f-231,[gen37]
+FIRE   16 FU_Ack: f-231,[MAIN::gen36]
+FIRE   17 Accept_Ack: f-231,f-233
+<== f-233   (Change (propose RP)) CF 1.00 
+FIRE   18 Ack_SC: f-231,f-232
+FIRE   19 CCC_Ack: f-231,[gen35]
+FIRE   20 FU_Ack: f-231,[MAIN::gen34]
+FIRE   21 Accept_Ack: f-231,f-232
+<== f-232   (Change (propose DEFCON)) CF 1.00 
+FIRE   22 change-phase: f-231,f-4
+<== f-231   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-234   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   23 Clear_Int_messages: f-234,[gen44]
+FIRE   24 Clear_Int_messages: f-234,[gen42]
+FIRE   25 Clear_Int_messages: f-234,[gen40]
+FIRE   26 Clear_Int_messages: f-234,[gen38]
+FIRE   27 Remove_Opcode: f-234,f-222
+<== f-222   (opcode 140) CF 1.00 
+==> f-235   (removed opcode) CF 1.00 
+FIRE   28 Rtn_Decision: f-234,f-235,
+==> f-236   (opcode 501) CF 1.00 
+FIRE   29 Final_Opcode: f-234,f-236,f-235
+<== f-235   (removed opcode) CF 1.00 
+FIRE   30 Return_Header: f-234,f-236
+FIRE   31 OP_RTRN_DCN: f-234,f-236,[msg_header]
+<== f-236   (opcode 501) CF 1.00 
+==> f-237   (return message) CF 1.00 
+FIRE   32 Return_Message: f-234,f-237,f-223
+<== f-234   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-223   (time 1235.900024414062) CF 1.00 
+<== f-237   (return message) CF 1.00 
+==> f-238   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-238
+==> f-239   (opcode 130) CF 1.00 
+==> f-240   (time 1236.099975585938) CF 1.00 
+FIRE    2 change-phase: f-238,f-1
+<== f-238   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-241   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 OP_MISSILE_TRACK_NEW: f-241,f-239,[msg_body],
+<== f-239   (opcode 130) CF 1.00 
+==> f-242   (track_id "11:22:33") CF 1.00 
+==> f-243   (opcode 501) CF 1.00 
+FIRE    4 Missile_Threat_Initial: f-241,[gen46],
+==> f-244   (Missile_Threat (trk_id "11:22:33") (threat high)) CF 1.00 
+	( (100.0 0.0) (100.0 1.0) (100.0 0.0)  )
+==> f-245   (initial_missile "11:22:33") CF 1.00 
+FIRE    5 Total_Missile_Threat: f-241,
+<== f-225   (Total_Missile_Threat (threat low)) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0)  )
+==> f-246   (Total_Missile_Threat (threat [ low ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+FIRE    6 Done_Fuzzify: f-241,f-240,
+FIRE    7 change-phase: f-241,f-2
+<== f-241   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-247   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    8 Assess_ROE: f-247,f-15,[gen46]
+==> f-248   (ROE (roe met)) CF 1.00 
+==> f-249   (change ROE) CF 1.00 
+FIRE    9 TSL_5: f-247,f-246,f-39,f-226
+<== f-230   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0)  )
+
+==> f-250   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0)  )
+
+FIRE   10 TSL_4: f-247,f-246,f-39,f-226
+<== f-250   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0)  )
+
+==> f-251   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0)  )
+
+FIRE   11 TSL_1: f-247,f-246
+<== f-251   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0)  )
+
+==> f-252   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   12 Assess_DEA: f-247,f-252
+==> f-253   (change DEA) CF 1.00 
+FIRE   13 Assess_DEFCON_3: f-247,f-248,f-252
+<== f-248   (ROE (roe met)) CF 1.00 
+FIRE   14 change-phase: f-247,f-3
+<== f-247   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-254   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   15 Propose_ROE: f-254,f-15,f-249,[SimCmdr],f-16
+==> f-255   (Change (propose ROE)) CF 1.00 
+FIRE   16 Propose_ROE: f-254,f-15,f-249,[FU_DR],f-17
+FIRE   17 Propose_DEFCON: f-254,f-18,f-209,[MAIN::FU_DR],f-24
+==> f-256   (Change (propose DEFCON)) CF 1.00 
+FIRE   18 Propose_DEFCON: f-254,f-18,f-209,[MAIN::CCC_DO],f-23
+FIRE   19 Propose_DEA: f-254,f-21,f-253,[MAIN::FU_DR],f-24
+==> f-257   (Change (propose DEA)) CF 1.00 
+FIRE   20 Propose_DEA: f-254,f-21,f-253,[MAIN::CCC_DO],f-23
+FIRE   21 Propose_RP: f-254,f-22,f-208,[MAIN::FU_DR],f-24
+==> f-258   (Change (propose RP)) CF 1.00 
+FIRE   22 Propose_RP: f-254,f-22,f-208,[MAIN::CCC_DO],f-23
+FIRE   23 Ack_SC: f-254,f-258
+FIRE   24 CCC_Ack: f-254,[gen54]
+FIRE   25 FU_Ack: f-254,[MAIN::gen53]
+FIRE   26 Accept_Ack: f-254,f-258
+<== f-258   (Change (propose RP)) CF 1.00 
+FIRE   27 Ack_SC: f-254,f-257
+FIRE   28 CCC_Ack: f-254,[gen52]
+FIRE   29 FU_Ack: f-254,[MAIN::gen51]
+FIRE   30 Accept_Ack: f-254,f-257
+<== f-257   (Change (propose DEA)) CF 1.00 
+==> f-259   (Acked "FU" "DR" DEA) CF 1.00 
+==> f-260   (Acked "CCC" "DO" DEA) CF 1.00 
+FIRE   31 Ack_SC: f-254,f-256
+FIRE   32 CCC_Ack: f-254,[gen50]
+FIRE   33 FU_Ack: f-254,[MAIN::gen49]
+FIRE   34 Accept_Ack: f-254,f-256
+<== f-256   (Change (propose DEFCON)) CF 1.00 
+FIRE   35 Ack_SC: f-254,f-255
+FIRE   36 FU_Ack: f-254,[gen48]
+FIRE   37 BMDC_Ack: f-254,[MAIN::gen47]
+FIRE   38 Accept_Ack: f-254,f-255
+<== f-255   (Change (propose ROE)) CF 1.00 
+==> f-261   (Acked "BMDC" "DR" ROE) CF 1.00 
+==> f-262   (Acked "FU" "DR" ROE) CF 1.00 
+FIRE   39 Acks_Accept: f-254,,
+==> f-263   (done acks) CF 1.00 
+FIRE   40 Clear_Acks: f-254,f-263,f-262,f-249
+<== f-262   (Acked "FU" "DR" ROE) CF 1.00 
+<== f-249   (change ROE) CF 1.00 
+FIRE   41 change-phase: f-254,f-4
+<== f-254   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-264   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   42 Clear_Int_messages: f-264,[gen69]
+FIRE   43 Clear_Int_messages: f-264,[gen67]
+FIRE   44 Clear_Int_messages: f-264,[gen65]
+FIRE   45 Clear_Int_messages: f-264,[gen63]
+FIRE   46 Clear_Int_messages: f-264,[gen61]
+FIRE   47 Clear_Int_messages: f-264,[gen59]
+FIRE   48 Clear_Int_messages: f-264,[gen57]
+FIRE   49 Clear_Int_messages: f-264,[gen55]
+FIRE   50 Return_Header: f-264,f-243
+FIRE   51 OP_RTRN_DCN: f-264,f-243,[msg_header]
+<== f-243   (opcode 501) CF 1.00 
+==> f-265   (return message) CF 1.00 
+FIRE   52 Return_Message: f-264,f-265,f-240
+<== f-264   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-240   (time 1236.099975585938) CF 1.00 
+<== f-265   (return message) CF 1.00 
+==> f-266   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-266
+==> f-267   (opcode 104) CF 1.00 
+==> f-268   (time 1237.0) CF 1.00 
+FIRE    2 change-phase: f-266,f-1
+<== f-266   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-269   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 OP_ROE: f-269,f-267,[msg_header]
+<== f-267   (opcode 104) CF 1.00 
+==> f-270   (opcode 502) CF 1.00 
+FIRE    4 Total_Missile_Threat: f-269,
+<== f-246   (Total_Missile_Threat (threat [ low ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+==> f-271   (Total_Missile_Threat (threat [ [ low ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+FIRE    5 Done_Fuzzify: f-269,f-268,
+FIRE    6 change-phase: f-269,f-2
+<== f-269   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-272   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    7 Assess_ROE: f-272,f-15,[gen46]
+==> f-273   (ROE (roe met)) CF 1.00 
+==> f-274   (change ROE) CF 1.00 
+FIRE    8 TSL_5: f-272,f-271,f-39,f-226
+<== f-252   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-275   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE    9 TSL_4: f-272,f-271,f-39,f-226
+<== f-275   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-276   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   10 TSL_1: f-272,f-271
+<== f-276   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-277   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   11 change-phase: f-272,f-3
+<== f-272   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-278   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   12 Propose_DEFCON: f-278,f-18,f-209,[FU_DR],f-24
+==> f-279   (Change (propose DEFCON)) CF 1.00 
+FIRE   13 Propose_DEFCON: f-278,f-18,f-209,[CCC_DO],f-23
+FIRE   14 Propose_DEA: f-278,f-21,f-253,[FU_DR],f-24
+==> f-280   (Change (propose DEA)) CF 1.00 
+FIRE   15 Propose_DEA: f-278,f-21,f-253,[CCC_DO],f-23
+FIRE   16 Propose_RP: f-278,f-22,f-208,[FU_DR],f-24
+==> f-281   (Change (propose RP)) CF 1.00 
+FIRE   17 Propose_RP: f-278,f-22,f-208,[CCC_DO],f-23
+FIRE   18 Ack_SC: f-278,f-281
+FIRE   19 CCC_Ack: f-278,[gen76]
+FIRE   20 Acks_Accept: f-278,,
+FIRE   21 Clear_Acks: f-278,f-263,f-261,f-274
+<== f-261   (Acked "BMDC" "DR" ROE) CF 1.00 
+<== f-274   (change ROE) CF 1.00 
+FIRE   22 FU_Ack: f-278,[MAIN::gen75]
+FIRE   23 Accept_Ack: f-278,f-281
+<== f-281   (Change (propose RP)) CF 1.00 
+FIRE   24 Ack_SC: f-278,f-280
+FIRE   25 CCC_Ack: f-278,[gen74]
+FIRE   26 FU_Ack: f-278,[MAIN::gen73]
+FIRE   27 Accept_Ack: f-278,f-280
+<== f-280   (Change (propose DEA)) CF 1.00 
+FIRE   28 Ack_SC: f-278,f-279
+FIRE   29 CCC_Ack: f-278,[gen72]
+FIRE   30 FU_Ack: f-278,[MAIN::gen71]
+FIRE   31 Accept_Ack: f-278,f-279
+<== f-279   (Change (propose DEFCON)) CF 1.00 
+FIRE   32 change-phase: f-278,f-4
+<== f-278   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-282   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   33 Clear_Int_messages: f-282,[gen87]
+FIRE   34 Clear_Int_messages: f-282,[gen85]
+FIRE   35 Clear_Int_messages: f-282,[gen83]
+FIRE   36 Clear_Int_messages: f-282,[gen81]
+FIRE   37 Clear_Int_messages: f-282,[gen79]
+FIRE   38 Clear_Int_messages: f-282,[gen77]
+FIRE   39 Return_Header: f-282,f-270
+FIRE   40 OP_RTRN_ACK: f-282,f-270,[msg_header]
+<== f-270   (opcode 502) CF 1.00 
+==> f-283   (return message) CF 1.00 
+FIRE   41 Return_Message: f-282,f-283,f-268
+<== f-282   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-268   (time 1237.0) CF 1.00 
+<== f-283   (return message) CF 1.00 
+==> f-284   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-284
+==> f-285   (opcode 130) CF 1.00 
+==> f-286   (time 1238.199951171875) CF 1.00 
+FIRE    2 change-phase: f-284,f-1
+<== f-284   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-287   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 OP_MISSILE_TRACK_UPDATE: f-287,f-285,[msg_body],[gen46],f-242
+<== f-285   (opcode 130) CF 1.00 
+==> f-288   (opcode 501) CF 1.00 
+FIRE    4 Total_Missile_Threat: f-287,
+<== f-271   (Total_Missile_Threat (threat [ [ low ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+==> f-289   (Total_Missile_Threat (threat [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+FIRE    5 Done_Fuzzify: f-287,f-286,
+FIRE    6 change-phase: f-287,f-2
+<== f-287   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-290   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    7 Assess_ROE: f-290,f-15,[gen46]
+==> f-291   (change ROE) CF 1.00 
+FIRE    8 TSL_5: f-290,f-289,f-39,f-226
+<== f-277   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-292   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE    9 TSL_4: f-290,f-289,f-39,f-226
+<== f-292   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-293   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   10 TSL_1: f-290,f-289
+<== f-293   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-294   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   11 change-phase: f-290,f-3
+<== f-290   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-295   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   12 Propose_DEFCON: f-295,f-18,f-209,[FU_DR],f-24
+==> f-296   (Change (propose DEFCON)) CF 1.00 
+FIRE   13 Propose_DEFCON: f-295,f-18,f-209,[CCC_DO],f-23
+FIRE   14 Propose_DEA: f-295,f-21,f-253,[FU_DR],f-24
+==> f-297   (Change (propose DEA)) CF 1.00 
+FIRE   15 Propose_DEA: f-295,f-21,f-253,[CCC_DO],f-23
+FIRE   16 Propose_RP: f-295,f-22,f-208,[FU_DR],f-24
+==> f-298   (Change (propose RP)) CF 1.00 
+FIRE   17 Propose_RP: f-295,f-22,f-208,[CCC_DO],f-23
+FIRE   18 Ack_SC: f-295,f-298
+FIRE   19 CCC_Ack: f-295,[gen94]
+FIRE   20 FU_Ack: f-295,[MAIN::gen93]
+FIRE   21 Accept_Ack: f-295,f-298
+<== f-298   (Change (propose RP)) CF 1.00 
+FIRE   22 Ack_SC: f-295,f-297
+FIRE   23 CCC_Ack: f-295,[gen92]
+FIRE   24 FU_Ack: f-295,[MAIN::gen91]
+FIRE   25 Accept_Ack: f-295,f-297
+<== f-297   (Change (propose DEA)) CF 1.00 
+FIRE   26 Ack_SC: f-295,f-296
+FIRE   27 CCC_Ack: f-295,[gen90]
+FIRE   28 FU_Ack: f-295,[MAIN::gen89]
+FIRE   29 Accept_Ack: f-295,f-296
+<== f-296   (Change (propose DEFCON)) CF 1.00 
+FIRE   30 change-phase: f-295,f-4
+<== f-295   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-299   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   31 Clear_Int_messages: f-299,[gen105]
+FIRE   32 Clear_Int_messages: f-299,[gen103]
+FIRE   33 Clear_Int_messages: f-299,[gen101]
+FIRE   34 Clear_Int_messages: f-299,[gen99]
+FIRE   35 Clear_Int_messages: f-299,[gen97]
+FIRE   36 Clear_Int_messages: f-299,[gen95]
+FIRE   37 Return_Header: f-299,f-288
+FIRE   38 OP_RTRN_DCN: f-299,f-288,[msg_header]
+<== f-288   (opcode 501) CF 1.00 
+==> f-300   (return message) CF 1.00 
+FIRE   39 Return_Message: f-299,f-300,f-286
+<== f-299   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-286   (time 1238.199951171875) CF 1.00 
+<== f-300   (return message) CF 1.00 
+==> f-301   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-301
+==> f-302   (opcode 108) CF 1.00 
+==> f-303   (time 1240.300048828125) CF 1.00 
+FIRE    2 change-phase: f-301,f-1
+<== f-301   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-304   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 Total_Missile_Threat: f-304,
+<== f-289   (Total_Missile_Threat (threat [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+==> f-305   (Total_Missile_Threat (threat [ [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+FIRE    4 OP_NEW_ENGMT: f-304,f-302,[msg_body],
+<== f-302   (opcode 108) CF 1.00 
+==> f-306   (engagement_id "11:22:33" 1101) CF 1.00 
+==> f-307   (opcode 501) CF 1.00 
+FIRE    5 Done_Fuzzify: f-304,f-303,
+FIRE    6 change-phase: f-304,f-2
+<== f-304   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-308   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    7 Assess_ROE: f-308,f-15,[gen46]
+FIRE    8 OP_ENGMT_ENGAGED: f-308,[gen107]
+FIRE    9 TSL_5: f-308,f-305,f-39,f-226
+<== f-294   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-309   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   10 TSL_4: f-308,f-305,f-39,f-226
+<== f-309   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-310   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   11 TSL_1: f-308,f-305
+<== f-310   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-311   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   12 change-phase: f-308,f-3
+<== f-308   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-312   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   13 Propose_DEFCON: f-312,f-18,f-209,[FU_DR],f-24
+==> f-313   (Change (propose DEFCON)) CF 1.00 
+FIRE   14 Propose_DEFCON: f-312,f-18,f-209,[CCC_DO],f-23
+FIRE   15 Propose_DEA: f-312,f-21,f-253,[FU_DR],f-24
+==> f-314   (Change (propose DEA)) CF 1.00 
+FIRE   16 Propose_DEA: f-312,f-21,f-253,[CCC_DO],f-23
+FIRE   17 Propose_RP: f-312,f-22,f-208,[FU_DR],f-24
+==> f-315   (Change (propose RP)) CF 1.00 
+FIRE   18 Propose_RP: f-312,f-22,f-208,[CCC_DO],f-23
+FIRE   19 Ack_SC: f-312,f-315
+FIRE   20 CCC_Ack: f-312,[gen113]
+FIRE   21 FU_Ack: f-312,[MAIN::gen112]
+FIRE   22 Accept_Ack: f-312,f-315
+<== f-315   (Change (propose RP)) CF 1.00 
+FIRE   23 Ack_SC: f-312,f-314
+FIRE   24 CCC_Ack: f-312,[gen111]
+FIRE   25 FU_Ack: f-312,[MAIN::gen110]
+FIRE   26 Accept_Ack: f-312,f-314
+<== f-314   (Change (propose DEA)) CF 1.00 
+FIRE   27 Ack_SC: f-312,f-313
+FIRE   28 CCC_Ack: f-312,[gen109]
+FIRE   29 FU_Ack: f-312,[MAIN::gen108]
+FIRE   30 Accept_Ack: f-312,f-313
+<== f-313   (Change (propose DEFCON)) CF 1.00 
+FIRE   31 change-phase: f-312,f-4
+<== f-312   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-316   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   32 Clear_Int_messages: f-316,[gen124]
+FIRE   33 Clear_Int_messages: f-316,[gen122]
+FIRE   34 Clear_Int_messages: f-316,[gen120]
+FIRE   35 Clear_Int_messages: f-316,[gen118]
+FIRE   36 Clear_Int_messages: f-316,[gen116]
+FIRE   37 Clear_Int_messages: f-316,[gen114]
+FIRE   38 Return_Header: f-316,f-307
+FIRE   39 OP_RTRN_DCN: f-316,f-307,[msg_header]
+<== f-307   (opcode 501) CF 1.00 
+==> f-317   (return message) CF 1.00 
+FIRE   40 Return_Message: f-316,f-317,f-303
+<== f-316   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-303   (time 1240.300048828125) CF 1.00 
+<== f-317   (return message) CF 1.00 
+==> f-318   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-318
+==> f-319   (opcode 108) CF 1.00 
+==> f-320   (time 1250.400024414062) CF 1.00 
+FIRE    2 change-phase: f-318,f-1
+<== f-318   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-321   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 Total_Missile_Threat: f-321,
+<== f-305   (Total_Missile_Threat (threat [ [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+==> f-322   (Total_Missile_Threat (threat [ [ [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+FIRE    4 OP_UPDATE_ENGMT: f-321,f-319,[msg_body],[gen107],f-306
+<== f-319   (opcode 108) CF 1.00 
+==> f-323   (opcode 501) CF 1.00 
+FIRE    5 Done_Fuzzify: f-321,f-320,
+FIRE    6 change-phase: f-321,f-2
+<== f-321   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-324   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    7 Assess_ROE: f-324,f-15,[gen46]
+FIRE    8 OP_ENGMT_ENGAGED: f-324,[gen107]
+FIRE    9 TSL_5: f-324,f-322,f-39,f-226
+<== f-311   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-325   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   10 TSL_4: f-324,f-322,f-39,f-226
+<== f-325   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-326   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   11 TSL_1: f-324,f-322
+<== f-326   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-327   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   12 change-phase: f-324,f-3
+<== f-324   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-328   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   13 Propose_DEFCON: f-328,f-18,f-209,[FU_DR],f-24
+==> f-329   (Change (propose DEFCON)) CF 1.00 
+FIRE   14 Propose_DEFCON: f-328,f-18,f-209,[CCC_DO],f-23
+FIRE   15 Propose_DEA: f-328,f-21,f-253,[FU_DR],f-24
+==> f-330   (Change (propose DEA)) CF 1.00 
+FIRE   16 Propose_DEA: f-328,f-21,f-253,[CCC_DO],f-23
+FIRE   17 Propose_RP: f-328,f-22,f-208,[FU_DR],f-24
+==> f-331   (Change (propose RP)) CF 1.00 
+FIRE   18 Propose_RP: f-328,f-22,f-208,[CCC_DO],f-23
+FIRE   19 Ack_SC: f-328,f-331
+FIRE   20 CCC_Ack: f-328,[gen131]
+FIRE   21 FU_Ack: f-328,[MAIN::gen130]
+FIRE   22 Accept_Ack: f-328,f-331
+<== f-331   (Change (propose RP)) CF 1.00 
+FIRE   23 Ack_SC: f-328,f-330
+FIRE   24 CCC_Ack: f-328,[gen129]
+FIRE   25 FU_Ack: f-328,[MAIN::gen128]
+FIRE   26 Accept_Ack: f-328,f-330
+<== f-330   (Change (propose DEA)) CF 1.00 
+FIRE   27 Ack_SC: f-328,f-329
+FIRE   28 CCC_Ack: f-328,[gen127]
+FIRE   29 FU_Ack: f-328,[MAIN::gen126]
+FIRE   30 Accept_Ack: f-328,f-329
+<== f-329   (Change (propose DEFCON)) CF 1.00 
+FIRE   31 change-phase: f-328,f-4
+<== f-328   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-332   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   32 Clear_Int_messages: f-332,[gen142]
+FIRE   33 Clear_Int_messages: f-332,[gen140]
+FIRE   34 Clear_Int_messages: f-332,[gen138]
+FIRE   35 Clear_Int_messages: f-332,[gen136]
+FIRE   36 Clear_Int_messages: f-332,[gen134]
+FIRE   37 Clear_Int_messages: f-332,[gen132]
+FIRE   38 Return_Header: f-332,f-323
+FIRE   39 OP_RTRN_DCN: f-332,f-323,[msg_header]
+<== f-323   (opcode 501) CF 1.00 
+==> f-333   (return message) CF 1.00 
+FIRE   40 Return_Message: f-332,f-333,f-320
+<== f-332   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-320   (time 1250.400024414062) CF 1.00 
+<== f-333   (return message) CF 1.00 
+==> f-334   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-334
+==> f-335   (opcode 108) CF 1.00 
+==> f-336   (time 1260.400024414062) CF 1.00 
+FIRE    2 change-phase: f-334,f-1
+<== f-334   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-337   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 Total_Missile_Threat: f-337,
+<== f-322   (Total_Missile_Threat (threat [ [ [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+==> f-338   (Total_Missile_Threat (threat [ [ [ [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+FIRE    4 OP_UPDATE_ENGMT: f-337,f-335,[msg_body],[gen107],f-306
+<== f-335   (opcode 108) CF 1.00 
+==> f-339   (opcode 501) CF 1.00 
+FIRE    5 Done_Fuzzify: f-337,f-336,
+FIRE    6 change-phase: f-337,f-2
+<== f-337   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-340   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    7 Assess_ROE: f-340,f-15,[gen46]
+FIRE    8 Assess_MSN_OBJ: f-340,[MAIN::gen107],f-115,f-114
+<== f-115   (Weapons (id 1101) (msn_obj "Current") (wa 2)) CF 1.00 
+<== f-114   (Weapons (id 1101) (msn_obj "Alternate") (wa 4)) CF 1.00 
+==> f-341   (change MSN_OBJ) CF 1.00 
+FIRE    9 TSL_5: f-340,f-338,f-39,f-226
+<== f-327   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-342   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   10 TSL_4: f-340,f-338,f-39,f-226
+<== f-342   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-343   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   11 TSL_1: f-340,f-338
+<== f-343   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-344   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   12 change-phase: f-340,f-3
+<== f-340   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-345   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   13 Propose_DEFCON: f-345,f-18,f-209,[FU_DR],f-24
+==> f-346   (Change (propose DEFCON)) CF 1.00 
+FIRE   14 Propose_DEFCON: f-345,f-18,f-209,[CCC_DO],f-23
+FIRE   15 Propose_DEA: f-345,f-21,f-253,[FU_DR],f-24
+==> f-347   (Change (propose DEA)) CF 1.00 
+FIRE   16 Propose_DEA: f-345,f-21,f-253,[CCC_DO],f-23
+FIRE   17 Propose_RP: f-345,f-22,f-208,[FU_DR],f-24
+==> f-348   (Change (propose RP)) CF 1.00 
+FIRE   18 Propose_RP: f-345,f-22,f-208,[CCC_DO],f-23
+FIRE   19 Propose_MSN_OBJ: f-345,f-19,f-341,[FU_DR],f-24
+==> f-349   (Change (propose MSN_OBJ)) CF 1.00 
+FIRE   20 Propose_MSN_OBJ: f-345,f-19,f-341,[CCC_DO],f-23
+FIRE   21 Ack_SC: f-345,f-349
+FIRE   22 CCC_Ack: f-345,[gen151]
+FIRE   23 FU_Ack: f-345,[MAIN::gen150]
+FIRE   24 Accept_Ack: f-345,f-349
+<== f-349   (Change (propose MSN_OBJ)) CF 1.00 
+==> f-350   (Acked "FU" "DR" MSN_OBJ) CF 1.00 
+==> f-351   (Acked "CCC" "DO" MSN_OBJ) CF 1.00 
+FIRE   25 Ack_SC: f-345,f-348
+FIRE   26 CCC_Ack: f-345,[gen149]
+FIRE   27 FU_Ack: f-345,[MAIN::gen148]
+FIRE   28 Accept_Ack: f-345,f-348
+<== f-348   (Change (propose RP)) CF 1.00 
+FIRE   29 Ack_SC: f-345,f-347
+FIRE   30 CCC_Ack: f-345,[gen147]
+FIRE   31 FU_Ack: f-345,[MAIN::gen146]
+FIRE   32 Accept_Ack: f-345,f-347
+<== f-347   (Change (propose DEA)) CF 1.00 
+FIRE   33 Ack_SC: f-345,f-346
+FIRE   34 CCC_Ack: f-345,[gen145]
+FIRE   35 FU_Ack: f-345,[MAIN::gen144]
+FIRE   36 Accept_Ack: f-345,f-346
+<== f-346   (Change (propose DEFCON)) CF 1.00 
+FIRE   37 change-phase: f-345,f-4
+<== f-345   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-352   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   38 Clear_Int_messages: f-352,[gen166]
+FIRE   39 Clear_Int_messages: f-352,[gen164]
+FIRE   40 Clear_Int_messages: f-352,[gen162]
+FIRE   41 Clear_Int_messages: f-352,[gen160]
+FIRE   42 Clear_Int_messages: f-352,[gen158]
+FIRE   43 Clear_Int_messages: f-352,[gen156]
+FIRE   44 Clear_Int_messages: f-352,[gen154]
+FIRE   45 Clear_Int_messages: f-352,[gen152]
+FIRE   46 Return_Header: f-352,f-339
+FIRE   47 OP_RTRN_DCN: f-352,f-339,[msg_header]
+<== f-339   (opcode 501) CF 1.00 
+==> f-353   (return message) CF 1.00 
+FIRE   48 Return_Message: f-352,f-353,f-336
+<== f-352   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-336   (time 1260.400024414062) CF 1.00 
+<== f-353   (return message) CF 1.00 
+==> f-354   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-354
+==> f-355   (opcode 107) CF 1.00 
+==> f-356   (time 1261.900024414062) CF 1.00 
+FIRE    2 change-phase: f-354,f-1
+<== f-354   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-357   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 OP_WA: f-357,[msg_body],[gen107],[gen2],f-355
+==> f-358   (Weapons (id 1101) (msn_obj "Alternate") (wa 3)) CF 1.00 
+==> f-359   (opcode 502) CF 1.00 
+FIRE    4 OP_WA: f-357,[msg_body],[gen107],[gen1],f-355
+==> f-360   (Weapons (id 1101) (msn_obj "Current") (wa 1)) CF 1.00 
+FIRE    5 Total_Missile_Threat: f-357,
+<== f-338   (Total_Missile_Threat (threat [ [ [ [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+==> f-361   (Total_Missile_Threat (threat [ [ [ [ [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+FIRE    6 Done_Fuzzify: f-357,f-356,
+FIRE    7 change-phase: f-357,f-2
+<== f-357   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-362   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    8 Assess_ROE: f-362,f-15,[gen46]
+FIRE    9 Assess_MSN_OBJ: f-362,[MAIN::gen107],f-360,f-358
+<== f-360   (Weapons (id 1101) (msn_obj "Current") (wa 1)) CF 1.00 
+<== f-358   (Weapons (id 1101) (msn_obj "Alternate") (wa 3)) CF 1.00 
+FIRE   10 TSL_5: f-362,f-361,f-39,f-226
+<== f-344   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-363   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   11 TSL_4: f-362,f-361,f-39,f-226
+<== f-363   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-364   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   12 TSL_1: f-362,f-361
+<== f-364   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-365   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   13 change-phase: f-362,f-3
+<== f-362   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-366   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   14 Propose_DEFCON: f-366,f-18,f-209,[FU_DR],f-24
+==> f-367   (Change (propose DEFCON)) CF 1.00 
+FIRE   15 Propose_DEFCON: f-366,f-18,f-209,[CCC_DO],f-23
+FIRE   16 Propose_DEA: f-366,f-21,f-253,[FU_DR],f-24
+==> f-368   (Change (propose DEA)) CF 1.00 
+FIRE   17 Propose_DEA: f-366,f-21,f-253,[CCC_DO],f-23
+FIRE   18 Propose_RP: f-366,f-22,f-208,[FU_DR],f-24
+==> f-369   (Change (propose RP)) CF 1.00 
+FIRE   19 Propose_RP: f-366,f-22,f-208,[CCC_DO],f-23
+FIRE   20 Propose_MSN_OBJ: f-366,f-19,f-341,[FU_DR],f-24
+==> f-370   (Change (propose MSN_OBJ)) CF 1.00 
+FIRE   21 Propose_MSN_OBJ: f-366,f-19,f-341,[CCC_DO],f-23
+FIRE   22 Ack_SC: f-366,f-370
+FIRE   23 CCC_Ack: f-366,[gen175]
+FIRE   24 FU_Ack: f-366,[MAIN::gen174]
+FIRE   25 Accept_Ack: f-366,f-370
+<== f-370   (Change (propose MSN_OBJ)) CF 1.00 
+FIRE   26 Ack_SC: f-366,f-369
+FIRE   27 CCC_Ack: f-366,[gen173]
+FIRE   28 FU_Ack: f-366,[MAIN::gen172]
+FIRE   29 Accept_Ack: f-366,f-369
+<== f-369   (Change (propose RP)) CF 1.00 
+FIRE   30 Ack_SC: f-366,f-368
+FIRE   31 CCC_Ack: f-366,[gen171]
+FIRE   32 FU_Ack: f-366,[MAIN::gen170]
+FIRE   33 Accept_Ack: f-366,f-368
+<== f-368   (Change (propose DEA)) CF 1.00 
+FIRE   34 Ack_SC: f-366,f-367
+FIRE   35 CCC_Ack: f-366,[gen169]
+FIRE   36 FU_Ack: f-366,[MAIN::gen168]
+FIRE   37 Accept_Ack: f-366,f-367
+<== f-367   (Change (propose DEFCON)) CF 1.00 
+FIRE   38 change-phase: f-366,f-4
+<== f-366   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-371   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   39 Clear_Int_messages: f-371,[gen190]
+FIRE   40 Clear_Int_messages: f-371,[gen188]
+FIRE   41 Clear_Int_messages: f-371,[gen186]
+FIRE   42 Clear_Int_messages: f-371,[gen184]
+FIRE   43 Clear_Int_messages: f-371,[gen182]
+FIRE   44 Clear_Int_messages: f-371,[gen180]
+FIRE   45 Clear_Int_messages: f-371,[gen178]
+FIRE   46 Clear_Int_messages: f-371,[gen176]
+FIRE   47 Remove_Opcode: f-371,f-355
+<== f-355   (opcode 107) CF 1.00 
+==> f-372   (removed opcode) CF 1.00 
+FIRE   48 Final_Opcode: f-371,f-359,f-372
+<== f-372   (removed opcode) CF 1.00 
+FIRE   49 Return_Header: f-371,f-359
+FIRE   50 OP_RTRN_ACK: f-371,f-359,[msg_header]
+<== f-359   (opcode 502) CF 1.00 
+==> f-373   (return message) CF 1.00 
+FIRE   51 Return_Message: f-371,f-373,f-356
+<== f-371   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-356   (time 1261.900024414062) CF 1.00 
+<== f-373   (return message) CF 1.00 
+==> f-374   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-374
+==> f-375   (opcode 108) CF 1.00 
+==> f-376   (time 1262.300048828125) CF 1.00 
+FIRE    2 change-phase: f-374,f-1
+<== f-374   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-377   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 Total_Missile_Threat: f-377,
+<== f-361   (Total_Missile_Threat (threat [ [ [ [ [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+==> f-378   (Total_Missile_Threat (threat [ [ [ [ [ [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+FIRE    4 OP_UPDATE_ENGMT: f-377,f-375,[msg_body],[gen107],f-306
+<== f-375   (opcode 108) CF 1.00 
+==> f-379   (opcode 501) CF 1.00 
+FIRE    5 Done_Fuzzify: f-377,f-376,
+FIRE    6 change-phase: f-377,f-2
+<== f-377   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-380   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    7 Assess_ROE: f-380,f-15,[gen46]
+FIRE    8 OP_ENGMT_ENGAGED: f-380,[gen107]
+FIRE    9 TSL_5: f-380,f-378,f-39,f-226
+<== f-365   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-381   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   10 TSL_4: f-380,f-378,f-39,f-226
+<== f-381   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-382   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   11 TSL_1: f-380,f-378
+<== f-382   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-383   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   12 change-phase: f-380,f-3
+<== f-380   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-384   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   13 Propose_DEFCON: f-384,f-18,f-209,[FU_DR],f-24
+==> f-385   (Change (propose DEFCON)) CF 1.00 
+FIRE   14 Propose_DEFCON: f-384,f-18,f-209,[CCC_DO],f-23
+FIRE   15 Propose_DEA: f-384,f-21,f-253,[FU_DR],f-24
+==> f-386   (Change (propose DEA)) CF 1.00 
+FIRE   16 Propose_DEA: f-384,f-21,f-253,[CCC_DO],f-23
+FIRE   17 Propose_RP: f-384,f-22,f-208,[FU_DR],f-24
+==> f-387   (Change (propose RP)) CF 1.00 
+FIRE   18 Propose_RP: f-384,f-22,f-208,[CCC_DO],f-23
+FIRE   19 Propose_MSN_OBJ: f-384,f-19,f-341,[FU_DR],f-24
+==> f-388   (Change (propose MSN_OBJ)) CF 1.00 
+FIRE   20 Propose_MSN_OBJ: f-384,f-19,f-341,[CCC_DO],f-23
+FIRE   21 Ack_SC: f-384,f-388
+FIRE   22 CCC_Ack: f-384,[gen199]
+FIRE   23 FU_Ack: f-384,[MAIN::gen198]
+FIRE   24 Accept_Ack: f-384,f-388
+<== f-388   (Change (propose MSN_OBJ)) CF 1.00 
+FIRE   25 Ack_SC: f-384,f-387
+FIRE   26 CCC_Ack: f-384,[gen197]
+FIRE   27 FU_Ack: f-384,[MAIN::gen196]
+FIRE   28 Accept_Ack: f-384,f-387
+<== f-387   (Change (propose RP)) CF 1.00 
+FIRE   29 Ack_SC: f-384,f-386
+FIRE   30 CCC_Ack: f-384,[gen195]
+FIRE   31 FU_Ack: f-384,[MAIN::gen194]
+FIRE   32 Accept_Ack: f-384,f-386
+<== f-386   (Change (propose DEA)) CF 1.00 
+FIRE   33 Ack_SC: f-384,f-385
+FIRE   34 CCC_Ack: f-384,[gen193]
+FIRE   35 FU_Ack: f-384,[MAIN::gen192]
+FIRE   36 Accept_Ack: f-384,f-385
+<== f-385   (Change (propose DEFCON)) CF 1.00 
+FIRE   37 change-phase: f-384,f-4
+<== f-384   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-389   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   38 Clear_Int_messages: f-389,[gen214]
+FIRE   39 Clear_Int_messages: f-389,[gen212]
+FIRE   40 Clear_Int_messages: f-389,[gen210]
+FIRE   41 Clear_Int_messages: f-389,[gen208]
+FIRE   42 Clear_Int_messages: f-389,[gen206]
+FIRE   43 Clear_Int_messages: f-389,[gen204]
+FIRE   44 Clear_Int_messages: f-389,[gen202]
+FIRE   45 Clear_Int_messages: f-389,[gen200]
+FIRE   46 Return_Header: f-389,f-379
+FIRE   47 OP_RTRN_DCN: f-389,f-379,[msg_header]
+<== f-379   (opcode 501) CF 1.00 
+==> f-390   (return message) CF 1.00 
+FIRE   48 Return_Message: f-389,f-390,f-376
+<== f-389   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-376   (time 1262.300048828125) CF 1.00 
+<== f-390   (return message) CF 1.00 
+==> f-391   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-391
+==> f-392   (opcode 107) CF 1.00 
+==> f-393   (time 1262.800048828125) CF 1.00 
+FIRE    2 change-phase: f-391,f-1
+<== f-391   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-394   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 OP_WA: f-394,[msg_body],[gen107],[gen2],f-392
+==> f-395   (Weapons (id 1101) (msn_obj "Alternate") (wa 3)) CF 1.00 
+==> f-396   (opcode 502) CF 1.00 
+FIRE    4 OP_WA: f-394,[msg_body],[gen107],[gen1],f-392
+==> f-397   (Weapons (id 1101) (msn_obj "Current") (wa 1)) CF 1.00 
+FIRE    5 Total_Missile_Threat: f-394,
+<== f-378   (Total_Missile_Threat (threat [ [ [ [ [ [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+==> f-398   (Total_Missile_Threat (threat [ [ [ [ [ [ [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+FIRE    6 Done_Fuzzify: f-394,f-393,
+FIRE    7 change-phase: f-394,f-2
+<== f-394   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-399   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    8 Assess_ROE: f-399,f-15,[gen46]
+FIRE    9 Assess_MSN_OBJ: f-399,[MAIN::gen107],f-397,f-395
+<== f-397   (Weapons (id 1101) (msn_obj "Current") (wa 1)) CF 1.00 
+<== f-395   (Weapons (id 1101) (msn_obj "Alternate") (wa 3)) CF 1.00 
+FIRE   10 OP_ENGMT_ENGAGED: f-399,[gen107]
+==> f-400   (opcode 501) CF 1.00 
+FIRE   11 TSL_5: f-399,f-398,f-39,f-226
+<== f-383   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-401   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   12 TSL_4: f-399,f-398,f-39,f-226
+<== f-401   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-402   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   13 TSL_1: f-399,f-398
+<== f-402   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-403   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   14 change-phase: f-399,f-3
+<== f-399   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-404   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   15 Propose_DEFCON: f-404,f-18,f-209,[FU_DR],f-24
+==> f-405   (Change (propose DEFCON)) CF 1.00 
+FIRE   16 Propose_DEFCON: f-404,f-18,f-209,[CCC_DO],f-23
+FIRE   17 Propose_DEA: f-404,f-21,f-253,[FU_DR],f-24
+==> f-406   (Change (propose DEA)) CF 1.00 
+FIRE   18 Propose_DEA: f-404,f-21,f-253,[CCC_DO],f-23
+FIRE   19 Propose_RP: f-404,f-22,f-208,[FU_DR],f-24
+==> f-407   (Change (propose RP)) CF 1.00 
+FIRE   20 Propose_RP: f-404,f-22,f-208,[CCC_DO],f-23
+FIRE   21 Propose_MSN_OBJ: f-404,f-19,f-341,[FU_DR],f-24
+==> f-408   (Change (propose MSN_OBJ)) CF 1.00 
+FIRE   22 Propose_MSN_OBJ: f-404,f-19,f-341,[CCC_DO],f-23
+FIRE   23 Ack_SC: f-404,f-408
+FIRE   24 CCC_Ack: f-404,[gen223]
+FIRE   25 FU_Ack: f-404,[MAIN::gen222]
+FIRE   26 Accept_Ack: f-404,f-408
+<== f-408   (Change (propose MSN_OBJ)) CF 1.00 
+FIRE   27 Ack_SC: f-404,f-407
+FIRE   28 CCC_Ack: f-404,[gen221]
+FIRE   29 FU_Ack: f-404,[MAIN::gen220]
+FIRE   30 Accept_Ack: f-404,f-407
+<== f-407   (Change (propose RP)) CF 1.00 
+FIRE   31 Ack_SC: f-404,f-406
+FIRE   32 CCC_Ack: f-404,[gen219]
+FIRE   33 FU_Ack: f-404,[MAIN::gen218]
+FIRE   34 Accept_Ack: f-404,f-406
+<== f-406   (Change (propose DEA)) CF 1.00 
+FIRE   35 Ack_SC: f-404,f-405
+FIRE   36 CCC_Ack: f-404,[gen217]
+FIRE   37 FU_Ack: f-404,[MAIN::gen216]
+FIRE   38 Accept_Ack: f-404,f-405
+<== f-405   (Change (propose DEFCON)) CF 1.00 
+FIRE   39 change-phase: f-404,f-4
+<== f-404   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-409   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   40 Clear_Int_messages: f-409,[gen238]
+FIRE   41 Clear_Int_messages: f-409,[gen236]
+FIRE   42 Clear_Int_messages: f-409,[gen234]
+FIRE   43 Clear_Int_messages: f-409,[gen232]
+FIRE   44 Clear_Int_messages: f-409,[gen230]
+FIRE   45 Clear_Int_messages: f-409,[gen228]
+FIRE   46 Clear_Int_messages: f-409,[gen226]
+FIRE   47 Clear_Int_messages: f-409,[gen224]
+FIRE   48 Remove_Opcode: f-409,f-392
+<== f-392   (opcode 107) CF 1.00 
+==> f-410   (removed opcode) CF 1.00 
+FIRE   49 Final_Opcode: f-409,f-396,f-410
+<== f-410   (removed opcode) CF 1.00 
+FIRE   50 Return_Header: f-409,f-400
+FIRE   51 OP_RTRN_ACK: f-409,f-396,[msg_header]
+<== f-396   (opcode 502) CF 1.00 
+==> f-411   (return message) CF 1.00 
+FIRE   52 Return_Message: f-409,f-411,f-393
+<== f-409   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-393   (time 1262.800048828125) CF 1.00 
+<== f-411   (return message) CF 1.00 
+==> f-412   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-412
+==> f-413   (opcode 108) CF 1.00 
+==> f-414   (time 1406.699951171875) CF 1.00 
+FIRE    2 change-phase: f-412,f-1
+<== f-412   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-415   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 Total_Missile_Threat: f-415,
+<== f-398   (Total_Missile_Threat (threat [ [ [ [ [ [ [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+==> f-416   (Total_Missile_Threat (threat [ [ [ [ [ [ [ [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+FIRE    4 OP_UPDATE_ENGMT: f-415,f-413,[msg_body],[gen107],f-306
+<== f-413   (opcode 108) CF 1.00 
+FIRE    5 Done_Fuzzify: f-415,f-414,
+FIRE    6 change-phase: f-415,f-2
+<== f-415   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-417   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    7 Assess_ROE: f-417,f-15,[gen46]
+FIRE    8 OP_ENGMT_ENGAGED: f-417,[gen107]
+FIRE    9 TSL_5: f-417,f-416,f-39,f-226
+<== f-403   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-418   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   10 TSL_4: f-417,f-416,f-39,f-226
+<== f-418   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-419   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   11 TSL_1: f-417,f-416
+<== f-419   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-420   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   12 change-phase: f-417,f-3
+<== f-417   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-421   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   13 Propose_DEFCON: f-421,f-18,f-209,[FU_DR],f-24
+==> f-422   (Change (propose DEFCON)) CF 1.00 
+FIRE   14 Propose_DEFCON: f-421,f-18,f-209,[CCC_DO],f-23
+FIRE   15 Propose_DEA: f-421,f-21,f-253,[FU_DR],f-24
+==> f-423   (Change (propose DEA)) CF 1.00 
+FIRE   16 Propose_DEA: f-421,f-21,f-253,[CCC_DO],f-23
+FIRE   17 Propose_RP: f-421,f-22,f-208,[FU_DR],f-24
+==> f-424   (Change (propose RP)) CF 1.00 
+FIRE   18 Propose_RP: f-421,f-22,f-208,[CCC_DO],f-23
+FIRE   19 Propose_MSN_OBJ: f-421,f-19,f-341,[FU_DR],f-24
+==> f-425   (Change (propose MSN_OBJ)) CF 1.00 
+FIRE   20 Propose_MSN_OBJ: f-421,f-19,f-341,[CCC_DO],f-23
+FIRE   21 Ack_SC: f-421,f-425
+FIRE   22 CCC_Ack: f-421,[gen247]
+FIRE   23 FU_Ack: f-421,[MAIN::gen246]
+FIRE   24 Accept_Ack: f-421,f-425
+<== f-425   (Change (propose MSN_OBJ)) CF 1.00 
+FIRE   25 Ack_SC: f-421,f-424
+FIRE   26 CCC_Ack: f-421,[gen245]
+FIRE   27 FU_Ack: f-421,[MAIN::gen244]
+FIRE   28 Accept_Ack: f-421,f-424
+<== f-424   (Change (propose RP)) CF 1.00 
+FIRE   29 Ack_SC: f-421,f-423
+FIRE   30 CCC_Ack: f-421,[gen243]
+FIRE   31 FU_Ack: f-421,[MAIN::gen242]
+FIRE   32 Accept_Ack: f-421,f-423
+<== f-423   (Change (propose DEA)) CF 1.00 
+FIRE   33 Ack_SC: f-421,f-422
+FIRE   34 CCC_Ack: f-421,[gen241]
+FIRE   35 FU_Ack: f-421,[MAIN::gen240]
+FIRE   36 Accept_Ack: f-421,f-422
+<== f-422   (Change (propose DEFCON)) CF 1.00 
+FIRE   37 change-phase: f-421,f-4
+<== f-421   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-426   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   38 Clear_Int_messages: f-426,[gen262]
+FIRE   39 Clear_Int_messages: f-426,[gen260]
+FIRE   40 Clear_Int_messages: f-426,[gen258]
+FIRE   41 Clear_Int_messages: f-426,[gen256]
+FIRE   42 Clear_Int_messages: f-426,[gen254]
+FIRE   43 Clear_Int_messages: f-426,[gen252]
+FIRE   44 Clear_Int_messages: f-426,[gen250]
+FIRE   45 Clear_Int_messages: f-426,[gen248]
+FIRE   46 Return_Header: f-426,f-400
+FIRE   47 OP_RTRN_DCN: f-426,f-400,[msg_header]
+<== f-400   (opcode 501) CF 1.00 
+==> f-427   (return message) CF 1.00 
+FIRE   48 Return_Message: f-426,f-427,f-414
+<== f-426   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-414   (time 1406.699951171875) CF 1.00 
+<== f-427   (return message) CF 1.00 
+==> f-428   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-428
+==> f-429   (opcode 107) CF 1.00 
+==> f-430   (time 1408.099975585938) CF 1.00 
+FIRE    2 change-phase: f-428,f-1
+<== f-428   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-431   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 OP_WA: f-431,[msg_body],[gen107],[gen2],f-429
+==> f-432   (Weapons (id 1101) (msn_obj "Alternate") (wa 2)) CF 1.00 
+==> f-433   (opcode 502) CF 1.00 
+FIRE    4 OP_WA: f-431,[msg_body],[gen107],[gen1],f-429
+==> f-434   (Weapons (id 1101) (msn_obj "Current") (wa 0)) CF 1.00 
+FIRE    5 Total_Missile_Threat: f-431,
+<== f-416   (Total_Missile_Threat (threat [ [ [ [ [ [ [ [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+==> f-435   (Total_Missile_Threat (threat [ [ [ [ [ [ [ [ [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+FIRE    6 Done_Fuzzify: f-431,f-430,
+FIRE    7 change-phase: f-431,f-2
+<== f-431   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-436   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    8 Assess_ROE: f-436,f-15,[gen46]
+FIRE    9 Assess_MSN_OBJ: f-436,[MAIN::gen107],f-434,f-432
+<== f-434   (Weapons (id 1101) (msn_obj "Current") (wa 0)) CF 1.00 
+<== f-432   (Weapons (id 1101) (msn_obj "Alternate") (wa 2)) CF 1.00 
+FIRE   10 OP_ENGMT_ENGAGED: f-436,[gen107]
+==> f-437   (opcode 501) CF 1.00 
+FIRE   11 TSL_5: f-436,f-435,f-39,f-226
+<== f-420   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-438   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   12 TSL_4: f-436,f-435,f-39,f-226
+<== f-438   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-439   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   13 TSL_1: f-436,f-435
+<== f-439   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-440   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   14 change-phase: f-436,f-3
+<== f-436   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-441   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   15 Propose_DEFCON: f-441,f-18,f-209,[FU_DR],f-24
+==> f-442   (Change (propose DEFCON)) CF 1.00 
+FIRE   16 Propose_DEFCON: f-441,f-18,f-209,[CCC_DO],f-23
+FIRE   17 Propose_DEA: f-441,f-21,f-253,[FU_DR],f-24
+==> f-443   (Change (propose DEA)) CF 1.00 
+FIRE   18 Propose_DEA: f-441,f-21,f-253,[CCC_DO],f-23
+FIRE   19 Propose_RP: f-441,f-22,f-208,[FU_DR],f-24
+==> f-444   (Change (propose RP)) CF 1.00 
+FIRE   20 Propose_RP: f-441,f-22,f-208,[CCC_DO],f-23
+FIRE   21 Propose_MSN_OBJ: f-441,f-19,f-341,[FU_DR],f-24
+==> f-445   (Change (propose MSN_OBJ)) CF 1.00 
+FIRE   22 Propose_MSN_OBJ: f-441,f-19,f-341,[CCC_DO],f-23
+FIRE   23 Ack_SC: f-441,f-445
+FIRE   24 CCC_Ack: f-441,[gen271]
+FIRE   25 FU_Ack: f-441,[MAIN::gen270]
+FIRE   26 Accept_Ack: f-441,f-445
+<== f-445   (Change (propose MSN_OBJ)) CF 1.00 
+FIRE   27 Ack_SC: f-441,f-444
+FIRE   28 CCC_Ack: f-441,[gen269]
+FIRE   29 FU_Ack: f-441,[MAIN::gen268]
+FIRE   30 Accept_Ack: f-441,f-444
+<== f-444   (Change (propose RP)) CF 1.00 
+FIRE   31 Ack_SC: f-441,f-443
+FIRE   32 CCC_Ack: f-441,[gen267]
+FIRE   33 FU_Ack: f-441,[MAIN::gen266]
+FIRE   34 Accept_Ack: f-441,f-443
+<== f-443   (Change (propose DEA)) CF 1.00 
+FIRE   35 Ack_SC: f-441,f-442
+FIRE   36 CCC_Ack: f-441,[gen265]
+FIRE   37 FU_Ack: f-441,[MAIN::gen264]
+FIRE   38 Accept_Ack: f-441,f-442
+<== f-442   (Change (propose DEFCON)) CF 1.00 
+FIRE   39 change-phase: f-441,f-4
+<== f-441   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-446   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   40 Clear_Int_messages: f-446,[gen286]
+FIRE   41 Clear_Int_messages: f-446,[gen284]
+FIRE   42 Clear_Int_messages: f-446,[gen282]
+FIRE   43 Clear_Int_messages: f-446,[gen280]
+FIRE   44 Clear_Int_messages: f-446,[gen278]
+FIRE   45 Clear_Int_messages: f-446,[gen276]
+FIRE   46 Clear_Int_messages: f-446,[gen274]
+FIRE   47 Clear_Int_messages: f-446,[gen272]
+FIRE   48 Remove_Opcode: f-446,f-429
+<== f-429   (opcode 107) CF 1.00 
+==> f-447   (removed opcode) CF 1.00 
+FIRE   49 Final_Opcode: f-446,f-433,f-447
+<== f-447   (removed opcode) CF 1.00 
+FIRE   50 Return_Header: f-446,f-437
+FIRE   51 OP_RTRN_ACK: f-446,f-433,[msg_header]
+<== f-433   (opcode 502) CF 1.00 
+==> f-448   (return message) CF 1.00 
+FIRE   52 Return_Message: f-446,f-448,f-430
+<== f-446   (phase_control (phase execute) (phase-after)) CF 1.00 
+<== f-430   (time 1408.099975585938) CF 1.00 
+<== f-448   (return message) CF 1.00 
+==> f-449   (phase_control (phase initialize) (phase-after)) CF 1.00 
+FIRE    1 Get_OP: [msg_header],f-449
+==> f-450   (opcode 10) CF 1.00 
+==> f-451   (time 1234.5) CF 1.00 
+FIRE    2 change-phase: f-449,f-1
+<== f-449   (phase_control (phase initialize) (phase-after)) CF 1.00 
+==> f-452   (phase_control (phase monitor) (phase-after)) CF 1.00 
+FIRE    3 Total_Missile_Threat: f-452,
+<== f-435   (Total_Missile_Threat (threat [ [ [ [ [ [ [ [ [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+==> f-453   (Total_Missile_Threat (threat [ [ [ [ [ [ [ [ [ [ [ [ low ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ] ] OR [ high ])) CF 1.00 
+	( (0.0 0.0) (0.0 1.0) (0.0 0.0) (100.0 0.0) (100.0 1.0) 
+	  (100.0 0.0)  )
+FIRE    4 Done_Fuzzify: f-452,f-451,
+FIRE    5 change-phase: f-452,f-2
+<== f-452   (phase_control (phase monitor) (phase-after)) CF 1.00 
+==> f-454   (phase_control (phase assess) (phase-after)) CF 1.00 
+FIRE    6 Assess_ROE: f-454,f-15,[gen46]
+FIRE    7 OP_ENGMT_ENGAGED: f-454,[gen107]
+FIRE    8 TSL_5: f-454,f-453,f-39,f-226
+<== f-440   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-455   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE    9 TSL_4: f-454,f-453,f-39,f-226
+<== f-455   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-456   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   10 TSL_1: f-454,f-453
+<== f-456   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+==> f-457   (Threat_Severity_Level ???) CF 1.00 
+	( (0.1 1.0) (0.1125 0.9688) (0.125 0.875) (0.1375 0.7188) (0.15 0.5) 
+	  (0.1625 0.2812) (0.175 0.125) (0.1788 0.09615) (0.1875 0.125) (0.2167 0.4167) 
+	  (0.3833 0.4167) (0.4125 0.125) (0.45 0.0) (0.82 0.0) (0.83 0.03125) 
+	  (0.84 0.125) (0.85 0.2812) (0.86 0.5) (0.87 0.7188) (0.88 0.875) 
+	  (0.89 0.9688) (0.9 1.0)  )
+
+FIRE   11 change-phase: f-454,f-3
+<== f-454   (phase_control (phase assess) (phase-after)) CF 1.00 
+==> f-458   (phase_control (phase replan) (phase-after)) CF 1.00 
+FIRE   12 Propose_DEFCON: f-458,f-18,f-209,[FU_DR],f-24
+==> f-459   (Change (propose DEFCON)) CF 1.00 
+FIRE   13 Propose_DEFCON: f-458,f-18,f-209,[CCC_DO],f-23
+FIRE   14 Propose_DEA: f-458,f-21,f-253,[FU_DR],f-24
+==> f-460   (Change (propose DEA)) CF 1.00 
+FIRE   15 Propose_DEA: f-458,f-21,f-253,[CCC_DO],f-23
+FIRE   16 Propose_RP: f-458,f-22,f-208,[FU_DR],f-24
+==> f-461   (Change (propose RP)) CF 1.00 
+FIRE   17 Propose_RP: f-458,f-22,f-208,[CCC_DO],f-23
+FIRE   18 Propose_MSN_OBJ: f-458,f-19,f-341,[FU_DR],f-24
+==> f-462   (Change (propose MSN_OBJ)) CF 1.00 
+FIRE   19 Propose_MSN_OBJ: f-458,f-19,f-341,[CCC_DO],f-23
+FIRE   20 Ack_SC: f-458,f-462
+FIRE   21 CCC_Ack: f-458,[gen295]
+FIRE   22 FU_Ack: f-458,[MAIN::gen294]
+FIRE   23 Accept_Ack: f-458,f-462
+<== f-462   (Change (propose MSN_OBJ)) CF 1.00 
+FIRE   24 Ack_SC: f-458,f-461
+FIRE   25 CCC_Ack: f-458,[gen293]
+FIRE   26 FU_Ack: f-458,[MAIN::gen292]
+FIRE   27 Accept_Ack: f-458,f-461
+<== f-461   (Change (propose RP)) CF 1.00 
+FIRE   28 Ack_SC: f-458,f-460
+FIRE   29 CCC_Ack: f-458,[gen291]
+FIRE   30 FU_Ack: f-458,[MAIN::gen290]
+FIRE   31 Accept_Ack: f-458,f-460
+<== f-460   (Change (propose DEA)) CF 1.00 
+FIRE   32 Ack_SC: f-458,f-459
+FIRE   33 CCC_Ack: f-458,[gen289]
+FIRE   34 FU_Ack: f-458,[MAIN::gen288]
+FIRE   35 Accept_Ack: f-458,f-459
+<== f-459   (Change (propose DEFCON)) CF 1.00 
+FIRE   36 change-phase: f-458,f-4
+<== f-458   (phase_control (phase replan) (phase-after)) CF 1.00 
+==> f-463   (phase_control (phase execute) (phase-after)) CF 1.00 
+FIRE   37 OP_Exit_SC: f-463,f-450,f-437

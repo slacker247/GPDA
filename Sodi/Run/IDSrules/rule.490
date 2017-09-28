@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 32771:34000 (msg:"RPC EXPLOIT ttdbserv Solaris overflow"; flags: A+; dsize: >999; content: "|00 01 86 F3 00 00 00 01 00 00 00 0F 00 00 00 01|"; reference:bugtraq,122; reference:cve,CVE-1999-0003; reference:arachnids,242; classtype:attempted-admin; sid:571; rev:1;)

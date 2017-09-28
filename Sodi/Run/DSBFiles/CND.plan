@@ -1,0 +1,100 @@
+6  CND  0  0.0  4.0  S
+
+5     Evidence
+  TCP_Alert			3  0.67  0.75  0.12  0
+	Examine_Filters				Operator  Examine_Filters
+	Expand_Collection			Operator  Expand_Collection
+	Redirect_Collection			Operator  Redirect_Collection
+  UDP_Alert			3  0.67  0.75  0.12  0
+	Examine_Filters				Operator  Examine_Filters
+	Expand_Collection			Operator  Expand_Collection
+	Redirect_Collection			Operator  Redirect_Collection
+  JTIDS				3  0.67  0.75  0.12  0
+	Update_Database				Operator  Update_Database
+	Increase_Query_Frequency		Operator  Increase_Query_Frequency
+	Do_Datamining				Script    Weka.sh
+  Log_Events			4  0.67  0.75  0.12  0
+	Analyze_Vulnerabilities			Operator  Analyze_Vulnerabilities
+	Change_Rules				Operator  Change_Rules
+	Update_From_CERTS			Script    netscape_http://www.kb.cert.org/vuls
+	Add_More_Rules				Operator  Add_More_Rules
+  External			3  0.67  0.75  0.12  0
+	Increase_Surveillance			Operator  Increase_Surveillance
+	Resolve_Differences			Operator  Resolve_Differences
+	Issue_Warnings				Operator  Issue_Warnings
+
+4     Threats
+  IP_Spoof			4  0.67  0.75  0.12  0
+	Disable_SrcAddr_Authentication		Operator  Disable_SrcAddr_Authentication
+	Enable_Encrypted_Authentication		Operator  Enable_Encrypted_Authentication
+	Enable_Router_Encryption		Operator  Enable_Router_Encryption
+	Reject_Local_Address_Packets		Operator  Reject_Local_Address_Packets  
+  RLogin			1  0.67  0.75  0.12  0
+	Disable_Remote_Services			Operator  Disable_Remote_Services
+  Network_Scan			1  0.67  0.75  0.12  0
+	Prevent_Scans				Operator  Prevent_Scans
+  Network_Hopping		3  0.67  0.75  0.12  0
+	Perform_Link_Analysis			Operator  Perform_Link_Analysis
+	Analyze_Links				Operator  Analyze_Links
+	Close_Source_IPs			Operator  Close_Source_IPs
+
+5     Tasks
+  Monitor_Traffic		2  0.67  0.75  0.12  0
+	Enable_IDS				Operator  Enable_IDS
+	Enable_Sniffers				Operator  Enable_Sniffers
+  Detect_Anomalies		3  0.67  0.75  0.12  0
+	Examine_Logs				Operator  Examine_Logs
+	Check_Vulnerabilities			Operator  Check_Vulnerabilities
+	Assure_Data_Integrity			Operator  Assure_Data_Integrity
+  Alert_Users			1  0.67  0.75  0.12  0
+	Issue_Warnings				Operator  Issue_Warnings
+  Update_Rules			2  0.67  0.75  0.12  0
+	Get_Latest_Rules			Operator  Get_Latest_Rules
+	Reconfigure_IDS				Operator  Reconfigure_IDS
+  Identify_Threats		1  0.67  0.75  0.12  0
+	Datamine_TCPDUMP_Data			Operator  Datamine_TCPDUMP_Data
+
+3     Tactical_Objectives
+  Maintain_Firewall		4  0.67  0.75  0.12  0
+	Upgrade_Software			Operator  Upgrade_Software
+	Upgrade_Hardware			Operator  Upgrade_Hardware
+	Reconfigure				Operator  Reconfigure
+	Update_Rulebase				Operator  Update_Rulebase
+  Detect_Intrusions		3  0.67  0.75  0.12  0
+	Analyze_Logs				Operator  Analyze_Logs
+	Run_CRC_Checks				Operator  Run_CRC_Checks
+	Do_Link_Analysis			Operator  Do_Link_Analysis
+  Develop_Countermeasures	5  0.67  0.75  0.12  0
+	Assess_Threats				Operator  Assess_Threats
+	Assess_Technology			Operator  Assess_Technology
+	ICMP_Traceback				Operator  ICMP_Traceback
+	Reverse_Trace				Operator  Reverse_Trace
+	Packet_Marking_Traceback		Operator  Packet_Marking_Traceback
+
+2     Operational_Objectives
+  Deny_Access			3  0.67  0.75  0.12  0
+	Increase_Security			Operator  Increase_Security
+	Enable_Ingress_Filtering		Operator  Enable_Ingress_Filtering
+	Enable_Route_Filtering			Operator  Enable_Route_Filtering
+  Assess_Intrusions		2  0.67  0.75  0.12  0
+	Perform_Checklist			Operator  Perform_Checklist
+	Data_Mine_Logs				Operator  Data_Mine_Logs
+
+1     Strategic_Objectives
+  Provide_CND			3  0.67  0.75  0.12  0
+	Increase_Manpower			Operator  Increase_Manpower
+	Add_Firewalls				Operator  Add_Firewalls
+	Isolate_Network				Operator  Isolate_Network
+
+###########################################################################################################
+
+9  Possibilities
+0.00  0.00  impossible
+0.01  0.05  extremely_unlikely
+0.05  0.20  very_low_chance
+0.20  0.38  small_chance
+0.38  0.60  may
+0.60  0.79  meaningful_chance
+0.79  0.95  most_likely
+0.95  0.99  extremely_likely
+1.00  1.00  certain

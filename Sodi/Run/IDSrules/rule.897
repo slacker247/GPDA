@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI bb-hist.sh access";flags: A+; uricontent:"/bb-hist.sh"; nocase; reference:bugtraq,142; classtype:attempted-recon; sid:894; rev:1;)

@@ -1,0 +1,8 @@
+digraph graph0 {
+	node [	label = "\N" ];
+	graph [bb= "0p 0p 100p 181p"];
+	node2 -> node2;
+	node0 -> node2;
+	node0 -> node1;
+	node1 -> node2;
+}

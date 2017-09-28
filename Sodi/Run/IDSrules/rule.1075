@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC tomcat view source attempt"; flags:A+; uricontent:"%252ejsp"; reference:bugtraq,2527; classtype:web-application-attack; sid:1056; rev:2;)

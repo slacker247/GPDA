@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET 60000 -> $HOME_NET 2140 (msg:"BACKDOOR DeepThroat 3.1 Drive Info Client Request"; content:"130";  reference:arachnids,106; sid:131;  classtype:misc-activity; rev:3;)

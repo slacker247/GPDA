@@ -1,0 +1,5596 @@
+<html>
+
+  
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Jess, the Java Expert System Shell - The Jess Function List</title>
+<link title="style" href="stylesheet.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<h2>8.
+        The Jess Function List</h2>
+
+    In this chapter, every Jess language function shipped with Jess version
+    6.1 is described. Some of these functions are intrinsic functions while
+    others are optional and may not be available to all Jess code. All
+    of these functions are installed into the command-line version of Jess;
+    to use a  function marked (optional) in your own programs, you need
+    to either add the appropriate <tt>Userpackage</tt> or load the script
+    library (see the chapters on <a href="library.html">Jess/Java
+      programming</a> and <a href="extending.html">extending Jess
+      with Java).</a> The package for each function is listed below.
+    <p align=""></p>
+
+    
+<blockquote>
+      
+<i>Note:</i> many functions documented as requiring a specific minimum
+      number of arguments will actually return sensible results with fewer;
+      for example, the <a href="functions.html#+"><tt>+</tt></a> function will return the value of a single
+      argument as its result. This behavior is to be regarded as
+      undocumented and unsupported. In addition, all functions documented as
+      requiring a specific number of arguments will not report an error if
+      invoked with more than that number; extra arguments are simply ignored.
+    </blockquote>
+
+    
+<a name="-">
+<h4>8.1. (- &lt;numeric-expression&gt; &lt;numeric-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two or more numeric expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Number</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the first argument minus all subsequent arguments. The return value
+          is an <tt>INTEGER</tt> unless any of the arguments are <tt>FLOAT</tt>,
+          in which case it is a <tt>FLOAT</tt>.
+        </dd>
+      
+</dl>
+<a name="/">
+<h4>8.2. (/ &lt;numeric-expression&gt; &lt;numeric-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two or more numeric expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Number</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the first argument divided by all subsequent arguments. The return
+          value is a <tt>FLOAT</tt>.
+        </dd>
+      
+</dl>
+<a name="*">
+<h4>8.3. (* &lt;numeric-expression&gt; &lt;numeric-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two or more numeric expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Number</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the products of its arguments. The return value is an <tt>INTEGER</tt>
+          unless any of the arguments are <tt>FLOAT</tt>, in which case it is a <tt>FLOAT</tt>.
+        </dd>
+
+      
+</dl>
+<a name="**">
+<h4>8.4. (** &lt;numeric-expression&gt; &lt;numeric-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MathFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two numeric expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Number</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Raises its first argument to the power of its second argument (using
+          Java's <tt>Math.pow()</tt> function). <b><i>Note</i>:</b> the return value is
+          <tt>NaN</tt> (not a number) if both arguments are negative.
+        </dd>
+      
+</dl>
+<a name="+">
+<h4>8.5. (+ &lt;numeric-expression&gt; &lt;numeric-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two or more numeric expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Number</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the sum of its arguments. The return value is an <tt>INTEGER</tt>
+          unless any of the arguments are <tt>FLOAT</tt>, in which case it is a <tt>FLOAT</tt>.
+        </dd>
+      
+</dl>
+<a name="<">
+<h4>8.6. (&lt; &lt;numeric-expression&gt; &lt;numeric-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two or more numeric expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> if each argument is less in value than the argument
+          following it; otherwise, returns <tt>FALSE</tt>.
+        </dd>
+      
+</dl>
+<a name="<=">
+<h4>8.7. (&lt;= &lt;numeric-expression&gt; &lt;numeric-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two or more numeric expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> if the value of each argument is less than or equal
+          to the value of the argument following it; otherwise, returns <tt>FALSE</tt>.
+        </dd>
+      
+</dl>
+<a name="<>">
+<h4>8.8. (&lt;&gt; &lt;numeric-expression&gt; &lt;numeric-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two or more numeric expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> if the value of the first argument is not equal in
+          value to all subsequent arguments; otherwise returns <tt>FALSE</tt>. 
+        </dd>
+      
+</dl>
+<a name="=">
+<h4>8.9. (= &lt;numeric-expression&gt; &lt;numeric-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two or more numeric expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> if the value of the first argument is equal in value
+          to all subsequent arguments; otherwise, returns <tt>FALSE</tt>. The integer
+          2 and the float 2.0 are <a href="functions.html#="><tt>=</tt></a>, but not <a href="functions.html#eq"><tt>eq</tt></a>.
+        </dd>
+      
+</dl>
+<a name=">">
+<h4>8.10. (&gt; &lt;numeric-expression&gt; &lt;numeric-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two or more numeric expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> if the value of each argument is greater than
+          that of the argument following it; otherwise, returns <tt>FALSE</tt>.
+        </dd>
+      
+</dl>
+<a name=">=">
+<h4>8.11. (&gt;= &lt;numeric-expression&gt; &lt;numeric-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two or more numeric expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> if the value of each argument is greater than or
+          equal to that of the argument following it; otherwise, returns <tt>FALSE</tt>.
+        </dd>
+      
+</dl>
+<a name="abs">
+<h4>8.12. (abs &lt;numeric-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MathFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One numeric expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Number</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the absolute value of its only argument.
+        </dd>
+      
+</dl>
+<a name="agenda">
+<h4>8.13. (agenda)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Optionally, a module name or the atom *</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          NIL</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Displays a list of rule activations to the WSTDOUT router. If no
+          argument is specified, the activations in the current module
+          (not the focus module) are displayed. If a module name is
+          specified, only the activations in that module are
+          displayed. If "*" is specified, then all activations are
+          displayed.
+        </dd>
+      
+</dl>
+<a name="and">
+<h4>8.14. (and &lt;expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One or more expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> if all arguments evaluate to a non-<tt>FALSE</tt>
+          value; otherwise, returns <tt>FALSE</tt>.</dd>
+      
+</dl>
+<a name="apply">
+<h4>8.15. (apply &lt;expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          LispFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One or more expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          An expression</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the result of calling the first argument, as a Jess function,
+          on all the remaining arguments. The strength of this method lies in
+          the fact that you can call a function whose name, for instance, is in
+          a Jess variable.</dd>
+      
+</dl>
+<a name="asc">
+<h4>8.16. (asc &lt;string&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Any string or symbol</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Integer</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the Unicode value of the first character of the
+          argument, as an RU.INTEGER.
+        </dd>
+      
+</dl>
+<a name="assert">
+<h4>8.17. (assert &lt;fact&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One or more facts (not fact-IDs)</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Fact-ID or FALSE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Adds a fact to the fact list. Asserts all facts onto the
+          fact list; returns the fact-ID of last fact asserted or
+          <tt>FALSE</tt> if no facts were successfully asserted (for
+          example, if all facts given are duplicates of existing
+          facts.) A JessEvent of type FACT will be sent if the event
+          mask is set appropriately.</dd>
+      
+</dl>
+<a name="assert-string">
+<h4>8.18. (assert-string &lt;string-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One string representing a fact</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Fact-ID or FALSE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Converts a string into a fact and asserts it. Attempts to parse string
+          as a fact, and if successful, returns the value returned by assert with
+          the same fact. Note that the string must contain the fact's enclosing parentheses.</dd>
+      
+</dl>
+<a name="bag">
+<h4>8.19. (bag &lt;bag-command&gt; &lt;bag-arguments&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          BagFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An atom (a sub-command) and one or more additional arguments</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          (Varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          The <a href="functions.html#bag"><tt>bag</tt></a> command lets you manipulate Java hashtables from Jess.
+          The net result is that you can create any number of associative arrays
+          or property lists. Each such array or list has a name by which it can be
+          looked up. The lists can contain other lists as properties, or any other
+          Jess data type. 
+
+          <p align=""></p>The <a href="functions.html#bag"><tt>bag</tt></a> command does different things based on its first argument.
+          It's really seven commands in one:
+
+          <ul>
+            
+<li>
+              
+<tt>create</tt> accepts a String, the name of a new Bag to be created.
+              The bag object itself is returned. For example:
+
+              <pre>
+                
+<b>Jess&gt; </b>(bag create my-bag)
+              </pre>
+</li>
+
+            
+<li>
+              
+<tt>delete</tt> accepts the name of an existing bag, and deletes it from
+              the list of bags.</li>
+
+            
+<li>
+              
+<tt>find</tt> accepts the name of a bag, and returns the corresponding
+              bag object, if one exists, or <tt>nil.</tt>
+</li>
+
+            
+<li>
+              
+<tt>list</tt> returns a list of the names of all the existing bags, as
+              a multifield.</li>
+
+            
+<li>
+              
+<tt>set</tt> accepts as arguments a bag, a String property name, and any
+              Jess value as its three arguments. The named property of the given bag
+              is set to the value, and the value is returned.</li>
+
+            
+<li>
+              
+<tt>get</tt> accepts as arguments a bag and a String property name. The
+              named property is retrieved and returned, or <tt>nil</tt> if there is no
+              such property. For example:
+
+              <pre>
+                
+<b>Jess&gt; </b>(defglobal ?*bag* = 0)
+                <i>TRUE</i>
+                <b>Jess&gt; </b>(bind ?*bag* (bag create my-bag))
+                <i>&lt;External-Address:java.util.Hashtable&gt;</i>
+                <b>Jess&gt; </b>(bag set ?*bag* my-prop 3.0)
+                <i>3.0</i>
+                <b>Jess&gt; </b>(bag get ?*bag* my-prop)
+                <i>3.0</i>
+              
+</pre>
+</li>
+
+            
+<li>
+              
+<tt>props</tt> accepts a bag as the single argument and returns a multifield
+              consisting of a list of the names of all the properties of that bag.</li>
+          
+</ul>
+        
+</dd>
+      
+</dl>
+<a name="batch">
+<h4>8.20. (batch &lt;filename&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Miscfunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One string or atom representing the name of a file</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          (Varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Attempts to parse and evaluate the given file as Jess code. If successful,
+          returns the return value of the last expression in the file.
+          <p align=""></p>
+          
+<b><i>Note:</i></b> the argument must follow Jess' rules for valid
+          atoms or strings. On UNIX systems, this presents no particular
+          problems, but Win32 filenames may need special treatment. In
+          particular: pathnames should use either '\\' (double backslash) or '/'
+          (forward slash) instead of '\' (single backslash) as directory
+          separators; and pathnames which include a colon (':') or a
+          space character (' ') <i>must</i> be enclosed in double quotes.
+          <p align=""></p>
+          In an applet, batch will try to find the file relative to the applet's
+          document base. In any program, if the file is not found, the name is
+          then passed to <tt>ClassLoader.getSystemResourceAsStream()</tt>. This
+          allows files along the class path, including files in JARs, to be batched.
+        </dd>
+      
+</dl>
+<a name="bind">
+<h4>8.21. (bind &lt;variable&gt; &lt;expression&gt;*)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A variable name and any value</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          (Varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Binds a variable to a new value. Assigns the given value to the given variable,
+          creating the variable if necessary. Returns the given value.</dd>
+      
+</dl>
+<a name="bit-and">
+<h4>8.22. (bit-and &lt;integer-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One or more integer expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          int</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Performs the bitwise AND of the arguments. <tt>(bit-and 7 4)</tt> is
+          4, and is equivalent to the Java <tt>7 &amp; 4</tt>.</dd>
+      
+</dl>
+<a name="bit-not">
+<h4>8.23. (bit-not &lt;integer-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One integer expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          int</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Performs the bitwise NOT of the argument. <tt>(bit-not 0)</tt> is
+          -1, and is equivalent to the Java <tt>~0</tt>.</dd>
+      
+</dl>
+<a name="bit-or">
+<h4>8.24. (bit-or &lt;integer-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One or more integer expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          int</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Performs the bitwise OR of the arguments. <tt>(bit-or 2 4)</tt> is
+          6, and is equivalent to the Java <tt>2 | 4</tt>.</dd>
+      
+</dl>
+<a name="bload">
+<h4>8.25. (bload &lt;filename&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          DumpFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One string or atom representing the name of a file</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          The argument is the name of a file previously produced by
+          the <a href="functions.html#bsave"><tt>bsave</tt></a> command. The file is
+          decompressed and deserialized to restore the state of the
+          current Rete object. I/O routers are not restored from the
+          file; they retain their previous state. Furthermore,
+          JessListeners are not restored from the file; again, they
+          are retained from their state prior to the bload.
+        </dd>
+      
+</dl>
+<a name="bsave">
+<h4>8.26. (bsave &lt;filename&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          DumpFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One string or atom representing the name of a file</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE
+        </dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Dumps the engine in which it is called to the given filename argument
+          in a format that can be read using <a href="functions.html#bload"><tt>bload</tt></a>. Any input/output streams and event
+          listeners are not saved during the serialization process.
+        </dd>
+      
+</dl>
+<a name="build">
+<h4>8.27. (build &lt;string-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Miscfunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One string representing some Jess code</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          (Varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Evaluates a string as though it were entered at the command prompt. Only
+          allows constructs to be evaluated. Attempts to parse and evaluate the given
+          string as Jess code. If successful, returns the return value of the last
+          expression in the string. This is typically used to define rules from Jess
+          code. For instance:
+
+
+          <p align=""></p>
+<tt>(build "(defrule foo (foo) =&gt; (bar))")</tt>
+
+          
+<p align=""></p> Note: The string must consist of one single construct; multiple
+          constructs can be built using multiple calls to build.
+        </dd>
+      
+</dl>
+<a name="call">
+<h4>8.28. (call (&lt;external-address&gt; | &lt;string-expression&gt;)                    &lt;string-expression&gt; &lt;call-arguments&gt;+)</h4>
+</a>
+<dl>
+        
+<dt>Package:</dt>
+<dd>
+          ReflectFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          an external address or String, a String, and any number of additional arguments</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          (Varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Calls a Java method on the given object, or a static method
+          of the class named by the first argument. The second
+          argument is the name of the method, and subsequent arguments
+          are passed to the method. Arguments are promoted and
+          overloaded methods selected precisely as for <a href="functions.html#new"><tt>new</tt></a>.  The return value is converted to a
+          suitable Jess value before being returned.  Array return
+          values are converted to multifields.
+
+          <p align=""></p>The functor <a href="functions.html#call"><tt>call</tt></a> may be omitted if the
+          method being called is non-static. The following
+          two method calls are equivalent:
+          <pre>        
+            ;; These are legal and equivalent
+            (call ?vector addElement (new java.lang.String "Foo"))
+            (?vector addElement (new java.lang.String "Foo"))
+          </pre>
+
+          Note that <a href="functions.html#call"><tt>call</tt></a> may now be omitted if the
+          object comes from the return value of another function call:
+          <pre>
+            ;; This is now legal
+            ((new java.lang.Vector 10) addElement (new java.lang.String "Foo"))
+          </pre>
+        
+</dd>
+      
+</dl>
+<a name="call-on-engine">
+<h4>8.29. (call-on-engine &lt;external-address&gt;  &lt;jess-code&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          an external address (must be a jess.Rete object), and an executable
+          snippet of Jess code</dd>
+
+
+        
+<dt>Returns:</dt>
+<dd>
+          (Varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Executes some Jess code in the context of the given Rete object. This
+          is a nice way to send messages between multiple Rete engines in one
+          process. Note that the current variable context is used to evaluate
+          the code, so (for instance) all defglobal values will be from the
+          calling engine, not the target. 
+
+        </dd>
+      
+</dl>
+<a name="clear">
+<h4>8.30. (clear)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Clears Jess. Deletes all rules, deffacts, defglobals, templates, facts,
+          activations, and so forth. Java Userfunctions are not deleted.</dd>
+      
+</dl>
+<a name="clear-focus-stack">
+<h4>8.31. (clear-focus-stack)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          ModuleFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None
+        </dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          NIL
+        </dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Removes all modules from the focus stack.
+        </dd>
+
+      
+</dl>
+<a name="clear-storage">
+<h4>8.32. (clear-storage)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Clears the hashtable used by <a href="functions.html#store"><tt>(store)</tt></a> and <a href="functions.html#fetch"><tt>(fetch)</tt></a>.
+        </dd>
+      
+</dl>
+<a name="close">
+<h4>8.33. (close [&lt;router-identifier&gt;])</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One or more router identifiers (atoms)</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Closes any I/O routers associated with the given name by calling <tt>close()</tt>
+          on the underlying stream, then removes the routers. Any subsequent attempt
+          to use a closed router will report <tt>bad router</tt>. See <a href="#open">open</a>.</dd>
+      
+</dl>
+<a name="complement$">
+<h4>8.34. (complement$ &lt;multifield-expression&gt; &lt;multifield-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MultiFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two multifields</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Multifield</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a new multifield consisting of all elements of the second multifield
+          not appearing in the first multifield.</dd>
+      
+</dl>
+<a name="context">
+<h4>8.35. (context)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          ReflectFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          External address</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the execution context (a jess.Context object) it is called
+          in. This provides a way for deffunctions to get a handle to this
+          useful class.
+        </dd>
+      
+</dl>
+<a name="count-query-results">
+<h4>8.36. (count-query-results &lt;query-name&gt; &lt;expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An atom, and zero or more additional expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          INTEGER</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Runs a <a href="language.html#queries">query</a> and returns a
+          count of the matches. See the documentation
+          for <a href="language.html#queries">defquery</a> for more
+          details. Also see <a href="#run-query">run-query</a> for caveats
+          concerning calling count-query-results on a rule RHS.
+        </dd>
+      
+</dl>
+<a name="create$">
+<h4>8.37. (create$ &lt;expression&gt;*)</h4>
+</a>
+<dl>
+        
+<dt>Package:</dt>
+<dd>
+          MultiFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Zero or more expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Multifield</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Appends its arguments together to create a multifield value. Returns a
+          new multifield containing all the given arguments, in order. For each
+          argument that is a multifield, the individual elements of the
+          multifield are added to the new multifield; this function will not
+          create nested multifields (which are not meaningful in the Jess
+          language.) <b><i>Note</i></b>: multifields must be created explicitly
+          using this function or others that return them. Multifields cannot be
+          directly parsed from Jess input.</dd>
+      
+</dl>
+<a name="defadvice">
+<h4>8.38. (defadvice (before | after) (&lt;function-name&gt; | &lt;multifield&gt; )                    &lt;function-call&gt;+)</h4>
+</a>
+<dl>
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          The atom <tt>before</tt> or the atom <tt>after</tt>, followed by either one
+          function name or a multifield of function names or the atom
+          <tt>ALL</tt>, followed by one or more function calls.</dd>
+
+          
+<dt>Returns:</dt>
+<dd>
+            (varies)</dd>
+
+
+          
+<dt>Description:</dt>
+<dd>
+            Lets you supply extra code to run before or after the named
+            function(s) or all functions. If <tt>before</tt> is specified, the
+            code will execute before the named function(s); the variable $?argv
+            will hold the entire function call vector (function name and
+            parameters) on entry to and exit from the code block. If
+            <tt>after</tt> is specified, the function will be called before the
+            code block is entered. When the block is entered, the variable ?retval
+            will refer to the original function's return value.  <p align=""></p> Whether
+            <tt>before</tt> or <tt>after</tt> is specified, if the code block
+            explicitly calls <a href="functions.html#return"><tt>return</tt></a> with a value, the
+            returned value will appear to the caller to be the return value of the
+            original function. For <tt>before</tt> advice, this means the original
+            function will not be called in this case.
+          </dd>
+      
+</dl>
+<a name="defclass">
+<h4>8.39. (defclass &lt;tag&gt;                    &lt;Java class name&gt; [extends &lt;tag&gt;])</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>ReflectFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two or four atoms, as noted above</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          The second argument</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Defines a template with the given tag, with slots
+          based on the Java Beans properties found in the named class. If the
+          optional extends clause is included, the second tag will become the
+          parent template of the new template. The common slots in the two
+          templates will be in the same order, at the beginning of the new
+          template. Rules defined to match instances of the parent template will
+          also match instances of the new child template.
+        </dd>
+      
+</dl>
+<a name="definstance">
+<h4>8.40. (definstance &lt;tag&gt; &lt;Java object&gt; [static | dynamic] )</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          ReflectFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An atom, a Java object, and (optionally) one of the atoms
+          static or dynamic.</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          The fact-id of the new shadow fact.</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Creates a "shadow fact" representing the given Java object,
+          according to the named template (which should have come from
+          <a href="functions.html#defclass"><tt>defclass</tt></a>.) If the atom
+          <tt>static</tt> is not supplied as the optional third argument, a
+          <tt>PropertyChangeListener</tt> is installed in the given object, so
+          that Jess can keep the shadow fact updated if the object's properties
+          change. 
+          <p align=""></p> Note that it is an error for a given Java object to be installed
+          in more than one <a href="functions.html#definstance"><tt>definstance</tt></a> at a time. The second and subsequent
+          <a href="functions.html#definstance"><tt>definstance</tt></a> calls for a given object will return a fact-id
+          with value -1.
+        </dd>
+      
+</dl>
+<a name="delete$">
+<h4>8.41. (delete$ &lt;multifield-expression&gt; &lt;begin-integer-expression&gt; &lt;end-integer-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MultiFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A multifield and two integer expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Multifield</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a new multified like the original multifield but
+          with the elements in the specified range removed. The first
+          numeric expression is the 1-based index of the first element
+          to remove; the second is the 1-based index of the last
+          element to remove.</dd>
+      
+</dl>
+<a name="dependencies">
+<h4>8.42. (dependencies &lt;fact-id&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A Fact or fact-id</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          A list</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a list containing all the <tt>jess.Token</tt>
+          objects that give logical support from the argument fact; if
+          there are none this function returns an empty list. A
+          <tt>jess.Token</tt> object is a list of facts; they're the
+          same objects returned by <a href="functions.html#run-query"><tt>run-query</tt></a>.
+        </dd>
+      
+</dl>
+<a name="dependents">
+<h4>8.43. (dependents &lt;fact-id&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A Fact or fact-id</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          A list</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a list containing all the <tt>jess.Fact</tt> objects
+          that get logical support from the argument fact; if there
+          are none this function returns an empty list.
+        </dd>
+      
+</dl>
+<a name="div">
+<h4>8.44. (div &lt;numeric-expression&gt; &lt;numeric-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MathFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two or more numeric expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Numbers</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the first argument divided by all subsequent arguments using integer
+          division. Quotient of the values of the two numeric expressions rounded
+          to the nearest integer. 
+        </dd>
+      
+</dl>
+<a name="do-backward-chaining">
+<h4>8.45. (do-backward-chaining &lt;deftemplate-tag&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Name of a template (ordered or unordered)</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Marks a template as being eligible for backwards chaining, as
+          described in the text. If the template is unordered -- i.e., if it
+          is explicitly defined with a (deftemplate) construct -- then
+          it must be defined <i>before</i> calling
+          <tt>do-backward-chaining</tt>. In addition, this function
+          must be called <i>before</i> defining any rules which use
+          the template.
+        </dd>
+      
+</dl>
+<a name="duplicate">
+<h4>8.46. (duplicate                    &lt;fact-specifier&gt; (&lt;slot-name&gt; &lt;value&gt;)+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A fact-ID and one or more two-element lists</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Fact-ID</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Makes a copy of the fact; the fact-ID must belong to an unordered
+          fact. Each list is taken as the name of a slot in this fact and a new
+          value to assign to the slot. A new fact is asserted which is similar
+          to the given fact but which has the specified slots replaced with new
+          values. The fact-ID of the new fact is returned. It is an error to
+          call <a href="functions.html#duplicate"><tt>duplicate</tt></a> on a definstance.
+        </dd>
+      
+</dl>
+<a name="e">
+<h4>8.47. (e)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MathFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Number</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the transcendental number <i>e</i>.
+        </dd>
+      
+</dl>
+<a name="engine">
+<h4>8.48. (engine)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          External address</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns an external-address object containing the Rete engine in which
+          the function in called. 
+        </dd>
+      
+</dl>
+<a name="eq">
+<h4>8.49. (eq &lt;expression&gt; &lt;expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two or more arbitrary arguments</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> if the first argument is equal in type and value
+          to all subsequent arguments. For strings, this means identical contents.
+          Uses the Java <tt>Object.equals()</tt> function, so can be redefined for
+          external types. Note that the integer <tt>2</tt> and the floating-point
+          number <tt>2.0</tt> are <i>not</i> <a href="functions.html#eq"><tt>eq</tt></a>, but they are
+          <a href="functions.html#eq*"><tt>eq*</tt></a>
+          and <a href="functions.html#="><tt>=</tt></a>. 
+        </dd>
+      
+</dl>
+<a name="eq*">
+<h4>8.50. (eq* &lt;expression&gt; &lt;expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two or more arbitrary arguments</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> if the first argument is equivalent to all the others.
+          Uses numeric equality for numeric types, unlike <tt>eq</tt>. Note that
+          the integer 2 and the floating-point number 2.0 are <i>not</i> <a href="functions.html#eq"><tt>eq</tt></a>,
+          but they are <a href="functions.html#eq*"><tt>eq*</tt></a> and <a href="functions.html#="><tt>=</tt></a>.
+        </dd>
+      
+</dl>
+<a name="eval">
+<h4>8.51. (eval &lt;lexeme-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One string containing a valid Jess expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          (Varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Evaluates a string as though it were entered at a command prompt. Only
+          allows functions to be evaluated. Evaluates the string as if entered at
+          the command line and returns the result. 
+          <p align=""></p>
+          
+<p align=""></p> Note: The string must consist of one single function call; multiple
+          calls can be evaluated using multiple calls to eval.
+        </dd>
+      
+</dl>
+<a name="evenp">
+<h4>8.52. (evenp &lt;expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          PredFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One numeric expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> for even numbers; otherwise, returns <tt>FALSE</tt>.
+          Results with non-integers may be unpredictable.
+        </dd>
+      
+</dl>
+<a name="exit">
+<h4>8.53. (exit)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Nothing</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Exits Jess and halts Java. 
+        </dd>
+      
+</dl>
+<a name="exp">
+<h4>8.54. (exp &lt;numeric-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MathFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One numeric expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Number</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Raises the value <i>e</i> to the power of its only argument.
+        </dd>
+      
+</dl>
+<a name="explode$">
+<h4>8.55. (explode$ &lt;string-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MultiFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One string</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Multifield</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Creates a multifield value from a string. Parses the string as if by a
+          succession of <a href="functions.html#read"><tt>read</tt></a> calls, then returns these individual values
+          as the elements of a multifield.
+        </dd>
+      
+</dl>
+<a name="external-addressp">
+<h4>8.56. (external-addressp &lt;expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          PredFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns TRUE or FALSE as the given expression is an external-address.
+        </dd>
+      
+</dl>
+<a name="fact-id">
+<h4>8.57. (fact-id &lt;integer&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Miscfunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One number, a fact-id</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          The given number as an RU.FACT</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          If the argument is the fact-id of an existing fact, returns the
+          number as a value of type RU.FACT; otherwise throws an exception.
+        </dd>
+      
+</dl>
+<a name="facts">
+<h4>8.58. (facts)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Scriptlib</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Prints a list of all facts on the fact list.
+        </dd>
+      
+</dl>
+<a name="fact-slot-value">
+<h4>8.59. (fact-slot-value &lt;fact-id&gt; &lt;slot-name&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Scriptlib</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A fact-id and a slot name</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          (varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the value in the named slot of the fact with the given fact-id.
+        </dd>
+      
+</dl>
+<a name="fetch">
+<h4>8.60. (fetch &lt;string or atom&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One string or atom</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          (varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Retrieves and returns any value previously stored by the
+          <a href="functions.html#store"><tt>store</tt></a> function under the given
+          name, or <tt>nil</tt> if there is none. Analogous to the
+          <tt>fetch()</tt> member function of the <tt>Rete</tt> class. See
+          the section on <a href="library.html#xfer">using store and
+            fetch</a> for details.   
+        </dd>
+      
+</dl>
+<a name="first$">
+<h4>8.61. (first$ &lt;multifield-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MultiFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One multifield</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Multifield</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the first field of a multifield as a new 1-element multifield.
+        </dd>
+      
+</dl>
+<a name="float">
+<h4>8.62. (float &lt;numeric-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MathFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One numeric expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Floating-point number</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Converts its only argument to a float.
+        </dd>
+      
+</dl>
+<a name="floatp">
+<h4>8.63. (floatp &lt;expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          PredFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One numeric expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> for floats; otherwise, returns <tt>FALSE</tt>.
+        </dd>
+      
+</dl>
+<a name="focus">
+<h4>8.64. (focus &lt;module-name&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          ModuleFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One or more atoms, the names of modules</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          The name of the previous focus module</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Changes the focus module. The next time the engine runs, the
+          first rule to fire will be from the first module listed (if any rules
+          are activated in this module.) The previously active module
+          is pushed down on the focus stack. If more than one module
+          is listed, they are pushed onto the focus stack in order
+          from right to left.
+        </dd>
+      
+</dl>
+<a name="foreach">
+<h4>8.65. (foreach &lt;variable&gt; &lt;multifield-expression&gt; &lt;action&gt;*)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A variable, a multifield expression, and zero or more arguments</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Varies</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          The named variable is set to each of the values in the multifield in turn;
+          for each value, all of the other arguments are evaluated in order. The
+          <a href="functions.html#return"><tt>return</tt></a> function can be used to break the iteration.
+
+          <p align=""></p>Example:
+
+          <p align=""></p>
+<tt>(foreach ?x (create$ a b c d) (printout t ?x crlf))</tt>
+        
+</dd>
+      
+</dl>
+<a name="format">
+<h4>8.66. (format &lt;router-identifier&gt; &lt;string-expression&gt; &lt;expression&gt;*)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A router identifier, a format string, and zero or more arguments</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          A string</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Sends formatted output to the specified logical name. Formats the arguments
+          into a string according to the format string, which is identical to that
+          used by <tt>printf</tt> in the C language (find a C book for more information).
+          Returns the string, and optionally prints the string to the named router.
+          If you pass <tt>nil</tt> for the router name, no printing is done.</dd>
+      
+</dl>
+<a name="gensym*">
+<h4>8.67. (gensym*)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Atom</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a special unique sequenced value. Returns a unique atom which consists
+          of the letters <tt>gen</tt> plus an integer. Use <a href="functions.html#setgen"><tt>setgen</tt></a>
+          to set the value of the integer to be used by the next gensym call.
+        </dd>
+      
+</dl>
+<a name="get">
+<h4>8.68. (get &lt;external-address&gt; &lt;string-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          ReflectFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An external address and a string.</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          (Varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Retrieves the value of a Java Bean's property. The first argument is the
+          object and the second argument is the name of the property. The return
+          value is converted to a suitable Jess value exactly as for <a href="#call">call.</a>
+</dd>
+      
+</dl>
+<a name="get-current-module">
+<h4>8.69. (get-current-module)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          ModuleFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None
+        </dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          An atom, the name of the current module
+        </dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Gets the current module (see <a href="#set-current-module">set-current-module</a>).
+        </dd>
+
+      
+</dl>
+<a name="get-focus">
+<h4>8.70. (get-focus)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          ModuleFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Atom</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the name of the current focus module (see <a href="#focus">focus</a>).
+        </dd>
+
+      
+</dl>
+<a name="get-focus-stack">
+<h4>8.71. (get-focus-stack)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          ModuleFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None
+        </dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Multifield
+        </dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the module names on the focus stack as a
+          multifield. The top module on the stack is the first
+          entry in the multifield.
+        </dd>
+
+      
+</dl>
+<a name="get-member">
+<h4>8.72. (get-member (&lt;external-address&gt; | &lt;string-expression&gt;)                    &lt;string-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          reflect,ReflectFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An external address or a string, and a string.</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          (Varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Retrieves the value of a Java object's data member. The first argument
+          is the object (or the name of a class, for a static member) and the second
+          argument is the name of the field. The return value is converted to a suitable
+          Jess value exactly as for <a href="#call">call.</a>
+</dd>
+      
+</dl>
+<a name="get-multithreaded-io">
+<h4>8.73. (get-multithreaded-io)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns TRUE is Jess is currently using a separate thread to flush I/O
+          streams. Turning this on can lead to a modest performance enhancement,
+          at the expense of possible loss of output on program termination.
+        </dd>
+      
+</dl>
+<a name="get-reset-globals">
+<h4>8.74. (get-reset-globals)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Indicates the current setting of global variable reset behavior. See <a href="#set-reset-globals">set-reset-globals</a>
+          for an explanation of this property.</dd>
+      
+</dl>
+<a name="get-salience-evaluation">
+<h4>8.75. get-salience-evaluation</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Atom</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Indicates the current setting of salience evaluation behavior. See <a href="#set-salience-evaluation">set-salience-evaluation</a>
+          for an explanation of this property.</dd>
+      
+</dl>
+<a name="get-strategy">
+<h4>8.76. (get-strategy)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          (None)</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          An atom, the name of the current conflict resolution strategy.</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+            Returns the name of the current conflict resolution
+          strategy. See <a href="functions.html#set-strategy"><tt>set-strategy</tt></a>.
+        </dd>
+      
+</dl>
+<a name="halt">
+<h4>8.77. (halt)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Halts rule execution. No effect unless called from the RHS of a rule.
+        </dd>
+      
+</dl>
+<a name="if">
+<h4>8.78. (if &lt;expression&gt; then &lt;action&gt;* [else &lt;action&gt;*])</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A Boolean variable or function call returning Boolean, the atom then,
+          and any number of additional expressions; optionally followed by the atom
+          else another list of expression.</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          (Varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Allows conditional execution of a group of actions. The boolean expression
+          is evaluated. If it does not evaluate to <tt>FALSE</tt>, the first list
+          of expressions is evaluated, and the return value is that returned by the
+          last expression of that list. If it does evaluate to <tt>FALSE</tt>, and
+          the optional second list of expressions is supplied, those expressions
+          are evaluated and the value of the last is returned.
+
+          <p align=""></p>
+          Example:
+
+          <pre>
+            (if (&gt; ?x 100)
+            then
+            (printout t "X is big" crlf)
+            else
+            (printout t "X is small" crlf))
+          </pre>
+        
+</dd>
+      
+</dl>
+<a name="implode$">
+<h4>8.79. (implode$ &lt;multifield-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MultiFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One multifield</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          String</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Creates a string from a multifield value. Converts each element of the
+          multifield to a string, and returns these strings concatenated with single
+          intervening spaces.
+        </dd>
+      
+</dl>
+<a name="import">
+<h4>8.80. (import &lt;atom&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          ReflectFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One atom</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Works like the Java <tt>import</tt> statement. You can import either a
+          whole package using
+          <pre>
+            (import java.io.*)
+          </pre>
+          or a single class using
+          <pre>
+            (import java.awt.Button)
+          </pre>
+          After that, all functions that can accept a Java class name (<a href="functions.html#new"><tt>new</tt></a>,
+          <a href="functions.html#defclass"><tt>defclass</tt></a>, <a href="functions.html#call"><tt>call</tt></a>, etc)
+          will refer to the import list 
+          to try to find the class that goes with a specific name. Note that
+          <tt>java.lang.*</tt> is now implicitly imported.
+
+        </dd>
+      
+</dl>
+<a name="insert$">
+<h4>8.81. (insert$ &lt;multifield-expression&gt; &lt;integer-expression&gt; &lt;single-or-multifield-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MultiFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A multifield, an integer, and one or more multifields</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          A multifield</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a new multifield like the original but with one or
+          more values inserted. Inserts the elements of the second and
+          later multifields so that they appear starting at the given
+          1-based index of the first multifield.
+        </dd>
+      
+</dl>
+<a name="instanceof">
+<h4>8.82. (instanceof                    &lt;external-address&gt; &lt;class-name&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          ReflectFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An external address and the name of a Java class</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns true if the EXTERNAL_ADDRESS object can be assigned to a
+          variable whose type is given by the class name. Implemented using
+          java.lang.Class.isInstance() . The class name can be fully-qualified
+          or it can be an imported name; see the discussion of the <a href="functions.html#import"><tt>import</tt></a> function.
+        </dd>
+      
+</dl>
+<a name="integer">
+<h4>8.83. (integer &lt;numeric-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MathFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One numeric expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Integer</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Converts its only argument to an integer. Truncates any fractional component
+          of the value of the given numeric expression and returns the integral part.
+        </dd>
+      
+</dl>
+<a name="integerp">
+<h4>8.84. (integerp &lt;expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          PredFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> for integers; otherwise, returns <tt>FALSE</tt>.
+        </dd>
+      
+</dl>
+<a name="intersection$">
+<h4>8.85. (intersection$ &lt;multifield-expression&gt; &lt;multifield-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MultiFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two multifields</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Multifield</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the intersection of two multifields. Returns a
+          multifield consisting of the elements the two argument
+          multifields have in common.
+        </dd>
+      
+</dl>
+<a name="jess-version-number">
+<h4>8.86. (jess-version-number)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Float</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a version number for Jess; currently 6.1 .
+        </dd>
+      
+</dl>
+<a name="jess-version-string">
+<h4>8.87. (jess-version-string)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          String</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a human-readable string descriptive of this version of Jess.
+        </dd>
+      
+</dl>
+<a name="length$">
+<h4>8.88. (length$ &lt;multifield-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MultiFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Multifield</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Integer</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the number of fields in a multifield value.
+        </dd>
+      
+</dl>
+<a name="lexemep">
+<h4>8.89. (lexemep &lt;expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          PredFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Any expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> for symbols and strings; otherwise, returns <tt>FALSE</tt>.
+        </dd>
+      
+</dl>
+<a name="list-deftemplates">
+<h4>8.90. (list-deftemplates [*|module-name])</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Optionally, a module name, or the atom *</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          nil</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          With no arguments, prints a list of all deftemplates in the
+          current module (not the focus module) to the 't'
+          router. With a module name for an argument, prints the names
+          of the templates in that module. With "*" as an
+          argument, prints the names of all templates.
+        </dd>
+      
+</dl>
+<a name="list-focus-stack">
+<h4>8.91. (list-focus-stack)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          ModuleFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None
+        </dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          NIL
+        </dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Displays the module focus stack, one module per line; the
+          top of the stack (the focus module) is displayed first.
+        </dd>
+
+      
+</dl>
+<a name="list-function$">
+<h4>8.92. (list-function$)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Multifield</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a multifield list of all the functions currently callable, including
+          intrinsics, deffunctions, and Userfunctions. Each function name is an atom.
+          The names are sorted in alphabetical order.
+        </dd>
+      
+</dl>
+<a name="load-facts">
+<h4>8.93. (load-facts &lt;file-name&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A string or atom representing the name of a file of facts</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Asserts facts loaded from a file. The argument should name a file containing
+          a list of facts (not deffacts constructs, and no other commands or constructs).
+          Jess will parse the file and assert each fact. The return value is the
+          return value of assert when asserting the last fact. In an applet, <a href="functions.html#load-facts"><tt>load-facts</tt></a>
+          will use <tt>getDocumentBase()</tt> to find the named file.
+          <p align=""></p>
+          
+<b><i>Note:</i></b> See the <a href="functions.html#batch"><tt>batch</tt></a> command for a
+          discussion about specifying filenames in Jess.
+        </dd>
+      
+</dl>
+<a name="load-function">
+<h4>8.94. (load-function &lt;class-name&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One string or atom representing the name of a Java class</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          The argument must be the fully-qualified name of a Java class that implements
+          the Userfunction interface. The class is loaded in to Jess and added to
+          the engine, thus making the corresponding command available. See
+          <a href="extending.html">Extending Jess with Java</a> for more
+          information.</dd> 
+      
+</dl>
+<a name="load-package">
+<h4>8.95. (load-package &lt;class-name&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One string or atom, the name of a Java class</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          The argument must be the fully-qualified name of a Java class that implements
+          the Userpackage interface. The class is loaded in to Jess and added to
+          the engine, thus making the corresponding package of commands available.
+          See <a href="extending.html">Extending Jess with Java</a> for more information.</dd>
+      
+</dl>
+<a name="log">
+<h4>8.96. (log &lt;numeric-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MathFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One numeric expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Number</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the logarithm base <tt>e</tt> of its only argument.
+        </dd>
+      
+</dl>
+<a name="log10">
+<h4>8.97. (log10 &lt;numeric-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MathFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One numeric expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Number</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the logarithm base-10 of its only argument. 
+        </dd>
+      
+</dl>
+<a name="long">
+<h4>8.98. (long &lt;expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One expression, either numeric or String</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          RU.LONG</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Interprets the expression as a Java long (if possible) and returns a long
+          value. Use strings or atoms for precise values that can't be expressed
+          as an int. Longs in Jess are "second class citizens" in the sense that you
+          can't directly do math on them. You can assign them to variables, pass
+          them to function calls, and convert them to Strings or floating-point
+          numbers. 
+        </dd>
+      
+</dl>
+<a name="longp">
+<h4>8.99. (longp &lt;expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns TRUE if the expression is of type RU.LONG; FALSE otherwise.
+        </dd>
+      
+</dl>
+<a name="lowcase">
+<h4>8.100. (lowcase &lt;lexeme-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          StringFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One atom or string.</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          String</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Converts uppercase characters in a string or symbol to lowercase. Returns
+          the argument as an all-lowercase string.
+        </dd>
+      
+</dl>
+<a name="matches">
+<h4>8.101. (matches &lt;lexeme-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          ViewFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One atom, a rule or query name</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Produces an ugly printout, useful for debugging, of the contents of the left
+          and right Rete memories of each two-input node on the given rule or
+          query's LHS.</dd>
+      
+</dl>
+<a name="max">
+<h4>8.102. (max &lt;numeric-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MathFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One or more numerical expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Number</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the value of its largest numeric argument</dd>
+      
+</dl>
+<a name="member$">
+<h4>8.103. (member$ &lt;single-field-expression&gt; &lt;multifield-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MultiFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A value and a multifield</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Integer or FALSE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the position (1-based index) of a single-field value
+          within a multifield value; otherwise, returns
+          <tt>FALSE</tt>.
+        </dd>
+      
+</dl>
+<a name="min">
+<h4>8.104. (min &lt;numeric-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MathFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One or more numeric expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Number</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the value of its smallest numeric argument.</dd>
+      
+</dl>
+<a name="mod">
+<h4>8.105. (mod &lt;numeric-expression&gt; &lt;numeric-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two integer expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Integer</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the remainder of the result of dividing the first argument by its
+          second (assuming that the result of the division must be an integer). 
+        </dd>
+      
+</dl>
+<a name="modify">
+<h4>8.106. (modify                    &lt;fact-specifier&gt; (&lt;slot-name&gt; &lt;value&gt;)+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A fact and one or more two-element lists</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Fact-ID</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Modifies the given unordered fact in the fact list. The fact
+          must be an unordered fact. Each list is taken as the name of
+          a slot in this fact and a new value to assign to the slot.
+          The fact is removed from the fact list, the values in the
+          specified slots are replaced with the new values, and the
+          fact is reasserted. The fact-ID of the fact does not change.
+          The fact itself is returned. A JessEvent of type 
+          FACT + MODIFIED will be sent if the event mask is set
+          appropriately. 
+          <p align="">
+          Modifying a <a href="functions.html#definstance"><tt>definstance</tt></a>
+          fact will cause the appropriate object properties to be set
+          as well.</p>
+
+</dd>
+      
+</dl>
+<a name="multifieldp">
+<h4>8.107. (multifieldp &lt;expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          PredFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Any value</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> for multifield values; otherwise, returns <tt>FALSE</tt>.
+        </dd>
+      
+</dl>
+<a name="neq">
+<h4>8.108. (neq &lt;expression&gt; &lt;expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two or more values</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> if the first argument is not equal in type and value
+          to all subsequent arguments (see <a href="functions.html#eq"><tt>eq</tt></a>). 
+        </dd>
+      
+</dl>
+<a name="new">
+<h4>8.109. (new &lt;string-expression&gt; &lt;new-arguments&gt;+)</h4>
+</a>
+<dl>
+        
+<dt>Package:</dt>
+<dd>
+          ReflectFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A string and one or more arguments</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Creates a new Java object and returns an <tt>EXTERNAL_ADDRESS</tt> value
+          containing it. The first argument is the fully-qualified class name: <tt>java.util.Vector</tt>,
+          for example. The second and later arguments are constructor arguments.
+          The constructor will be chosen from among all constuctors for the named
+          class based on a <i>first-best fit</i> algorithm. Built-in Jess types are
+          converted as necessary to match available constructors. See the text for
+          more details.</dd>
+      
+</dl>
+<a name="not">
+<h4>8.110. (not &lt;expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> if its only arguments evaluates to <tt>FALSE</tt>;
+          otherwise, returns <tt>FALSE</tt>.
+        </dd>
+      
+</dl>
+<a name="nth$">
+<h4>8.111. (nth$ &lt;integer-expression&gt; &lt;multifield-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MultiFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A number and a multifield</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          (Varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the value of the specified (1-based index) field of a multifield
+          value. 
+        </dd>
+      
+</dl>
+<a name="numberp">
+<h4>8.112. (numberp &lt;expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          PredFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> for numbers; otherwise, returns <tt>FALSE</tt>. 
+        </dd>
+      
+</dl>
+<a name="oddp">
+<h4>8.113. (oddp &lt;integer-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          PredFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One integer expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> for odd numbers; otherwise, returns <tt>FALSE</tt>;
+          see <a href="functions.html#evenp"><tt>evenp</tt></a>.
+        </dd>
+      
+</dl>
+<a name="open">
+<h4>8.114. (open &lt;file-name&gt; &lt;router-identifier&gt; [r|w|a])</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A file name, an identifier for the file (an atom), and optionally a
+          mode string, one of r, w, a.
+        </dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          The file identifier, a router name.
+        </dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Opens a file. Subsequently, the given router identifier can be passed to
+          <a href="functions.html#printout"><tt>printout</tt></a>, <a href="functions.html#read"><tt>read</tt></a>, <a href="functions.html#readline"><tt>readline</tt></a>, or any other functions
+          that accept I/O routers as arguments. By default, the file is opened for
+          reading; if a mode string is given, it may be opened for reading only (<tt>r</tt>),
+          writing only (<tt>w</tt>), or appending (<tt>a</tt>).
+          <p align=""></p>
+          
+<b><i>Note:</i></b> See the <a href="functions.html#batch"><tt>batch</tt></a> command for a
+          discussion about specifying filenames in Jess.
+        </dd>
+      
+</dl>
+<a name="or">
+<h4>8.115. (or &lt;expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One or more expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> if any of the arguments evaluates to a non-<tt>FALSE</tt>
+          value; otherwise, returns <tt>FALSE</tt>.
+        </dd>
+      
+</dl>
+<a name="pi">
+<h4>8.116. (pi)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MathFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Number</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the number <tt>pi</tt>.
+        </dd>
+      
+</dl>
+<a name="pop-focus">
+<h4>8.117. (pop-focus)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          ModuleFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None
+        </dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Atom, the name of a module
+        </dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Removes the top module from the focus stack and returns its name.
+        </dd>
+
+      
+</dl>
+<a name="ppdeffacts">
+<h4>8.118. (ppdeffacts &lt;atom&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Scriptlib</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An atom, the name of a deffacts</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          String</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a pretty-print rendering of a deffacts.
+        </dd>
+      
+</dl>
+<a name="ppdeffunction">
+<h4>8.119. (ppdeffunction &lt;atom&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Scriptlib</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An atom, the name of a deffunction</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          String</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a pretty-print representation of a deffunction.
+        </dd>
+      
+</dl>
+<a name="ppdefglobal">
+<h4>8.120. (ppdefglobal &lt;atom&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Scriptlib</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An atom, the name of a defglobal</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          String</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a pretty-print representation of a defglobal.
+        </dd>
+      
+</dl>
+<a name="ppdefquery">
+<h4>8.121. (ppdefquery &lt;atom&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Scriptlib</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An atom, the name of a defquery</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          String</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a pretty-print rendering of a defquery.
+        </dd>
+      
+</dl>
+<a name="ppdefrule">
+<h4>8.122. (ppdefrule &lt;atom&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Scriptlib</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An atom, the name of a rule or query</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          String</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a pretty-print rendering of a rule or query.
+        </dd>
+      
+</dl>
+<a name="ppdeftemplate">
+<h4>8.123. (ppdeftemplate &lt;atom&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Scriptlib</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An atom, the name of a template</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          String</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a pretty-print representation of a template.
+        </dd>
+      
+</dl>
+<a name="printout">
+<h4>8.124. (printout &lt;router-identifier&gt; &lt;expression&gt;*)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A router identifier followed by zero or more expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          nil</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Sends unformatted output to the specified logical name. Prints its arguments
+          to the named router, which must be open for output. No spaces are added
+          between arguments. The special atom <tt>crlf</tt> prints as a newline.
+          The special router name <tt>t</tt> can be used to signify standard output.</dd>
+      
+</dl>
+<a name="progn">
+<h4>8.125. (progn &lt;expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          LispFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One or more expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          The result of evaluating the last expression.</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          A simple control structure that allows you to group multiple function
+          calls where syntactically only one is allowed - for instance, on the
+          LHS of a rule.</dd>
+      
+</dl>
+<a name="random">
+<h4>8.126. (random)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MathFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Number</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a pseudo-random integer between 0 and 65536.
+        </dd>
+      
+</dl>
+<a name="read">
+<h4>8.127. (read [&lt;router-identifier&gt;])</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An optional input router identifier (when omitted t is the default)</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          (Varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Reads a single-field value from a specified logical name. Read a single
+          atom, string, or number from the named router, returns this value. The
+          router <tt>t</tt> means standard input. Newlines are treated as ordinary
+          whitespace; this behaviour is different than in CLIPS, which returns newlines
+          as tokens. If you need to parse text line-by-line, use <a href="functions.html#readline"><tt>readline</tt></a>
+          and <a href="functions.html#explode$"><tt>explode$</tt></a>. 
+        </dd>
+      
+</dl>
+<a name="readline">
+<h4>8.128. (readline [&lt;router-identifier&gt;])</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An optional input router identifier (when omitted t is the default)</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          String</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Reads an entire line as a string from the specified logical name (router).
+          The router <tt>t</tt> means standard input. 
+        </dd>
+      
+</dl>
+<a name="replace$">
+<h4>8.129. (replace$ &lt;multifield-expression&gt; &lt;begin-integer-expression&gt; &lt;end-integer-expression&gt; &lt;multifield-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MultiFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A multifield, two numeric expressions, and one or more additional
+          single or multifield values</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Multifield</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a copy of a the original multifield with the
+          elements in a specified range replaced with a new set of
+          values.  The variable number of final arguments are inserted
+          into the first multifield, replacing elements between the
+          1-based indices given by the two numeric arguments,
+          inclusive.
+
+          Example:
+
+          <pre>
+            
+<b>Jess&gt; </b>(replace$ (create$ a b c) 2 2 (create$ x y z))
+            <i>(a x y z c)</i>
+          
+</pre>
+
+        
+</dd>
+      
+</dl>
+<a name="reset">
+<h4>8.130. (reset)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Removes all facts from the fact list, removes all activations, then asserts
+          the fact <tt>(initial-fact)</tt>, then asserts all facts found in
+          deffacts, asserts a fact representing each registered definstance, and
+          (if the set-reset-globals property is TRUE) initializes all
+          defglobals.</dd>
+      
+</dl>
+<a name="rest$">
+<h4>8.131. (rest$ &lt;multifield-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MultiFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One multifield</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Multifield</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns all but the first field of a multifield as a new multifield. 
+        </dd>
+      
+</dl>
+<a name="retract">
+<h4>8.132. (retract &lt;integer-expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One or more fact-IDs (<i>not</i> integers)</dd>
+
+          
+<dt>Returns:</dt>
+<dd>
+            TRUE</dd>
+
+          
+<dt>Description:</dt>
+<dd>
+            Retracts the facts whose IDs are given. Retracting a definstance fact will
+            result in an implict call to undefinstance for the corresponding object
+            (the object will no longer be pattern-matched). A
+            JessEvent of type FACT + REMOVED will be sent if the event
+            mask is set appropriately.
+          </dd>
+      
+</dl>
+<a name="retract-string">
+<h4>8.133. (retract-string &lt;string&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A string, a representation of a Fact</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Parses the string as a Fact; if such a fact exists on the knowledge
+          base, calls <a href="functions.html#retract"><tt>retract</tt></a> on it.
+        </dd>
+      
+</dl>
+<a name="return">
+<h4>8.134. (return [&lt;expression&gt;])</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An optional expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          (Varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          From a deffunction, returns the given value and exits the deffunction
+          immediately. From the RHS of a rule, terminates the
+          rule's execution immediately and pops the current focus
+          module from the focus stack. No argument should be given
+          when return is called from the RHS of a rule.
+        </dd>
+      
+</dl>
+<a name="round">
+<h4>8.135. (round &lt;numeric-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MathFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One numeric expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Integer</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Rounds its argument toward the closest integer or negative infinity if
+          exactly between two integers. 
+        </dd>
+      
+</dl>
+<a name="rules">
+<h4>8.136. (rules)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Optionally, a module name, or the atom *</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          nil</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          With no arguments, prints a list of all rules and queries in the
+          current module (not the focus module) to the 't'
+          router. With a module name for an argument, prints the names
+          of the rules and queries in that module. With "*" as an
+          argument, prints the names of all rules and queries.
+        </dd>
+      
+</dl>
+<a name="run">
+<h4>8.137. (run [&lt;integer&gt;])</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Optionally, a single integer</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Starts the inference engine. If no argument is supplied, Jess will
+          keep running until no more activations remain or <a href="functions.html#halt"><tt>halt</tt></a> is
+          called. If an argument is supplied, it gives the maximum number of
+          rules to fire before stopping.
+        </dd>
+      
+</dl>
+<a name="run-query">
+<h4>8.138. (run-query &lt;query-name&gt; &lt;expression&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An atom, and zero or more additional expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          java.util.Iterator, as an EXTERNAL_ADDRESS</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Runs a <a href="language.html#queries">query</a> and returns a
+          <tt>java.util.Iterator</tt> of the matches. See the documentation
+          for <a href="language.html#queries">defquery</a> for more
+          details. Note that run-query can lead to backwards chaining, which can
+          cause rules to fire; thus if run-query is called on a rule RHS, other
+          rules' RHSs may run to completion before the instigating rule
+          completes. Putting run-query on a rule RHS can also cause the count of
+          executed rules returned by <a href="functions.html#"><tt>run</tt></a> to be low.
+          
+            Note that the <tt>Iterator</tt> returned by this function
+            should be used immediately. It will become invalid if any
+            of the following functions are called before you've used
+            it: <tt>reset</tt>, <tt>count-query-results</tt>, or
+            <tt>run-query</tt>. It <i>may</i> become invalid if any of
+            the following are called: <tt>assert</tt>,
+            <tt>retract</tt>, <tt>modify</tt>, or <tt>duplicate</tt>,
+            and if any of the affected facts are involved in the
+            active query's result.
+          
+        </dd>
+      
+</dl>
+<a name="run-until-halt">
+<h4>8.139. (run-until-halt)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Scriptlib</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None.</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          int</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Runs the engine until <a href="functions.html#halt"><tt>halt</tt></a> is called. Returns
+          the number of rules fired. When there are no active rules, the calling
+          thread will be blocked waiting on the activation semaphore.
+        </dd>
+      
+</dl>
+<a name="save-facts">
+<h4>8.140. (save-facts &lt;file-name&gt; [&lt;deftemplate-name&gt;])</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A filename, and optionally an atom</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Saves facts to a file. Attempts to open the named file for writing, and
+          then writes a list of all facts on the fact list to the file. This file
+          is suitable for reading with load-facts. If the optional second argument
+          is given, only facts whose head matches this atom will be saved. Does not
+          work in applets.
+          <p align=""></p>
+          
+<b><i>Note:</i></b> See the <a href="functions.html#batch"><tt>batch</tt></a> command for a
+          discussion about specifying filenames in Jess.
+        </dd>
+      
+</dl>
+<a name="set">
+<h4>8.141. (set &lt;external-address&gt; &lt;string-expression&gt; &lt;expression&gt;)</h4>
+</a>
+<dl>
+        
+<dt>Package:</dt>
+<dd>
+          ReflectFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An external address, a string, and an expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          The last argument</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Sets a Java Bean's property to the given value. The first argument is the
+          Bean object; the second argument is the name of the property. The third
+          value is the new value for the property; the same conversions are applied
+          as for <a href="functions.html#new"><tt>new</tt></a> and <a href="functions.html#call"><tt>call</tt></a>.</dd>
+      
+</dl>
+<a name="set-current-module">
+<h4>8.142. (set-current-module &lt;module-name&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          ModuleFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An atom, the name of a valid module
+        </dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          An atom, the name of the previous current module
+        </dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Sets the current module. Any constructs defined without
+          explicitly naming a module are defined in the current
+          module. Note that defining a defmodule also sets the current
+          module. 
+        </dd>
+
+      
+</dl>
+<a name="set-factory">
+<h4>8.143. (set-factory [factory object] )</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          External address, an object that implements the interface
+          jess.factory.Factory</dd> 
+
+        
+<dt>Returns:</dt>
+<dd>
+          External address, an object that implements the interface
+          jess.factory.Factory; the previous value of this property.
+        </dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Set the "thing factory" for the active Rete object. Providing an
+          alternate "thing factory" is a very advanced, and currently
+          undocumented, way to extend Jess's functionality. 
+        </dd>
+      
+</dl>
+<a name="setgen">
+<h4>8.144. (setgen &lt;numeric-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A numeric expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Sets the starting number used by <a href="functions.html#gensym*"><tt>gensym*</tt></a>. Note that if this number
+          has already been used, <a href="functions.html#gensym*"><tt>gensym*</tt></a> uses the next larger number that
+          has not been used. 
+        </dd>
+      
+</dl>
+<a name="set-member">
+<h4>8.145. (set-member (&lt;external-address&gt; | &lt;string-expression&gt;) &lt;string&gt; &lt;expression&gt;+)</h4>
+</a>
+<dl>
+        
+<dt>Package:</dt>
+<dd>
+          ReflectFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An external address or a string, a string, and one or more expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          The last argument</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Sets a Java object's member variable to the given value. The first argument
+          is the object (or the name of the class, in the case of a static member
+          variable). The second argument is the name of the variable. The third value
+          is the new value for the variable; the same conversions are applied as
+          for <a href="functions.html#new"><tt>new</tt></a> and <a href="functions.html#call"><tt>call</tt></a>.</dd>
+      
+</dl>
+<a name="set-multithreaded-io">
+<h4>8.146. (set-multithreaded-io (TRUE | FALSE))</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Specify whether Jess should use a separate thread to flush I/O
+          streams. Turning this on can lead to a modest performance enhancement,
+          at the expense of possible loss of output on program
+          termination. Returns the previous value of this property.
+        </dd>
+      
+</dl>
+<a name="set-node-index-hash">
+<h4>8.147. (set-node-index-hash &lt;integer&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One integral value</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Sets the default hashing key used in all Rete network join node
+          memories defined after the function is called; this function will not
+          affect parts of the network already in existence at the time of the
+          call. A small value will give rise to memory-efficient nodes; a
+          larger value will use more memory. If the created  nodes will
+          generally have to remember many partial matches, large numbers will
+          lead to faster performance; the opposite may be true for nodes which
+          will rarely hold more than one or two partial matches. This function
+          sets the default; explicit <tt>declare</tt> statements can override
+          this for specific rules.
+        </dd>
+      
+</dl>
+<a name="set-reset-globals">
+<h4>8.148. (set-reset-globals (TRUE | FALSE | nil))</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One boolean value (TRUE or FALSE or nil)</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Changes the current setting of the global variable reset behavior. If this
+          property is set to TRUE (the default), then the (reset) command reinitializes
+          the values of global variables to their initial values (if the initial
+          value was a function call, the function call is reexecuted.) If the property
+          is set to FALSE or nil, then (reset) will not affect global
+          variables. Note that in previous versions of Jess, defglobals were
+          always reset; but if the initial value was set with a function call,
+          the function was <b>not</b> reevaluated. Now it is.</dd>
+      
+</dl>
+<a name="set-salience-evaluation">
+<h4>8.149. (set-salience-evaluation (when-defined | when-activated | every-cycle))</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One of the atoms when-defined, when-activated, or every-cycle</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          One of the potential arguments (the previous value of this property)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Changes the current setting of the salience evaluation behavior. By default,
+          a rule's salience will be determined once, when the rule is defined (when-defined.)
+          If this property is set to when-activated, then the salience of each rule
+          will be redetermined immediately before each time it is placed on the agenda.
+          If the property is set to every-cycle, then the salience of every rule
+          is redetermined immediately after each time any rule fires.</dd>
+      
+</dl>
+<a name="set-strategy">
+<h4>8.150. (set-strategy (depth | breadth))</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An atom or string representing the name of a strategy (can
+          be a fully-qualifed Java class name). You can use depth and
+          breadth to represent the two built-in
+          strategies.</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          The previous strategy as an atom.</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Lets you specify the <i>conflict resolution strategy</i>
+          Jess uses to order the firing of rules of equal
+          salience. Currently, there are two strategies available:
+          <i>depth</i> <i>(LIFO)</i> and <i>breadth (FIFO).</i> When
+          the depth strategy is in effect (the default), more recently
+          activated rules are fired before less recently activated
+          rules of the same salience. When the breadth strategy is
+          active, rules of the same salience fire in the order in
+          which they are activated. Note that in either case, if
+          several rules are activated simultaneously (i.e., by the
+          same fact-assertion event) the order in which these several
+          rules fire is unspecified, implementation-dependent and
+          subject to change. More built-in strategies may be added in
+          the future.  You can (perhaps) implement your own strategies
+          in Java by creating a class that implements the
+          <tt>jess.Strategy</tt> interface and then specifying its
+          fully-qualified classname as the argument to <a href="functions.html#set-strategy"><tt>set-strategy</tt></a>.  Details can be
+          gleaned from the source. At this time, though, I think some
+          of the methods you'd need to call are package-protected.
+        </dd>
+      
+</dl>
+<a name="show-deffacts">
+<h4>8.151. (show-deffacts)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Scriptlib</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          nil</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Displays all defined deffacts to the 't' router.
+        </dd>
+      
+</dl>
+<a name="show-deftemplates">
+<h4>8.152. (show-deftemplates)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Scriptlib</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          nil</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Displays all defined <tt>deftemplates</tt>s to the 't' router.
+        </dd>
+      
+</dl>
+<a name="show-jess-listeners">
+<h4>8.153. (show-jess-listeners)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Scriptlib</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          nil</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Displays all <tt>JessListener</tt>s registered with the engine to the 't' router.
+        </dd>
+      
+</dl>
+<a name="socket">
+<h4>8.154. (socket &lt;Internet-hostname&gt; &lt;TCP-port-number&gt; &lt;router-identifier&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An Internet hostname, a TCP port number, and a router identifier</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          The router identifier</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Somewhat equivalent to <a href="functions.html#open"><tt>open</tt></a>, except that instead
+          of opening a file, opens an unbuffered TCP network connection to the named
+          host at the named port, and installs it as a pair of read and write routers
+          under the given name.</dd>
+      
+</dl>
+<a name="sqrt">
+<h4>8.155. (sqrt &lt;numeric-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MathFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A numeric expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Number</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the square root of its only argument.
+        </dd>
+      
+</dl>
+<a name="store">
+<h4>8.156. (store &lt;string or atom&gt; &lt;expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A string or atom and any other value</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          (varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Associates the expression with the name given by the first argument,
+          such that later calls to the <a href="functions.html#fetch"><tt>fetch</tt></a> will retrieve
+          it. Storing the atom nil will clear any value associated with
+          name. Analagous to the <tt>store()</tt> member function of the 
+          <tt>jess.Rete</tt> class. See section on
+          <a href="library.html#xfer">using store and fetch</a> for more
+          details.</dd>  
+      
+</dl>
+<a name="str-cat">
+<h4>8.157. (str-cat &lt;expression&gt;*)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          StringFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Zero or more expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          String</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Concatenates its arguments as strings to form a single string. For
+          arguments of type RU.EXTERNAL_ADDRESS, the toString() method
+          of the contained object is called.</dd>
+      
+</dl>
+<a name="str-compare">
+<h4>8.158. (str-compare &lt;string-expression&gt; &lt;string-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          StringFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two atoms or strings</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Integer</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Lexicographically compares two strings. Returns 0 if the strings are identical,
+          a negative integer if the first is lexicographically less than the second,
+          a positive integer if lexicographically greater.
+        </dd>
+      
+</dl>
+<a name="str-index">
+<h4>8.159. (str-index &lt;lexeme-expression&gt; &lt;lexeme-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          StringFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two atoms or strings</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Integer or FALSE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the position of the first argument within the second argument.
+          This is the 1-based index at which the first string first appears in the
+          second; otherwise, returns <tt>FALSE</tt>. 
+        </dd>
+      
+</dl>
+<a name="stringp">
+<h4>8.160. (stringp &lt;expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          PredFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> for strings; otherwise, returns <tt>FALSE</tt>. 
+        </dd>
+      
+</dl>
+<a name="str-length">
+<h4>8.161. (str-length &lt;lexeme-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          StringFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An atom or string</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Integer</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the length of an atom in characters.
+        </dd>
+      
+</dl>
+<a name="subseq$">
+<h4>8.162. (subseq$ &lt;multifield-expression&gt; &lt;begin-integer-expression&gt; &lt;end-integer-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MultiFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A multifield and two numeric expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Multifield</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Extracts the specified range from a multifield value consisting of the
+          elements between the two 1-based indices of the given multifield, inclusive.
+        </dd>
+      
+</dl>
+<a name="subsetp">
+<h4>8.163. (subsetp &lt;multifield-expression&gt; &lt;multifield-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MultiFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two multifields</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> if the first argument is a subset of the second (i.e.,
+          all the elements of the first multifield appear in the second multifield);
+          otherwise, returns <tt>FALSE</tt>.</dd>
+      
+</dl>
+<a name="sub-string">
+<h4>8.164. (sub-string &lt;begin-integer-expression&gt; &lt;end-integer-expression&gt; &lt;string-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          StringFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Two numbers and a string</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          String</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Retrieves a subportion from a string. Returns the string consisting of
+          the characters between the two 1-based indices of the given string, inclusive.
+        </dd>
+      
+</dl>
+<a name="symbolp">
+<h4>8.165. (symbolp &lt;expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          PredFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One expression</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns <tt>TRUE</tt> for symbols; otherwise, returns <tt>FALSE</tt>.
+        </dd>
+      
+</dl>
+<a name="sym-cat">
+<h4>8.166. (sym-cat &lt;expression&gt;*)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Zero or more expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Atom</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Concatenates its arguments as strings to form a single symbol. For
+          arguments of type RU.EXTERNAL_ADDRESS, the toString() method
+          of the contained object is called.</dd>
+      
+</dl>
+<a name="synchronized">
+<h4>8.167. (synchronized &lt;java-object&gt; &lt;action&gt;*)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          Any Java object, followed by any number of expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          (varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Executes the expressions inside a Java "synchronized" block
+          which locks the given object. Returns the value of the last
+          expression evaluated.
+        </dd>
+      
+</dl>
+<a name="system">
+<h4>8.168. (system &lt;lexeme-expression&gt;+ [&amp;])</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One or more atoms or strings</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          a java.lang.Process object, or FALSE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Sends a command to the operating system. Each atom or string becomes
+          one element of the argument array in a call to the Java
+          <tt>java.lang.Runtime.exec(String[] cmdaray)</tt> method; therefore to
+          execute the command <tt>edit myfile.txt</tt>, you should call
+          <tt>(system edit myfile.txt)</tt>, not (system "edit myfile.txt").
+          <p align=""></p>
+          Normally blocks (i.e., Jess stops until the launched
+          application returns), but if the last argument is an
+          ampersand (<tt>&amp;</tt>), the program will run in the
+          background. The standard output and standard error streams
+          of the process are connected to the 't' router, but the
+          input of the process is not connected to the terminal.
+          <p align=""></p>
+          Returns the Java Process object. You can call waitFor and then
+          exitValue to get the exit status of the process.
+        </dd>
+      
+</dl>
+<a name="throw">
+<h4>8.169. (throw &lt;java-object&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A Java object that must inherit from java.lang.Throwable</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Does not return</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Throws the given exception object. If the object is a
+          <tt>JessException</tt>, throws it directly. If the object is some
+          other type of exception, it is wrapped in a <tt>JessException</tt>
+          before throwing. The object's  stack trace is filled in such that the
+          exception will appear to have been created by the <a href="functions.html#throw"><tt>throw</tt></a>
+          function.
+        </dd>
+      
+</dl>
+<a name="time">
+<h4>8.170. (time)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MiscFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Number</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns the number of seconds since 12:00 AM, Jan 1, 1970.
+        </dd>
+      
+</dl>
+<a name="try">
+<h4>8.171. (try &lt;expression&gt;* [catch &lt;expression&gt;*] [finally &lt;expression&gt;*])</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One or more expressions, followed optionally by the atom catch followed by zero
+          or more expressions, followed optionally by the atom finally followed by zero
+          or more expressions. Either the catch, or the finally, or both must be
+          included. 
+        </dd>
+        
+<dt>Returns:</dt>
+<dd>(Varies)</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          This command works something like Java <tt>try</tt> with a few simplifications.
+          The biggest difference is that the <tt>catch</tt> clause can specify neither
+          a type of exception nor a variable to receive the exception object. All
+          exceptions occurring in a <a href="functions.html#try"><tt>try</tt></a> block are routed to the single
+          <tt>catch</tt> block. The variable <tt>?ERROR</tt> is made to point to
+          the exception object as an <tt>EXTERNAL_ADDRESS</tt>. For example:
+
+          <pre>
+            (try
+            (open NoSuchFile.txt r)
+            catch
+            (printout t (call ?ERROR toString) crlf))
+          </pre>
+
+          prints
+
+          <pre>
+            Rete Exception in routine _open::call.
+            Message: I/O Exception java.io.FileNotFoundException: NoSuchFile.txt.
+          </pre>
+
+          
+<p align=""></p>An empty <tt>catch</tt> block is fine. It just signifies ignoring possible
+          errors.
+          <p align=""></p>The code in the <tt>finally</tt> block, if present, is executed
+          after all try and/or catch code has executed, immediately before the
+          <a href="functions.html#"><tt>try</tt></a> function returns.
+
+        </dd>
+      
+</dl>
+<a name="undefadvice">
+<h4>8.172. (undefadvice (&lt;function-name&gt; | ALL | &lt;multifield&gt;))</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A function name, or ALL, or a multifield of function names</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Removes all advice from the named function(s).
+        </dd>
+      
+</dl>
+<a name="undefinstance">
+<h4>8.173. (undefinstance (&lt;java-object&gt; | * ))</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          ReflectFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A Javaobject, or the atom *</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          If the object currently has a shadow fact, it is removed from the
+          knowledge base. Furthermore, if the object has a
+          <tt>PropertyChangeListener</tt> installed, this is removed as well. If
+          the argument is "*" this is done for all <a href="functions.html#definstance"><tt>definstance</tt></a>s.
+        </dd>
+      
+</dl>
+<a name="undefrule">
+<h4>8.174. (undefrule &lt;rule-name&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          An atom representing the name of a rule</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Boolean</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Deletes a rule. Removes the named rule from the Rete network and returns
+          <tt>TRUE</tt> if the rule existed. This rule will never fire again.
+        </dd>
+      
+</dl>
+<a name="union$">
+<h4>8.175. (union$ [&lt;multifield-expression&gt;]+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          MultiFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One or more multifields</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          Multifield</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Returns a new multifield consisting of the union of all of its multifield
+          arguments (i.e., of all the elements that appear in any of the arguments with
+          duplicates removed).
+        </dd>
+      
+</dl>
+<a name="unwatch">
+<h4>8.176. (unwatch &lt;watch-item&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One of the atoms all, rules, compilations, activations, facts, focus
+        </dd>
+        
+<dt>Returns:</dt>
+<dd></dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Causes trace output to not be printed for the given indicator. See <tt>watch</tt>.
+        </dd>
+      
+</dl>
+<a name="upcase">
+<h4>8.177. (upcase &lt;lexeme-expression&gt;)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          StringFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A string or atom</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          A string</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Converts lowercase characters in a string or symbol to uppercase. Returns
+          the argument as an all-uppercase string. 
+        </dd>
+      
+</dl>
+<a name="update">
+<h4>8.178. (update &lt;java-object&gt;+)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          ReflectFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One or more Java objects, previously passed as arguments to
+          <a href="functions.html#definstance"><tt>definstance</tt></a>.
+        </dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          The fact-id of the shadow fact tied to the last argument.</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+            Static definstances aren't updated automatically, since
+            Jess doesn't know when a definstanced object has been
+            changed. This function lets you tell Jess explicitly that
+            one or more Java objects have been updated. In response,
+            Jess will find their corresponding shadow facts and update
+            all their slots.
+        </dd>
+      
+</dl>
+<a name="view">
+<h4>8.179. (view)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          ViewFunctions</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          None</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          This Userfunction is included in the Jess distribution but is not normally
+          installed. You must load it using <a href="functions.html#load-package"><tt>load-package</tt></a>
+          (the class name is <tt>jess.ViewFunctions</tt>). When invoked, it
+          displays a live snapshot of the Rete network in a graphical window. See
+          <a href="rete.html">How Jess Works</a> for details.
+        </dd>
+      
+</dl>
+<a name="watch">
+<h4>8.180. (watch (all | rules | compilations | activations | facts))</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          One of the atoms all, rules, compilations, activations, facts, focus
+          activations
+        </dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          TRUE</dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Produces additional debug output when specific events happen in Jess, depending
+          on the argument. Any number of different watches can be active simultaneously:
+
+          <ul>
+            
+<li>
+              
+<tt>rules</tt>: prints a message when any rule fires.</li>
+
+            
+<li>
+              
+<tt>compilations</tt>: prints a message when any rule is compiled.</li>
+
+            
+<li>
+              
+<tt>activations</tt>: prints a message when any rule is activated, or deactivated,
+              showing which facts have caused the event.</li>
+
+            
+<li>
+              
+<tt>facts</tt>: print a message whenever a fact is asserted or
+              retracted.</li>
+            
+<li>
+              
+<tt>focus</tt>: print a message for each change to the module focus stack.</li>
+
+            
+<li>
+              
+<tt>all</tt>: all of the above.
+            </li>
+          
+</ul>
+        
+</dd>
+      
+</dl>
+<a name="while">
+<h4>8.181. (while &lt;expression&gt; [do] &lt;action&gt;*)</h4>
+</a>
+<dl>
+
+        
+<dt>Package:</dt>
+<dd>
+          Intrinsics</dd>
+
+        
+<dt>Arguments:</dt>
+<dd>
+          A Boolean value or a function call returning Boolean, the atom do, and
+          zero or more expressions</dd>
+
+        
+<dt>Returns:</dt>
+<dd>
+          (Varies)
+        </dd>
+
+        
+<dt>Description:</dt>
+<dd>
+          Allows conditional looping. Evaluates the boolean expression repeatedly.
+          As long as it does not equal <tt>FALSE</tt>, the list of other expressions
+          are evaluated. The value of the last expression evaluated is the return
+          value.</dd>
+      
+</dl>
+  
+<p>
+<i><a href="index.html">Back to index</a></i>
+</p>
+</body>
+
+</html>

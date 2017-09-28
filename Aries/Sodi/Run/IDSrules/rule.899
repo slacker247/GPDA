@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI wayboard access"; uricontent:"/way-board"; nocase; flags:A+; reference:bugtraq,2370; classtype:attempted-recon; sid:896; rev:1;)

@@ -1,0 +1,139 @@
+
+An unexpected exception has been detected in native code outside the VM.
+Unexpected Signal : 11 occurred at PC=0x403c996a
+Function name=_IO_str_init_static
+Library=/lib/libc.so.6
+
+Current Java thread:
+	at StructureTab.DSJ_InitAttributes(Native Method)
+	at StructureTab.importData(StructureTab.java:1453)
+	at StructureTab$1.actionPerformed(StructureTab.java:681)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1450)
+	at javax.swing.AbstractButton$ForwardActionEvents.actionPerformed(AbstractButton.java:1504)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:378)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:250)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:216)
+	at java.awt.Component.processMouseEvent(Component.java:3715)
+	at java.awt.Component.processEvent(Component.java:3544)
+	at java.awt.Container.processEvent(Container.java:1164)
+	at java.awt.Component.dispatchEventImpl(Component.java:2593)
+	at java.awt.Container.dispatchEventImpl(Container.java:1213)
+	at java.awt.Component.dispatchEvent(Component.java:2497)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:2451)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:2216)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:2125)
+	at java.awt.Container.dispatchEventImpl(Container.java:1200)
+	at java.awt.Window.dispatchEventImpl(Window.java:926)
+	at java.awt.Component.dispatchEvent(Component.java:2497)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:339)
+	at java.awt.EventDispatchThread.pumpOneEventForHierarchy(EventDispatchThread.java:131)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:98)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:85)
+
+Dynamic libraries:
+08048000-0804c000 r-xp 00000000 03:06 196932     /usr/java/jre1.3.1_02/bin/i386/native_threads/java
+0804c000-0804d000 rw-p 00003000 03:06 196932     /usr/java/jre1.3.1_02/bin/i386/native_threads/java
+40000000-40016000 r-xp 00000000 03:09 102372     /lib/ld-2.2.2.so
+40016000-40017000 rw-p 00015000 03:09 102372     /lib/ld-2.2.2.so
+40018000-40019000 r--p 00000000 03:06 359055     /usr/lib/locale/en_US/LC_IDENTIFICATION
+40019000-4001a000 r--p 00000000 03:06 359056     /usr/lib/locale/en_US/LC_MEASUREMENT
+4001a000-4001b000 r--p 00000000 03:06 359059     /usr/lib/locale/en_US/LC_TELEPHONE
+4001b000-4001c000 r--p 00000000 03:06 359054     /usr/lib/locale/en_US/LC_ADDRESS
+4001c000-4001d000 r--p 00000000 03:06 359057     /usr/lib/locale/en_US/LC_NAME
+4001d000-4001e000 r--p 00000000 03:06 359058     /usr/lib/locale/en_US/LC_PAPER
+4001e000-4001f000 r--p 00000000 03:06 48997      /usr/lib/locale/en_US/LC_MESSAGES/SYS_LC_MESSAGES
+4001f000-40020000 r--p 00000000 03:06 326411     /usr/lib/locale/en_US/LC_MONETARY
+40020000-40021000 r--p 00000000 03:06 359060     /usr/lib/locale/en_US/LC_TIME
+40021000-40022000 r--p 00000000 03:06 734431     /usr/lib/locale/en_US/LC_NUMERIC
+40022000-40031000 r-xp 00000000 03:09 102417     /lib/libpthread-0.9.so
+40031000-40039000 rw-p 0000e000 03:09 102417     /lib/libpthread-0.9.so
+40039000-40042000 r-xp 00000000 03:06 246079     /usr/java/jre1.3.1_02/lib/i386/native_threads/libhpi.so
+40042000-40043000 rw-p 00008000 03:06 246079     /usr/java/jre1.3.1_02/lib/i386/native_threads/libhpi.so
+40043000-40233000 r-xp 00000000 03:06 686711     /usr/java/jre1.3.1_02/lib/i386/client/libjvm.so
+40233000-40331000 rw-p 001ef000 03:06 686711     /usr/java/jre1.3.1_02/lib/i386/client/libjvm.so
+40348000-4034b000 r-xp 00000000 03:09 102385     /lib/libdl-2.2.2.so
+4034b000-4034c000 rw-p 00002000 03:09 102385     /lib/libdl-2.2.2.so
+4034c000-40475000 r-xp 00000000 03:09 102381     /lib/libc-2.2.2.so
+40475000-4047a000 rw-p 00128000 03:09 102381     /lib/libc-2.2.2.so
+4047e000-40491000 r-xp 00000000 03:09 102390     /lib/libnsl-2.2.2.so
+40491000-40493000 rw-p 00012000 03:09 102390     /lib/libnsl-2.2.2.so
+40496000-404b9000 r-xp 00000000 03:09 102387     /lib/libm-2.2.2.so
+404b9000-404ba000 rw-p 00022000 03:09 102387     /lib/libm-2.2.2.so
+404ba000-404ee000 r-xp 00000000 03:06 424426     /usr/lib/libstdc++-2-libc6.1-1-2.9.0.so
+404ee000-404fa000 rw-p 00033000 03:06 424426     /usr/lib/libstdc++-2-libc6.1-1-2.9.0.so
+404fc000-4050d000 r-xp 00000000 03:06 474145     /usr/java/jre1.3.1_02/lib/i386/libverify.so
+4050d000-4050f000 rw-p 00010000 03:06 474145     /usr/java/jre1.3.1_02/lib/i386/libverify.so
+4050f000-40530000 r-xp 00000000 03:06 474136     /usr/java/jre1.3.1_02/lib/i386/libjava.so
+40530000-40532000 rw-p 00020000 03:06 474136     /usr/java/jre1.3.1_02/lib/i386/libjava.so
+40533000-40547000 r-xp 00000000 03:06 474146     /usr/java/jre1.3.1_02/lib/i386/libzip.so
+40547000-4054a000 rw-p 00013000 03:06 474146     /usr/java/jre1.3.1_02/lib/i386/libzip.so
+4054a000-4127b000 r--s 00000000 03:06 654090     /usr/java/jre1.3.1_02/lib/rt.jar
+412a8000-4154d000 r--s 00000000 03:06 654083     /usr/java/jre1.3.1_02/lib/i18n.jar
+4154d000-41563000 r--s 00000000 03:06 654091     /usr/java/jre1.3.1_02/lib/sunrsasign.jar
+4360b000-4360c000 r--s 00000000 03:05 945223     /home/dre/Protege-2000/plugins/HTMLSummary.jar
+4360c000-43610000 r--s 00000000 03:05 945229     /home/dre/Protege-2000/plugins/wordnet_tab.jar
+516ef000-5170a000 r--p 00000000 03:06 130596     /usr/lib/locale/en_US/LC_CTYPE
+5170a000-51710000 r--p 00000000 03:06 603874     /usr/lib/locale/en_US/LC_COLLATE
+51710000-5171a000 r--s 00000000 03:05 505348     /home/dre/Protege-2000/lax.jar
+5171a000-51724000 r-xp 00000000 03:09 102406     /lib/libnss_files-2.2.2.so
+51724000-51725000 rw-p 00009000 03:09 102406     /lib/libnss_files-2.2.2.so
+51791000-51869000 r--s 00000000 03:05 505351     /home/dre/Protege-2000/protege.jar
+51869000-51872000 r--s 00000000 03:05 945225     /home/dre/Protege-2000/plugins/DataGenieTab.jar
+51872000-5195d000 r--s 00000000 03:05 945123     /home/dre/Protege-2000/plugins/XMLSchemaBackend.jar
+5195d000-51966000 r--s 00000000 03:05 945120     /home/dre/Protege-2000/plugins/XMLbackend.jar
+51966000-519e7000 r--s 00000000 03:05 945110     /home/dre/Protege-2000/plugins/fact.jar
+519e7000-51a08000 r--s 00000000 03:05 945111     /home/dre/Protege-2000/plugins/grappa1_2.jar
+51a08000-51a18000 r--s 00000000 03:05 945112     /home/dre/Protege-2000/plugins/oil-tab.jar
+51a18000-51db6000 r--s 00000000 03:05 945114     /home/dre/Protege-2000/plugins/okbc.jar
+51db6000-51dc7000 r--s 00000000 03:05 945115     /home/dre/Protege-2000/plugins/okbc_tab.jar
+51dc7000-51dd4000 r--s 00000000 03:05 945117     /home/dre/Protege-2000/plugins/ontoviz.jar
+51dd4000-51e32000 r--s 00000000 03:05 945222     /home/dre/Protege-2000/plugins/prompt.jar
+51e32000-51e52000 r--s 00000000 03:05 945099     /home/dre/Protege-2000/plugins/query_tab.jar
+51e52000-51e87000 r--s 00000000 03:05 945100     /home/dre/Protege-2000/plugins/rdf-api.jar
+51e87000-51eb6000 r--s 00000000 03:05 945101     /home/dre/Protege-2000/plugins/rdf_backend.jar
+51eb6000-51ecb000 r--s 00000000 03:05 945220     /home/dre/Protege-2000/plugins/remoteKBTab.jar
+51ecb000-51f60000 r--s 00000000 03:05 945102     /home/dre/Protege-2000/plugins/standard_extensions.jar
+51f60000-520cc000 r--s 00000000 03:05 945103     /home/dre/Protege-2000/plugins/xerces.jar
+520cc000-520ed000 r--s 00000000 03:05 945121     /home/dre/Protege-2000/plugins/xml.jar
+520ed000-520f5000 r--s 00000000 03:05 945124     /home/dre/Protege-2000/plugins/xml_tab.jar
+520f5000-524c3000 r-xp 00000000 03:06 474130     /usr/java/jre1.3.1_02/lib/i386/libawt.so
+524c3000-524d3000 rw-p 003cd000 03:06 474130     /usr/java/jre1.3.1_02/lib/i386/libawt.so
+524e8000-52519000 r-xp 00000000 03:06 474142     /usr/java/jre1.3.1_02/lib/i386/libmlib_image.so
+52519000-5251b000 rw-p 00030000 03:06 474142     /usr/java/jre1.3.1_02/lib/i386/libmlib_image.so
+5251b000-5251d000 r-xp 00000000 03:06 179691     /usr/lib/gconv/ISO8859-1.so
+5251d000-5251e000 rw-p 00001000 03:06 179691     /usr/lib/gconv/ISO8859-1.so
+52525000-5252b000 r-xp 00000000 03:06 81939      /usr/X11R6/lib/libXp.so.6.2
+5252b000-5252d000 rw-p 00005000 03:06 81939      /usr/X11R6/lib/libXp.so.6.2
+5252d000-52575000 r-xp 00000000 03:06 81945      /usr/X11R6/lib/libXt.so.6.0
+52575000-52579000 rw-p 00047000 03:06 81945      /usr/X11R6/lib/libXt.so.6.0
+5257a000-52586000 r-xp 00000000 03:06 81929      /usr/X11R6/lib/libXext.so.6.4
+52586000-52588000 rw-p 0000b000 03:06 81929      /usr/X11R6/lib/libXext.so.6.4
+52588000-5258c000 r-xp 00000000 03:06 81947      /usr/X11R6/lib/libXtst.so.6.1
+5258c000-5258e000 rw-p 00003000 03:06 81947      /usr/X11R6/lib/libXtst.so.6.1
+5258e000-52669000 r-xp 00000000 03:06 81921      /usr/X11R6/lib/libX11.so.6.2
+52669000-5266d000 rw-p 000da000 03:06 81921      /usr/X11R6/lib/libX11.so.6.2
+5266e000-52676000 r-xp 00000000 03:06 81919      /usr/X11R6/lib/libSM.so.6.0
+52676000-52677000 rw-p 00007000 03:06 81919      /usr/X11R6/lib/libSM.so.6.0
+52677000-5268b000 r-xp 00000000 03:06 81915      /usr/X11R6/lib/libICE.so.6.3
+5268b000-5268c000 rw-p 00013000 03:06 81915      /usr/X11R6/lib/libICE.so.6.3
+5268e000-526a1000 r-xp 00000000 03:05 1857332    /home/dre/Protege-2000/plugins/libStructure.so
+526a1000-526a3000 rw-p 00012000 03:05 1857332    /home/dre/Protege-2000/plugins/libStructure.so
+52cc5000-52d23000 r-xp 00000000 03:06 393499     /usr/local/lib/libodbc.so.1.0.0
+52d23000-52d29000 rw-p 0005d000 03:06 393499     /usr/local/lib/libodbc.so.1.0.0
+52d29000-52d62000 r-xp 00000000 03:06 424478     /usr/lib/libstdc++-3-libc6.2-2-2.10.0.so
+52d62000-52d69000 rw-p 00038000 03:06 424478     /usr/lib/libstdc++-3-libc6.2-2-2.10.0.so
+52d6c000-52df6000 r-xp 00000000 03:06 474133     /usr/java/jre1.3.1_02/lib/i386/libfontmanager.so
+52df6000-52e06000 rw-p 00089000 03:06 474133     /usr/java/jre1.3.1_02/lib/i386/libfontmanager.so
+52e06000-52e09000 r-xp 00000000 03:09 102403     /lib/libnss_dns-2.2.2.so
+52e09000-52e0b000 rw-p 00002000 03:09 102403     /lib/libnss_dns-2.2.2.so
+52e0b000-52e1a000 r-xp 00000000 03:09 102419     /lib/libresolv-2.2.2.so
+52e1a000-52e1b000 rw-p 0000e000 03:09 102419     /lib/libresolv-2.2.2.so
+
+Local Time = Fri Mar 14 16:10:45 2003
+Elapsed Time = 28
+#
+# The exception above was detected in native code outside the VM
+#
+# Java VM: Java HotSpot(TM) Client VM (1.3.1_02-b02 mixed mode)
+#

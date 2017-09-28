@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS named iquery attempt"; content: "|0980 0000 0001 0000 0000|"; offset: 2; depth: 16; reference:arachnids,277; reference:cve,CVE-1999-0009; reference:bugtraq,134; classtype:attempted-recon; sid:252; rev:2;)

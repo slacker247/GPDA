@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI wwwadmin.pl access";flags: A+; uricontent:"/wwwadmin.pl"; nocase; classtype:attempted-recon; sid:888; rev:1;)

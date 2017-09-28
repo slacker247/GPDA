@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 8080 (msg:"DOS Real Server template.html"; flags: A+; content:"/viewsource/template.html?"; nocase; reference:cve,CVE-2000-0474; reference:bugtraq,1288; classtype:attempted-dos; sid:278; rev:2;)

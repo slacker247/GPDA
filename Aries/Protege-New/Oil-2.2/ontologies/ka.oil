@@ -1,0 +1,900 @@
+begin-ontology
+ontology-container
+title "Ontology for KA-Community"
+creator "Dieter Fensel"
+subject "ontology KA-Community"
+description "An ontology for KA-Community"
+description.release "0.992"
+publisher "D. Fensel"
+type ontology
+format "pseudo-xml"
+identifier "bla"
+source "http"
+language "OIL"
+language "en-uk"
+
+
+ontology-definitions
+
+class-def University
+subclass-of 
+  Organization
+  slot-constraint student value-type Student
+  slot-constraint hasParts value-type Department
+// Organization
+
+class-def KnowledgeDiscoveryInDatasets
+subclass-of 
+  KAThroughMachineLearning
+// KAThroughMachineLearning
+
+class-def Formalisms
+subclass-of 
+  Validation_And_Verification
+// Validation_And_Verification
+
+class-def AutomatedPSMGeneration
+subclass-of 
+  PSMs
+// PSMs
+
+class-def PSMnotations
+subclass-of 
+  PSMs
+// PSMs
+
+class-def Object
+  slot-constraint keyword value-type string
+// SUB: Organization
+// SUB: Person
+// SUB: Publication
+// SUB: Project
+// SUB: Event
+// SUB: ResearchTopic
+// SUB: Product
+
+class-def Verifier
+subclass-of 
+  ComputerSupport
+// ComputerSupport
+
+class-def Person
+subclass-of 
+  Object
+  slot-constraint photo value-type string
+  slot-constraint firstName value-type string
+  slot-constraint middleInitial value-type string
+  slot-constraint lastName value-type string
+  slot-constraint name value-type string
+  slot-constraint address value-type string
+  slot-constraint email value-type string
+  slot-constraint phone value-type string
+  slot-constraint fax value-type string
+// Object
+// SUB: Employee
+// SUB: Student
+
+class-def TheoreticalFoundations
+subclass-of 
+  Ontologies
+// Ontologies
+
+class-def Ontology
+subclass-of 
+  KAMethodology
+// KAMethodology
+
+class-def AnomalyDetection
+subclass-of 
+  Validation_And_Verification
+// Validation_And_Verification
+
+class-def SpecificationMethodology
+subclass-of 
+  SpecificationLanguages
+// SpecificationLanguages
+
+class-def Meeting
+subclass-of 
+  Event
+  slot-constraint participant value-type Person
+  slot-constraint Date value-type string
+  slot-constraint Title value-type string
+// Event
+
+class-def KnowledgeManagement
+subclass-of 
+  ResearchTopic
+// ResearchTopic
+
+class-def Activity
+subclass-of 
+  Event
+// Event
+
+class-def Conference
+subclass-of 
+  Event
+  slot-constraint series value-type string
+  slot-constraint number value-type integer
+// Event
+
+class-def Validation_And_Verification
+subclass-of 
+  ResearchTopic
+// ResearchTopic
+// SUB: AnomalyDetection
+// SUB: AnomalyRepairAndKnowledgeRevision
+// SUB: Formalisms
+// SUB: Methodology
+// SUB: V_And_V_Of_MAS
+
+class-def CooperativeKnowledgeAcquisition
+subclass-of 
+  KAThroughMachineLearning
+// KAThroughMachineLearning
+
+class-def SpecialIssuePublication
+subclass-of 
+  Journal
+// Journal
+
+class-def Department
+subclass-of 
+  Organization
+  slot-constraint hasParts value-type Institute
+// Organization
+
+class-def KnowledgeBasedRefinement
+subclass-of 
+  KAThroughMachineLearning
+// KAThroughMachineLearning
+
+class-def SoftwareProject
+subclass-of 
+  DevelopmentProject
+// DevelopmentProject
+
+class-def KAMethodologies
+subclass-of 
+  ResearchTopic
+// ResearchTopic
+
+class-def ModelingLanguage
+subclass-of 
+  KAMethodology
+// KAMethodology
+
+class-def JournalArticle
+subclass-of 
+  Article
+  slot-constraint journal value-type Journal
+  slot-constraint firstPage value-type integer
+  slot-constraint lastPage value-type integer
+// Article
+
+class-def TechnicalReport
+subclass-of 
+  Article
+  slot-constraint series value-type string
+  slot-constraint Number value-type integer
+  slot-constraint organization value-type Organization
+// Article
+
+class-def DataMining
+subclass-of 
+  KAThroughMachineLearning
+// KAThroughMachineLearning
+
+class-def ElicitationTool
+subclass-of 
+  ComputerSupport
+// ComputerSupport
+
+class-def SupportToolsForFormalMethods
+subclass-of 
+  SpecificationLanguages
+// SpecificationLanguages
+
+class-def ConferencePaper
+subclass-of 
+  Article
+  slot-constraint conference value-type Conference
+  slot-constraint proceedingsTitle value-type string
+  slot-constraint firstPage value-type integer
+  slot-constraint lastPage value-type integer
+// Article
+
+class-def ComputerSupport
+subclass-of 
+  Product
+// Product
+// SUB: Editor
+// SUB: TransformationTool
+// SUB: PSMLibrary
+// SUB: OntologyLibrary
+// SUB: Validator
+// SUB: Verifier
+// SUB: ImplementationEnvironment
+// SUB: ElicitationTool
+// SUB: InternetTool
+// SUB: NLParser
+
+class-def V_And_V_Of_MAS
+subclass-of 
+  Validation_And_Verification
+// Validation_And_Verification
+
+class-def Ontologies
+subclass-of 
+  Reuse
+// Reuse
+// SUB: TheoreticalFoundations
+// SUB: SoftwareApplications
+// SUB: Methodologies
+
+class-def AutomatedCodeGenerationFromSpecification
+subclass-of 
+  SpecificationLanguages
+// SpecificationLanguages
+
+class-def ImplementationEnvironment
+subclass-of 
+  ComputerSupport
+// ComputerSupport
+
+class-def PaperLibrary
+subclass-of 
+  KAMethodology
+// KAMethodology
+
+class-def Abduction
+subclass-of 
+  KAThroughMachineLearning
+// KAThroughMachineLearning
+
+class-def EvaluationOfKA
+subclass-of 
+  ResearchTopic
+// ResearchTopic
+
+class-def NLParser
+subclass-of 
+  ComputerSupport
+// ComputerSupport
+
+class-def ExecutableSpecificationLanguages
+subclass-of 
+  SpecificationLanguages
+// SpecificationLanguages
+
+class-def SpecificationLanguage
+subclass-of 
+  KAMethodology
+// KAMethodology
+
+class-def Student
+subclass-of 
+  Person
+  slot-constraint studiesAt value-type University
+// Person
+// SUB: PhDStudent
+
+class-def Researcher
+subclass-of 
+  AcademicStaff
+  slot-constraint researchInterest value-type ResearchTopic
+  slot-constraint memberOf value-type ResearchGroup
+  slot-constraint cooperatesWith value-type Researcher
+// AcademicStaff
+// SUB: PhDStudent
+
+class-def Guideline
+subclass-of 
+  KAMethodology
+// KAMethodology
+
+class-def SoftwareApplications
+subclass-of 
+  Ontologies
+// Ontologies
+
+class-def SpecialIssueEvent
+subclass-of 
+  Event
+// Event
+
+class-def Sysiphus_III_Experiment
+subclass-of 
+  PSMs
+// PSMs
+
+class-def LearningApprenticeSystems
+subclass-of 
+  KAThroughMachineLearning
+// KAThroughMachineLearning
+
+class-def PSM
+subclass-of 
+  KAMethodology
+// KAMethodology
+
+class-def Book
+subclass-of 
+  Publication
+  slot-constraint Publisher value-type Organization
+  slot-constraint editor value-type Person
+  slot-constraint containsArticle value-type ArticleInBook
+// Publication
+
+class-def PSMs
+subclass-of 
+  Reuse
+// Reuse
+// SUB: PSMevaluation
+// SUB: PSMlibraries
+// SUB: PSMnotations
+// SUB: AutomatedPSMGeneration
+// SUB: Sysiphus_III_Experiment
+// SUB: WebMediatedPSMSelection
+
+class-def KAMethodology
+subclass-of 
+  Product
+// Product
+// SUB: Guideline
+// SUB: PaperLibrary
+// SUB: Ontology
+// SUB: PSM
+// SUB: ModelingLanguage
+// SUB: SpecificationLanguage
+
+class-def PSMevaluation
+subclass-of 
+  PSMs
+// PSMs
+
+class-def Event
+subclass-of 
+  Object
+  slot-constraint eventTile value-type string
+  slot-constraint location value-type string
+  slot-constraint Date value-type string
+  slot-constraint programCommittee value-type Person
+  slot-constraint orgCommittee value-type Person
+  slot-constraint publication value-type Publication
+  slot-constraint hasParts value-type Event
+  slot-constraint atEvent value-type Event
+// Object
+// SUB: Conference
+// SUB: Workshop
+// SUB: Meeting
+// SUB: Activity
+// SUB: SpecialIssueEvent
+
+class-def Reuse
+subclass-of 
+  ResearchTopic
+// ResearchTopic
+// SUB: Ontologies
+// SUB: PSMs
+// SUB: SoftwareReuse
+
+class-def Workshop
+subclass-of 
+  Event
+  slot-constraint series value-type string
+  slot-constraint number value-type integer
+// Event
+
+class-def OnlinePublication
+subclass-of 
+  Publication
+  slot-constraint onlineVersionOf value-type Publication
+  slot-constraint Type value-type string
+// Publication
+
+class-def Methodologies
+subclass-of 
+  Ontologies
+// Ontologies
+
+class-def CaseBaseReasoning
+subclass-of 
+  KAThroughMachineLearning
+// KAThroughMachineLearning
+
+class-def InternetTool
+subclass-of 
+  ComputerSupport
+// ComputerSupport
+
+class-def Journal
+subclass-of 
+  Publication
+  slot-constraint editor value-type Person
+  slot-constraint Publisher value-type Organization
+  slot-constraint volume value-type integer
+  slot-constraint number value-type integer
+  slot-constraint containsArticle value-type JournalArticle
+// Publication
+// SUB: SpecialIssuePublication
+
+class-def KAThroughMachineLearning
+subclass-of 
+  ResearchTopic
+// ResearchTopic
+// SUB: Abduction
+// SUB: CaseBaseReasoning
+// SUB: CooperativeKnowledgeAcquisition
+// SUB: KnowledgeBasedRefinement
+// SUB: KnowledgeDiscoveryInDatasets
+// SUB: DataMining
+// SUB: LearningApprenticeSystems
+// SUB: ReinforcementLearning
+
+class-def PSMLibrary
+subclass-of 
+  ComputerSupport
+// ComputerSupport
+
+class-def AnomalyRepairAndKnowledgeRevision
+subclass-of 
+  Validation_And_Verification
+// Validation_And_Verification
+
+class-def OntologyLibrary
+subclass-of 
+  ComputerSupport
+// ComputerSupport
+
+class-def PhDStudent
+subclass-of 
+  Student
+  Researcher
+  slot-constraint supervisor value-type AcademicStaff
+// Student
+// Researcher
+
+class-def ResearchProject
+subclass-of 
+  Project
+// Project
+
+class-def Publication
+subclass-of 
+  Object
+  slot-constraint author value-type Person
+  slot-constraint Title value-type string
+  slot-constraint year value-type integer
+  slot-constraint abstract value-type string
+  slot-constraint onlineVersion value-type OnlinePublication
+  slot-constraint describesProject value-type Project
+// Object
+// SUB: Book
+// SUB: Journal
+// SUB: OnlinePublication
+// SUB: Article
+
+class-def Methodology
+subclass-of 
+  Validation_And_Verification
+// Validation_And_Verification
+
+class-def ArticleInBook
+subclass-of 
+  Article
+  slot-constraint book value-type Book
+  slot-constraint firstPage value-type integer
+  slot-constraint lastPage value-type integer
+// Article
+
+class-def ReinforcementLearning
+subclass-of 
+  KAThroughMachineLearning
+// KAThroughMachineLearning
+
+class-def Validator
+subclass-of 
+  ComputerSupport
+// ComputerSupport
+
+class-def SoftwareReuse
+subclass-of 
+  Reuse
+// Reuse
+
+class-def Article
+subclass-of 
+  Publication
+// Publication
+// SUB: TechnicalReport
+// SUB: JournalArticle
+// SUB: ArticleInBook
+// SUB: ConferencePaper
+// SUB: WorkshopPaper
+
+class-def SpecificationLanguages
+subclass-of 
+  ResearchTopic
+// ResearchTopic
+// SUB: SpecificationMethodology
+// SUB: SpecificationOfControlKnowledge
+// SUB: SupportToolsForFormalMethods
+// SUB: AutomatedCodeGenerationFromSpecification
+// SUB: ExecutableSpecificationLanguages
+
+class-def SpecificationOfControlKnowledge
+subclass-of 
+  SpecificationLanguages
+// SpecificationLanguages
+
+class-def Enterprise
+subclass-of 
+  Organization
+// Organization
+
+class-def Employee
+subclass-of 
+  Person
+  slot-constraint affiliation value-type Organization
+  slot-constraint worksAtProject value-type Project
+  slot-constraint headOf value-type Project
+  slot-constraint headOfGroup value-type ResearchGroup
+// Person
+// SUB: AcademicStaff
+// SUB: AdminstrativeStaff
+// SUB: AdministrativeStaff
+
+class-def Secretary
+subclass-of 
+  AdministrativeStaff
+  slot-constraint secretaryOf value-type ResearchGroup
+// AdministrativeStaff
+
+class-def ResearchGroup
+subclass-of 
+  Organization
+  slot-constraint member value-type Researcher
+  slot-constraint head value-type Employee
+// Organization
+
+class-def ResearchTopic
+subclass-of 
+  Object
+  slot-constraint name value-type string
+  slot-constraint Description value-type string
+  slot-constraint approaches value-type string
+  slot-constraint researchGroups value-type ResearchGroup
+  slot-constraint researchers value-type Researcher
+  slot-constraint relatedTopics value-type ResearchTopic
+  slot-constraint subTopics value-type ResearchTopic
+  slot-constraint events value-type Event
+  slot-constraint journals value-type Journal
+  slot-constraint projects value-type Project
+  slot-constraint applicationAreas value-type string
+  slot-constraint products value-type Product
+  slot-constraint bibliographies value-type Publication
+  slot-constraint mailingLists value-type string
+  slot-constraint webpages value-type string
+  slot-constraint internationalFundingAgencies value-type Organization
+  slot-constraint nationalFundingAgencies value-type Organization
+  slot-constraint authorOfOntology value-type Researcher
+  slot-constraint dateOfLastModification value-type string
+// Object
+// SUB: KAThroughMachineLearning
+// SUB: Reuse
+// SUB: SpecificationLanguages
+// SUB: Validation_And_Verification
+// SUB: KnowledgeManagement
+// SUB: KAMethodologies
+// SUB: EvaluationOfKA
+// SUB: KnowledgeElicitation
+
+class-def WorkshopPaper
+subclass-of 
+  Article
+  slot-constraint workshop value-type Workshop
+  slot-constraint proceedingsTitle value-type string
+  slot-constraint firstPage value-type integer
+  slot-constraint lastPage value-type integer
+// Article
+
+class-def Organization
+subclass-of 
+  Object
+  slot-constraint name value-type string
+  slot-constraint location value-type string
+  slot-constraint employs value-type Person
+  slot-constraint publishes value-type Publication
+  slot-constraint technicalReport value-type TechnicalReport
+  slot-constraint carriesOut value-type Project
+  slot-constraint develops value-type Product
+  slot-constraint finances value-type Project
+// Object
+// SUB: University
+// SUB: Department
+// SUB: Institute
+// SUB: ResearchGroup
+// SUB: Enterprise
+
+class-def Product
+subclass-of 
+  Object
+  slot-constraint productedBy value-type Project
+  slot-constraint developedBy value-type Organization
+  slot-constraint productName value-type string
+  slot-constraint productPublication value-type Publication
+  slot-constraint productFAQ value-type string
+  slot-constraint productMailingList value-type string
+// Object
+// SUB: KAMethodology
+// SUB: ComputerSupport
+
+class-def Project
+subclass-of 
+  Object
+  slot-constraint Title value-type string
+  slot-constraint member value-type Employee
+  slot-constraint head value-type Employee
+  slot-constraint isAbout value-type ResearchTopic
+  slot-constraint projectInfo value-type Publication
+  slot-constraint carriedOutBy value-type Organization
+  slot-constraint product value-type Product
+  slot-constraint financedBy value-type Organization
+// Object
+// SUB: ResearchProject
+// SUB: DevelopmentProject
+
+class-def PSMlibraries
+subclass-of 
+  PSMs
+// PSMs
+
+class-def TransformationTool
+subclass-of 
+  ComputerSupport
+// ComputerSupport
+
+class-def Lecturer
+subclass-of 
+  AcademicStaff
+// AcademicStaff
+
+class-def DevelopmentProject
+subclass-of 
+  Project
+// Project
+// SUB: SoftwareProject
+
+class-def TechnicalStaff
+subclass-of 
+  AdministrativeStaff
+// AdministrativeStaff
+
+class-def KnowledgeElicitation
+subclass-of 
+  ResearchTopic
+// ResearchTopic
+
+class-def Institute
+subclass-of 
+  Organization
+  slot-constraint hasParts value-type ResearchGroup
+// Organization
+
+class-def AcademicStaff
+subclass-of 
+  Employee
+  slot-constraint supervises value-type PhDStudent
+  slot-constraint publication value-type Publication
+  slot-constraint organizerOrChairOf value-type Event
+  slot-constraint memberOfPC value-type Event
+  slot-constraint editor value-type Publication
+// Employee
+// SUB: Researcher
+// SUB: Lecturer
+
+class-def WebMediatedPSMSelection
+subclass-of 
+  PSMs
+// PSMs
+
+class-def AdministrativeStaff
+subclass-of 
+  Employee
+// Employee
+// SUB: Secretary
+// SUB: TechnicalStaff
+
+class-def Editor
+subclass-of 
+  ComputerSupport
+// ComputerSupport
+
+slot-def secretaryOf
+
+slot-def researchInterest
+
+slot-def studiesAt
+
+slot-def Number
+
+slot-def bibliographies
+
+slot-def student
+
+slot-def programCommittee
+
+slot-def financedBy
+
+slot-def proceedingsTitle
+
+slot-def organizerOrChairOf
+
+slot-def supervises
+
+slot-def supervisor
+
+slot-def employs
+
+slot-def researchGroups
+
+slot-def headOfGroup
+
+slot-def dateOfLastModification
+
+slot-def productName
+
+slot-def productedBy
+
+slot-def lastName
+
+slot-def lastPage
+
+slot-def journal
+
+slot-def middleInitial
+
+slot-def author
+
+slot-def cooperatesWith
+
+slot-def memberOfPC
+
+slot-def editor
+
+slot-def events
+
+slot-def headOf
+
+slot-def address
+
+slot-def publication
+
+slot-def member
+
+slot-def describesProject
+
+slot-def journals
+
+slot-def number
+
+slot-def products
+
+slot-def projects
+
+slot-def projectInfo
+
+slot-def series
+
+slot-def Publisher
+
+slot-def keyword
+
+slot-def volume
+
+slot-def atEvent
+
+slot-def webpages
+
+slot-def worksAtProject
+
+slot-def finances
+
+slot-def memberOf
+
+slot-def containsArticle
+
+slot-def internationalFundingAgencies
+
+slot-def onlineVersion
+
+slot-def productPublication
+
+slot-def subTopics
+
+slot-def product
+
+slot-def developedBy
+
+slot-def technicalReport
+
+slot-def Description
+
+slot-def applicationAreas
+
+slot-def fax
+
+slot-def Date
+
+slot-def Type
+
+slot-def book
+
+slot-def head
+
+slot-def name
+
+slot-def year
+
+slot-def eventTile
+
+slot-def workshop
+
+slot-def Title
+
+slot-def email
+
+slot-def phone
+
+slot-def photo
+
+slot-def hasParts
+
+slot-def firstName
+
+slot-def firstPage
+
+slot-def relatedTopics
+
+slot-def orgCommittee
+
+slot-def researchers
+
+slot-def conference
+
+slot-def participant
+
+slot-def carriesOut
+
+slot-def approaches
+
+slot-def productMailingList
+
+slot-def develops
+
+slot-def nationalFundingAgencies
+
+slot-def organization
+
+slot-def onlineVersionOf
+
+slot-def publishes
+
+slot-def carriedOutBy
+
+slot-def abstract
+
+slot-def productFAQ
+
+slot-def location
+
+slot-def authorOfOntology
+
+slot-def affiliation
+
+slot-def isAbout
+
+slot-def mailingLists
+end-ontology

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI ksh access";flags: A+; uricontent:"/ksh"; nocase; reference:cve,CAN-1999-0509;classtype:attempted-recon; sid:865; rev:1;)

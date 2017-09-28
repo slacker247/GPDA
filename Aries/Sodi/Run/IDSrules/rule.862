@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI snork.bat access";flags: A+; uricontent:"/snork.bat"; nocase; reference:bugtraq,1053; reference:cve,CVE-2000-0169; reference:arachnids,220;classtype:attempted-recon; sid:860; rev:2;)

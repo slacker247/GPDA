@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP IRDP router selection";itype:10; reference:bugtraq,578; reference:cve,CVE-1999-0875; reference:arachnids,174; sid:364;  classtype:misc-activity; rev:4;)

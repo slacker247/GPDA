@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+int main()
+{
+char          temp1[24], temp2[24], temp3[24], temp4[24], temp5[24];
+char          chmsg[24];
+char          dsbtemp[128];
+int           rtn, color, stn;
+float         f1, f2, f3, f4, f5;
+float         time, X, Y, Z, Vx, Vy, Vz, alt, vel;
+FILE          *infile, *outfile;
+
+   infile = fopen("temp.pins", "r");
+//   outfile = fopen("new.jdn", "w");
+
+   fgets(dsbtemp, 128, infile);
+   fgets(dsbtemp, 128, infile);
+   fgets(dsbtemp, 128, infile);
+   fgets(dsbtemp, 128, infile);
+   fgets(dsbtemp, 128, infile);
+   fgets(dsbtemp, 128, infile);
+
+   rtn = 0;
+   while (!feof(infile)) {
+
+     while (1) {
+       fscanf(infile, "%s %s", temp1, temp2);
+
+        if (strcmp(temp1, "(Time") == 0) sscanf(temp2, "%f)", &f1);
+
+       printf("%s %s %f\n", temp1, temp2, f1);
+       
+       if (strstr(temp2, "))")) break;
+     }
+
+     fgets(dsbtemp, 128, infile);
+     fgets(dsbtemp, 128, infile);
+     fgets(dsbtemp, 128, infile);
+     printf("\n");
+     rtn++;
+
+   }
+
+   printf("\n\nProcessed %d records.\n", rtn);
+
+   return (0);
+}

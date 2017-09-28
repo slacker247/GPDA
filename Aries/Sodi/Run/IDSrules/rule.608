@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP expn root";flags: A+; content:"expn root"; nocase; reference:arachnids,31; classtype:attempted-recon; sid:660; rev:2;)

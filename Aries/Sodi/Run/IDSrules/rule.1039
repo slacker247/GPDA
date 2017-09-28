@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS query.asp access";flags: A+; uricontent:"/issamples/query.asp"; nocase; reference:bugtraq,193; reference:cve,CVE-1999-0449; classtype:web-application-activity; sid:1028; rev:2;)

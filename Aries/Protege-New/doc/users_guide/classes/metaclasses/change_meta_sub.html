@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Changing the Metaclass of Subclasses</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="../images/serving_nerd.gif" width="48" height="48">   Changing the
+Metaclass of Subclasses<br>
+<img src="../images/header_line.gif" width="590" height="6"></h1>
+
+<p><b>Note: </b>Before you create and use metaclasses, you should be confident
+with the basic Protégé interface and be comfortable designing a project, and
+creating and modifying classes, slots, forms and instances.</p>
+
+<p>When you change the metaclass of a class, all of its subclasses will retain
+their previous metaclass. This ensures that you do not propagate changes when
+you do not want to. However, often you will want existing subclasses to have the
+same metaclass as their parents. Protégé provides an option to quickly change
+the metaclasses of all the classes subordinate to a given class. Note that you
+only have to do this once; by default, new classes use the metaclass of their
+direct superclass.</p>
+
+<p>You can only change the metaclasses to match the metaclass of the selected
+class. If the selected class has :STANDARD-CLASS as its metaclass, all
+subclasses will lose any additional metaclass information.</p>
+
+<p>To do work with metaclasses, you must have added one or more metaclasses to your project, either by
+creating them directly, or by including a project that already has metaclasses. This example uses the wines project, which includes a Wine template that
+supplies metaclass structure.&nbsp;</p>
+
+<p><font size="3">To change the metaclass of all existing subclasses of a given
+class:</font></p>
+
+<ol>
+  <li><font size="3">In the <a href="../class_relationship_pane.html">Class Relationship Pane</a>,
+    find the class whose sublcasses you want to change.&nbsp;<br>
+    <img border="0" src="images/change11.gif" width="284" height="331"></font></li>
+  <li><font size="3">Click the right mouse button and select &quot;Change
+    metaclass of subclasses.&quot;&nbsp;<br>
+    </font><img border="0" src="images/sub_change2.gif" width="259" height="184"></li>
+  <li>A dialog box pops up for verification. Click OK to continue.<br>
+    &nbsp;<img border="0" src="images/change10.gif" width="439" height="99"></li>
+  <li>The change is made and all subordinate classes now have the metaclass of
+    the selected class.</li>
+</ol>
+
+<hr>
+
+<p><font size="3">Next: <a href="../class_inst_tab.html">The Classes &amp; Instances Tab</a></font></p>
+
+<p><a href="../index.html"><font size="3">Classes Table of Contents</font></a></p>
+</body>
+</html>

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Trend Micro OfficeScan access"; flags: A+; uricontent:"/officescan/cgi/jdkRqNotify.exe?"; nocase; reference:bugtraq,1057; classtype:attempted-recon; sid:1192; rev:1;)

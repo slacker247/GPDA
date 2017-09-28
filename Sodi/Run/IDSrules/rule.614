@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP sendmail 8.4.1 exploit";flags: A+; content:"rcpt to|3a207c| sed '1,/^$/d'|7c|"; nocase;reference:arachnids,120; classtype:attempted-user; sid:666; rev:1;)

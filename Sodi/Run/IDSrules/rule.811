@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI webspeed access"; flags: A+; uricontent: "/wsisa.dll/WService="; nocase; content: "WSMadmin"; nocase;reference:arachnids,467; classtype:attempted-user; sid:805; rev:1;)

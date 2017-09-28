@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible Worm -  txt.vbs file"; content: "filename="; content:".txt.vbs"; nocase; sid:795;  classtype:misc-activity; rev:3;)

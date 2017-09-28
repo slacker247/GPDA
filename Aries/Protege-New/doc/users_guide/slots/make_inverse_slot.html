@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Creating an Inverse Slot Relationship</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="../classes/images/serving_nerd.gif" WIDTH="48" HEIGHT="48"> 
+ Creating an Inverse Slot Relationship<br>
+<img src="../classes/images/header_line.gif" width="590" height="6"></h1>
+
+<p>The Inverse Slots widget on the Slot Form allows you to create an inverse
+relationship between two slots of type Class or Instance. For this to work
+correctly, your two slots and the classes where they appear must be designed
+appropriately. For slots of type Instance, the following situation provides
+optimal results:</p>
+<ul>
+  <li>All classes where the first slot is attached appear in the Allowed
+    Classes pane for the second slot.</li>
+  <li>All classes where the second slot is attached appear in the Allowed
+    Classes pane for the first slot.</li>
+</ul>
+<p>However, depending on the structure of your knowledge base, this may not be
+appropriate or feasible. Other situations are also valid. For example, suppose
+slots A and B are inverse slots. If one of the allowed classes for slot A does
+not have B as one of its attached slots, all that happens is that inverse slot
+value does not get created for those instances. The inverse relationship will
+still work normally for those allowed classes that do have slot B attached.</p>
+<p>A slot can have at most one inverse slot. For more information on designing an inverse slot relationship, see <a href="inverse_slots.html">Understanding Inverse Slots</a>.</p>
+<p>Note that if you create an inverse slot relationship after instances have
+been created, existing instances will not display the inverse slot information.</p>
+<p>You can create an inverse slot relationship in one of two ways:</p>
+<ul>
+  <li>by&nbsp;<a href="#LinkExisting">linking two existing slots</a>&nbsp;</li>
+  <li>by <a href="#CreateInverse">creating a new slot as the inverse</a> of an
+    existing slot</li>
+</ul>
+<p>You can also modify inverse slot relationships:</p>
+<ul>
+  <li>by <a href="#RemoveInverse">removing the inverse slot</a> link between two
+    slots</li>
+  <li>by <a href="#ReplaceInverse">replacing an inverse slot</a> with another
+    slot</li>
+</ul>
+<h2><a name="LinkExisting"></a>Linking Two Existing Slots</h2>
+<p>To create an inverse slot relationship between two existing slots, the slots
+you choose must be of value type Class or Instance. To create the relationship:</p>
+<ol>
+  <li>Open the <a href="slot_form.html">Slot Form</a> for one of the two slots.
+    You can do this from the&nbsp; in the Class Tab, or from the <a href="slots_tab.html">Slots
+    Tab</a>. Which of the two slots you choose does not matter.</li>
+  <li>Click the Add <img border="0" src="../classes/images/Add.gif" width="19" height="19"> button at
+    the right of the Inverse Slot field. If the button is grayed out, you cannot
+    create an inverse slot for the selected slot. Make sure the slot is of type
+    Class or Instance.<br>
+    <img border="0" src="images/inverse_slot_field.gif" width="201" height="70"></li>
+  <li>Select the slot you want to use from the Select Slot dialog box. Only
+    slots of type Class or Instance will appear.<br>
+    <img border="0" src="images/inverse_%20select_slot.gif" width="328" height="215"></li>
+  <li>Click OK. The two slots will now be inverses of each other. You can view
+    the Slot Form of the second slot by double-clicking on its name in the
+    Inverse Slot field. You will see that it already has the first slot filled
+    in as its inverse slot. It is also good to verify that the Allowed Classes
+    of each slot contains all the possible classes where the other slot will
+    appear.</li>
+</ol>
+<h2><a name="CreateInverse"></a>Creating a New Inverse Slot</h2>
+<p>To create a new slot and make it the inverse of a slot:</p>
+<ol>
+  <li>Open the <a href="slot_form.html">Slot Form</a> for the slot you want to
+    create an inverse for. You can do this from the&nbsp; in the Class Tab, or
+    from the <a href="slots_tab.html">Slots Tab</a>. Which of the two slots you
+    choose does not matter.</li>
+  <li>Click the Create <img border="0" src="../classes/images/Create.gif" width="15" height="15">
+    button at the right of the Inverse Slot form. If the button is grayed out,
+    you cannot create an inverse slot for the selected slot. Make sure it is of
+    type Class or Instance.<br>
+    <img border="0" src="images/inverse_slot_field.gif" width="201" height="70"></li>
+  <li>A new class of type Instance is created. The Slot Form for the new class
+    opens automatically.<br>
+    <img border="0" src="images/inverse_slot_form.gif" width="611" height="316"></li>
+  <li>Name the slot.</li>
+  <li>To ensure that the reciprocal relationship works correctly, add the
+    classes where your original slot appears to the <a href="value_type_menu.html#AddRemoveAllowedInstance">Allowed
+    Classes</a> field.</li>
+  <li>Make any other changes to the slot definition.<br>
+    <img border="0" src="images/inverse_slot_form2.gif" width="611" height="316"></li>
+  <li>Attach the new slot to the classes where you wish it to appear. Remember
+    that attaching a slot to a class also attaches it to all subclasses of the
+    class.</li>
+</ol>
+<h2><a name="RemoveInverse"></a>Removing an Inverse Slot Relationship</h2>
+
+<p>Removing the inverse slot relationship removes the link between the two classes.
+Note that if you remove an inverse slot relationship after instances have
+been created, existing values that were created by the inverse slot relationship
+are <i>not</i> removed. Removing an inverse slot only affects the values of new
+instances. To
+remove the inverse slot relationship between two slots:</p>
+
+<ol>
+  <li>Highlight the Inverse Slot field in the Slot Form for either one of the
+    two slots.</li>
+  <li>Click the Remove <img border="0" src="../classes/images/Remove.gif" width="19" height="19">
+    button at the right of the Inverse Slot field. The slot relationship will be
+    removed.</li>
+</ol>
+<h2><a name="ReplaceInverse"></a>Replacing an Inverse Slot</h2>
+<p>Replacing the inverse slot relationship at a slot removes the link to the
+original inverse slot and makes a link with a different, existing, slot. Note that if you
+replace an inverse slot relationship after instances have
+been created, existing values that reflect the original (replaced) inverse slot
+relationship are retained. Replacing an inverse slot only affects the values of
+new instance. To
+replace an inverse relationship:</p>
+<ol>
+  <li>Select the slot you want to have a different inverse.</li>
+  <li>Click the Add <img border="0" src="../classes/images/Add.gif" width="19" height="19"> button at
+    the right of the Inverse Slot field.</li>
+  <li>Select the slot you want from the Select Slot dialog box.</li>
+  <li>Click OK. The new slot becomes the inverse slot of the current slot. The
+    original inverse slot is now unlinked from the slot where you made the
+    change and no longer has an inverse slot.</li>
+</ol>
+
+<hr>
+
+<p>Next: <a href="creating_subslot.html">Creating a Subslot</a></p>
+
+<p><a href="index.html"> Slots Table of Contents</a></p>
+</body>
+</html>

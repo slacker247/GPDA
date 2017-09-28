@@ -1,0 +1,22 @@
+parameters {
+  string class TRW_Proprietary
+  float step_time 20.000000
+  int region 1
+  logical autorun F
+  logical autoexit F
+  logical textured F
+  logical gridline T
+  logical boundary T
+  logical assets T
+  logical debuging F
+  logical timing F
+  logical loging F
+  logical statistics F
+  logical tracks T
+  logical trails T
+  logical impacts T
+  string input_source speedes
+  string tex_file jpl_earth.rgb
+  string hostid localhost
+  int portid 1129
+}

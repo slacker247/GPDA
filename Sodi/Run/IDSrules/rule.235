@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 67 (msg:"EXPLOIT bootp x86 linux overflow"; content:"|4139 30c0 a801 012f 6269 6e2f 7368 00|"; reference:cve,CVE-1999-0799; reference:cve,CAN-1999-0798; reference:cve,CAN-1999-0389; classtype:attempted-admin; sid:319; rev:1;)

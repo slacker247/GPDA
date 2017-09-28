@@ -1,0 +1,13 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Party_Name
+(
+	{Lookup.majorType == country_adj}
+)
+
+:Party_Name
+ -->
+:Party_Name.Party_Name = {}

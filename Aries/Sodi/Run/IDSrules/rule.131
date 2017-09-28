@@ -1,0 +1,1 @@
+alert ip $EXTERNAL_NET any -> $HOME_NET any (msg:"BAD TRAFFIC bad frag bits"; fragbits: MD; sid:1322;  classtype:misc-activity; rev:4;)

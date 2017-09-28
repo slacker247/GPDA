@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 80 (msg:"SCAN cybercop os probe"; flags: SF12; dsize: 0; reference:arachnids,146; classtype:attempted-recon; sid:619; rev:1;)

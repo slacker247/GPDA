@@ -1,0 +1,408 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE rdf:RDF [
+	 <!ENTITY a 'http://img.cs.man.ac.uk/oil/oiled#'>
+	 <!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	 <!ENTITY b 'http://purl.org/dc/elements/1.1/'>
+	 <!ENTITY c 'file:/home/dre/Oil/ontologies/people.oil#'>
+	 <!ENTITY d 'http://www.ontoknowledge.org/oil/rdf-schema/2000/11/10-oil-standard#'>
+	 <!ENTITY e 'http://www.w3.org/2000/01/rdf-schema#'>
+]>
+<rdf:RDF xmlns:rdf="&rdf;"
+	 xmlns:a="&a;"
+	 xmlns:b="&b;"
+	 xmlns:c="&c;"
+	 xmlns:d="&d;"
+	 xmlns:e="&e;">
+<rdf:Description rdf:about=""
+	 b:creator='"Sean Bechhofer"'
+	 b:description='"An ontology about people and the jobs that they do"'
+	 b:description.release='"1.0"'
+	 b:identifier='"id"'
+	 b:language='"OIL"'
+	 b:title='"People and Jobs"'
+	 b:type="ontology"/>
+<d:Min rdf:about="_anon0"
+	 d:integerValue="1"/>
+<d:OneOf rdf:about="_anon1">
+	<d:individual rdf:resource="&c;adult"/>
+	<d:individual rdf:resource="&c;elderly"/>
+	<d:individual rdf:resource="&c;young"/>
+</d:OneOf>
+<d:HasValue rdf:about="_anon10">
+	<d:toClass rdf:resource="_anon11"/>
+	<d:onProperty rdf:resource="&c;age"/>
+</d:HasValue>
+<d:OneOf rdf:about="_anon11">
+	<d:individual rdf:resource="&c;adult"/>
+</d:OneOf>
+<d:HasValue rdf:about="_anon12">
+	<d:toClass rdf:resource="_anon13"/>
+	<d:onProperty rdf:resource="&c;age"/>
+</d:HasValue>
+<d:OneOf rdf:about="_anon13">
+	<d:individual rdf:resource="&c;adult"/>
+</d:OneOf>
+<d:HasValue rdf:about="_anon14">
+	<d:toClass rdf:resource="_anon15"/>
+	<d:onProperty rdf:resource="&c;sex"/>
+</d:HasValue>
+<d:OneOf rdf:about="_anon15">
+	<d:individual rdf:resource="&c;female"/>
+</d:OneOf>
+<d:HasValue rdf:about="_anon16">
+	<d:toClass rdf:resource="_anon17"/>
+	<d:onProperty rdf:resource="&c;age"/>
+</d:HasValue>
+<d:OneOf rdf:about="_anon17">
+	<d:individual rdf:resource="&c;elderly"/>
+</d:OneOf>
+<d:HasValue rdf:about="_anon18">
+	<d:toClass rdf:resource="_anon19"/>
+	<d:onProperty rdf:resource="&c;sex"/>
+</d:HasValue>
+<d:OneOf rdf:about="_anon19">
+	<d:individual rdf:resource="&c;female"/>
+</d:OneOf>
+<d:OneOf rdf:about="_anon2">
+	<d:individual rdf:resource="&c;female"/>
+	<d:individual rdf:resource="&c;male"/>
+</d:OneOf>
+<d:HasValue rdf:about="_anon20">
+	<d:toClass rdf:resource="&c;Confidence"/>
+	<d:onProperty rdf:resource="&c;drives"/>
+</d:HasValue>
+<d:Disjoint rdf:about="_anon21">
+	<d:hasSubject rdf:resource="&c;Event"/>
+	<d:hasSubject rdf:resource="&c;Person"/>
+</d:Disjoint>
+<d:Disjoint rdf:about="_anon22">
+	<d:hasSubject rdf:resource="&c;What"/>
+	<d:hasSubject rdf:resource="&c;Who"/>
+</d:Disjoint>
+<d:Cover rdf:about="_anon23">
+	<d:isCoveredBy rdf:resource="_anon24"/>
+	<d:hasSubject rdf:resource="&c;white_van_man"/>
+</d:Cover>
+<d:ValueType rdf:about="_anon24">
+	<d:onProperty rdf:resource="&c;reads"/>
+	<d:toClass rdf:resource="&c;tabloid"/>
+</d:ValueType>
+<d:Cover rdf:about="_anon25">
+	<d:isCoveredBy rdf:resource="_anon26"/>
+	<d:hasSubject rdf:resource="&c;old_lady"/>
+</d:Cover>
+<d:And rdf:about="_anon26">
+	<d:hasOperand rdf:resource="_anon27"/>
+	<d:hasOperand rdf:resource="_anon28"/>
+</d:And>
+<d:ValueType rdf:about="_anon27">
+	<d:toClass rdf:resource="&c;Person"/>
+	<d:onProperty rdf:resource="&c;has_pet"/>
+</d:ValueType>
+<d:HasValue rdf:about="_anon28">
+	<d:toClass rdf:resource="&c;What"/>
+	<d:onProperty rdf:resource="&c;has_pet"/>
+</d:HasValue>
+<d:DisjointCover rdf:about="_anon29">
+	<d:isCoveredBy rdf:resource="_anon30"/>
+	<d:isCoveredBy rdf:resource="_anon35"/>
+	<d:hasSubject rdf:resource="&c;bus_driver"/>
+</d:DisjointCover>
+<d:Or rdf:about="_anon3">
+	<d:hasOperand rdf:resource="&c;Where"/>
+	<d:hasOperand rdf:resource="&c;Who"/>
+</d:Or>
+<d:Not rdf:about="_anon30">
+	<d:hasOperand rdf:resource="_anon31"/>
+</d:Not>
+<d:HasValue rdf:about="_anon31">
+	<d:toClass rdf:resource="_anon32"/>
+	<d:onProperty rdf:resource="&c;likes"/>
+</d:HasValue>
+<d:And rdf:about="_anon32">
+	<d:hasOperand rdf:resource="_anon33"/>
+	<d:hasOperand rdf:resource="&c;Who"/>
+</d:And>
+<d:HasValue rdf:about="_anon33">
+	<d:toClass rdf:resource="_anon34"/>
+	<d:onProperty rdf:resource="&c;age"/>
+</d:HasValue>
+<d:OneOf rdf:about="_anon34">
+	<d:individual rdf:resource="&c;young"/>
+</d:OneOf>
+<d:ValueType rdf:about="_anon35">
+	<d:toClass rdf:resource="&c;broadsheet"/>
+	<d:onProperty rdf:resource="&c;reads"/>
+</d:ValueType>
+<d:DisjointCover rdf:about="_anon36">
+	<d:hasSubject rdf:resource="&c;Expertise"/>
+	<d:isCoveredBy rdf:resource="&c;broadsheet"/>
+	<d:isCoveredBy rdf:resource="&c;tabloid"/>
+</d:DisjointCover>
+<d:MinCardinality rdf:about="_anon4"
+	 d:number="3">
+	<d:toClass rdf:resource="&c;What"/>
+	<d:onProperty rdf:resource="&c;has_pet"/>
+</d:MinCardinality>
+<d:HasValue rdf:about="_anon5">
+	<d:toClass rdf:resource="_anon6"/>
+	<d:onProperty rdf:resource="&c;works_for"/>
+</d:HasValue>
+<d:Or rdf:about="_anon6">
+	<d:hasOperand rdf:resource="_anon7"/>
+	<d:hasOperand rdf:resource="&c;Nation"/>
+</d:Or>
+<d:HasValue rdf:about="_anon7">
+	<d:toClass rdf:resource="&c;Nation"/>
+	<d:onProperty rdf:resource="&c;part_of"/>
+</d:HasValue>
+<d:HasValue rdf:about="_anon8">
+	<d:toClass rdf:resource="_anon9"/>
+	<d:onProperty rdf:resource="&c;sex"/>
+</d:HasValue>
+<d:OneOf rdf:about="_anon9">
+	<d:individual rdf:resource="&c;male"/>
+</d:OneOf>
+<e:Class rdf:about="&c;Action"
+	 a:creationDate="15:50:50 17.01.2002">
+	<e:subClassOf rdf:resource="&c;What"/>
+</e:Class>
+<e:Class rdf:about="&c;Casualities"
+	 a:creationDate="16:04:57 17.01.2002">
+	<e:subClassOf rdf:resource="&c;HowSevere"/>
+</e:Class>
+<e:Class rdf:about="&c;City"
+	 a:creationDate="15:55:09 17.01.2002">
+	<e:subClassOf rdf:resource="&c;Where"/>
+</e:Class>
+<e:Class rdf:about="&c;Confidence"
+	 a:creationDate="15:32:08 17.01.2002">
+	<e:subClassOf rdf:resource="&c;HowSevere"/>
+</e:Class>
+<e:Class rdf:about="&c;Cost"
+	 a:creationDate="16:05:26 17.01.2002">
+	<e:subClassOf rdf:resource="&c;HowSevere"/>
+</e:Class>
+<e:Class rdf:about="&c;Descriptor"
+	 a:creationDate="15:32:08 17.01.2002"
+	 e:comment='"A human propelled vehicle, with two wheels"'>
+	<e:subClassOf rdf:resource="&c;HowSevere"/>
+</e:Class>
+<e:Class rdf:about="&c;Duration"
+	 a:creationDate="15:52:31 17.01.2002">
+	<e:subClassOf rdf:resource="&c;When"/>
+</e:Class>
+<e:Class rdf:about="&c;End"
+	 a:creationDate="15:52:43 17.01.2002">
+	<e:subClassOf rdf:resource="&c;When"/>
+</e:Class>
+<e:Class rdf:about="&c;Event"
+	 a:creationDate="15:32:08 17.01.2002">
+	<e:subClassOf rdf:resource="&c;What"/>
+</e:Class>
+<e:Class rdf:about="&c;Expertise"
+	 a:creationDate="15:32:08 17.01.2002">
+	<e:subClassOf rdf:resource="&c;How"/>
+</e:Class>
+<e:Class rdf:about="&c;FriendlyForces"
+	 a:creationDate="15:44:42 17.01.2002">
+	<e:subClassOf rdf:resource="&c;Who"/>
+</e:Class>
+<e:Class rdf:about="&c;Future"
+	 a:creationDate="15:52:55 17.01.2002">
+	<e:subClassOf rdf:resource="&c;When"/>
+</e:Class>
+<e:Class rdf:about="&c;How"
+	 a:creationDate="15:32:08 17.01.2002"/>
+<e:Class rdf:about="&c;HowSevere"
+	 a:creationDate="15:32:08 17.01.2002">
+	<e:subClassOf rdf:resource="&c;van"/>
+</e:Class>
+<e:Class rdf:about="&c;InfoSource"
+	 a:creationDate="15:44:01 17.01.2002">
+	<e:subClassOf rdf:resource="&c;Who"/>
+</e:Class>
+<e:Class rdf:about="&c;Injuries"
+	 a:creationDate="16:05:15 17.01.2002">
+	<e:subClassOf rdf:resource="&c;Casualities"/>
+</e:Class>
+<e:Class rdf:about="&c;Loccale"
+	 a:creationDate="15:54:51 17.01.2002">
+	<e:subClassOf rdf:resource="&c;Where"/>
+</e:Class>
+<e:Class rdf:about="&c;Nation"
+	 a:creationDate="15:32:08 17.01.2002">
+	<e:subClassOf rdf:resource="&c;Where"/>
+</e:Class>
+<e:Class rdf:about="&c;Object-What"
+	 a:creationDate="15:51:29 17.01.2002">
+	<e:subClassOf rdf:resource="&c;What"/>
+</e:Class>
+<e:Class rdf:about="&c;Object-Who"
+	 a:creationDate="15:51:15 17.01.2002">
+	<e:subClassOf rdf:resource="&c;What"/>
+</e:Class>
+<e:Class rdf:about="&c;Operational"
+	 a:creationDate="15:56:34 17.01.2002">
+	<e:subClassOf rdf:resource="&c;Strategic"/>
+</e:Class>
+<e:Class rdf:about="&c;Person"
+	 a:creationDate="15:32:08 17.01.2002">
+	<e:subClassOf rdf:resource="&c;What"/>
+</e:Class>
+<e:Class rdf:about="&c;PrimaryMeans"
+	 a:creationDate="15:32:08 17.01.2002">
+	<e:subClassOf rdf:resource="&c;How"/>
+</e:Class>
+<e:Class rdf:about="&c;Region"
+	 a:creationDate="15:32:08 17.01.2002">
+	<e:subClassOf rdf:resource="&c;Where"/>
+</e:Class>
+<e:Class rdf:about="&c;SecMeans"
+	 a:creationDate="16:02:11 17.01.2002">
+	<e:subClassOf rdf:resource="&c;How"/>
+</e:Class>
+<e:Class rdf:about="&c;Sensor"
+	 a:creationDate="15:57:00 17.01.2002">
+	<e:subClassOf rdf:resource="&c;Tactical"/>
+</e:Class>
+<e:Class rdf:about="&c;Start"
+	 a:creationDate="15:52:18 17.01.2002">
+	<e:subClassOf rdf:resource="&c;When"/>
+</e:Class>
+<e:Class rdf:about="&c;Strategic"
+	 a:creationDate="15:56:21 17.01.2002">
+	<e:subClassOf rdf:resource="&c;Why"/>
+</e:Class>
+<e:Class rdf:about="&c;Structure"
+	 a:creationDate="15:55:24 17.01.2002">
+	<e:subClassOf rdf:resource="&c;Where"/>
+</e:Class>
+<e:Class rdf:about="&c;Tactical"
+	 a:creationDate="15:56:46 17.01.2002">
+	<e:subClassOf rdf:resource="&c;Operational"/>
+</e:Class>
+<e:Class rdf:about="&c;TertiaryMeans"
+	 a:creationDate="16:02:34 17.01.2002">
+	<e:subClassOf rdf:resource="&c;How"/>
+</e:Class>
+<c:broadsheet rdf:about="&c;TheGuardian"/>
+<c:tabloid rdf:about="&c;TheMirror"/>
+<c:tabloid rdf:about="&c;TheSun"/>
+<c:broadsheet rdf:about="&c;TheTimes"/>
+<e:Class rdf:about="&c;Threat"
+	 a:creationDate="15:44:22 17.01.2002">
+	<e:subClassOf rdf:resource="&c;InfoSource"/>
+</e:Class>
+<e:Class rdf:about="&c;What"
+	 a:creationDate="15:32:08 17.01.2002"/>
+<e:Class rdf:about="&c;When"
+	 a:creationDate="15:32:08 17.01.2002"/>
+<e:Class rdf:about="&c;Where"
+	 a:creationDate="15:32:08 17.01.2002"/>
+<e:Class rdf:about="&c;Who"
+	 a:creationDate="15:32:08 17.01.2002"/>
+<d:DefinedClass rdf:about="&c;Why"
+	 a:creationDate="15:32:08 17.01.2002">
+	<d:hasPropertyRestriction rdf:resource="_anon5"/>
+</d:DefinedClass>
+<d:Top rdf:about="&c;adult"/>
+<rdf:Property rdf:about="&c;age">
+	<e:range rdf:resource="_anon1"/>
+</rdf:Property>
+<d:DefinedClass rdf:about="&c;animal_lover"
+	 a:creationDate="15:32:08 17.01.2002"
+	 e:comment='"Someone who really likes animals"'>
+	<d:hasPropertyRestriction rdf:resource="_anon4"/>
+	<e:subClassOf rdf:resource="&c;Who"/>
+</d:DefinedClass>
+<c:When rdf:about="&c;blue"/>
+<e:Class rdf:about="&c;broadsheet"
+	 a:creationDate="15:32:08 17.01.2002">
+	<e:subClassOf rdf:resource="&c;Expertise"/>
+</e:Class>
+<d:DefinedClass rdf:about="&c;bus_driver"
+	 a:creationDate="15:32:08 17.01.2002">
+	<d:hasPropertyRestriction rdf:resource="_anon20"/>
+	<e:subClassOf rdf:resource="&c;Who"/>
+</d:DefinedClass>
+<rdf:Property rdf:about="&c;drives"/>
+<d:Top rdf:about="&c;elderly"/>
+<d:Top rdf:about="&c;female"/>
+<rdf:Property rdf:about="&c;has_child"/>
+<rdf:Property rdf:about="&c;has_colour"/>
+<rdf:Property rdf:about="&c;has_father">
+	<e:subPropertyOf rdf:resource="&c;has_parent"/>
+	<e:range rdf:resource="&c;man"/>
+</rdf:Property>
+<rdf:Property rdf:about="&c;has_mother">
+	<e:subPropertyOf rdf:resource="&c;has_parent"/>
+	<e:range rdf:resource="&c;woman"/>
+</rdf:Property>
+<rdf:Property rdf:about="&c;has_parent">
+	<e:domain rdf:resource="&c;Who"/>
+	<e:range rdf:resource="&c;Who"/>
+</rdf:Property>
+<rdf:Property rdf:about="&c;has_part">
+	<e:domain rdf:resource="&c;Where"/>
+	<e:range rdf:resource="&c;Where"/>
+</rdf:Property>
+<rdf:Property rdf:about="&c;has_pet"/>
+<rdf:Property rdf:about="&c;is_part_of"/>
+<rdf:Property rdf:about="&c;likes"/>
+<d:Top rdf:about="&c;male"/>
+<d:DefinedClass rdf:about="&c;man"
+	 a:creationDate="15:32:08 17.01.2002">
+	<d:hasPropertyRestriction rdf:resource="_anon10"/>
+	<d:hasPropertyRestriction rdf:resource="_anon8"/>
+	<e:subClassOf rdf:resource="&c;Who"/>
+</d:DefinedClass>
+<d:DefinedClass rdf:about="&c;old_lady"
+	 a:creationDate="15:32:08 17.01.2002">
+	<d:hasPropertyRestriction rdf:resource="_anon16"/>
+	<d:hasPropertyRestriction rdf:resource="_anon18"/>
+	<e:subClassOf rdf:resource="&c;Who"/>
+</d:DefinedClass>
+<rdf:Property rdf:about="&c;part_of"/>
+<e:Class rdf:about="&c;quality_broadsheet"
+	 a:creationDate="15:32:08 17.01.2002">
+	<e:subClassOf rdf:resource="&c;broadsheet"/>
+</e:Class>
+<rdf:Property rdf:about="&c;reads">
+	<e:range rdf:resource="&c;How"/>
+</rdf:Property>
+<c:When rdf:about="&c;red"/>
+<e:Class rdf:about="&c;red_top"
+	 a:creationDate="15:32:08 17.01.2002">
+	<e:subClassOf rdf:resource="&c;tabloid"/>
+</e:Class>
+<rdf:Property rdf:about="&c;service_number">
+	<e:range rdf:resource="_anon0"/>
+</rdf:Property>
+<rdf:Property rdf:about="&c;sex">
+	<e:range rdf:resource="_anon2"/>
+</rdf:Property>
+<e:Class rdf:about="&c;tabloid"
+	 a:creationDate="15:32:08 17.01.2002">
+	<e:subClassOf rdf:resource="&c;Expertise"/>
+</e:Class>
+<e:Class rdf:about="&c;van"
+	 a:creationDate="15:32:08 17.01.2002">
+	<e:subClassOf rdf:resource="&c;HowSevere"/>
+</e:Class>
+<c:When rdf:about="&c;white"/>
+<e:Class rdf:about="&c;white_van_man"
+	 a:creationDate="15:32:08 17.01.2002">
+	<e:subClassOf rdf:resource="&c;man"/>
+</e:Class>
+<d:DefinedClass rdf:about="&c;woman"
+	 a:creationDate="15:32:08 17.01.2002">
+	<d:hasPropertyRestriction rdf:resource="_anon12"/>
+	<d:hasPropertyRestriction rdf:resource="_anon14"/>
+	<e:subClassOf rdf:resource="&c;Who"/>
+</d:DefinedClass>
+<rdf:Property rdf:about="&c;works_for">
+	<e:range rdf:resource="_anon3"/>
+</rdf:Property>
+<d:Top rdf:about="&c;young"/>
+</rdf:RDF>

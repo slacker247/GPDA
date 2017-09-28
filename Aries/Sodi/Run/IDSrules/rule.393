@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP PING speedera"; content: "|3839 3a3b 3c3d 3e3f|"; depth: 100; itype: 8;  sid:480;  classtype:misc-activity; rev:2;)

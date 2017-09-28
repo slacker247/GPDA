@@ -1,0 +1,15 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Local
+
+    {Token.string == "Local"}
+    {Token.string == ":"}
+    {SpaceToken.kind == space}
+(
+    {Token.kind == word}
+):Local
+ -->
+:Local.Local = {}

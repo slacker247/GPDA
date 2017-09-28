@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET 6000:6005 -> $HOME_NET any (msg:"X11 outgoing"; flags: SA; reference:arachnids,126; classtype:unknown; sid:1227; rev:1;)

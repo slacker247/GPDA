@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 31785 -> $EXTERNAL_NET any (msg:"BACKDOOR HackAttack 1.20 Connect"; flags: A+; content:"host"; sid:141;  classtype:misc-activity; rev:3;)

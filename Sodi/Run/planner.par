@@ -1,0 +1,142 @@
+parameters {
+  string command_center NORAD_COMMAND_CENTER
+  string command_level NORAD
+  string position DO_1
+  string dea Hold
+  int defcon 5
+  int readiness 2
+
+  string roe Rules_of_Engage
+  string mission Mission_Obj
+  string plan Battle_Plan
+
+  float start_time 59000.0
+  float tend 62000.0
+  float cycle_time 60.0
+  int cpu_time 0
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+
+  logical tpt T
+  logical input_file F
+  logical output_file F
+  string input_file_name THREAT.in
+  string output_file_name THREAT.out
+  logical standalone F
+  string standalone_file jeff.dat
+  string hostid localhost
+  int portid 1029
+}
+
+Mission_Obj {
+  type Current
+  type Alternate
+}
+
+Current {
+  string strategy ASSURED
+  string tactic ASSURED
+  float p_success 0.78
+  int mode 2
+  int withhold 4
+  int add_bstrs 2
+}
+
+Alternate {
+  string strategy ASSURED
+  string tactic ASSURED
+  float p_success 0.85
+  int mode 3
+  int withhold 2
+  int add_bstrs 2
+}
+
+Battle_Plan {
+  type Gen_Umbrella
+  type Area_Defense
+}
+
+Gen_Umbrella {
+  string mode Assured
+  string cutoff Medium
+  string kill_criteria Kill
+  logical override_salvo T
+  int launch_mode 1
+  int salvo 2
+  float rv_threshold 0.75
+  float pk_cutoff 0.2000
+  
+  int weight_population 1
+  int weight_military 0
+  int weight_selfdefense 1
+  int weight_ncauthority 0
+  int weight_industrial 1
+}
+
+Area_Defense {
+  string mode Assured
+  string cutoff Low
+  string kill_criteria Kill
+  logical override_salvo F
+  int launch_mode 2
+  int salvo 5
+  float rv_threshold 0.60
+  float pk_cutoff 0.0001
+  
+  int weight_population 1
+  int weight_military 1
+  int weight_selfdefense 1
+  int weight_ncauthority 1
+  int weight_industrial 1
+}
+
+Rules_of_Engage {
+  type N_America
+  type CONUS
+}
+
+N_America {
+  logical n_north T
+  logical w_east F
+  float n_lat_deg 72.0
+  float n_lat_min 0
+  float n_lat_sec 0
+  float w_lon_deg 170.00
+  float w_lon_min 0
+  float w_lon_sec 0
+
+  logical s_north T
+  logical e_east F
+  float s_lat_deg 20.00
+  float s_lat_min 0
+  float s_lat_sec 0
+  float e_lon_deg 55.00
+  float e_lon_min 0
+  float e_lon_sec 0
+}
+
+CONUS {
+  logical n_north T
+  logical w_east F
+  float n_lat_deg 48.55
+  float n_lat_min 0
+  float n_lat_sec 0
+  float w_lon_deg 125.00
+  float w_lon_min 0
+  float w_lon_sec 0
+
+  logical s_north T
+  logical e_east F
+  float s_lat_deg 25.00
+  float s_lat_min 0
+  float s_lat_sec 0
+  float e_lon_deg 65.50
+  float e_lon_min 0
+  float e_lon_sec 0
+}

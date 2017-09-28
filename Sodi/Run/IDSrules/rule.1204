@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Sojourn access"; flags: A+; uricontent:"/sojourn.cgi"; nocase; reference:bugtraq,1052; reference:cve,CAN-2000-0180; classtype:attempted-recon; sid:1195; rev:1;)

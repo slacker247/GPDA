@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC apache DOS attempt";flags: A+; content:"|2f2f2f2f2f2f2f2f|"; classtype:attempted-dos; sid:1156; rev:1;)

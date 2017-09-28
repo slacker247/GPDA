@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS _mem_bin access"; flags:A+; uricontent:"/_mem_bin/"; nocase; classtype:web-application-activity; sid:1286; rev:2;)

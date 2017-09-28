@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 9 (msg:"DOS Ascend Route"; content: "|4e 41 4d 45 4e 41 4d 45|"; offset: 25; depth: 50; reference:bugtraq,714; reference:cve,CVE-1999-0060; reference:arachnids,262; classtype:attempted-dos; sid:281; rev:2;)

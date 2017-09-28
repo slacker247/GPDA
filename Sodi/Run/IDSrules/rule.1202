@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC oracle web listener batch access"; flags: A+; uricontent:"/ows-bin/&"; nocase; reference:cve,CVE-2000-0169; reference:bugtraq,1053; classtype:attempted-recon; sid:1193; rev:1;)

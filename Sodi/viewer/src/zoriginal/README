@@ -1,0 +1,31 @@
+To make sure RSD is installed correctly, please make sure:
+
+1. In the executable directory where "rsd" resides, you need two 
+   other files "rsdModels.desc" and "Models.desc", both are ASCII files;
+
+2. You need a data directory whose path is:
+   <i>.  $DATADIR if DATADIR is set; else it is
+   <ii>. $FRAMEWORKHOME/data if FRAMEWORKHOME is set, else it is
+   <iii>."../../data" (relative to the executable "rsd")
+
+   Two special data sets are used to store bitmaps and models, bitmaps
+   directory is:
+   <i>.  $BITMAPDIR if BITMAPDIR is set; else it is
+   <ii>. $FRAMEWORKHOME/data/bitmaps if FRAMEWORKHOME is set, else it is
+   <iii>."../../data/bitmaps" (relative to the executable "rsd")  
+   
+   and models directory is:
+   <i>.  $MODELDIR if MODELDIR is set; else it is
+   <ii>. $FRAMEWORKHOME/data/models if FRAMEWORKHOME is set, else it is
+   <iii>."../../data/models" (relative to the executable "rsd")
+
+   make sure a data directory does exist and can be found by the rsd program.
+
+3. You need to append the file "Xdefaults" to the top level file
+   ".Xdefaults" on the machine/account that you are running the "rsd" program.
+
+4. If "rsd" does not run for some reason, go to the /src directory and 
+   do a "make". 
+
+
+

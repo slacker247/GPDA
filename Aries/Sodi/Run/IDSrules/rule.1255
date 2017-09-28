@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC admin.php access"; flags:A+; uricontent:"/admin.php"; nocase; reference:bugtraq,3361; classtype:attempted-recon; sid:1301; rev:1;)

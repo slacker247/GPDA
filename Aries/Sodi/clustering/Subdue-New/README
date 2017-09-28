@@ -1,0 +1,62 @@
+Subdue 5 README
+
+Installation
+
+  In the 'src' directory, type 'make' and then 'make install'.
+  This will put everything in the 'bin' directory.  You can
+  type 'make clean' in the 'src' directory to remove the object
+  files and executables there.
+
+Documentation
+
+  View docs/manual.html in your favorite browser for details.
+  There are several sample input graphs in the 'graphs' directory.
+
+Change History:
+
+Version 5.0.6 (to be released)
+- changed design of graph matcher to accept a threshold and discard
+  partial matches exceeding the threshold
+- removed redundant checks for inserting unique substructures into
+  lists of substructures
+- removed redundant generation of substructures from instances
+- changed "matchCost" field of instances to "minMatchCost"
+- removed unused "mapping" field of instances
+
+Version 5.0.5 (1/1/03)
+- major changes to graphmatch.c to implement a heap for the mapping queue
+- changes to dot.c and calling functions so that graph2dot can handle
+  input graphs with positive and negative examples
+- fixed error in SubListInsert() so that all eqi-valued substructures
+  already on the list are compared to the new substructure to be inserted
+- added check in main.c for no substructures returned from DiscoverSubs()
+- changed stopping condition in main.c to no edges left instead of only
+  single vertex left, and removed check that negative graph compressed
+- added timings in seconds per iteration and total
+- added output level 5 for printing all substructures considered
+- when printing instances, also prints example number containing instance
+- final best substructures are numbered in output
+- bug fix in DeletedEdges of graphmatch.c to correctly handle self edges
+- changed directory structure: bin, docs, src
+- added Subdue logo to manual.html
+- added ability to read "quoted" labels containing whitespace and the
+  comment character (%)
+
+Version 5.04 (10/05/02)
+- Improved efficiency of FindInstances, and therefore also finding
+  predefined substructures and the sgiso program
+- Subdue has a new option '-out' that allows writing the best
+  substructures of each iteration in a machine-readable format
+- Added the ability to create dot format graphs (see manual.html)
+  - Program 'subs2dot' works with the '-out' file of Subdue
+    - This gives the ability to view cluster hierarchies
+  - Program 'graph2dot' converts a Subdue-formatted graph to dot format
+  - Programs 'mdl' and 'sgiso' now have -dot options
+- Minor bug fixes
+- Updates to this README file and the manual.html file
+
+Version 5.03 (9/26/02)
+- Added concept learning capability
+
+Version 5.02 (9/17/02)
+- Initial release

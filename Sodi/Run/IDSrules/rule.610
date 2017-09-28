@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP sendmail 5.5.5 exploit";flags: A+; content:"mail from|3a20227c|"; nocase; reference:arachnids,119; classtype:attempted-admin; sid:662; rev:1;)

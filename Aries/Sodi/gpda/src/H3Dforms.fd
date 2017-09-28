@@ -1,0 +1,184 @@
+Magic: 13000
+
+Internal Form Definition File
+    (do not change)
+
+Number of forms: 1
+Unit of measure: FL_COORD_PIXEL
+SnapGrid: 5
+
+=============== FORM ===============
+Name: h3dgraph
+Width: 850
+Height: 460
+Number of Objects: 8
+
+--------------------
+class: FL_BOX
+type: UP_BOX
+box: 0 0 850 460
+boxtype: FL_UP_BOX
+colors: FL_COL1 FL_COL1
+alignment: FL_ALIGN_BOTTOM
+style: FL_BOLD_STYLE
+size: FL_DEFAULT_SIZE
+lcol: FL_BLACK
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: 
+argument: 
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 760 10 80 30
+boxtype: FL_UP_BOX
+colors: FL_COL1 FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE
+size: FL_DEFAULT_SIZE
+lcol: FL_BLACK
+label: Dismiss
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: H3DexitCB
+argument: 0
+
+--------------------
+class: FL_GLCANVAS
+type: NORMAL_CANVAS
+box: 35 60 785 370
+boxtype: FL_DOWN_BOX
+colors: FL_WHITE FL_BLACK
+alignment: FL_ALIGN_CENTER
+style: FL_NORMAL_STYLE
+size: FL_DEFAULT_SIZE
+lcol: FL_BLACK
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: canvas
+callback: H3DnoneCB
+argument: 0
+
+--------------------
+class: FL_SLIDER
+type: HOR_NICE_SLIDER
+box: 35 435 780 20
+boxtype: FL_DOWN_BOX
+colors: FL_COL1 FL_RED
+alignment: FL_ALIGN_BOTTOM
+style: FL_NORMAL_STYLE
+size: FL_TINY_SIZE
+lcol: FL_BLACK
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: viewpos
+callback: H3DsliderCB
+argument: 0
+	bounds: 0 200
+	value: 30
+	increment: 10 1
+	slsize: 0.15
+	step: 1
+	return: FL_RETURN_END_CHANGED
+
+--------------------
+class: FL_SLIDER
+type: VERT_NICE_SLIDER
+box: 820 60 20 375
+boxtype: FL_DOWN_BOX
+colors: FL_COL1 FL_CYAN
+alignment: FL_ALIGN_TOP
+style: FL_BOLD_STYLE
+size: FL_TINY_SIZE
+lcol: FL_BLACK
+label: Zoom
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: zoomer
+callback: H3DzoomCB
+argument: 0
+	bounds: -90 90
+	value: 80
+	increment: 5 1
+	slsize: 0.15
+	step: 1
+	return: FL_RETURN_END_CHANGED
+
+--------------------
+class: FL_SLIDER
+type: VERT_NICE_SLIDER
+box: 10 60 20 375
+boxtype: FL_DOWN_BOX
+colors: FL_COL1 FL_YELLOW
+alignment: FL_ALIGN_TOP
+style: FL_BOLD_STYLE
+size: FL_TINY_SIZE
+lcol: FL_BLACK
+label: Tilt
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: elevation
+callback: H3DelevCB
+argument: 0
+	bounds: 0 200
+	value: 50
+	increment: 5 1
+	slsize: 0.15
+	step: 1
+	return: FL_RETURN_END_CHANGED
+
+--------------------
+class: FL_COUNTER
+type: NORMAL_COUNTER
+box: 85 20 95 20
+boxtype: FL_UP_BOX
+colors: FL_COL1 FL_BLUE
+alignment: FL_ALIGN_LEFT
+style: FL_BOLD_STYLE
+size: FL_DEFAULT_SIZE
+lcol: FL_BLACK
+label: V. Scale
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: h3d_scale
+callback: H3DrefreshCB
+argument: 0
+  bounds: 1 100
+  precision: 0
+  value: 10
+  sstep: 1
+  lstep: 2
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 410 25 85 25
+boxtype: FL_UP_BOX
+colors: FL_COL1 FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE
+size: FL_DEFAULT_SIZE
+lcol: FL_BLACK
+label: Refresh
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: H3DrefreshCB
+argument: 0
+
+==============================
+create_the_forms

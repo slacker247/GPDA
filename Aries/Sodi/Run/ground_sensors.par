@@ -1,0 +1,4906 @@
+parameters {
+  float sensor_com_delay 30.0;
+  float com_rate 30.0;
+  int n_random 0
+  string random_sensor_type ARSR_4
+  string random_output MOUNTAIN
+}
+
+sensor_names {
+
+  type BMEWS1
+  type BMEWS2
+  type BMEWS3
+
+  type PAVE_PAWS1
+  type PAVE_PAWS2
+  type PAVE_PAWS3
+  type PAVE_PAWS4
+  type COBRA_DANE
+
+}
+
+airport_sensor_names {
+  type BAF_2
+  type BAF_3
+  type BAF_4A
+  type BAF_5
+  type BAR_1A
+  type BAR_2
+  type BAR_3
+  type BAR_4
+  type BAR_BA_3
+  type BAR_DA_1
+  type BAR_E
+  type BAR_M
+  type CAM_1A
+  type CAM_2
+  type CAM_3
+  type CAM_4
+  type CAM_5A
+  type CAM_A3A
+  type CAM_B
+  type CAM_CB
+  type CAM_D
+  type CAM_E
+  type CAM_FA
+  type CAM_M
+  type DYE_M
+  type FOX_1
+  type FOX_2
+  type FOX_3
+  type FOX_4
+  type FOX_5
+  type FOX_A
+  type FOX_B
+  type FOX_CA
+  type FOX_M
+  type LAB_1
+  type LAB_2S
+  type LAB_3
+  type LAB_4
+  type LAB_5
+  type LAB_6
+  type LIZ_2
+  type LIZ_3
+  type PIN_1BD
+  type PIN_1BG
+  type PIN_2A
+  type PIN_3
+  type PIN_CB
+  type PIN_DA
+  type PIN_EB
+  type PIN_M
+  type POW_1
+  type POW_2
+  type POW_3
+  type POW_M
+
+  type DYE_1
+  type DYE_3
+  type DYE_4
+  type Rockville_Keflavik
+  type Hofn
+  type Gunnolf
+  type Bolungarvik
+
+  type Holberg
+  type Goose_Bay
+  type Gander
+  type Sydney
+  type Barrington
+
+  type Bucks_Harbor
+  type Calumet
+  type Crescent_City
+  type Cross_City
+  type Dansville
+  type El_Paso
+  type Ellington
+  type Empire
+  type Finley
+  type Ft_Fisher
+  type Ft_Lonesome
+  type Gibbsboro
+  type Guam
+  type Jedburg
+  type Kalispell
+  type Kenai
+  type Keno
+  type Key_West
+  type Lake_Charles
+  type Makah
+  type Malmstrom
+  type Mica_Peak
+  type Mill_Valley
+  type Mt_Kaala
+  type Mt_Laguna
+  type Nashwauk
+  type North_Truro
+  type Oceana
+  type Odessa
+  type Oilton
+  type Oklahoma_City
+  type Paso_Robles
+  type Patrick
+  type Phoenix
+  type Point_Arena
+  type Point_Austin
+  type San_Clemente
+  type San_Pedro
+  type Silver_City
+  type Slidell
+  type Sonora
+  type Suffolk
+  type Tyndall
+  type Utica
+  type Watford_City
+  type Whitehouse
+  type The_Plains
+  type Richmond
+  type Salem
+
+  type Cape_Lisburne
+  type Cape_Newenham
+  type Cape_Romanzof
+  type Cold_Bay
+  type Ft_Yukon
+  type Galena
+  type Indian_Mt
+  type King_Salmon
+  type Kotzebue
+  type Murphy_Dome
+  type Sparrevohn
+  type Tatalina
+  type Tin_City
+
+  type Yuma_AZ
+  type Ft_Huachuca_AZ
+  type Deming_NM
+  type Marfa_TX
+  type Eagle_Pass_TX
+  type Rio_Grande_City_TX
+  type Matagorda_TX
+  type Morgan_City_LA
+  type Alabama_Port_AL
+  type Horseshoe_Beach_FL
+  type Venice_FL
+  type Cudjoe_Key_FL
+  type High_Rock_BA
+  type Georgetown_BA
+  type Grand_Inagua
+  type Puerto_Rico
+
+
+
+
+
+  type Olengorsk
+  type Dolon
+  type Ukraina
+  type Anadyr
+  type Chepelevka
+  type Engels
+  type Beal_AFB
+  type March_AFB
+  type Moffett_Field
+  type San_Diego_Naval
+  type Cheyenne_Mountain
+  type Buckley_ANG_Base
+  type Washington_DC
+  type Warner_Robins_AFB
+  type Savannah_Naval
+  type Grissom_AFB
+  type McConnell_AFB
+  type Barksdale_AFB
+  type Brunswick_NAS
+  type Cutler_Naval_Comm
+  type Fort_Meade
+  type Fort_Ritche
+  type Annapolis
+  type Patuxent_River_NAS
+  type Otis_ANG_Base
+  type K_I_Sawyer_AFB
+  type Wurtsmith_AFB
+  type Offutt_AFB
+  type Plattsburgh_AFB
+  type Grand_Forks_AFB
+  type Minot_AFB
+  type Tinker_AFB
+  type Charleston_Naval
+  type Ellsworth_AFB
+  type Carlswell_AFB
+  type Dyess_AFB
+  type Goodfellow_AFB
+  type Langley_AFB
+  type Dahlgren_Naval_WP
+  type Norfolk_Naval
+  type Fairchild_AFB
+  type Bangor_Submarine
+  type Whidbey_Island_NAS
+  type MOD_Canada
+  type North_Bay_CFB
+  type Yellowknife_CFB
+  type Moose_Jaw_CFB
+  type Tokyo
+  type Toronto
+  type Vancouver
+  type KORD_Chicago
+  type KDTW_Detroit
+  type KSFO_San_Francisco
+  type KLAX_Los_Angeles
+  type Soeul
+  type JFK_LGA
+  type Helsinki
+  type St_Petersburg
+  type Moscow
+  type London
+  type Vienna
+  type Frankfurt
+  type Mexico
+  type Houston
+  type Amsterdam
+  type Bogota
+  type Rio
+  type Miami
+  type San_Jose
+  type Panama
+  type KSAF_Santa_Fe
+  type KSAN_San_Diego
+  type KSAT_San_Antonio
+  type KSMF_Sacremento
+  type KDEN_Denver
+  type Thul
+  type Reykjavik
+  type LMED_Madrid
+  type MUHA_Havana
+  type Cairo
+  type Athens
+  type Bombay
+  type Calcutta
+  type Delhi
+  type Tehran
+  type Shiraz
+  type Mashhad
+  type Bandar_Abbas
+  type Tabriz
+  type Baghdad
+  type Al_Basrah
+  type Mosul
+  type Jerusalem
+  type Tel_Aviv_Yafo
+  type Elat
+  type Amman
+  type Kuwait
+  type Beirut
+  type Karachi
+  type Riyadh
+  type Jiddah
+  type Khartoum
+  type Damascus
+  type Aleppo
+  type Ankara
+  type Adana
+  type Istanbul
+  type Izmir
+  type Sanaa
+  type Tripoli
+  type Tirane
+  type Brussels
+  type Sofiya
+  type Praha
+  type Kobenhavn
+  type Paris
+  type Budapest
+  type Dublin
+  type Rome
+  type Hiroshima
+  type Belfast
+  type Oslo
+  type Cebu
+  type Manila
+  type Warsaw
+  type Bucharest
+  type Glasgow
+  type Barcelona
+  type Madrid
+  type Johannesburg
+  type Stockholm
+  type Geneva
+  type Zurich
+  type Bangkok
+  type Alma_Ata
+  type Baku
+  type Gorky
+  type Kiyev
+  type Minsk
+  type Rostov
+  type Simferopol
+  type Tbilisi
+  type Yerevan
+  type Volgograd
+  type Donetsk
+  type Bonn
+  type Stuttgart
+  type Berlin
+  type Hamburg
+  type Atlanta
+  type Boston
+  type Dallas
+  type JFK_New_York
+  type New_Orleans
+  type Philadelphia
+  type Pittsburgh
+  type Portland
+  type St_Louis
+  type Salt_Lake_City
+
+}
+
+BMEWS1 {
+  type BMEWS_RADAR
+  string system BMEWS
+  string output X
+  logical north T
+  logical east F
+  float lat_deg 76.56
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 68.31
+  float lon_min 0
+  float lon_sec 0
+}
+
+BMEWS2 {
+  type BMEWS_RADAR
+  string system BMEWS
+  string output X
+  logical north T
+  logical east F
+  float lat_deg 64.29
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 149.18
+  float lon_min 0
+  float lon_sec 0
+}
+
+BMEWS3 {
+  type BMEWS_RADAR
+  string system EARLY_WARNING
+  string output X
+  logical north T
+  logical east F
+  float lat_deg 54.37
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 0.67
+  float lon_min 0
+  float lon_sec 0
+}
+
+PAVE_PAWS1 {
+  type PAWS_RADAR
+  string system EARLY_WARNING
+  string output X
+  logical north T
+  logical east F
+  float lat_deg 41.75
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 70.53
+  float lon_min 0
+  float lon_sec 0
+}
+
+PAVE_PAWS2 {
+  type PAWS_RADAR
+  string system EARLY_WARNING
+  string output X
+  logical north T
+  logical east F
+  float lat_deg 39.13
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 121.60
+  float lon_min 0
+  float lon_sec 0
+}
+
+PAVE_PAWS3 {
+  type PAWS_RADAR
+  string system EARLY_WARNING
+  string output X
+  logical north T
+  logical east F
+  float lat_deg 32.58
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 83.56
+  float lon_min 0
+  float lon_sec 0
+}
+
+PAVE_PAWS4 {
+  type PAWS_RADAR
+  string system EARLY_WARNING
+  string output X
+  logical north T
+  logical east F
+  float lat_deg 30.98
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 100.55
+  float lon_min 0
+  float lon_sec 0
+}
+
+COBRA_DANE {
+  type COBRA_DANE_RADAR
+  string system EARLY_WARNING
+  string output X
+  logical north T
+  logical east T
+  float lat_deg 52.74
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 174.09
+  float lon_min 0
+  float lon_sec 0
+}
+
+
+BMEWS_RADAR {
+  float scan_time 5.0
+  float rmin 0.100
+  float rmax 5556.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed T
+  logical los T
+  float error 0.030
+  int icon 199
+}
+
+PAWS_RADAR {
+  float scan_time 5.0
+  float rmin 0.100
+  float rmax 5556.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed T
+  logical los T
+  float error 0.015
+  int icon 199
+}
+
+COBRA_DANE_RADAR {
+  float scan_time 5.0
+  float rmin 0.100
+  float rmax 5556.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed T
+  logical los T
+  float error 0.100
+  int icon 199
+}
+
+BAF_2 {
+  type ANFPS_124
+  string system NWS
+  string output S 
+  logical north T
+  logical east F
+  float lat_deg 64
+  float lat_min 57
+  float lat_sec 27
+  float lon_deg 63
+  float lon_min 34
+  float lon_sec 40
+}
+
+BAF_3 {
+  type ANFPS_124
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 63
+  float lat_min 20
+  float lat_sec 20
+  float lon_deg 64
+  float lon_min 9
+  float lon_sec 28
+}
+
+BAF_4A {
+  type ANFPS_124
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 62
+  float lat_min 30
+  float lat_sec 23
+  float lon_deg 64
+  float lon_min 31
+  float lon_sec 4
+}
+
+BAF_5 {
+  type ANFPS_124
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 61
+  float lat_min 35
+  float lat_sec 48
+  float lon_deg 64
+  float lon_min 38
+  float lon_sec 19
+}
+
+BAR_1A { 
+  type ANFPS_124
+  string system NWS
+  string output S  
+  logical north T
+  logical east F
+  float lat_deg 69
+  float lat_min 29
+  float lat_sec 36
+  float lon_deg 140
+  float lon_min 7
+  float lon_sec 7
+}
+
+BAR_2 {
+  type ANFPS_124
+  string system NWS
+  string output W
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 55
+  float lat_sec 23
+  float lon_deg 137
+  float lon_min 15
+  float lon_sec 32
+}
+
+BAR_3 {
+  type ANFPS_117
+  string system NWS
+  string output W
+  logical north T
+  logical east F
+  float lat_deg 69
+  float lat_min 26
+  float lat_sec 35
+  float lon_deg 133
+  float lon_min 0
+  float lon_sec 11
+}
+
+BAR_4 {
+  type ANFPS_124
+  string system NWS
+  string output W
+  logical north T
+  logical east F
+  float lat_deg 69
+  float lat_min 55
+  float lat_sec 27
+  float lon_deg 128
+  float lon_min 58
+  float lon_sec 24
+}
+
+BAR_BA_3 {
+  type ANFPS_124
+  string system NWS
+  string output W
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 53
+  float lat_sec 49
+  float lon_deg 133
+  float lon_min 56
+  float lon_sec 33
+}
+
+BAR_DA_1 {
+  type ANFPS_124
+  string system NWS
+  string output W
+  logical north T
+  logical east F
+  float lat_deg 69
+  float lat_min 35
+  float lat_sec 14
+  float lon_deg 130
+  float lon_min 53
+  float lon_sec 36
+}
+
+BAR_E {
+  type ANFPS_124
+  string system NWS
+  string output W
+  logical north T
+  logical east F
+  float lat_deg 70
+  float lat_min 0
+  float lat_sec 57
+  float lon_deg 126
+  float lon_min 56
+  float lon_sec 31
+}
+
+BAR_M {
+  type ANFPS_124
+  string system NWS
+  string output U
+  logical north T
+  logical east F
+  float lat_deg 70
+  float lat_min 7
+  float lat_sec 50
+  float lon_deg 143
+  float lon_min 38
+  float lon_sec 34
+}
+
+CAM_1A {
+  type ANFPS_117
+  string system NWS
+  string output W
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 44
+  float lat_sec 58
+  float lon_deg 101
+  float lon_min 51
+  float lon_sec 10
+}
+
+CAM_2 {
+  type ANFPS_124
+  string system NWS
+  string output W
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 41
+  float lat_sec 26
+  float lon_deg 97
+  float lon_min 47
+  float lon_sec 60
+}
+
+CAM_3 {
+  type ANFPS_124
+  string system NWS
+  string output W
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 47
+  float lat_sec 34
+  float lon_deg 93
+  float lon_min 26
+  float lon_sec 27
+}
+
+CAM_4 {
+  type ANFPS_117
+  string system NWS
+  string output W
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 35
+  float lat_sec 40
+  float lon_deg 89
+  float lon_min 43
+  float lon_sec 34
+}
+
+CAM_5A {
+  type ANFPS_124
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 39
+  float lat_sec 52
+  float lon_deg 85
+  float lon_min 35
+  float lon_sec 28
+}
+
+CAM_A3A {
+  type ANFPS_124
+  string system NWS
+  string output W
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 57
+  float lat_sec 48
+  float lon_deg 103
+  float lon_min 45
+  float lon_sec 34
+}
+
+CAM_B {
+  type ANFPS_124
+  string system NWS
+  string output W
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 19
+  float lat_sec 5
+  float lon_deg 100
+  float lon_min 4
+  float lon_sec 13
+}
+
+CAM_CB {
+  type ANFPS_124
+  string system NWS
+  string output W
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 38
+  float lat_sec 36
+  float lon_deg 95
+  float lon_min 52
+  float lon_sec 33
+}
+
+CAM_D {
+  type ANFPS_124
+  string system NWS
+  string output W 
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 35
+  float lat_sec 40
+  float lon_deg 91
+  float lon_min 57
+  float lon_sec 27
+}
+
+CAM_E { 
+  type ANFPS_124
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 17
+  float lat_sec 16
+  float lon_deg 88
+  float lon_min 7
+  float lon_sec 6
+}
+
+CAM_FA {
+  type ANFPS_124
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 69
+  float lat_min 6
+  float lat_sec 38
+  float lon_deg 83
+  float lon_min 32
+  float lon_sec 27
+}
+
+CAM_M {
+  type ANFPS_124
+  string system NWS
+  string output W
+  logical north T
+  logical east F
+  float lat_deg 69
+  float lat_min 6
+  float lat_sec 57
+  float lon_deg 105
+  float lon_min 7
+  float lon_sec 0
+}
+
+DYE_M {
+  type ANFPS_117
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 66
+  float lat_min 39
+  float lat_sec 52
+  float lon_deg 61
+  float lon_min 21
+  float lon_sec 27
+}
+
+FOX_1 {
+  type ANFPS_117
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 45
+  float lat_sec 42
+  float lon_deg 79
+  float lon_min 3
+  float lon_sec 54
+}
+
+FOX_2 {
+  type ANFPS_124
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 53
+  float lat_sec 54
+  float lon_deg 75
+  float lon_min 8
+  float lon_sec 39
+}
+
+FOX_3 {
+  type ANFPS_124
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 39
+  float lat_sec 1
+  float lon_deg 71
+  float lon_min 14
+  float lon_sec 5
+}
+
+FOX_4 {
+  type ANFPS_117
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 28
+  float lat_sec 22
+  float lon_deg 66
+  float lon_min 47
+  float lon_sec 58
+}
+
+FOX_5 {
+  type ANFPS_124
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 67
+  float lat_min 32
+  float lat_sec 11
+  float lon_deg 63
+  float lon_min 47
+  float lon_sec 22
+}
+
+FOX_A {
+  type ANFPS_124
+  string system NWS
+  string output S  
+  logical north T
+  logical east F
+  float lat_deg 69
+  float lat_min 13
+  float lat_sec 25
+  float lon_deg 77
+  float lon_min 13
+  float lon_sec 52
+}
+
+FOX_B {
+  type ANFPS_124
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 37
+  float lat_sec 18
+  float lon_deg 73
+  float lon_min 12
+  float lon_sec 44
+}
+
+FOX_CA {
+  type ANFPS_124
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 38
+  float lat_sec 52
+  float lon_deg 69
+  float lon_min 7
+  float lon_sec 46
+}
+
+FOX_M {
+  type ANFPS_124
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 45
+  float lat_sec 42
+  float lon_deg 81
+  float lon_min 13
+  float lon_sec 37
+}
+
+LAB_1 {
+  type ANFPS_117
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 59
+  float lat_min 59
+  float lat_sec 4
+  float lon_deg 64
+  float lon_min 9
+  float lon_sec 53
+}
+
+LAB_2S {
+  type ANFPS_124
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 58
+  float lat_min 29
+  float lat_sec 17
+  float lon_deg 62
+  float lon_min 35
+  float lon_sec 8
+}
+
+LAB_3 {
+  type ANFPS_117
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 57
+  float lat_min 8
+  float lat_sec 9
+  float lon_deg 61
+  float lon_min 28
+  float lon_sec 32
+}
+
+LAB_4 {
+  type ANFPS_124
+  string system NWS
+  string output S
+  logical north T
+  logical east F
+  float lat_deg 55
+  float lat_min 44
+  float lat_sec 20
+  float lon_deg 60
+  float lon_min 25
+  float lon_sec 47
+}
+
+LAB_5 {
+  type ANFPS_124
+  string system NWS
+  string output S 
+  logical north T
+  logical east F
+  float lat_deg 54
+  float lat_min 42
+  float lat_sec 57
+  float lon_deg 58
+  float lon_min 21
+  float lon_sec 28
+}
+
+LAB_6 {
+  type ANFPS_124
+  string system NWS
+  string output S 
+  logical north T
+  logical east F
+  float lat_deg 53
+  float lat_min 33
+  float lat_sec 8
+  float lon_deg 56
+  float lon_min 49
+  float lon_sec 46
+}
+
+LIZ_2 {
+  type ANFPS_117
+  string system NWS
+  string output U 
+  logical north T
+  logical east F
+  float lat_deg 69
+  float lat_min 44
+  float lat_sec 10
+  float lon_deg 163
+  float lon_min 1
+  float lon_sec 17
+}
+
+LIZ_3 {
+  type ANFPS_117
+  string system NWS
+  string output U  
+  logical north T
+  logical east F
+  float lat_deg 70
+  float lat_min 36
+  float lat_sec 26
+  float lon_deg 159
+  float lon_min 52
+  float lon_sec 46
+}
+
+PIN_1BD {
+  type ANFPS_124
+  string system NWS
+  string output W 
+  logical north T
+  logical east F
+  float lat_deg 69
+  float lat_min 40
+  float lat_sec 22
+  float lon_deg 121
+  float lon_min 40
+  float lon_sec 22
+}
+
+PIN_1BG {
+  type ANFPS_124
+  string system NWS
+  string output W
+  logical north T
+  logical east F
+  float lat_deg 69
+  float lat_min 15
+  float lat_sec 34
+  float lon_deg 119
+  float lon_min 13
+  float lon_sec 23
+}
+
+PIN_2A {
+  type ANFPS_124
+  string system NWS
+  string output W 
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 50
+  float lat_sec 9
+  float lon_deg 116
+  float lon_min 58
+  float lon_sec 3
+}
+
+PIN_3 {
+  type ANFPS_117
+  string system NWS
+  string output W 
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 28
+  float lat_sec 45
+  float lon_deg 113
+  float lon_min 13
+  float lon_sec 32
+}
+
+PIN_CB {
+  type ANFPS_124
+  string system NWS
+  string output W 
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 45
+  float lat_sec 22
+  float lon_deg 114
+  float lon_min 56
+  float lon_sec 25
+}
+
+PIN_DA {
+  type ANFPS_124
+  string system NWS
+  string output W 
+  logical north T
+  logical east F
+  float lat_deg 68
+  float lat_min 29
+  float lat_sec 11
+  float lon_deg 110
+  float lon_min 51
+  float lon_sec 53
+}
+
+PIN_EB {
+  type ANFPS_124
+  string system NWS
+  string output W 
+  logical north T
+  logical east F
+  float lat_deg 69
+  float lat_min 1
+  float lat_sec 39
+  float lon_deg 107
+  float lon_min 48
+  float lon_sec 26
+}
+
+PIN_M {
+  type ANFPS_117
+  string system NWS
+  string output W 
+  logical north T
+  logical east F
+  float lat_deg 70
+  float lat_min 10
+  float lat_sec 21
+  float lon_deg 124
+  float lon_min 43
+  float lon_sec 38
+}
+
+POW_1 {
+  type ANFPS_124
+  string system NWS
+  string output U 
+  logical north T
+  logical east F
+  float lat_deg 70
+  float lat_min 54
+  float lat_sec 33
+  float lon_deg 153
+  float lon_min 15
+  float lon_sec 21
+}
+
+POW_2 {
+  type ANFPS_117
+  string system NWS
+  string output U 
+  logical north T
+  logical east F
+  float lat_deg 70
+  float lat_min 29
+  float lat_sec 53
+  float lon_deg 149
+  float lon_min 52
+  float lon_sec 50
+}
+
+POW_3 {
+  type ANFPS_124
+  string system NWS
+  string output U 
+  logical north T
+  logical east F
+  float lat_deg 70
+  float lat_min 10
+  float lat_sec 30
+  float lon_deg 146
+  float lon_min 51
+  float lon_sec 0
+}
+
+POW_M {
+  type ANFPS_117
+  string system NWS
+  string output U 
+  logical north T
+  logical east F
+  float lat_deg 71
+  float lat_min 19
+  float lat_sec 27
+  float lon_deg 156
+  float lon_min 38
+  float lon_sec 29
+}
+
+DYE_1 { 
+  type ANFPS_93A
+  string system GIN
+  string output S  
+  logical north T
+  logical east F
+  float lat_deg 66.38
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 52.52
+  float lon_min 0
+  float lon_sec 0
+}
+
+DYE_3 {
+  type ANFPS_93A
+  string system GIN
+  string output S 
+  logical north T
+  logical east F
+  float lat_deg 65.11
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 43.50
+  float lon_min 0
+  float lon_sec 0
+}
+
+DYE_4 {
+  type ANFPS_93A
+  string system GIN
+  string output S   
+  logical north T
+  logical east F
+  float lat_deg 65.32
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 37.11
+  float lon_min 0
+  float lon_sec 0
+}
+
+Rockville_Keflavik {
+  type ANFPS_93A
+  string system GIN
+  string output S    
+  logical north T
+  logical east F
+  float lat_deg 64.08
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 21.36
+  float lon_min 0
+  float lon_sec 0
+}
+
+Hofn {
+  type ANFPS_93A
+  string system GIN
+  string output S    
+  logical north T
+  logical east F
+  float lat_deg 66.20
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 16.30
+  float lon_min 0
+  float lon_sec 0
+}
+
+Gunnolf {
+  type ANFPS_93A
+  string system GIN
+  string output S    
+  logical north T
+  logical east F
+  float lat_deg 66.0
+  float lat_min 8.0
+  float lat_sec 30.0
+  float lon_deg 15.0
+  float lon_min 5.0
+  float lon_sec 30.0
+}
+
+Bolungarvik {
+  type ANFPS_93A
+  string system GIN
+  string output S    
+  logical north T
+  logical east F
+  float lat_deg 66.0
+  float lat_min 10.0
+  float lat_sec 36.0
+  float lon_deg 23.0
+  float lon_min 19.0
+  float lon_sec 19.0
+}
+
+Holberg {
+  type ANFPS_27
+  string system CCRS
+  string output W 
+  logical north T
+  logical east F
+  float lat_deg 50.39
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 128.00
+  float lon_min 0
+  float lon_sec 0
+}
+
+Goose_Bay { 
+  type ANFPS_27
+  string system CCRS
+  string output W 
+  logical north T
+  logical east F
+  float lat_deg 53.15
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 60.20
+  float lon_min 0
+  float lon_sec 0
+}
+
+Gander {
+  type ANFPS_27
+  string system CCRS
+  string output S 
+  logical north T
+  logical east F
+  float lat_deg 48.58
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 54.34
+  float lon_min 0
+  float lon_sec 0
+}
+
+Sydney {
+  type ANFPS_27
+  string system CCRS
+  string output S 
+  logical north T
+  logical east F
+  float lat_deg 46.10
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 60.10
+  float lon_min 0
+  float lon_sec 0
+}
+
+Barrington {
+  type ANFPS_27
+  string system CCRS
+  string output S 
+  logical north T
+  logical east F
+  float lat_deg 43.34
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 65.35
+  float lon_min 0
+  float lon_sec 0
+}
+
+Bucks_Harbor {
+  type ARSR_4
+  string system JSS_FARR
+  string output B 
+  logical north T
+  logical east F
+  float lat_deg 44.6294
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 67.3958
+  float lon_min 0
+  float lon_sec 0
+}
+
+Calumet { 
+  type ARSR_4
+  string system JSS_FARR
+  string output B 
+  logical north T
+  logical east F
+  float lat_deg 47.3706
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 88.1708
+  float lon_min 0
+  float lon_sec 0
+}
+
+Crescent_City {
+  type ARSR_4
+  string system JSS_FARR
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 41.5592
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 124.0844
+  float lon_min 0
+  float lon_sec 0
+}
+
+Cross_City {
+  type ARSR_4
+  string system JSS_FARR
+  string output C 
+  logical north T
+  logical east F
+  float lat_deg 29.7433
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 83.0008
+  float lon_min 0
+  float lon_sec 0
+}
+
+Dansville {
+  type ARSR_4
+  string system JSS_FARR
+  string output B
+  logical north T
+  logical east F
+  float lat_deg 42.6378
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 77.6539
+  float lon_min 0
+  float lon_sec 0
+}
+
+El_Paso {
+  type ARSR_4
+  string system JSS_FARR
+  string output R
+  logical north T
+  logical east F
+  float lat_deg 31.6806
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 106.1795
+  float lon_min 0
+  float lon_sec 0
+}
+
+Ellington {
+  type ARSR_4
+  string system JSS_FARR
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 29.6158
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 95.1792
+  float lon_min 0
+  float lon_sec 0
+}
+
+Empire {
+  type ARSR_4
+  string system JSS_FARR
+  string output B 
+  logical north T
+  logical east F
+  float lat_deg 44.8006
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 86.0508
+  float lon_min 0
+  float lon_sec 0
+}
+
+Finley {
+  type ARSR_4
+  string system JSS_FARR
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 47.5278
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 97.9003
+  float lon_min 0
+  float lon_sec 0
+}
+
+Ft_Fisher {
+  type ARSR_4
+  string system JSS_FARR
+  string output C 
+  logical north T
+  logical east F
+  float lat_deg 33.9803
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 77.9175
+  float lon_min 0
+  float lon_sec 0
+}
+
+Ft_Lonesome {
+  type ARSR_4
+  string system JSS_FARR
+  string output C 
+  logical north T
+  logical east F
+  float lat_deg 27.6453
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 82.1328
+  float lon_min 0
+  float lon_sec 0
+}
+
+Gibbsboro {
+  type ARSR_4
+  string system JSS_FARR
+  string output B 
+  logical north T
+  logical east F
+  float lat_deg 39.8244
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 74.9547
+  float lon_min 0
+  float lon_sec 0
+}
+
+Guam {
+  type ARSR_4
+  string system JSS_FARR
+  string output R 
+  logical north T
+  logical east T
+  float lat_deg 13.5338
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 144.9114
+  float lon_min 0
+  float lon_sec 0
+}
+
+Jedburg {
+  type ARSR_4
+  string system JSS_FARR
+  string output C 
+  logical north T
+  logical east F
+  float lat_deg 33.0697
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 80.2206
+  float lon_min 0
+  float lon_sec 0
+}
+
+Kalispell {
+  type ARSR_4
+  string system JSS_FARR
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 48.0114
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 114.3636
+  float lon_min 0
+  float lon_sec 0
+}
+
+Kenai {
+  type ARSR_4
+  string system JSS_FARR
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 60.6161
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 151.2808
+  float lon_min 0
+  float lon_sec 0
+}
+
+Keno {
+  type ARSR_4
+  string system JSS_FARR
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 42.0667
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 121.9667
+  float lon_min 0
+  float lon_sec 0
+}
+
+Key_West {
+  type ARSR_4
+  string system JSS_FARR
+  string output C 
+  logical north T
+  logical east F
+  float lat_deg 24.5836
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 81.6886
+  float lon_min 0
+  float lon_sec 0
+}
+
+Lake_Charles {
+  type ARSR_4
+  string system JSS_FARR
+  string output C 
+  logical north T
+  logical east F
+  float lat_deg 30.1842
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 93.1742
+  float lon_min 0
+  float lon_sec 0
+}
+
+Makah {
+  type ARSR_4
+  string system JSS_FARR
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 48.3725
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 124.6750
+  float lon_min 0
+  float lon_sec 0
+}
+
+Malmstrom {
+  type ARSR_4
+  string system JSS_FARR
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 47.5011
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 111.2014
+  float lon_min 0
+  float lon_sec 0
+}
+
+Mica_Peak {
+  type ARSR_4
+  string system JSS_FARR
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 47.5739
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 117.0806
+  float lon_min 0
+  float lon_sec 0
+}
+
+Mill_Valley {
+  type ARSR_4
+  string system JSS_FARR
+  string output F 
+  logical north T
+  logical east F
+  float lat_deg 37.9239
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 122.5956
+  float lon_min 0
+  float lon_sec 0
+}
+
+Mt_Kaala {
+  type ARSR_4
+  string system JSS_FARR
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 21.5106
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 158.1447
+  float lon_min 0
+  float lon_sec 0
+}
+
+Mt_Laguna {
+  type ARSR_4
+  string system JSS_FARR
+  string output F 
+  logical north T
+  logical east F
+  float lat_deg 32.8758
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 116.4014
+  float lon_min 0
+  float lon_sec 0
+}
+
+Nashwauk {
+  type ARSR_4
+  string system JSS_FARR
+  string output B 
+  logical north T
+  logical east F
+  float lat_deg 47.3972
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 93.1700
+  float lon_min 0
+  float lon_sec 0
+}
+
+North_Truro {
+  type ARSR_4
+  string system JSS_FARR
+  string output B 
+  logical north T
+  logical east F
+  float lat_deg 42.0344
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 70.0542
+  float lon_min 0
+  float lon_sec 0
+}
+
+Oceana {
+  type ARSR_4
+  string system JSS_FARR
+  string output C
+  logical north T
+  logical east F
+  float lat_deg 37.1767
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 75.9478
+  float lon_min 0
+  float lon_sec 0
+}
+
+Odessa {
+  type ARSR_4
+  string system JSS_FARR
+  string output F 
+  logical north T
+  logical east F
+  float lat_deg 32.5542
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 102.4292
+  float lon_min 0
+  float lon_sec 0
+}
+
+Oilton {
+  type ARSR_4
+  string system JSS_FARR
+  string output C 
+  logical north T
+  logical east F
+  float lat_deg 27.4986
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 98.9694
+  float lon_min 0
+  float lon_sec 0
+}
+
+Oklahoma_City {
+  type ARSR_4
+  string system JSS_FARR
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 35.3931
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 97.6008
+  float lon_min 0
+  float lon_sec 0
+}
+
+Paso_Robles {
+  type ARSR_4
+  string system JSS_FARR
+  string output F 
+  logical north T
+  logical east F
+  float lat_deg 35.395
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 120.3533
+  float lon_min 0
+  float lon_sec 0
+}
+
+Patrick {
+  type ARSR_4
+  string system JSS_FARR
+  string output C 
+  logical north T
+  logical east F
+  float lat_deg 28.2139
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 80.5992
+  float lon_min 0
+  float lon_sec 0
+}
+
+Phoenix {
+  type ARSR_4
+  string system JSS_FARR
+  string output F 
+  logical north T
+  logical east F
+  float lat_deg 33.9800
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 111.7950
+  float lon_min 0
+  float lon_sec 0
+}
+
+Point_Arena {
+  type ARSR_4
+  string system JSS_FARR
+  string output F 
+  logical north T
+  logical east F
+  float lat_deg 38.8886
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 123.5486
+  float lon_min 0
+  float lon_sec 0
+}
+
+Point_Austin {
+  type ARSR_4
+  string system JSS_FARR
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 44.0303
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 83.0025
+  float lon_min 0
+  float lon_sec 0
+}
+
+San_Clemente {
+  type ARSR_4
+  string system JSS_FARR
+  string output F 
+  logical north T
+  logical east F
+  float lat_deg 32.8844
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 118.4497
+  float lon_min 0
+  float lon_sec 0
+}
+
+San_Pedro {
+  type ARSR_4
+  string system JSS_FARR
+  string output F 
+  logical north T
+  logical east F
+  float lat_deg 33.7458
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 118.3353
+  float lon_min 0
+  float lon_sec 0
+}
+
+Silver_City {
+  type ARSR_4
+  string system JSS_FARR
+  string output F 
+  logical north T
+  logical east F
+  float lat_deg 32.9892
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 108.9600
+  float lon_min 0
+  float lon_sec 0
+}
+
+Slidell {
+  type ARSR_4
+  string system JSS_FARR
+  string output C 
+  logical north T
+  logical east F
+  float lat_deg 30.3481
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 89.7800
+  float lon_min 0
+  float lon_sec 0
+}
+
+Sonora {
+  type ARSR_4
+  string system JSS_FARR
+  string output F 
+  logical north T
+  logical east F
+  float lat_deg 30.3481
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 100.5578
+  float lon_min 0
+  float lon_sec 0
+}
+
+Suffolk {
+  type ARSR_4
+  string system JSS_FARR
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 40.8783
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 72.7033
+  float lon_min 0
+  float lon_sec 0
+}
+
+Tyndall {
+  type ARSR_4
+  string system JSS_FARR
+  string output C 
+  logical north T
+  logical east F
+  float lat_deg 30.0758
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 85.6086
+  float lon_min 0
+  float lon_sec 0
+}
+
+Utica {
+  type ARSR_4
+  string system JSS_FARR
+  string output B 
+  logical north T
+  logical east F
+  float lat_deg 43.3455
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 75.2500
+  float lon_min 0
+  float lon_sec 0
+}
+
+Watford_City {
+  type ARSR_4
+  string system JSS_FARR
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 47.6589
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 103.7797
+  float lon_min 0
+  float lon_sec 0
+}
+
+Whitehouse {
+  type ARSR_4
+  string system JSS_FARR
+  string output C 
+  logical north T
+  logical east F
+  float lat_deg 30.3458
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 81.8739
+  float lon_min 0
+  float lon_sec 0
+}
+
+The_Plains {
+  type ARSR_4
+  string system JSS_FARR
+  string output B 
+  logical north T
+  logical east F
+  float lat_deg 38.8800
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 77.7000
+  float lon_min 0
+  float lon_sec 0
+}
+
+Richmond {
+  type ARSR_4
+  string system JSS_FARR
+  string output C 
+  logical north T
+  logical east F
+  float lat_deg 25.6200
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 80.4000
+  float lon_min 0
+  float lon_sec 0
+}
+
+Salem {
+  type ARSR_4
+  string system JSS_FARR
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 44.9200
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 123.57
+  float lon_min 0
+  float lon_sec 0
+}
+
+Cape_Lisburne {
+  type ANFPS_117
+  string system SEEK_IGLOO
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 68.872
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 166.133
+  float lon_min 0
+  float lon_sec 0
+}
+
+Cape_Newenham {
+  type ANFPS_117
+  string system SEEK_IGLOO
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 58.633
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 162.100
+  float lon_min 0
+  float lon_sec 0
+}
+
+Cape_Romanzof {
+  type ANFPS_117
+  string system SEEK_IGLOO
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 61.788
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 165.95
+  float lon_min 0
+  float lon_sec 0
+}
+
+Cold_Bay {
+  type ANFPS_117
+  string system SEEK_IGLOO
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 55.500
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 161.500
+  float lon_min 0
+  float lon_sec 0
+}
+
+Ft_Yukon {
+  type ANFPS_117
+  string system SEEK_IGLOO
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 66.567
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 145.217
+  float lon_min 0
+  float lon_sec 0
+}
+
+Galena {
+  type ANFPS_117
+  string system SEEK_IGLOO
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 64.67
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 156.75
+  float lon_min 0
+  float lon_sec 0
+}
+
+Indian_Mt {
+  type ANFPS_117
+  string system SEEK_IGLOO
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 66.067
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 153.683
+  float lon_min 0
+  float lon_sec 0
+}
+
+King_Salmon {
+  type ANFPS_117
+  string system SEEK_IGLOO
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 58.700
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 156.667
+  float lon_min 0
+  float lon_sec 0
+}
+
+Kotzebue {
+  type ANFPS_117
+  string system SEEK_IGLOO
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 66.850
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 162.600
+  float lon_min 0
+  float lon_sec 0
+}
+
+Murphy_Dome {
+  type ANFPS_93A
+  string system SEEK_IGLOO
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 64.950
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 148.350
+  float lon_min 0
+  float lon_sec 0
+}
+
+Sparrevohn {
+  type ANFPS_117
+  string system SEEK_IGLOO
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 61.117
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 155.600
+  float lon_min 0
+  float lon_sec 0
+}
+
+Tatalina {
+  type ANFPS_117
+  string system SEEK_IGLOO
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 62.933
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 156.017
+  float lon_min 0
+  float lon_sec 0
+}
+
+Tin_City {
+  type ANFPS_117
+  string system SEEK_IGLOO
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 65.575
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 168.008
+  float lon_min 0
+  float lon_sec 0
+}
+
+Yuma_AZ {
+  type ANTPS_63
+  string system TARS
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 32.40
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 114.39
+  float lon_min 0
+  float lon_sec 0
+}
+
+Ft_Huachuca_AZ {
+  type ANTPS_63
+  string system TARS
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 31.34
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 110.24
+  float lon_min 0
+  float lon_sec 0
+}
+
+Deming_NM {
+  type ANTPS_63
+  string system TARS
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 32.17
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 107.46
+  float lon_min 0
+  float lon_sec 0
+}
+
+Marfa_TX {
+  type L_88
+  string system TARS
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 30.19
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.03
+  float lon_min 0
+  float lon_sec 0
+}
+
+Eagle_Pass_TX {
+  type L_88
+  string system TARS
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 28.44
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 100.31
+  float lon_min 0
+  float lon_sec 0
+}
+
+Rio_Grande_City_TX {
+  type L_88
+  string system TARS
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 26.24
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 98.50
+  float lon_min 0
+  float lon_sec 0
+}
+
+Matagorda_TX {
+  type L_88
+  string system TARS
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 28.42
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 95.59
+  float lon_min 0
+  float lon_sec 0
+}
+
+Morgan_City_LA {
+  type L_88
+  string system TARS
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 29.41
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 91.13
+  float lon_min 0
+  float lon_sec 0
+}
+
+Alabama_Port_AL {
+  type L_88
+  string system TARS
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 30.20
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 87.44
+  float lon_min 0
+  float lon_sec 0
+}
+
+Horseshoe_Beach_FL {
+  type L_88
+  string system TARS
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 29.27
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 83.17
+  float lon_min 0
+  float lon_sec 0
+}
+
+Venice_FL {
+  type ANDPS_5
+  string system TARS
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 27.05
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 82.26
+  float lon_min 0
+  float lon_sec 0
+}
+
+Cudjoe_Key_FL {
+  type ANDPS_5
+  string system TARS
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 24.41
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 81.30
+  float lon_min 0
+  float lon_sec 0
+}
+
+High_Rock_BA {
+  type ANTPS_63
+  string system TARS
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 26.36
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 78.20
+  float lon_min 0
+  float lon_sec 0
+}
+
+Georgetown_BA {
+  type ANTPS_63
+  string system TARS
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 23.33
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 74.47
+  float lon_min 0
+  float lon_sec 0
+}
+
+Grand_Inagua {
+  type L_88
+  string system TARS
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 20.58
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 73.40
+  float lon_min 0
+  float lon_sec 0
+}
+
+Puerto_Rico {
+  type L_88
+  string system TARS
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 30.20
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 87.44
+  float lon_min 0
+  float lon_sec 0
+}
+
+
+
+OTHB1 {
+  type OTHB_Radar
+  string system OTHB_System
+  string output R 
+  logical north T
+  logical east F
+  float lat_deg 37.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 77.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Olengorsk {
+  type AIRPORT_RADAR_SM
+  string system USSR
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 68.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 33.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Dolon {
+  type AIRPORT_RADAR_LG
+  string system USSR
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 50.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 79.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Ukraina {
+  type AIRPORT_RADAR_SM
+  string system USSR
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 51.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 128.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Anadyr {
+  type AIRPORT_RADAR_LG
+  string system USSR
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 65.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 178.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Chepelevka {
+  type AIRPORT_RADAR_SM
+  string system USSR
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 49.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 30.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Engels {
+  type AIRPORT_RADAR_SM
+  string system USSR
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 51.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 46.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Beal_AFB {
+  type AIRPORT_RADAR_SM
+  string system CALIFORNIA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 39.08
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 121.35
+  float lon_min 0
+  float lon_sec 0
+}
+
+March_AFB {
+  type AIRPORT_RADAR_SM
+  string system CALIFORNIA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 33.57
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 117.23
+  float lon_min 0
+  float lon_sec 0
+}
+
+Moffett_Field {
+  type AIRPORT_RADAR_SM
+  string system CALIFORNIA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 37.20
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 121.53
+  float lon_min 0
+  float lon_sec 0
+}
+
+San_Diego_Naval {
+  type AIRPORT_RADAR_LG
+  string system CALIFORNIA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 32.45
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 117.10
+  float lon_min 0
+  float lon_sec 0
+}
+
+Cheyenne_Mountain {
+  type AIRPORT_RADAR_LG
+  string system COLORADO
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+Buckley_ANG_Base {
+  type AIRPORT_RADAR_SM
+  string system COLORADO
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 39.43
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 105.01
+  float lon_min 0
+  float lon_sec 0
+}
+
+Washington_DC {
+  type AIRPORT_RADAR_LG
+  string system WASHINGTON_DC
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 38.52
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 77.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Warner_Robins_AFB {
+  type AIRPORT_RADAR_SM
+  string system GEORGIA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 32.5
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 83.37
+  float lon_min 0
+  float lon_sec 0
+}
+
+Savannah_Naval {
+  type AIRPORT_RADAR_SM
+  string system GEORGIA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 32.04
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 81.08
+  float lon_min 0
+  float lon_sec 0
+}
+
+Grissom_AFB {
+  type AIRPORT_RADAR_SM
+  string system INDIANA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 40.29
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 86.08
+  float lon_min 0
+  float lon_sec 0
+}
+
+McConnell_AFB {
+  type AIRPORT_RADAR_SM
+  string system KANSAS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 37.41
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 97.20
+  float lon_min 0
+  float lon_sec 0
+}
+
+Barksdale_AFB {
+  type AIRPORT_RADAR_SM
+  string system LOUISIANA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 32.3
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 93.44
+  float lon_min 0
+  float lon_sec 0
+}
+
+Brunswick_NAS {
+  type AIRPORT_RADAR_SM
+  string system MAIN
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 43.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 69.58
+  float lon_min 0
+  float lon_sec 0
+}
+
+Cutler_Naval_Comm {
+  type AIRPORT_RADAR_SM
+  string system MAIN
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 44.41
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 67.12
+  float lon_min 0
+  float lon_sec 0
+}
+
+Fort_Meade {
+  type AIRPORT_RADAR_SM
+  string system MARYLAND
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 39.08
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 76.68
+  float lon_min 0
+  float lon_sec 0
+}
+
+Fort_Ritche {
+  type AIRPORT_RADAR_SM
+  string system MARYLAND
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 39.39
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 77.46
+  float lon_min 0
+  float lon_sec 0
+}
+
+Annapolis {
+  type AIRPORT_RADAR_SM
+  string system MARYLAND
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 38.59
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 76.3
+  float lon_min 0
+  float lon_sec 0
+}
+
+Patuxent_River_NAS {
+  type AIRPORT_RADAR_SM
+  string system MARYLAND
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 38.17
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 76.25
+  float lon_min 0
+  float lon_sec 0
+}
+
+Otis_ANG_Base {
+  type AIRPORT_RADAR_SM
+  string system MASSACHUSETTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 41.34
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 70.38
+  float lon_min 0
+  float lon_sec 0
+}
+
+K_I_Sawyer_AFB {
+  type AIRPORT_RADAR_SM
+  string system MICHIGAN
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 46.32
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 87.23
+  float lon_min 0
+  float lon_sec 0
+}
+
+Wurtsmith_AFB {
+  type AIRPORT_RADAR_SM
+  string system MICHIGAN
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 44.26
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 83.20
+  float lon_min 0
+  float lon_sec 0
+}
+
+Offutt_AFB {
+  type AIRPORT_RADAR_SM
+  string system NEBRASKA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 41.15
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 95.56
+  float lon_min 0
+  float lon_sec 0
+}
+
+Plattsburgh_AFB {
+  type AIRPORT_RADAR_SM
+  string system NEW_YORK
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 44.41
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 73.27
+  float lon_min 0
+  float lon_sec 0
+}
+
+Grand_Forks_AFB {
+  type AIRPORT_RADAR_LG
+  string system NORTH_DAKOTA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 47.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 97.01
+  float lon_min 0
+  float lon_sec 0
+}
+
+Minot_AFB {
+  type AIRPORT_RADAR_SM
+  string system NORTH_DAKOTA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 48.13
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 101.17
+  float lon_min 0
+  float lon_sec 0
+}
+
+Tinker_AFB {
+  type AIRPORT_RADAR_LG
+  string system OKLAHOMA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 35.25
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 97.30
+  float lon_min 0
+  float lon_sec 0
+}
+
+Charleston_Naval {
+  type AIRPORT_RADAR_SM
+  string system SOUTH_CAROLINA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 32.47
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 79.56
+  float lon_min 0
+  float lon_sec 0
+}
+
+Ellsworth_AFB {
+  type AIRPORT_RADAR_SM
+  string system SOUTH_DAKOTA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 44.04
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 103.12
+  float lon_min 0
+  float lon_sec 0
+}
+
+Carlswell_AFB {
+  type AIRPORT_RADAR_SM
+  string system TEXAS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 32.43
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 97.19
+  float lon_min 0
+  float lon_sec 0
+}
+
+Dyess_AFB {
+  type AIRPORT_RADAR_SM
+  string system TEXAS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 32.26
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 99.43
+  float lon_min 0
+  float lon_sec 0
+}
+
+Goodfellow_AFB {
+  type AIRPORT_RADAR_SM
+  string system TEXAS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 29.30
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 98.30
+  float lon_min 0
+  float lon_sec 0
+}
+
+Langley_AFB {
+  type AIRPORT_RADAR_LG
+  string system VIRGINIA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 37.04
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 76.18
+  float lon_min 0
+  float lon_sec 0
+}
+
+Dahlgren_Naval_WP {
+  type AIRPORT_RADAR_SM
+  string system VIRGINIA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 38.12
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 88.41
+  float lon_min 0
+  float lon_sec 0
+}
+
+Norfolk_Naval {
+  type AIRPORT_RADAR_SM
+  string system VIRGINIA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 36.54
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 76.18
+  float lon_min 0
+  float lon_sec 0
+}
+
+Fairchild_AFB {
+  type AIRPORT_RADAR_SM
+  string system WASHINGTON
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 47.40
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 117.25
+  float lon_min 0
+  float lon_sec 0
+}
+
+Bangor_Submarine {
+  type AIRPORT_RADAR_SM
+  string system WASHINGTON
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 47.34
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 122.38
+  float lon_min 0
+  float lon_sec 0
+}
+
+Whidbey_Island_NAS {
+  type AIRPORT_RADAR_SM
+  string system WASHINGTON
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 48.18
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 122.39
+  float lon_min 0
+  float lon_sec 0
+}
+
+MOD_Canada {
+  type AIRPORT_RADAR_SM
+  string system CANADA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 45.25
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 75.43
+  float lon_min 0
+  float lon_sec 0
+}
+
+North_Bay_CFB {
+  type AIRPORT_RADAR_SM
+  string system CANADA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 47.22
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 79.25
+  float lon_min 0
+  float lon_sec 0
+}
+
+Yellowknife_CFB {
+  type AIRPORT_RADAR_LG
+  string system CANADA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 62.27
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 115.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Moose_Jaw_CFB {
+  type AIRPORT_RADAR_SM
+  string system CANADA
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 50.20
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 105.34
+  float lon_min 0
+  float lon_sec 0
+}
+
+Tokyo {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 35.40
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 139.45
+  float lon_min 0
+  float lon_sec 0
+}
+
+Toronto {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 43.37
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 79.24
+  float lon_min 0
+  float lon_sec 0
+}
+
+Vancouver {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 49.11
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 123.12
+  float lon_min 0
+  float lon_sec 0
+}
+
+KORD_Chicago {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 41.5
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 87.45
+  float lon_min 0
+  float lon_sec 0
+}
+
+KDTW_Detroit {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 42.23
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 83.05
+  float lon_min 0
+  float lon_sec 0
+}
+
+KSFO_San_Francisco {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 37.4
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 122.3
+  float lon_min 0
+  float lon_sec 0
+}
+
+KLAX_Los_Angeles {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 34.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 118.30
+  float lon_min 0
+  float lon_sec 0
+}
+
+Soeul {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 37.3
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 122.30
+  float lon_min 0
+  float lon_sec 0
+}
+
+JFK_LGA {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 40.70
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 74.1
+  float lon_min 0
+  float lon_sec 0
+}
+
+Helsinki {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 60.1
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 25.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+St_Petersburg {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 59.6
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 30.3
+  float lon_min 0
+  float lon_sec 0
+}
+
+Moscow {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 55.5
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 37.4
+  float lon_min 0
+  float lon_sec 0
+}
+
+London {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 51.28
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 0.30
+  float lon_min 0
+  float lon_sec 0
+}
+
+Vienna {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 48.20
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 16.30
+  float lon_min 0
+  float lon_sec 0
+}
+
+Frankfurt {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 50.06
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 8.41
+  float lon_min 0
+  float lon_sec 0
+}
+
+Mexico {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 19.3
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 99.1
+  float lon_min 0
+  float lon_sec 0
+}
+
+Houston {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 29.5
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 95.3
+  float lon_min 0
+  float lon_sec 0
+}
+
+Amsterdam {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 52.21
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 4.54
+  float lon_min 0
+  float lon_sec 0
+}
+
+Bogota {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 4.40
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 74.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Rio {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north F
+  logical east F
+  float lat_deg 22.5
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 43.17
+  float lon_min 0
+  float lon_sec 0
+}
+
+Miami {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 25.45
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 80.15
+  float lon_min 0
+  float lon_sec 0
+}
+
+San_Jose {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 9.2
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 85.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Panama {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 8.5
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 79.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+KSAF_Santa_Fe {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 34.88
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 120.44
+  float lon_min 0
+  float lon_sec 0
+}
+
+KSAN_San_Diego {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 37.73
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 122.36
+  float lon_min 0
+  float lon_sec 0
+}
+
+KSAT_San_Antonio {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 29.53
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 98.48
+  float lon_min 0
+  float lon_sec 0
+}
+
+KSMF_Sacremento {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 38.68
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 121.58
+  float lon_min 0
+  float lon_sec 0
+}
+
+KDEN_Denver {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 39.80
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.86
+  float lon_min 0
+  float lon_sec 0
+}
+
+Thul {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 76.57
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 68.78
+  float lon_min 0
+  float lon_sec 0
+}
+
+Reykjavik {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 64.15
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 21.65
+  float lon_min 0
+  float lon_sec 0
+}
+
+LMED_Madrid {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 40.47
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 3.57
+  float lon_min 0
+  float lon_sec 0
+}
+
+MUHA_Havana {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 23.05
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 82.3
+  float lon_min 0
+  float lon_sec 0
+}
+
+Cairo {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 30.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 31.17
+  float lon_min 0
+  float lon_sec 0
+}
+
+Athens {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 38.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 23.38
+  float lon_min 0
+  float lon_sec 0
+}
+
+Bombay {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 18.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 72.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+Calcutta {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 22.32
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 88.22
+  float lon_min 0
+  float lon_sec 0
+}
+
+Delhi {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 22.32
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 88.22
+  float lon_min 0
+  float lon_sec 0
+}
+
+Tehran {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 35.45
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 51.3
+  float lon_min 0
+  float lon_sec 0
+}
+
+Shiraz {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 29.32
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 52.27
+  float lon_min 0
+  float lon_sec 0
+}
+
+Mashhad {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 36.17
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 59.3
+  float lon_min 0
+  float lon_sec 0
+}
+
+Bandar_Abbas {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 27.04
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 56.22
+  float lon_min 0
+  float lon_sec 0
+}
+
+Tabriz {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 38.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 46.13
+  float lon_min 0
+  float lon_sec 0
+}
+
+Baghdad {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 33.14
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 44.22
+  float lon_min 0
+  float lon_sec 0
+}
+
+Al_Basrah {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 30.35
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 47.59
+  float lon_min 0
+  float lon_sec 0
+}
+
+Mosul {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 36.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 42.53
+  float lon_min 0
+  float lon_sec 0
+}
+
+Jerusalem {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 31.45
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 35.14
+  float lon_min 0
+  float lon_sec 0
+}
+
+Tel_Aviv_Yafo {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 32.03
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 34.36
+  float lon_min 0
+  float lon_sec 0
+}
+
+Elat {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 29.34
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 34.57
+  float lon_min 0
+  float lon_sec 0
+}
+
+Amman {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 31.57
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 35.57
+  float lon_min 0
+  float lon_sec 0
+}
+
+Kuwait {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 29.04
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 47.59
+  float lon_min 0
+  float lon_sec 0
+}
+
+Beirut {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 33.53
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 35.3
+  float lon_min 0
+  float lon_sec 0
+}
+
+Karachi {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 24.59
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 68.56
+  float lon_min 0
+  float lon_sec 0
+}
+
+Riyadh {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 24.31
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 46.47
+  float lon_min 0
+  float lon_sec 0
+}
+
+Jiddah {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 21.3
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 39.15
+  float lon_min 0
+  float lon_sec 0
+}
+
+Khartoum {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 15.34
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 32.36
+  float lon_min 0
+  float lon_sec 0
+}
+
+Damascus {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 33.31
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 36.18
+  float lon_min 0
+  float lon_sec 0
+}
+
+Aleppo {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 36.1
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 37.18
+  float lon_min 0
+  float lon_sec 0
+}
+
+Ankara {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 39.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 32.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+Adana {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 37.05
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 35.2
+  float lon_min 0
+  float lon_sec 0
+}
+
+Istanbul {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 41.02
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 29.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Izmir {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 38.25
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 27.05
+  float lon_min 0
+  float lon_sec 0
+}
+
+Sanaa {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 15.17
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 44.05
+  float lon_min 0
+  float lon_sec 0
+}
+
+Tripoli {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 32.5
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 13.13
+  float lon_min 0
+  float lon_sec 0
+}
+
+Tirane {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 41.48
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 19.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+Brussels {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 50.51
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 4.21
+  float lon_min 0
+  float lon_sec 0
+}
+
+Sofiya {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 42.43
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 23.2
+  float lon_min 0
+  float lon_sec 0
+}
+
+Praha {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 50.05
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 14.26
+  float lon_min 0
+  float lon_sec 0
+}
+
+Kobenhavn {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 55.43
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 12.27
+  float lon_min 0
+  float lon_sec 0
+}
+
+Paris {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 48.51
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 2.2
+  float lon_min 0
+  float lon_sec 0
+}
+
+Budapest {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 47.3
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 19.05
+  float lon_min 0
+  float lon_sec 0
+}
+
+Dublin {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 53.2
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 6.15
+  float lon_min 0
+  float lon_sec 0
+}
+
+Rome {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 42.52
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 12.37
+  float lon_min 0
+  float lon_sec 0
+}
+
+Hiroshima {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 34.22
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 132.25
+  float lon_min 0
+  float lon_sec 0
+}
+
+Belfast {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 54.36
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 5.45
+  float lon_min 0
+  float lon_sec 0
+}
+
+Oslo {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 59.56
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 10.41
+  float lon_min 0
+  float lon_sec 0
+}
+
+Cebu {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 10.22
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 123.49
+  float lon_min 0
+  float lon_sec 0
+}
+
+Manila {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 14.37
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 121.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Warsaw {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 52.15
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 21.05
+  float lon_min 0
+  float lon_sec 0
+}
+
+Bucharest {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 44.23
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 26.1
+  float lon_min 0
+  float lon_sec 0
+}
+
+Glasgow {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 55.54
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 4.25
+  float lon_min 0
+  float lon_sec 0
+}
+
+Barcelona {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 41.25
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 2.08
+  float lon_min 0
+  float lon_sec 0
+}
+
+Madrid {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 40.26
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 3.42
+  float lon_min 0
+  float lon_sec 0
+}
+
+Johannesburg {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north F
+  logical east T
+  float lat_deg 26.08
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 27.54
+  float lon_min 0
+  float lon_sec 0
+}
+
+Stockholm {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 59.23
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 18.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Geneva {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 46.14
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 6.04
+  float lon_min 0
+  float lon_sec 0
+}
+
+Zurich {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 47.22
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 8.32
+  float lon_min 0
+  float lon_sec 0
+}
+
+Bangkok {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 13.5
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 100.29
+  float lon_min 0
+  float lon_sec 0
+}
+
+Alma_Ata {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 43.19
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 77.08
+  float lon_min 0
+  float lon_sec 0
+}
+
+Baku {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 40.28
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 49.45
+  float lon_min 0
+  float lon_sec 0
+}
+
+Gorky {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 56.15
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 44.05
+  float lon_min 0
+  float lon_sec 0
+}
+
+Kiyev {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 50.26
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 30.30
+  float lon_min 0
+  float lon_sec 0
+}
+
+Minsk {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 53.54
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 27.35
+  float lon_min 0
+  float lon_sec 0
+}
+
+Rostov {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 57.13
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 39.23
+  float lon_min 0
+  float lon_sec 0
+}
+
+Simferopol {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 44.58
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 34.04
+  float lon_min 0
+  float lon_sec 0
+}
+
+Tbilisi {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 41.4
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 44.45
+  float lon_min 0
+  float lon_sec 0
+}
+
+Yerevan {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 40.1
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 44.3
+  float lon_min 0
+  float lon_sec 0
+}
+
+Volgograd {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 48.4
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 42.2
+  float lon_min 0
+  float lon_sec 0
+}
+
+Donetsk {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 48.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 37.35
+  float lon_min 0
+  float lon_sec 0
+}
+
+Bonn {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 50.44
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 7.06
+  float lon_min 0
+  float lon_sec 0
+}
+
+Stuttgart {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 48.48
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 9.15
+  float lon_min 0
+  float lon_sec 0
+}
+
+Berlin {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 52.31
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 13.28
+  float lon_min 0
+  float lon_sec 0
+}
+
+Hamburg {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east T
+  float lat_deg 53.35
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 10.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Atlanta {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 33.45
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 84.23
+  float lon_min 0
+  float lon_sec 0
+}
+
+Boston {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 42.15
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 71.07
+  float lon_min 0
+  float lon_sec 0
+}
+
+Dallas {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 32.45
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 96.48
+  float lon_min 0
+  float lon_sec 0
+}
+
+JFK_New_York {
+  type AIRPORT_RADAR_LG
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 40.4
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 73.58
+  float lon_min 0
+  float lon_sec 0
+}
+
+New_Orleans {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 30.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 90.05
+  float lon_min 0
+  float lon_sec 0
+}
+
+Philadelphia {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 40.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 75.13
+  float lon_min 0
+  float lon_sec 0
+}
+
+Pittsburgh {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 40.26
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 80.01
+  float lon_min 0
+  float lon_sec 0
+}
+
+Portland {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 45.31
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 122.41
+  float lon_min 0
+  float lon_sec 0
+}
+
+St_Louis {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 43.25
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 84.35
+  float lon_min 0
+  float lon_sec 0
+}
+
+Salt_Lake_City {
+  type AIRPORT_RADAR_SM
+  string system CITY_AIRPORTS
+  string output X 
+  logical north T
+  logical east F
+  float lat_deg 40.45
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 111.52
+  float lon_min 0
+  float lon_sec 0
+}
+
+
+
+ANFPS_124 {
+  float scan_time 6.0
+  float rmin 3.704
+  float rmax 129.64
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed T
+  logical los F
+  float error 5.0;
+  int icon 127
+}
+
+ANFPS_117 {
+  float scan_time 12.0
+  float rmin 9.26
+  float rmax 370.4
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed T
+  logical los F
+  float error 5.0;
+  int icon 127
+}
+
+ANFPS_93A {
+  float scan_time 15.0
+  float rmin 9.26
+  float rmax 425.96
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed T
+  logical los F
+  float error 5.0;
+  int icon 127
+}
+
+ANFPS_27 {
+  float scan_time 15.0
+  float rmin 9.26
+  float rmax 444.48
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed T
+  logical los F
+  float error 5.0;
+  int icon 127
+}
+
+ARSR_3 {
+  float scan_time 12.0
+  float rmin 9.26
+  float rmax 370.4
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed T
+  logical los F
+  float error 5.0;
+  int icon 127
+}
+
+ARSR_4 {
+  float scan_time 1.20
+  float rmin 9.26
+  float rmax 500.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed T
+  logical los F
+  float error 5.0;
+  int icon 127
+}
+
+ANDPS_5 {
+  float scan_time 12.0
+  float rmin 9.26
+  float rmax 280.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed T
+  logical los F
+  float error 5.0;
+  int icon 127
+}
+
+ANTPS_63 {
+  float scan_time 12.0
+  float rmin 9.26
+  float rmax 296.32
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed T
+  logical los F
+  float error 5.0;
+  int icon 127
+}
+
+L_88 {
+  float scan_time 12.0
+  float rmin 9.26
+  float rmax 370.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed T
+  logical los F
+  float error 5.0;
+  int icon 127
+}
+
+OTHB_Radar {
+  float scan_time 40.0
+  float rmin 50.0
+  float rmax 1500.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed T
+  logical los T
+  float error 20.0;
+  int icon 127
+}
+
+AIRPORT_RADAR_SM {
+  float scan_time 20.0
+  float rmin 0.5
+  float rmax 100.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed T
+  logical los F
+  float error 5.0;
+  int icon 127
+}
+
+AIRPORT_RADAR_LG {
+  float scan_time 20.0
+  float rmin 0.5
+  float rmax 200.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed T
+  logical los F
+  float error 5.0;
+  int icon 127
+}

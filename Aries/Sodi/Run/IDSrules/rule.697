@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible Triplesix Worm"; content: "filename=\"666TEST.VBS\""; nocase; reference:MCAFEE,10389; sid:739;  classtype:misc-activity; rev:3;)

@@ -1,0 +1,1279 @@
+; Tue May 06 11:32:27 MDT 2003
+; 
+;+ (version "1.7")
+;+ (build "Build 930")
+
+
+(defclass :CLIPS_TOP_LEVEL_SLOT_CLASS
+	(is-a USER)
+	(role concrete)
+	(single-slot :KEYWORDS
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot NAME
+		(type STRING)
+		(default "New Domain")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot :KEY_CLASSES
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :NUM_INSTANCES
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :SUBJECT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "A hypothesis")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot FUSE_END
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot EVID_LABELS
+		(type STRING)
+		(default "Lat." "Lon." "Alt.")
+		(cardinality 1 3)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Evidence")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EVID_TUNIT
+		(type STRING)
+		(default "Min.")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot :URL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot FUSE_START
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :ORGANIZATION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot LEVEL_NAMES
+		(type STRING)
+		(default "Evidence" "Indicators" "Outcomes")
+		(cardinality 3 6)
+		(create-accessor read-write))
+	(single-slot :MATURITY
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Hypothesis")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot FUSE_TUNIT
+		(type STRING)
+		(default "H")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot FUSE_MODE
+		(type STRING)
+		(default "1")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :THUMBNAIL_FILE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :VERSION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :NUM_CLASSES
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :PROJECT_NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass :SUMMARY
+	(is-a :ANNOTATION)
+	(role concrete)
+	(single-slot :KEYWORDS
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :MATURITY
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :MODIFIER
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :KEY_CLASSES
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :NUM_INSTANCES
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :SUBJECT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot :DOCUMENTATION
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot :NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :CREATION-TIMESTAMP
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :THUMBNAIL_FILE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :VERSION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :URL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :MODIFICATION-TIMESTAMP
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :CREATOR
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :NUM_CLASSES
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :PROJECT_NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :ORGANIZATION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass EBO
+	(is-a USER)
+	(role concrete)
+	(multislot LEVEL_NAMES
+		(type STRING)
+		(default "Assessment Sources" "Targets" "Tactical Task" "Tactical Objectives" "Operational Objectives" "Strategic Objectives")
+		(cardinality 3 6)
+		(create-accessor read-write))
+	(single-slot FUSE_MODE
+		(type STRING)
+		(default "1")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot NAME
+		(type STRING)
+		(default "EBO")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot EVID_TUNIT
+		(type STRING)
+		(default "M")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot FUSE_TUNIT
+		(type STRING)
+		(default "H")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot FUSE_START
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot FUSE_END
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot EVID_LABELS
+		(type STRING)
+		(default "Lat" "Lon" "Alt")
+		(cardinality 1 3)
+		(create-accessor read-write)))
+
+(defclass JSTARS
+	(is-a EBO)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "JSTARS")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "JSTARS has detected something")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Assessment Sources")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass Predator
+	(is-a EBO)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Predator")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "Predator has detected something")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Assessment Sources")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass SA-13
+	(is-a JSTARS Predator)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "SA-13")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "the target is an SA-13")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Targets")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "0.4" "0.6")
+		(create-accessor read-write)))
+
+(defclass Destroy^SA^Sites
+	(is-a SA-13)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Destroy SA Sites")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "you should destroy SA sites")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Tactical Task")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass SU-24MP
+	(is-a Predator)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "SU-24MP")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "the target is an SU-24MP")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Targets")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass Destroy^Fencer^A/C
+	(is-a SU-24MP)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Destroy Fencer A/C")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "you should destroy fencer A/C")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Tactical Task")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass Destroy^Enemy^JADS
+	(is-a Destroy^SA^Sites Destroy^Fencer^A/C)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Destroy Enemy JADS")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "you should destroy enemy IADS")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Tactical Objectives")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "0.5" "0.5")
+		(create-accessor read-write)))
+
+(defclass Gain^Air^Superiority
+	(is-a Destroy^Enemy^JADS)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Gain Air Superiority")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "you should gain air superiority")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Operational Objectives")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass Effect^Enemy^Forces
+	(is-a Gain^Air^Superiority)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Effect Enemy Forces")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "eject enemy forces")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Strategic Objectives")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass Destroy^Mobile^Targets
+	(is-a Destroy^Fencer^A/C)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Destroy Mobile Targets")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "you should destroy mobile targets")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Tactical Objectives")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass SAR
+	(is-a EBO)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "SAR")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "SAR has detected something")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Assessment Sources")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass Scud-B^Site
+	(is-a SAR)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Scud-B Site")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "the target is a Scud-B")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Targets")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass Destroy^Launch^Sites
+	(is-a Scud-B^Site)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Destroy Launch Sites")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "you should destroy launch sites")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Tactical Task")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass Open^Source
+	(is-a EBO)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Open Source")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "open source has detected something")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Assessment Sources")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass Chemical^Plant
+	(is-a SAR Open^Source)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Chemical Plant")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "the target is a chemical plant")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Targets")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "0.9" "0.1")
+		(create-accessor read-write)))
+
+(defclass Destroy^Factorys
+	(is-a Chemical^Plant)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Destroy Factorys")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "you should destroy factories")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Tactical Task")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass RC-135
+	(is-a EBO)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "RC-135")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "RC-135 has detected something")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Assessment Sources")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass C2^Site
+	(is-a Open^Source RC-135)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "C2 Site")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "the target is a C2 site")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Targets")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "0.2" "0.8")
+		(create-accessor read-write)))
+
+(defclass PAC3
+	(is-a EBO)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "PAC3")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "PAC-3 has detected something")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Assessment Sources")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass Taepo^Dong
+	(is-a PAC3)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Taepo Dong")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "the target is a Taepo Dong")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Targets")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass Kill^Taepo^Dongs
+	(is-a C2^Site Taepo^Dong)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Kill Taepo Dongs")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "you should kill Taepo Dong missiles")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Tactical Task")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "0.3" "0.7")
+		(create-accessor read-write)))
+
+(defclass Destroy^Missiles
+	(is-a Destroy^Launch^Sites Destroy^Factorys Kill^Taepo^Dongs)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Destroy Missiles")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "you should destroy missiles")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Tactical Objectives")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "0.4" "0.4" "0.2")
+		(create-accessor read-write)))
+
+(defclass Destroy^WMD^Delivery
+	(is-a Destroy^Mobile^Targets Destroy^Missiles)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Destroy WMD Delivery")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "you should destroy WDM delivery means")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Operational Objectives")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "0.4" "0.6")
+		(create-accessor read-write)))
+
+(defclass Minimize^WMD^Threat
+	(is-a Destroy^WMD^Delivery)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Minimize WMD Threat")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot EXPLAIN
+		(type STRING)
+		(default "minimize the WDM threat")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Strategic Objectives")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 110 (msg:"EXPLOIT qpopper overflow";flags: A+; content:"|E8 D9FF FFFF|/bin/sh"; reference:bugtraq,830; reference:cve,CAN-1999-0822; classtype:attempted-admin; sid:290; rev:2;)

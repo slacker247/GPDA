@@ -1,0 +1,15 @@
+parameters {
+  string command_center NORAD_COMMAND_CENTER
+  float start_time 58000.0
+  float tend 63000.0
+  float cycle_time 60.0
+  int cpu_time 0
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}

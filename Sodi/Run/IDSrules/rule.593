@@ -1,0 +1,1 @@
+alert ip $EXTERNAL_NET any -> $HOME_NET any (msg:"SHELLCODE hpux NOOP"; content:"|0b39 0280 0b39 0280 0b39 0280 0b39 0280|";reference:arachnids,359; classtype:shellcode-detect; sid:643; rev:2;)

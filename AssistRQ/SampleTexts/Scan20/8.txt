@@ -1,0 +1,83 @@
+1.  What is a NOP slide (sled), and how is this one different from the NOP slide in the rpc.statd exploit in Scan10?
+
+ANSWER?
+A NOP sled is a buffer overrun technique in which the attacker can't control where the return address on the stack due to operating system memory restrictions.  The answer is to overfill the stack with single-byte NOP instructions that preceed the attack code.  The idea is to make a generic guess as to where the return address on the stack points, then fill the stack upto that guess with NOP instructions.  These NOP instrutcions will execute one at a time until the Intruction Pointer reaches the attack code.  The NOP sled in the Scan10 uses this method.  In scan20, the attacker replaces NOP with a series of simple ADDs and SUBTRACTs.  I assume this is to evade IDS signatures based on NOPs.  
+
+
+**************************************************************************************************************
+2.  The attack was on 08 Jan, 2002. Would Snort have generated an alert then for the attack? 
+
+ANSWER:
+Yes, with a Shellcode sparc NOOP alert
+
+DETAIL:
+The snort signature for this exploit logically came out after or around the same time as the CERT advisory, however the exploit can be detected using the old SHELLCODE sparc NOOP signature.  The rest of the exploit needs to be decoded by hand.
+
+
+**************************************************************************************************************
+3.  In the exploit code, the command "/bin/sh sh -i" is given, what is its purpose, and why is 'sh' shown twice? 
+
+ANSWER:
+The entire command establishes "/bin/sh" as a daemon bound to port 1524.  The daemon opens an interactive shell with "sh -i"
+
+DETAIL:
+The exploit runs another session of inetd with a conf file that is removed 10 seconds later.  This makes the exploit difficult to detect without a network NIDS and does not allow for a permanent backdoor.  The conf file that is created has only one entry that binds a daemon "/bin/sh" to the ingreslock port (1524) and executes an interactive shell when a connection is made.  
+
+
+**************************************************************************************************************
+4.  The attacker executed a variety of commands on the hacked Solaris box. Which commands were automated by the exploit, which commands were manual by the attacker himself? 
+
+ANSWER:
+Exploit appears primarily automated.  I believe first command typed by the user was "w."  The rest of the exploit appears to be a user attempting to set a permanent backdoor.  
+
+DETAIL:
+The errors in the ftp part of the exploit suggest either a shoddy script or manual entry.  Looking at the efficiency of the rest of the script, I suppose that the latter is probably true.  Why would an automated exploit script call "ls" if it already knew what it was downloading?
+
+
+**************************************************************************************************************
+5.  What is sun1, and how does it work? 
+
+ANSWER:
+A hacked remote login daemon?  Not much more information was gathered about that.
+
+
+**************************************************************************************************************
+6.  What did you learn from this exercise? 
+
+ANSWER:
+That the exploit code is extremely efficient and difficult to trace, unless the user is stupid enough to try and setup their own backdoor.  Fortunately snort signatures can now track the exploit code.
+
+
+**************************************************************************************************************	
+7.  How long did this challenge take you?
+
+ANSWER:
+About 2 hours, give or take 2 days.
+
+
+**************************************************************************************************************
+BONUS
+
+One of the commands executed during the attack is 
+echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'` 
+
+What is the purpose of this command and what does 'BD' stand for? 
+
+ANSWER:
+It lists the PID of the hacked inetd configuration.
+BD PID(s) == Backdoor Process IDs
+
+
+*************************************************************************************************************
+TOOLS USED:
+	snort with will signatures and with select signatures disabled.
+	Ethereal TCP stream reassembler
+	THe Internet
+	My Damn Head...
+
+
+
+Justin Mitzimberg
+Information Security Analyst
+Yamanouchi Consumer, Inc.
+jmitzimberg@yci.com

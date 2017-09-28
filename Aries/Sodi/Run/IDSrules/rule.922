@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION db connections flush attempt";flags: A+; content:"CFUSION_DBCONNECTIONS_FLUSH()"; nocase; reference:bugtraq,550; classtype:web-application-attack; sid:917; rev:2;)

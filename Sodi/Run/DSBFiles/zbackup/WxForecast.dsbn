@@ -1,0 +1,74 @@
+# Tree height, Name, Discrete, Start time, End time, Time unit
+3  Terrestrial_Weather  1  0.0  24.0  H
+
+6     Evidence_Sources
+  Good_Visibility    the_visibility_is_good
+  No_Winds           the_wind_is_calm
+  No_Precip          rain_is_not_a_problem
+  No_Thermal_Xover   lightening_is_not_a_problem
+  Illumination_OK    no_disaster
+  No_Clouds          clouds_are_not_a_problem
+
+4     Hypothesis
+  Optical_Sensor          Vis/IR_sensors_are_operative
+  Target_Viable           enemy_targets_are_engageable
+  Optical_Weapon          weapon_systems_are_capable
+  Constraints_Satisfied   flight_constraints_are_satisfied
+
+3     Assessments
+  Mission_"Go"          you_should_deploy_a_mission                  0.75  100.0
+  Aircraft_Route_OK     you_should_delay_the_mission_thirty_minutes  0.75  100.0
+  Satisfactory_Optical  you_should_scrub_the_mission                 0.75  100.0
+
+true    B and D matrices are listed separately
+#B   E0      E1      E2      E3      E4      E5
+   0.800   0.500   0.800   0.900   0.900   0.600   -- H0
+
+   0.600   0.500   0.550   0.550   0.900   0.500   -- H1
+
+   0.600   0.800   0.600   0.600   0.900   0.600   -- H2
+
+   0.700   0.650   0.700   0.700   0.950   0.700   -- H3
+
+
+#D   E0      E1      E2      E3      E4      E5
+   0.800   0.500   0.800   0.900   0.900   0.600   -- H0
+
+   0.600   0.500   0.550   0.550   0.900   0.500   -- H1
+
+   0.600   0.800   0.600   0.600   0.900   0.600   -- H2
+
+   0.700   0.650   0.700   0.700   0.950   0.700   -- H3
+
+
+#B   H0      H1      H2      H3
+   0.700   0.700   0.700   0.700   -- A0
+
+   0.500   0.500   0.500   0.500   -- A1
+
+   0.150   0.150   0.150   0.150   -- A2
+
+
+#D   H0      H1      H2      H3
+   0.150   0.150   0.150   0.150   -- A0
+
+   0.500   0.500   0.500   0.500   -- A1
+
+   0.700   0.700   0.700   0.700   -- A2
+
+
+9  Possibilities
+0.00  0.00  impossible
+0.01  0.05  extremely_unlikely
+0.05  0.20  very_low_chance
+0.20  0.38  small_chance
+0.38  0.60  may
+0.60  0.79  meaningful_chance
+0.79  0.95  most_likely
+0.95  0.99  extremely_likely
+1.00  1.00  certain
+
+#  Evidence labels follow. Must be 3, each < 4 chars
+Lat      Lon      Source
+#  Default time units follow. Must be: Sec, Min, Hour, or Days
+Min

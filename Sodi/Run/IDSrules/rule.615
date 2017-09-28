@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP sendmail 8.6.10 exploit"; flags: A+; content:"Croot|0d0a|Mprog, P=/bin/"; reference:arachnids,123; classtype:attempted-user; sid:667; rev:1;)

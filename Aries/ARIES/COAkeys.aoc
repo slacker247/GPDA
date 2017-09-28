@@ -1,0 +1,151 @@
+    3
+#                  +-- Weighting (0=Low, 1=Med, 2=High, 3=Weight, 4=MustHave, 5=Not)
+#                  |    +-- Weight
+#                  |    |     +-- Constraint count
+#                  |    |     |    +-- Synonym count
+#                  |    |     |    |    +-- Indice enabled
+#                  |    |     |    |    |
+Strategy           4
+Mission            9  
+NMD                3  -1.0    9    0    0
+ GBI_Reserve
+ Follow-on_Threat
+ Lethality_Threshold
+ Always_Salvo
+ NWE_Avoidance
+ BMC2_Chooses
+ KV_Chooses
+ SBIRS-based
+ User
+ITWAA              3  -1.0    0    0    0
+TAMD               3  -1.0    0    0    0
+I/O                3  -1.0    0    0    0
+Nuclear            3  -1.0    8    0    0
+ Target_List
+ Fratricide
+ Avoid_NUDET
+ Priorities
+ Timelines
+ Interoperation
+ C4I_Linkages
+ User
+Air                3  -1.0    0    0    0
+Surface            3   1.0    0    0    1
+Air_Superiority    3   1.0    0    0    1
+User               3  -1.0    0    0    0
+#
+Effects            1
+Decapitate         3  -1.0    0    0    0
+#
+Objectives        15
+Deter              3  -1.0    0    0    0
+Destroy            3  -1.0    0    0    0
+Degrade            3  -1.0    0    0    0
+Protect            3  -1.0    0    0    0
+Prevent            3  -1.0    0    0    0
+Deny               3  -1.0    0    0    0
+Deploy             3  -1.0    0    0    0
+Retaliate          3  -1.0    0    0    0
+De-escal           3  -1.0    0    0    0
+Assist             3  -1.0    0    0    1
+Peacekeeping       3  -1.0    0    0    1
+Deceive            3  -1.0    0    0    0
+Coordinate         3  -1.0    0    0    1
+Plan               3  -1.0    0    0    1
+Show-of-Force      3  -1.0    0    0    1
+#
+Emphasis          13
+Detailed           3  -1.0    0    0    0
+Annexes            3  -1.0    0    0    0
+NMD                3  -1.0    0    0    0
+Logistics          3  -1.0    4    0    1
+ Inadequate
+ Lift_Modes
+ Priority
+ Short_supply
+Nominal            3  -1.0    0    0    0
+Nuclear            3  -1.0    0    0    0
+ITWAA              3  -1.0    0    0    0
+Intel              3  -1.0    0    0    1
+Comm               3  -1.0    0    0    1
+Humanitarian       3  -1.0    0    0    1
+Public_Affairs     5  -1.0    0    0    1
+Documented         3  -1.0    0    0    1
+User               3  -1.0    0    0    0
+#
+Threat             4
+Characteristics    6
+Strategic          3  -1.0    0    0    0
+Theater            3  -1.0    0    0    0
+Accidental         3  -1.0    0    0    1
+Regional           3   1.0    0    0    1
+Rogue              3  0.5    0    0    1
+Irrational         3  0.2    0    0    1
+#
+Nation/State       8
+Russia             3  -1.0    0    0    0
+DPRK               3  -1.0    0    0    1
+Iraq               3  -1.0    0    0    0
+China              3  -1.0    0    0    1
+Iran               3  -1.0    0    0    0
+Syria              3  -1.0    0    0    0
+Unknown            3  -1.0    0    0    0
+User               3  -1.0    0    0    0
+#
+Enemy_Weapons      7
+Nuclear            3  -1.0    0    0    0
+Chemical           3  -1.0    0    0    0
+Biological         3  -1.0    0    0    0
+Conventional       3   1.0    0    0    1
+Enemy_Comm         3  -1.0    0    0    1
+Propaganda         3  -1.0    0    0    1
+User               3  -1.0    0    0    0
+#
+Enemy_Platforms    7
+Land               3  -1.0    0    0    1
+Sea                3  -1.0    0    0    0
+Sams               3  -1.0    0    0    0
+Ballistic          3  -1.0    0    0    0
+Computer           3  -1.0    0    0    0
+Al-Qaeda           3  -1.0    0    0    0
+User               3  -1.0    0    0    0
+#
+Assets             4
+Defended_Areas     8
+CONUS              3  -1.0    0    0    0
+Region             3  -1.0    0    0    0
+Allies             3   1.0    0    0    1
+Info               3  -1.0    0    0    1
+Space              3  -1.0    0    0    0
+Links              3  -1.0    0    0    1
+Capabilities       3  -1.0    0    0    1
+Survivability      3  -1.0    0    0    0
+#
+Sensors            4
+SBIRS              3  -1.0    0    0    0
+NBC                3  -1.0    0    0    0
+UEWRS              3  -1.0    0    0    0
+User               3  -1.0    0    0    0
+#
+Weapon_Classes     8
+Nuclear            3  -1.0    0    0    0
+Laser              3  -1.0    0    0    0
+HPM                3  -1.0    0    0    0
+Conventional       3   1.0    0    0    1
+Iow                3  -1.0    0    0    1
+Propaganda         3  -1.0    0    0    1
+GBI                3  -1.0    0    0    0
+EW/IO              3  -1.0    0    0    0
+#
+Weapon_Platforms   10
+Land               3  -1.0    0    0    1
+Sea                3  -1.0    0    0    1
+Fighters           3  -1.0    0    0    1
+Bomberes
+Space              3  -1.0    0    0    0
+Ballistic          3  -1.0    0    0    0
+Computer           3  -1.0    0    0    0
+Network            3  -1.0    0    0    1
+Non-Specific       3  -1.0    0    0    0
+User               3  -1.0    0    0    0
+[EOF]

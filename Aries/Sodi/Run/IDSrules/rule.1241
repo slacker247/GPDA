@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC SWEditServlet access"; uricontent:"/SWEditServlet"; flags:A+; classtype:attempted-recon; sid:1259; rev:1;)

@@ -1,0 +1,24 @@
+TARGET = cloudl
+ARCH   = Linux
+
+CC	= gcc
+
+CFLAGS  = -g -I../include -I/usr/local/include -I/usr/X11/include \
+        -I/usr/local/Mesa-2.3/widgets-mesa/include -I$(HOME)/include -I$(HOME)/OpenGL/include
+
+LDFLAGS = -L/usr/local/lib/f90 -lf90 -L$(HOME)/lib \
+          -lm -lXm -lXt -lX11 -lXext -lXmu -lGLU -lGL -lGLw -L/usr/X11/lib \
+          -L/usr/local/Mesa-2.3/widgets-mesa/src -lGLw \
+          -L$(HOME)/lib -lXfwf -lXc -lXpm -ltk
+
+OBJS	= $(TARGET).o texture.o
+
+$(TARGET): $(TARGET).c
+	$(CC) -g -o $(TARGET) $(CFLAGS) $(TARGET).c texture.c \
+	-L$(HOME)/OpenGL/lib -lglut -lGLU -lGL -lGLw \
+	-L$(HOME)/LessTif/lib -lXm \
+	-L/usr/X11/lib -lXt -lX11 -lXext -lXmu \
+	-lm
+	@echo "--------------- $(TARGET) All Done --------------"
+	@echo "---------- For architecture $(ARCH) -----------"
+

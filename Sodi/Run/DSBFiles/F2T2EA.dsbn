@@ -1,0 +1,74 @@
+# Tree height, Name, DS_isContinuous, Start time, End time, Time unit
+3  F2T2EA  0  0.0  0.0  M
+
+6     Platform
+  JSTARS     JSTARS_has_detected_something        0.75  6.00
+  Predator   Predator_has_detected_something      0.75  6.00
+  U-2        SAR_has_detected_something           0.75  6.00
+  AOC_TCT    open_source_has_detected_something   0.75  6.00
+  F-16       pilot_has_detected_something         0.75  6.00
+  CNN        pilot_has_detected_something         0.75  6.00
+
+6     F2T2EA_Progress
+  Find    the_target_has_been_found               0.75  6.00
+  Fix      the_target_is_fixed                    0.75  6.00
+  Track     the_target_is_being_tracked           0.75  6.00
+  Target    target_is_complete                    0.75  6.00
+  Execute    execution_is_complete                0.75  6.00
+  Assess    assessment_is_complete                0.75  6.00
+
+3     Results
+  Emerging_Target    you_should_prevent_a_ground_attack       0.75  6.00
+  Engageable_Target       you_should_prevent_an_air_attack    0.75  6.00
+  Neutralized_Target       you_should_prevent_an_air_attack   0.75  6.00
+
+
+false   B and D matrices are listed separately
+# E0     E1     E2     E3     E4      E5    H0_0   H0_1   H0_2   H0_3   H0_4   H0_5    A_0    A_1    A_2
+#----   ----   ----   ----   ----    ----   ----   ----   ----   ----   ----   ----   ----   ----   ----
+0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+
+0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+
+0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+
+0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+
+0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+
+0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+
+0.500  0.500  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+
+0.000  1.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+
+0.000  0.700  0.700  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+
+0.000  0.000  0.000  1.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+
+0.000  0.000  0.000  0.000  1.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+
+0.000  0.000  0.000  0.000  0.900  0.700  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+
+0.000  0.000  0.000  0.000  0.000  0.000  0.900  0.700  0.500  0.000  0.000  0.000  0.000  0.000  0.000
+
+0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.800  0.800  0.000  0.000  0.000  0.000  0.000
+
+0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.600  1.000  0.000  0.000  0.000
+
+
+9  Possibilities
+0.00  0.00  impossible
+0.00  0.05  extremely_unlikely
+0.05  0.20  very_low_chance
+0.20  0.38  small_chance
+0.38  0.60  may
+0.60  0.79  meaningful_chance
+0.79  0.95  most_likely
+0.95  0.99  extremely_likely
+0.99  1.00  certain
+
+#  Evidence labels follow. Must be 3, each < 4 chars
+Lat      Lon      Alt
+#  Default time units follow. Must be: Sec, Min, Hour, or Days
+Min

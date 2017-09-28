@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS perl execution attempt"; flags:A+; content:"perl%20";nocase; sid:1356; rev:1; classtype:web-application-attack;)

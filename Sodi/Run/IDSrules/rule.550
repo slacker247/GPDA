@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 513 (msg:"RSERVICES rsh login failure";flags: A+; content:"login incorrect"; reference:arachnids,393; classtype:unsuccessful-user; sid:605; rev:1;)

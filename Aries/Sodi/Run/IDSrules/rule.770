@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS chgrp command attempt"; flags:A+; content:"/usr/bin/chgrp";nocase; sid:1337; rev:1; classtype:web-application-attack;)

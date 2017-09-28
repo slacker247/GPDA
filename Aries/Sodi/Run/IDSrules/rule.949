@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE contents.htm access";flags: A+; uricontent:"/admcgi/contents.htm"; nocase; classtype:web-application-activity; sid:941; rev:2;)

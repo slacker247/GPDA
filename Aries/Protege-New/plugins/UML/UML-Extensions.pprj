@@ -1,0 +1,1541 @@
+; Mon Apr 21 10:40:55 PDT 2003
+; 
+;+ (version "1.8")
+;+ (build "Build 1029")
+
+([BROWSER_SLOT_NAMES] of Property_List
+	(properties
+		[UML-Extensions_ProjectKB_00809]
+		[UML-Extensions_ProjectKB_00810]
+		[UML-Extensions_ProjectKB_00811]
+		[UML-Extensions_ProjectKB_00812]
+		[UML-Extensions_ProjectKB_00813]))
+
+([CLSES_TAB] of Widget
+	(widget_class_name "edu.stanford.smi.protege.widget.ClsesTab")
+	(label "Classes")
+	(property_list [ProjectKB_9231_00005]))
+
+([FORMS_TAB] of Widget
+	(widget_class_name "edu.stanford.smi.protege.widget.FormsTab")
+	(label "Forms")
+	(property_list [ProjectKB_9231_00035]))
+
+([INSTANCE_ANNOTATION_FORM_WIDGET] of Widget
+	(name ":INSTANCE-ANNOTATION")
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(property_list [UML-Extensions_ProjectKB_00432])
+	(width 603)
+	(x 0)
+	(height 476)
+	(is_hidden FALSE)
+	(y 0))
+
+([INSTANCES_TAB] of Widget
+	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab")
+	(label "Instances")
+	(property_list [ProjectKB_9231_00038]))
+
+([PAL_FORM_WIDGET] of Widget
+	(name ":PAL-CONSTRAINT")
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(property_list [UML-Extensions_ProjectKB_00437])
+	(width 603)
+	(x 0)
+	(height 476)
+	(is_hidden FALSE)
+	(y 0))
+
+([PROJECT] of Project
+	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(sources [SOURCES])
+	(next_frame_number 33)
+	(tabs
+		[CLSES_TAB]
+		[SLOTS_TAB]
+		[FORMS_TAB]
+		[INSTANCES_TAB]
+		[ProjectKB_9231_00001]
+		[ProjectKB_9231_00003])
+	(browser_slot_names [BROWSER_SLOT_NAMES])
+	(customized_instance_widgets
+		[UML-Extensions_ProjectKB_00479]
+		[UMLMethods_ProjectKB_00366]
+		[INSTANCE_ANNOTATION_FORM_WIDGET]
+		[STANDARD_FACET_FORM_WIDGET]
+		[UMLMethods_ProjectKB_00403]
+		[UMLMethods_ProjectKB_00002]
+		[STANDARD_SLOT_FORM_WIDGET]
+		[PAL_FORM_WIDGET]
+		[STANDARD_CLASS_FORM_WIDGET]
+		[UML-Extensions_ProjectKB_00505])
+	(default_facet_metaclass ":STANDARD-FACET")
+	(default_slot_metaclass ":UML-SLOT")
+	(default_cls_metaclass ":STANDARD-CLASS")
+	(options [ProjectKB_9231_00006]))
+
+([ProjectKB_9231_00000] of String
+	(name "factory_class_name")
+	(string_value "edu.stanford.smi.protege.storage.clips.ClipsKnowledgeBaseFactory"))
+
+([ProjectKB_9231_00001] of Widget
+	(widget_class_name "edu.stanford.smi.protege.widget.ClsesAndInstancesTab")
+	(property_list [ProjectKB_9231_00002])
+	(is_hidden TRUE))
+
+([ProjectKB_9231_00002] of Property_List)
+
+([ProjectKB_9231_00003] of Widget
+	(widget_class_name "edu.stanford.smi.protege.widget.KAToolTab")
+	(property_list [ProjectKB_9231_00004])
+	(is_hidden TRUE))
+
+([ProjectKB_9231_00004] of Property_List)
+
+([ProjectKB_9231_00005] of Property_List
+	(properties
+		[UMLMethods_ProjectKB_00100]
+		[UMLMethods_ProjectKB_00101]))
+
+([ProjectKB_9231_00006] of Options
+	(display_multi_parent_class_icon TRUE)
+	(is_readonly FALSE)
+	(update_modification_slots FALSE)
+	(confirm_on_remove FALSE)
+	(display_hidden_classes TRUE)
+	(display_abstract_class_icon TRUE))
+
+([ProjectKB_9231_00023] of Property_List
+	(properties
+		[UMLMethods_ProjectKB_00102]
+		[UMLMethods_ProjectKB_00103]))
+
+([ProjectKB_9231_00035] of Property_List
+	(properties [UMLMethods_ProjectKB_00104]))
+
+([ProjectKB_9231_00038] of Property_List
+	(properties
+		[UMLMethods_ProjectKB_00105]
+		[UMLMethods_ProjectKB_00106]))
+
+([ProjectKB_9231_00098] of String
+	(name "classes_file_name")
+	(string_value "UML-Extensions.pont"))
+
+([ProjectKB_9231_00099] of String
+	(name "instances_file_name")
+	(string_value "UML-Extensions.pins"))
+
+([SLOTS_TAB] of Widget
+	(widget_class_name "edu.stanford.smi.protege.widget.SlotsTab")
+	(label "Slots")
+	(property_list [ProjectKB_9231_00023]))
+
+([SOURCES] of Property_List
+	(properties
+		[ProjectKB_9231_00000]
+		[ProjectKB_9231_00098]
+		[ProjectKB_9231_00099]))
+
+([STANDARD_CLASS_FORM_WIDGET] of Widget
+	(name ":STANDARD-CLASS")
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(property_list [UML-Extensions_ProjectKB_00101])
+	(width 867)
+	(x 0)
+	(height 618)
+	(y 0))
+
+([STANDARD_FACET_FORM_WIDGET] of Widget
+	(name ":STANDARD-FACET")
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(property_list [UML-Extensions_ProjectKB_00428]))
+
+([STANDARD_SLOT_FORM_WIDGET] of Widget
+	(name ":STANDARD-SLOT")
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(property_list [UML-Extensions_ProjectKB_00412]))
+
+([UML-Extensions_ProjectKB_00101] of Property_List
+	(name "class widget properties")
+	(properties
+		[UML-Extensions_ProjectKB_00201]
+		[UML-Extensions_ProjectKB_00202]
+		[UML-Extensions_ProjectKB_00304]
+		[UML-Extensions_ProjectKB_00404]
+		[UML-Extensions_ProjectKB_00405]
+		[UML-Extensions_ProjectKB_00406]
+		[UML-Extensions_ProjectKB_00407]
+		[UML-Extensions_ProjectKB_00408]
+		[UML-Extensions_ProjectKB_00409]
+		[UML-Extensions_ProjectKB_00410]))
+
+([UML-Extensions_ProjectKB_00201] of Widget
+	(name ":SLOT-CONSTRAINTS")
+	(widget_class_name "edu.stanford.smi.protege.widget.ConstraintsWidget")
+	(label "Constraints")
+	(property_list [UML-Extensions_ProjectKB_00442])
+	(width 200)
+	(x 400)
+	(height 120)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00202] of Widget
+	(name ":DIRECT-INSTANCES"))
+
+([UML-Extensions_ProjectKB_00242] of Widget
+	(widget_class_name "TGViztab.TGVizTab")
+	(property_list [UML-Extensions_ProjectKB_00243])
+	(is_hidden TRUE))
+
+([UML-Extensions_ProjectKB_00243] of Property_List)
+
+([UML-Extensions_ProjectKB_00244] of Widget
+	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalQueriesTab")
+	(property_list [UML-Extensions_ProjectKB_00245])
+	(is_hidden TRUE))
+
+([UML-Extensions_ProjectKB_00245] of Property_List)
+
+([UML-Extensions_ProjectKB_00246] of Widget
+	(widget_class_name "ezpal.EZPalTab")
+	(property_list [UML-Extensions_ProjectKB_00247])
+	(is_hidden TRUE))
+
+([UML-Extensions_ProjectKB_00247] of Property_List)
+
+([UML-Extensions_ProjectKB_00248] of Widget
+	(widget_class_name "edu.stanford.smi.protegex.queries_tab.QueriesTab")
+	(property_list [UML-Extensions_ProjectKB_00249])
+	(is_hidden TRUE))
+
+([UML-Extensions_ProjectKB_00249] of Property_List)
+
+([UML-Extensions_ProjectKB_00250] of Widget
+	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalConstraintsTab")
+	(property_list [UML-Extensions_ProjectKB_00251])
+	(is_hidden TRUE))
+
+([UML-Extensions_ProjectKB_00251] of Property_List)
+
+([UML-Extensions_ProjectKB_00303] of Widget
+	(name ":UML-STEREOTYPE")
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(label "UML Stereotype (optional)")
+	(property_list [UML-Extensions_ProjectKB_00403])
+	(width 250)
+	(x 0)
+	(height 60)
+	(is_hidden FALSE)
+	(y 390))
+
+([UML-Extensions_ProjectKB_00304] of Widget
+	(name ":DIRECT-SUBCLASSES"))
+
+([UML-Extensions_ProjectKB_00403] of Property_List)
+
+([UML-Extensions_ProjectKB_00404] of Widget
+	(name ":DIRECT-SUPERCLASSES"))
+
+([UML-Extensions_ProjectKB_00405] of Widget
+	(name ":DOCUMENTATION")
+	(widget_class_name "edu.stanford.smi.protege.widget.DocumentationWidget")
+	(label "Documentation")
+	(width 200)
+	(x 200)
+	(height 120)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00406] of Widget
+	(name ":NAME")
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceNameWidget")
+	(label "Name")
+	(width 200)
+	(x 0)
+	(height 60)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00407] of Widget
+	(name ":ROLE")
+	(widget_class_name "edu.stanford.smi.protege.widget.RoleWidget")
+	(label "Role")
+	(width 200)
+	(x 0)
+	(height 60)
+	(y 60))
+
+([UML-Extensions_ProjectKB_00408] of Widget
+	(name ":DIRECT-TYPE"))
+
+([UML-Extensions_ProjectKB_00409] of Widget
+	(name ":DIRECT-TEMPLATE-SLOTS")
+	(widget_class_name "edu.stanford.smi.protege.widget.TemplateSlotsWidget")
+	(label "Template Slots")
+	(property_list [UML-Extensions_ProjectKB_00449])
+	(width 600)
+	(x 0)
+	(height 150)
+	(y 120))
+
+([UML-Extensions_ProjectKB_00410] of Property_List
+	(name "layout properties")
+	(properties [UML-Extensions_ProjectKB_00411]))
+
+([UML-Extensions_ProjectKB_00411] of String
+	(name "vertical_stretcher")
+	(string_value ":DIRECT-TEMPLATE-SLOTS"))
+
+([UML-Extensions_ProjectKB_00412] of Property_List
+	(name "slot widget properties")
+	(properties
+		[UML-Extensions_ProjectKB_00413]
+		[UML-Extensions_ProjectKB_00414]
+		[UML-Extensions_ProjectKB_00415]
+		[UML-Extensions_ProjectKB_00416]
+		[UML-Extensions_ProjectKB_00417]
+		[UML-Extensions_ProjectKB_00418]
+		[UML-Extensions_ProjectKB_00419]
+		[UML-Extensions_ProjectKB_00420]
+		[UML-Extensions_ProjectKB_00421]
+		[UML-Extensions_ProjectKB_00422]
+		[UML-Extensions_ProjectKB_00423]
+		[UML-Extensions_ProjectKB_00424]
+		[UML-Extensions_ProjectKB_00425]
+		[UML-Extensions_ProjectKB_00426]
+		[UML-Extensions_ProjectKB_00427]
+		[UML-Extensions_ProjectKB_00468]))
+
+([UML-Extensions_ProjectKB_00413] of Widget
+	(name ":SLOT-MINIMUM-CARDINALITY")
+	(widget_class_name "edu.stanford.smi.protege.widget.MinimumCardinalityWidget")
+	(label "Cardinality")
+	(width 200)
+	(x 200)
+	(height 60)
+	(y 120))
+
+([UML-Extensions_ProjectKB_00414] of Widget
+	(name ":SLOT-MAXIMUM-CARDINALITY")
+	(widget_class_name "edu.stanford.smi.protege.widget.MaximumCardinalityWidget")
+	(width 200)
+	(x 200)
+	(height 35)
+	(y 175))
+
+([UML-Extensions_ProjectKB_00415] of Widget
+	(name ":SLOT-CONSTRAINTS"))
+
+([UML-Extensions_ProjectKB_00416] of Widget
+	(name ":DIRECT-TYPE"))
+
+([UML-Extensions_ProjectKB_00417] of Widget
+	(name ":SLOT-VALUES")
+	(widget_class_name "edu.stanford.smi.protege.widget.SlotValuesWidget")
+	(label "Template Values")
+	(property_list [UML-Extensions_ProjectKB_00458])
+	(width 200)
+	(x 400)
+	(height 120)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00418] of Widget
+	(name ":DIRECT-SUPERSLOTS"))
+
+([UML-Extensions_ProjectKB_00419] of Widget
+	(name ":DIRECT-SUBSLOTS"))
+
+([UML-Extensions_ProjectKB_00420] of Widget
+	(name ":SLOT-DEFAULTS")
+	(widget_class_name "edu.stanford.smi.protege.widget.DefaultValuesWidget")
+	(label "Default")
+	(property_list [UML-Extensions_ProjectKB_00463])
+	(width 200)
+	(x 400)
+	(height 150)
+	(y 120))
+
+([UML-Extensions_ProjectKB_00421] of Widget
+	(name ":DOCUMENTATION")
+	(widget_class_name "edu.stanford.smi.protege.widget.DocumentationWidget")
+	(label "Documentation")
+	(width 200)
+	(x 200)
+	(height 120)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00422] of Widget
+	(name ":SLOT-NUMERIC-MAXIMUM")
+	(widget_class_name "edu.stanford.smi.protege.widget.NumericMaximumWidget")
+	(label "Maximum")
+	(width 100)
+	(x 100)
+	(height 60)
+	(y 210))
+
+([UML-Extensions_ProjectKB_00423] of Widget
+	(name ":SLOT-NUMERIC-MINIMUM")
+	(widget_class_name "edu.stanford.smi.protege.widget.NumericMinimumWidget")
+	(label "Minimum")
+	(width 100)
+	(x 0)
+	(height 60)
+	(y 210))
+
+([UML-Extensions_ProjectKB_00424] of Widget
+	(name ":ASSOCIATED-FACET"))
+
+([UML-Extensions_ProjectKB_00425] of Widget
+	(name ":NAME")
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceNameWidget")
+	(label "Name")
+	(width 200)
+	(x 0)
+	(height 60)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00426] of Widget
+	(name ":SLOT-INVERSE")
+	(widget_class_name "edu.stanford.smi.protege.widget.InverseSlotWidget")
+	(label "Inverse Slot")
+	(width 200)
+	(x 200)
+	(height 60)
+	(y 210))
+
+([UML-Extensions_ProjectKB_00427] of Widget
+	(name ":SLOT-VALUE-TYPE")
+	(widget_class_name "edu.stanford.smi.protege.widget.ValueTypeWidget")
+	(label "Value Type")
+	(width 200)
+	(x 0)
+	(height 150)
+	(y 60))
+
+([UML-Extensions_ProjectKB_00428] of Property_List
+	(name "facet widget properties")
+	(properties
+		[UML-Extensions_ProjectKB_00429]
+		[UML-Extensions_ProjectKB_00430]
+		[UML-Extensions_ProjectKB_00431]))
+
+([UML-Extensions_ProjectKB_00429] of Widget
+	(name ":NAME")
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceNameWidget")
+	(label "Name")
+	(width 200)
+	(x 0)
+	(height 60)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00430] of Widget
+	(name ":DOCUMENTATION")
+	(widget_class_name "edu.stanford.smi.protege.widget.DocumentationWidget")
+	(label "Documentation")
+	(width 200)
+	(x 200)
+	(height 120)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00431] of Widget
+	(name ":ASSOCIATED-SLOT")
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
+	(label "Associated Slot")
+	(width 200)
+	(x 0)
+	(height 60)
+	(y 60))
+
+([UML-Extensions_ProjectKB_00432] of Property_List
+	(properties
+		[UML-Extensions_ProjectKB_00433]
+		[UML-Extensions_ProjectKB_00434]
+		[UML-Extensions_ProjectKB_00435]
+		[UML-Extensions_ProjectKB_00436]))
+
+([UML-Extensions_ProjectKB_00433] of Widget
+	(name ":ANNOTATED-INSTANCE"))
+
+([UML-Extensions_ProjectKB_00434] of Widget
+	(name ":CREATOR"))
+
+([UML-Extensions_ProjectKB_00435] of Widget
+	(name ":CREATION-TIMESTAMP"))
+
+([UML-Extensions_ProjectKB_00436] of Widget
+	(name ":ANNOTATION-TEXT")
+	(widget_class_name "edu.stanford.smi.protege.widget.YellowStickyWidget")
+	(width 200)
+	(x 0)
+	(height 100)
+	(is_hidden FALSE)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00437] of Property_List
+	(properties
+		[UML-Extensions_ProjectKB_00438]
+		[UML-Extensions_ProjectKB_00439]
+		[UML-Extensions_ProjectKB_00440]
+		[UML-Extensions_ProjectKB_00441]))
+
+([UML-Extensions_ProjectKB_00438] of Widget
+	(name ":PAL-NAME")
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(label "Name")
+	(width 275)
+	(x 0)
+	(height 60)
+	(is_hidden FALSE)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00439] of Widget
+	(name ":PAL-RANGE")
+	(widget_class_name "edu.stanford.smi.protegex.widget.pal.constraint.PalRangeWidget")
+	(label "Range")
+	(width 250)
+	(x 275)
+	(height 180)
+	(is_hidden FALSE)
+	(y 180))
+
+([UML-Extensions_ProjectKB_00440] of Widget
+	(name ":PAL-DESCRIPTION")
+	(widget_class_name "edu.stanford.smi.protege.widget.TextAreaWidget")
+	(label "Description")
+	(width 250)
+	(x 275)
+	(height 180)
+	(is_hidden FALSE)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00441] of Widget
+	(name ":PAL-STATEMENT")
+	(widget_class_name "edu.stanford.smi.protegex.widget.pal.constraint.PalConstraintWidget")
+	(label "Statement")
+	(width 275)
+	(x 0)
+	(height 300)
+	(is_hidden FALSE)
+	(y 60))
+
+([UML-Extensions_ProjectKB_00442] of Property_List
+	(properties
+		[UML-Extensions_ProjectKB_00443]
+		[UML-Extensions_ProjectKB_00444]
+		[UML-Extensions_ProjectKB_00445]
+		[UML-Extensions_ProjectKB_00446]
+		[UML-Extensions_ProjectKB_00447]
+		[UML-Extensions_ProjectKB_00448]))
+
+([UML-Extensions_ProjectKB_00443] of Boolean
+	(name "ButtonDisplayed-View Selected Instances")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00444] of Boolean
+	(name "ButtonDisplayed-Create Instance")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00445] of Boolean
+	(name "ButtonDisplayed-References")
+	(boolean_value FALSE))
+
+([UML-Extensions_ProjectKB_00446] of Boolean
+	(name "ButtonDisplayed-Add")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00447] of Boolean
+	(name "ButtonDisplayed-Remove")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00448] of Boolean
+	(name "ButtonDisplayed-Delete Selected Instances")
+	(boolean_value FALSE))
+
+([UML-Extensions_ProjectKB_00449] of Property_List
+	(properties
+		[UML-Extensions_ProjectKB_00450]
+		[UML-Extensions_ProjectKB_00451]
+		[UML-Extensions_ProjectKB_00452]
+		[UML-Extensions_ProjectKB_00453]
+		[UML-Extensions_ProjectKB_00454]
+		[UML-Extensions_ProjectKB_00455]
+		[UML-Extensions_ProjectKB_00456]
+		[UML-Extensions_ProjectKB_00457]))
+
+([UML-Extensions_ProjectKB_00450] of Boolean
+	(name "ButtonDisplayed-View selected slots")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00451] of Boolean
+	(name "ButtonDisplayed-View selected slots at class")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00452] of Boolean
+	(name "ButtonDisplayed-Create slot and attach to class")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00453] of Boolean
+	(name "ButtonDisplayed-Remove overrides from selected slots")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00454] of Boolean
+	(name "ButtonDisplayed-Add")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00455] of Boolean
+	(name "ButtonDisplayed-Remove")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00456] of Boolean
+	(name "ButtonDisplayed-Move up")
+	(boolean_value FALSE))
+
+([UML-Extensions_ProjectKB_00457] of Boolean
+	(name "ButtonDisplayed-Move down")
+	(boolean_value FALSE))
+
+([UML-Extensions_ProjectKB_00458] of Property_List
+	(properties
+		[UML-Extensions_ProjectKB_00459]
+		[UML-Extensions_ProjectKB_00460]
+		[UML-Extensions_ProjectKB_00461]
+		[UML-Extensions_ProjectKB_00462]))
+
+([UML-Extensions_ProjectKB_00459] of Boolean
+	(name "ButtonDisplayed-View the selected value")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00460] of Boolean
+	(name "ButtonDisplayed-Create a new value")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00461] of Boolean
+	(name "ButtonDisplayed-Add")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00462] of Boolean
+	(name "ButtonDisplayed-Remove")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00463] of Property_List
+	(properties
+		[UML-Extensions_ProjectKB_00464]
+		[UML-Extensions_ProjectKB_00465]
+		[UML-Extensions_ProjectKB_00466]
+		[UML-Extensions_ProjectKB_00467]))
+
+([UML-Extensions_ProjectKB_00464] of Boolean
+	(name "ButtonDisplayed-View the selected value")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00465] of Boolean
+	(name "ButtonDisplayed-Create a new value")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00466] of Boolean
+	(name "ButtonDisplayed-Add")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00467] of Boolean
+	(name "ButtonDisplayed-Remove")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00468] of Property_List
+	(name "layout properties"))
+
+([UML-Extensions_ProjectKB_00469] of Widget
+	(name ":THING")
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(property_list [UML-Extensions_ProjectKB_00470])
+	(width 668)
+	(x 0)
+	(height 565)
+	(is_hidden FALSE)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00470] of Property_List)
+
+([UML-Extensions_ProjectKB_00471] of Widget
+	(name ":UML-TAGGED-VALUES")
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
+	(label "UML Tagged Values")
+	(property_list [UML-Extensions_ProjectKB_00472])
+	(width 340)
+	(x 260)
+	(height 110)
+	(is_hidden FALSE)
+	(y 390))
+
+([UML-Extensions_ProjectKB_00472] of Property_List
+	(properties
+		[UML-Extensions_ProjectKB_00473]
+		[UML-Extensions_ProjectKB_00474]
+		[UML-Extensions_ProjectKB_00475]
+		[UML-Extensions_ProjectKB_00476]
+		[UML-Extensions_ProjectKB_00477]
+		[UML-Extensions_ProjectKB_00478]
+		[UML-Extensions_ProjectKB_00503]
+		[UML-Extensions_ProjectKB_00504]
+		[UML-Extensions_ProjectKB_00506]
+		[UML-Extensions_ProjectKB_00707]
+		[UML-Extensions_ProjectKB_00807]
+		[UML-Extensions_ProjectKB_00808]))
+
+([UML-Extensions_ProjectKB_00473] of Boolean
+	(name "ButtonDisplayed-View Selected Instances")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00474] of Boolean
+	(name "ButtonDisplayed-Create Instance")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00475] of Boolean
+	(name "ButtonDisplayed-References")
+	(boolean_value FALSE))
+
+([UML-Extensions_ProjectKB_00476] of Boolean
+	(name "ButtonDisplayed-Add")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00477] of Boolean
+	(name "ButtonDisplayed-Remove")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00478] of Boolean
+	(name "ButtonDisplayed-Delete Selected Instances")
+	(boolean_value FALSE))
+
+([UML-Extensions_ProjectKB_00479] of Widget
+	(name ":UML-TAGGED-VALUE")
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(property_list [UML-Extensions_ProjectKB_00480])
+	(width 668)
+	(x 0)
+	(height 565)
+	(is_hidden FALSE)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00480] of Property_List
+	(properties
+		[UML-Extensions_ProjectKB_00481]
+		[UML-Extensions_ProjectKB_00483]))
+
+([UML-Extensions_ProjectKB_00481] of Widget
+	(name ":UML-TAG-VALUE")
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(label "Tag value")
+	(property_list [UML-Extensions_ProjectKB_00482])
+	(width 250)
+	(x 0)
+	(height 60)
+	(is_hidden FALSE)
+	(y 60))
+
+([UML-Extensions_ProjectKB_00482] of Property_List)
+
+([UML-Extensions_ProjectKB_00483] of Widget
+	(name ":UML-TAG")
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(label "Tag name")
+	(property_list [UML-Extensions_ProjectKB_00484])
+	(width 250)
+	(x 0)
+	(height 60)
+	(is_hidden FALSE)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00484] of Property_List)
+
+([UML-Extensions_ProjectKB_00485] of Widget
+	(name ":UML-STEREOTYPE")
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(label "UML Stereotype")
+	(property_list [UML-Extensions_ProjectKB_00486])
+	(width 260)
+	(x 0)
+	(height 60)
+	(is_hidden FALSE)
+	(y 330))
+
+([UML-Extensions_ProjectKB_00486] of Property_List)
+
+([UML-Extensions_ProjectKB_00487] of Widget
+	(name "UML-Extensions_00030")
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(property_list [UML-Extensions_ProjectKB_00488])
+	(width 250)
+	(x 0)
+	(height 60)
+	(is_hidden FALSE)
+	(y 390))
+
+([UML-Extensions_ProjectKB_00488] of Property_List)
+
+([UML-Extensions_ProjectKB_00489] of Widget
+	(name ":UML-TAGGED-VALUES")
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
+	(label "UML Tagged Values")
+	(property_list [UML-Extensions_ProjectKB_00490])
+	(width 330)
+	(x 270)
+	(height 120)
+	(is_hidden FALSE)
+	(y 270))
+
+([UML-Extensions_ProjectKB_00490] of Property_List
+	(properties
+		[UML-Extensions_ProjectKB_00491]
+		[UML-Extensions_ProjectKB_00492]
+		[UML-Extensions_ProjectKB_00493]
+		[UML-Extensions_ProjectKB_00494]
+		[UML-Extensions_ProjectKB_00495]
+		[UML-Extensions_ProjectKB_00496]
+		[UML-Extensions_ProjectKB_00497]
+		[UML-Extensions_ProjectKB_00498]
+		[UML-Extensions_ProjectKB_00499]
+		[UML-Extensions_ProjectKB_00500]
+		[UML-Extensions_ProjectKB_00501]
+		[UML-Extensions_ProjectKB_00502]))
+
+([UML-Extensions_ProjectKB_00491] of Boolean
+	(name "ButtonDisplayed-View Selected Instances")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00492] of Boolean
+	(name "ButtonDisplayed-Create Instance")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00493] of Boolean
+	(name "ButtonDisplayed-References")
+	(boolean_value FALSE))
+
+([UML-Extensions_ProjectKB_00494] of Boolean
+	(name "ButtonDisplayed-Add")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00495] of Boolean
+	(name "ButtonDisplayed-Remove")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00496] of Boolean
+	(name "ButtonDisplayed-Delete Selected Instances")
+	(boolean_value FALSE))
+
+([UML-Extensions_ProjectKB_00497] of String
+	(name "ButtonDescription-View Selected Instances")
+	(string_value "View Selected Instances"))
+
+([UML-Extensions_ProjectKB_00498] of String
+	(name "ButtonDescription-Create Instance")
+	(string_value "Create Instance"))
+
+([UML-Extensions_ProjectKB_00499] of String
+	(name "ButtonDescription-References")
+	(string_value "Display references to selected instance"))
+
+([UML-Extensions_ProjectKB_00500] of String
+	(name "ButtonDescription-Add")
+	(string_value "Select Instances"))
+
+([UML-Extensions_ProjectKB_00501] of String
+	(name "ButtonDescription-Remove")
+	(string_value "Remove Selected Instances"))
+
+([UML-Extensions_ProjectKB_00502] of String
+	(name "ButtonDescription-Delete Selected Instances")
+	(string_value "Delete Selected Instances"))
+
+([UML-Extensions_ProjectKB_00503] of String
+	(name "ButtonDescription-View Selected Instances")
+	(string_value "View Selected Instances"))
+
+([UML-Extensions_ProjectKB_00504] of String
+	(name "ButtonDescription-Create Instance")
+	(string_value "Create Instance"))
+
+([UML-Extensions_ProjectKB_00505] of Widget
+	(name ":UML-SLOT")
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(property_list [UML-Extensions_ProjectKB_00605])
+	(width 668)
+	(x 0)
+	(height 565)
+	(is_hidden FALSE)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00506] of String
+	(name "ButtonDescription-References")
+	(string_value "Display references to selected instance"))
+
+([UML-Extensions_ProjectKB_00605] of Property_List
+	(name "slot widget properties")
+	(properties
+		[UML-Extensions_ProjectKB_00606]
+		[UML-Extensions_ProjectKB_00607]
+		[UML-Extensions_ProjectKB_00608]
+		[UML-Extensions_ProjectKB_00609]
+		[UML-Extensions_ProjectKB_00610]
+		[UML-Extensions_ProjectKB_00616]
+		[UML-Extensions_ProjectKB_00617]
+		[UML-Extensions_ProjectKB_00618]
+		[UML-Extensions_ProjectKB_00624]
+		[UML-Extensions_ProjectKB_00625]
+		[UML-Extensions_ProjectKB_00626]
+		[UML-Extensions_ProjectKB_00627]
+		[UML-Extensions_ProjectKB_00628]
+		[UML-Extensions_ProjectKB_00629]
+		[UML-Extensions_ProjectKB_00630]
+		[UML-Extensions_ProjectKB_00631]
+		[UML-Extensions_ProjectKB_00632]
+		[UML-Extensions_ProjectKB_00485]
+		[UML-Extensions_ProjectKB_00489]))
+
+([UML-Extensions_ProjectKB_00606] of Widget
+	(name ":SLOT-MINIMUM-CARDINALITY")
+	(widget_class_name "edu.stanford.smi.protege.widget.MinimumCardinalityWidget")
+	(label "Cardinality")
+	(width 200)
+	(x 200)
+	(height 60)
+	(y 120))
+
+([UML-Extensions_ProjectKB_00607] of Widget
+	(name ":SLOT-MAXIMUM-CARDINALITY")
+	(widget_class_name "edu.stanford.smi.protege.widget.MaximumCardinalityWidget")
+	(width 200)
+	(x 200)
+	(height 35)
+	(y 175))
+
+([UML-Extensions_ProjectKB_00608] of Widget
+	(name ":SLOT-CONSTRAINTS"))
+
+([UML-Extensions_ProjectKB_00609] of Widget
+	(name ":DIRECT-TYPE"))
+
+([UML-Extensions_ProjectKB_00610] of Widget
+	(name ":SLOT-VALUES")
+	(widget_class_name "edu.stanford.smi.protege.widget.SlotValuesWidget")
+	(label "Template Values")
+	(property_list [UML-Extensions_ProjectKB_00611])
+	(width 200)
+	(x 400)
+	(height 120)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00611] of Property_List
+	(properties
+		[UML-Extensions_ProjectKB_00612]
+		[UML-Extensions_ProjectKB_00613]
+		[UML-Extensions_ProjectKB_00614]
+		[UML-Extensions_ProjectKB_00615]))
+
+([UML-Extensions_ProjectKB_00612] of Boolean
+	(name "ButtonDisplayed-View the selected value")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00613] of Boolean
+	(name "ButtonDisplayed-Create a new value")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00614] of Boolean
+	(name "ButtonDisplayed-Add")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00615] of Boolean
+	(name "ButtonDisplayed-Remove")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00616] of Widget
+	(name ":DIRECT-SUPERSLOTS"))
+
+([UML-Extensions_ProjectKB_00617] of Widget
+	(name ":DIRECT-SUBSLOTS"))
+
+([UML-Extensions_ProjectKB_00618] of Widget
+	(name ":SLOT-DEFAULTS")
+	(widget_class_name "edu.stanford.smi.protege.widget.DefaultValuesWidget")
+	(label "Default")
+	(property_list [UML-Extensions_ProjectKB_00619])
+	(width 200)
+	(x 400)
+	(height 150)
+	(y 120))
+
+([UML-Extensions_ProjectKB_00619] of Property_List
+	(properties
+		[UML-Extensions_ProjectKB_00620]
+		[UML-Extensions_ProjectKB_00621]
+		[UML-Extensions_ProjectKB_00622]
+		[UML-Extensions_ProjectKB_00623]))
+
+([UML-Extensions_ProjectKB_00620] of Boolean
+	(name "ButtonDisplayed-View the selected value")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00621] of Boolean
+	(name "ButtonDisplayed-Create a new value")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00622] of Boolean
+	(name "ButtonDisplayed-Add")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00623] of Boolean
+	(name "ButtonDisplayed-Remove")
+	(boolean_value TRUE))
+
+([UML-Extensions_ProjectKB_00624] of Widget
+	(name ":DOCUMENTATION")
+	(widget_class_name "edu.stanford.smi.protege.widget.DocumentationWidget")
+	(label "Documentation")
+	(width 200)
+	(x 200)
+	(height 120)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00625] of Widget
+	(name ":SLOT-NUMERIC-MAXIMUM")
+	(widget_class_name "edu.stanford.smi.protege.widget.NumericMaximumWidget")
+	(label "Maximum")
+	(width 100)
+	(x 100)
+	(height 60)
+	(y 210))
+
+([UML-Extensions_ProjectKB_00626] of Widget
+	(name ":SLOT-NUMERIC-MINIMUM")
+	(widget_class_name "edu.stanford.smi.protege.widget.NumericMinimumWidget")
+	(label "Minimum")
+	(width 100)
+	(x 0)
+	(height 60)
+	(y 210))
+
+([UML-Extensions_ProjectKB_00627] of Widget
+	(name ":ASSOCIATED-FACET"))
+
+([UML-Extensions_ProjectKB_00628] of Widget
+	(name ":NAME")
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceNameWidget")
+	(label "Name")
+	(width 200)
+	(x 0)
+	(height 60)
+	(y 0))
+
+([UML-Extensions_ProjectKB_00629] of Widget
+	(name ":SLOT-INVERSE")
+	(widget_class_name "edu.stanford.smi.protege.widget.InverseSlotWidget")
+	(label "Inverse Slot")
+	(width 200)
+	(x 200)
+	(height 60)
+	(y 210))
+
+([UML-Extensions_ProjectKB_00630] of Widget
+	(name ":SLOT-VALUE-TYPE")
+	(widget_class_name "edu.stanford.smi.protege.widget.ValueTypeWidget")
+	(label "Value Type")
+	(width 200)
+	(x 0)
+	(height 150)
+	(y 60))
+
+([UML-Extensions_ProjectKB_00631] of Property_List
+	(name "layout properties"))
+
+([UML-Extensions_ProjectKB_00632] of Widget
+	(name ":UML-AGGREGATION-KIND")
+	(widget_class_name "edu.stanford.smi.protege.widget.ComboBoxWidget")
+	(label "UML Aggregation Kind")
+	(property_list [UML-Extensions_ProjectKB_00633])
+	(width 260)
+	(x 0)
+	(height 60)
+	(is_hidden FALSE)
+	(y 270))
+
+([UML-Extensions_ProjectKB_00633] of Property_List)
+
+([UML-Extensions_ProjectKB_00707] of String
+	(name "ButtonDescription-Add")
+	(string_value "Select Instances"))
+
+([UML-Extensions_ProjectKB_00807] of String
+	(name "ButtonDescription-Remove")
+	(string_value "Remove Selected Instances"))
+
+([UML-Extensions_ProjectKB_00808] of String
+	(name "ButtonDescription-Delete Selected Instances")
+	(string_value "Delete Selected Instances"))
+
+([UML-Extensions_ProjectKB_00809] of String
+	(name ":UML-TAGGED-VALUE")
+	(string_value ":UML-TAG"))
+
+([UML-Extensions_ProjectKB_00810] of String
+	(name ":UML-PARAMETER")
+	(string_value ":UML-PARAMETER-NAME"))
+
+([UML-Extensions_ProjectKB_00811] of String
+	(name ":INSTANCE-ANNOTATION")
+	(string_value ":ANNOTATION-TEXT"))
+
+([UML-Extensions_ProjectKB_00812] of String
+	(name ":UML-OPERATION")
+	(string_value ":UML-OPERATION-NAME"))
+
+([UML-Extensions_ProjectKB_00813] of String
+	(name ":PAL-CONSTRAINT")
+	(string_value ":PAL-NAME"))
+
+([UMLMethods_ProjectKB_00002] of Widget
+	(name ":UML-CLASS")
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(property_list [UMLMethods_ProjectKB_00003])
+	(width 668)
+	(x 0)
+	(height 565)
+	(is_hidden FALSE)
+	(y 0))
+
+([UMLMethods_ProjectKB_00003] of Property_List
+	(name "class widget properties")
+	(properties
+		[UMLMethods_ProjectKB_00004]
+		[UMLMethods_ProjectKB_00012]
+		[UMLMethods_ProjectKB_00013]
+		[UMLMethods_ProjectKB_00014]
+		[UMLMethods_ProjectKB_00015]
+		[UMLMethods_ProjectKB_00016]
+		[UMLMethods_ProjectKB_00017]
+		[UMLMethods_ProjectKB_00018]
+		[UMLMethods_ProjectKB_00019]
+		[UMLMethods_ProjectKB_00029]
+		[UMLMethods_ProjectKB_00031]
+		[UML-Extensions_ProjectKB_00303]
+		[UML-Extensions_ProjectKB_00471]))
+
+([UMLMethods_ProjectKB_00004] of Widget
+	(name ":SLOT-CONSTRAINTS")
+	(widget_class_name "edu.stanford.smi.protege.widget.ConstraintsWidget")
+	(label "Constraints")
+	(property_list [UMLMethods_ProjectKB_00005])
+	(width 200)
+	(x 400)
+	(height 120)
+	(y 0))
+
+([UMLMethods_ProjectKB_00005] of Property_List
+	(properties
+		[UMLMethods_ProjectKB_00006]
+		[UMLMethods_ProjectKB_00007]
+		[UMLMethods_ProjectKB_00008]
+		[UMLMethods_ProjectKB_00009]
+		[UMLMethods_ProjectKB_00010]
+		[UMLMethods_ProjectKB_00011]))
+
+([UMLMethods_ProjectKB_00006] of Boolean
+	(name "ButtonDisplayed-View Selected Instances")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00007] of Boolean
+	(name "ButtonDisplayed-Create Instance")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00008] of Boolean
+	(name "ButtonDisplayed-References")
+	(boolean_value FALSE))
+
+([UMLMethods_ProjectKB_00009] of Boolean
+	(name "ButtonDisplayed-Add")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00010] of Boolean
+	(name "ButtonDisplayed-Remove")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00011] of Boolean
+	(name "ButtonDisplayed-Delete Selected Instances")
+	(boolean_value FALSE))
+
+([UMLMethods_ProjectKB_00012] of Widget
+	(name ":DIRECT-INSTANCES"))
+
+([UMLMethods_ProjectKB_00013] of Widget
+	(name ":DIRECT-SUBCLASSES"))
+
+([UMLMethods_ProjectKB_00014] of Widget
+	(name ":DIRECT-SUPERCLASSES"))
+
+([UMLMethods_ProjectKB_00015] of Widget
+	(name ":DOCUMENTATION")
+	(widget_class_name "edu.stanford.smi.protege.widget.DocumentationWidget")
+	(label "Documentation")
+	(width 200)
+	(x 200)
+	(height 120)
+	(y 0))
+
+([UMLMethods_ProjectKB_00016] of Widget
+	(name ":NAME")
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceNameWidget")
+	(label "Name")
+	(width 200)
+	(x 0)
+	(height 60)
+	(y 0))
+
+([UMLMethods_ProjectKB_00017] of Widget
+	(name ":ROLE")
+	(widget_class_name "edu.stanford.smi.protege.widget.RoleWidget")
+	(label "Role")
+	(width 200)
+	(x 0)
+	(height 60)
+	(y 60))
+
+([UMLMethods_ProjectKB_00018] of Widget
+	(name ":DIRECT-TYPE"))
+
+([UMLMethods_ProjectKB_00019] of Widget
+	(name ":DIRECT-TEMPLATE-SLOTS")
+	(widget_class_name "edu.stanford.smi.protege.widget.TemplateSlotsWidget")
+	(label "Template Slots")
+	(property_list [UMLMethods_ProjectKB_00020])
+	(width 600)
+	(x 0)
+	(height 150)
+	(y 120))
+
+([UMLMethods_ProjectKB_00020] of Property_List
+	(properties
+		[UMLMethods_ProjectKB_00021]
+		[UMLMethods_ProjectKB_00022]
+		[UMLMethods_ProjectKB_00023]
+		[UMLMethods_ProjectKB_00024]
+		[UMLMethods_ProjectKB_00025]
+		[UMLMethods_ProjectKB_00026]
+		[UMLMethods_ProjectKB_00027]
+		[UMLMethods_ProjectKB_00028]))
+
+([UMLMethods_ProjectKB_00021] of Boolean
+	(name "ButtonDisplayed-View selected slots")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00022] of Boolean
+	(name "ButtonDisplayed-View selected slots at class")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00023] of Boolean
+	(name "ButtonDisplayed-Create slot and attach to class")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00024] of Boolean
+	(name "ButtonDisplayed-Remove overrides from selected slots")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00025] of Boolean
+	(name "ButtonDisplayed-Add")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00026] of Boolean
+	(name "ButtonDisplayed-Remove")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00027] of Boolean
+	(name "ButtonDisplayed-Move up")
+	(boolean_value FALSE))
+
+([UMLMethods_ProjectKB_00028] of Boolean
+	(name "ButtonDisplayed-Move down")
+	(boolean_value FALSE))
+
+([UMLMethods_ProjectKB_00029] of Property_List
+	(name "layout properties")
+	(properties [UMLMethods_ProjectKB_00030]))
+
+([UMLMethods_ProjectKB_00030] of String
+	(name "vertical_stretcher")
+	(string_value ":DIRECT-TEMPLATE-SLOTS"))
+
+([UMLMethods_ProjectKB_00031] of Widget
+	(name ":UML-METHODS")
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
+	(label "UML Operations")
+	(property_list [UMLMethods_ProjectKB_00032])
+	(width 600)
+	(x 0)
+	(height 120)
+	(is_hidden FALSE)
+	(y 270))
+
+([UMLMethods_ProjectKB_00032] of Property_List
+	(properties
+		[UMLMethods_ProjectKB_00033]
+		[UMLMethods_ProjectKB_00034]
+		[UMLMethods_ProjectKB_00035]
+		[UMLMethods_ProjectKB_00036]
+		[UMLMethods_ProjectKB_00037]
+		[UMLMethods_ProjectKB_00038]
+		[UMLMethods_ProjectKB_00039]
+		[UMLMethods_ProjectKB_00040]
+		[UMLMethods_ProjectKB_00041]
+		[UMLMethods_ProjectKB_00042]
+		[UMLMethods_ProjectKB_00043]
+		[UMLMethods_ProjectKB_00044]))
+
+([UMLMethods_ProjectKB_00033] of Boolean
+	(name "ButtonDisplayed-View Selected Instances")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00034] of Boolean
+	(name "ButtonDisplayed-Create Instance")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00035] of Boolean
+	(name "ButtonDisplayed-References")
+	(boolean_value FALSE))
+
+([UMLMethods_ProjectKB_00036] of Boolean
+	(name "ButtonDisplayed-Add")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00037] of Boolean
+	(name "ButtonDisplayed-Remove")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00038] of Boolean
+	(name "ButtonDisplayed-Delete Selected Instances")
+	(boolean_value FALSE))
+
+([UMLMethods_ProjectKB_00039] of String
+	(name "ButtonDescription-View Selected Instances")
+	(string_value "View Selected Instances"))
+
+([UMLMethods_ProjectKB_00040] of String
+	(name "ButtonDescription-Create Instance")
+	(string_value "Create Instance"))
+
+([UMLMethods_ProjectKB_00041] of String
+	(name "ButtonDescription-References")
+	(string_value "Display references to selected instance"))
+
+([UMLMethods_ProjectKB_00042] of String
+	(name "ButtonDescription-Add")
+	(string_value "Select Instances"))
+
+([UMLMethods_ProjectKB_00043] of String
+	(name "ButtonDescription-Remove")
+	(string_value "Remove Selected Instances"))
+
+([UMLMethods_ProjectKB_00044] of String
+	(name "ButtonDescription-Delete Selected Instances")
+	(string_value "Delete Selected Instances"))
+
+([UMLMethods_ProjectKB_00100] of Integer
+	(name "ClsesTab.left_right")
+	(integer_value 250))
+
+([UMLMethods_ProjectKB_00101] of Integer
+	(name "ClsesTab.left.top_bottom")
+	(integer_value 400))
+
+([UMLMethods_ProjectKB_00102] of Integer
+	(name "SlotsTab.left_right")
+	(integer_value 250))
+
+([UMLMethods_ProjectKB_00103] of Integer
+	(name "SlotTab.left.top_bottom")
+	(integer_value 400))
+
+([UMLMethods_ProjectKB_00104] of Integer
+	(name "FormsTab.left_right")
+	(integer_value 250))
+
+([UMLMethods_ProjectKB_00105] of Integer
+	(name "InstancesTab.left_right")
+	(integer_value 250))
+
+([UMLMethods_ProjectKB_00106] of Integer
+	(name "InstancesTab.right.left_right")
+	(integer_value 250))
+
+([UMLMethods_ProjectKB_00366] of Widget
+	(name ":UML-PARAMETER")
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(property_list [UMLMethods_ProjectKB_00367])
+	(width 668)
+	(x 0)
+	(height 565)
+	(is_hidden FALSE)
+	(y 0))
+
+([UMLMethods_ProjectKB_00367] of Property_List
+	(properties
+		[UMLMethods_ProjectKB_00368]
+		[UMLMethods_ProjectKB_00370]
+		[UMLMethods_ProjectKB_00525]))
+
+([UMLMethods_ProjectKB_00368] of Widget
+	(name ":UML-DATATYPE")
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(label "UML Parameter Datatype")
+	(property_list [UMLMethods_ProjectKB_00369])
+	(width 250)
+	(x 0)
+	(height 60)
+	(is_hidden FALSE)
+	(y 60))
+
+([UMLMethods_ProjectKB_00369] of Property_List)
+
+([UMLMethods_ProjectKB_00370] of Widget
+	(name ":UML-PARAMETER-NAME")
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(label "UML Parameter Name")
+	(property_list [UMLMethods_ProjectKB_00371])
+	(width 250)
+	(x 0)
+	(height 60)
+	(is_hidden FALSE)
+	(y 0))
+
+([UMLMethods_ProjectKB_00371] of Property_List)
+
+([UMLMethods_ProjectKB_00403] of Widget
+	(name ":UML-OPERATION")
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(property_list [UMLMethods_ProjectKB_00503])
+	(width 668)
+	(x 0)
+	(height 565)
+	(is_hidden FALSE)
+	(y 0))
+
+([UMLMethods_ProjectKB_00503] of Property_List
+	(properties
+		[UMLMethods_ProjectKB_00504]
+		[UMLMethods_ProjectKB_00512]
+		[UMLMethods_ProjectKB_00514]
+		[UMLMethods_ProjectKB_00516]
+		[UMLMethods_ProjectKB_00524]))
+
+([UMLMethods_ProjectKB_00504] of Widget
+	(name ":UML-PARAMETERS")
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
+	(label "UML Parameters")
+	(property_list [UMLMethods_ProjectKB_00505])
+	(width 250)
+	(x 250)
+	(height 180)
+	(is_hidden FALSE)
+	(y 0))
+
+([UMLMethods_ProjectKB_00505] of Property_List
+	(properties
+		[UMLMethods_ProjectKB_00506]
+		[UMLMethods_ProjectKB_00507]
+		[UMLMethods_ProjectKB_00508]
+		[UMLMethods_ProjectKB_00509]
+		[UMLMethods_ProjectKB_00510]
+		[UMLMethods_ProjectKB_00511]
+		[UMLMethods_ProjectKB_00518]
+		[UMLMethods_ProjectKB_00519]
+		[UMLMethods_ProjectKB_00520]
+		[UMLMethods_ProjectKB_00521]
+		[UMLMethods_ProjectKB_00522]
+		[UMLMethods_ProjectKB_00523]))
+
+([UMLMethods_ProjectKB_00506] of Boolean
+	(name "ButtonDisplayed-View Selected Instances")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00507] of Boolean
+	(name "ButtonDisplayed-Create Instance")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00508] of Boolean
+	(name "ButtonDisplayed-References")
+	(boolean_value FALSE))
+
+([UMLMethods_ProjectKB_00509] of Boolean
+	(name "ButtonDisplayed-Add")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00510] of Boolean
+	(name "ButtonDisplayed-Remove")
+	(boolean_value TRUE))
+
+([UMLMethods_ProjectKB_00511] of Boolean
+	(name "ButtonDisplayed-Delete Selected Instances")
+	(boolean_value FALSE))
+
+([UMLMethods_ProjectKB_00512] of Widget
+	(name ":UML-RETURN-TYPE")
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(label "UML Return Type")
+	(property_list [UMLMethods_ProjectKB_00513])
+	(width 250)
+	(x 0)
+	(height 60)
+	(is_hidden FALSE)
+	(y 60))
+
+([UMLMethods_ProjectKB_00513] of Property_List)
+
+([UMLMethods_ProjectKB_00514] of Widget
+	(name ":UML-VISIBILITY")
+	(widget_class_name "edu.stanford.smi.protege.widget.ComboBoxWidget")
+	(label "UML Visibility")
+	(property_list [UMLMethods_ProjectKB_00515])
+	(width 125)
+	(x 0)
+	(height 60)
+	(is_hidden FALSE)
+	(y 120))
+
+([UMLMethods_ProjectKB_00515] of Property_List)
+
+([UMLMethods_ProjectKB_00516] of Widget
+	(name ":UML-OPERATION-NAME")
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(label "UML Operation Name")
+	(property_list [UMLMethods_ProjectKB_00517])
+	(width 250)
+	(x 0)
+	(height 60)
+	(is_hidden FALSE)
+	(y 0))
+
+([UMLMethods_ProjectKB_00517] of Property_List)
+
+([UMLMethods_ProjectKB_00518] of String
+	(name "ButtonDescription-View Selected Instances")
+	(string_value "View Selected Instances"))
+
+([UMLMethods_ProjectKB_00519] of String
+	(name "ButtonDescription-Create Instance")
+	(string_value "Create Instance"))
+
+([UMLMethods_ProjectKB_00520] of String
+	(name "ButtonDescription-References")
+	(string_value "Display references to selected instance"))
+
+([UMLMethods_ProjectKB_00521] of String
+	(name "ButtonDescription-Add")
+	(string_value "Select Instances"))
+
+([UMLMethods_ProjectKB_00522] of String
+	(name "ButtonDescription-Remove")
+	(string_value "Remove Selected Instances"))
+
+([UMLMethods_ProjectKB_00523] of String
+	(name "ButtonDescription-Delete Selected Instances")
+	(string_value "Delete Selected Instances"))
+
+([UMLMethods_ProjectKB_00524] of Property_List
+	(name "layout properties"))
+
+([UMLMethods_ProjectKB_00525] of Property_List
+	(name "layout properties"))

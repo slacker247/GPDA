@@ -1,0 +1,1 @@
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"INFO icq access"; flags: A+; content: "User-Agent\:ICQ"; classtype:not-suspicious; sid:541; rev:2;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Phorum read access"; flags: A+; uricontent:"/read.php3"; nocase;  reference:arachnids,208; classtype:attempted-recon; sid:1178; rev:1;)

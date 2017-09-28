@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC mylog.phtml access";flags: A+; uricontent:"/mylog.phtml"; nocase; reference:bugtraq,713; reference:cve,CVE-1999-0346; classtype:attempted-recon; sid:1120; rev:1;)

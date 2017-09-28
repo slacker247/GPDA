@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN XMAS";flags:SRAFPU; reference:arachnids,144; classtype:attempted-recon; sid:625; rev:1;)

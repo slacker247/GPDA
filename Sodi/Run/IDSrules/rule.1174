@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC cart 32 AdminPwd access"; flags: A+; uricontent:"/c32web.exe/ChangeAdminPassword"; nocase;reference:bugtraq,1153; classtype:attempted-recon; sid:1162; rev:1;)

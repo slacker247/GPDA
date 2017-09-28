@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS id command attempt"; flags:A+; content:"\;id";nocase; sid:1333; rev:1; classtype:web-application-attack;)

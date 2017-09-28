@@ -1,0 +1,22 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: SeqNum
+
+    {Token.string == "Seq"}
+    {Token.string == ":"}
+    {SpaceToken.kind == space}
+(
+    {Token.kind == number}
+    {Token.kind == word}
+    {Token.kind == number}
+    {Token.kind == word}
+    {Token.kind == number}
+    {Token.kind == word}
+        
+):SeqNum
+    {SpaceToken.kind == space}
+ -->
+:SeqNum.SeqNum = {}

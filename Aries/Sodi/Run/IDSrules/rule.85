@@ -1,0 +1,1 @@
+alert tcp 255.255.255.0/24 any -> $HOME_NET any (msg:"BACKDOOR Q access"; flags:A+; dsize: >1;  reference:arachnids,203; sid:184;  classtype:misc-activity; rev:3;)

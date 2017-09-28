@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 139 (msg:"NETBIOS nimda .nws"; content:"|00|N|00|W|00|S"; flags:A+; classtype:bad-unknown; reference:url,www.datafellows.com/v-descs/nimda.shtml; sid:1294; rev:2;)

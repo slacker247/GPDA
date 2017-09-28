@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possbile Zipped Files Trojan"; content:"|6E 61 6D 65 20 3D 22 5A 69 70 70 65 64 5F 46 69 6C 65 73 2E 45 58 45 22|"; reference:MCAFEE,10450; sid:802;  classtype:misc-activity; rev:3;)

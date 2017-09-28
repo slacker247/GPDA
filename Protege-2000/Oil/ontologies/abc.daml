@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:oiled="http://img.cs.man.ac.uk/oil/oiled#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2000/10/XMLSchema#">
+    <daml:Ontology rdf:about="">
+        <dc:title>&quot;An Ontology&quot;</dc:title>
+        <dc:date></dc:date>
+        <dc:creator></dc:creator>
+        <dc:description></dc:description>
+        <dc:subject></dc:subject>
+        <daml:versionInfo></daml:versionInfo>
+    </daml:Ontology>
+    <daml:Class rdf:about="http://ontos-r-us/abc#A">
+        <rdfs:label>A</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>2002-01-14T17:34:39Z</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://ontos-r-us/abc#T"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://ontos-r-us/abc#B">
+        <rdfs:label>B</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>2002-01-14T17:34:45Z</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://ontos-r-us/abc#A"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://ontos-r-us/abc#C">
+        <rdfs:label>C</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>2002-01-14T17:34:47Z</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://ontos-r-us/abc#B"/>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <daml:Class>
+                <daml:unionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://ontos-r-us/abc#E"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Class rdf:about="http://ontos-r-us/abc#F"/>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:unionOf>
+            </daml:Class>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://ontos-r-us/abc#D">
+        <rdfs:label>D</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>2002-01-14T17:34:49Z</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://ontos-r-us/abc#E">
+        <rdfs:label>E</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>2002-01-14T17:34:51Z</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://ontos-r-us/abc#X"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://ontos-r-us/abc#F">
+        <rdfs:label>F</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>2002-01-14T17:34:53Z</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://ontos-r-us/abc#T">
+        <rdfs:label>T</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>2002-01-14T18:06:22Z</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Restriction>
+                <daml:onProperty rdf:resource="http://ontos-r-us/abc#r"/>
+                <daml:hasClass>
+                    <daml:Class>
+                        <daml:intersectionOf>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Class rdf:about="http://ontos-r-us/abc#X"/>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://ontos-r-us/abc#r"/>
+                                    <daml:hasClass>
+                                    <daml:Thing/>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:intersectionOf>
+                    </daml:Class>
+                </daml:hasClass>
+            </daml:Restriction>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://ontos-r-us/abc#X">
+        <rdfs:label>X</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>2002-01-14T18:21:14Z</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://ontos-r-us/abc#C"/>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <daml:Class>
+                <daml:complementOf>
+                    <daml:Class rdf:about="http://ontos-r-us/abc#F"/>
+                </daml:complementOf>
+            </daml:Class>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:ObjectProperty rdf:about="http://ontos-r-us/abc#r">
+        <rdfs:label>r</rdfs:label>
+        <rdfs:comment>This is a slot!</rdfs:comment>
+        <oiled:creationDate>2002-01-15T15:42:17Z</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+    </daml:ObjectProperty>
+    <daml:Class rdf:about="http://ontos-r-us/abc#D">
+        <daml:disjointWith>
+            <daml:Class rdf:about="http://ontos-r-us/abc#F"/>
+        </daml:disjointWith>
+    </daml:Class>
+</rdf:RDF>

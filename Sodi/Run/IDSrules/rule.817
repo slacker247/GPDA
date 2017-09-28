@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI websitepro path access"; flags: A+; uricontent: " /HTTP/1."; nocase;reference:arachnids,468;classtype:attempted-recon; sid:811; rev:1;)

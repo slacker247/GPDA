@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC wsh attempt";flags: A+; content:"wsh.exe"; nocase; classtype:web-application-activity; sid:1064; rev:2;)

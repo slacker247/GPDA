@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC counter.exe access";flags: A+; uricontent:"/scripts/counter.exe"; nocase; reference:bugtraq,267; classtype:web-application-activity; sid:1078; rev:2;)

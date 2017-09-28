@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI webspirs access"; uricontent:"/webspirs.cgi"; nocase; flags:A+; reference:bugtraq,2362; classtype:attempted-recon; sid:901; rev:1;)

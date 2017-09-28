@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI commerce.cgi access"; uricontent:"/commerce.cgi"; nocase; flags:A+; classtype:attempted-recon; sid:898; rev:1;)

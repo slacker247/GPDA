@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP cybercop scan expn";flags: A+; content:"expn cybercop"; reference:arachnids,371; classtype:attempted-recon; sid:632; rev:1;)

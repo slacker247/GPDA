@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE rdf:RDF [
+	 <!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	 <!ENTITY a 'http://www.w3.org/2000/01/rdf-schema#'>
+]>
+<rdf:RDF xmlns:rdf="&rdf;"
+	 xmlns:a="&a;">
+<a:Class rdf:about="Action">
+	<a:subClassOf rdf:resource="What"/>
+</a:Class>
+<a:Class rdf:about="Casualities">
+	<a:subClassOf rdf:resource="HowSevere"/>
+</a:Class>
+<a:Class rdf:about="City">
+	<a:subClassOf rdf:resource="Where"/>
+</a:Class>
+<a:Class rdf:about="Confidence">
+	<a:subClassOf rdf:resource="HowSevere"/>
+</a:Class>
+<a:Class rdf:about="Cost">
+	<a:subClassOf rdf:resource="HowSevere"/>
+</a:Class>
+<a:Class rdf:about="Descriptor">
+	<a:subClassOf rdf:resource="HowSevere"/>
+</a:Class>
+<a:Class rdf:about="Duration">
+	<a:subClassOf rdf:resource="When"/>
+</a:Class>
+<a:Class rdf:about="End">
+	<a:subClassOf rdf:resource="When"/>
+</a:Class>
+<a:Class rdf:about="Event">
+	<a:subClassOf rdf:resource="What"/>
+</a:Class>
+<a:Class rdf:about="Expertise">
+	<a:subClassOf rdf:resource="How"/>
+</a:Class>
+<a:Class rdf:about="FriendlyForces">
+	<a:subClassOf rdf:resource="Who"/>
+</a:Class>
+<a:Class rdf:about="Future">
+	<a:subClassOf rdf:resource="When"/>
+</a:Class>
+<a:Class rdf:about="How"/>
+<a:Class rdf:about="HowSevere">
+	<a:subClassOf rdf:resource="van"/>
+</a:Class>
+<a:Class rdf:about="InfoSource">
+	<a:subClassOf rdf:resource="Who"/>
+</a:Class>
+<a:Class rdf:about="Injuries">
+	<a:subClassOf rdf:resource="Casualities"/>
+</a:Class>
+<a:Class rdf:about="Loccale">
+	<a:subClassOf rdf:resource="Where"/>
+</a:Class>
+<a:Class rdf:about="Nation">
+	<a:subClassOf rdf:resource="Where"/>
+</a:Class>
+<a:Class rdf:about="Object-What">
+	<a:subClassOf rdf:resource="What"/>
+</a:Class>
+<a:Class rdf:about="Object-Who">
+	<a:subClassOf rdf:resource="What"/>
+</a:Class>
+<a:Class rdf:about="Operational">
+	<a:subClassOf rdf:resource="Strategic"/>
+</a:Class>
+<a:Class rdf:about="Person">
+	<a:subClassOf rdf:resource="What"/>
+</a:Class>
+<a:Class rdf:about="PrimaryMeans">
+	<a:subClassOf rdf:resource="How"/>
+</a:Class>
+<a:Class rdf:about="Region">
+	<a:subClassOf rdf:resource="Where"/>
+</a:Class>
+<a:Class rdf:about="SecMeans">
+	<a:subClassOf rdf:resource="How"/>
+</a:Class>
+<a:Class rdf:about="Sensor">
+	<a:subClassOf rdf:resource="Tactical"/>
+</a:Class>
+<a:Class rdf:about="Start">
+	<a:subClassOf rdf:resource="When"/>
+</a:Class>
+<a:Class rdf:about="Strategic">
+	<a:subClassOf rdf:resource="Why"/>
+</a:Class>
+<a:Class rdf:about="Structure">
+	<a:subClassOf rdf:resource="Where"/>
+</a:Class>
+<a:Class rdf:about="Tactical">
+	<a:subClassOf rdf:resource="Operational"/>
+</a:Class>
+<a:Class rdf:about="TertiaryMeans">
+	<a:subClassOf rdf:resource="How"/>
+</a:Class>
+<a:Class rdf:about="Threat">
+	<a:subClassOf rdf:resource="InfoSource"/>
+</a:Class>
+<a:Class rdf:about="What"/>
+<a:Class rdf:about="When"/>
+<a:Class rdf:about="Where"/>
+<a:Class rdf:about="Who"/>
+<a:Class rdf:about="Why"/>
+<rdf:Property rdf:about="age"/>
+<a:Class rdf:about="animal_lover">
+	<a:subClassOf rdf:resource="Who"/>
+</a:Class>
+<a:Class rdf:about="broadsheet">
+	<a:subClassOf rdf:resource="Expertise"/>
+</a:Class>
+<a:Class rdf:about="bus_driver">
+	<a:subClassOf rdf:resource="Who"/>
+</a:Class>
+<rdf:Property rdf:about="drives"/>
+<rdf:Property rdf:about="has_child"/>
+<rdf:Property rdf:about="has_colour"/>
+<rdf:Property rdf:about="has_father">
+	<a:subPropertyOf rdf:resource="has_parent"/>
+	<a:range rdf:resource="man"/>
+</rdf:Property>
+<rdf:Property rdf:about="has_mother">
+	<a:subPropertyOf rdf:resource="has_parent"/>
+	<a:range rdf:resource="woman"/>
+</rdf:Property>
+<rdf:Property rdf:about="has_parent">
+	<a:range rdf:resource="Who"/>
+	<a:domain rdf:resource="Who"/>
+</rdf:Property>
+<rdf:Property rdf:about="has_part">
+	<a:domain rdf:resource="Where"/>
+	<a:range rdf:resource="Where"/>
+</rdf:Property>
+<rdf:Property rdf:about="has_pet"/>
+<rdf:Property rdf:about="is_part_of"/>
+<rdf:Property rdf:about="likes"/>
+<a:Class rdf:about="man">
+	<a:subClassOf rdf:resource="Who"/>
+</a:Class>
+<a:Class rdf:about="old_lady">
+	<a:subClassOf rdf:resource="Who"/>
+</a:Class>
+<rdf:Property rdf:about="part_of"/>
+<a:Class rdf:about="quality_broadsheet">
+	<a:subClassOf rdf:resource="broadsheet"/>
+</a:Class>
+<rdf:Property rdf:about="reads">
+	<a:range rdf:resource="How"/>
+</rdf:Property>
+<a:Class rdf:about="red_top">
+	<a:subClassOf rdf:resource="tabloid"/>
+</a:Class>
+<rdf:Property rdf:about="service_number"/>
+<rdf:Property rdf:about="sex"/>
+<a:Class rdf:about="tabloid">
+	<a:subClassOf rdf:resource="Expertise"/>
+</a:Class>
+<a:Class rdf:about="van">
+	<a:subClassOf rdf:resource="HowSevere"/>
+</a:Class>
+<a:Class rdf:about="white_van_man">
+	<a:subClassOf rdf:resource="man"/>
+</a:Class>
+<a:Class rdf:about="woman">
+	<a:subClassOf rdf:resource="Who"/>
+</a:Class>
+<rdf:Property rdf:about="works_for"/>
+</rdf:RDF>

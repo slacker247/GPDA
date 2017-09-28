@@ -1,0 +1,9 @@
+gcc -shared -fpic -I/usr/java/j2sdk1.4.0/include -I/usr/java/j2sdk1.4.0/include/linux WNInterfaceImp.c -o /home/dre/Protege-2000/plugins/libtttWordNet.so
+
+###gcc -shared -fpic -I/usr/local/Java/include -I/usr/local/Java/include/linux WNInterfaceImp.c -o /home/dre/Protege-2000/plugins/libtttWordNet.so
+
+###ccc -shared -fpic -I/usr/local/Java/include -I/usr/local/Java/include/linux WNInterfaceImp.c -o /home/ttrout/xml/btn/libWordNetDLL.so
+
+###gccc -shared -fpic -I/usr/java/j2sdk1.4.0/include -I/usr/java/j2sdk1.4.0/include/linux WNInterfaceImp.c -o /home/ttrout/xml/btn/libWordNetDLL.so
+
+### gccc -shared -fpic -I/usr/java/j2sdk1.4.0/include -I/usr/java/j2sdk1.4.0/include/linux -I/home/dre/WordNet-1.7.1/include -L/home/dre/WordNet-1.7.1/lib/linux -lwn WNInterfaceImp.c -o /home/ttrout/xml/btn/libWordNetDLL.so

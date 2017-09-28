@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 49 (msg:"SCAN XTACACS logout"; content: "|8007 0000 0700 0004 0000 0000 00|";reference:arachnids,408; classtype:bad-unknown; sid:635; rev:1;)

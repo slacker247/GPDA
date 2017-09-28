@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC architext_query.pl access"; uricontent:"/ews/architext_query.pl"; nocase; flags: A+; classtype:attempted-recon; sid:1173; rev:1;)

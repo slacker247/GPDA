@@ -1,0 +1,1 @@
+alert ip $EXTERNAL_NET any -> $HOME_NET any (msg:"SHELLCODE sparc setuid 0"; content: "|82102017 91d02008|"; reference:arachnids,282; classtype:system-call-detect; sid:647; rev:2;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"INFO FTP No Password"; content: "pass |0d|"; nocase; reference:arachnids,322; flags:A+; classtype:unknown; sid:489; rev:2;)

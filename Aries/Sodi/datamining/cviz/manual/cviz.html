@@ -1,0 +1,396 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>CViz User Manual</TITLE>
+</HEAD>
+<BODY>
+
+<FONT SIZE=7><P ALIGN="CENTER">CViz</P>
+</FONT><FONT SIZE=4><P ALIGN="CENTER">&nbsp;</P>
+<P ALIGN="CENTER">(v. 1.0)</P>
+<P ALIGN="CENTER">&nbsp;</P>
+</FONT><FONT SIZE=7><P ALIGN="CENTER">Data Visualization Using </P>
+<P ALIGN="CENTER">Cluster Guided Tours</P>
+</FONT><B><FONT SIZE=2><P>&nbsp;</P>
+</B></FONT><FONT SIZE=3><P>&nbsp;</P>
+</FONT><B><U><FONT SIZE=7><P ALIGN="CENTER">User Manual</P>
+</B></U><P ALIGN="CENTER">&nbsp;</P>
+<P ALIGN="CENTER">&nbsp;</P>
+</FONT><FONT SIZE=7><P ALIGN="CENTER">net.Mining Research &amp; Development</P>
+<P ALIGN="CENTER">Global Business Intelligent Solutions IBM Corporation</P>
+</FONT><FONT SIZE=3><P>&nbsp;</P>
+</FONT><FONT SIZE=5><P ALIGN="CENTER">Almaden Research</P>
+<P ALIGN="CENTER">650 Harry Rd</P>
+<P ALIGN="CENTER">San Jose, CA  95120</P>
+<P ALIGN="CENTER">dbmine@almaden.ibm.com</P>
+</FONT><FONT SIZE=3><P>&nbsp;</P>
+</FONT><FONT SIZE=5><P ALIGN="CENTER">May 19, 1998</P>
+</FONT><FONT SIZE=3><P ALIGN="CENTER">&nbsp;</P>
+</FONT><FONT SIZE=4><P ALIGN="CENTER">IBM Internal Use Only</P>
+</FONT><FONT SIZE=5><P ALIGN="CENTER">&nbsp;</P>
+<P ALIGN="CENTER">Table Of Contents</P>
+<P ALIGN="CENTER">&nbsp;</P>
+</FONT><B><FONT SIZE=2><P>Introduction </B></FONT><A HREF="#_Toc421669288">*</A>
+<B><FONT SIZE=2><P>Input Data Format </B></FONT><A HREF="#_Toc421669289">*</A></P>
+<B><FONT SIZE=2><P>Starting CViz </B></FONT><A HREF="#_Toc421669290">*</A></P>
+<B><FONT SIZE=2><P>Interpreting a CViz Scatter Plot </B></FONT><A HREF="#_Toc421669291">*</A></P><DIR>
+
+<I><FONT SIZE=2><P>Non-Linear Plot </I></FONT><A HREF="#_Toc421669292">*</A></P>
+<I><FONT SIZE=2><P>Linear Plot </I></FONT><A HREF="#_Toc421669293">*</A></P>
+<I><FONT SIZE=2><P>Simple Scatter Plot </I></FONT><A HREF="#_Toc421669294">*</A></P>
+<I><FONT SIZE=2><P>SVD-Centroids Plot </I></FONT><A HREF="#_Toc421669295">*</A></P></DIR>
+
+<B><FONT SIZE=2><P>Similarity Lines </B></FONT><A HREF="#_Toc421669296">*</A></P>
+<B><FONT SIZE=2><P>Coloring Points </B></FONT><A HREF="#_Toc421669297">*</A></P>
+<B><FONT SIZE=2><P>Getting Statistics and Naming Clusters </B></FONT><A HREF="#_Toc421669298">*</A></P><DIR>
+
+<I><FONT SIZE=2><P>Viewing Cluster Statistics </I></FONT><A HREF="#_Toc421669299">*</A></P>
+<I><FONT SIZE=2><P>Viewing Class Statistics </I></FONT><A HREF="#_Toc421669300">*</A></P></DIR>
+
+<B><FONT SIZE=2><P>Touring </B></FONT><A HREF="#_Toc421669301">*</A></P><DIR>
+
+<I><FONT SIZE=2><P>Tour Graph Arrays </I></FONT><A HREF="#_Toc421669302">*</A></P>
+<I><FONT SIZE=2><P>Best Tour Plot </I></FONT><A HREF="#_Toc421669303">*</A></P>
+<I><FONT SIZE=2><P>New Tour </I></FONT><A HREF="#_Toc421669304">*</A></P>
+<I><FONT SIZE=2><P>Slow Non-Linear Plots </I></FONT><A HREF="#_Toc421669305">*</A></P>
+<I><FONT SIZE=2><P>Animation Settings </I></FONT><A HREF="#_Toc421669306">*</A></P></DIR>
+
+<B><FONT SIZE=2><P>Zooming </B></FONT><A HREF="#_Toc421669307">*</A></P><DIR>
+
+<I><FONT SIZE=2><P>On a Cluster </I></FONT><A HREF="#_Toc421669308">*</A></P>
+<I><FONT SIZE=2><P>On a Class </I></FONT><A HREF="#_Toc421669309">*</A></P>
+<I><FONT SIZE=2><P>On Not X </I></FONT><A HREF="#_Toc421669310">*</A></P>
+<I><FONT SIZE=2><P>On Selected Points </I></FONT><A HREF="#_Toc421669311">*</A></P></DIR>
+
+<B><FONT SIZE=2><P>Other Features </B></FONT><A HREF="#_Toc421669312">*</A></P><DIR>
+
+<I><FONT SIZE=2><P>Uniform Data Range (0-1) </I></FONT><A HREF="#_Toc421669313">*</A></P>
+<I><FONT SIZE=2><P>Unitize all Examples </I></FONT><A HREF="#_Toc421669314">*</A></P>
+<I><FONT SIZE=2><P>Show Outliers </I></FONT><A HREF="#_Toc421669315">*</A></P>
+<I><FONT SIZE=2><P>Flatten Hierarchy </I></FONT><A HREF="#_Toc421669316">*</A></P>
+<I><FONT SIZE=2><P>Cluster (old view) </I></FONT><A HREF="#_Toc421669317">*</A></P>
+<I><FONT SIZE=2><P>Reduce Size Via Sampling </I></FONT><A HREF="#_Toc421669318">*</A></P>
+<I><FONT SIZE=2><P>Blow up Region </I></FONT><A HREF="#_Toc421669319">*</A></P>
+<I><FONT SIZE=2><P>View Attribute Range </I></FONT><A HREF="#_Toc421669320">*</A></P>
+<I><FONT SIZE=2><P>Density and Contour Graphs </I></FONT><A HREF="#_Toc421669321">*</A></P>
+<I><FONT SIZE=2><P>Recoloring Individual Legend Labels </I></FONT><A HREF="#_Toc421669322">*</A></P>
+<I><FONT SIZE=2><P>Editing Labels </I></FONT><A HREF="#_Toc421669323">*</A></P>
+<I><FONT SIZE=2><P>Optional Settings </I></FONT><A HREF="#_Toc421669324">*</A></P>
+<I><FONT SIZE=2><P>Reading/Saving Centroids or Data </I></FONT><A HREF="#_Toc421669325">*</A></P>
+<I><FONT SIZE=2><P>Reading/Saving Java Object </I></FONT><A HREF="#_Toc421669326">*</A></P>
+<I><FONT SIZE=2><P>Exporting a Plot </I></FONT><A HREF="#_Toc421669327">*</A></P>
+<I><FONT SIZE=2><P>Printing </I></FONT><A HREF="#_Toc421669328">*</A></P>
+<I><FONT SIZE=2><P>Saving Text Description </I></FONT><A HREF="#_Toc421669329">*</A></P></DIR>
+
+<B><FONT SIZE=2><P>Acknowledgements </B></FONT><A HREF="#_Toc421669330">*</A></P>
+<FONT SIZE=3><P>&nbsp;</P></P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P><A NAME="_Toc406914647"><A NAME="_Toc410185225"></P>
+<P><A NAME="_Toc421669288">Introduction</A></A></A></P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">CViz is a visualization tool for clustering and analysis of multi-dimensional data sets.  It is most readily applicable to data sets containing between 100 and 50,000 examples where each example has between 2 and 200 mostly numerical components (dimensions) each describing a different <I>attribute</I> of the data.  Optionally, each example may be provided with a classification value, indicating what <I>class</I> it belongs to.  Ideally, there should be between 2 and 20 different nominal classes in the entire data set.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">CViz is most valuable when applied to situations where little or no information is known about the relationships between attributes and class or between different attributes.  CViz gives the data analyst a unique tool for viewing the entire set of data points across the most interesting dimensions in a short period.  </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">CViz utilizes a k-means clustering algorithm to find interesting <I>concepts</I> in the data.  It then draws two-dimensional scatter plots by selecting pairs or triples of concepts and relating these concepts to the data examples and the other concepts.  By using an animation technique called, <I>touring</I>, CViz allows the analyst to quickly cycle through all the different pairs or triples of concepts and see how the data changes from one perspective to another.  This can often provide a unique insight into underlying structure of the data.  </P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P><A NAME="_Toc406914648"><A NAME="_Toc410185226"><A NAME="_Toc421669289">Input Data Format</A></A></A></P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">CViz takes in flat file data in Comma Separated Value (CSV) format.  This format is easily exported from spreadsheet applications such as Microsoft Excel.  Each line of the file should be a list of floating-point values or strings separated by commas.  In addition, the first line of the file should contain string identifiers for each attribute (column).  One specially designated column may contain the class values (strings).  This column is designated by the word &quot;class&quot; in the first row.  An example of this format is shown below:</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><P>class,sepal length,sepal width,petal length,petal width</P>
+<P>Iris-setosa,5.1,3.5,1.4,0.2</P>
+<P>Iris-setosa,4.9,3.0,1.4,0.2</P>
+<P>Iris-setosa,4.7,3.2,1.3,0.2</P>
+<P>Iris-setosa,4.6,3.1,1.5,0.2</P>
+<P>Iris-setosa,5.0,3.6,1.4,0.2</P>
+<P>Iris-setosa,5.4,3.9,1.7,0.4</P>
+<P>Iris-virginia,4.6,3.4,1.4,0.3</P>
+<P>Iris-virginia,5.0,3.4,1.5,0.2</P>
+<FONT SIZE=3><P>…</P>
+<P>&nbsp;</P>
+<P ALIGN="JUSTIFY">This data set has four attributes in columns 2-5: sepal length, sepal width, petal length, and petal width.  It has a class, which is represented in the first column.  The class values may also be integer values starting at zero and ending at one less than the number of classes.  </P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P><A NAME="_Toc406914649"><A NAME="_Toc410185227"><A NAME="_Toc421669290">Starting CViz</A></A></A></P>
+</B></FONT><FONT SIZE=3><P>&nbsp;</P>
+<P ALIGN="JUSTIFY">Start CViz by typing &quot;run&quot; from within the CViz installation directory (optionally, you may provide the input data set as a command line argument).  For example, from the <B>File</B> pulldown menu select <B>Open Data File</B> and then select the &quot;iris.csv&quot; data set for loading.  If the file you have to load in is very large you may want to sample it instead of reading it all into memory.  To do this select <B>Open Sample of Data File</B> from the <B>File</B> menu.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">If the file you load in has a header describing the attribute names, a dialog will pop up asking you to select which attributes you wish to analyze via clustering as well as which attribute you would like to use for classification.</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P><A NAME="_Toc406914650"><A NAME="_Toc410185228"><A NAME="_Toc421669291">Interpreting a CViz Scatter Plot</A></A></A></P>
+</B></FONT><FONT SIZE=3><P>A window like the one shown below should appear after you load in the iris data set.</P>
+<P>&nbsp;</P>
+<P><IMG SRC="Image46.gif" WIDTH=528 HEIGHT=450></P>
+<P>&nbsp;</P>
+<P>This scatter plot should be interpreted as follows:</P>
+<P>&nbsp;</P>
+<OL>
+
+<OL>
+
+<LI>The small dots represent example points in the data set.</LI>
+<LI>The icons represent cluster centroids.  The number of centroids in the plot will depend on the number of centroids entered in the <B>Num Clusters</B> field of the control panel.  </LI>
+<LI>Circular icons represent the primary centroids upon which the scatter plot is based.  The axes are usually drawn through the primary cluster centroids.</LI>
+<LI>Square green icons represent the other centroids.</LI>
+<LI>The white &quot;+&quot; sign represents the location of the origin in the data set.  This is the point representing a zero value for all data set attributes.</LI></OL>
+</OL>
+
+<P>&nbsp;</P>
+<P ALIGN="JUSTIFY">Since the example points each have four components (dimensions), this plot is not a true representation of the positions of the points in space.  Some information is lost.  What is not lost is the relative distance of each point to the primary centroids.  This is represented accurately in the scatter plot.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">There are four primary types of CViz scatter plots: linear, non-linear, SVD-Centroids, and simple.  Non-linear is based on two primary centroids, while linear is based on three.  The SVD plot can be based on any number of centroids greater than two.  The simple scatter plot is not based on centroids at all, but simply plots the data along two selected dimensions at a time.  Each plot displays the same information, but in a slightly different way.  The linear plot of the iris data is the one we drew first (by default).  To get a non-linear plot, select <B>Non-Linear Plot</B> in the <B>Plot Type</B> choice menu of the control panel, and then select the pulldown menu <B>Execute-&gt;New Plot</B>.  You should see a plot similar to that shown below:</P>
+<P>&nbsp;</P>
+<P><IMG SRC="Image47.gif" WIDTH=528 HEIGHT=450></P>
+<P ALIGN="JUSTIFY">To get a scatter plot, select <B>Simple Scatter Plot</B> in the <B>Plot Type</B> choice menu of the control panel, and then select the pulldown menu <B>Execute-&gt;New Plot</B>.  You should see a plot similar to that shown below: </P>
+<P ALIGN="JUSTIFY"><IMG SRC="Image48.gif" WIDTH=528 HEIGHT=450></P>
+<P>&nbsp;</P>
+<P ALIGN="JUSTIFY">To see other dimensions displayed in a different simple scatter plot, select <B>View-&gt;SelectAxes</B>.  Select two different axes from the popup window that appears.</P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914651"><A NAME="_Toc410185229"><A NAME="_Toc421669292">Non-Linear Plot</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">A non-linear plot is &quot;non-linear&quot; because it is based entirely upon the <U>distance</U> of every example point from the two primary cluster centroids.  Thus, the x-coordinate of each example point is calculated from its distance to one primary centroid and the y-coordinate is its distance to the other primary centroid.  The coordinates of each centroid in the scatter plot is calculated in a similar fashion.  Notice that the primary centroids are on the x and y axis, since they are zero distance from themselves.  </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">The geometry of using the distance measure to determine coordinates dictates that some regions of the scatter plot will be &quot;off-limits&quot; to all example points.  An obvious example is the origin.  A point at the origin would have to be zero distance from both centroids, which is impossible if the centroids are not located at the same point in space.  These regions that can never contain an example point are illustrated as the gray areas in the diagram below:</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P><IMG SRC="Image56.gif" WIDTH=222 HEIGHT=207></P>
+<P>&nbsp;</P>
+<P ALIGN="JUSTIFY">The most basic form of the non-linear plot is one with only two clusters.   To create a two-cluster plot set the plot type to Non-Linear and enter a 2 for <B>Num Clusters</B>.  Then select              <B>Execute-&gt;Cluster (new view)</B>.  The result should look something like this:</P>
+<P>&nbsp;</P>
+<P><IMG SRC="Image50.gif" WIDTH=528 HEIGHT=450></P>
+<P>&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P><A NAME="_Toc406914652"><A NAME="_Toc410185230"><A NAME="_Toc421669293">Linear Plot</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">A linear plot is &quot;linear&quot; because it is based on straight linear projection of each example data point on to the plane formed by three cluster centroids.  To see what this means, imagine a point in three-dimensional space.  Now imagine a plane that is a non-zero distance from that point.  The projection of the point in 3D space to the plane is the point on the plane that is closest to the point in 3D space.  </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">The most basic form of the linear plot is one with exactly three clusters.   To create a three-cluster plot, set the plot type to Linear and enter &quot;3&quot; in the <B>Num Clusters</B> field.  Then select:      <B>Execute-&gt;Cluster (new view)</B>.  The result should look something like this:</P>
+<P>&nbsp;</P>
+<P><IMG SRC="Image51.gif" WIDTH=528 HEIGHT=450></P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P ALIGN="JUSTIFY">It is important to remember with linear plots that the position of points on the scatter plot is not necessarily similar to their relative position in the original attribute space.  All that can be said with certainty is that each example’s position relative to the three primary centroids is correct.   </P>
+<P>&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P><A NAME="_Toc410185231"><A NAME="_Toc421669294">Simple Scatter Plot</A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">A simple scatter plot is like a linear plot only it is based on viewing the data from the perspective of two selected attributes.  In this case the plane of projection is not selected via cluster centroids but is arbitrarily chosen based on setting the values of all but two attributes to zero and graphing the remaining two attributes in an x-y fashion.  In most cases this will result in much greater loss of information than a linear or non-linear plot projection.   The advantage is that it allows the user to focus in on particular attributes of interest.  To select the attributes to view, choose <B>View-&gt;Select Axes</B> after selecting <B>Simple Scatter Plot</B> from the <B>Plot Type</B> menu.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P><A NAME="_Toc421669295">SVD-Centroids Plot</A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">An SVD-Centroids plot is designed to retain the most possible information about a particular set of clusters.   The advantage is that it allows the user to focus on a set of cluster that are known to be of interest.  When this type of plot is selected in the <B>Plot Type</B> menu, the system will prompt the user for a list of the clusters that are of interest.</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P><A NAME="_Toc406914653"><A NAME="_Toc410185232"><A NAME="_Toc421669296">Similarity Lines</A></A></A></P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">The problem with projecting high dimensional data on to 2-dimensional scatter plots is that some information is usually lost.  One critical piece of information that is missing from both the linear and non-linear plots we have seen so far is how far the secondary centroids are in relation to each other in the original space.  The distance of centroids to one another is an important indicator of how similar are the concepts they represent.  Similarity lines are features that allow us to visually see this information on the scatter plot.  As an example, look at a linear plot of the iris data set with 10 clusters:</P>
+<P>&nbsp;</P>
+<P><IMG SRC="Image34.gif" WIDTH=528 HEIGHT=450></P>
+<P>&nbsp;</P>
+<P ALIGN="JUSTIFY">Though it looks like there are defintely two &quot;meta-clusters&quot; in this picture we cannot really say beyond this which clusters are most similar (and therefore might be combined) so that we might reduce the number of clusters without losing interesting concepts.  Now click on the Similarity Lines &quot;Similarity&quot; checkbox.  The result should look something like the picture below:</P>
+<P>&nbsp;</P>
+<P><IMG SRC="Image35.gif" WIDTH=528 HEIGHT=450></P>
+<P ALIGN="JUSTIFY">Clusters that are relatively close to each other are connected with lines.  The threshold at which clusters will be connected is determined by the slider setting.  At this setting, we see that there are indeed two main cluster groups.   If we reduce the similarity threshold slider, we get a picture like the one below:</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY"><IMG SRC="Image36.gif" WIDTH=528 HEIGHT=450></P>
+<P>&nbsp;</P>
+<P ALIGN="JUSTIFY">At this similarity threshold we see three possible clustersAt this point we would want to see how the class labels are distributed across the differeng groups in order to determine the best grouping of clusters.  This is done through coloring points, as described in the next section.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">If desired, the system can join the clusters connected by similarity lines into a single cluster.  This command can be executed by selecting <B>Execute-&gt; Join Similar Clusters</B>.  The result will be a reduced number of centroids equal to the number of cluster groups in the previous plot.  The new cluster centroids are calculated as the mean of all points in the group.</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P ALIGN="JUSTIFY"><A NAME="_Toc406914654"><A NAME="_Toc410185233"><A NAME="_Toc421669297">Coloring Points</A></A></A></P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">CViz allows the analyst to apply colors to a scatter plot to reveal the cluster, group, and class membership of each data point.  For example, if we select <B>Group Colors</B> from the <B>Colors</B> choice menu and then hit the <B>Recolor</B> button we see the following:</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P><IMG SRC="Image37.gif" WIDTH=528 HEIGHT=450></P>
+<P>&nbsp;</P>
+<P ALIGN="JUSTIFY">Notice that points whose cluster centroids are connected via a similarity line are now drawn with the same color.  The colors are chosen at random by CViz.  To select a different set of random colors, hit the Recolor button again.  To see the specific cluster that each point belongs to, select <B>Cluster Colors </B>from the <B>Colors</B> choice menu and hit <B>Recolor.</P>
+</B><P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">Finally, when the input data set provides a <I>class</I> column, we can color each data point according to its classification.  Since classification is not represented anywhere else in the scatter plot (and in fact is not even taken into consideration during k-means clustering), this information can be very valuable to display, and can be a mechanism for validating the accuracy of the clustering.  A good example of this can be seen on the iris data set by selecting <B>Class Colors</B>, setting <B>Num Clusters</B> to 3, and then selecting <B>Execute-&gt;Cluster</B>.  The result should look similar to the picture below:  </P>
+<P>&nbsp;</P>
+<P><IMG SRC="Image52.gif" WIDTH=528 HEIGHT=450></P>
+<P>&nbsp;</P>
+<P ALIGN="JUSTIFY">Notice how closely the classification coloring corresponds to the cluster coloring.  This is a clear indication that the attributes are closely related to the classification variable.</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P ALIGN="JUSTIFY"><A NAME="_Toc406914655"><A NAME="_Toc410185234"><A NAME="_Toc421669298">Getting Statistics and Naming Clusters</A></A></A></P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">In order to understand better the meaning behind a given clustering, it is necessary to look at aggregate statistics over the data in the cluster.  Once the relationship of a cluster to the original data attributes is discovered, the cluster can then be given a more meaningful name than:  &quot;Cluster 3&quot;.  In addition, the relationship between cluster membership and classification values can be further explored via statistics.  </P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914656"><A NAME="_Toc410185235"><A NAME="_Toc421669299">Viewing Cluster Statistics</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">Cluster statistics are the means for each attribute over the set of data contained in the cluster.  There are two ways to view cluster statistics: one-by-one and all at once.  </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<OL>
+
+<OL>
+
+<I><P ALIGN="JUSTIFY"><LI>One-by-one: </I> Select &quot;Cluster Colors&quot; in the Colors choice menu and then hit the <B>Recolor </B>button.  In the cluster color legend that appears in the upper right corner of the scatter plot, click on one of the legend icons (i.e. square or circle indicating the color of the cluster).  In the case of the housing data set, this will bring up two graphs: a pie chart representing the class distribution for this cluster and a bar chart representing the attribute means for this cluster.</LI></P>
+<I><P ALIGN="JUSTIFY"><LI>All at once:</I> <I> </I>From the pulldown menus select <B>View-&gt;View Attribute Means</B>.  A set of bar charts will be displayed, one for each cluster.</LI></P></OL>
+</OL>
+
+<I><P ALIGN="JUSTIFY">&nbsp;</P>
+</I><P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">In either case, the bar charts themselves should look like the example below:</P>
+<P>&nbsp;</P>
+<P><IMG SRC="Image39.gif" WIDTH=562 HEIGHT=465></P>
+<P>&nbsp;</P>
+<P ALIGN="JUSTIFY">This graph shows how the attribute values for the data in this particular cluster relates to the attribute values for the data set as a whole.  By default the attributes are sorted (left to right) by decreasing proportional difference (both negative and positive) of the cluster mean from the mean as a whole.  Also by default the values of the bars are shown in units of the mean over the entire data set.  This allows for easy comparison between attributes with having different units of measure.  </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">The graph shown above indicates that this cluster has unusually low values for &quot;zoned&quot;, &quot;crime&quot;,  and &quot;roads&quot;.  We might therefore choose to give this cluster a name:  &quot;Low zoned, crime, roads&quot;.   By typing this name into the box labeled <B>Cluster Name</B>, we can tell CViz to use this name in all future reference to this cluster.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">For example if we name all the clusters for the housing data set based on their cluster statistics, and  then Select &quot;Cluster Colors&quot; in the Colors choice menu and then hit the <B>Recolor </B>button, the result should look something like the picture below.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P><IMG SRC="Image40.gif" WIDTH=528 HEIGHT=450></P>
+<P>&nbsp;</P>
+<P ALIGN="JUSTIFY">It is also possible to have CViz automatically name all the clusters in a plot, using a scheme similar to the process described above.  To utilize this feature select <B>Execute-&gt;Auto-Generate Cluster Labels</B> from the pulldown menus.   There are several methods of naming provided. Try different ones out to see which works best for your data.  To let CViz pick the naming scheme, choose the last option or select <B>Generate Names</B> from the right click pop-up menu on the plot itself.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914657"><A NAME="_Toc410185236"><A NAME="_Toc421669300">Viewing Class Statistics</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">Class statistics are the attribute means over the set of data contained in the cluster.  There are two ways to view cluster statistics: one-by-one and all at once.  </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<OL>
+
+<OL>
+
+<I><P ALIGN="JUSTIFY"><LI>One-by-one: </I> Select &quot;Class Colors&quot; in the Colors choice menu and then hit the <B>Recolor </B>button.  In the class color legend that appears in the upper right corner of the scatter plot, click on one of the legend icons (i.e. square or circle indicating the color of the class).  </LI></P>
+<I><P ALIGN="JUSTIFY"><LI>All at once:</I> <I> </I>From the pulldown menus select <B>View-&gt;View Class Distribution</B>.  A set of pie charts will be displayed, one for each cluster.</LI></P></OL>
+</OL>
+
+<I><P ALIGN="JUSTIFY">&nbsp;</P>
+</I><P ALIGN="JUSTIFY">Selecting <B>View-&gt;View Class Distribution </B>for the housing example will produce a set of pie charts similar to the ones shown below.  Notice how, by labeling the clusters based on the attribute statistics that best represent their meaning, we can now use the class distribution pie charts to get meaningful information regarding the relationships between attributes and classification.</P>
+<I><P ALIGN="JUSTIFY">&nbsp;</P>
+</I><P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY"><IMG SRC="Image41.gif" WIDTH=508 HEIGHT=490></P>
+<P ALIGN="JUSTIFY">To get additional information about a class, simply click on the pie slice of interest.  The background distribution for the selected cluster will appear and the slice will stand out from the other classes.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P ALIGN="JUSTIFY"><A NAME="_Toc406914658"><A NAME="_Toc410185237"><A NAME="_Toc421669301">Touring</A></A></A></P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">Up to this point we have focussed on using CViz to view individual scatter plots in isolation. In the case where you have only two clusters (or three in the case of a Linear plot), that is as much as we need.  Whenever the data set is partitioned into more than three clusters, however, there is a choice as to which cluster centroids will be the <I>primary centroids</I>.  This choice determines the perspective of the scatter plot.  Changing this choice will change our perspective on the data set.  Changing this perspective gradually by moving the points incrementally from one perspective to the next is called <I>touring</I>.  In a sense, we are viewing the high dimensional space from many different two-dimensional perspectives, rotating gradually as we go so that we obtain a clearer mental picture of what’s going on in the data set.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">To tour a data set, click on the <B>Play</B> button inside the <B>Tour Location</B> section of the Control Panel Window (make sure you have at least 4 clusters in your scatter plot).  This causes a <I>tour</I> to begin.  Watch how the scatter plot points move as the tour proceeds.  You may change the color scheme as the tour is going on by selecting from the colors menu and clicking on <B>Recolor</B>.  You may also add Similarity lines by clicking on the <B>Similarity</B> checkbox.  Note how the <B>Tour Location</B> scrollbar indicates the system’s progress through the major steps of the tour.  Each major step represents a different choice of primary centroids.  When the <B>Tour Location</B> scrollbar reaches the rightmost end of the bar, it will start the tour over from the beginning.  </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">Select <B>Stop</B> when you see a particularly interesting plot perspective.  You may go to any major stop in the tour by moving the scrollbar locator by hand with the mouse.  Alternatively, you may click on the arrow at either end of the scrollbar to move exactly one major stop in the tour.  </P>
+</FONT><B><I><FONT FACE="Arial"><P><A NAME="_Toc421669302">Tour Graph Arrays</A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">You may view all the major stops in a tour by selecting <B>View -&gt; Tour Graph Array</B>.  The result will be a display of all scatter plots in miniature in a scrollable window like the one shown below.</P>
+<P>&nbsp;</P>
+<P><IMG SRC="Image42.gif" WIDTH=466 HEIGHT=544></P>
+<P>&nbsp;</P>
+<P ALIGN="JUSTIFY">You may click on any of the miniature plots to have the main plot window scroll to that location in the tour.  The Tour Graph Array provides an excellent means for viewing the entire tour at once.  For very large tours, a Previous and Next button are provided allowing the user to look at a batch of 21 plots at a time.</P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914659"><A NAME="_Toc410185238"><A NAME="_Toc421669303">Best Tour Plot</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">Each scatter plot that is a major stop in the tour has an information retention value.  The greater this information, the better it represents the data set as a whole in the original data space.  CViz provides a function that allows the user to search over all major stops in the tour to find the plot that retains the highest Energy.  This plot can be found by clicking on the <B>Best</B> button.  The scatter plot will then rotate to the best perspective from which to view the data set as a whole.  This is not necessarily the best perspective for all purposes however.  As long as the best perspective has energy less than 1.0, other perspectives may provide additional insight.  Therefore, within your own time constraints and depending on the complexity of the data, it is recommended that you view as much of the tour as possible to get the clearest possible picture of your data set.</P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914660"><A NAME="_Toc410185239"><A NAME="_Toc421669304">New Tour</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">The tour that CViz computes for a clustering is a randomly chosen path through all possible selections of primary cluster centroids.  The order in which these centroids (major steps) are chosen will have an effect on the in between projections (minor steps) of the tour.  CViz provides a means for selecting a different random path via the <B>New Tour</B> button.  Selecting this button will cause the tour to be recalculated (with a new random order) and to be started over from the beginning. </P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914661"><A NAME="_Toc410185240"><A NAME="_Toc421669305">Slow Non-Linear Plots</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">In the case of Non-Linear scatter plots, CViz provides two different methods for interpolating between major steps of the tour.  The default method is fast, but not very accurate.  It simply creates a curved path from one major point to the next.  The second method of interpolation is slower but more accurate.  It moves the primary centroids along a curved path and then recalculates the distances of each point from the primary centroids at their new position.  </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">To view this second type of tour select <B>Slow Non-Linear Plot</B> from <B>Plot Type</B> choice menu and then select <B>Execute-&gt;New Plot</B> from the pulldown menus.  Start the tour as before using the <B>Play</B> button.  Note that Slow Non-Linear Plots behave in all other ways the same as Non-Linear plots.  It is only during touring that you will notice any difference.</P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914662"><A NAME="_Toc410185241"><A NAME="_Toc421669306">Animation Settings</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">To adjust the speed and quality of the animation during touring, select <B>View-&gt;View Animation Settings</B> from the pulldown menus. This will bring up a popup Window that allows you to modify some parameters of the tour.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<B><P ALIGN="JUSTIFY">Animation Speed</B> is used to adjust the waiting period between interpolations (minor steps). This value should be increased if the data set size is large (depending also on the speed of the hardware you are using). <B>Animation Detail</B> changes the number of frames (minor steps) drawn between every pair of major steps. <B>Smooth Tour</B> creates a more rotational tour when on. Without smoothing, the tour will tend to be more herky-jerky between major steps. It will however retain more energy. </P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P ALIGN="JUSTIFY"><A NAME="_Toc406914663"><A NAME="_Toc410185242"><A NAME="_Toc421669307">Zooming</A></A></A></P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">Zooming in CViz is the act of creating a new scatter plot from an existing scatter plot by reducing the number of data points displayed.  The purpose of zooming is to focus on a specific subset of the original data set to understand it more clearly.  CViz provides many different ways of selecting the subset of points you wish to zoom in on.  These are described in detail below. </P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914664"><A NAME="_Toc410185243"><A NAME="_Toc421669308">On a Cluster</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">Zooming in on a cluster can be done in one of three ways:</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+
+<UL>
+
+<UL>
+<I><P ALIGN="JUSTIFY"><LI>Click on a cluster centroid in the scatter plot</I>: This is the simplest method of zooming.  The result will be a new scatter plot with the same cluster centroids as the original but displaying only those data points contained in the cluster selected.</LI></P>
+<I><P ALIGN="JUSTIFY"><LI>Shift-Click on a cluster centroid in the scatter plot</I>: This will do the same as the first method, only now a new set of centroids will be calculated over the data points contained in the selected cluster.</LI></P>
+<I><P ALIGN="JUSTIFY"><LI>Select <B>Execute-&gt;Cluster a Cluster-&gt;Cluster Name</B></I>: This will do the same thing as Shift-Clicking on a cluster centroid.  </LI></P></UL>
+</UL>
+
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">After zooming the number of data points displayed at the top of the new plot will now be less than the number displayed in the original.  Class colors will be the same in the new plot as will cluster colors unless the clustering was redone (e.g. via Shift-Click).  Below is a plot showing cluster 2 zoomed?</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY"><IMG SRC="Image43.gif" WIDTH=528 HEIGHT=450></P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">Use the <B>Windows</B> pulldown menu to switch between different scatter plots.  Notice how the name of the zoomed plot indicates that it represents a selected cluster from the original plot.</P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914665"><A NAME="_Toc410185244"><A NAME="_Toc421669309">On a Class</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">To zoom in on a class, select <B>Execute-&gt;Zoom-&gt;ClassName</B> from the pulldown menus.  The result will be a new scatter plot with the same cluster centroids as the original but displaying only those data points contained in the selected class.  Class colors and cluster colors will be the same in the new plot. </P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914666"><A NAME="_Toc410185245"><A NAME="_Toc421669310">On Not X</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">In some cases, it may be useful to see all the data except that belonging to a certain class.  To do this in CViz, select <B>Execute-&gt;Zoom Not-&gt;ClassName</B> from the pulldown menus.  The result will be a new scatter plot with the same cluster centroids as the original but displaying only those data points not contained in the selected class.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914667"><A NAME="_Toc410185246"><A NAME="_Toc421669311">On Selected Points</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">In some cases, you may wish to select individual data points to zoom on that are not entirely represented by a cluster or class.  This is accomplished in CViz via <I>brushing</I>.  Brushing allows the user to select individual data points in a scatter plot simply by dragging the mouse cursor across the desired points.  </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">To enable brushing simply turn on the Checkbox <B>Brush</B> in the Colors section of the Control Panel Window.  Now hold down the mouse button and drag the cursor over the points in the scatter plot that you wish to select.  These points will be colored white to indicate that they have been selected. </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">After selecting the desired points, choose <B>Execute-&gt;Zoom-&gt;Brushed Points</B> from the pulldown menus (or alternatively <B>Execute-&gt;Zoom Not-&gt;Brushed Points</B>).  You can also choose <B>View -&gt; View Brushed Points Info</B> to see statistics for the selected point(s).</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P ALIGN="JUSTIFY"><A NAME="_Toc406914668"><A NAME="_Toc410185247"><A NAME="_Toc421669312">Other Features</A></A></A></P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">The following additional features are available through the CViz user interface as conveniences to the user for specific applications.  They are not generally required for a typical data analysis and visualization.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P><A NAME="_Toc421669313">Uniform Data Range (0-1)</A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">In cases where the underlying data set has some attributes whose min and max values have a much larger range than others, a feature is provided for normalizing those attributes to range from zero to one.  The <B>Execute-&gt;Uniform Data Range (0-1)</B> command allows the user to select which attributes in the data set are to be normalized.  The individual values for these attributes will then be transformed so that the minimum value is zero and the maximum value is one.  Relative value magnitudes within the attribute will remain unchanged.  </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P><A NAME="_Toc421669314">Unitize all Examples</A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">In cases where the underlying data set has some vectors with very large magnitude and others with very small it may be useful to convert all vectors to a magnitude of one.  The <B>Execute-&gt;Unitize all Examples </B> command allows the user do this.  Each example is converted to a unit vector by dividing every vector element by the vector magnitude.  </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P><A NAME="_Toc421669315">Show Outliers</A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">In some data mining applications it is important to determine which example data points are more abnormal (e.g. fraud and abuse).  CViz provides a feature to make this determination quick and easy.  Simply select Show Outliers from the right click pop-up menu on any CViz plot.  The example point that is furthest from each cluster centroid will then be highlighted with a circle.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY"><IMG SRC="Image44.gif" WIDTH=528 HEIGHT=450></P>
+</FONT><B><I><FONT FACE="Arial"><P>&nbsp;</P>
+<P><A NAME="_Toc421669316">Flatten Hierarchy</A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">Whenever you have created sub-clusters from a plot via the Cluster a Cluster command, it is possible to roll the resulting clusters back into the original plot by selecting: <B>Execute-&gt;Flatten Cluster Hierarchy</B>.  The new plot will replace any cluster centroid which has been sub-clustered with the cluster centroids of that sub-clustering.  The data points will then be reclassified.  Use the command <B>Execute-&gt; Cluster (centroids as seeds)</B> to have the K-Means clustering algorithm run again with these centroids as a starting point.  This will enable you to find a stable state that is similar to the original state.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P><A NAME="_Toc421669317">Cluster (old view)</A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">To view a different clustering from the same viewpoint (plane) as the current clustering, select <B>Execute-&gt;Cluster (old view).  </B> This function can be a useful way to view a clustering that has a large number of clusters by beginning with a smaller number of clusters.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P><A NAME="_Toc421669318">Reduce Size Via Sampling</A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">To decrease the number of example points in a plot, select <B>Execute-&gt;Reduce size via sampling</B>.  This will not recluster the data set, but simply reduces the number of example points displayed in the plot.  This can be a practical way to view a data set that is so large it overwhelms the display resources of the computer.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P><A NAME="_Toc421669319">Blow up Region</A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">For some data sets there may be some regions of a CViz plot that contain a high density of points.  In such cases the points within that high density region may be hard to interpret.  CViz provides a feature that allows the user to blow up such regions in order to see what is going on more clearly.   The <B>View-&gt;Blow Up Region</B> command shows the user a new window displaying a magnified square region of the original plot.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY"><IMG SRC="Image53.gif" WIDTH=316 HEIGHT=306>       <IMG SRC="Image54.gif" WIDTH=261 HEIGHT=273></P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">The magnification box can be moved by dragging the mouse in the original plot and it can be resized by dragging the mouse on the lower right corner of the box.  To close the magnification box, simply click on the upper right corner of the Blow up window.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P><A NAME="_Toc421669320">View Attribute Range</A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">In order to determine whether the underlying data set has some attributes whose min and max values have a much larger range than others, a feature is provided for viewing the attribute ranges.  The <B>View-&gt;View Attribute Range</B> command shows the user a whisker chart similar to the one shown below.  </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY"><IMG SRC="Image25.gif" WIDTH=548 HEIGHT=434></P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">The black dot in each row represents the mean for the attribute.  The red confidence bar represents one standard deviation from the mean and the blue tick mark represents the min and max value for the attribute.  Clicking on a row will cause the mean value to be displayed.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P><A NAME="_Toc421669321">Density and Contour Graphs</A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">One weakness of scatter plots is that when many points are close together in space it can be difficult or in possible to distinguish them.  Density and Contour graphs help to alleviate this problem by using colors to represent density of points in a given area of space.  A density graph colors it’s space based on how many example points fall exactly within a given square area of the original scatter plot.  A Contour graph does something similar, but it also smoothes out the coloring by taking into account the density of neighboring regions, when coloring a given region.  These two plots are shown below for the housing data.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY"><IMG SRC="Image26.gif" WIDTH=218 HEIGHT=227>                   <IMG SRC="Image27.gif" WIDTH=218 HEIGHT=227></P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914669"><A NAME="_Toc410185248"></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">In both cases density of points is indicated by the hue of the region.  The scale on the right side of the plot shows the meaning of the colors.  The purple colors at the top of the scale indicate regions of lowest density and the orange colors at the bottom of the scale indicate regions of highest density.  To view a CViz plot in this way, simply select the option from the <B>View</B> menu or from the right click plot menu.</P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc421669322">Recoloring Individual Legend Labels</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">If you wish to select a specific color for a legend label on a scatter plot, simply Shift-Click on the icon in the legend.  This should bring up a Color Chooser Window like the one below.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY"><IMG SRC="Image45.gif" WIDTH=304 HEIGHT=267></P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">You may select any color in this window.  The color will appear in the horizontal bar near the bottom of the window.  To darken or lighten the set of available colors, use the <B>Color Intensity</B> scrollbar.  The Recolor button allows you to obtain a different set of colors in the squares on the right side of the window.  </P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914670"><A NAME="_Toc410185249"><A NAME="_Toc421669323">Editing Labels</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">Labels for clusters or attributes may be edited via the <B>Edit</B> pulldown menu.  Note that the cluster labels will only apply to scatter plot clustering you are working with.  The attribute labels will be applied to all plots.  You may need to <B>Recolor</B> a plot to see the new labels displayed.</P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914672"><A NAME="_Toc410185250"><A NAME="_Toc421669324">Optional Settings</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">Some additional display controls are available via a popup display Window.  To view this window select <B>View-&gt;View Optional Settings </B>from the pulldown menus. </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">The checkboxes shown in this window have the following functionality:</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+
+<UL>
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>Centroids: Toggles on/off the display of cluster centroids in the scatter plot.</LI></P>
+<P ALIGN="JUSTIFY"><LI>Points: Toggles on/off the display of data points in the scatter plot</LI></P>
+<P ALIGN="JUSTIFY"><LI>Glyphs: Toggles on/off the display of classification membership via a unique letter of the alphabet.  (i.e. points are represented as letters instead of as dots).</LI></P></UL>
+</UL>
+
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">The default display settings are normally the ones you would use for most applications.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914673"><A NAME="_Toc410185251"><A NAME="_Toc421669325">Reading/Saving Centroids or Data</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">Centroid positions may be saved out to or read in from a file using <B>File-&gt;Save Centroid</B> and   <B>File-&gt; Read Centroid</B>.  This can be especially useful when a particular clustering reveals something in the data.  Since the initial starting points for the cluster centroids is random, there is no guarantee that reclustering will produce exactly the same results.  The data set points of a scatter plot can also be saved or read in from a file using <B>File-&gt;Read Examples</B> and <B>File-&gt;Save Examples</B>.  This will only save the data points shown in the current scatter plot.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">You can also save the cluster membership (i.e. which cluster does each individual point belong to) out to a file via the <B>File-&gt;Save Membership</B> option.  </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">To save out a data set in sparse format, use the <B>File -&gt; Save Examples (sparse)</B> command.</P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914674"><A NAME="_Toc410185252"><A NAME="_Toc421669326">Reading/Saving Java Object</A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">All useful information about a given plot may be saved out to file for later read in by CViz.  To do this select the plot you wish to save and then select <B>File-&gt;Save Java Object</B>.  This can be especially useful when you have given intelligent names to the clusters in a plot.  To read the information back in, simply load the file using the <B>File-&gt;Open Data File</B> command.</P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc410185253"><A NAME="_Toc421669327">Exporting a Plot</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">Any scatter plot may be exported to a file in comma separated value format.  The exported values may be read easily into a spreadsheet program such as Excel.  Each point is labeled by its cluster membership.</P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914675"><A NAME="_Toc410185254"><A NAME="_Toc421669328">Printing</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">Scatter plots may be printed to a local print device using the <B>File-&gt;Print</B> command.</P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY"><A NAME="_Toc406914676"><A NAME="_Toc410185255"><A NAME="_Toc421669329">Saving Text Description</A></A></A></P>
+</B></I></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">The <B>File-&gt;Save Text Description</B> command saves out a verbal description of every cluster in every visible scatter plot.  The descriptions are based on the mean attribute values for the data contained in each cluster.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>&nbsp;</P>
+<P><A NAME="_Toc421669330">Acknowledgements</A></P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">CViz was the original brainchild of Dharmendra Modha, Scott Spangler, and Shivakumar Vaithyanathan.   Dharmendra worked out the underlying equations.  The software was developed in Java by Scott utilizing a K-Means clustering algorithm written previously by Shiv.  Scott also put together this user manual.  Inderjit Dhillon came up with the theory behind SVD-Centroid plots.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">In developing the user interface, Scott benefited from the advice and suggestions of Mark Plutowski, and David Martin.  </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">Of course, this CViz work would not have been possible without the support of the whole net.Mining R&amp;D group and IBM corporation.</P>
+<P>  </P>
+</FONT><B><I><FONT FACE="Arial"><P ALIGN="JUSTIFY">&nbsp;</P></B></I></FONT></BODY>
+</HTML>

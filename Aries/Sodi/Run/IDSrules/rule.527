@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 32770: (msg:"RPC rstatd query"; content:"|00 00 00 00 00 00 00 02 00 01 86 A1|";offset:5; reference:arachnids,9;classtype:attempted-recon; sid:592; rev:2;)

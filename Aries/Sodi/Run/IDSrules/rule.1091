@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC webhits.exe access";flags: A+; uricontent:"/scripts/samples/search/webhits.exe"; nocase; classtype:web-application-activity; sid:1073; rev:2;)

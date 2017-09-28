@@ -1,0 +1,6 @@
+cd /home/dre/Protege-2000/plugins/wordnet_tab/src/WNInterface
+javac *.java
+cd /home/dre/Protege-2000/plugins/wordnet_tab/src/edu/stanford/smi/RemoteKBTab
+javac W*.java
+cp /home/dre/Protege-2000/plugins/wordnet_tab/src/META-INF/MANIFEST.MF.wordnet /home/dre/Protege-2000/plugins/meta-inf/manifest.mf
+jar cmf /home/dre/Protege-2000/plugins/meta-inf/manifest.mf /home/dre/Protege-2000/plugins/wordnet_tab.jar toolbox/*.gif W*.class /home/dre/Protege-2000/plugins/wordnet_tab/src/WNInterface/WNInterface.class

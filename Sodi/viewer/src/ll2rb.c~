@@ -1,0 +1,93 @@
+#include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+
+void recpol(float x, float y, float *r, float *a)
+{
+
+}
+
+void recpol3d(float x, float y, float z, float *r, float *az, float *ax)
+{
+float rr, rxy, rax, raz;
+
+  recpol(x, y, &rxy, &rax);
+  recpol(z, rxy, &rr, &raz);
+
+  *r = rr;
+  *az = raz;
+  *ax = rax;
+
+  return;
+}
+
+void rot3d(int axis, float x1, float y1, float z1, float ang,
+           float *x2, float *y2, float *z2)
+{
+float c, s;
+
+  c = cos(ang);
+  s = sin(ang);
+
+  switch (axis) {
+    case 1:
+      *x2 = x1;
+      *y2 = c*y1 + s*z1;
+      *z2 = -s*y1 + c*z1;
+      break;
+    case 2:
+      *x2 = c*x1 - s*z1;
+      *y2 = y1;
+      *z2 = s*x1 + c*z1;
+      break;
+    case 3:
+      *x2 = c*x1 + s*y1;
+      *y2 = -s*x1 + c*y1;
+      *z2 = z1;
+      break;
+    default:
+      break;
+  }
+
+  return;
+}
+
+void polrec(float r, float a, float *x, float *y)
+{
+  *x = r*cos(a);
+  *y = r*sin(a);
+}
+
+void polrec3d(float r, float az, float ax, float *x, float *y, float *z)
+{
+float           zz, xx, yy, rxy;
+
+  polrec(r, az, &zz, &rxy);
+  *z = zz;
+  polrec(rxy, ax, &xx, &yy);
+  *x = xx;
+  *y = yy;
+}
+
+void ll2rb(float lng1, float lat1, float lng2, float lat2, float *dist, float *azi)
+{
+float           raddeg = M_PI/180.0;
+float           x1, x2, x3;
+float           y1, y2, y3;
+float           z1, z2, z3;
+float           d, r, ax;
+
+  polrec3d(1.0, (90.0-lat2)/raddeg, lng2/raddeg, &x1, &y1, &z1);
+  rot3d(3, x1, y1, z1, -(180.0-lng1)/raddeg, &x2, &y2, &z2);
+  rot3d(2, x2, y2, z2, -(90.0-lat1)/raddeg, &x3, &y3, &z3);
+  recpol3d(x3, y3, z3, &r, &d, &ax);
+
+  *azi = fmod((360.0 - ax*raddeg), 360.0);
+  *dist = d*raddeg;
+}
+
+int main()
+{
+
+}

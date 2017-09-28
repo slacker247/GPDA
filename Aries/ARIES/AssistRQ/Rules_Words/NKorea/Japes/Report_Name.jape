@@ -1,0 +1,22 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Report_Name
+
+{Token.string == "From"}
+{Token.string == ":"}
+({SpaceToken})*
+(
+	{FirstPerson}
+	{Token.string == "_"}
+	{Token.kind == word}
+)
+:Report_Name
+
+	{Token.string == "@"}
+
+ -->
+:Report_Name.Report_Name = {}
+

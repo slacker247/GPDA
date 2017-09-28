@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Lotus Domino directory traversal"; uricontent:".nsf/"; uricontent:"../"; nocase; flags:A+; classtype:web-application-attack; sid:1072; rev:2;)

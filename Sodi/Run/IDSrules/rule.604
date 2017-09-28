@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP EXPLOIT x86 windows CSMMail overflow";flags: A+; content:"|eb53 eb20 5bfc 33c9 b182 8bf3 802b|"; reference:bugtraq,895; reference:cve,CVE-2000-0042; classtype:attempted-admin; sid:656; rev:2;)

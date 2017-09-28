@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"RSERVICES rsh login failure";flags: A+; content: "|01|rlogind|3a| Permission denied.";reference:arachnids,392; classtype:unsuccessful-user; sid:611; rev:1;)

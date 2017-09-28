@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Phorum auth access"; flags: A+; content:"PHP_AUTH_USER=boogieman"; nocase;  reference:bugtraq,2274; reference:arachnids,206; classtype:attempted-recon; sid:1137; rev:2;)

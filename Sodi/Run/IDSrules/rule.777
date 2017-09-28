@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS cc command attempt"; flags:A+; content:"cc%20";nocase; sid:1344; rev:1; classtype:web-application-attack;)

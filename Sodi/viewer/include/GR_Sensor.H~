@@ -1,0 +1,63 @@
+/***************************************************************************
+  The Sensor object: fixed disk (2D) sensor and mobile cone (3D) sensor.
+ 
+  -- 11/12/92: created by Y. Tung; 
+  -- 11/19/92: cleaned up the links;
+  -- 12/04/92: added hemisphere and torus type sensors;
+ 
+****************************************************************************/
+
+#ifndef		GR_SENSOR
+#define		GR_SENSOR		"GR_Sensorclass"
+
+#include  <stdio.h>
+#include  "GR_Interface.H"
+#include  "GR_DispObj.H"
+
+#define   MAXSENSORS 4
+
+#define       S_CONE    0               // Cone sensor
+#define       S_DOME    1               // DOME sensor
+#define       S_DISK    2               // Disk sensor
+#define       S_TORUS   3		// Torus sensor
+#define       S_OTHB    4		// Over the horizon backscatter sensor
+
+class GR_Sensor: public GR_DispObj
+{
+ private:
+   long  p_pid;
+   long  p_sid;
+   float p_elev;
+   float p_azi;
+   float p_rmax;
+   float p_rmin;
+   float p_fov;
+   float p_base;
+   float p_range;
+   float p_lat;
+   float p_lon;
+   float p_alt;
+   int   p_stype;
+   int   p_coverage;
+   int   p_power;
+
+ public:
+   GR_Sensor (long pid, long sid, float cone_angle, float aperture); // a cone;
+   GR_Sensor (long pid, long sid, float radius); // a hemisphere;
+   GR_Sensor (long pid, long sid, int typeflag, float aperture, float range);// torus;
+   GR_Sensor (long pid, long sid, int sentype, float lat, float lon, float params[10]);
+
+   void gen_sensor();
+   void objdraw ();
+   void set_alt(float alt) { p_alt = alt; };
+   void set_azi(float azi) { p_azi = azi; };
+   void set_fov(float fov) { p_fov = fov; };
+   void set_elev(float elev) { p_elev = elev; };
+   void set_range(float rmax) { p_rmax = rmax/6378.145; };
+
+   //void v_process_pick (GR_MouseEvent& event, GR_Window* window);
+   void pickEvent (GR_MouseEvent& event, GR_Window* window);
+};
+
+#endif
+

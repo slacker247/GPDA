@@ -1,0 +1,1 @@
+alert TCP $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE rad fp30reg.dll access"; uricontent:"/fp30reg.dll"; nocase; flags:A+; classtype:web-application-activity; reference:arachnids,555; reference:bugtraq,2906; reference: cve,CAN-2001-0341; sid:1248; rev:2;)

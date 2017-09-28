@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS /usr/bin/g++ command attempt"; flags:A+; content:"/usr/bin/g++";nocase; sid:1347; rev:1; classtype:web-application-attack;)

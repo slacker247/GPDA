@@ -1,0 +1,277 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Viewing a Class</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="images/serving_nerd.gif" WIDTH="48" HEIGHT="48"> Viewing a Class<br>
+<img src="images/header_line.gif" width="590" height="6"></h1>
+
+<p><font size="3">You can edit an existing class using the <a href="class_form.html">Class
+Form</a>. You can access the Class Form in one of two ways:</font>
+
+<ul>
+  <li><font size="3">from the <a href="classes_tab.html">Classes Tab</a>.</font></li>
+  <li><font size="3">by selecting a class</font> in the <a href="../instances/class_pane_at_instances.html">Class pane</a> at<font size="3"> the <a href="../instances/instances_tab.html">Instances Tab</a> and clicking the View </font><img border="0" src="images/View.gif" WIDTH="15" HEIGHT="15"> button<font size="3">.</font></li>
+</ul>
+
+<p><font size="3">To edit a class from the <a href="classes_tab.html">Classes Tab</a>:</font>
+
+<ol>
+  <li><font size="3">Select the class you want to edit in the </font><a href="class_relationship_pane.html">Class Relationship pane</a><font size="3"> in the <a href="classes_tab.html">Classes Tab</a>. The current information for the highlighted class
+    will be shown in the <a href="class_form.html">Class Form</a> to the right.</font></li>
+  <li><font size="3">Enter the updated information directly in the <a href="class_form.html">Class
+    Form</a> to the right <i>or</i> click the View </font><img border="0" src="images/View.gif" WIDTH="15" HEIGHT="15"> icon <font size="3">in the </font><a href="class_relationship_pane.html">Class Relationship pane</a> to show the same form as a
+    free-standing window.</li>
+</ol>
+
+<p>To edit a class from the <a href="../instances/class_pane_at_instances.html">Class pane</a>
+at<font size="3"> the <a href="../instances/instances_tab.html">Instances Tab</a>:</font>
+
+<ol>
+  <li><font size="3">Select the class you want to edit in the </font><a href="../instances/class_pane_at_instances.html">Class pane</a> at<font size="3"> the <a href="../instances/instances_tab.html">Instances Tab</a>.&nbsp;</font></li>
+  <li><font size="3">Click the View </font><img border="0" src="images/View.gif" WIDTH="15" HEIGHT="15"> icon at the
+    upper right of the pane to open the <font size="3"><a href="class_form.html">Class Form</a></font>.</li>
+</ol>
+
+<p><b>Note</b>: If the class appears as one of the <a href="../slots/value_type_menu.html#AddRemoveClassParents">Allowed Parents</a> for a slot
+of <a href="../slots/value_type_menu.html#Class">type Class</a>, you can also open the
+Class Form by going to an instance that has that slot and clicking on the View <img border="0" src="images/View.gif" WIDTH="15" HEIGHT="15"> icon. See <a href="../instances/standard_fields.html">Standard
+Widgets</a> for more information.</p>
+
+<p><b>Note:</b> If the class is included from another project, it cannot be edited.
+Included classes are shown with a pale class icon to the left. See <a href="../projects/including_a_project.html">Including a Project</a> for more information.</p>
+
+<h2 align="left">Using the Class Form</h2>
+
+<p align="left"><img border="0" src="images/class_form.gif" usemap="editing_a_class.html#FPMap2" WIDTH="611" HEIGHT="450"></p>
+
+<p>Any changes you enter into the Class Form take effect immediately. To make the changes
+permanent, save the knowledge base by selecting <b>Save</b> from the <b>Project</b>
+menu.&nbsp;</p>
+
+<p>To revert to the last saved version, close Protégé-2000 without saving changes. If
+you have made extensive changes to your knowledge base during the current session, you may
+wish to save before editing classes.&nbsp;</p>
+
+<h3 align="left"><a name="name"></a>Changing the Name of a Class</h3>
+
+<p align="left"><font size="3">To change the name of a class, edit the name in the </font><strong>Name</strong><font size="3"> field.&nbsp;</font>The<font size="3"> following rules apply to class names: </font></p>
+
+<ul>
+  <li><p align="left"><font size="3">The name must be a unique frame name in the knowledge
+    base.&nbsp; </font></p>
+  </li>
+  <li><p align="left"><font size="3">Class names are case sensitive.&nbsp; </font></p>
+  </li>
+</ul>
+
+<p align="left"><font size="3">A </font>recommended<font size="3"> convention is to make
+the first character of each word in a class name uppercase and the rest lowercase, and to
+separate words by underscores.&nbsp;</font></p>
+
+<h3 align="left"><a name="role"></a>Changing the Role of a Class</h3>
+
+<p align="left">Select the new role from the Role menu. Concrete classes may have direct
+instances, but do not have to; abstract classes cannot have direct instances.<font size="3"> Protégé-2000 does not impose any restrictions on the role of your
+classes.&nbsp;</font></p>
+
+<h3 align="left"><a name="constraints"></a>Changing Constraints</h3>
+
+<p align="left">Class constraints are defined programatically. See <a href="../constraints.html">Constraints</a> for more information.</p>
+
+<h3 align="left"><a name="documentation"></a>Changing Class Documentation</h3>
+
+<p align="left"><font size="3">To change the notes for a class, change the text directly
+in the <b>Class Documentation</b> pane.&nbsp;</font></p>
+
+<h2 align="left"><a name="template_slots"></a>Working with Class Slots</h2>
+
+<p align="left">The <a href="template_slot_pane.html">Template Slots pane</a> allows you
+to edit, create, add, and remove slots from your class.</p>
+
+<h3 align="left"><a name="editing_slots"></a>Editing Class Slots</h3>
+
+<p align="left">You can edit the slot in one of two ways:</p>
+
+<ul>
+  <li><p align="left">At the top level. Editing the slot at the top level affects the slot
+    everywhere it appears, including the <a href="../slots/slots_tab.html">Slots Tab</a> and
+    any classes where the slot is attached.&nbsp;</p>
+  </li>
+  <li><p align="left">At the class. Editing the slot at the class level (called overriding)
+    only affects the slot at the class and any subclasses. The slot remains unchanged at the <a href="../slots/slots_tab.html">Slots Tab</a> and any unrelated classes where appears. <font size="3">A slot that has been overridden has an <img border="0" src="images/OverriddenSlot.gif" WIDTH="11" HEIGHT="16"> override icon in the left column. </font></p>
+  </li>
+</ul>
+
+<p align="left"><a name="edit_slot_top"></a>To edit a slot at the top level:</p>
+
+<ol>
+  <li><p align="left">Highlight the slot name in the <a href="template_slot_pane.html">Template
+    Slots</a> pane</p>
+  </li>
+  <li><p align="left">Click the top-level View <img border="0" src="images/ViewTopLevelSlot.gif" WIDTH="15" HEIGHT="15"> button at the top right of the pane. The <a href="../slots/slot_form.html">Slots Form</a> is displayed.&nbsp;</p>
+  </li>
+  <li><p align="left">Use the <a href="../slots/slot_form.html">Slots Form</a> to edit slot
+    properties such as <b>Name</b>, <b>Type</b>, <b>Cardinality</b>, and to add notes. See <a href="../slots/editing_a_slot.html">Viewing a Slot</a> for more information on how to edit
+    a slot.&nbsp;</p>
+  </li>
+</ol>
+
+<p align="left"><a name="edit_slot_class"></a>To edit a slot at the class: </p>
+
+<ol>
+  <li><p align="left">Highlight the slot name in the <a href="template_slot_pane.html">Template
+    Slots</a> pane</p>
+  </li>
+  <li><p align="left">Click the Class-Level View <img border="0" src="images/ViewSlotAtClass.gif" WIDTH="15" HEIGHT="15"> button at the top right of the pane. The <a href="../slots/slot_form.html">Slots Form</a> is displayed.&nbsp;</p>
+  </li>
+  <li><p align="left">Use the <a href="../slots/slot_form.html">Slots Form</a> to edit slot
+    properties such as <b>Name</b>, <b>Type</b>, <b>Cardinality</b>, and to add notes. See <a href="../slots/editing_a_slot.html">Viewing a Slot</a> for more information on how to edit
+    a slot.&nbsp;</p>
+  </li>
+</ol>
+
+<h4 align="left">Restrictions on Global and Inherited Classes</h4>
+
+<p align="left">Your class can have slots that were inherited from a superclass. If the
+slot is defined globally or is inherited, only the following edits can be performed: </p>
+
+<ul>
+  <li><p align="left">For <strong>Cardinality</strong>, the slot may be changed from <strong>Multiple</strong>
+    to <strong>Single</strong> (but not vice versa).</p>
+  </li>
+  <li><p align="left">For certain slot <b>Types</b>, some restrictions apply: </p>
+    <ul>
+      <li><p align="left">For a slot of type <strong>Any</strong>, the slot may be restricted to <i>one</i>
+        of the other types (<b>Boolean, Class, Float, Instance, Integer, String, </b>or<b> Symbol</b>).
+        Slots of type other than <b>Any</b> cannot have the type changed.</p>
+      </li>
+      <li><p align="left">For a slot of type <b>Class</b>, the allowed parents can only be changed
+        to subclasses of the allowed classes in the parent class.&nbsp;</p>
+      </li>
+      <li><p align="left">For a slot of type <b>Instance</b>, the allowed classes can only be
+        changed to subclasses of the allowed classes in the parent class.</p>
+      </li>
+    </ul>
+  </li>
+  <li><p align="left">A <b>Minimum</b> value may be created or increased. The <b>Minimum</b>
+    value is only available for types <strong>Integer</strong> or <strong>Float.</strong></p>
+  </li>
+  <li><p align="left">A <b>Maximum</b> value may be created or decreased. The <b>Maximum</b>
+    value is only available for types <strong>Integer</strong> or <strong>Float.</strong></p>
+  </li>
+  <li><p align="left">The <b>Documentation</b> can be changed.</p>
+  </li>
+</ul>
+
+<p align="left">Direct slots, which were created or added at the level of the slot, have
+no editing restrictions.&nbsp;</p>
+
+<p align="left">If you have edited a slot at the class level, the slot is displayed with
+an override<img border="0" src="images/OverriddenSlot.gif" WIDTH="11" HEIGHT="16"> icon.</p>
+
+<h3 align="left"><a name="creating_slots"></a>Creating a New Slot</h3>
+
+<p align="left">You can define a new slot for your class.&nbsp;</p>
+
+<ol>
+  <li><p align="left">Make sure the correct class is highlighted in the Class Relationship
+    pane.</p>
+  </li>
+  <li><p align="left">Click the Create <img border="0" src="images/Create.gif" width="13" height="16"> button at the top right of the pane. The <a href="../slots/slot_form.html">Slots
+    Form</a> is displayed.&nbsp;</p>
+  </li>
+  <li><p align="left">Use the <a href="../slots/slot_form.html">Slots Form</a> to edit slot
+    properties such as <b>Name</b>, <b>Type</b>, <b>Cardinality</b>, and to add notes. See <a href="../slots/creating_a_slot.html">Creating a Slot</a> for more information on how to
+    create a slot.</p>
+  </li>
+</ol>
+
+<p align="left">A direct slot is displayed with a blue <img border="0" src="images/SlotDirect.gif" width="17" height="18"> icon.</p>
+
+<h3 align="left"><a name="clear_slot_overrides"></a>Clearing Slot Overrides</h3>
+
+<p align="left">If you have overriden a slot at the class, you can remove your overrides
+and use the top-level definition of the slot:</p>
+
+<ol>
+  <li><p align="left">Highlight the slot name in the <a href="template_slot_pane.html">Template
+    Slots</a> pane</p>
+  </li>
+  <li><p align="left">Click the Clear Overrides <img border="0" src="images/RemoveSlotOverride.gif" WIDTH="16" HEIGHT="15"> button at the top right of the pane. Any changes you
+    made at the class level are removed and the top-level definition of the slot is
+    used.&nbsp;</p>
+  </li>
+</ol>
+
+<h3 align="left"><a name="adding_slots"></a>Adding an Existing Slot to a Class</h3>
+
+<p align="left">Once slots have been created, you can add them to more than one class. For
+example, the <b>Prototype_Newspaper</b> class has a <b>Weekday</b> slot, which can be used
+to choose among the days of the week. If you were creating a new type of employee who
+wrote a weekly feature, you might want to reuse this slot.</p>
+
+<p align="left">To choose a pre-existing slot to add to your class:</p>
+
+<ol>
+  <li><p align="left">Make sure the correct class is highlighted in the Class Relationship
+    pane.</p>
+  </li>
+  <li><p align="left">Click the Add <img border="0" src="images/Add.gif" width="20" height="21"> button at the top right of the pane. The Select Slots dialog box displays all
+    the slots you can add to the class.</p>
+  </li>
+  <li><p align="left">Highlight the slot you wish to add to your class.&nbsp;</p>
+  </li>
+  <li><p align="left">Click OK.</p>
+  </li>
+</ol>
+
+<p>The new slot is added to the Template Slots pane. It is a directly attached slot and is
+displayed with a blue <img border="0" src="images/SlotDirect.gif" width="17" height="18">
+icon. You do not need to name the slot; however, you may need to override its facets. If
+you wish to override the facets on the slot, you may click the Top-Level View <img border="0" src="images/ViewTopLevelSlot.gif" WIDTH="15" HEIGHT="15"> or Class-Level View <img border="0" src="images/ViewSlotAtClass.gif" WIDTH="15" HEIGHT="15">&nbsp; button to display the <a href="../slots/slot_form.html">Slot Form</a>. See <a href="../slots/editing_a_slot.html">Viewing
+a Slot</a> for more information.&nbsp;</p>
+
+<h3><a name="removing_slots"></a>Removing a Slot</h3>
+
+<p>You can remove any direct slot that appears in the Template Slots pane. To remove a
+slot:
+
+<ol>
+  <li>Highlight the slot</li>
+  <li>Click the Remove <img border="0" src="images/Remove.gif" width="13" height="15"> button.
+    The slot will be removed from the class.&nbsp;</li>
+</ol>
+
+<p>Note that the slot has not been deleted from the knowledge base. It will still appear
+in the Select Slots dialog box (see <a href="editing_a_class.html#adding_slots">Adding a
+Slot</a>, above) and the <a href="../slots/slots_tab.html">Slots Tab</a>. See <font size="3"><a href="../slots/deleting_a_slot.html">Deleting a Slot</a> for more information.</font></p>
+
+<h2 align="left">Other Class Editing Operations</h2>
+
+<h3 align="left">Viewing Multiple Classes</h3>
+
+<p align="left">To view or edit the information for <font size="3">several classes</font>
+at once, select the classes one by one and click the View <img border="0" src="images/View.gif" WIDTH="15" HEIGHT="15">&nbsp; <a href="class_buttons.html">class button</a> to open the
+Class Form for each class. <font size="3">Opening a new class form does not close the
+previous form. This allows you to compare the attributes for two or more classes. Edits
+can be made directly in any open Class Form.</font></p>
+
+<h3 align="left">Changing Superclasses</h3>
+
+<p align="left">To change the superclasses of a class see: <a href="adding_a_parent.html">Adding
+a Superclass</a>, <a href="replacing_a_parent.html">Replacing a Superclass</a>, and <a href="removing_a_parent.html">Removing a Superclass</a>.</p>
+
+<hr>
+
+<p><font size="3">Next: <a href="viewing_referenced_classes.html">Viewing Class
+Relationships</a></font></p>
+
+<p><a href="index.html"><font size="3">Classes Table of Contents</font></a></p>
+</body>
+</html>

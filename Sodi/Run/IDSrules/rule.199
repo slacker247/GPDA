@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 22 (msg:"EXPLOIT ssh CRC32 overflow"; flags:A+; content:"|00 01 57 00 00 00 18|"; offset:0; depth:7; content:"|FF FF FF FF 00 00|"; offset:8; depth:14; reference:bugtraq,2347; reference:cve,CVE-2001-0144; classtype:shellcode-detect; sid:1327; rev:1;)

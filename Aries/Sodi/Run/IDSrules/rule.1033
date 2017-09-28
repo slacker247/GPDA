@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS jet vba access";flags: A+; content:"/advworks/equipment/catalog_type.asp"; nocase; reference:bugtraq,286; reference:cve,CVE-1999-0874; classtype:web-application-activity; sid:1022; rev:2;)

@@ -1,0 +1,129 @@
+<HTML>
+<HEAD>
+   <TITLE>Web\disjavavrml\Pdus</TITLE>
+</HEAD>
+<BODY>
+This file stores the PDUs that are implemented and those
+that are not.
+<BR>&nbsp;
+<H4>
+Entity information/interaction protocol family</H4>
+
+<UL>
+<LI>
+EntityStatePdu</LI>
+
+<UL>
+<LI>
+Articulation Parameters are wrapped in a vector.</LI>
+
+<LI>
+Entity Marking is flattened (slightly different).</LI>
+
+<LI>
+Dead Reckoning parameter is flattened (slightly different)</LI>
+
+<LI>
+Many Direct accessor methods to nested fields.</LI>
+</UL>
+
+<LI>
+CollisionPdu</LI>
+
+<UL>
+<LI>
+No accessor methods to the nested fields is provided.</LI>
+
+<LI>
+No exemplar is created.</LI>
+</UL>
+</UL>
+
+<H4>
+Warfare Protocol family</H4>
+
+<UL>
+<LI>
+FirePdu</LI>
+
+<UL>
+<LI>
+No accessor methods to the nested fields is provided.</LI>
+
+<LI>
+No exemplar is created.</LI>
+</UL>
+
+<LI>
+DetonationPdu</LI>
+
+<UL>
+<LI>
+Articulation Parameters are wrapped in a vector.</LI>
+
+<LI>
+No exemplar is created.</LI>
+</UL>
+</UL>
+
+<H4>
+Logistics Protocol family</H4>
+<FONT COLOR="#FF0000">none</FONT>
+<H4>
+Simulation Management Family (all those pdu have an exemplar variable</H4>
+
+<UL>
+<LI>
+Create Entity Pdu</LI>
+
+<LI>
+Remove EntityPdu</LI>
+
+<LI>
+StartResumePdu</LI>
+
+<LI>
+StopFreezePdu</LI>
+
+<UL>
+<LI>
+here padding is created...(it was not in some other pdus).</LI>
+</UL>
+
+<LI>
+AcknowledgePdu</LI>
+
+<LI>
+ActionRequestPdu</LI>
+
+<LI>
+DataQueryPdu</LI>
+
+<LI>
+SetDataPdu</LI>
+
+<UL>
+<LI>
+Here data Query Datum Specification Record is flattened in to two vectors.</LI>
+</UL>
+
+<LI>
+DataPdu</LI>
+
+<LI>
+EventReportPdu</LI>
+
+<LI>
+CommentPdu</LI>
+</UL>
+
+<H4>
+Distributed Emission Regenration Protocol Family</H4>
+<FONT COLOR="#FF0000">none</FONT>
+<H4>
+Radio Communications Protocol Family</H4>
+<FONT COLOR="#FF0000">none</FONT>
+<BR>&nbsp;
+<BR>&nbsp;
+</BODY>
+</HTML>

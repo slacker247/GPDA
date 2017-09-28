@@ -1,0 +1,1994 @@
+; Tue Apr 08 14:50:38 MDT 2003
+; 
+;+ (version "1.7")
+;+ (build "Build 930")
+
+
+(defclass :CLIPS_TOP_LEVEL_SLOT_CLASS
+	(is-a USER)
+	(role concrete)
+	(single-slot LEVEL
+		(type STRING)
+		(default "?")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot TIME_UNITS
+		(type STRING)
+		(default "Min.")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot :ORGANIZATION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :PROJECT_NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot END_TIME
+		(type STRING)
+		(default "0000:00:00:00:00:00")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LINK_LABELS
+		(type STRING)
+		(default "?")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot :URL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot LEVEL_LABELS
+		(type STRING)
+		(default "Evidence" "Indicators" "Outcomes")
+		(cardinality 3 9)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot :SUBJECT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :KEYWORDS
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot NAME
+		(type STRING)
+		(default "?")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot :KEY_CLASSES
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :VERSION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :THUMBNAIL_FILE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :NUM_CLASSES
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot START_TIME
+		(type STRING)
+		(default "0000:00:00:00:00:00")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISCRETE
+		(type STRING)
+		(default "1")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "?")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :NUM_INSTANCES
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :MATURITY
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write))
+	(multislot EVID_LABELS
+		(type STRING)
+		(default "Lat." "Lon." "Alt.")
+		(cardinality 1 3)
+		(create-accessor read-write)))
+
+(defclass :SUMMARY
+	(is-a :ANNOTATION)
+	(role concrete)
+	(single-slot :MODIFIER
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :URL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :CREATOR
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :ORGANIZATION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :MATURITY
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :VERSION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot :DOCUMENTATION
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot :KEY_CLASSES
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :CREATION-TIMESTAMP
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :NUM_CLASSES
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :NUM_INSTANCES
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :MODIFICATION-TIMESTAMP
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :THUMBNAIL_FILE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :KEYWORDS
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :SUBJECT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :PROJECT_NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass andy
+	(is-a USER)
+	(role concrete)
+	(single-slot START_TIME
+		(type STRING)
+		(default "2003:02:24:09:45:00")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot TIME_UNITS
+		(type STRING)
+		(default "M")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot DISCRETE
+		(type STRING)
+		(default "1")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot NAME
+		(type STRING)
+		(default "andy")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot END_TIME
+		(type STRING)
+		(default "2003:02:24:09:45:00")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot LEVEL_LABELS
+		(type STRING)
+		(default "Mission" "Information 1" "Information 2" "Information 3" "Information 4" "Information And Systems")
+		(cardinality 3 9)
+		(create-accessor read-write))
+	(multislot EVID_LABELS
+		(type STRING)
+		(default "Lat" "Lon" "Alt")
+		(cardinality 1 3)
+		(create-accessor read-write)))
+
+(defclass Qualitative
+	(is-a andy)
+	(role concrete)
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot LINK_LABELS
+		(type STRING)
+		(default "?")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Mission")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Soft IO")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Qualitative")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass Psyops^&^Deception
+	(is-a Qualitative)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Psyops & Deception")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 1")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.3")
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Psyops & Deception")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.3")
+		(create-accessor read-write)))
+
+(defclass PA^&^CMO
+	(is-a Qualitative)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "PA & CMO")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 1")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.7")
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "PA & CMO")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.7")
+		(create-accessor read-write)))
+
+(defclass Global^Beliefs
+	(is-a Psyops^&^Deception PA^&^CMO)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Global Beliefs")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 2")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.3" "0.6")
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Global Beliefs")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.3" "0.6")
+		(create-accessor read-write)))
+
+(defclass Multiple^Themes^Per^Target^Set
+	(is-a Global^Beliefs)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Multiple Themes Per Target Set")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 3")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.8")
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Multiple Themes Per Target Set")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.8")
+		(create-accessor read-write)))
+
+(defclass Operations^Security
+	(is-a Qualitative)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Operations Security")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 1")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.3")
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Operations Security")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.3")
+		(create-accessor read-write)))
+
+(defclass Intel
+	(is-a Qualitative)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Intel")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 1")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.3")
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Intelligence Operations")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.3")
+		(create-accessor read-write)))
+
+(defclass Counter^Intel
+	(is-a Qualitative)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Counter Intel")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 1")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.3")
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Counter Intelligence Operations")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.3")
+		(create-accessor read-write)))
+
+(defclass Protected^Information
+	(is-a Operations^Security Intel Counter^Intel)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Protected Information")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 2")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.6" "0.1" "0.1")
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Protected Information")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.6" "0.1" "0.1")
+		(create-accessor read-write)))
+
+(defclass Acquired^Information
+	(is-a Operations^Security Intel Counter^Intel)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Acquired Information")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 2")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.5" "0.3" "0.9")
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Acquired Information")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.5" "0.3" "0.9")
+		(create-accessor read-write)))
+
+(defclass Plan^Intent^Capability^Vulnerability
+	(is-a Protected^Information Acquired^Information)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Plan Intent Capability Vulnerability")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 3")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.8" "0.7")
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Plan Intent Capability Vulnerability")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.8" "0.7")
+		(create-accessor read-write)))
+
+(defclass Multiple^Target^Sets^Per^Theme
+	(is-a Multiple^Themes^Per^Target^Set Plan^Intent^Capability^Vulnerability)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Multiple Target Sets Per Theme")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 4")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.9" "0.4")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Multiple Target Sets Per Theme")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.9" "0.4")
+		(create-accessor read-write)))
+
+(defclass Single^Message
+	(is-a Multiple^Target^Sets^Per^Theme)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Single Message")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information And Systems")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.4")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Single Message")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.4")
+		(create-accessor read-write)))
+
+(defclass Single^Target
+	(is-a Multiple^Target^Sets^Per^Theme)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Single Target")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information And Systems")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.2")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Single Target")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.2")
+		(create-accessor read-write)))
+
+(defclass Confirmed^Operational^Facts
+	(is-a Plan^Intent^Capability^Vulnerability)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Confirmed Operational Facts")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 4")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.9")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Confirmed Operational Facts")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.9")
+		(create-accessor read-write)))
+
+(defclass Sensors
+	(is-a Confirmed^Operational^Facts)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Sensors")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information And Systems")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.1")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Sensors")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.1")
+		(create-accessor read-write)))
+
+(defclass Influence^Acquire^Enemy^Network
+	(is-a Acquired^Information)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Influence Acquire Enemy Network")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 3")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.6")
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Influence Acquire Enemy Network")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.6")
+		(create-accessor read-write)))
+
+(defclass Specific^Intent^Capability^Vulnerability
+	(is-a Plan^Intent^Capability^Vulnerability Influence^Acquire^Enemy^Network)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Specific Intent Capability Vulnerability")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 4")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.3" "0.4")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Specific Intent Capability Vulnerability")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.3" "0.4")
+		(create-accessor read-write)))
+
+(defclass Quantitative
+	(is-a andy)
+	(role concrete)
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot LINK_LABELS
+		(type STRING)
+		(default "?")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Mission")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Hard IO")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Quantitative")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "1.0")
+		(create-accessor read-write)))
+
+(defclass Electronic^Warfare
+	(is-a Quantitative)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Electronic Warfare")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 1")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.3")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Electronic Warfare")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.3")
+		(create-accessor read-write)))
+
+(defclass Computer^Network^Operations
+	(is-a Quantitative)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Computer Network Operations")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 1")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.2")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Computer Network Operations")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.2")
+		(create-accessor read-write)))
+
+(defclass Information^Assurance
+	(is-a Quantitative)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Information Assurance")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 1")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.1")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Information Assurance")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.1")
+		(create-accessor read-write)))
+
+(defclass Information^Compromise
+	(is-a Electronic^Warfare Computer^Network^Operations Information^Assurance)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Information Compromise")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 2")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.6" "0.2" "0.6")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Information Compromise")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.6" "0.2" "0.6")
+		(create-accessor read-write)))
+
+(defclass Information^Change
+	(is-a Electronic^Warfare Computer^Network^Operations Information^Assurance)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Information Change")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 2")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.9" "0.1" "0.7")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Information Change")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.9" "0.1" "0.7")
+		(create-accessor read-write)))
+
+(defclass Physical^Attack
+	(is-a Quantitative)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Physical Attack")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 1")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.6")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Physical Attack")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.6")
+		(create-accessor read-write)))
+
+(defclass Information^Availability
+	(is-a Electronic^Warfare Computer^Network^Operations Information^Assurance Physical^Attack)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Information Availability")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 2")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.8" "0.2" "0.5" "1.0")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Information Availability")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.8" "0.2" "0.5" "1.0")
+		(create-accessor read-write)))
+
+(defclass Sensor^Network
+	(is-a Information^Compromise Information^Change Information^Availability)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Sensor Network")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 3")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.2" "0.2" "0.1")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Sensor Network")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.2" "0.2" "0.1")
+		(create-accessor read-write)))
+
+(defclass Computer^Network
+	(is-a Information^Compromise Information^Change Information^Availability)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Computer Network")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 3")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.5" "0.5" "0.3")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Computer Network")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.5" "0.5" "0.3")
+		(create-accessor read-write)))
+
+(defclass Jam^Deceive^Damage
+	(is-a Sensor^Network Computer^Network)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Jam Deceive Damage")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 4")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.7" "0.4")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Jam Deceive Damage")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.7" "0.4")
+		(create-accessor read-write)))
+
+(defclass Pulse^To^Pulse
+	(is-a Jam^Deceive^Damage)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Pulse To Pulse")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information And Systems")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.8")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Pulse To Pulse")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.8")
+		(create-accessor read-write)))
+
+(defclass Platform^Compromise
+	(is-a Computer^Network)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Platform Compromise")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 4")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.5")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Platform Compromise")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.5")
+		(create-accessor read-write)))
+
+(defclass Espionage^Information
+	(is-a Specific^Intent^Capability^Vulnerability Platform^Compromise)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Espionage Information")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information And Systems")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.3" "0.9")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Espionage Information")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.3" "0.9")
+		(create-accessor read-write)))
+
+(defclass Counter^Espionage^Information
+	(is-a Specific^Intent^Capability^Vulnerability Jam^Deceive^Damage Platform^Compromise)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Counter Espionage Information")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information And Systems")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.2" "0.7" "0.7")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Counter Espionage Information")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.2" "0.7" "0.7")
+		(create-accessor read-write)))
+
+(defclass Packet^Change
+	(is-a Platform^Compromise)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Packet Change")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information And Systems")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.1")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Packet Change")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.1")
+		(create-accessor read-write)))
+
+(defclass Target^Network
+	(is-a Information^Availability)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Target Network")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 3")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.5")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Target Network")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.5")
+		(create-accessor read-write)))
+
+(defclass Equipment^Facility^Compromise
+	(is-a Target^Network)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Equipment Facility Compromise")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information 4")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.9")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Equipment Facility Compromise")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.9")
+		(create-accessor read-write)))
+
+(defclass Blast^Damage
+	(is-a Equipment^Facility^Compromise)
+	(role concrete)
+	(single-slot HYPOTHESIS
+		(type STRING)
+		(default "Blast Damage")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LEVEL
+		(type STRING)
+		(default "Information And Systems")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type STRING)
+		(default "100.0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot B_WEIGHTS
+		(type STRING)
+		(default "0.9")
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type STRING)
+		(default "0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PHRASE
+		(type STRING)
+		(default "Blast Damage")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type STRING)
+		(default "0.75")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot D_WEIGHTS
+		(type STRING)
+		(default "0.9")
+		(create-accessor read-write)))

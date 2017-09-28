@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible Simbiosis Worm"; content: "filename=\"SETUP.EXE\""; nocase; sid:747;  classtype:misc-activity; rev:3;)

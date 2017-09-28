@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 23 -> $EXTERNAL_NET any (msg:"TELNET Bad Login"; content: "Login failed";  nocase; flags:A+; classtype:bad-unknown; sid:492; rev:3;)

@@ -1,0 +1,1816 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ns0="http://cohse.semanticweb.org/ontologies/people#"
+    xmlns:oiled="http://img.cs.man.ac.uk/oil/oiled#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2000/10/XMLSchema#">
+    <daml:Ontology rdf:about="">
+        <dc:title>Mad Cows and Englishmen</dc:title>
+        <dc:date>Nov 2001</dc:date>
+        <dc:creator>Sean K. Bechhofer</dc:creator>
+        <dc:description>Simple demonstration ontology</dc:description>
+        <dc:subject></dc:subject>
+        <daml:versionInfo>1.1</daml:versionInfo>
+    </daml:Ontology>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#publication">
+        <rdfs:label>publication</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#giraffe">
+        <rdfs:label>giraffe</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:06:11 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#animal"/>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <daml:Restriction>
+                <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#eats"/>
+                <daml:toClass>
+                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#leaf"/>
+                </daml:toClass>
+            </daml:Restriction>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#haulage worker">
+        <rdfs:label>haulage worker</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <daml:Restriction>
+                <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#works for"/>
+                <daml:hasClass>
+                    <daml:Class>
+                        <daml:unionOf>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#haulage company"/>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#part of"/>
+                                    <daml:hasClass>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#haulage company"/>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:unionOf>
+                    </daml:Class>
+                </daml:hasClass>
+            </daml:Restriction>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#grownup">
+        <rdfs:label>grownup</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#age"/>
+                                    <daml:hasClass>
+                                    <daml:Class>
+                                    <daml:oneOf>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#adult"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:List>
+                                    <daml:first>
+
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#elderly"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:oneOf>
+                                    </daml:Class>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#vehicle">
+        <rdfs:label>vehicle</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#pet owner">
+        <rdfs:label>pet owner</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#has pet"/>
+                                    <daml:hasClass>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#animal"/>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#newspaper">
+        <rdfs:label>newspaper</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#publication"/>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <daml:Class>
+                <daml:unionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#broadsheet"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#tabloid"/>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:unionOf>
+            </daml:Class>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#mad cow">
+        <rdfs:label>mad cow</rdfs:label>
+        <rdfs:comment>A mad cow is a cow that has been eating the brains
+            of sheep.</rdfs:comment>
+        <oiled:creationDate>10:33:20 21.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#cow"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#eats"/>
+                                    <daml:hasClass>
+                                    <daml:Class>
+                                    <daml:intersectionOf>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#brain"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Restriction>
+
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#part of"/>
+                                    <daml:hasClass>
+
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#sheep"/>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:intersectionOf>
+                                    </daml:Class>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#bus driver">
+        <rdfs:label>bus driver</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#drives"/>
+                                    <daml:hasClass>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#bus"/>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#boy">
+        <rdfs:label>boy</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#sex"/>
+                                    <daml:hasClass>
+                                    <daml:Class>
+                                    <daml:oneOf>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#male"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:oneOf>
+                                    </daml:Class>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#age"/>
+                                    <daml:hasClass>
+                                    <daml:Class>
+                                    <daml:oneOf>
+                                    <daml:List>
+                                    <daml:first>
+
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#young"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:oneOf>
+                                    </daml:Class>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#bus">
+        <rdfs:label>bus</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#vehicle"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#car">
+        <rdfs:label>car</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#vehicle"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#cat">
+        <rdfs:label>cat</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#animal"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#cow">
+        <rdfs:label>cow</rdfs:label>
+        <rdfs:comment>Cows are naturally vegetarians.</rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#vegetarian"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#dog">
+        <rdfs:label>dog</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Restriction>
+                <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#eats"/>
+                <daml:hasClass>
+                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#bone"/>
+                </daml:hasClass>
+            </daml:Restriction>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#kid">
+        <rdfs:label>kid</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#age"/>
+                                    <daml:hasClass>
+                                    <daml:Class>
+                                    <daml:oneOf>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#young"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:oneOf>
+                                    </daml:Class>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#man">
+        <rdfs:label>man</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#sex"/>
+                                    <daml:hasClass>
+                                    <daml:Class>
+                                    <daml:oneOf>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#male"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:oneOf>
+                                    </daml:Class>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#age"/>
+                                    <daml:hasClass>
+                                    <daml:Class>
+                                    <daml:oneOf>
+                                    <daml:List>
+                                    <daml:first>
+
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#adult"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:oneOf>
+                                    </daml:Class>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#van">
+        <rdfs:label>van</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#vehicle"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#company">
+        <rdfs:label>company</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#red top">
+        <rdfs:label>red top</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#tabloid"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#bone">
+        <rdfs:label>bone</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>18:30:05 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#girl">
+        <rdfs:label>girl</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#sex"/>
+                                    <daml:hasClass>
+                                    <daml:Class>
+                                    <daml:oneOf>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#female"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:oneOf>
+                                    </daml:Class>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#age"/>
+                                    <daml:hasClass>
+                                    <daml:Class>
+                                    <daml:oneOf>
+                                    <daml:List>
+                                    <daml:first>
+
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#young"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:oneOf>
+                                    </daml:Class>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#leaf">
+        <rdfs:label>leaf</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:05:11 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Restriction>
+                <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#part of"/>
+                <daml:hasClass>
+                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#tree"/>
+                </daml:hasClass>
+            </daml:Restriction>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#tree">
+        <rdfs:label>tree</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:05:03 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#plant"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#broadsheet">
+        <rdfs:label>broadsheet</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#newspaper"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#haulage company">
+        <rdfs:label>haulage company</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#company"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#lorry driver">
+        <rdfs:label>lorry driver</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#drives"/>
+                                    <daml:hasClass>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#lorry"/>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#animal lover">
+        <rdfs:label>animal lover</rdfs:label>
+        <rdfs:comment>Someone who really likes animals   </rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction daml:minCardinalityQ="3">
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#has pet"/>
+                                    <daml:hasClassQ>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#animal"/>
+                                    </daml:hasClassQ>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#vegetarian">
+        <rdfs:label>vegetarian</rdfs:label>
+        <rdfs:comment>A vegetarian is defined as an animals that eats no
+            other animals, or parts of animal.</rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#animal"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#eats"/>
+                                    <daml:toClass>
+                                    <daml:Class>
+                                    <daml:complementOf>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#animal"/>
+                                    </daml:complementOf>
+                                    </daml:Class>
+                                    </daml:toClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#eats"/>
+                                    <daml:toClass>
+                                    <daml:Class>
+                                    <daml:complementOf>
+                                    <daml:Restriction>
+
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#part of"/>
+                                    <daml:hasClass>
+
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#animal"/>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                    </daml:complementOf>
+                                    </daml:Class>
+                                    </daml:toClass>
+                                    </daml:Restriction>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#dog liker">
+        <rdfs:label>dog liker</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#likes"/>
+                                    <daml:hasClass>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#dog"/>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#dog owner">
+        <rdfs:label>dog owner</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#has pet"/>
+                                    <daml:hasClass>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#dog"/>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#white van man">
+        <rdfs:label>white van man</rdfs:label>
+        <rdfs:comment>White van man is a man who drives a white van.</rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#man"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#drives"/>
+                                    <daml:hasClass>
+                                    <daml:Class>
+                                    <daml:intersectionOf>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Restriction>
+
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#has colour"/>
+                                    <daml:hasClass>
+                                    <daml:Class>
+                                    <daml:oneOf>
+                                    <daml:List>
+                                    <daml:first>
+
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#white"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:oneOf>
+                                    </daml:Class>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:List>
+                                    <daml:first>
+
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#van"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:intersectionOf>
+                                    </daml:Class>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#tabloid">
+        <rdfs:label>tabloid</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#newspaper"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#van driver">
+        <rdfs:label>van driver</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#drives"/>
+                                    <daml:hasClass>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#van"/>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#quality broadsheet">
+        <rdfs:label>quality broadsheet</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#broadsheet"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#animal">
+        <rdfs:label>animal</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Restriction>
+                <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#eats"/>
+                <daml:hasClass>
+                    <daml:Thing/>
+                </daml:hasClass>
+            </daml:Restriction>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#colour">
+        <rdfs:label>colour</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#driver">
+        <rdfs:label>driver</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#drives"/>
+                                    <daml:hasClass>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#vehicle"/>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#bus company">
+        <rdfs:label>bus company</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#company"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#brain">
+        <rdfs:label>brain</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:06:59 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#grass">
+        <rdfs:label>grass</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#plant"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#lorry">
+        <rdfs:label>lorry</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#vehicle"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#plant">
+        <rdfs:label>plant</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#sheep">
+        <rdfs:label>sheep</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#animal"/>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <daml:Restriction>
+                <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#eats"/>
+                <daml:toClass>
+                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#grass"/>
+                </daml:toClass>
+            </daml:Restriction>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#truck">
+        <rdfs:label>truck</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#vehicle"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#woman">
+        <rdfs:label>woman</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#age"/>
+                                    <daml:hasClass>
+                                    <daml:Class>
+                                    <daml:oneOf>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#adult"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:oneOf>
+                                    </daml:Class>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#sex"/>
+                                    <daml:hasClass>
+                                    <daml:Class>
+                                    <daml:oneOf>
+                                    <daml:List>
+                                    <daml:first>
+
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#female"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:oneOf>
+                                    </daml:Class>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person">
+        <rdfs:label>person</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#animal"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#magazine">
+        <rdfs:label>magazine</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#publication"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#old lady">
+        <rdfs:label>old lady</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#age"/>
+                                    <daml:hasClass>
+                                    <daml:Class>
+                                    <daml:oneOf>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#elderly"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:oneOf>
+                                    </daml:Class>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#sex"/>
+                                    <daml:hasClass>
+                                    <daml:Class>
+                                    <daml:oneOf>
+                                    <daml:List>
+                                    <daml:first>
+
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#female"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:oneOf>
+                                    </daml:Class>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#haulage truck driver">
+        <rdfs:label>haulage truck driver</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#drives"/>
+                                    <daml:hasClass>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#truck"/>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#works for"/>
+                                    <daml:hasClass>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#part of"/>
+                                    <daml:hasClass>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#haulage company"/>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#cat liker">
+        <rdfs:label>cat liker</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#likes"/>
+                                    <daml:hasClass>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#cat"/>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#cat owner">
+        <rdfs:label>cat owner</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:sameClassAs>
+            <rdfs:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#has pet"/>
+                                    <daml:hasClass>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#cat"/>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </rdfs:Class>
+        </daml:sameClassAs>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#bicycle">
+        <rdfs:label>bicycle</rdfs:label>
+        <rdfs:comment>A human propelled vehicle, with two wheels   </rdfs:comment>
+        <oiled:creationDate>10:48:15 23.08.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#vehicle"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:ObjectProperty rdf:about="http://cohse.semanticweb.org/ontologies/people#has pet">
+        <rdfs:label>has pet</rdfs:label>
+        <rdfs:comment>Anyone who has a pet must like that pet. </rdfs:comment>
+        <oiled:creationDate>16:02:54 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subPropertyOf rdf:resource="http://cohse.semanticweb.org/ontologies/people#likes"/>
+    </daml:ObjectProperty>
+    <daml:ObjectProperty rdf:about="http://cohse.semanticweb.org/ontologies/people#age">
+        <rdfs:label>age</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:54 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:range>
+            <daml:Class>
+                <daml:oneOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#young"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#adult"/>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#elderly"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:oneOf>
+            </daml:Class>
+        </rdfs:range>
+    </daml:ObjectProperty>
+    <daml:ObjectProperty rdf:about="http://cohse.semanticweb.org/ontologies/people#sex">
+        <rdfs:label>sex</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:54 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:range>
+            <daml:Class>
+                <daml:oneOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#male"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#female"/>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:oneOf>
+            </daml:Class>
+        </rdfs:range>
+    </daml:ObjectProperty>
+    <daml:ObjectProperty rdf:about="http://cohse.semanticweb.org/ontologies/people#eats">
+        <rdfs:label>eats</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:54 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:inverseOf rdf:resource="http://cohse.semanticweb.org/ontologies/people#eaten by"/>
+        <rdfs:domain>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#animal"/>
+        </rdfs:domain>
+    </daml:ObjectProperty>
+    <daml:ObjectProperty rdf:about="http://cohse.semanticweb.org/ontologies/people#works for">
+        <rdfs:label>works for</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:54 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:range>
+            <daml:Class>
+                <daml:unionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#company"/>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:unionOf>
+            </daml:Class>
+        </rdfs:range>
+    </daml:ObjectProperty>
+    <daml:ObjectProperty rdf:about="http://cohse.semanticweb.org/ontologies/people#has colour">
+        <rdfs:label>has colour</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:54 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+    </daml:ObjectProperty>
+    <daml:ObjectProperty rdf:about="http://cohse.semanticweb.org/ontologies/people#has father">
+        <rdfs:label>has father</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:54 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subPropertyOf rdf:resource="http://cohse.semanticweb.org/ontologies/people#has parent"/>
+        <rdfs:range>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#man"/>
+        </rdfs:range>
+    </daml:ObjectProperty>
+    <daml:ObjectProperty rdf:about="http://cohse.semanticweb.org/ontologies/people#has mother">
+        <rdfs:label>has mother</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:54 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:subPropertyOf rdf:resource="http://cohse.semanticweb.org/ontologies/people#has parent"/>
+        <rdfs:range>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#woman"/>
+        </rdfs:range>
+    </daml:ObjectProperty>
+    <daml:ObjectProperty rdf:about="http://cohse.semanticweb.org/ontologies/people#has parent">
+        <rdfs:label>has parent</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:54 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:domain>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+        </rdfs:domain>
+        <rdfs:range>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+        </rdfs:range>
+    </daml:ObjectProperty>
+    <daml:DatatypeProperty rdf:about="http://cohse.semanticweb.org/ontologies/people#service_number">
+        <rdfs:label>service_number</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:54 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+    </daml:DatatypeProperty>
+    <daml:ObjectProperty rdf:about="http://cohse.semanticweb.org/ontologies/people#has child">
+        <rdfs:label>has child</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:54 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+    </daml:ObjectProperty>
+    <daml:ObjectProperty rdf:about="http://cohse.semanticweb.org/ontologies/people#eaten by">
+        <rdfs:label>eaten by</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:54 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+    </daml:ObjectProperty>
+    <daml:ObjectProperty rdf:about="http://cohse.semanticweb.org/ontologies/people#drives">
+        <rdfs:label>drives</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:54 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+    </daml:ObjectProperty>
+    <daml:ObjectProperty rdf:about="http://cohse.semanticweb.org/ontologies/people#likes">
+        <rdfs:label>likes</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:54 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+    </daml:ObjectProperty>
+    <daml:ObjectProperty rdf:about="http://cohse.semanticweb.org/ontologies/people#reads">
+        <rdfs:label>reads</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:54 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdfs:range>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#publication"/>
+        </rdfs:range>
+    </daml:ObjectProperty>
+    <daml:ObjectProperty rdf:about="http://cohse.semanticweb.org/ontologies/people#part of">
+        <rdfs:label>part of</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:54 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+    </daml:ObjectProperty>
+    <daml:ObjectProperty rdf:about="http://cohse.semanticweb.org/ontologies/people#has part">
+        <rdfs:label>has part</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:54 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <daml:inverseOf rdf:resource="http://cohse.semanticweb.org/ontologies/people#part of"/>
+    </daml:ObjectProperty>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#dog">
+        <daml:disjointWith>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#cat"/>
+        </daml:disjointWith>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#broadsheet">
+        <daml:disjointWith>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#tabloid"/>
+        </daml:disjointWith>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#bus driver">
+        <rdfs:subClassOf>
+            <daml:Class>
+                <daml:unionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class>
+                                <daml:complementOf>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#likes"/>
+                                    <daml:hasClass>
+                                    <daml:Class>
+                                    <daml:intersectionOf>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#person"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:List>
+                                    <daml:first>
+                                    <daml:Restriction>
+
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#age"/>
+                                    <daml:hasClass>
+                                    <daml:Class>
+                                    <daml:oneOf>
+                                    <daml:List>
+                                    <daml:first>
+
+                                    <daml:Thing rdf:about="http://cohse.semanticweb.org/ontologies/people#young"/>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:oneOf>
+                                    </daml:Class>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                    </daml:first>
+                                    <daml:rest>
+                                    <daml:nil/>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:rest>
+                                    </daml:List>
+                                    </daml:intersectionOf>
+                                    </daml:Class>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:complementOf>
+                            </daml:Class>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#reads"/>
+                                    <daml:toClass>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#broadsheet"/>
+                                    </daml:toClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:unionOf>
+            </daml:Class>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#white van man">
+        <rdfs:subClassOf>
+            <daml:Restriction>
+                <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#reads"/>
+                <daml:toClass>
+                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#tabloid"/>
+                </daml:toClass>
+            </daml:Restriction>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#old lady">
+        <rdfs:subClassOf>
+            <daml:Class>
+                <daml:intersectionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Restriction>
+                                <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#has pet"/>
+                                <daml:toClass>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#cat"/>
+                                </daml:toClass>
+                            </daml:Restriction>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#has pet"/>
+                                    <daml:hasClass>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#animal"/>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:intersectionOf>
+            </daml:Class>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class>
+        <daml:unionOf>
+            <daml:List>
+                <daml:first>
+                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#animal"/>
+                </daml:first>
+                <daml:rest>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Restriction>
+                                <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#part of"/>
+                                <daml:hasClass>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#animal"/>
+                                </daml:hasClass>
+                            </daml:Restriction>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:nil/>
+                        </daml:rest>
+                    </daml:List>
+                </daml:rest>
+            </daml:List>
+        </daml:unionOf>
+        <daml:disjointWith>
+            <daml:Class>
+                <daml:unionOf>
+                    <daml:List>
+                        <daml:first>
+                            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#plant"/>
+                        </daml:first>
+                        <daml:rest>
+                            <daml:List>
+                                <daml:first>
+                                    <daml:Restriction>
+                                    <daml:onProperty rdf:resource="http://cohse.semanticweb.org/ontologies/people#part of"/>
+                                    <daml:hasClass>
+                                    <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#plant"/>
+                                    </daml:hasClass>
+                                    </daml:Restriction>
+                                </daml:first>
+                                <daml:rest>
+                                    <daml:nil/>
+                                </daml:rest>
+                            </daml:List>
+                        </daml:rest>
+                    </daml:List>
+                </daml:unionOf>
+            </daml:Class>
+        </daml:disjointWith>
+    </daml:Class>
+    <rdf:Description rdf:about="http://cohse.semanticweb.org/ontologies/people#TheTimes">
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:55 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#broadsheet"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://cohse.semanticweb.org/ontologies/people#red">
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:55 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#colour"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://cohse.semanticweb.org/ontologies/people#blue">
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:55 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#colour"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://cohse.semanticweb.org/ontologies/people#male">
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>2001-12-14T13:50:12Z</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#Thing"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://cohse.semanticweb.org/ontologies/people#TheMirror">
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:55 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#tabloid"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://cohse.semanticweb.org/ontologies/people#TheGuardian">
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:55 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#broadsheet"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://cohse.semanticweb.org/ontologies/people#TheSun">
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:55 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#tabloid"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://cohse.semanticweb.org/ontologies/people#elderly">
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>2001-12-14T13:50:12Z</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#Thing"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://cohse.semanticweb.org/ontologies/people#female">
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>2001-12-14T13:50:12Z</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#Thing"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://cohse.semanticweb.org/ontologies/people#The42">
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:55 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#bus"/>
+        </rdf:type>
+        <ns0:service_number>
+            <xsd:integer xsd:value="42"/>
+        </ns0:service_number>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://cohse.semanticweb.org/ontologies/people#adult">
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>2001-12-14T13:50:12Z</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#Thing"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://cohse.semanticweb.org/ontologies/people#white">
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>16:02:55 13.09.2001</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://cohse.semanticweb.org/ontologies/people#colour"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://cohse.semanticweb.org/ontologies/people#young">
+        <rdfs:comment></rdfs:comment>
+        <oiled:creationDate>2001-12-14T13:50:12Z</oiled:creationDate>
+        <oiled:creator>seanb</oiled:creator>
+        <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#Thing"/>
+    </rdf:Description>
+</rdf:RDF>

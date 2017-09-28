@@ -1,0 +1,90 @@
+Building unixODBC on OpenVMS (Alpha only)
+=========================================
+
+Here's an initial go at building unixODBC on OpenVMS, at present this will 
+only run on alpha but if anyone requires use of this on VAX drop me an email
+(jason@easysoft.com) and I'll do the necessary transfer vector macro's to export 
+the required symbols from the two shared objects (ODBC.EXE and ODBCINST.EXE).
+
+Current components which have been built on OpenVMS
+
+ODBC.OLB 	    Driver manager as an OpenVMS static object library 	
+ODBCINST.OLB    ODBC installer / setup static object library
+ODBC.EXE        Driver manager shareable image
+ODBCINST.EXE    ODBC installer / setup shareable image
+ODBCPSQL.EXE    Postgres 6.5 driver
+ISQL.EXE        Command line sql tool
+
+Additional components included to perform building on OpenVMS
+
+VMSBUILD.COM - DCL script which compiles, links and installs unixODBC
+[.EXTRAS]VMS.C  - Contains OpenVMS specific wrappers (dlopen, etc..)
+[.VMS]INSTALL_IMAGE.COM - DCL script to install shareable images 
+[.VMS]ODBCINST_AXP.OPT - Linker options file for ODBC installer shared image 
+[.VMS]ODBC_AXP.OPT - Linker options file for Driver manager shared image
+[.VMS]ODBC2_AXP.OPT - Linker options file for ODBC 2 drivers
+
+Building unixODBC on OpenVMS
+============================
+
+After unpacking the backup saveset change into the unixodbc directory and
+perform the following functions.
+
+compiling
+
+$ @vmsbuild compile
+
+linking and installing shared objects
+
+$ @vmsbuild install
+
+To run isql map a symbol to the binary
+
+e.g.  
+
+$ ISQL:==$DKA0:[MYDIR.UNIXODBC.BIN]ISQL.EXE
+
+then simply type isql to run.
+
+Locations of ODBC.INI and ODBCINST.INI
+======================================
+
+After running the @VMSBUILD INSTALL command a blank odbc.ini and odbcinst.ini
+will be created in SYS$SHARE. To override the default locations of the user 
+odbc.ini or the directory where the system odbc.ini and odbcinst.ini reside 
+define the following logicals.
+
+$ def/log ODBCINI "DKA100:[MYDIR.ODBC]ODBC.INI"
+$ def/log ODBCSYSINI "DKA100:[MYDIR.SYS]"
+
+Example Setup With Postgres 6.5
+===============================
+
+SYS$SHARE:ODBCINST.INI
+
+[PostgreSQL]
+Description = Postgres SQL Driver
+Driver      = ODBCPSQL
+Setup       =
+FileUsage   = 1
+
+SYS$SHARE:ODBC.INI
+[Postgres]
+Description         = Test to Postgres
+Driver              = PostgreSQL
+Trace               = No
+Database            = sample
+Servername          = myserver.mydomain.com
+UserName            = postgres
+Password            = password
+Port                = 5432
+Protocol            = 6.4
+ReadOnly            = No
+RowVersioning       = No
+ShowSystemTables    = No
+ShowOidColumn       = No
+FakeOidIndex        = No
+ConnSettings        =
+
+Jason
+

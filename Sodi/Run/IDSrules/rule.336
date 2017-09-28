@@ -1,0 +1,1 @@
+alert icmp $HOME_NET any -> $EXTERNAL_NET any (msg:"ICMP Information Reply (Undefined Code!)"; itype: 16; sid:416;  classtype:misc-activity; rev:4;)

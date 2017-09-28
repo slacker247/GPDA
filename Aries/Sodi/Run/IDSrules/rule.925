@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION datasource attempt";flags: A+; content:"CF_ISCOLDFUSIONDATASOURCE()"; nocase; reference:bugtraq,550; classtype:web-application-attack; sid:920; rev:2;)

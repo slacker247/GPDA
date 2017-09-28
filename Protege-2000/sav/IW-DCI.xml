@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE IW-DCI SYSTEM "file:////home/dre/protege.162/IW-DCI.dtd">
+<IW-DCI>
+	<SystemClasses id="STANDARD-CLASS">
+	</SystemClasses>
+	<SystemClasses id="THING">
+	</SystemClasses>
+	<SystemClasses id="PAL-CONSTRAINT">
+	</SystemClasses>
+	<STANDARD-CLASS id="Confuse_Enemy" superclass_id="Deceive_Intruder Exploit_Intercepts">
+		<NAME>Confuse_Enemy</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="Counter_PSYOPS" superclass_id="Psychological_Ops">
+		<NAME>Counter_PSYOPS</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="Deceive_Intruder" superclass_id="Counter_PSYOPS">
+		<NAME>Deceive_Intruder</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="Delay_Effects" superclass_id="Deny_Access Disrupt_Attack Deceive_Intruder">
+		<NAME>Delay_Effects</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="Denial_of_Service" superclass_id="Site">
+		<NAME>Denial_of_Service</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="Deny_Access" superclass_id="Secure_Site Protect_Networks Protect_Software">
+		<NAME>Deny_Access</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="Disrupt_Attack" superclass_id="Counter_PSYOPS">
+		<NAME>Disrupt_Attack</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="Exec_DCI_Mission" superclass_id="Inhibit_Intrusion Delay_Effects Confuse_Enemy">
+		<NAME>Exec_DCI_Mission</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="Expert" superclass_id="SYSTEM-CLASS">
+		<NAME>Expert</NAME>
+		<ROLE>Concrete</ROLE>
+		<TemplateSlot id="ALLY-AFFIL"/>
+		<TemplateSlot id="ALLY-DESC"/>
+		<TemplateSlot id="ALLY-NAME"/>
+		<TemplateSlot id="ALLY-ORG"/>
+		<TemplateSlot id="BELIEF"/>
+		<TemplateSlot id="DISBELIEF"/>
+		<TemplateSlot id="ENEMY-AFFIL"/>
+		<TemplateSlot id="ENEMY-DESC"/>
+		<TemplateSlot id="ENEMY-NAME"/>
+		<TemplateSlot id="ENEMY-ORG"/>
+		<TemplateSlot id="HOW-ACTION"/>
+		<TemplateSlot id="HOW-ADJECT"/>
+		<TemplateSlot id="HOW-CASUAL"/>
+		<TemplateSlot id="HOW-COST"/>
+		<TemplateSlot id="HOW-DESC1"/>
+		<TemplateSlot id="HOW-DESC2"/>
+		<TemplateSlot id="HOW-DESC3"/>
+		<TemplateSlot id="HOW-INJURY"/>
+		<TemplateSlot id="INFO-ID"/>
+		<TemplateSlot id="MISSION"/>
+		<TemplateSlot id="PARTY-AFFIL"/>
+		<TemplateSlot id="PARTY-DESC"/>
+		<TemplateSlot id="PARTY-NAME"/>
+		<TemplateSlot id="PARTY-ORG"/>
+		<TemplateSlot id="PREPARED"/>
+		<TemplateSlot id="PREPDATE"/>
+		<TemplateSlot id="REPORT-AFFIL"/>
+		<TemplateSlot id="REPORT-DESC"/>
+		<TemplateSlot id="REPORT-NAME"/>
+		<TemplateSlot id="REPORT-ORG"/>
+		<TemplateSlot id="SOURCE"/>
+		<TemplateSlot id="WHAT-ACTION"/>
+		<TemplateSlot id="WHAT-DESC"/>
+		<TemplateSlot id="WHAT-OBJECT"/>
+		<TemplateSlot id="WHEN-DURATION"/>
+		<TemplateSlot id="WHEN-END"/>
+		<TemplateSlot id="WHEN-START"/>
+		<TemplateSlot id="WHEN-TFRAME"/>
+		<TemplateSlot id="WHERE-ALT"/>
+		<TemplateSlot id="WHERE-CITY"/>
+		<TemplateSlot id="WHERE-LAT"/>
+		<TemplateSlot id="WHERE-LOCALE"/>
+		<TemplateSlot id="WHERE-LON"/>
+		<TemplateSlot id="WHERE-NATION"/>
+		<TemplateSlot id="WHERE-REGION"/>
+		<TemplateSlot id="WHERE-STRUCT"/>
+		<TemplateSlot id="WHY-OPERATIONAL"/>
+		<TemplateSlot id="WHY-STRATEGIC"/>
+		<TemplateSlot id="WHY-TACTICAL"/>
+		<TemplateSlot id="WHY-TASK"/>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="Exploit_Intercepts" superclass_id="Counter_PSYOPS">
+		<NAME>Exploit_Intercepts</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="Inhibit_Intrusion" superclass_id="Deny_Access">
+		<NAME>Inhibit_Intrusion</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="Physical_Attack" superclass_id="Site">
+		<NAME>Physical_Attack</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="Protect_Networks" superclass_id="System_Intrusion Denial_of_Service">
+		<NAME>Protect_Networks</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="Protect_Software" superclass_id="Software_Bugs">
+		<NAME>Protect_Software</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="Psychological_Ops" superclass_id="PSYOPS">
+		<NAME>Psychological_Ops</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="PSYOPS" superclass_id="SYSTEM-CLASS">
+		<NAME>PSYOPS</NAME>
+		<ROLE>Concrete</ROLE>
+		<TemplateSlot id="ALLY-AFFIL"/>
+		<TemplateSlot id="ALLY-DESC"/>
+		<TemplateSlot id="ALLY-NAME"/>
+		<TemplateSlot id="ALLY-ORG"/>
+		<TemplateSlot id="BELIEF"/>
+		<TemplateSlot id="DISBELIEF"/>
+		<TemplateSlot id="ENEMY-AFFIL"/>
+		<TemplateSlot id="ENEMY-DESC"/>
+		<TemplateSlot id="ENEMY-NAME"/>
+		<TemplateSlot id="ENEMY-ORG"/>
+		<TemplateSlot id="HOW-ACTION"/>
+		<TemplateSlot id="HOW-ADJECT"/>
+		<TemplateSlot id="HOW-CASUAL"/>
+		<TemplateSlot id="HOW-COST"/>
+		<TemplateSlot id="HOW-DESC1"/>
+		<TemplateSlot id="HOW-DESC2"/>
+		<TemplateSlot id="HOW-DESC3"/>
+		<TemplateSlot id="HOW-INJURY"/>
+		<TemplateSlot id="INFO-ID"/>
+		<TemplateSlot id="MISSION"/>
+		<TemplateSlot id="PARTY-AFFIL"/>
+		<TemplateSlot id="PARTY-DESC"/>
+		<TemplateSlot id="PARTY-NAME"/>
+		<TemplateSlot id="PARTY-ORG"/>
+		<TemplateSlot id="PREPARED"/>
+		<TemplateSlot id="PREPDATE"/>
+		<TemplateSlot id="REPORT-AFFIL"/>
+		<TemplateSlot id="REPORT-DESC"/>
+		<TemplateSlot id="REPORT-NAME"/>
+		<TemplateSlot id="REPORT-ORG"/>
+		<TemplateSlot id="SOURCE"/>
+		<TemplateSlot id="WHAT-ACTION"/>
+		<TemplateSlot id="WHAT-DESC"/>
+		<TemplateSlot id="WHAT-OBJECT"/>
+		<TemplateSlot id="WHEN-DURATION"/>
+		<TemplateSlot id="WHEN-END"/>
+		<TemplateSlot id="WHEN-START"/>
+		<TemplateSlot id="WHEN-TFRAME"/>
+		<TemplateSlot id="WHERE-ALT"/>
+		<TemplateSlot id="WHERE-CITY"/>
+		<TemplateSlot id="WHERE-LAT"/>
+		<TemplateSlot id="WHERE-LOCALE"/>
+		<TemplateSlot id="WHERE-LON"/>
+		<TemplateSlot id="WHERE-NATION"/>
+		<TemplateSlot id="WHERE-REGION"/>
+		<TemplateSlot id="WHERE-STRUCT"/>
+		<TemplateSlot id="WHY-OPERATIONAL"/>
+		<TemplateSlot id="WHY-STRATEGIC"/>
+		<TemplateSlot id="WHY-TACTICAL"/>
+		<TemplateSlot id="WHY-TASK"/>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="Secure_Site" superclass_id="Physical_Attack">
+		<NAME>Secure_Site</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="Site" superclass_id="SYSTEM-CLASS">
+		<NAME>Site</NAME>
+		<ROLE>Concrete</ROLE>
+		<TemplateSlot id="ALLY-AFFIL"/>
+		<TemplateSlot id="ALLY-DESC"/>
+		<TemplateSlot id="ALLY-NAME"/>
+		<TemplateSlot id="ALLY-ORG"/>
+		<TemplateSlot id="BELIEF"/>
+		<TemplateSlot id="DISBELIEF"/>
+		<TemplateSlot id="ENEMY-AFFIL"/>
+		<TemplateSlot id="ENEMY-DESC"/>
+		<TemplateSlot id="ENEMY-NAME"/>
+		<TemplateSlot id="ENEMY-ORG"/>
+		<TemplateSlot id="HOW-ACTION"/>
+		<TemplateSlot id="HOW-ADJECT"/>
+		<TemplateSlot id="HOW-CASUAL"/>
+		<TemplateSlot id="HOW-COST"/>
+		<TemplateSlot id="HOW-DESC1"/>
+		<TemplateSlot id="HOW-DESC2"/>
+		<TemplateSlot id="HOW-DESC3"/>
+		<TemplateSlot id="HOW-INJURY"/>
+		<TemplateSlot id="INFO-ID"/>
+		<TemplateSlot id="MISSION"/>
+		<TemplateSlot id="PARTY-AFFIL"/>
+		<TemplateSlot id="PARTY-DESC"/>
+		<TemplateSlot id="PARTY-NAME"/>
+		<TemplateSlot id="PARTY-ORG"/>
+		<TemplateSlot id="PREPARED"/>
+		<TemplateSlot id="PREPDATE"/>
+		<TemplateSlot id="REPORT-AFFIL"/>
+		<TemplateSlot id="REPORT-DESC"/>
+		<TemplateSlot id="REPORT-NAME"/>
+		<TemplateSlot id="REPORT-ORG"/>
+		<TemplateSlot id="SOURCE"/>
+		<TemplateSlot id="WHAT-ACTION"/>
+		<TemplateSlot id="WHAT-DESC"/>
+		<TemplateSlot id="WHAT-OBJECT"/>
+		<TemplateSlot id="WHEN-DURATION"/>
+		<TemplateSlot id="WHEN-END"/>
+		<TemplateSlot id="WHEN-START"/>
+		<TemplateSlot id="WHEN-TFRAME"/>
+		<TemplateSlot id="WHERE-ALT"/>
+		<TemplateSlot id="WHERE-CITY"/>
+		<TemplateSlot id="WHERE-LAT"/>
+		<TemplateSlot id="WHERE-LOCALE"/>
+		<TemplateSlot id="WHERE-LON"/>
+		<TemplateSlot id="WHERE-NATION"/>
+		<TemplateSlot id="WHERE-REGION"/>
+		<TemplateSlot id="WHERE-STRUCT"/>
+		<TemplateSlot id="WHY-OPERATIONAL"/>
+		<TemplateSlot id="WHY-STRATEGIC"/>
+		<TemplateSlot id="WHY-TACTICAL"/>
+		<TemplateSlot id="WHY-TASK"/>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="Software_Bugs" superclass_id="Expert">
+		<NAME>Software_Bugs</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="SYSTEM-CLASS" superclass_id="THING">
+		<NAME>SYSTEM-CLASS</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<STANDARD-CLASS id="System_Intrusion" superclass_id="Site">
+		<NAME>System_Intrusion</NAME>
+		<ROLE>Concrete</ROLE>
+	</STANDARD-CLASS>
+	<SLOT id="ALLY-AFFIL">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="ALLY-DESC">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="ALLY-NAME">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="ALLY-ORG">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="BELIEF">
+		<SlotType>FLOAT</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMaximum>1.0</SlotMaximum>
+		<SlotMinCard>1</SlotMinCard>
+		<SlotMinimum>0.0</SlotMinimum>
+	</SLOT>
+	<SLOT id="DISBELIEF">
+		<SlotType>FLOAT</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMaximum>1.0</SlotMaximum>
+		<SlotMinCard>1</SlotMinCard>
+		<SlotMinimum>0.0</SlotMinimum>
+	</SLOT>
+	<SLOT id="ENEMY-AFFIL">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="ENEMY-DESC">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="ENEMY-NAME">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="ENEMY-ORG">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="HOW-ACTION">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="HOW-ADJECT">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="HOW-CASUAL">
+		<SlotType>INTEGER</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMaximum>1.0E7</SlotMaximum>
+		<SlotMinCard>0</SlotMinCard>
+		<SlotMinimum>0.0</SlotMinimum>
+	</SLOT>
+	<SLOT id="HOW-COST">
+		<SlotType>INTEGER</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMaximum>1.0E8</SlotMaximum>
+		<SlotMinCard>0</SlotMinCard>
+		<SlotMinimum>0.0</SlotMinimum>
+	</SLOT>
+	<SLOT id="HOW-DESC1">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="HOW-DESC2">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="HOW-DESC3">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="HOW-INJURY">
+		<SlotType>INTEGER</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMaximum>1.0E7</SlotMaximum>
+		<SlotMinCard>0</SlotMinCard>
+		<SlotMinimum>0.0</SlotMinimum>
+	</SLOT>
+	<SLOT id="INFO-ID">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="MISSION">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>1</SlotMinCard>
+	</SLOT>
+	<SLOT id="PARTY-AFFIL">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="PARTY-DESC">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="PARTY-NAME">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="PARTY-ORG">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="PREPARED">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="PREPDATE">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="REPORT-AFFIL">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="REPORT-DESC">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="REPORT-NAME">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="REPORT-ORG">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="SOURCE">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>1</SlotMinCard>
+	</SLOT>
+	<SLOT id="WHAT-ACTION">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="WHAT-DESC">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="WHAT-OBJECT">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="WHEN-DURATION">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="WHEN-END">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="WHEN-START">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="WHEN-TFRAME">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="WHERE-ALT">
+		<SlotType>FLOAT</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMaximum>100000.0</SlotMaximum>
+		<SlotMinCard>0</SlotMinCard>
+		<SlotMinimum>0.0</SlotMinimum>
+	</SLOT>
+	<SLOT id="WHERE-CITY">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="WHERE-LAT">
+		<SlotType>FLOAT</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMaximum>90.0</SlotMaximum>
+		<SlotMinCard>0</SlotMinCard>
+		<SlotMinimum>-90.0</SlotMinimum>
+	</SLOT>
+	<SLOT id="WHERE-LOCALE">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="WHERE-LON">
+		<SlotType>FLOAT</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMaximum>180.0</SlotMaximum>
+		<SlotMinCard>0</SlotMinCard>
+		<SlotMinimum>-180.0</SlotMinimum>
+	</SLOT>
+	<SLOT id="WHERE-NATION">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="WHERE-REGION">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="WHERE-STRUCT">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="WHY-OPERATIONAL">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="WHY-STRATEGIC">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="WHY-TACTICAL">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="WHY-TASK">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+</IW-DCI>

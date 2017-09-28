@@ -1,0 +1,131 @@
+# Tree height, Name, DS_Discrete, Start time, End time, Time unit
+6  CND  0  0.0  4.0  S
+
+5     Evidence
+  TCP_Alert    IDS_has_detected_TCP_intrusion
+  UDP_Alert    IDS_has_detected_UDP_intrusion
+  JTIDS        blah_blah_blah
+  Log_Events   data
+  External     user_has_reported_attempted_intrusion
+
+4     Threats
+  IP_Spoof          the_activity_is_an_IP_spoof
+  RLogin            the_activity_is_a_remote_login
+  Network_Scan      the_activity_is_a_network_scan
+  Network_Hopping   the_activity_is_network_hopping
+
+5     Tasks
+  Monitor_Traffic    you_should_monitor_traffic
+  Detect_Anomalies   you_should_detect_anomalies
+  Alert_Users        you_should_alert_users
+  Update_Rules       you_should_update_rules
+  Identify_Threats   you_should_identify_threats
+
+3     Tactical_Objectives
+  Maintain_Firewall         you_should_maintain_firewall
+  Detect_Intrusions         you_should_detect_intrusions
+  Develop_Countermeasures   you_should_develop_countermeasures
+
+2     Operational_Objectives
+  Deny_Access         you_should_deny_access
+  Assess_Intrusions   you_should_assess_intrusions
+
+1     Strategic_Objectives
+  Provide_CND   you_should_provide_CND   0.00  0.00
+
+true    B and D matrices are listed separately
+#B   E0      E1      E2      E3      E4   
+   0.200   0.200   0.600   0.800   0.500   -- H0_0
+
+   0.200   0.200   0.600   0.800   0.500   -- H0_1
+
+   0.000   0.200   0.313   0.226   0.214   -- H0_2
+
+   0.200   0.200   0.600   0.800   0.500   -- H0_3
+
+
+#D   E0      E1      E2      E3      E4   
+   0.200   0.200   0.600   0.800   0.500   -- H0_0
+
+   0.200   0.200   0.600   0.800   0.500   -- H0_1
+
+   0.200   0.200   0.600   0.800   0.500   -- H0_2
+
+   0.200   0.200   0.600   0.800   0.500   -- H0_3
+
+
+#B  H1_0     H1_1     H1_2     H1_3   
+   0.052   0.052   0.050   0.052   -- H1_0
+
+   0.476   0.476   0.450   0.476   -- H1_1
+
+   0.052   0.052   0.049   0.052   -- H1_2
+
+   0.476   0.476   0.449   0.476   -- H1_3
+
+   0.660   0.660   0.622   0.660   -- H1_4
+
+
+#D  H1_0     H1_1     H1_2     H1_3   
+   0.200   0.200   0.200   0.200   -- H1_0
+
+   0.200   0.200   0.200   0.200   -- H1_1
+
+   0.200   0.200   0.200   0.200   -- H1_2
+
+   0.200   0.200   0.200   0.200   -- H1_3
+
+   0.200   0.200   0.200   0.200   -- H1_4
+
+
+#B  H2_0     H2_1     H2_2     H2_3     H2_4   
+   0.800   0.000   0.000   0.000   0.000   -- H2_0
+
+   0.000   0.604   0.501   0.000   0.000   -- H2_1
+
+   0.000   0.000   0.000   0.901   0.901   -- H2_2
+
+
+#D  H2_0     H2_1     H2_2     H2_3     H2_4   
+   0.800   0.000   0.000   0.000   0.000   -- H2_0
+
+   0.000   0.600   0.500   0.000   0.000   -- H2_1
+
+   0.000   0.000   0.000   0.900   0.900   -- H2_2
+
+
+#B  H3_0     H3_1     H3_2   
+   0.900   0.000   0.000   -- H3_0
+
+   0.000   0.689   0.906   -- H3_1
+
+
+#D  H3_0     H3_1     H3_2   
+   0.900   0.000   0.000   -- H3_0
+
+   0.000   0.400   0.400   -- H3_1
+
+
+#B  H4_0     H4_1   
+   0.555   0.957   -- A0
+
+
+#D  H4_0     H4_1   
+   0.500   0.500   -- A0
+
+
+9  Possibilities
+0.00  0.00  impossible
+0.01  0.05  extremely_unlikely
+0.05  0.20  very_low_chance
+0.20  0.38  small_chance
+0.38  0.60  may
+0.60  0.79  meaningful_chance
+0.79  0.95  most_likely
+0.95  0.99  extremely_likely
+1.00  1.00  certain
+
+#  Evidence labels follow. Must be 3, each < 4 chars
+WS      Net      User
+#  Default time units follow. Must be: Sec, Min, Hour, or Days
+Sec

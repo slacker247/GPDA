@@ -1,0 +1,27 @@
+digraph ST {
+	node [	label = "\N" ];
+	graph [bb= "0,0,983,140"];
+	ContextSet [label=ContextSet, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="38,26", width="1.06", height="0.50"];
+	STElement [label=STElement, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="490,114", width="1.06", height="0.50"];
+	OntologyRef [label=OntologyRef, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="137,26", width="1.19", height="0.50"];
+	ConceptRef [label=ConceptRef, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="238,26", width="1.11", height="0.50"];
+	Concept [label=Concept, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="326,26", width="0.83", height="0.50"];
+	Metadata [label=Metadata, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="407,26", width="0.92", height="0.50"];
+	Mapping [label=Mapping, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="490,26", width="0.89", height="0.50"];
+	Ontology [label=Ontology, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="573,26", width="0.92", height="0.50"];
+	ContextualTopology [label=ContextualTopology, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="689,26", width="1.81", height="0.50"];
+	Context [label=Context, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="801,26", width="0.81", height="0.50"];
+	Formula [label=Formula, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="878,26", width="0.83", height="0.50"];
+	Rule [label=Rule, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="953,26", width="0.75", height="0.50"];
+	STElement -> ContextSet [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,452,110 445,109 370,101 225,84 188,78 157,73 109,55 76,42", lp="203,70"];
+	STElement -> OntologyRef [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,452,109 445,108 395,102 315,89 268,78 243,71 206,56 178,44", lp="283,70"];
+	STElement -> ConceptRef [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,452,106 445,105 411,98 366,87 339,78 319,71 291,56 270,44", lp="354,70"];
+	STElement -> Concept [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,452,100 445,97 429,91 412,84 401,78 387,70 366,56 350,44", lp="416,70"];
+	STElement -> Metadata [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,471,96 466,91 461,86 456,82 453,78 445,69 432,55 423,44", lp="468,70"];
+	STElement -> Mapping [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,490,96 490,87 490,73 490,56 490,44", lp="505,70"];
+	STElement -> Ontology [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,508,96 515,89 521,83 527,78 527,78 535,69 547,55 557,44", lp="556,70"];
+	STElement -> ContextualTopology [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,528,98 536,95 554,88 572,81 578,78 597,69 627,55 651,44", lp="627,70"];
+	STElement -> Context [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,528,106 535,104 571,96 618,85 649,78 688,68 727,57 766,44 768,43 770,42 772,41", lp="723,70"];
+	STElement -> Formula [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,528,109 537,108 602,99 715,84 745,78 778,71 810,56 842,44 844,43 846,42 848,41", lp="812,70"];
+	STElement -> Rule [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,528,110 535,109 619,102 791,85 834,78 860,74 900,55 926,41", lp="891,70"];
+}

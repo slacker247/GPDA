@@ -1,0 +1,12 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: PortNum
+    {Address.kind == ip}
+    {Token.string == ":"}
+(
+    {Token.kind == number}
+):PortNum -->
+:PortNum.Port = {}

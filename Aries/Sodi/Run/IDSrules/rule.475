@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 9001 (msg:"INFO hp jetdirect LCD modification attempt"; flags:A+; content:"@PJL RDYMSG DISPLAY ="; classtype:bad-unknown; reference:bugtraq,2245; reference:arachnids,302; sid:510; rev:2;)

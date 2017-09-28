@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP PING Sniffer Pro/NetXRay network scan"; itype:8; content:"|43696e636f204e6574776f726b2c20496e632e|"; depth:32; sid:484;  classtype:misc-activity; rev:2;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE shtml.exe access";flags: A+; uricontent:"/_vti_bin/shtml.exe"; nocase; reference:cve,CAN-2000-0413; reference:cve,CAN-2000-0709; reference:bugtraq,1608; reference:bugtraq,1174; classtype:web-application-activity; sid:962; rev:2;)

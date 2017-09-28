@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Parameter Problem (Bad Length)"; itype: 12; icode: 2; sid:425;  classtype:misc-activity; rev:4;)

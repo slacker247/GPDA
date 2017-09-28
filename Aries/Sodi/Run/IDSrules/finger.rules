@@ -1,0 +1,21 @@
+# (C) Copyright 2001, Martin Roesch, Brian Caswell, et al.  All rights reserved.
+# $Id: finger.rules,v 1.8 2001/10/29 01:52:54 roesch Exp $
+#-------------
+# FINGER RULES
+#-------------
+#
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET 79 (msg:"FINGER backdoor";flags: A+; content:"cmd_rootsh"; classtype:attempted-admin; sid:320; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 79 (msg:"FINGER account enumeration";flags: A+; content:"a b c d e f"; nocase; classtype:attempted-recon; sid:321; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 79 (msg:"FINGER search attempt";flags: A+; content:"search";  classtype:attempted-recon; sid:322; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 79 (msg:"FINGER root";flags: A+; content:"root";reference:arachnids,376; classtype:attempted-recon; sid:323; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 79 (msg:"FINGER null"; flags: A+; content:"|00|";reference:arachnids,377; classtype:attempted-recon; sid:324; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 79 (msg:"FINGER probe0 attempt";flags: A+; content:"0";reference:arachnids,378; classtype:attempted-recon; sid:325; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 79 (msg:"FINGER pipew attempt"; flags: A+; content:"/W|3b|"; reference:bugtraq,974; reference:arachnids,379; classtype:attempted-user; sid:326; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 79 (msg:"FINGER pipe attempt"; flags: A+; content:"|7c|"; reference:bugtraq,2220; reference:arachnids,380; classtype:attempted-user; sid:327; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 79 (msg:"FINGER bomb attempt";flags: A+; content:"@@";reference:arachnids,382; classtype:attempted-dos; sid:328; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 79 (msg:"FINGER cybercop redirection"; flags: A+; content: "|40 6C 6F 63 61 6C 68 6F 73 74 0A|"; dsize: 11; depth: 11; reference:arachnids,11; classtype:attempted-recon; sid:329; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 79 (msg:"FINGER redirection"; content: "@"; flags: A+; reference:arachnids,251; classtype:attempted-recon; sid:330; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 79 (msg:"FINGER cybercop query"; content: "|0A 20 20 20 20 20|"; flags: A+; depth: 10; reference:arachnids,132; reference:cve,CVE-1999-0612; classtype:attempted-recon; sid:331; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 79 (msg:"FINGER 0@host";flags: A+; content:"|300A|";reference:arachnids,131; classtype:attempted-recon; sid:332; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 79 (msg:"FINGER .@host";flags: A+; content:"|2E0A|";reference:arachnids,130; reference:cve,CVE-1999-0612; classtype:attempted-recon; sid:333; rev:1;)

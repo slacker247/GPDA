@@ -1,0 +1,1 @@
+alert udp any any -> any 69 (msg:"TFTP GET Admin.dll"; content: "|41 64 6D 69 6E 2E 64 6C 6C 00 6F 63 74 65 74|"; classtype:successful-admin; reference:url,www.cert.org/advisories/CA-2001-26.html; sid:1289; rev:1;)

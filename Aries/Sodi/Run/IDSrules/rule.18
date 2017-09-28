@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET 4120 -> $HOME_NET any (msg:"BACKDOOR DeepThroat access"; content: "--Ahhhhhhhhhh"; reference:arachnids,405; sid:113;  classtype:misc-activity; rev:3;)

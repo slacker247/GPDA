@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS EXPLOIT sparc";flags: A+; content:"|90 1a c0 0f  90 02 20 08 92 02 20 0f d0 23 bf f8|"; classtype:attempted-admin; sid:267; rev:1;)

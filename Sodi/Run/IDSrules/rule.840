@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI webgais access";flags: A+; uricontent:"/webgais"; nocase; reference:arachnids,472; reference:bugtraq,2058; reference:cve,CVE-1999-0176;classtype:attempted-recon; sid:838; rev:2;)

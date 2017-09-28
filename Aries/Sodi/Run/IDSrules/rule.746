@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible NewApt.Worm - farter.exe"; content: "filename=\"FARTER.EXE\""; nocase; reference:MCAFEE,1054; sid:789;  classtype:misc-activity; rev:3;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION verify mai access";flags: A+; content:"CFUSION_VERIFYMAIL()"; nocase; reference:bugtraq,550; classtype:attempted-user; sid:929; rev:1;)

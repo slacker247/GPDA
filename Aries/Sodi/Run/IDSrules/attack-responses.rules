@@ -1,0 +1,15 @@
+# (C) Copyright 2001, Martin Roesch, Brian Caswell, et al.  All rights reserved.
+# $Id: attack-responses.rules,v 1.4 2001/10/29 01:52:54 roesch Exp $
+# ----------------
+# ATTACK RESPONSES
+# ----------------
+# These signatures are those when they happen, its usually because a machine
+# has been compromised.  These should not false that often and almost always
+# mean a compromise.
+
+alert tcp $HTTP_SERVERS 80 -> $EXTERNAL_NET any (msg:"ATTACK RESPONSES http dir listing"; content: "Volume Serial Number"; flags: A+; classtype:bad-unknown; sid:1292; rev:1;)
+alert tcp any any -> any any (msg:"ATTACK RESPONSES id check returned root"; flags:A+; content: "uid=0(root)"; classtype:bad-unknown; sid:498; rev:2;)
+alert tcp $HTTP_SERVERS 80 -> $EXTERNAL_NET any (msg:"ATTACK RESPONSES command completed"; content:"Command completed"; nocase; flags:A+; classtype:bad-unknown; sid:494; rev:2;)
+alert tcp $HTTP_SERVERS 80 -> $EXTERNAL_NET any (msg:"ATTACK RESPONSES command error"; content:"Bad command or filename"; nocase; flags:A+; classtype:bad-unknown; sid:495; rev:2;)
+alert tcp $HTTP_SERVERS 80 -> $EXTERNAL_NET any (msg:"ATTACK RESPONSES directory listing"; content:"Directory Listing of"; nocase; flags:A+; classtype:unknown; sid:496; rev:2;)
+alert tcp $HTTP_SERVERS 80 -> $EXTERNAL_NET any (msg:"ATTACK RESPONSES file copied ok"; content:"1 file(s) copied"; nocase; flags:A+; classtype:bad-unknown; sid:497; rev:2;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET 80 -> $HOME_NET any (msg:"WEB-MISC readme.eml attempt"; flags:A+; uricontent:"readme.eml"; nocase; classtype:attempted-user; sid:1284; rev:3; reference:url,www.cert.org/advisories/CA-2001-26.html;)

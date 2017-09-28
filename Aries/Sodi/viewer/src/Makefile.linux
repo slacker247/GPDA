@@ -1,0 +1,78 @@
+TARGET = gisp
+ARCH   = IRIX
+ARCH   = Linux
+
+LIBGROBJS =  GR_Interface.o GR_Widget.o GR_Window.o GR_Shell.o \
+             GR_DispList.o GR_DispObj.o
+LIBGR2OBJS = GR_2Dlines.o GR_Bearth.o GR_Tearth.o GR_Eearth.o GR_Tarea.o GR_Area.o \
+             GR_Lines.o GR_AirObj.o GR_Trail.o GR_Model.o GR_Sensor.o \
+             GR_Links.o GR_Army.o GR_Carib.o GR_Cloud.o GR_Work.o GR_Idlist.o \
+             GR_Stars.o GR_Defend.o GR_Impact.o
+LIBGR3OBJS = GR_Spslinks.o misc.o GR_Socket.o GR_String.o
+OBJS     = gisp.o vf.o mv.o ov.o gd.o tv.o tracker.o texture.o
+GISPOBJS = GISP_Pers_Obj.o GISP_Obj.o convert.o newsps.o font.o tm.o assets.o GR_MapWindow.o
+ALLOBJS  = $(OBJS) $(GISPOBJS)
+
+SPEEDESHOME = $(HOME)/speedes0.45
+SPSINCPATH1 = $(SPEEDESHOME)/src/speedes
+SPSINCPATH2 = $(SPEEDESHOME)/demos/prox/src
+SPSLIBPATH1 = $(SPEEDESHOME)/demos/prox/lib/$(ARCH)
+SPSLIBPATH2 = $(SPEEDESHOME)/lib/ArchitectureDirs/$(ARCH)
+
+SPSLIBS = $(SPSLIBPATH2)/lib_prox3d.a $(SPSLIBPATH2)/lib_speedes.a \
+          $(SPSLIBPATH2)/lib_utilities.a
+LIBGR = ../lib/libGR.a
+LIBGR2 = ../lib/libGR2.a
+LIBGR3 = ../lib/libGR3.a
+
+CC = g++
+##CC = insight
+CFLAGS = -g -DFUNCPROTO -I../include -I/usr/local/include -I/usr/X11/include \
+	-I$(SPEEDESHOME)/src/comm -I$(SPEEDESHOME)/src/utilities \
+        -I/usr/local/Mesa-2.3/widgets-mesa/include -I$(HOME)/include\
+	-I$(SPEEDESHOME)/src/speedes
+UFLAGS = -Dc_plusplus -c -D$(ARCH)
+CUFLAGS = $(CFLAGS) $(UFLAGS)
+SPSFLAGS = -I$(SPSINCPATH1) -I$(SPSINCPATH2) \
+	-DCROS -DMERC -DHOST -DFASTCOMB -DCPP20 -DSTATIC21
+ULIBS = $(LIBGR) $(LIBGR2) $(LIBGR3)
+###ULIBS = $(LIBGR) $(LIBGR2) $(LIBGR3) ../lib/libMessager.a
+LDFLAGS = -L/usr/local/lib/f90 -lf90 -L$(HOME)/lib -lnag -lnagff9 -lnagfl90 -lncar\
+	  -lstdc++ -lm -lXm -lXt -lX11 -lXext -lXmu -lGLU -lGL -lGLw \
+          -L../lib -lGR -lGR2 -lGR3 -L/usr/X11R6/lib \
+          -L/usr/local/Mesa-2.3/widgets-mesa/src -lGLw \
+          -L$(HOME)/lib -lXfwf -lXc -lXpm -ltk -lf90
+
+all: $(TARGET)
+	@echo "--------------- $(TARGET) All Done --------------"
+	@echo "---------- For architecture $(ARCH) -----------"
+
+$(TARGET): $(ALLOBJS) $(LIBGR) $(LIBGR2) $(LIBGR3)
+	@echo "....... LINKING $@ file ......."
+	f90 -o $@ $(ALLOBJS) $(SPSLIBS) $(LDFLAGS)
+##	f90 -c -w -dusty supmap.for
+##	gcc -c -I/usr/X11/include -I$(HOME)/OpenGL/include ncarplot.c
+##	$(CC) $(CFLAGS) -o $@ $(ALLOBJS) $(SPSLIBS) $(LDFLAGS)
+##	$(CC) $(CFLAGS) -o $@ $(ALLOBJS) $(ULIBS) $(SPSLIBS) $(LDFLAGS)
+
+$(OBJS) $(LIBGROBJS) $(LIBGR2OBJS) $(LIBGR3OBJS):
+	@echo "..... COMPILING $@ file ....."
+	$(CC) $(CUFLAGS) $(SPSFLAGS) -o $@ $*.C
+
+$(GISPOBJS): $(LIBGR) $(LIBGR2) $(LIBGR3)
+	@echo "..... COMPILING $@ file ....."
+	$(CC) $(CUFLAGS) $(SPSFLAGS) -o $@ $*.C
+##	$(CC) $(CUFLAGS) $(SPSFLAGS) -o $@ $*.C $(ULIBS) $(SPSLIBS)
+
+$(LIBGR): $(LIBGROBJS)
+	@echo "---> MAKING LIBRARY $@ "
+	ar rv $@ $?
+
+$(LIBGR2): $(LIBGR2OBJS)
+	@echo "---> MAKING LIBRARY $@ "
+	ar rv $@ $?
+
+$(LIBGR3): $(LIBGR3OBJS)
+	@echo "---> MAKING LIBRARY $@ "
+	ar rv $@ $?
+

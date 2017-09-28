@@ -1,0 +1,1 @@
+alert tcp any any -> any 139 (msg:"Virus - Possible QAZ Worm Infection"; flags:A; content: "|71 61 7a 77 73 78 2e 68 73 71|"; reference:MCAFEE,98775; sid:732;  classtype:misc-activity; rev:3;)

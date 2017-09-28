@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI campas access";flags: A+; uricontent:"/campas"; nocase; reference:cve,CVE-1999-0146; reference:bugtraq,1975; classtype:attempted-recon; sid:847; rev:2;)

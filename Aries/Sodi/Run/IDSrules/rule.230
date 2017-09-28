@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"EXPLOIT BIND Tsig Overflow Attempt"; content:"|80 00 07 00 00 00 00 00 01 3F 00 01 02|/bin/sh"; classtype:attempted-admin; sid:314; rev:3; reference:cve,CAN-2000-0010; reference:bugtraq,2302;)

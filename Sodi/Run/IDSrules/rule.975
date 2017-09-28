@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE dvwssr.dll access"; flags: A+; uricontent: "/dvwssr.dll"; nocase; reference:bugtraq,1108; reference:cve,CVE-2000-0260; reference:arachnids,271; classtype:web-application-activity; sid:967; rev:2;)

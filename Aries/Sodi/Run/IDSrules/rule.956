@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE form_results access";flags: A+; uricontent:"/_private/form_results.txt"; nocase; classtype:web-application-activity; sid:948; rev:2;)

@@ -1,0 +1,82 @@
+;;; Telecom Italia Contracts Model
+
+;;; Relations
+
+(defprimrelationship located-in_1 2)
+(defprimrelationship contract-location_1 2)
+(defprimrelationship agreement_1 3)
+(defprimrelationship charged-with_1 2)
+(defprimrelationship charge-of-type_1 2)
+(defprimrelationship service-of-type_1 2)
+(defprimrelationship includes_1 2)
+
+(impliesrel located-in_1 (and ($1 2 Customer_1) ($2 2 Location_1)))
+(impliesrel contract-location_1 (and ($1 2 Contract_1) ($2 2 Location_1)))
+(impliesrel agreement_1 (and ($1 3 Customer_1) ($2 3 Contract_1) ($3 3 Service_1)))
+(impliesrel charged-with_1 (and ($1 2 Contract_1) ($2 2 Charge_1)))
+(impliesrel charge-of-type_1 (and ($1 2 Charge_1) ($2 2 Charge-type_1)))
+(impliesrel service-of-type_1 (and ($1 2 Service_1) ($2 2 Service-type_1)))
+(impliesrel includes_1 (and ($1 2 Service-type_1) ($2 2 Charge-type_1)))
+
+;;; Entities
+
+(defprimconcept Location_1)
+(defprimconcept Customer_1)
+(defprimconcept Contract_1)
+(defprimconcept Service_1)
+;;; Service partitioned into:-
+(defprimconcept Data-transmission_1)
+(defprimconcept ISDN_1)
+(defprimconcept Phone_1)
+(defprimconcept Mobile-phone_1)
+(defprimconcept Other_1)
+
+(defprimconcept Charge_1)
+(defprimconcept Charge-type_1)
+(defprimconcept Service-type_1)
+
+;;; Assert Service partition (disjoint covering)
+(implies Data-transmission_1 Service_1)
+(implies ISDN_1 (and Service_1 (not Data-transmission_1)))
+(implies Phone_1 (and Service_1 (not Data-transmission_1) (not ISDN_1)))
+(implies Mobile-phone_1 (and Service_1 (not Data-transmission_1) (not ISDN_1)
+			     (not Phone_1)))
+(implies Other_1 (and Service_1 (not Data-transmission_1) (not ISDN_1)
+		      (not Phone_1) (not Mobile-phone_1)))
+(implies Service_1 (or Data-transmission_1 ISDN_1 Phone_1 Mobile-phone_1 Other_1))
+
+;;; Assert cardinality constraints
+(implies Location_1 (and (atleast 1 $2 located-in_1) (atmost 1 $2 located-in_1)))
+(implies Contract_1 (and (atmost 1 $1 contract-location_1)
+			 (atleast 1 $2 agreement_1) (atmost 1 $2 agreement_1)
+			 (atleast 1 $1 charged-with_1)))
+(implies Service_1 (and (atmost 1 $3 agreement_1)
+			(atleast 1 $1 service-of-type_1)
+			(atmost 1 $1 service-of-type_1)))
+(implies Charge_1 (and (atleast 1 $2 charged-with_1) (atmost 1 $2 charged-with_1)
+		       (atleast 1 $1 charge-of-type_1)
+		       (atmost 1 $1 charge-of-type_1)))
+(implies Charge-type_1 (atleast 1 $2 includes_1))
+(implies Service-type_1 (atleast 1 $1 includes_1))
+
+;;; Integrity constraints
+(impliesrel located-in_1 located-in)
+(impliesrel contract-location_1 contract-location)
+(impliesrel agreement_1 agreement)
+(impliesrel charged-with_1 charged-with)
+(impliesrel charge-of-type_1 charge-of-type)
+(impliesrel service-of-type_1 service-of-type)
+(impliesrel includes_1 includes)
+
+(implies Location_1 Location)
+(implies Customer_1 Customer)
+(implies Contract_1 Contract)
+(implies Service_1 Service)
+(implies Data-transmission_1 Data-transmission)
+(implies ISDN_1 ISDN)
+(implies Phone_1 Phone)
+(implies Mobile-phone_1 Mobile-phone)
+(implies Other_1 Other)
+(implies Charge_1 Charge)
+(implies Charge-type_1 Charge-type)
+(implies Service-type_1 Service-type)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC tomcat server exploit access"; flags: A+; uricontent:"/contextAdmin/contextAdmin.html"; nocase; classtype:attempted-recon; sid:1111; rev:1;)

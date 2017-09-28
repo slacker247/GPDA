@@ -1,0 +1,110 @@
+   36
+#
+# Country: Pakistan
+#
+# (MB)     Missile Complex
+# (AB)     Air Base
+# (SB)     Sub Base
+# (NW)     Nuclear Weapons
+# (CW)     Chemical Weapons
+# (BW)     Biological Weapons
+# (CC)     Command and Control
+# (PC)     Population Centers
+# (TC)     Time Critical Target
+# (OT)     Other (ie, Grain Storage Facilities)
+# )IM)     Imagery (0=>None, 1=>Map, 2=>Sat)
+# (Hard)   Hardness 0.0 - 1.0
+# (Mobile) 0=>Fixed  1=>Mobile
+# (Value)  4=>Low  3=>Medium  2=>High  1=>Critical
+# (Stat)   0=Green, 1=Yellow, 2=Red
+#
+# Locale             Lat      Long    MB  AB  SB  NW  CW  BW  CC  PC  TC  OT  IM
+# Target Name        Lat      Long    Hard  Mobile Value Stat
+#
+Baghalchur           00 00   00 00    0   0   0   1   0   0   0   0   0   0   0    0.00  0  1  0
+  Baghalchur-NW1     00 00   00 00  0.00  0  1  0
+Chagai-Hills         00 00   00 00    0   0   0   1   0   0   0   0   0   0   0    0.04  0  1  0
+  Chagai-Hills-NW1   00 00   00 00  0.04  0  1  0
+Chasma               00 00   00 00    0   0   0   1   0   0   0   0   0   0   0    0.36  0  1  0
+  Chasma-NW1         00 00   00 00  0.36  0  1  0
+Dera-Ghazi-Khan      00 00   00 00    0   0   0   1   0   0   0   0   0   0   0    0.09  0  2  0
+  Dera-Ghazi-Khan-NW1 00 00   00 00  0.09  0  2  0
+Dera-Nawab-Shah      00 00   00 00    1   0   0   0   0   0   0   0   0   0   0    0.53  0  2  0
+  Dera-Nawab-Shah-MB1 00 00   00 00  0.53  0  2  0
+Faisalabad           00 00   00 00    0   1   0   0   0   0   0   0   0   0   0    0.02  0  2  0
+  Faisalabad-AB1     00 00   00 00  0.02  0  2  0
+Fatehjung            00 00   00 00    1   0   0   0   0   0   0   0   0   0   0    0.23  0  3  0
+  Fatehjung-MB1      00 00   00 00  0.23  0  3  0
+Golra-Sharif         00 00   00 00    0   0   0   1   0   0   0   0   0   0   0    0.93  0  2  0
+  Golra-Sharif-NW1   00 00   00 00  0.93  0  2  0
+Gujranwala           00 00   00 00    1   0   0   0   0   0   0   0   0   0   0    0.56  0  1  0
+  Gujranwala-MB1     00 00   00 00  0.56  0  1  0
+Issa-Khel            00 00   00 00    0   0   0   1   0   0   0   0   0   0   0    0.77  0  1  0
+  Issa-Khel-NW1      00 00   00 00  0.77  0  1  0
+Jhang                00 00   00 00    1   0   0   0   0   0   0   0   0   0   0    0.25  0  1  0
+  Jhang-MB1          00 00   00 00  0.25  0  1  0
+Kahuta               00 00   00 00    1   0   0   1   0   0   0   0   0   0   0    0.88  0  2  0
+  Kahuta-MB1         00 00   00 00  0.88  0  2  0
+  Kahuta-NW1         00 00   00 00  0.88  0  2  0
+Kamra                00 00   00 00    0   1   0   1   0   0   0   0   0   0   0    0.92  0  2  0
+  Kamra-AB1          00 00   00 00  0.92  0  2  0
+  Kamra-NW1          00 00   00 00  0.92  0  2  0
+Karachi              00 00   00 00    0   1   0   1   0   0   0   0   0   0   0    0.81  0  1  0
+  Karachi-AB1        00 00   00 00  0.81  0  1  0
+  Karachi-NW1        00 00   00 00  0.81  0  1  0
+Kharan-Desert        00 00   00 00    0   0   0   1   0   0   0   0   0   0   0    0.89  0  2  0
+  Kharan-Desert-NW1  00 00   00 00  0.89  0  2  0
+Khushab              00 00   00 00    0   0   0   1   0   0   0   0   0   0   0    0.08  0  3  0
+  Khushab-NW1        00 00   00 00  0.08  0  3  0
+Kundian              00 00   00 00    0   0   0   1   0   0   0   0   0   0   0    0.98  0  1  0
+  Kundian-NW1        00 00   00 00  0.98  0  1  0
+Lahore               00 00   00 00    0   1   0   1   0   0   0   0   0   0   0    0.89  0  3  0
+  Lahore-AB1         00 00   00 00  0.89  0  3  0
+  Lahore-NW1         00 00   00 00  0.89  0  3  0
+Lakki[Qabul-Khel]    00 00   00 00    0   0   0   1   0   0   0   0   0   0   0    0.10  0  1  0
+  Lakki[Qabul-Khel]-NW1 00 00   00 00  0.10  0  1  0
+Multan               00 00   00 00    1   1   0   1   0   0   0   0   0   0   0    0.02  0  2  0
+  Multan-MB1         00 00   00 00  0.02  0  2  0
+  Multan-AB1         00 00   00 00  0.02  0  2  0
+  Multan-NW1         00 00   00 00  0.02  0  2  0
+Okara                00 00   00 00    1   0   0   0   0   0   0   0   0   0   0    0.68  0  3  0
+  Okara-MB1          00 00   00 00  0.68  0  3  0
+Peshawar             00 00   00 00    0   1   0   0   0   0   1   0   0   0   0    0.02  0  2  0
+  Peshawar-AB1       00 00   00 00  0.02  0  2  0
+  Peshawar-CC1       00 00   00 00  0.02  0  2  0
+Quetta               30 14   66 55    1   1   0   0   0   0   0   0   0   0   0    0.75  0  1  0
+  Quetta-MB1         30 14   66 55  0.75  0  1  0
+  Quetta-AB1         30 14   66 55  0.75  0  1  0
+Ras-Koh              00 00   00 00    0   0   0   1   0   0   0   0   0   0   0    0.62  0  1  0
+  Ras-Koh-NW1        00 00   00 00  0.62  0  1  0
+Rawalpindi           00 00   00 00    0   1   0   1   0   0   0   0   0   0   0    0.62  0  3  0
+  Rawalpindi-AB1     00 00   00 00  0.62  0  3  0
+  Rawalpindi-NW1     00 00   00 00  0.62  0  3  0
+Risalpur             00 00   00 00    0   1   0   0   0   0   0   0   0   0   0    0.02  0  2  0
+  Risalpur-AB1       00 00   00 00  0.02  0  2  0
+Sargodha             32 03   72 39    1   1   0   0   0   0   0   0   0   0   0    0.19  0  2  0
+  Sargodha-MB1       32 03   72 39  0.19  0  2  0
+  Sargodha-AB1       32 03   72 39  0.19  0  2  0
+Shorkot              00 00   00 00    0   1   0   0   0   0   0   0   0   0   0    0.02  0  2  0
+  Shorkot-AB1        00 00   00 00  0.02  0  2  0
+Sihala               00 00   00 00    0   0   0   1   0   0   0   0   0   0   0    0.51  0  1  0
+  Sihala-NW1         00 00   00 00  0.51  0  1  0
+Sonmiani             00 00   00 00    1   0   0   0   0   0   0   0   0   0   0    0.70  0  2  0
+  Sonmiani-MB1       00 00   00 00  0.70  0  2  0
+Taxila               00 00   00 00    0   0   0   1   0   0   0   0   0   0   0    0.88  0  2  0
+  Taxila-NW1         00 00   00 00  0.88  0  2  0
+Tilla-Jogian[Malute] 00 00   00 00    1   0   0   0   0   0   0   0   0   0   0    0.53  0  2  0
+  Tilla-Jogian[Malute]-MB1 00 00   00 00  0.53  0  2  0
+Tumman-Laghari       00 00   00 00    0   0   0   1   0   0   0   0   0   0   0    0.54  0  3  0
+  Tumman-Laghari-NW1 00 00   00 00  0.54  0  3  0
+Wah                  00 00   00 00    0   0   0   1   0   0   0   0   0   0   0    0.17  0  3  0
+  Wah-NW1            00 00   00 00  0.17  0  3  0
+UNIDENTIFIED         00 00   00 00    0   0   0   0   1   0   0   0   0   0   0    0.86  0  3  0
+  UNIDENTIFIED-CW1   00 00   00 00  0.86  0  3  0
+UNIDENTIFIED         00 00   00 00    0   0   0   0   0   1   0   0   0   0   0    0.05  0  3  0
+  UNIDENTIFIED-BW1   00 00   00 00  0.05  0  3  0
+#
+# Sources and Resources
+#
+# Federation of American Scientists Web Site (WMD pages)
+#

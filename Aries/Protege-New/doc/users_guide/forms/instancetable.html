@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>InstanceTableWidget</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img border="0" src="images/running_nerd.gif" WIDTH="48" HEIGHT="48">  
+ InstanceRowWidget and InstanceTableWidget<br>
+<img src="../instances/images/header_line.gif" width="590" height="6"></h1>
+
+<p>The InstanceRowWidget is an optional widget for slots of type Instance with
+multiple cardinality (<b>at most</b> not specified or greater than 1). The
+default widget, InstanceListWidget, shows the names of the Instances that are
+selected as the values of the slot. The InstanceTableWidget actually shows the
+slot values for each slot.&nbsp;
+
+<p>The InstanceTableWidget is very similar to the <a href="instancerow.html">InstanceRowWidget</a>, except that
+it is available for Instance slots with multiple cardinality. Therefore, instead
+of just one row, the InstanceTableWidget can display multiple rows of
+information.
+
+<p align="center"><img border="0" src="images/instance_table.gif" width="664" height="155">
+
+<h2>Creating an InstanceTableWidget</h2>
+
+<p>To make an InstanceTableWidget, first select the widget you want to change,
+then select InstanceTableWidget from the <a href="widget_type_menu.html">Widget
+Type Menu</a>.
+
+<h2>Customizing an InstanceTableWidget</h2>
+
+<p>When you select InstanceTableWidget from the <a href="widget_type_menu.html">Widget
+Type Menu</a>, you will usually have to resize the widget.&nbsp;<p>In addition,
+you might not wish to use all the slots, and you might want to change the order
+in which they appear. You can make these changes using the <a href="form_configuration.html">Form Configuration</a>
+dialog box. Note that the current implementation does not allow you to change
+the order directly by dragging, but you can reorder the slots by first removing
+them from the widget, and then adding them back in the order in which you wish
+them to appear.<p>To add or remove slots, change their order, or change the name
+under which they are displayed:
+<ol>
+  <li>Double-click on the widget to open the <a href="form_configuration.html"> Form Configuration</a>
+    dialog box.</li>
+  <li>Click the <b>Define columns of instance table</b> tab.<br>
+    <img border="0" src="images/config_inst_row.gif" width="496" height="261"></li>
+  <li>To make any modifications, you must click in the <b>Column Name</b> of the
+    slot you wish to modify. (The top row, <b>Slot Name</b>, is a property of
+    the slot and&nbsp;<i> cannot</i> be modified.)</li>
+  <li>To remove a column, click in its <b>Column Name</b> and click the Remove <img border="0" src="../classes/images/Remove.gif" width="19" height="19">
+    button.<br>
+    <img border="0" src="images/config_inst_row2.gif" width="496" height="261"></li>
+  <li>To rename a column, edit the text in <b>Column Name</b>.</li>
+  <li>To add a column, click the Add <img border="0" src="../classes/images/Add.gif" width="19" height="19">
+    button.<br>
+    The column will be added after all the existing columns.</li>
+  <li>To reorder columns, remove all the columns except the one you want to
+    appear first, then add the other columns. For instance, to make <b>name</b>
+    appear first in the example, you would delete the <b>other_information</b>
+    and <b>phone_number</b> columns, then add any columns you wanted back in.<br>
+    <img border="0" src="images/config_inst_row3.gif" width="496" height="250"></li>
+</ol>
+
+<hr>
+
+<p>Next: <a href="contains.html">ContainsWidget</a> </p>
+
+<p><a href="index.html" target="main">Forms Table of Contents</a></p>
+</body>
+</html>

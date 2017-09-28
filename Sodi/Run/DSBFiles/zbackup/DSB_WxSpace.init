@@ -1,0 +1,22 @@
+    3    Space_Weather                0     0.0     0.0 H
+      6     Evidence_Sources
+  CommOutage
+  HiErrRate
+  IonForecast
+  RFILocal
+  RFIWorld
+  Threat
+      4     Hypothesis
+  EquipDegrade
+  Environment
+  Hostile
+  UnintendedIF
+      3     Assessments
+  ChangeSystem			0.75     100.0
+  AltResource			0.75     100.0
+  NoChange				0.75     100.0
+#  Evidence labels follow. Must be 3, each < 4 chars
+GHz      Dur      Area 
+#  Default time units follow. Must be: Sec, Min, Hour, or Days
+Min
+<EOF>

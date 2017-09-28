@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 555 -> $EXTERNAL_NET any (msg:"BACKDOOR PhaseZero Server Active on Network"; flags: A+; content:"phAse"; sid:208;  classtype:misc-activity; rev:3;)

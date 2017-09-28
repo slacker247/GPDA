@@ -1,0 +1,212 @@
+/*
+ File:		EulerAngle.java
+ CVS Info:	$Id: EulerAngle.java,v 1.2 1998/01/27 18:44:12 mcgredo Exp $
+ Compiler:	jdk 1.3
+ */
+
+package mil.navy.nps.dis;
+
+import mil.navy.nps.util.*;         // General-purpose utilities
+import mil.navy.nps.disEnumerations.*;         // Enumerations for DIS
+
+import java.lang.*;
+import java.util.*;
+import java.io.*;
+
+/**
+ * Representation of an entity's orientation.
+ *
+ *@version 1.0
+ *@author <a href="mailto:mcgredo@cs.nps.navy.mil"> Don McGregor</a> (<a href="http://www.npsnet.org/~mcgredo">http://www.npsnet.org/~mcgredo</a>)
+ *
+ *<dt><b>Location:</b>
+ *<dd>Web:  <a href="http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/EulerAngle.java">
+ *  http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/EulerAngle.java</a>
+ *
+ *<dd>or locally:  <a href="../../../../../../mil/navy/nps/dis/EulerAngle.java">
+ *  ~/mil/navy/nps/dis/EulerAngle.java</a>
+ *
+ *<dt><b>Hierarchy Diagram:</b>
+ *<dd><a href="../../../../../../dis-java-vrml/images/PduClassHierarchy.jpg"><IMG SRC="../../../../../../dis-java-vrml/images/PduClassHierarchyButton.jpg" ALIGN=ABSCENTER WIDTH=150 HEIGHT=21></a>
+ *
+ *<dt><b>Summary:</b>
+ *<dd>Orientation of a simulated entity shall be specified by the Euler Angles Record. 
+ *  This record shall specify three angles which are specifed with
+ *  respect to the entities coordinate system. The three angles shall be represented in radians.
+ *  See the
+ *  <a href="../../../../../../demo/gimbals/DisCoordinateSystemGimbals.wrl">DisCoordinateSystemGimbals.wrl</A>
+ *  demo to experiment with Euler angles.
+ *  
+ *<dt><b>Explanation:</b>
+ *<dd>Describes the orientation of an object, in psi, theta, phi 32 bit
+ *  floating point terms. There are a number of classes that use the
+ *  same basic layout of 3 32-bit numbers (velocity, angular velocity,
+ *  EntityPosition, etc.) but they're split out into separate classes
+ *  in the interests of type safety fascism. <P>
+ * "Don't ask, don't tell" does NOT apply here. We can ask any entity
+ * about its orientation.<P>
+ *
+ *<dt><b>History:</b>
+ *<dd>		06Mar97	/Don McGregor		/New
+ *<dd>		16Apr97	/Don McGregor		/PrintStream passed to printValues
+ *<dd>		12Aug97 /Don McGregor		/elaborated printValues
+ *<dd>		8Dec97	/Ronan Fauglas		/changes for documentation templates + complements in documentation
+ *<dd>		11Dec97	/Ronan Fauglas		/changes access methods names from "variable()" to "getVariable()"
+ *
+ *<dt><b>References:</b>
+ *<dd>		DIS Data Dictionary :<a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/35.htm">Euler Angles Record</a>
+ *<dd>		DIS specification : IEEE 1278.1, Section 5.3.17,1.3.2
+ *
+ *
+ *@see PduElement 
+ *@see SerializationInterface
+ */
+public class EulerAngle extends PduElement
+{
+    /**
+     *The first angle of rotation (around the local "X" axis) in radians.
+     */
+    protected float  psi;     
+
+    /**
+     *The second angle of rotation (around the local "Y" axis) in radians.
+     */
+    protected float  theta;   
+
+    /**
+     *The third angle of rotation (around the local "Z" axis) in radians.
+     */
+    protected float  phi;    
+
+    /**
+     *Constant value--size of an EulerAngle record when written out; here :<code>sizeOf = 12 bytes</code>.
+     */
+    public final int sizeOf = 12;   // object is 12 bytes long 
+
+
+/**
+ *Constructs an new Entity Identifier, with initial values initiated to 0.
+ */
+public EulerAngle()
+{
+    // default constructor
+
+    psi   = 0; 
+    theta = 0;
+    phi   = 0;
+
+    return;
+}
+
+/**
+ *Constructs an new EulerAngle Record, with variables values passed by parameters.
+ *
+ *@param pPsi the rotation about z by angle
+ *@param pTheta the rotation about y by angle
+ *@param pPhi the rotation about x by angle
+ */
+public EulerAngle(float pPsi, float pTheta, float pPhi)
+{
+    psi   = pPsi;
+    theta = pTheta;
+    phi   = pPhi;
+
+    return;
+}
+
+public Object clone()
+{
+
+ EulerAngle   newEulerAngle = new EulerAngle(psi, theta, phi);
+
+ return newEulerAngle;   
+}
+
+public void serialize(DataOutputStream outputStream)
+{
+    // write out the data to an output stream. Order is important here, since
+    // it needs to conform to the DIS standard.
+
+    //super.serialize(outputStream);        // No need to call super, since no ivars are in our direct superclass
+    
+    try
+     {
+        outputStream.writeFloat(psi);
+        outputStream.writeFloat(theta);
+        outputStream.writeFloat(phi);
+     }
+    catch (IOException ioError)
+        {
+            throw new 
+                RuntimeException("Exception in EulerAngle. Error writing to wire.");
+        }
+}
+
+public void deSerialize(DataInputStream pInputStream)
+{
+    try
+     {
+        psi   = pInputStream.readFloat();
+        theta = pInputStream.readFloat();
+        phi   = pInputStream.readFloat();
+     }
+     catch (IOException ioError)
+        {
+            throw new 
+                RuntimeException("Exception in EulerAngle. Error reading from wire.");
+        }
+
+}
+
+public int length()
+{
+    return sizeOf;          // EntityTypes are this long, always.
+}
+
+public void printValues(int indentLevel, PrintStream printStream)
+{
+    // print the values of the object out, with correct level of
+    // indentation on the page.
+
+  
+  StringBuffer indent = ProtocolDataUnit.getPaddingOfLength(indentLevel);
+  int          idx, superclassIndent = indentLevel;
+
+    printStream.println(indent + "EulerAngle psi: "   + psi);
+    printStream.println(indent + "EulerAngle theta: "   + theta);
+    printStream.println(indent + "EulerAngle phi: "   + phi);
+
+    return;
+}
+
+// Accessor methods
+
+public void setValues(float pPsi, float pTheta, float pPhi)
+{ psi   = pPsi;
+  theta = pTheta;
+  phi   = pPhi;
+}
+
+  
+public float getPsi()
+{   return psi;
+}
+public void setPsi(float pPsi)
+{psi = pPsi;
+}
+
+public float getTheta()
+{   return theta;
+}
+public void setTheta(float pTheta)
+{theta = pTheta;
+}
+
+public float getPhi()
+{   return phi;
+}
+public void setPhi(float pPhi)
+{phi = pPhi;
+}
+
+} // end of class EulerAngle

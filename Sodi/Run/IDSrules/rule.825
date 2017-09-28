@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI imagemap overflow attempt"; dsize: >1000; flags: A; uricontent: "/imagemap.exe?"; depth: 32; nocase; reference:arachnids,412;classtype:web-application-attack; sid:821; rev:1;)

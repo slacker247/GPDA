@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI HyperSeek directory traversal attempt"; uricontent:"/hsx.cgi"; content:"../../"; content:"%00"; flags:A+; reference:bugtraq,2314; reference:cve,CAN-2001-0253; classtype:web-application-attack; sid:803; rev:2;)

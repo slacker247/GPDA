@@ -1,0 +1,2951 @@
+<html>
+<head>
+<title>RadioCommunicationsPrototypes.xml (X3dToHtml)</title>
+<meta name="generator"   content="X3dToHtml.xsl, http://www.web3D.org/TaskGroups/x3d/translation/X3dToHtml.xsl">
+</head>
+<body>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE X3D PUBLIC "http://www.web3D.org/TaskGroups/x3d/translation/x3d-compromise.dtd"
+                     "file://localhost/C:/www.web3D.org/TaskGroups/x3d/translation/x3d-compromise.dtd"&gt;
+</pre>
+&lt;<font color="NAVY">X3D</font>&gt;
+<blockquote>&lt;<font color="NAVY">Header</font>&gt;
+<blockquote>&lt;<font color="NAVY">meta</font> <font color="GREEN">name</font><B>='</B><font color="TEAL">filename</font><B>'</B> <font color="GREEN">content</font><B>='</B><a href="RadioCommunicationsPrototypes.xml">RadioCommunicationsPrototypes.xml</a><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">meta</font> <font color="GREEN">name</font><B>='</B><font color="TEAL">authors</font><B>'</B> <font color="GREEN">content</font><B>='</B><font color="TEAL">Don Brutzman and Dave Laflam</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">meta</font> <font color="GREEN">name</font><B>='</B><font color="TEAL">revised</font><B>'</B> <font color="GREEN">content</font><B>='</B><font color="TEAL">7 December 2000</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">meta</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">description</font><B>'</B>
+   <font color="GREEN">content</font><B>='</B><font color="TEAL">Prototype definitions for ReceiverPdu SignalPdu and TransmitterPdu, all of which share share RadioCommunicationsPduScriptNode class</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">meta</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">url</font><B>'</B>
+   <font color="GREEN">content</font><B>='</B><a href="http://web.nps.navy.mil/~brutzman/vrtp/mil/navy/nps/dis/RadioCommunicationsPrototypes.xml">http://web.nps.navy.mil/~brutzman/vrtp/mil/navy/nps/dis/RadioCommunicationsPrototypes.xml</a><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">meta</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">generator</font><B>'</B>
+   <font color="GREEN">content</font><B>='</B>X3D-Edit, <a href="http://www.web3D.org/TaskGroups/x3d/translation/README.X3D-Edit.html" target="_blank">http://www.web3D.org/TaskGroups/x3d/translation/README.X3D-Edit.html</a><B>'</B>/&gt;
+<br>
+</blockquote>
+&lt;/<font color="NAVY">Header</font>&gt;
+<br>
+&lt;<font color="NAVY">Scene</font>&gt;
+<blockquote>&lt;!-- ============================================================ --&gt;
+<br>
+&lt;<font color="NAVY">ProtoDeclare</font> <font color="GREEN">name</font><B>='</B><font color="TEAL">ReceiverPdu</font><B>'</B>&gt;
+<blockquote>&lt;!-- set whichGeometry to -1 for no geometry, 0 for text trace, 1 for default geometry --&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">whichGeometry</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">0</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduGeometrySwitch.whichChoice</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">exposedField</font><B>'</B>/&gt;
+<br>
+&lt;!-- Initialization fields --&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">readInterval</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">2</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.readInterval</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">writeInterval</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">0</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.writeInterval</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">siteID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">14</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.siteID</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">applicationID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">17</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.applicationID</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">entityID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">9</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.entityID</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">address</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">String</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">224.2.181.145</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.address</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">port</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">62040</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.port</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">multicastRelayHost</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">String</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">devo.cs.nps.navy.mil</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.multicastRelayHost</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">multicastRelayPort</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">8010</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.multicastRelayPort</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">rtpHeaderExpected</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">false</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.rtpHeaderExpected</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">traceJava</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">false</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.traceJava</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;!-- Generic events --&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">active</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.active</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">timestamp</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.timestamp</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">rtpHeaderHeard</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.rtpHeaderHeard</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;!-- RadioCommunicationsFamily events --&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.radioID</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;!-- ReceiverPdu fields --&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">receiverPower</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Float</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.receiverPower</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">receiverState</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.receiverState</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitterSiteID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.transmitterSiteID</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitterApplicationID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.transmitterApplicationID</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitterEntityID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.transmitterEntityID</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitterRadioID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">ReceiverPduScriptNode.transmitterRadioID</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;!-- First node inside a PrototypeDeclaration is the node type of the ProtoInstance --&gt;
+<br>
+&lt;<font color="NAVY">Switch</font> <font color="GREEN">DEF</font><B>='</B><font color="TEAL">ReceiverPduGeometrySwitch</font><B>'</B>&gt;
+<blockquote>&lt;!-- whichChoice -1 is no rendering, choice 0 is text trace, choice 1 is default geometry --&gt;
+<br>
+<font color="BLUE">&lt;choice&gt;</font><blockquote>&lt;!-- whichGeometry 0 is trace text showing PDU values --&gt;
+<br>
+&lt;<font color="NAVY">Group</font>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">Viewpoint</font>
+   <font color="GREEN">description</font><B>='</B><font color="TEAL">Receiver Pdu Observer</font><B>'</B>
+   <font color="GREEN">position</font><B>='</B><font color="TEAL">0 0 15</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">NavigationInfo</font>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">"EXAMINE" "ANY"</font><B>'</B>/&gt;
+<br>
+&lt;!-- ReceiverOutput3dTraceText --&gt;
+<br>
+&lt;<font color="NAVY">Group</font>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;!-- Directions text --&gt;
+<br>
+&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">0 6 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">Shape</font>&gt;
+<blockquote><font color="BLUE">&lt;geometry&gt;</font><blockquote>&lt;<font color="NAVY">Text</font>
+   <font color="GREEN">string</font><B>='</B><font color="TEAL">"Open Java Console to see PDU trace messages" "Netscape..Communicator..Tools..Java Console"</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;fontStyle&gt;</font><blockquote>&lt;<font color="NAVY">FontStyle</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">FONT1</font><B>'</B>
+   <font color="GREEN">justify</font><B>='</B><font color="TEAL">"MIDDLE" "BEGIN"</font><B>'</B>
+   <font color="GREEN">size</font><B>='</B><font color="TEAL">0.5</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/fontStyle&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Text</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/geometry&gt;</font>
+<font color="BLUE">&lt;appearance&gt;</font><blockquote>&lt;<font color="NAVY">Appearance</font>&gt;
+<blockquote><font color="BLUE">&lt;material&gt;</font><blockquote>&lt;<font color="NAVY">Material</font>
+   <font color="GREEN">diffuseColor</font><B>='</B><font color="TEAL">0 0.4 0.8</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/material&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Appearance</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/appearance&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Shape</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+&lt;!-- Pdu type text --&gt;
+<br>
+&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">0 4.75 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">Shape</font>&gt;
+<blockquote><font color="BLUE">&lt;geometry&gt;</font><blockquote>&lt;<font color="NAVY">Text</font> <font color="GREEN">string</font><B>='</B><font color="TEAL">Receiver PDU values</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;fontStyle&gt;</font><blockquote>&lt;<font color="NAVY">FontStyle</font>
+   <font color="GREEN">USE</font><B>='</B><font color="TEAL">FONT1</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/fontStyle&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Text</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/geometry&gt;</font>
+<font color="BLUE">&lt;appearance&gt;</font><blockquote>&lt;!-- GreenAppearance not DEF-ed and re-USE-d because each PrototypeDeclaration is an independent template. Nodes defined within one PrototypeDeclaration are not visible withing the others, because these are "cookie cutters" rather than instances.visible --&gt;
+<br>
+&lt;<font color="NAVY">Appearance</font>&gt;
+<blockquote><font color="BLUE">&lt;material&gt;</font><blockquote>&lt;<font color="NAVY">Material</font>
+   <font color="GREEN">diffuseColor</font><B>='</B><font color="TEAL">0 0.8 0.4</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/material&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Appearance</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/appearance&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Shape</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+&lt;!-- Output text --&gt;
+<br>
+&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">0 4 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">Shape</font>&gt;
+<blockquote><font color="BLUE">&lt;geometry&gt;</font><blockquote>&lt;!-- This text will get updated by the script when eventOut active is set to a value --&gt;
+<br>
+&lt;<font color="NAVY">Text</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">ReceiverOutput1</font><B>'</B>
+   <font color="GREEN">string</font><B>='</B><font color="TEAL">Receiver output uninitialized</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;fontStyle&gt;</font><blockquote>&lt;<font color="NAVY">FontStyle</font>
+   <font color="GREEN">USE</font><B>='</B><font color="TEAL">FONT1</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/fontStyle&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Text</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/geometry&gt;</font>
+<font color="BLUE">&lt;appearance&gt;</font><blockquote>&lt;<font color="NAVY">Appearance</font>&gt;
+<blockquote><font color="BLUE">&lt;material&gt;</font><blockquote>&lt;<font color="NAVY">Material</font>
+   <font color="GREEN">diffuseColor</font><B>='</B><font color="TEAL">0.8 0.8 0</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/material&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Appearance</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/appearance&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Shape</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Group</font>&gt;
+<br>
+&lt;<font color="NAVY">Script</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">ReceiverOutputAssembler1</font><B>'</B>
+   <font color="GREEN">space</font><B>='</B><font color="TEAL">preserve</font><B>'</B>&gt;
+<blockquote>&lt;!-- surprising limit on MFString: 10 strings --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">messageResult</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Strings</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">active</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">timestamp</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">rtpHeaderHeard</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">receiverPower</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Float</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">receiverState</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitterSiteID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitterApplicationID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitterEntityID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitterRadioID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+<PRE>&lt;![CDATA[
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+javascript:
+
+function initialize ()
+{
+	value='awaiting PDU';
+	messageResult  [0] = 'active=' + value;
+	messageResult  [1] = 'timestamp=' + value;
+	messageResult  [2] = 'rtpHeaderHeard=' + value;
+	messageResult  [3] = 'radioID=' + value;
+	messageResult  [4] = 'receiverPower=' + value;
+	messageResult  [5] = 'receiverState=' + value;
+	messageResult  [6] = 'transmitterSiteID=' + value;
+	messageResult  [7] = 'transmitterApplicationID=' + value;
+	messageResult  [8] = 'transmitterEntityID=' + value;
+	messageResult  [9] = 'transmitterRadioID=' + value;
+}
+function active 			(value, ts) { messageResult [0] = 'active=' + value; }
+function timestamp			(value, ts) { messageResult [1] = 'timestamp=' + value; }
+function rtpHeaderHeard			(value, ts) { messageResult [2] = 'rtpHeaderHeard=' + value; }
+function radioID			(value, ts) { messageResult [3] = 'radioID=' + value; }
+function receiverPower			(value, ts) { messageResult [4] = 'receiverPower=' + value; }
+function receiverState			(value, ts) { messageResult [5] = 'receiverState=' + value; }
+function transmitterSiteID		(value, ts) { messageResult [6] = 'transmitterSiteID=' + value; }
+function transmitterApplicationID	(value, ts) { messageResult [7] = 'transmitterApplicationID=' + value; }
+function transmitterEntityID		(value, ts) { messageResult [8] = 'transmitterEntityID=' + value; }
+function transmitterRadioID 		(value, ts) { messageResult [9] = 'transmitterRadioID=' + value; }
+]]&gt;</PRE></blockquote>
+&lt;/<font color="NAVY">Script</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Group</font>&gt;
+<br>
+&lt;!-- Further geometry representations go here --&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/choice&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Switch</font>&gt;
+<br>
+&lt;!-- The Script follows the Switch, since the first node in the file determines the node type of this prototype --&gt;
+<br>
+&lt;!-- Fields in the Script are directly mapped to the PrototypeDeclare field-tag interfaces by using the IS construct --&gt;
+<br>
+&lt;<font color="NAVY">Script</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">ReceiverPduScriptNode</font><B>'</B>
+   <font color="GREEN">directOutput</font><B>='</B><font color="TEAL">true</font><B>'</B>
+   <font color="GREEN">mustEvaluate</font><B>='</B><font color="TEAL">true</font><B>'</B>
+   <font color="GREEN">url</font><B>='</B><a href="RadioCommunicationsPduScriptNode.class">RadioCommunicationsPduScriptNode.class</a><B>'</B>
+   <font color="GREEN">space</font><B>='</B><font color="TEAL">preserve</font><B>'</B>&gt;
+<blockquote>&lt;!-- Valid values for radioPduType are ReceiverPdu, SignalPdu and TransmitterPdu --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioPduType</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">String</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">ReceiverPdu</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+&lt;!-- Initialization fields --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">readInterval</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">writeInterval</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">siteID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">applicationID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">entityID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">address</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">String</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">port</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">multicastRelayHost</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">String</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">multicastRelayPort</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">rtpHeaderExpected</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">traceJava</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+&lt;!-- Generic events --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">update</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">active</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">timestamp</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">rtpHeaderHeard</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+&lt;!-- RadioCommunicationsFamily events --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+&lt;!-- SignalPdu fields --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">receiverPower</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Float</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">receiverState</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitterSiteID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitterApplicationID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitterEntityID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitterRadioID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+<PRE>&lt;![CDATA[
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+]]&gt;</PRE></blockquote>
+&lt;/<font color="NAVY">Script</font>&gt;
+<br>
+&lt;!-- Clocks stimulate the processEvents() method in the Script code, resulting in DIS PDU reads/writes. The 'update' eventIn is implicit (i.e. no corresponding Java method is needed). --&gt;
+<br>
+&lt;<font color="NAVY">TimeSensor</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">ReceiverPduReadIntervalClock</font><B>'</B>
+   <font color="GREEN">loop</font><B>='</B><font color="TEAL">true</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">TimeSensor</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">ReceiverPduWriteIntervalClock</font><B>'</B>
+   <font color="GREEN">cycleInterval</font><B>='</B><font color="TEAL">0</font><B>'</B>
+   <font color="GREEN">enabled</font><B>='</B><font color="TEAL">false</font><B>'</B>
+   <font color="GREEN">loop</font><B>='</B><font color="TEAL">true</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">ReceiverPduReadIntervalClock</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">cycleTime</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">ReceiverPduScriptNode</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">update</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">ReceiverPduWriteIntervalClock</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">cycleTime</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">ReceiverPduScriptNode</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">update</font><B>'</B>/&gt;
+<br>
+&lt;!-- These ROUTEs connect the PDU Script node to the geometryChoice=0 text output --&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">ReceiverPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">active</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">ReceiverOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">active</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">ReceiverPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">timestamp</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">ReceiverOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">timestamp</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">ReceiverPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">rtpHeaderHeard</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">ReceiverOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">rtpHeaderHeard</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">ReceiverPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">radioID</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">ReceiverOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">radioID</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">ReceiverPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">receiverPower</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">ReceiverOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">receiverPower</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">ReceiverPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">receiverState</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">ReceiverOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">receiverState</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">ReceiverPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">transmitterSiteID</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">ReceiverOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">transmitterSiteID</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">ReceiverPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">transmitterApplicationID</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">ReceiverOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">transmitterApplicationID</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">ReceiverPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">transmitterEntityID</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">ReceiverOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">transmitterEntityID</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">ReceiverPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">transmitterRadioID</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">ReceiverOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">transmitterRadioID</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">ReceiverOutputAssembler1</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">messageResult</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">ReceiverOutput1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">string</font><B>'</B>/&gt;
+<br>
+&lt;!-- ROUTEs for further geometry representations go here --&gt;
+<br>
+</blockquote>
+&lt;/<font color="NAVY">ProtoDeclare</font>&gt;
+<br>
+&lt;!-- ============================================================ --&gt;
+<br>
+&lt;<font color="NAVY">ProtoDeclare</font> <font color="GREEN">name</font><B>='</B><font color="TEAL">SignalPdu</font><B>'</B>&gt;
+<blockquote>&lt;!-- set whichGeometry to -1 for no geometry, 0 for text trace, 1 for default geometry --&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">whichGeometry</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">0</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduGeometrySwitch.whichChoice</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">exposedField</font><B>'</B>/&gt;
+<br>
+&lt;!-- Initialization fields --&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">readInterval</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">2</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.readInterval</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">writeInterval</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">0</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.writeInterval</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">siteID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">14</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.siteID</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">applicationID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">17</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.applicationID</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">entityID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">9</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.entityID</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">address</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">String</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">224.2.181.145</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.address</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">port</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">62040</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.port</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">multicastRelayHost</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">String</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">devo.cs.nps.navy.mil</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.multicastRelayHost</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">multicastRelayPort</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">8010</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.multicastRelayPort</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">rtpHeaderExpected</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">false</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.rtpHeaderExpected</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">traceJava</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">false</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.traceJava</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;!-- Generic events --&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">active</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.active</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">timestamp</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.timestamp</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">rtpHeaderHeard</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.rtpHeaderHeard</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;!-- RadioCommunicationsFamily events --&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.radioID</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;!-- SignalPdu fields --&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">encodingScheme</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.encodingScheme</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">tdlType</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.tdlType</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">sampleRate</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.sampleRate</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">samples</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.samples</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">dataLength</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.dataLength</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data00</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.data00</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data01</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.data01</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data02</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.data02</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data03</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.data03</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data04</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.data04</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data05</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.data05</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data06</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.data06</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data07</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.data07</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data08</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.data08</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data09</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.data09</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data10</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">SignalPduScriptNode.data10</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;!-- First node inside a PrototypeDeclaration is the node type of the ProtoInstance --&gt;
+<br>
+&lt;<font color="NAVY">Switch</font> <font color="GREEN">DEF</font><B>='</B><font color="TEAL">SignalPduGeometrySwitch</font><B>'</B>&gt;
+<blockquote>&lt;!-- whichChoice -1 is no rendering, choice 0 is text trace, choice 1 is default geometry --&gt;
+<br>
+<font color="BLUE">&lt;choice&gt;</font><blockquote>&lt;!-- whichGeometry 0 is trace text showing PDU values --&gt;
+<br>
+&lt;<font color="NAVY">Group</font>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">Viewpoint</font>
+   <font color="GREEN">description</font><B>='</B><font color="TEAL">Signal Pdu Observer</font><B>'</B>
+   <font color="GREEN">position</font><B>='</B><font color="TEAL">0 0 15</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">NavigationInfo</font>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">"EXAMINE" "ANY"</font><B>'</B>/&gt;
+<br>
+&lt;!-- SignalOutput3dTraceText --&gt;
+<br>
+&lt;<font color="NAVY">Group</font>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;!-- Directions text --&gt;
+<br>
+&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">0 6 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">Shape</font>&gt;
+<blockquote><font color="BLUE">&lt;geometry&gt;</font><blockquote>&lt;<font color="NAVY">Text</font>
+   <font color="GREEN">string</font><B>='</B><font color="TEAL">"Open Java Console to see PDU trace messages" "Netscape..Communicator..Tools..Java Console"</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;fontStyle&gt;</font><blockquote>&lt;<font color="NAVY">FontStyle</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">FONT2</font><B>'</B>
+   <font color="GREEN">justify</font><B>='</B><font color="TEAL">"MIDDLE" "BEGIN"</font><B>'</B>
+   <font color="GREEN">size</font><B>='</B><font color="TEAL">0.5</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/fontStyle&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Text</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/geometry&gt;</font>
+<font color="BLUE">&lt;appearance&gt;</font><blockquote>&lt;<font color="NAVY">Appearance</font>&gt;
+<blockquote><font color="BLUE">&lt;material&gt;</font><blockquote>&lt;<font color="NAVY">Material</font>
+   <font color="GREEN">diffuseColor</font><B>='</B><font color="TEAL">0 0.4 0.8</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/material&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Appearance</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/appearance&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Shape</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+&lt;!-- Pdu type text --&gt;
+<br>
+&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">0 4.75 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">Shape</font>&gt;
+<blockquote><font color="BLUE">&lt;geometry&gt;</font><blockquote>&lt;<font color="NAVY">Text</font> <font color="GREEN">string</font><B>='</B><font color="TEAL">Signal PDU values</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;fontStyle&gt;</font><blockquote>&lt;<font color="NAVY">FontStyle</font>
+   <font color="GREEN">USE</font><B>='</B><font color="TEAL">FONT2</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/fontStyle&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Text</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/geometry&gt;</font>
+<font color="BLUE">&lt;appearance&gt;</font><blockquote>&lt;<font color="NAVY">Appearance</font>&gt;
+<blockquote><font color="BLUE">&lt;material&gt;</font><blockquote>&lt;<font color="NAVY">Material</font>
+   <font color="GREEN">diffuseColor</font><B>='</B><font color="TEAL">0 0.8 0.4</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/material&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Appearance</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/appearance&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Shape</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+&lt;!-- Output text --&gt;
+<br>
+&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">0 4 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">Shape</font>&gt;
+<blockquote><font color="BLUE">&lt;geometry&gt;</font><blockquote>&lt;!-- This text will get updated by the script when eventOut active is set to a value --&gt;
+<br>
+&lt;<font color="NAVY">Text</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">SignalOutput1</font><B>'</B>
+   <font color="GREEN">string</font><B>='</B><font color="TEAL">Signal Output1 unset</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;fontStyle&gt;</font><blockquote>&lt;<font color="NAVY">FontStyle</font>
+   <font color="GREEN">USE</font><B>='</B><font color="TEAL">FONT2</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/fontStyle&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Text</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/geometry&gt;</font>
+<font color="BLUE">&lt;appearance&gt;</font><blockquote>&lt;<font color="NAVY">Appearance</font> <font color="GREEN">DEF</font><B>='</B><font color="TEAL">YellowAppearance2</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;material&gt;</font><blockquote>&lt;<font color="NAVY">Material</font>
+   <font color="GREEN">diffuseColor</font><B>='</B><font color="TEAL">0.8 0.8 0</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/material&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Appearance</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/appearance&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Shape</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">0 -1 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">Shape</font>&gt;
+<blockquote><font color="BLUE">&lt;geometry&gt;</font><blockquote>&lt;<font color="NAVY">Text</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">SignalOutput2</font><B>'</B>
+   <font color="GREEN">string</font><B>='</B><font color="TEAL">Signal Output2 unset</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;fontStyle&gt;</font><blockquote>&lt;<font color="NAVY">FontStyle</font>
+   <font color="GREEN">USE</font><B>='</B><font color="TEAL">FONT2</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/fontStyle&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Text</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/geometry&gt;</font>
+<font color="BLUE">&lt;appearance&gt;</font><blockquote>&lt;<font color="NAVY">Appearance</font> <font color="GREEN">USE</font><B>='</B><font color="TEAL">YellowAppearance2</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/appearance&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Shape</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Group</font>&gt;
+<br>
+&lt;<font color="NAVY">Script</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">SignalOutputAssembler1</font><B>'</B>
+   <font color="GREEN">space</font><B>='</B><font color="TEAL">preserve</font><B>'</B>&gt;
+<blockquote>&lt;!-- surprising limit on MFString: 10 strings --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">messageResult</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Strings</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">active</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">timestamp</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">rtpHeaderHeard</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">encodingScheme</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">tdlType</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">sampleRate</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">samples</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">dataLength</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data00</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+<PRE>&lt;![CDATA[
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+javascript:
+
+function initialize ()
+{
+	value='awaiting PDU';
+	messageResult  [0] = 'active=' + value;
+	messageResult  [1] = 'timestamp=' + value;
+	messageResult  [2] = 'rtpHeaderHeard=' + value;
+	messageResult  [3] = 'radioID=' + value;
+	messageResult  [4] = 'encodingScheme=' + value;
+	messageResult  [5] = 'tdlType=' + value;
+	messageResult  [6] = 'sampleRate=' + value;
+	messageResult  [7] = 'samples=' + value;
+	messageResult  [8] = 'dataLength=' + value;
+	messageResult  [9] = 'data00=' + value;
+}
+function active 	(value, ts) { messageResult [0] = 'active=' + value; }
+function timestamp	(value, ts) { messageResult [1] = 'timestamp=' + value; }
+function rtpHeaderHeard	(value, ts) { messageResult [2] = 'rtpHeaderHeard=' + value; }
+function radioID	(value, ts) { messageResult [3] = 'radioID=' + value; }
+function encodingScheme	(value, ts) { messageResult [4] = 'encodingScheme=' + value; }
+function tdlType	(value, ts) { messageResult [5] = 'tdlType=' + value; }
+function sampleRate	(value, ts) { messageResult [6] = 'sampleRate=' + value; }
+function samples	(value, ts) { messageResult [7] = 'samples=' + value; }
+function dataLength	(value, ts) { messageResult [8] = 'dataLength=' + value; }
+function data00  	(value, ts) { messageResult [9] = 'data00=' + value; }
+]]&gt;</PRE></blockquote>
+&lt;/<font color="NAVY">Script</font>&gt;
+<br>
+&lt;<font color="NAVY">Script</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">SignalOutputAssembler2</font><B>'</B>
+   <font color="GREEN">space</font><B>='</B><font color="TEAL">preserve</font><B>'</B>&gt;
+<blockquote>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">messageResult</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Strings</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data01</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data02</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data03</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data04</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data05</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data06</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data07</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data08</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data09</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data10</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+<PRE>&lt;![CDATA[
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+javascript:
+
+function initialize ()
+{
+	messageResult [0] = 'data01=' + value;
+	messageResult [1] = 'data02=' + value;
+	messageResult [2] = 'data03=' + value;
+	messageResult [3] = 'data04=' + value;
+	messageResult [4] = 'data05=' + value;
+	messageResult [5] = 'data06=' + value;
+	messageResult [6] = 'data07=' + value;
+	messageResult [7] = 'data08=' + value;
+	messageResult [8] = 'data09=' + value;
+	messageResult [9] = 'data10=' + value;
+}
+function data01 	(value, ts) { messageResult [0] = 'data01=' + value; }
+function data02 	(value, ts) { messageResult [1] = 'data02=' + value; }
+function data03 	(value, ts) { messageResult [2] = 'data03=' + value; }
+function data04 	(value, ts) { messageResult [3] = 'data04=' + value; }
+function data05 	(value, ts) { messageResult [4] = 'data05=' + value; }
+function data06 	(value, ts) { messageResult [5] = 'data06=' + value; }
+function data07 	(value, ts) { messageResult [6] = 'data07=' + value; }
+function data08 	(value, ts) { messageResult [7] = 'data08=' + value; }
+function data09 	(value, ts) { messageResult [8] = 'data09=' + value; }
+function data10 	(value, ts) { messageResult [9] = 'data10=' + value; }
+    
+]]&gt;</PRE></blockquote>
+&lt;/<font color="NAVY">Script</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Group</font>&gt;
+<br>
+&lt;!-- Further geometry representations go here --&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/choice&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Switch</font>&gt;
+<br>
+&lt;!-- The Script follows the Switch, since the first node in the file determines the node type of this prototype --&gt;
+<br>
+&lt;!-- Fields in the Script are directly mapped to the PrototypeDeclare field-tag interfaces by using the IS construct --&gt;
+<br>
+&lt;<font color="NAVY">Script</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">directOutput</font><B>='</B><font color="TEAL">true</font><B>'</B>
+   <font color="GREEN">mustEvaluate</font><B>='</B><font color="TEAL">true</font><B>'</B>
+   <font color="GREEN">url</font><B>='</B><a href="RadioCommunicationsPduScriptNode.class">RadioCommunicationsPduScriptNode.class</a><B>'</B>
+   <font color="GREEN">space</font><B>='</B><font color="TEAL">preserve</font><B>'</B>&gt;
+<blockquote>&lt;!-- Valid values for radioPduType are ReceiverPdu, SignalPdu and TransmitterPdu --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioPduType</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">String</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">SignalPdu</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+&lt;!-- Initialization fields --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">readInterval</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">writeInterval</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">siteID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">applicationID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">entityID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">address</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">String</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">port</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">multicastRelayHost</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">String</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">multicastRelayPort</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">rtpHeaderExpected</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">traceJava</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+&lt;!-- Generic events --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">update</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">active</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">timestamp</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">rtpHeaderHeard</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+&lt;!-- RadioCommunicationsFamily events --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+&lt;!-- SignalPdu fields --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">encodingScheme</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">tdlType</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">sampleRate</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">samples</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">dataLength</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data00</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data01</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data02</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data03</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data04</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data05</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data06</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data07</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data08</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data09</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">data10</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+<PRE>&lt;![CDATA[
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+]]&gt;</PRE></blockquote>
+&lt;/<font color="NAVY">Script</font>&gt;
+<br>
+&lt;!-- Clocks stimulate the processEvents() method in the Script code, resulting in DIS PDU reads/writes. The 'update' eventIn is implicit (i.e. no corresponding Java method is needed). --&gt;
+<br>
+&lt;<font color="NAVY">TimeSensor</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">SignalPduReadIntervalClock</font><B>'</B>
+   <font color="GREEN">loop</font><B>='</B><font color="TEAL">true</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">TimeSensor</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">SignalPduWriteIntervalClock</font><B>'</B>
+   <font color="GREEN">cycleInterval</font><B>='</B><font color="TEAL">0</font><B>'</B>
+   <font color="GREEN">enabled</font><B>='</B><font color="TEAL">false</font><B>'</B>
+   <font color="GREEN">loop</font><B>='</B><font color="TEAL">true</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduReadIntervalClock</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">cycleTime</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">update</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduWriteIntervalClock</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">cycleTime</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">update</font><B>'</B>/&gt;
+<br>
+&lt;!-- These ROUTEs connect the PDU Script node to the geometryChoice=0 text output --&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">active</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">active</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">timestamp</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">timestamp</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">rtpHeaderHeard</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">rtpHeaderHeard</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">radioID</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">radioID</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">encodingScheme</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">encodingScheme</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">tdlType</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">tdlType</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">sampleRate</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">sampleRate</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">samples</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">samples</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">dataLength</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">dataLength</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">data00</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">data00</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">data01</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">data01</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">data02</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">data02</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">data03</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">data03</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">data04</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">data04</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">data05</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">data05</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">data06</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">data06</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">data07</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">data07</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">data08</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">data08</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">data09</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">data09</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">data10</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">data10</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalOutputAssembler1</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">messageResult</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutput1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">string</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">SignalOutputAssembler2</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">messageResult</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">SignalOutput2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">string</font><B>'</B>/&gt;
+<br>
+&lt;!-- ROUTEs for further geometry representations go here --&gt;
+<br>
+</blockquote>
+&lt;/<font color="NAVY">ProtoDeclare</font>&gt;
+<br>
+&lt;!-- ============================================================ --&gt;
+<br>
+&lt;<font color="NAVY">ProtoDeclare</font> <font color="GREEN">name</font><B>='</B><font color="TEAL">TransmitterPdu</font><B>'</B>&gt;
+<blockquote>&lt;!-- set whichGeometry to -1 for no geometry, 0 for text trace, 1 for default geometry --&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">whichGeometry</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">0</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduGeometrySwitch.whichChoice</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">exposedField</font><B>'</B>/&gt;
+<br>
+&lt;!-- Initialization fields --&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">readInterval</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">2</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.readInterval</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">writeInterval</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">0</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.writeInterval</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">siteID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">14</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.siteID</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">applicationID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">17</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.applicationID</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">entityID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">9</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.entityID</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">address</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">String</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">224.2.181.145</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.address</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">port</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">62040</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.port</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">multicastRelayHost</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">String</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">devo.cs.nps.navy.mil</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.multicastRelayHost</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">multicastRelayPort</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">8010</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.multicastRelayPort</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">rtpHeaderExpected</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">false</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.rtpHeaderExpected</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">traceJava</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">false</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.traceJava</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;
+<br>
+&lt;!-- Generic events --&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">active</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.active</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">timestamp</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.timestamp</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">rtpHeaderHeard</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.rtpHeaderHeard</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;!-- RadioCommunicationsFamily events --&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.radioID</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;!-- TransmitterPdu fields --&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">antennaLocation</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Vector3Float</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.antennaLocation</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">antennaPatternLength</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.antennaPatternLength</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">antennaPatternType</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.antennaPatternType</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">cryptoKeyId</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.cryptoKeyId</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">cryptoSytem</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.cryptoSytem</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">frequency</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.frequency</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">inputSource</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.inputSource</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">lengthOfModulationParameters</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.lengthOfModulationParameters</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">modulationTypeDetail</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.modulationTypeDetail</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">modulationTypeMajor</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.modulationTypeMajor</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">modulationTypeSpreadSpectrum</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.modulationTypeSpreadSpectrum</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">modulationTypeSystem</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.modulationTypeSystem</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">power</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.power</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeCategory</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.radioEntityTypeCategory</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeCountry</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.radioEntityTypeCountry</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeDomain</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.radioEntityTypeDomain</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeKind</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.radioEntityTypeKind</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeNomenclature</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.radioEntityTypeNomenclature</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeNomenclatureVersion</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.radioEntityTypeNomenclatureVersion</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">relativeAntennaLocation</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Vector3Float</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.relativeAntennaLocation</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitFrequencyBandwidth</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.transmitFrequencyBandwidth</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitState</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">IS</font><B>='</B><font color="TEAL">TransmitterPduScriptNode.transmitState</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;
+<br>
+&lt;!-- First node inside a PrototypeDeclaration is the node type of the ProtoInstance --&gt;
+<br>
+&lt;<font color="NAVY">Switch</font> <font color="GREEN">DEF</font><B>='</B><font color="TEAL">TransmitterPduGeometrySwitch</font><B>'</B>&gt;
+<blockquote>&lt;!-- whichChoice -1 is no rendering, choice 0 is text trace, choice 1 is default geometry --&gt;
+<br>
+<font color="BLUE">&lt;choice&gt;</font><blockquote>&lt;!-- whichGeometry 0 is trace text showing PDU values --&gt;
+<br>
+&lt;<font color="NAVY">Group</font>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">Viewpoint</font>
+   <font color="GREEN">description</font><B>='</B><font color="TEAL">Transmitter Pdu Observer</font><B>'</B>
+   <font color="GREEN">position</font><B>='</B><font color="TEAL">0 0 15</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">NavigationInfo</font>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">"EXAMINE" "ANY"</font><B>'</B>/&gt;
+<br>
+&lt;!-- TransmitterOutput3dTraceText --&gt;
+<br>
+&lt;<font color="NAVY">Group</font>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;!-- Directions text --&gt;
+<br>
+&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">0 6 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">Shape</font>&gt;
+<blockquote><font color="BLUE">&lt;geometry&gt;</font><blockquote>&lt;<font color="NAVY">Text</font>
+   <font color="GREEN">string</font><B>='</B><font color="TEAL">"Open Java Console to see PDU trace messages" "Netscape..Communicator..Tools..Java Console"</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;fontStyle&gt;</font><blockquote>&lt;<font color="NAVY">FontStyle</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">FONT3</font><B>'</B>
+   <font color="GREEN">justify</font><B>='</B><font color="TEAL">"MIDDLE" "BEGIN"</font><B>'</B>
+   <font color="GREEN">size</font><B>='</B><font color="TEAL">0.5</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/fontStyle&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Text</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/geometry&gt;</font>
+<font color="BLUE">&lt;appearance&gt;</font><blockquote>&lt;<font color="NAVY">Appearance</font>&gt;
+<blockquote><font color="BLUE">&lt;material&gt;</font><blockquote>&lt;<font color="NAVY">Material</font>
+   <font color="GREEN">diffuseColor</font><B>='</B><font color="TEAL">0 0.4 0.8</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/material&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Appearance</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/appearance&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Shape</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+&lt;!-- Pdu type text --&gt;
+<br>
+&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">0 4.75 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">Shape</font>&gt;
+<blockquote><font color="BLUE">&lt;geometry&gt;</font><blockquote>&lt;<font color="NAVY">Text</font> <font color="GREEN">string</font><B>='</B><font color="TEAL">Transmitter PDU values</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;fontStyle&gt;</font><blockquote>&lt;<font color="NAVY">FontStyle</font>
+   <font color="GREEN">USE</font><B>='</B><font color="TEAL">FONT3</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/fontStyle&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Text</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/geometry&gt;</font>
+<font color="BLUE">&lt;appearance&gt;</font><blockquote>&lt;<font color="NAVY">Appearance</font>&gt;
+<blockquote><font color="BLUE">&lt;material&gt;</font><blockquote>&lt;<font color="NAVY">Material</font>
+   <font color="GREEN">diffuseColor</font><B>='</B><font color="TEAL">0 0.8 0.4</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/material&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Appearance</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/appearance&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Shape</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+&lt;!-- Output text --&gt;
+<br>
+&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">0 4 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">Shape</font>&gt;
+<blockquote><font color="BLUE">&lt;geometry&gt;</font><blockquote>&lt;!-- This text will get updated by the script when eventOut active is set to a value --&gt;
+<br>
+&lt;<font color="NAVY">Text</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">TransmitterOutput1</font><B>'</B>
+   <font color="GREEN">string</font><B>='</B><font color="TEAL">Transmitter Output1 unset</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;fontStyle&gt;</font><blockquote>&lt;<font color="NAVY">FontStyle</font>
+   <font color="GREEN">USE</font><B>='</B><font color="TEAL">FONT3</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/fontStyle&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Text</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/geometry&gt;</font>
+<font color="BLUE">&lt;appearance&gt;</font><blockquote>&lt;<font color="NAVY">Appearance</font> <font color="GREEN">DEF</font><B>='</B><font color="TEAL">YellowAppearance3</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;material&gt;</font><blockquote>&lt;<font color="NAVY">Material</font>
+   <font color="GREEN">diffuseColor</font><B>='</B><font color="TEAL">0.8 0.8 0</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/material&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Appearance</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/appearance&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Shape</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">0 -1 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">Shape</font>&gt;
+<blockquote><font color="BLUE">&lt;geometry&gt;</font><blockquote>&lt;<font color="NAVY">Text</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">TransmitterOutput2</font><B>'</B>
+   <font color="GREEN">string</font><B>='</B><font color="TEAL">Transmitter Output2 unset</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;fontStyle&gt;</font><blockquote>&lt;<font color="NAVY">FontStyle</font>
+   <font color="GREEN">USE</font><B>='</B><font color="TEAL">FONT3</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/fontStyle&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Text</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/geometry&gt;</font>
+<font color="BLUE">&lt;appearance&gt;</font><blockquote>&lt;<font color="NAVY">Appearance</font> <font color="GREEN">USE</font><B>='</B><font color="TEAL">YellowAppearance3</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/appearance&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Shape</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">0 -6 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">Shape</font>&gt;
+<blockquote><font color="BLUE">&lt;geometry&gt;</font><blockquote>&lt;<font color="NAVY">Text</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">TransmitterOutput3</font><B>'</B>
+   <font color="GREEN">string</font><B>='</B><font color="TEAL">Transmitter Output2 unset</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;fontStyle&gt;</font><blockquote>&lt;<font color="NAVY">FontStyle</font>
+   <font color="GREEN">USE</font><B>='</B><font color="TEAL">FONT3</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/fontStyle&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Text</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/geometry&gt;</font>
+<font color="BLUE">&lt;appearance&gt;</font><blockquote>&lt;<font color="NAVY">Appearance</font> <font color="GREEN">USE</font><B>='</B><font color="TEAL">YellowAppearance3</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/appearance&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Shape</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Group</font>&gt;
+<br>
+&lt;<font color="NAVY">Script</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">TransmitterOutputAssembler1</font><B>'</B>
+   <font color="GREEN">space</font><B>='</B><font color="TEAL">preserve</font><B>'</B>&gt;
+<blockquote>&lt;!-- surprising limit on MFString: 10 strings --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">messageResult</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Strings</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">active</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">timestamp</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">rtpHeaderHeard</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">antennaLocation</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Vector3Float</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">antennaPatternLength</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">antennaPatternType</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">cryptoKeyId</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">cryptoSytem</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">frequency</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+<PRE>&lt;![CDATA[
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+javascript:
+
+function initialize ()
+{
+	value='awaiting PDU';
+	messageResult  [0] = 'active=' + value;
+	messageResult  [1] = 'timestamp=' + value;
+	messageResult  [2] = 'rtpHeaderHeard=' + value;
+	messageResult  [3] = 'radioID=' + value;
+	messageResult  [4] = 'antennaLocation=' + value;
+	messageResult  [5] = 'antennaPatternLength=' + value;
+	messageResult  [6] = 'antennaPatternType=' + value;
+	messageResult  [7] = 'cryptoKeyId=' + value;
+	messageResult  [8] = 'cryptoSytem=' + value;
+	messageResult  [9] = 'frequency=' + value;
+}
+function active 		(value, ts) { messageResult [0] = 'active=' + value; }
+function timestamp		(value, ts) { messageResult [1] = 'timestamp=' + value; }
+function rtpHeaderHeard		(value, ts) { messageResult [2] = 'rtpHeaderHeard=' + value; }
+function radioID		(value, ts) { messageResult [3] = 'radioID=' + value; }
+function antennaLocation	(value, ts) { messageResult [4] = 'antennaLocation=' + value; }
+function antennaPatternLength	(value, ts) { messageResult [5] = 'antennaPatternLength=' + value; }
+function antennaPatternType	(value, ts) { messageResult [6] = 'antennaPatternType=' + value; }
+function cryptoKeyId		(value, ts) { messageResult [7] = 'cryptoKeyId=' + value; }
+function cryptoSytem		(value, ts) { messageResult [8] = 'cryptoSytem=' + value; }
+function frequency  		(value, ts) { messageResult [9] = 'frequency=' + value; }
+]]&gt;</PRE></blockquote>
+&lt;/<font color="NAVY">Script</font>&gt;
+<br>
+&lt;<font color="NAVY">Script</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">TransmitterOutputAssembler2</font><B>'</B>
+   <font color="GREEN">space</font><B>='</B><font color="TEAL">preserve</font><B>'</B>&gt;
+<blockquote>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">messageResult</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Strings</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">inputSource</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">lengthOfModulationParameters</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">modulationTypeDetail</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">modulationTypeMajor</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">modulationTypeSpreadSpectrum</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">modulationTypeSystem</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">power</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeCategory</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeCountry</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeDomain</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+<PRE>&lt;![CDATA[
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+javascript:
+
+function initialize ()
+{
+	messageResult [0] = 'inputSource=' + value;
+	messageResult [1] = 'lengthOfModulationParameters=' + value;
+	messageResult [2] = 'modulationTypeDetail=' + value;
+	messageResult [3] = 'modulationTypeMajor=' + value;
+	messageResult [4] = 'modulationTypeSpreadSpectrum=' + value;
+	messageResult [5] = 'modulationTypeSystem=' + value;
+	messageResult [6] = 'power=' + value;
+	messageResult [7] = 'radioEntityTypeCategory=' + value;
+	messageResult [8] = 'radioEntityTypeCountry=' + value;
+	messageResult [9] = 'radioEntityTypeDomain=' + value;
+}
+function inputSource 			(value, ts) { messageResult [0] = 'inputSource=' + value; }
+function lengthOfModulationParameters 	(value, ts) { messageResult [1] = 'lengthOfModulationParameters=' + value; }
+function modulationTypeDetail		(value, ts) { messageResult [2] = 'modulationTypeDetail=' + value; }
+function modulationTypeMajor 		(value, ts) { messageResult [3] = 'modulationTypeMajor=' + value; }
+function modulationTypeSpreadSpectrum 	(value, ts) { messageResult [4] = 'modulationTypeSpreadSpectrum=' + value; }
+function modulationTypeSystem		(value, ts) { messageResult [5] = 'modulationTypeSystem=' + value; }
+function power	 			(value, ts) { messageResult [6] = 'power=' + value; }
+function radioEntityTypeCategory 	(value, ts) { messageResult [7] = 'radioEntityTypeCategory=' + value; }
+function radioEntityTypeCountry 	(value, ts) { messageResult [8] = 'radioEntityTypeCountry=' + value; }
+function radioEntityTypeDomain 		(value, ts) { messageResult [9] = 'radioEntityTypeDomain=' + value; }
+              
+]]&gt;</PRE></blockquote>
+&lt;/<font color="NAVY">Script</font>&gt;
+<br>
+&lt;<font color="NAVY">Script</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">TransmitterOutputAssembler3</font><B>'</B>
+   <font color="GREEN">space</font><B>='</B><font color="TEAL">preserve</font><B>'</B>&gt;
+<blockquote>
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">messageResult</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Strings</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeKind</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeNomenclature</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeNomenclatureVersion</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">relativeAntennaLocation</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Vector3Float</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitFrequencyBandwidth</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitState</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+<PRE>&lt;![CDATA[
+
+                
+                
+                
+                
+                
+                
+javascript:
+
+function initialize ()
+{
+	messageResult [0] = 'radioEntityTypeKind=' + value;
+	messageResult [1] = 'radioEntityTypeNomenclature=' + value;
+	messageResult [2] = 'radioEntityTypeNomenclatureVersion=' + value;
+	messageResult [3] = 'relativeAntennaLocation=' + value;
+	messageResult [4] = 'transmitFrequencyBandwidth=' + value;
+	messageResult [5] = 'transmitState=' + value;
+}
+function radioEntityTypeKind 			(value, ts) { messageResult [0] = 'radioEntityTypeKind=' + value; }
+function radioEntityTypeNomenclature 		(value, ts) { messageResult [1] = 'radioEntityTypeNomenclature=' + value; }
+function radioEntityTypeNomenclatureVersion 	(value, ts) { messageResult [2] = 'radioEntityTypeNomenclatureVersion=' + value; }
+function relativeAntennaLocation 		(value, ts) { messageResult [3] = 'relativeAntennaLocation=' + value; }
+function transmitFrequencyBandwidth		(value, ts) { messageResult [4] = 'transmitFrequencyBandwidth=' + value; }
+function transmitState	 			(value, ts) { messageResult [5] = 'transmitState=' + value; }
+              
+]]&gt;</PRE></blockquote>
+&lt;/<font color="NAVY">Script</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Group</font>&gt;
+<br>
+&lt;!-- Further geometry representations go here --&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/choice&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Switch</font>&gt;
+<br>
+&lt;!-- The Script follows the Switch, since the first node in the file determines the node type of this prototype --&gt;
+<br>
+&lt;!-- Fields in the Script are directly mapped to the PrototypeDeclare field-tag interfaces by using the IS construct --&gt;
+<br>
+&lt;<font color="NAVY">Script</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">directOutput</font><B>='</B><font color="TEAL">true</font><B>'</B>
+   <font color="GREEN">mustEvaluate</font><B>='</B><font color="TEAL">true</font><B>'</B>
+   <font color="GREEN">url</font><B>='</B><a href="RadioCommunicationsPduScriptNode.class">RadioCommunicationsPduScriptNode.class</a><B>'</B>
+   <font color="GREEN">space</font><B>='</B><font color="TEAL">preserve</font><B>'</B>&gt;
+<blockquote>&lt;!-- Valid values for radioPduType are ReceiverPdu, SignalPdu and TransmitterPdu --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioPduType</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">String</font><B>'</B>
+   <font color="GREEN">value</font><B>='</B><font color="TEAL">TransmitterPdu</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+&lt;!-- Initialization fields --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">readInterval</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">writeInterval</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">siteID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">applicationID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">entityID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">address</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">String</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">port</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">multicastRelayHost</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">String</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">multicastRelayPort</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">rtpHeaderExpected</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">traceJava</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">field</font><B>'</B>/&gt;<br>
+&lt;!-- Generic events --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">update</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventIn</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">active</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">timestamp</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Time</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">rtpHeaderHeard</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Boolean</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+&lt;!-- RadioCommunicationsFamily events --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioID</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+&lt;!-- SignalPdu fields --&gt;
+<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">antennaLocation</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Vector3Float</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">antennaPatternLength</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">antennaPatternType</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">cryptoKeyId</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">cryptoSytem</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">frequency</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">inputSource</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">lengthOfModulationParameters</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">modulationTypeDetail</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">modulationTypeMajor</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">modulationTypeSpreadSpectrum</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">modulationTypeSystem</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">power</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeCategory</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeCountry</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeDomain</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeKind</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeNomenclature</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">radioEntityTypeNomenclatureVersion</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">relativeAntennaLocation</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Vector3Float</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitFrequencyBandwidth</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+
+&lt;<font color="NAVY">field</font>
+   <font color="GREEN">name</font><B>='</B><font color="TEAL">transmitState</font><B>'</B>
+   <font color="GREEN">type</font><B>='</B><font color="TEAL">Integer</font><B>'</B>
+   <font color="GREEN">vrml97Hint</font><B>='</B><font color="TEAL">eventOut</font><B>'</B>/&gt;<br>
+<PRE>&lt;![CDATA[
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+]]&gt;</PRE></blockquote>
+&lt;/<font color="NAVY">Script</font>&gt;
+<br>
+&lt;!-- Clocks stimulate the processEvents() method in the Script code, resulting in DIS PDU reads/writes. The 'update' eventIn is implicit (i.e. no corresponding Java method is needed). --&gt;
+<br>
+&lt;<font color="NAVY">TimeSensor</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">TransmitterPduReadIntervalClock</font><B>'</B>
+   <font color="GREEN">loop</font><B>='</B><font color="TEAL">true</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">TimeSensor</font>
+   <font color="GREEN">DEF</font><B>='</B><font color="TEAL">TransmitterPduWriteIntervalClock</font><B>'</B>
+   <font color="GREEN">cycleInterval</font><B>='</B><font color="TEAL">0</font><B>'</B>
+   <font color="GREEN">enabled</font><B>='</B><font color="TEAL">false</font><B>'</B>
+   <font color="GREEN">loop</font><B>='</B><font color="TEAL">true</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduReadIntervalClock</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">cycleTime</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">update</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduWriteIntervalClock</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">cycleTime</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">update</font><B>'</B>/&gt;
+<br>
+&lt;!-- These ROUTEs connect the PDU Script node to the geometryChoice=0 text output --&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">active</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">active</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">timestamp</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">timestamp</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">rtpHeaderHeard</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">rtpHeaderHeard</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">radioID</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">radioID</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">antennaLocation</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">antennaLocation</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">antennaPatternLength</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">antennaPatternLength</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">antennaPatternType</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">antennaPatternType</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">cryptoKeyId</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">cryptoKeyId</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">cryptoSytem</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">cryptoSytem</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">frequency</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">frequency</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">inputSource</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">inputSource</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">lengthOfModulationParameters</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">lengthOfModulationParameters</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">modulationTypeDetail</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">modulationTypeDetail</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">modulationTypeMajor</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">modulationTypeMajor</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">modulationTypeSpreadSpectrum</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">modulationTypeSpreadSpectrum</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">modulationTypeSystem</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">modulationTypeSystem</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">power</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">power</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">radioEntityTypeCategory</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">radioEntityTypeCategory</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">radioEntityTypeCountry</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">radioEntityTypeCountry</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">radioEntityTypeDomain</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">radioEntityTypeDomain</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">radioEntityTypeKind</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler3</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">radioEntityTypeKind</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">radioEntityTypeNomenclature</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler3</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">radioEntityTypeNomenclature</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">radioEntityTypeNomenclatureVersion</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler3</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">radioEntityTypeNomenclatureVersion</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">relativeAntennaLocation</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler3</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">relativeAntennaLocation</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">transmitFrequencyBandwidth</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler3</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">transmitFrequencyBandwidth</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterPduScriptNode</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">transmitState</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler3</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">transmitState</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler1</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">messageResult</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutput1</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">string</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler2</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">messageResult</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutput2</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">string</font><B>'</B>/&gt;
+<br>
+&lt;<font color="NAVY">ROUTE</font>
+   <font color="GREEN">fromNode</font><B>='</B><font color="TEAL">TransmitterOutputAssembler3</font><B>'</B>
+   <font color="GREEN">fromField</font><B>='</B><font color="TEAL">messageResult</font><B>'</B>
+   <font color="GREEN">toNode</font><B>='</B><font color="TEAL">TransmitterOutput3</font><B>'</B>
+   <font color="GREEN">toField</font><B>='</B><font color="TEAL">string</font><B>'</B>/&gt;
+<br>
+&lt;!-- ROUTEs for further geometry representations go here --&gt;
+<br>
+</blockquote>
+&lt;/<font color="NAVY">ProtoDeclare</font>&gt;
+<br>
+&lt;!-- ============================================================ --&gt;
+<br>
+&lt;!-- Default content --&gt;
+<br>
+&lt;<font color="NAVY">Group</font>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">-15 15 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">ProtoInstance</font> <font color="GREEN">name</font><B>='</B><font color="TEAL">ReceiverPdu</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">-15 -15 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">ReceiverPdu</font>
+   <font color="GREEN">nodeTypeHint</font><B>='</B><font color="TEAL">Switch</font><B>'</B>
+   <font color="GREEN">active</font><B>='</B><font color="TEAL">false</font><B>'</B>
+   <font color="GREEN">writeInterval</font><B>='</B><font color="TEAL">0</font><B>'</B>
+   <font color="GREEN">readInterval</font><B>='</B><font color="TEAL">1</font><B>'</B>
+   <font color="GREEN">rtpHeaderExpected</font><B>='</B><font color="TEAL">false</font><B>'</B>
+   <font color="GREEN">traceJava</font><B>='</B><font color="TEAL">false</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">0 15 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">ProtoInstance</font> <font color="GREEN">name</font><B>='</B><font color="TEAL">SignalPdu</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">0 -15 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">SignalPdu</font>
+   <font color="GREEN">active</font><B>='</B><font color="TEAL">false</font><B>'</B>
+   <font color="GREEN">nodeTypeHint</font><B>='</B><font color="TEAL">Switch</font><B>'</B>
+   <font color="GREEN">writeInterval</font><B>='</B><font color="TEAL">0</font><B>'</B>
+   <font color="GREEN">readInterval</font><B>='</B><font color="TEAL">1</font><B>'</B>
+   <font color="GREEN">rtpHeaderExpected</font><B>='</B><font color="TEAL">false</font><B>'</B>
+   <font color="GREEN">traceJava</font><B>='</B><font color="TEAL">false</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">15 15 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">ProtoInstance</font> <font color="GREEN">name</font><B>='</B><font color="TEAL">TransmitterPdu</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+&lt;<font color="NAVY">Transform</font>
+   <font color="GREEN">translation</font><B>='</B><font color="TEAL">15 -15 0</font><B>'</B>&gt;
+<blockquote><font color="BLUE">&lt;children&gt;</font><blockquote>&lt;<font color="NAVY">TransmitterPdu</font>
+   <font color="GREEN">writeInterval</font><B>='</B><font color="TEAL">0</font><B>'</B>
+   <font color="GREEN">active</font><B>='</B><font color="TEAL">false</font><B>'</B>
+   <font color="GREEN">traceJava</font><B>='</B><font color="TEAL">false</font><B>'</B>
+   <font color="GREEN">readInterval</font><B>='</B><font color="TEAL">1</font><B>'</B>
+   <font color="GREEN">nodeTypeHint</font><B>='</B><font color="TEAL">Switch</font><B>'</B>
+   <font color="GREEN">rtpHeaderExpected</font><B>='</B><font color="TEAL">false</font><B>'</B>/&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Transform</font>&gt;
+<br>
+</blockquote>
+<font color="BLUE">&lt;/children&gt;</font>
+</blockquote>
+&lt;/<font color="NAVY">Group</font>&gt;
+<br>
+</blockquote>
+&lt;/<font color="NAVY">Scene</font>&gt;
+<br>
+</blockquote>
+&lt;/<font color="NAVY">X3D</font>&gt;
+<br>
+
+<p>
+
+&lt;!-- Tag color codes:  <font color="BLUE"> &lt;field&gt;</font> &lt;<font color="NAVY">NodeName</font><font color="GREEN"> attribute</font>='<font color="TEAL">value</font>'/&gt;<font color="BLUE"> &lt;/field&gt;</font> --&gt;
+
+</p>
+</body>
+</html>

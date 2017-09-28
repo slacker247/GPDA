@@ -1,0 +1,309 @@
+#include "GR_Interface.H"
+#include "GR_Terrain.H"
+#include "convert.H"
+#include "def.H"
+#include "GISP_Globals.H"
+
+#include "dted.h"
+/*
+float mat_AMBIENT[]       = { 0.3, 0.3, 0.3, 1.0 };
+float mat_DIFFUSE[]       = { 0.8, 0.8, 0.8, 1.0 };
+float mat_EMISSION[]      = { 0.3, 0.3, 0.3, 1.0 };
+float mat_SPECULAR[]      = { 0.8, 0.8, 0.8, 1.0 };
+float mat_SHININESS[]     = { 10.0 };
+float dullmat_AMBIENT[]   = { 0.2, 0.2, 0.2, 1.0 };
+float dullmat_DIFFUSE[]   = { 0.5, 0.5, 0.5, 1.0 };
+float dullmat_EMISSION[]  = { 0.3, 0.3, 0.3, 1.0 };
+float dullmat_SPECULAR[]  = { 0.4, 0.4, 0.4, 1.0 };
+float dullmat_SHININESS[] = { 5.0 };
+float sunlt_LCOLOR[]      = { 0.2, 0.8, 0.5, 0.0 };
+float sunlt_POSITION[]    = { 1.0, -1.0, 1.0, 0.0 };
+float sunlt_AMBIENT[]     = { 0.1, 0.1, 0.1, 1.0 };
+float sunlt_DIFFUSE[]     = { 1.0, 1.0, 1.0, 1.0 };
+float sunlt_SPECULAR[]    = { 1.0, 1.0, 1.0, 1.0 };
+float light_POSITION[]    = {-1.0,-1.0, 2.0, 0.0 };
+float moonlt_LCOLOR[]     = { 0.1, 0.1, 0.8, 0.0 };
+float moonlt_POSITION[]   = {-1.0, 1.0, 2.0, 0.0 };
+float nonelt_LCOLOR[]     = { 0.1, 0.1, 0.6, 0.0 };
+float nonelt_POSITION[]   = { 0.0, 0.0, 1.0, 0.0 };
+float lm_LMAMBIENT[]      = { 0.5, 0.5, 0.5, 1.0 };
+float lm_LOCALVIEWER[]    = { 1.0 };
+float dulllm_LMAMBIENT[]  = { 0.2, 0.2, 0.2, 1.0 };
+float dulllm_LOCALVIEWER[] = { 1.0 };
+*/
+void
+GR_Terrain::TNorm(double v[3])
+{
+  double r;
+  float  fr;
+
+  fr = sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+  r = (double)fr;
+
+  if(r < 0.00001) return;
+
+  v[0] /= r;
+  v[1] /= r;
+  v[2] /= r;
+}
+
+void
+GR_Terrain::TCross(double v1[3], double v2[3], double result[3])
+{
+  result[0] = v1[1] * v2[2] - v1[2] * v2[1];
+  result[1] = v1[2] * v2[0] - v1[0] * v2[2];
+  result[2] = v1[0] * v2[1] - v1[1] * v2[0];
+}
+
+void
+GR_Terrain::ConvertShort(short *array, long length)
+{
+unsigned long b1, b2;
+unsigned char *ptr;
+
+    ptr = (unsigned char *)array;
+    while (length--) {
+        b1 = *ptr++;
+        b2 = *ptr++;
+        *array++ = (b1 << 8) | (b2);
+    }
+}
+
+GR_Terrain::GR_Terrain(long terid, float latitude, float longitude, char *terrafile)
+{
+static Boolean firstTerrain = TRUE;
+char           chfile[128];
+char           chEW, chNS;
+FILE           *fd;
+DTED           myDtedFile;
+int            idum, jdum, iflag = 1;
+GLuint         i,j;
+int            i0 = 1, i1 = 2, i2 = 0;
+int            width, height;
+float          swLat, swLon, neLat, neLon;
+int            Ix, Iy, sep, numverts;
+int            Zskip;
+double         v1[3], v2[3], v3[3], v4[3], v5[3], v6[3], v7[3];
+double         Xmin,  Xmax,  Ymin,  Ymax, Zmin, Zmax, Zscale, Zbias;
+float          lat, lon, alt;
+float          x0, x1, y0, y1, z00, z01, z10, z11;
+float          fw, fh;
+double         *x, *y, z[800][1500];
+int            Blat, Slat, Elat, Blon, Slon, Elon, Sword;
+int            MaxLat, MaxLon, MinLat, MinLon;
+int            Ia, Ib, ii;
+short          *Zin;
+
+GLfloat        light_ambient[]   = { 0.5, 0.5, 0.5, 1.0 };
+GLfloat        light_diffuse[]   = { 0.0, 1.0, 0.0, 1.0 };
+GLfloat        light_specular[]  = { 0.5, 0.5, 0.5, 1.0 };
+GLfloat        light_position[]  = { 1.0, -1.0, 1.0, 0.0 };
+
+C_CONVERT      conversion;
+
+   p_terrain   = FALSE;
+   p_type      = T_TERRAIN;
+   p_xsize     = 0;
+   p_ysize     = 0;
+   p_lat       = latitude;
+   p_lon       = longitude;
+   p_alt       = 6700.0;
+   p_azi       = 0.0;
+   p_tlid      = 0;
+
+   int type = 1;
+
+   if (firstTerrain) {
+   firstTerrain = FALSE;
+      glLightfv(GL_LIGHT2, GL_AMBIENT,  light_ambient);
+      glLightfv(GL_LIGHT2, GL_DIFFUSE,  light_diffuse);
+      glLightfv(GL_LIGHT2, GL_SPECULAR, light_specular);
+      glLightfv(GL_LIGHT2, GL_POSITION, light_position);
+   }
+
+   printf("Loading terrain data ...\n");
+   printf("\n");
+
+   Zmin   = 1000000.0;
+   Zmax   = 0.0000001;
+
+   if(type == 1) {
+      printf("Plot type is .................... %s\n", "3D DTED");
+
+      myDtedFile  = dted_open(terrafile);
+
+      dted_get_file_size(myDtedFile, &width, &height);
+      dted_get_file_coverage(myDtedFile, &swLat, &swLon, &neLat, &neLon);
+
+      Zmin   = (double)dted_get_min_elev(myDtedFile)/1000.0;
+      Zmax   = (double)dted_get_max_elev(myDtedFile)/1000.0;
+      Zbias  = 0.0/1000.0;
+      Zscale = 10.0;
+      Zskip  = 3;
+      Ix     = (width/Zskip)-1;
+      Iy     = (height/Zskip)-1;
+      fw     = (neLon-swLon) * ((float)Zskip/(float)width);
+      fh     = (neLat-swLat) * ((float)Zskip/(float)height);
+
+      x = new double[Ix];
+      y = new double[Iy];
+
+      for (i=0; i<Ix; i++) { 
+         x[i] = ((double)swLon + (double)i*(double)fw)*M_PI/180.0;
+         for (j=0; j<Iy; j++){
+	    y[j] = ((double)swLat + (double)j*(double)fh)*M_PI/180.0;
+            z[i][j] = (((double)dted_get_elev(myDtedFile, Zskip*j, Zskip*i)-Zbias)*Zscale)/1000.0;
+         }
+      }
+
+      dted_close();
+   }
+
+   if (type == 2) {
+      printf("Plot type is .................... %s\n", "GTOPO30");
+      Zscale = 1.0;
+      Zbias  = 0.0;
+      Zskip  = 1;
+
+      strcpy(chfile, "E100N40");
+      sscanf(chfile, "%c%d%c%d", &chEW, &MinLon, &chNS, &MaxLat);
+      swLat = MaxLat - 50;
+      swLon = MinLon;
+      neLat = MaxLat;
+      neLon = MinLon + 40;
+
+      strcpy(chfile, "/home/dre/Terrain/gtopo30/E100N40.DEM");
+      width  = 4800;
+      height = 6000;
+
+      Blon   = MinLon;
+      Slon   = Blon + 25;
+      Elon   = Slon + 5;
+      Ia     = (Elon-Slon)*120;
+      Ix     = Ia/Zskip;
+      x      = new double[Ix+1];
+      Zin    = new short[Ia+1];
+
+      Blat   = MaxLat;                       // First Latitude in file
+      Slat   = Blat;                         // First Latitude to process
+      Elat   = Blat - 6;                     // Last Latitude to process
+      Iy     = ((Slat-Elat)*120)/Zskip;      // Number of rows to process
+      Ib     = (Blat-Elat)*120;              // Last row to process
+      y      = new double[Iy+1];
+
+      fw     = (neLon-swLon) * ((float)Zskip/(float)width);
+      fh     = (neLat-swLat) * ((float)Zskip/(float)height);
+
+      //int Iz = Ix*Iy*sizeof(float);
+      //z      = new float[Iz];
+
+      fd = fopen(chfile, "r");
+      for (j=0; j<Iy; j++) {
+	 y[j] = ((double)swLat + (double)j*(double)fh)*M_PI/180.0; //y[j] = j*Zskip;
+         Sword = (Ib-j)*4800*Zskip + (Slon-Blon)*120;
+         fseek(fd, Sword*sizeof(short), SEEK_SET);
+         fread(Zin, sizeof(short), Ia, fd);
+         ConvertShort(Zin, Ia);
+         for (i=0; i<Ix; i++) {
+            ii = i * Zskip;
+            x[i] = ((double)swLon + (double)i*(double)fw)*M_PI/180.0;
+            if (Zin[ii] == -9999) Zin[ii] = 0;
+            if (Zin[ii] < Zmin) Zmin = Zin[ii];
+            if (Zin[ii] > Zmax) Zmax = Zin[ii];
+            z[i][j] = ((float)Zin[ii] - Zbias)*Zscale;
+         }
+      }
+      fclose(fd);
+   }
+
+   printf("Input data file is .............. %s\n", terrafile);
+   printf("Number of columns is ............ %d (%d)\n", width, Ix);
+   printf("Number of rows is ............... %d (%d)\n", height, Iy);
+   printf("Minimum elevation is ............ %f Meters\n", Zmin);
+   printf("Maximum elevation is ............ %f Meters\n", Zmax);
+   printf("Vertical Scale is ............... %f\n", Zscale);
+   printf("SW Corner Lat/Lon is ............ %f %f Degrees\n", swLat, swLon);
+   printf("NE Corner Lat/Lon is ............ %f %f Degrees\n", neLat, neLon);
+
+   if (p_tlid != 0) glDeleteLists(p_tlid, 1);
+   p_tlid = glGenLists(1);
+   p_terrain = TRUE;
+/*
+ *   Generate 3D digital terrain map display list
+*/
+   glNewList(p_tlid, GL_COMPILE);
+      GR_pushmatrix();
+
+      //glRotatef(p_lon, 0.0, 1.0, 0.0);           // Rotate to correct longitude from Greenwich
+      //glRotatef(-p_lat, 1.0, 0.0, 0.0);          // Rotate to correct latitude from Equator
+      //glRotatef(180.0-p_orient, 0.0, 0.0, 1.0);  // Rotate to correct orientation from North
+      //glTranslatef(0.0, 0.0, 1.0);               // Move to correct location on surface
+      //glScalef(5.0, 5.0, 5.0);
+
+      for (i=0; i<Ix-1; i++) {
+         for (j=0; j<Iy-1; j++) {
+            conversion.lla_to_xyz(y[j],   x[i],   z[i][j],     v1);
+	    v1[i0] = v1[i0]/RE; v1[i1] = v1[i1]/RE; v1[i2] = v1[i2]/RE;
+	    conversion.lla_to_xyz(y[j],   x[i+1], z[i+1][j],   v2);
+	    v2[i0] = v2[i0]/RE; v2[i1] = v2[i1]/RE; v2[i2] = v2[i2]/RE;
+	    conversion.lla_to_xyz(y[j+1], x[i+1], z[i+1][j+1], v3);
+	    v3[i0] = v3[i0]/RE; v3[i1] = v3[i1]/RE; v3[i2] = v3[i2]/RE;
+	    conversion.lla_to_xyz(y[j+1], x[i],   z[i][j+1],   v4);
+	    v4[i0] = v4[i0]/RE; v4[i1] = v4[i1]/RE; v4[i2] = v4[i2]/RE;
+
+            v5[i0] = v1[i0]-v2[i0]; v5[i1] = v1[i1]-v2[i1]; v5[i2] = v1[i2]-v2[i2];
+            v6[i0] = v2[i0]-v3[i0]; v6[i1] = v2[i1]-v3[i1]; v6[i2] = v2[i2]-v3[i2];
+            TCross(v5, v6, v7);
+	    TNorm(v7);
+
+	    glColor3f(0.0, 1.0, 0.0);
+	    if (z[i][j] <= Zmin) glColor3f(0.0, 0.0, 0.7);
+	    //if (z[i][j] > 0.90*(Zmax-Zbias)) glColor3f(1.0, 1.0, 1.0);
+            //if (z[i][j] > 0.90*(Zmax-Zbias)) glColor3f(1.0, 1.0, 1.0);
+
+            glBegin(GL_POLYGON);
+	      glNormal3d(v7[i0], v7[i1], v7[i2]);
+              glVertex3d(v1[i0], v1[i1], v1[i2]);     // SW
+              glVertex3d(v2[i0], v2[i1], v2[i2]);     // SE
+              glVertex3d(v3[i0], v3[i1], v3[i2]);     // NE
+              glVertex3d(v4[i0], v4[i1], v4[i2]);     // NW
+            glEnd();
+         }
+      }
+
+      GR_popmatrix();
+
+   glEndList();  
+}
+
+void
+GR_Terrain::objdraw ()
+{
+   GR_pushattributes();
+/*
+ *   Setup GL environment
+*/
+   glShadeModel(GL_SMOOTH);
+   glDisable(GL_LIGHT0);
+   glEnable(GL_LIGHT2);
+   glEnable(GL_LIGHTING);
+   glEnable(GL_COLOR_MATERIAL);
+   glDepthFunc(GL_LESS);
+   glEnable(GL_DEPTH_TEST);
+/*
+ *   Render the terrain
+*/
+   if (p_terrain) {
+      glColor3f(0.0, 1.0, 0.0);
+      //glPolygonOffset(0.1, 0.1);
+      //glEnable(GL_POLYGON_OFFSET_FILL);
+      glPolygonMode(GL_FRONT, GL_LINE);
+      glCallList(p_tlid);
+   }
+
+   glDisable(GL_LIGHT2);
+   glEnable(GL_LIGHT0);
+
+   GR_popattributes();
+}
+

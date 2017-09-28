@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 7 (msg:"SCAN cybercop udp bomb"; content:"cybercop"; reference:arachnids,363; classtype:bad-unknown; sid:636; rev:1;)

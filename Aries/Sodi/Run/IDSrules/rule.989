@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS .bat? access";flags: A+; uricontent:".bat?&"; nocase; reference:bugtraq,2023; reference:cve,CVE-1999-0233; classtype:web-application-activity; sid:976; rev:3;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 1433 (msg:"MS-SQL xp_reg* - registry access"; content: "x|00|p|00|_|00|r|00|e|00|g|00|"; nocase; flags: AP; offset: 8; classtype:attempted-user; sid:686; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS chmod command attempt"; flags:A+; content:"/bin/chmod";nocase; sid:1336; rev:1; classtype:web-application-attack;)

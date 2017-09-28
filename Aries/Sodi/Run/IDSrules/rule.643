@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 139 (msg:"MS-SQL Buffer overflow shellcode ACTIVE ATTACK"; content: "|4800250078007700900090009000900090003300c000500068002e00|"; flags: AP; classtype:attempted-user; sid:694; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Ecommerce checks.txt access";flags: A+; uricontent:"/orders/checks.txt"; nocase; classtype:attempted-recon; sid:1155; rev:1;)

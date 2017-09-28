@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 31337 (msg:"BACKDOOR BackOrifice access"; content: "|ce63 d1d2 16e7 13cf 39a5 a586|";  reference:arachnids,399; sid:116;  classtype:misc-activity; rev:3;)

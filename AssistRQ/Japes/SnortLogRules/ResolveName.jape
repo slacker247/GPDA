@@ -1,0 +1,13 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Resolve
+
+(
+    {Address.kind == url}
+        
+):Resolve
+ -->
+:Resolve.ResolveName = {}

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Creating a Metaslot</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="../../classes/images/serving_nerd.gif" width="48" height="48">   Creating a
+Metaslot<br>
+<img src="../../classes/images/header_line.gif" width="590" height="6"></h1>
+
+<p><b>Note: </b>Before you create and use metaslots (slot metaclasses), you should be confident
+with the basic Protégé interface and be comfortable designing a project, and
+creating and modifying classes, slots, forms and instances.</p>
+
+<p><font size="3"> Creating a metaslot is almost identical to creating a <a href="../../classes/metaclasses/metaclass_create.html">metaclass</a>. You
+simply have to make sure the class is created subordinate to :SLOT. Every
+metaslot is subordinate to :SLOT. By default, every class subordinate to :SLOT is a
+metaslot, unless you change it. </font>Frequently, it is desirable to create a
+metaslot subordinate to :STANDARD-SLOT, so that the slot created using the
+metaslot will have the
+various properties defined by :STANDARD-SLOT.&nbsp;</p>
+
+<p><font size="3">To create a new metaslot:</font></p>
+
+<ol>
+  <li>Click on the desired superclass in the Class Relationship pane. The
+    selected superclass must itself be a metaslot.
+    As mentioned above, this will be true only if the selected superclass is subordinate to :SLOT.<br>
+    <img border="0" src="images/create_m_slot1.gif" width="287" height="188"></li>
+  <li><font size="3">Click the <strong>C(reate) </strong></font><font size="3"><img border="0" src="../../classes/images/Create.gif" width="12" height="16"></font><font size="3">
+    button at the right of the Class Relationship Pane, or click the right mouse
+    button and select <b>Create subclass</b> from the <a href="../../classes/class_menu.html">Class
+    Menu</a>. The new class will be
+    added under the highlighted class. It will inherit the properties of the selected
+    metaclass.<br>
+    <img border="0" src="images/create_m_slot2.gif" width="288" height="206"> </font> </li>
+  <li><font size="3">Use the <a href="../../classes/class_form.html">Class Form</a> 
+    to name the metaslot, create constraints, and create and edit
+    slots.</font></li>
+</ol>
+
+<p><font size="3">For example, click the <strong>C(reate) </strong><img border="0" src="../../classes/images/Create.gif" width="12" height="16">
+template slots button at the right of the Template Slots pane to create a new
+slot. This slot will show up as an instance widget for any slot you create
+using the metaslot.</font></p>
+<p align="center"><img border="0" src="../../classes/metaclasses/images/metacl7.gif" width="611" height="316"></p>
+
+<hr>
+
+<p><font size="3">Next:&nbsp;<a href="metaslot_default.html">Setting the Default Metaslot</a></font></p>
+
+<p><a href="../index.html">Slots Table of Contents</a></p>
+</body>
+</html>

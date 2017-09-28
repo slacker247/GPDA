@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS perl access";flags: A+; uricontent:"/scripts/perl"; nocase; classtype:web-application-activity; sid:1025; rev:2;)

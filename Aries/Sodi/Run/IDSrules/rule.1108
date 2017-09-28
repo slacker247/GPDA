@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Armada Style Master Index directory traversal"; flags: A+; uricontent:"/search.cgi?keys"; content:"catigory=../"; classtype:web-application-attack; sid:1092; rev:2;)

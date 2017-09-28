@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP traceroute ";ttl:1;itype:8; reference:arachnids,118; classtype:attempted-recon; sid:385; rev:2;)

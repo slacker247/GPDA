@@ -1,0 +1,8 @@
+#!../tcldot
+
+for {set i 0} {$i < 20} {incr i} {
+	set f [open htg3.dot r]
+	set g [dotread $f]
+	close $f
+	$g delete
+}

@@ -1,0 +1,101 @@
+# Tree height, Name, Discrete, Start time, End time, Time unit
+6  EBO  1  0.0  0.0  M
+
+6     Assessment_Sources
+  JSTARS        JSTARS_has_detected_something
+  Predator      Predator_has_detected_something
+  SAR           SAR_has_detected_something
+  Open_Source   open_source_has_detected_something
+  RC-135        RC-135_has_detected_something
+  PAC3          PAC-3_has_detected_something
+
+6     Targets
+  SA-13            the_target_is_an_SA-13
+  SU-24MP          the_target_is_an_SU-24MP
+  Scud-B_Site      the_target_is_a_Scud-B
+  Chemical_Plant   the_target_is_a_chemical_plant
+  C2_Site          the_target_is_a_C2_site
+  Taepo_Dong       the_target_is_a_Taepo_Dong
+
+5     Tactical_Task
+  Destroy_SA_Sites       you_should_destroy_SA_sites
+  Destroy_Fencer_A/C     you_should_destroy_fencer_A/C
+  Destroy_Launch_Sites   you_should_destroy_launch_sites
+  Destroy_Factorys       you_should_destroy_factories
+  Kill_Taepo_Dongs       you_should_kill_Taepo_Dong_missiles
+
+3     Tactical_Objectives
+  Destroy_Enemy_JADS       you_should_destroy_enemy_IADS
+  Destroy_Mobile_Targets   you_should_destroy_mobile_targets
+  Destroy_Missiles         you_should_destroy_missiles
+
+2     Operational_Objectives
+  Gain_Air_Superiority   you_should_gain_air_superiority
+  Destroy_WMD_Delivery   you_should_destroy_WDM_delivery_means
+
+2     Strategic_Objectives
+  Effect_Enemy_Forces   eject_enemy_forces        0.75  100.0
+  Minimize_WMD_Threat   minimize_the_WDM_threat   0.75  100.0
+
+false   B and D matrices are listed separately
+#    E0      E1      E2      E3      E4      E5
+   0.400   0.600   0.000   0.000   0.000   0.000   -- H0_0
+
+   0.000   1.000   0.000   0.000   0.000   0.000   -- H0_1
+
+   0.000   0.000   1.000   0.000   0.000   0.000   -- H0_2
+
+   0.000   0.000   0.900   0.100   0.000   0.000   -- H0_3
+
+   0.000   0.000   0.000   0.200   0.800   0.000   -- H0_4
+
+   0.000   0.000   0.000   0.000   0.000   1.000   -- H0_5
+
+
+#   H0_0    H0_1    H0_2    H0_3    H0_4    H0_5
+   1.000   0.000   0.000   0.000   0.000   0.000   -- H1_0
+
+   0.000   1.000   0.000   0.000   0.000   0.000   -- H1_1
+
+   0.000   0.000   1.000   0.000   0.000   0.000   -- H1_2
+
+   0.000   0.000   0.000   1.000   0.000   0.000   -- H1_3
+
+   0.000   0.000   0.000   0.000   0.300   0.700   -- H1_4
+
+
+#   H1_0    H1_1    H1_2    H1_3    H1_4
+   0.500   0.500   0.000   0.000   0.000   -- H2_0
+
+   0.000   1.000   0.000   0.000   0.000   -- H2_1
+
+   0.000   0.000   0.400   0.400   0.200   -- H2_2
+
+
+#   H2_0    H2_1    H2_2
+   1.000   0.000   0.000   -- H3_0
+
+   0.000   0.400   0.600   -- H3_1
+
+
+#   H3_0    H3_1
+   1.000   0.000   -- A0
+
+   0.000   1.000   -- A1
+
+
+9  Possibilities
+0.00  0.00  impossible
+0.01  0.05  extremely_unlikely
+0.05  0.20  very_low_chance
+0.20  0.38  small_chance
+0.38  0.60  may
+0.60  0.79  meaningful_chance
+0.79  0.95  most_likely
+0.95  0.99  extremely_likely
+1.00  1.00  certain
+
+#  Evidence labels follow. Must be 3, each < 4 chars
+  Lat      Lon     Alt
+#  Default time units follow. Must be: Sec, Min, Hour, or Days
+  Min

@@ -1,0 +1,454 @@
+; Mon May 27 01:03:11 PDT 2002
+; 
+;+ (version "1.7")
+;+ (build "Build 917")
+
+([:SUMMARY_INSTANCE] of :SUMMARY
+	(:CREATION-TIMESTAMP "4/13/02")
+	(:VERSION 1.7)
+	(:ORGANIZATION "Stanford Medical Informatics")
+	(:SUBJECT "Newspaper Company Organization")
+	(:URL "http://www.nytimes.com")
+	(:KEYWORDS "Newspaper Editor Library Company")
+	(:NUM_CLASSES 35)
+	(:NUM_INSTANCES 52)
+	(:CREATOR "SMI")
+	(:PROJECT_NAME "newspaper")
+	(:MODIFICATION-TIMESTAMP "4/15/02")
+	(:MODIFIER "Protege Team"))
+
+([Editor] of :STANDARD-CLASS
+	(:SLOT-CONSTRAINTS [newspaper_00000]))
+
+([instance_00015] of Library
+	(billing_charts
+		[instance_00059]
+		[instance_00075]
+		[instance_00076])
+	(prototypes
+		[instance_00058]
+		[instance_00070]
+		[instance_00072]
+		[instance_00073]
+		[instance_00074]
+		[instance_00077]
+		[instance_00078])
+	(issues
+		[instance_00057]
+		[instance_00069]
+		[instance_00079]
+		[instance_00080]
+		[instance_00081]
+		[instance_00083])
+	(articles
+		[instance_00016]
+		[instance_00022]
+		[instance_00035]
+		[instance_00037]
+		[instance_00038]
+		[instance_00044]
+		[instance_00084]
+		[instance_00085]
+		[instance_00086])
+	(the_organization [instance_00064])
+	(advertisements
+		[instance_00090]
+		[instance_00091]
+		[instance_00092]))
+
+([instance_00016] of Article
+	(published_in [instance_00081])
+	(expiration_date "9/26/97")
+	(article_author [instance_00017])
+	(page_number 20)
+	(urgent TRUE)
+	(Article_Type News)
+	(text "The Soviet Spacestation Mir, irreparably damaged by an asteroid last week, is currently headed for a crash landing in Northern Greenland. Jack Nicklaus, famous golfer and golf-course designer already has plans to buy the crash site. \"Think of the roughs,\" he said when asked to comment. \"It's got to be hard to chip over the lip of a crater.\"")
+	(keywords
+		"Space"
+		"science"
+		"Spacestation MIR")
+	(headline "Mir Doomed By Collision")
+	(containing_section [instance_00047]))
+
+([instance_00017] of News_Service
+	(byname "CNN"))
+
+([instance_00019] of Section
+	(section_name "World News"))
+
+([instance_00022] of Article
+	(expiration_date "10/25/97")
+	(article_author [instance_00045])
+	(page_number 3)
+	(urgent TRUE)
+	(Article_Type News)
+	(text "Jacques Cousteau used to swim with the fishes. Now, if the planned Viking memorial service goes off, he may be sleeping with them. ")
+	(keywords
+		"Marine Biology"
+		"Jacques Cousteau")
+	(headline "Cousteau Heads for Drydock"))
+
+([instance_00024] of Section
+	(section_name "Local News"))
+
+([instance_00032] of Section
+	(section_name "Automotive"))
+
+([instance_00034] of Section
+	(section_name "Lifestyle"))
+
+([instance_00035] of Article
+	(expiration_date "7/01/97")
+	(article_author [instance_00036])
+	(page_number 5)
+	(urgent FALSE)
+	(Article_Type News)
+	(text "DALLAS (AP) -- Ninety-year-old Ramon Rodriguez thought a stubborn \"No!\" and a stern look might discourage construction of a bank where his modest little house stands. So much for the little man standing in the way of progress. The bank decided to go ahead with the project anyway, without the old man's land, and simply wrap the building, horseshoe-style, around the house Rodriguez shares with his scruffy dog, Baby.")
+	(keywords "banks")
+	(headline "Bank Outflanks Stubborn 90 Year Old Man")
+	(containing_section [instance_00034]))
+
+([instance_00036] of News_Service
+	(byname "AP"))
+
+([instance_00037] of Article
+	(published_in [instance_00057])
+	(article_author [instance_00017])
+	(page_number 6)
+	(urgent TRUE)
+	(Article_Type News)
+	(text "THE HAGUE, Netherlands (AP) -- Protesters demanding reparations from Japan for its World War II aggression threatened to overshadow Wednesday's visit by Prime Minister Ryutaro Hashimoto.  As Hashimoto met with European Union leaders on trade issues and Europe's planned single currency, money of a different sort was on the minds of former Dutch prisoners of war and women forced into wartime sex slavery for Japanese soldiers. \"We've waited more than 50 years for compensation,\" said Sjoerd  Albert Lapre, president of the 80,000-member Foundation of  Japanese Honorary Debts in The Hague, where demonstrations were planned for later Wednesday.")
+	(keywords
+		"Japan"
+		"European Union"
+		"International trade")
+	(headline "Japan, Europe Hold Trade, Currency Talks")
+	(containing_section [instance_00019]))
+
+([instance_00038] of Article
+	(published_in [instance_00057])
+	(article_author [instance_00039])
+	(page_number 22)
+	(urgent FALSE)
+	(text " The rain finally let up long enough for Monica Seles to win her first-round match Wednesday at Wimbledon.  After waiting four hours for the match to start and then stopping for another 40 minutes when she was within two points of victory, Seles completed a 6-0, 6-2 victory over Rachel McQuillan. ")
+	(keywords
+		"tennis"
+		"Monica Seles"
+		"Wimbledon")
+	(reading_level Elementary)
+	(headline "Seles endures rain delays to beat McQuillen")
+	(containing_section [instance_00040]))
+
+([instance_00039] of Reporter
+	(name "Larry Tennis-nut")
+	(salary 80000.0)
+	(byname "our"))
+
+([instance_00040] of Section
+	(section_name "Sports"))
+
+([instance_00042] of Personals_Ad
+	(urgent TRUE)
+	(page_number 10)
+	(ad_name "M137")
+	(published_in [instance_00069])
+	(text "SEPARATED FEMALE TALL FAT BLUE BROWN PART_TIME SERVICE RICH 4 PACKS_PER_DAY FILTERED DRINK_OCCASIONALLY \nMANY \nRANDOM_BIVALVE \nPLAYING_GO DONE_HARD_TIME DRUID UNDER_TEN PER_WEEK MARRIAGE SEEKING DIVORCED MALE SHORT THIN BLUE BLACK PART_TIME EXECUTIVE RICH NON_SMOKING DRINK_OFTEN TWO SNAKE PLAYING_GO NONE DRUID TEN_TO_TWENTY PER_YEAR MARRIAGE")
+	(ad_salesperson [instance_00043])
+	(expiration_date "7/01/97"))
+
+([instance_00043] of Salesperson
+	(name "Fred Schmit")
+	(phone_number "498-4255"))
+
+([instance_00044] of Article
+	(published_in [instance_00081])
+	(article_author [instance_00045])
+	(page_number 2)
+	(urgent FALSE)
+	(text "Sojourner, named for Sojourner Truth, will soon come down on the barren surface of Mars. It will open up like an egg, releasing a remote control probe to conduct a geological survey of the red planet. The mission marks the first landing on Mars in 20 years. And along with the orbiting Mars Global Surveyor, which arrives two months later, it ushers in a bold new era of Mars exploration.  In Destination Mars, CNN Interactive provides a multimedia rich sneak preview of the decade of discovery ahead. ")
+	(keywords
+		"space"
+		"science"
+		"Mars rover")
+	(headline "Destination Mars")
+	(containing_section [instance_00047]))
+
+([instance_00045] of Reporter
+	(name "Joe Schmo")
+	(salary 120000.0))
+
+([instance_00046] of Section
+	(section_name "Magazine"))
+
+([instance_00047] of Section
+	(section_name "Science"))
+
+([instance_00048] of Section
+	(section_name "Business"))
+
+([instance_00051] of Editor
+	(name "Mr. Science")
+	(salary 60000.0)
+	(responsible_for [instance_00045])
+	(sections [instance_00047]))
+
+([instance_00055] of Editor
+	(name "Chief Honcho")
+	(salary 150000.0)
+	(responsible_for
+		[instance_00051]
+		[instance_00067]
+		[instance_00068])
+	(sections
+		[instance_00034]
+		[instance_00046]
+		[instance_00024]
+		[instance_00032]
+		[instance_00048]
+		[instance_00047]
+		[instance_00040]
+		[instance_00019]))
+
+([instance_00057] of Newspaper
+	(Date "06/25/97")
+	(number_of_pages 12)
+	(Prototype [instance_00058])
+	(Contents
+		[instance_00037]
+		[instance_00038]))
+
+([instance_00058] of Prototype_Newspaper
+	(prototype_billing_chart [instance_00059])
+	(sections
+		[instance_00048]
+		[instance_00019]
+		[instance_00047]
+		[instance_00024]
+		[instance_00040])
+	(weekday Thursday))
+
+([instance_00059] of Billing_Chart
+	(name "Weekday Ads")
+	(cost_chart 12.0 24.0 46.0 70.0 90.0))
+
+([instance_00064] of Organization
+	(name "San Jose Mercury News")
+	(employee_list
+		[instance_00043]
+		[instance_00055]
+		[instance_00051]
+		[instance_00039]
+		[instance_00045]
+		[instance_00067]
+		[instance_00068]
+		[instance_00093])
+	(org_chart
+		[instance_00055]
+		[instance_00039]
+		[instance_00043]
+		[instance_00045]
+		[instance_00051]
+		[instance_00067]
+		[instance_00068]
+		[instance_00093]))
+
+([instance_00067] of Editor
+	(name "Sports Nut")
+	(salary 100000.0)
+	(responsible_for
+		[instance_00039]
+		[instance_00093]))
+
+([instance_00068] of Editor
+	(name "Ms Gardiner")
+	(salary 45000.0)
+	(responsible_for [instance_00043]))
+
+([instance_00069] of Newspaper
+	(Date "08/19/97")
+	(number_of_pages 64)
+	(Prototype [instance_00070])
+	(Contents [instance_00042]))
+
+([instance_00070] of Prototype_Newspaper
+	(prototype_billing_chart [instance_00059])
+	(sections
+		[instance_00032]
+		[instance_00048]
+		[instance_00034]
+		[instance_00024]
+		[instance_00046]
+		[instance_00047])
+	(weekday Tuesday))
+
+([instance_00072] of Prototype_Newspaper
+	(prototype_billing_chart [instance_00059])
+	(sections
+		[instance_00034]
+		[instance_00024]
+		[instance_00046]
+		[instance_00047]
+		[instance_00040]
+		[instance_00019])
+	(weekday Friday))
+
+([instance_00073] of Prototype_Newspaper
+	(prototype_billing_chart [instance_00059])
+	(sections
+		[instance_00032]
+		[instance_00048]
+		[instance_00034]
+		[instance_00024]
+		[instance_00040]
+		[instance_00019])
+	(weekday Wednesday))
+
+([instance_00074] of Prototype_Newspaper
+	(prototype_billing_chart [instance_00059])
+	(sections
+		[instance_00032]
+		[instance_00024]
+		[instance_00046]
+		[instance_00019])
+	(weekday Monday))
+
+([instance_00075] of Billing_Chart
+	(name "Saturday Ads")
+	(cost_chart 15.0 30.0 55.0 100.0 120.0))
+
+([instance_00076] of Billing_Chart
+	(name "Sunday Ads")
+	(cost_chart 30.0 60.0 120.0 160.0 250.0))
+
+([instance_00077] of Prototype_Newspaper
+	(prototype_billing_chart [instance_00075])
+	(sections
+		[instance_00032]
+		[instance_00019])
+	(weekday Saturday))
+
+([instance_00078] of Prototype_Newspaper
+	(prototype_billing_chart [instance_00076])
+	(sections
+		[instance_00032]
+		[instance_00048]
+		[instance_00034]
+		[instance_00024]
+		[instance_00046]
+		[instance_00047]
+		[instance_00040]
+		[instance_00019])
+	(weekday Sunday))
+
+([instance_00079] of Newspaper
+	(Date "08/20/97")
+	(number_of_pages 80)
+	(Prototype [instance_00073])
+	(Contents
+		[instance_00084]
+		[instance_00086]))
+
+([instance_00080] of Newspaper
+	(Date "08/21/97")
+	(number_of_pages 54)
+	(Prototype [instance_00058])
+	(Contents [instance_00085]))
+
+([instance_00081] of Newspaper
+	(Date "08/22/97")
+	(number_of_pages 54)
+	(Prototype [instance_00072])
+	(Contents
+		[instance_00016]
+		[instance_00044]))
+
+([instance_00083] of Newspaper
+	(Date "08/23/97")
+	(number_of_pages 148)
+	(Prototype [instance_00078])
+	(Contents
+		[instance_00035]
+		[instance_00022]
+		[instance_00044]
+		[instance_00037]
+		[instance_00042]
+		[instance_00016]
+		[instance_00038]
+		[instance_00084]
+		[instance_00085]
+		[instance_00086]))
+
+([instance_00084] of Article
+	(published_in [instance_00079])
+	(expiration_date "10/01/97")
+	(article_author [instance_00036])
+	(page_number 99)
+	(urgent FALSE)
+	(text "LONDON (AP) -- Sixty dancers for next month's \"Swan Lake\" performance were banned from sunbathing by the English National Ballet on Monday because they were no longer pale enough to play swans. \"Some of the dancers have been away on holiday and look more like lobsters than swans,\" said ballet spokesman Jim Fletcher.  The dancers have six weeks to lose their tans before the company's first winter-season performance. Fletcher said makeup can be used, but added that some of the dancers were \"scarlet\" and difficult to disguise.  \"I'm just a little worried that the lighting effects for this 'Swan Lake' will wreak havoc with sunburned dancers, making them look purple and puce,\" said artistic director Derek Deane.  \"The last time we had a heat wave like this we ended up with a scarlet Wilis in 'Giselle.' We simply can't give roasted swans to the public this season,\" Deane said. ")
+	(keywords "ballet")
+	(reading_level High_school)
+	(headline "Sunburned Swans Sing Sad Song")
+	(containing_section [instance_00034]))
+
+([instance_00085] of Article
+	(published_in [instance_00080])
+	(expiration_date "10/01/97")
+	(page_number 8)
+	(urgent FALSE)
+	(text "(Stanford University) The Section on Medical Informatics held one of its two annual week-long courses this past week, starting on Monday August 18.  Larry Fagan, the genial scientist who manages the course was quite pleased with both the attendance (60 people, from over 20 organizations, attended) and the content. \"It's amazing-- we covered a lot of ground for a lot of people. At first I wondered if we were being a little bit ambitious,\" he said. \"But, in retrospect, the program was a stunning success. If any of your readers want to attend one of next year's courses, tell them they can contact me via e-mail at fagan@smi.stanford.edu\".")
+	(keywords "SMI")
+	(reading_level College)
+	(headline "SMI Short Course a Smash")
+	(containing_section [instance_00024]))
+
+([instance_00086] of Article
+	(published_in [instance_00079])
+	(expiration_date "10/01/97")
+	(page_number 56)
+	(urgent FALSE)
+	(Article_Type News)
+	(text "(Stanford University) Recently, DARPA, the DOD research and funding agency, has formed the High-Performance Knowledge-Base initiative (the HPKB program) to support military needs for intelligent software in a wide variety of different situations. The needs range from logistics and planning through battlefield awareness and on to crisis management. It's clear-- The information explosion has hit the DOD with a vengeance and there's really only one solution: use cutting edge AI techniques to cope with the overload and make better decisions faster. \"We're very excited about the new HPKB program,\" said faculty member Mark Musen. \"We've been developing all these great new technologies-- knowledge acquisition tools, problem-solving methods, networked information transport mechanisms-- and now it's all coming together. This is a large scale test of the things we've been working towards and we're thrilled to be on board.\"")
+	(keywords
+		"SMI"
+		"HPKB"
+		"Darpa")
+	(reading_level High_school)
+	(headline "SMI has big role in DARPA HPKB Project")
+	(containing_section [instance_00024]))
+
+([instance_00089] of Personals_Ad
+	(urgent FALSE)
+	(page_number 12)
+	(ad_name "Strange")
+	(text "DIVORCED FEMALE TALL FAT BLUE BLONDE NON_SMOKING NON_DRINKING ONE GOLDFISH NONE SEEKING SINGLE MALE TALL FAT HAZEL RED_HEAD NON_SMOKING DRINK_AT_PARTIES TWO LIZARD NONE"))
+
+([instance_00090] of Personals_Ad
+	(urgent FALSE)
+	(page_number 15)
+	(ad_name "unhealthy-seeker")
+	(text "DIVORCED FEMALE NON_SMOKING NON_DRINKING SEEKING DIVORCED MALE 1 PACKS_PER_DAY UNFILTERED DRINKS_OFTEN"))
+
+([instance_00091] of Personals_Ad
+	(urgent FALSE)
+	(page_number 9)
+	(ad_name "Silly")
+	(text "MARRIED MALE VIOLET_EYES RED_HEAD NON_SMOKING DRINKS_AT_PARTIES CLEAN_RECORD MOSLEM WANT_TO_HAVE_FUN SEEKING DIVORCED MALE TALL NON_SMOKING DRINKS_OCCASIONALLY MANY_KIDS SHARK GOLF GAMBLING"))
+
+([instance_00092] of Standard_Ad
+	(urgent FALSE)
+	(page_number 43)
+	(ad_name "Tire sales")
+	(published_in [instance_00069])
+	(containing_section [instance_00040]))
+
+([instance_00093] of Reporter
+	(name "Anne BasketballHead")
+	(current_job_title "sports reporter")
+	(salary 50000.0))
+
+([newspaper_00000] of :PAL-CONSTRAINT
+	(:PAL-STATEMENT "(forall ?edit (forall ?empl\n                (=> (and \n                         (responsible_for ?edit ?empl)\n                         (own-slot-not-null salary ?edit) \n                         (own-slot-not-null salary ?empl)) \n                    (> (salary ?edit) (salary ?empl)))))")
+	(:PAL-DESCRIPTION "The salary of an editor should be greater than the salary of any employee which the editor is responsible for.")
+	(:PAL-NAME "editor-employees-salary-constraint")
+	(:PAL-RANGE "(defrange ?edit :FRAME Editor)\n(defrange ?empl :FRAME Employee responsible_for)"))

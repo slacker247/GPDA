@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS xterm command attempt"; flags:A+; content:"/usr/X11R6/bin/xterm";nocase; sid:1362; rev:1; classtype:web-application-attack;)

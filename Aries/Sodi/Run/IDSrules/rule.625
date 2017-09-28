@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 139 (msg:"MS-SQL sp_start_job - program execution"; content: "s|00|p|00|_|00|s|00|t|00|a|00|r|00|t|00|_|00|j|00|o|00|"; nocase; flags: AP; offset: 32; depth: 32; classtype:attempted-user; sid:676; rev:1;)

@@ -1,0 +1,856 @@
+; Fri Aug 11 17:12:05 PDT 2000
+
+([:THING] of :STANDARD-CLASS
+	(:SLOT-CONSTRAINTS [newspaper_02597]))
+
+([Billing_Chart] of EnumeratedRelationMetaclass
+	(entry-slot [rates]))
+
+([BillingChartEntry] of EntryMetaclass
+	(domain-value-slots
+		[size]
+		[section])
+	(range-value-slots [standard-price]))
+
+([instance_00015] of Library
+	(advertisements
+		[instance_00090]
+		[instance_00091]
+		[instance_00092])
+	(articles
+		[instance_00016]
+		[instance_00022]
+		[instance_00035]
+		[instance_00037]
+		[instance_00038]
+		[instance_00044]
+		[instance_00084]
+		[instance_00085]
+		[instance_00086])
+	(billing_charts [instance_00075])
+	(issues
+		[instance_00057]
+		[instance_00069]
+		[instance_00079]
+		[instance_00080]
+		[instance_00081]
+		[instance_00083])
+	(Org_chart [instance_00064])
+	(prototypes
+		[instance_00058]
+		[instance_00070]
+		[instance_00072]
+		[instance_00073]
+		[instance_00074]
+		[instance_00077]
+		[instance_00078]))
+
+([instance_00016] of Article
+	(Article_Type News)
+	(author [instance_00017])
+	(expiration_date "9/26/97")
+	(headline "Mir Doomed By Collision")
+	(keywords
+		"Space"
+		"science"
+		"Spacestation MIR")
+	(published_in [instance_00081])
+	(text "The Soviet Spacestation Mir, irreparably damaged by an asteroid last week, is currently headed for a crash landing in Northern Greenland. Jack Nicklaus, famous golfer and golf-course designer already has plans to buy the crash site. \"Think of the roughs,\" he said when asked to comment. \"It's got to be hard to chip over the lip of a crater.\"")
+	(urgent TRUE))
+
+([instance_00017] of News_Service
+	(byname "CNN"))
+
+([instance_00022] of Article
+	(Article_Type News)
+	(author [instance_00045])
+	(expiration_date "10/25/97")
+	(headline "Cousteau Heads for Drydock")
+	(keywords
+		"Marine Biology"
+		"Jacques Cousteau")
+	(text "Jacques Cousteau used to swim with the fishes. Now, if the planned Viking memorial service goes off, he may be sleeping with them. ")
+	(urgent TRUE))
+
+([instance_00035] of Article
+	(Article_Type News)
+	(author [instance_00036])
+	(expiration_date "7/01/97")
+	(headline "Bank Outflanks Stubborn 90 Year Old Man")
+	(keywords "banks")
+	(text "DALLAS (AP) -- Ninety-year-old Ramon Rodriguez thought a stubborn \"No!\" and a stern look might discourage construction of a bank where his modest little house stands. So much for the little man standing in the way of progress. The bank decided to go ahead with the project anyway, without the old man's land, and simply wrap the building, horseshoe-style, around the house Rodriguez shares with his scruffy dog, Baby.")
+	(urgent FALSE))
+
+([instance_00036] of News_Service
+	(byname "AP"))
+
+([instance_00037] of Article
+	(Article_Type News)
+	(author [instance_00017])
+	(headline "Japan, Europe Hold Trade, Currency Talks")
+	(keywords
+		"Japan"
+		"European Union"
+		"International trade")
+	(published_in [instance_00057])
+	(text "THE HAGUE, Netherlands (AP) -- Protesters demanding reparations from Japan for its World War II aggression threatened to overshadow Wednesday's visit by Prime Minister Ryutaro Hashimoto.  As Hashimoto met with European Union leaders on trade issues and Europe's planned single currency, money of a different sort was on the minds of former Dutch prisoners of war and women forced into wartime sex slavery for Japanese soldiers. \"We've waited more than 50 years for compensation,\" said Sjoerd  Albert Lapre, president of the 80,000-member Foundation of  Japanese Honorary Debts in The Hague, where demonstrations were planned for later Wednesday.")
+	(urgent TRUE))
+
+([instance_00038] of Article
+	(author [instance_00039])
+	(headline "Seles endures rain delays to beat McQuillen")
+	(keywords
+		"tennis"
+		"Monica Seles"
+		"Wimbledon")
+	(published_in [instance_00057])
+	(reading_level Elementary)
+	(text " The rain finally let up long enough for Monica Seles to win her first-round match Wednesday at Wimbledon.  After waiting four hours for the match to start and then stopping for another 40 minutes when she was within two points of victory, Seles completed a 6-0, 6-2 victory over Rachel McQuillan. ")
+	(urgent FALSE))
+
+([instance_00039] of Reporter
+	(byname "our")
+	(name "Larry Tennis-nut"))
+
+([instance_00042] of Personals_Ad
+	(ad_name "M137")
+	(expiration_date "7/01/97")
+	(published_in [instance_00069])
+	(salesperson [instance_00043])
+	(text "SEPARATED FEMALE TALL FAT BLUE BROWN PART_TIME SERVICE RICH 4 PACKS_PER_DAY FILTERED DRINK_OCCASIONALLY \nMANY \nRANDOM_BIVALVE \nPLAYING_GO DONE_HARD_TIME DRUID UNDER_TEN PER_WEEK MARRIAGE SEEKING DIVORCED MALE SHORT THIN BLUE BLACK PART_TIME EXECUTIVE RICH NON_SMOKING DRINK_OFTEN TWO SNAKE PLAYING_GO NONE DRUID TEN_TO_TWENTY PER_YEAR MARRIAGE")
+	(urgent TRUE))
+
+([instance_00043] of Salesperson
+	(name "Fred Schmit")
+	(phone_number "498-4255"))
+
+([instance_00044] of Article
+	(author [instance_00045])
+	(headline "Destination Mars")
+	(keywords
+		"space"
+		"science"
+		"Mars rover")
+	(published_in [instance_00081])
+	(text "Sojourner, named for Sojourner Truth, will soon come down on the barren surface of Mars. It will open up like an egg, releasing a remote control probe to conduct a geological survey of the red planet. The mission marks the first landing on Mars in 20 years. And along with the orbiting Mars Global Surveyor, which arrives two months later, it ushers in a bold new era of Mars exploration.  In Destination Mars, CNN Interactive provides a multimedia rich sneak preview of the decade of discovery ahead. ")
+	(urgent FALSE))
+
+([instance_00045] of Reporter
+	(name "Joe Schmo"))
+
+([instance_00051] of Editor
+	(name "Mr. Science")
+	(supervises [instance_00045]))
+
+([instance_00055] of Editor
+	(name "Chief Honcho")
+	(supervises
+		[instance_00051]
+		[instance_00067]
+		[instance_00068]))
+
+([instance_00057] of Newspaper
+	(Contents
+		[instance_00037]
+		[instance_00038])
+	(Date "06/25/97")
+	(number_of_pages 12)
+	(Prototype [instance_00058]))
+
+([instance_00058] of Prototype_Newspaper
+	(sections
+		World^News
+		Lifestyle
+		Local^News
+		Sports)
+	(weekday Thursday))
+
+([instance_00064] of Organization
+	(connectors
+		[newspaper_INSTANCE_00033]
+		[newspaper_INSTANCE_00038]
+		[newspaper_INSTANCE_00043]
+		[newspaper_INSTANCE_00048]
+		[newspaper_INSTANCE_00053]
+		[newspaper_INSTANCE_00058]
+		[newspaper_INSTANCE_00063])
+	(employees
+		[instance_00043]
+		[instance_00055]
+		[instance_00051]
+		[instance_00039]
+		[instance_00045]
+		[instance_00067]
+		[instance_00068]
+		[instance_00093])
+	(last_divider_location 89)
+	(layout_information
+		[newspaper_INSTANCE_00004]
+		[newspaper_INSTANCE_00008]
+		[newspaper_INSTANCE_00012]
+		[newspaper_INSTANCE_00016]
+		[newspaper_INSTANCE_00020]
+		[newspaper_INSTANCE_00024]
+		[newspaper_INSTANCE_00028]
+		[newspaper_INSTANCE_00032]
+		[newspaper_INSTANCE_00037]
+		[newspaper_INSTANCE_00042]
+		[newspaper_INSTANCE_00047]
+		[newspaper_INSTANCE_00052]
+		[newspaper_INSTANCE_00057]
+		[newspaper_INSTANCE_00062]
+		[newspaper_INSTANCE_00067])
+	(main_panel_height 600)
+	(main_panel_width 600)
+	(name "San Jose Mercury News"))
+
+([instance_00067] of Editor
+	(name "Sports Nut")
+	(supervises
+		[instance_00039]
+		[instance_00093]))
+
+([instance_00068] of Editor
+	(name "Ms Gardiner")
+	(supervises [instance_00043]))
+
+([instance_00069] of Newspaper
+	(Contents [instance_00042])
+	(Date "08/19/97")
+	(number_of_pages 64)
+	(Prototype [instance_00070]))
+
+([instance_00070] of Prototype_Newspaper
+	(sections
+		World^News
+		Lifestyle
+		Local^News
+		Sports)
+	(weekday Tuesday))
+
+([instance_00072] of Prototype_Newspaper
+	(sections
+		World^News
+		Local^News
+		Sports)
+	(weekday Friday))
+
+([instance_00073] of Prototype_Newspaper
+	(sections
+		World^News
+		Local^News
+		Business
+		Sports)
+	(weekday Wednesday))
+
+([instance_00074] of Prototype_Newspaper
+	(sections
+		World^News
+		Local^News
+		Sports
+		Science)
+	(weekday Monday))
+
+([instance_00075] of Billing_Chart
+	(rates
+		[newspaper_INSTANCE_00072]
+		[newspaper_INSTANCE_00074]
+		[newspaper_INSTANCE_00076]
+		[newspaper_INSTANCE_00078]
+		[newspaper_INSTANCE_00080]
+		[newspaper_INSTANCE_00082]
+		[newspaper_INSTANCE_00084]
+		[newspaper_INSTANCE_00086]
+		[newspaper_INSTANCE_00088]
+		[newspaper_INSTANCE_00089]
+		[newspaper_INSTANCE_00091]
+		[newspaper_INSTANCE_00093]
+		[newspaper_INSTANCE_00095]
+		[newspaper_INSTANCE_00097]
+		[newspaper_INSTANCE_00099]
+		[newspaper_INSTANCE_00101]
+		[newspaper_INSTANCE_00103]
+		[newspaper_INSTANCE_00105]
+		[newspaper_INSTANCE_00107]
+		[newspaper_INSTANCE_00109]
+		[newspaper_INSTANCE_00111]
+		[newspaper_INSTANCE_00113]
+		[newspaper_INSTANCE_00115]
+		[newspaper_INSTANCE_00117]
+		[newspaper_INSTANCE_00119]))
+
+([instance_00077] of Prototype_Newspaper
+	(billing_chart [instance_00075])
+	(sections
+		World^News
+		Automotive
+		Local^News
+		Sports)
+	(weekday Saturday))
+
+([instance_00078] of Prototype_Newspaper
+	(sections
+		World^News
+		Lifestyle
+		Science
+		Automotive
+		Magazine
+		Local^News
+		Sports
+		Business)
+	(weekday Sunday))
+
+([instance_00079] of Newspaper
+	(Contents
+		[instance_00084]
+		[instance_00086])
+	(Date "08/20/97")
+	(number_of_pages 80)
+	(Prototype [instance_00073]))
+
+([instance_00080] of Newspaper
+	(Contents [instance_00085])
+	(Date "08/21/97")
+	(number_of_pages 54)
+	(Prototype [instance_00058]))
+
+([instance_00081] of Newspaper
+	(Contents
+		[instance_00016]
+		[instance_00044])
+	(Date "08/22/97")
+	(number_of_pages 54)
+	(Prototype [instance_00072]))
+
+([instance_00083] of Newspaper
+	(Contents
+		[instance_00035]
+		[instance_00022]
+		[instance_00044]
+		[instance_00037]
+		[instance_00042]
+		[instance_00016]
+		[instance_00038]
+		[instance_00084]
+		[instance_00085]
+		[instance_00086])
+	(Date "08/23/97")
+	(number_of_pages 148)
+	(Prototype [instance_00078]))
+
+([instance_00084] of Article
+	(author [instance_00036])
+	(expiration_date "10/01/97")
+	(headline "Sunburned Swans Sing Sad Song")
+	(keywords "ballet")
+	(published_in [instance_00079])
+	(reading_level High_school)
+	(text "LONDON (AP) -- Sixty dancers for next month's \"Swan Lake\" performance were banned from sunbathing by the English National Ballet on Monday because they were no longer pale enough to play swans. \"Some of the dancers have been away on holiday and look more like lobsters than swans,\" said ballet spokesman Jim Fletcher.  The dancers have six weeks to lose their tans before the company's first winter-season performance. Fletcher said makeup can be used, but added that some of the dancers were \"scarlet\" and difficult to disguise.  \"I'm just a little worried that the lighting effects for this 'Swan Lake' will wreak havoc with sunburned dancers, making them look purple and puce,\" said artistic director Derek Deane.  \"The last time we had a heat wave like this we ended up with a scarlet Wilis in 'Giselle.' We simply can't give roasted swans to the public this season,\" Deane said. ")
+	(urgent FALSE))
+
+([instance_00085] of Article
+	(expiration_date "10/01/97")
+	(headline "SMI Short Course a Smash")
+	(keywords "SMI")
+	(published_in [instance_00080])
+	(reading_level College)
+	(text "(Stanford University) The Section on Medical Informatics held one of its two annual week-long courses this past week, starting on Monday August 18.  Larry Fagan, the genial scientist who manages the course was quite pleased with both the attendance (60 people, from over 20 organizations, attended) and the content. \"It's amazing-- we covered a lot of ground for a lot of people. At first I wondered if we were being a little bit ambitious,\" he said. \"But, in retrospect, the program was a stunning success. If any of your readers want to attend one of next year's courses, tell them they can contact me via e-mail at fagan@smi.stanford.edu\".")
+	(urgent FALSE))
+
+([instance_00086] of Article
+	(Article_Type News)
+	(expiration_date "10/01/97")
+	(headline "SMI has big role in DARPA HPKB Project")
+	(keywords
+		"SMI"
+		"HPKB"
+		"Darpa")
+	(published_in [instance_00079])
+	(reading_level High_school)
+	(text "(Stanford University) Recently, DARPA, the DOD research and funding agency, has formed the High-Performance Knowledge-Base initiative (the HPKB program) to support military needs for intelligent software in a wide variety of different situations. The needs range from logistics and planning through battlefield awareness and on to crisis management. It's clear-- The information explosion has hit the DOD with a vengeance and there's really only one solution: use cutting edge AI techniques to cope with the overload and make better decisions faster. \"We're very excited about the new HPKB program,\" said faculty member Mark Musen. \"We've been developing all these great new technologies-- knowledge acquisition tools, problem-solving methods, networked information transport mechanisms-- and now it's all coming together. This is a large scale test of the things we've been working towards and we're thrilled to be on board.\"")
+	(urgent FALSE))
+
+([instance_00089] of Personals_Ad
+	(ad_name "Strange")
+	(text "DIVORCED FEMALE TALL FAT BLUE BLONDE NON_SMOKING NON_DRINKING ONE GOLDFISH NONE SEEKING SINGLE MALE TALL FAT HAZEL RED_HEAD NON_SMOKING DRINK_AT_PARTIES TWO LIZARD NONE")
+	(urgent FALSE))
+
+([instance_00090] of Personals_Ad
+	(ad_name "unhealthy-seeker")
+	(text "DIVORCED FEMALE NON_SMOKING NON_DRINKING SEEKING DIVORCED MALE 1 PACKS_PER_DAY UNFILTERED DRINKS_OFTEN")
+	(urgent FALSE))
+
+([instance_00091] of Personals_Ad
+	(ad_name "Silly")
+	(text "MARRIED MALE VIOLET_EYES RED_HEAD NON_SMOKING DRINKS_AT_PARTIES CLEAN_RECORD MOSLEM WANT_TO_HAVE_FUN SEEKING DIVORCED MALE TALL NON_SMOKING DRINKS_OCCASIONALLY MANY_KIDS SHARK GOLF GAMBLING")
+	(urgent FALSE))
+
+([instance_00092] of Standard_Ad
+	(ad_name "Tire sales")
+	(page_number 43)
+	(published_in [instance_00069])
+	(urgent FALSE))
+
+([instance_00093] of Reporter
+	(current_job_title "sports reporter")
+	(name "Anne BasketballHead"))
+
+([newspaper_02597] of :PAL-CONSTRAINT
+	(:PAL-DESCRIPTION "asdfas")
+	(:PAL-NAME "foo")
+	(:PAL-RANGE "afasdf")
+	(:PAL-STATEMENT "afdas"))
+
+([newspaper_INSTANCE_00001] of Rectangle
+	(lower_right_corner [newspaper_INSTANCE_00003])
+	(upper_left_corner [newspaper_INSTANCE_00002]))
+
+([newspaper_INSTANCE_00002] of Point
+	(x 381)
+	(y 43))
+
+([newspaper_INSTANCE_00003] of Point
+	(x 441)
+	(y 103))
+
+([newspaper_INSTANCE_00004] of ObjectLocation
+	(location [newspaper_INSTANCE_00001])
+	(object [instance_00043]))
+
+([newspaper_INSTANCE_00005] of Rectangle
+	(lower_right_corner [newspaper_INSTANCE_00007])
+	(upper_left_corner [newspaper_INSTANCE_00006]))
+
+([newspaper_INSTANCE_00006] of Point
+	(x 0)
+	(y 8))
+
+([newspaper_INSTANCE_00007] of Point
+	(x 60)
+	(y 68))
+
+([newspaper_INSTANCE_00008] of ObjectLocation
+	(location [newspaper_INSTANCE_00005])
+	(object [instance_00055]))
+
+([newspaper_INSTANCE_00009] of Rectangle
+	(lower_right_corner [newspaper_INSTANCE_00011])
+	(upper_left_corner [newspaper_INSTANCE_00010]))
+
+([newspaper_INSTANCE_00010] of Point
+	(x 153)
+	(y 137))
+
+([newspaper_INSTANCE_00011] of Point
+	(x 213)
+	(y 197))
+
+([newspaper_INSTANCE_00012] of ObjectLocation
+	(location [newspaper_INSTANCE_00009])
+	(object [instance_00051]))
+
+([newspaper_INSTANCE_00013] of Rectangle
+	(lower_right_corner [newspaper_INSTANCE_00015])
+	(upper_left_corner [newspaper_INSTANCE_00014]))
+
+([newspaper_INSTANCE_00014] of Point
+	(x 269)
+	(y 288))
+
+([newspaper_INSTANCE_00015] of Point
+	(x 329)
+	(y 348))
+
+([newspaper_INSTANCE_00016] of ObjectLocation
+	(location [newspaper_INSTANCE_00013])
+	(object [instance_00039]))
+
+([newspaper_INSTANCE_00017] of Rectangle
+	(lower_right_corner [newspaper_INSTANCE_00019])
+	(upper_left_corner [newspaper_INSTANCE_00018]))
+
+([newspaper_INSTANCE_00018] of Point
+	(x 334)
+	(y 168))
+
+([newspaper_INSTANCE_00019] of Point
+	(x 394)
+	(y 228))
+
+([newspaper_INSTANCE_00020] of ObjectLocation
+	(location [newspaper_INSTANCE_00017])
+	(object [instance_00045]))
+
+([newspaper_INSTANCE_00021] of Rectangle
+	(lower_right_corner [newspaper_INSTANCE_00023])
+	(upper_left_corner [newspaper_INSTANCE_00022]))
+
+([newspaper_INSTANCE_00022] of Point
+	(x 46)
+	(y 218))
+
+([newspaper_INSTANCE_00023] of Point
+	(x 106)
+	(y 278))
+
+([newspaper_INSTANCE_00024] of ObjectLocation
+	(location [newspaper_INSTANCE_00021])
+	(object [instance_00067]))
+
+([newspaper_INSTANCE_00025] of Rectangle
+	(lower_right_corner [newspaper_INSTANCE_00027])
+	(upper_left_corner [newspaper_INSTANCE_00026]))
+
+([newspaper_INSTANCE_00026] of Point
+	(x 232)
+	(y 36))
+
+([newspaper_INSTANCE_00027] of Point
+	(x 292)
+	(y 96))
+
+([newspaper_INSTANCE_00028] of ObjectLocation
+	(location [newspaper_INSTANCE_00025])
+	(object [instance_00068]))
+
+([newspaper_INSTANCE_00029] of Rectangle
+	(lower_right_corner [newspaper_INSTANCE_00031])
+	(upper_left_corner [newspaper_INSTANCE_00030]))
+
+([newspaper_INSTANCE_00030] of Point
+	(x 111)
+	(y 314))
+
+([newspaper_INSTANCE_00031] of Point
+	(x 177)
+	(y 384))
+
+([newspaper_INSTANCE_00032] of ObjectLocation
+	(location [newspaper_INSTANCE_00029])
+	(object [instance_00093]))
+
+([newspaper_INSTANCE_00033] of Supervises
+	(first_object [instance_00055])
+	(second_object [instance_00068]))
+
+([newspaper_INSTANCE_00034] of Point
+	(x 30)
+	(y 38))
+
+([newspaper_INSTANCE_00035] of Point
+	(x 262)
+	(y 66))
+
+([newspaper_INSTANCE_00036] of Rectangle
+	(lower_right_corner [newspaper_INSTANCE_00035])
+	(upper_left_corner [newspaper_INSTANCE_00034]))
+
+([newspaper_INSTANCE_00037] of ObjectLocation
+	(location [newspaper_INSTANCE_00036])
+	(object [newspaper_INSTANCE_00033]))
+
+([newspaper_INSTANCE_00038] of Supervises
+	(first_object [instance_00055])
+	(second_object [instance_00067]))
+
+([newspaper_INSTANCE_00039] of Point
+	(x 30)
+	(y 38))
+
+([newspaper_INSTANCE_00040] of Point
+	(x 76)
+	(y 248))
+
+([newspaper_INSTANCE_00041] of Rectangle
+	(lower_right_corner [newspaper_INSTANCE_00040])
+	(upper_left_corner [newspaper_INSTANCE_00039]))
+
+([newspaper_INSTANCE_00042] of ObjectLocation
+	(location [newspaper_INSTANCE_00041])
+	(object [newspaper_INSTANCE_00038]))
+
+([newspaper_INSTANCE_00043] of Supervises
+	(first_object [instance_00055])
+	(second_object [instance_00051]))
+
+([newspaper_INSTANCE_00044] of Point
+	(x 30)
+	(y 38))
+
+([newspaper_INSTANCE_00045] of Point
+	(x 183)
+	(y 167))
+
+([newspaper_INSTANCE_00046] of Rectangle
+	(lower_right_corner [newspaper_INSTANCE_00045])
+	(upper_left_corner [newspaper_INSTANCE_00044]))
+
+([newspaper_INSTANCE_00047] of ObjectLocation
+	(location [newspaper_INSTANCE_00046])
+	(object [newspaper_INSTANCE_00043]))
+
+([newspaper_INSTANCE_00048] of Supervises
+	(first_object [instance_00051])
+	(second_object [instance_00045]))
+
+([newspaper_INSTANCE_00049] of Point
+	(x 183)
+	(y 167))
+
+([newspaper_INSTANCE_00050] of Point
+	(x 364)
+	(y 198))
+
+([newspaper_INSTANCE_00051] of Rectangle
+	(lower_right_corner [newspaper_INSTANCE_00050])
+	(upper_left_corner [newspaper_INSTANCE_00049]))
+
+([newspaper_INSTANCE_00052] of ObjectLocation
+	(location [newspaper_INSTANCE_00051])
+	(object [newspaper_INSTANCE_00048]))
+
+([newspaper_INSTANCE_00053] of Supervises
+	(first_object [instance_00067])
+	(second_object [instance_00093]))
+
+([newspaper_INSTANCE_00054] of Point
+	(x 76)
+	(y 248))
+
+([newspaper_INSTANCE_00055] of Point
+	(x 119)
+	(y 331))
+
+([newspaper_INSTANCE_00056] of Rectangle
+	(lower_right_corner [newspaper_INSTANCE_00055])
+	(upper_left_corner [newspaper_INSTANCE_00054]))
+
+([newspaper_INSTANCE_00057] of ObjectLocation
+	(location [newspaper_INSTANCE_00056])
+	(object [newspaper_INSTANCE_00053]))
+
+([newspaper_INSTANCE_00058] of Supervises
+	(first_object [instance_00067])
+	(second_object [instance_00039]))
+
+([newspaper_INSTANCE_00059] of Point
+	(x 76)
+	(y 248))
+
+([newspaper_INSTANCE_00060] of Point
+	(x 278)
+	(y 315))
+
+([newspaper_INSTANCE_00061] of Rectangle
+	(lower_right_corner [newspaper_INSTANCE_00060])
+	(upper_left_corner [newspaper_INSTANCE_00059]))
+
+([newspaper_INSTANCE_00062] of ObjectLocation
+	(location [newspaper_INSTANCE_00061])
+	(object [newspaper_INSTANCE_00058]))
+
+([newspaper_INSTANCE_00063] of Supervises
+	(first_object [instance_00068])
+	(second_object [instance_00043]))
+
+([newspaper_INSTANCE_00064] of Point
+	(x 262)
+	(y 66))
+
+([newspaper_INSTANCE_00065] of Point
+	(x 411)
+	(y 73))
+
+([newspaper_INSTANCE_00066] of Rectangle
+	(lower_right_corner [newspaper_INSTANCE_00065])
+	(upper_left_corner [newspaper_INSTANCE_00064]))
+
+([newspaper_INSTANCE_00067] of ObjectLocation
+	(location [newspaper_INSTANCE_00066])
+	(object [newspaper_INSTANCE_00063]))
+
+([newspaper_INSTANCE_00068] of BillingChartEntry)
+
+([newspaper_INSTANCE_00069] of BillingChartEntry
+	(section Science)
+	(size Single^page))
+
+([newspaper_INSTANCE_00070] of BillingChartEntry)
+
+([newspaper_INSTANCE_00071] of BillingChartEntry)
+
+([newspaper_INSTANCE_00072] of BillingChartEntry
+	(section Science)
+	(size Single^page)
+	(standard-price 495.0))
+
+([newspaper_INSTANCE_00073] of BillingChartEntry)
+
+([newspaper_INSTANCE_00074] of BillingChartEntry
+	(section Lifestyle)
+	(size Single^page)
+	(standard-price 450.0))
+
+([newspaper_INSTANCE_00075] of BillingChartEntry)
+
+([newspaper_INSTANCE_00076] of BillingChartEntry
+	(section Automotive)
+	(size Single^page)
+	(standard-price 450.0))
+
+([newspaper_INSTANCE_00077] of BillingChartEntry)
+
+([newspaper_INSTANCE_00078] of BillingChartEntry
+	(section Business)
+	(size Single^page)
+	(standard-price 450.0))
+
+([newspaper_INSTANCE_00079] of BillingChartEntry)
+
+([newspaper_INSTANCE_00080] of BillingChartEntry
+	(section Local^News)
+	(size Single^page)
+	(standard-price 450.0))
+
+([newspaper_INSTANCE_00081] of BillingChartEntry)
+
+([newspaper_INSTANCE_00082] of BillingChartEntry
+	(section Sports)
+	(size Single^page)
+	(standard-price 450.0))
+
+([newspaper_INSTANCE_00083] of BillingChartEntry)
+
+([newspaper_INSTANCE_00084] of BillingChartEntry
+	(section World^News)
+	(size Single^page)
+	(standard-price 450.0))
+
+([newspaper_INSTANCE_00085] of BillingChartEntry)
+
+([newspaper_INSTANCE_00086] of BillingChartEntry
+	(section Magazine)
+	(size Single^page)
+	(standard-price 450.0))
+
+([newspaper_INSTANCE_00087] of BillingChartEntry)
+
+([newspaper_INSTANCE_00088] of BillingChartEntry
+	(section Science)
+	(size Sixteenth^of^a^page)
+	(standard-price 30.0))
+
+([newspaper_INSTANCE_00089] of BillingChartEntry
+	(section Sports)
+	(size Sixteenth^of^a^page)
+	(standard-price 34.0))
+
+([newspaper_INSTANCE_00090] of BillingChartEntry)
+
+([newspaper_INSTANCE_00091] of BillingChartEntry
+	(section Lifestyle)
+	(size Sixteenth^of^a^page)
+	(standard-price 34.0))
+
+([newspaper_INSTANCE_00092] of BillingChartEntry)
+
+([newspaper_INSTANCE_00093] of BillingChartEntry
+	(section World^News)
+	(size Sixteenth^of^a^page)
+	(standard-price 34.0))
+
+([newspaper_INSTANCE_00094] of BillingChartEntry)
+
+([newspaper_INSTANCE_00095] of BillingChartEntry
+	(section Business)
+	(size Sixteenth^of^a^page)
+	(standard-price 30.0))
+
+([newspaper_INSTANCE_00096] of BillingChartEntry)
+
+([newspaper_INSTANCE_00097] of BillingChartEntry
+	(section Automotive)
+	(size Sixteenth^of^a^page)
+	(standard-price 45.0))
+
+([newspaper_INSTANCE_00098] of BillingChartEntry)
+
+([newspaper_INSTANCE_00099] of BillingChartEntry
+	(section Magazine)
+	(size Sixteenth^of^a^page)
+	(standard-price 45.0))
+
+([newspaper_INSTANCE_00100] of BillingChartEntry)
+
+([newspaper_INSTANCE_00101] of BillingChartEntry
+	(section Local^News)
+	(size Sixteenth^of^a^page)
+	(standard-price 45.0))
+
+([newspaper_INSTANCE_00102] of BillingChartEntry)
+
+([newspaper_INSTANCE_00103] of BillingChartEntry
+	(section Business)
+	(size Eighth^of^a^page)
+	(standard-price 60.0))
+
+([newspaper_INSTANCE_00104] of BillingChartEntry)
+
+([newspaper_INSTANCE_00105] of BillingChartEntry
+	(section Science)
+	(size Eighth^of^a^page)
+	(standard-price 60.0))
+
+([newspaper_INSTANCE_00106] of BillingChartEntry)
+
+([newspaper_INSTANCE_00107] of BillingChartEntry
+	(section Sports)
+	(size Eighth^of^a^page)
+	(standard-price 60.0))
+
+([newspaper_INSTANCE_00108] of BillingChartEntry)
+
+([newspaper_INSTANCE_00109] of BillingChartEntry
+	(section Automotive)
+	(size Eighth^of^a^page)
+	(standard-price 80.0))
+
+([newspaper_INSTANCE_00110] of BillingChartEntry)
+
+([newspaper_INSTANCE_00111] of BillingChartEntry
+	(section Magazine)
+	(size Eighth^of^a^page)
+	(standard-price 80.0))
+
+([newspaper_INSTANCE_00112] of BillingChartEntry)
+
+([newspaper_INSTANCE_00113] of BillingChartEntry
+	(section Local^News)
+	(size Eighth^of^a^page)
+	(standard-price 80.0))
+
+([newspaper_INSTANCE_00114] of BillingChartEntry)
+
+([newspaper_INSTANCE_00115] of BillingChartEntry
+	(section Lifestyle)
+	(size Eighth^of^a^page)
+	(standard-price 65.0))
+
+([newspaper_INSTANCE_00116] of BillingChartEntry)
+
+([newspaper_INSTANCE_00117] of BillingChartEntry
+	(section World^News)
+	(size Eighth^of^a^page)
+	(standard-price 65.0))
+
+([newspaper_INSTANCE_00118] of BillingChartEntry)
+
+([newspaper_INSTANCE_00119] of BillingChartEntry
+	(section World^News)
+	(size Half^of^a^page))
+
+([Organization] of Network_Metaclass
+	(node_slot [employees]))
+
+([Supervises] of Connector_Metaclass
+	(first_object_slot_pointer [supervises]))

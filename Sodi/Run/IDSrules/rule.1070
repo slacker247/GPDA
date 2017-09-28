@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC technote main.cgi file directory traversal attempt"; flags:A+; uricontent:"/technote/main.cgi"; nocase; content:"filename="; nocase; content:"../../"; reference:cve,CVE-2001-0075; reference:bugtraq,2156; classtype:web-application-attack; sid:1051; rev:3;)

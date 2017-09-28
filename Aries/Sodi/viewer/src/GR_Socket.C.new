@@ -1,0 +1,79 @@
+#include <math.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <stream.h>
+#include "GR_Socket.H"
+
+//
+//   Network socket stuff
+//
+int             p_sock;
+int             portid;
+char            *hostid;
+struct sockaddr_in server, client;
+int             server_len, client_len;
+
+void Net_init(int port, char *host);
+void Net_write(char *buf, int bytes);
+int  Net_read(char *buf, int bufsize);
+void Net_close();
+
+void
+GR_Socket::GR_Socket(int portid, char *host)
+{
+  struct hostent *hp = gethostbyname(host);
+  if (hp == NULL) {
+    fprintf(stderr, "%s: unknown host", host); exit(2);
+  }
+     
+  server.sin_family = AF_INET;
+  server.sin_port = htons(portid);
+  memmove(&server.sin_addr, hp->h_addr, hp->h_length);
+
+  p_sock = socket(AF_INET, SOCK_DGRAM, 0);           /* Create socket */
+  if (sock < 0) {
+    perror("opening stream socket"); exit(1);
+  }
+  client.sin_family = AF_INET;
+  client.sin_addr.s_addr = htonl(INADDR_ANY);
+  client.sin_port = htons(0);
+
+  if (bind(p_sock, (struct sockaddr *)&client, sizeof(client)) < 0) {
+    perror("Client bind "); exit(4);
+  }
+}
+
+int
+GR_Socket::read(char *buf, int bufsize)
+{
+int  rval;
+
+   memset(buf, 0, bufsize);
+   rval = recvfrom(p_sock, buf, bufsize, 0, (struct sockaddr *)&server, &server_len); 
+   if (rval < 0) {
+	perror("reading stream message"); close(p_sock); exit(1);
+   }
+   if (rval == 0) {
+	cout << "SimCmdr has exited." << endl;
+   }
+   return (rval);
+}
+
+void
+GR_Socket::write(char *buf, int bytes)
+{    
+    server_len = sizeof(server);
+    if (sendto(p_sock, buf, bytes, 0, (struct sockaddr *)&server, server_len) < 0) {
+      perror("writing on stream socket"); close(p_sock); exit(1);
+    }
+}
+
+GR_Socket::~GR_Socket()
+{
+  close(p_sock);
+}

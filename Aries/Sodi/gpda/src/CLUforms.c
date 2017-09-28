@@ -1,0 +1,258 @@
+/* Form definition file generated with fdesign. */
+
+#include "forms.h"
+#include <stdlib.h>
+#include "CLUforms.h"
+
+static FL_PUP_ENTRY fdmenu_menu_file_0[] =
+{ 
+    /*  itemtext   callback  shortcut   mode */
+    { "Exit",	0,	"",	 FL_PUP_NONE},
+    {0}
+};
+
+FD_itelfields *create_form_itelfields(void)
+{
+  FL_OBJECT *obj;
+  FD_itelfields *fdui = (FD_itelfields *) fl_calloc(1, sizeof(*fdui));
+
+  fdui->itelfields = fl_bgn_form(FL_NO_BOX, 850, 460);
+  obj = fl_add_box(FL_UP_BOX,0,0,850,460,"");
+  fdui->itel_fldselect[0] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,30,70,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[1] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,30,100,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[2] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,30,130,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[3] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,30,160,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[4] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,30,190,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[5] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,30,220,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[6] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,30,250,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[7] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,30,280,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[8] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,30,310,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[9] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,30,340,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[10] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,30,370,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[11] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,30,400,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[12] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,160,70,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[13] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,160,100,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[14] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,160,130,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[15] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,160,160,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[16] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,160,190,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[17] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,160,220,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[18] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,160,250,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[19] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,160,280,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[20] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,160,310,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[21] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,160,340,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[22] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,160,370,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[23] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,160,400,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[24] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,295,70,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[25] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,295,100,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[26] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,295,130,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[27] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,295,160,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[28] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,295,190,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[29] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,295,220,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[30] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,295,250,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[31] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,295,280,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[32] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,295,310,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[33] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,295,340,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[34] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,295,370,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[35] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,295,400,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[36] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,435,70,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[37] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,435,100,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[38] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,435,130,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[39] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,435,160,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[40] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,435,190,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[41] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,435,220,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[42] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,435,250,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[43] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,435,280,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[44] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,435,310,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[45] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,435,340,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[48] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,30,430,100,20,"Prepared");
+    fl_set_object_lcolor(obj,FL_DARKTOMATO);
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[49] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,160,430,100,20,"Prep-Date");
+    fl_set_object_lcolor(obj,FL_DARKTOMATO);
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[50] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,295,430,100,20,"");
+    fl_set_object_lcolor(obj,FL_DARKTOMATO);
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[51] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,435,430,120,20,"");
+    fl_set_object_lcolor(obj,FL_DARKTOMATO);
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->cluapply = obj = fl_add_button(FL_NORMAL_BUTTON,750,35,80,25,"Apply");
+    fl_set_object_lcolor(obj,FL_RED);
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,cluclassCB,0);
+  obj = fl_add_button(FL_NORMAL_BUTTON,325,35,120,20,"Deselect All");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,cluclassCB,13);
+  obj = fl_add_button(FL_NORMAL_BUTTON,170,35,120,20,"Select All");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,cluclassCB,12);
+  fdui->itel_fldselect[46] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,435,370,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->itel_fldselect[47] = obj = fl_add_checkbutton(FL_PUSH_BUTTON,435,400,120,20,"");
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->clu_classes = obj = fl_add_browser(FL_NORMAL_BROWSER,610,155,230,285,"Classification Relationships");
+    fl_set_object_color(obj,FL_WHITE,FL_YELLOW);
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  obj = fl_add_text(FL_NORMAL_TEXT,610,135,230,20,"Class #      Hypothesis");
+    fl_set_object_boxtype(obj,FL_FRAME_BOX);
+    fl_set_object_lalign(obj,FL_ALIGN_LEFT|FL_ALIGN_INSIDE);
+    fl_set_object_lstyle(obj,FL_FIXEDBOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->clu_classfn = obj = fl_add_input(FL_NORMAL_INPUT,610,110,230,20,"Classifying File:");
+    fl_set_object_lalign(obj,FL_ALIGN_TOP_LEFT);
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->clu_closest = obj = fl_add_input(FL_NORMAL_INPUT,610,70,230,20,"New Node Name:");
+    fl_set_object_boxtype(obj,FL_SHADOW_BOX);
+    fl_set_object_lcolor(obj,FL_BLUE);
+    fl_set_object_lalign(obj,FL_ALIGN_TOP_LEFT);
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  obj = fl_add_positioner(FL_NORMAL_POSITIONER,5,25,835,5,"");
+    fl_set_object_boxtype(obj,FL_NO_BOX);
+  fdui->menu_file = obj = fl_add_menu(FL_PULLDOWN_MENU,10,5,40,20,"File");
+    fl_set_object_callback(obj,CLUexitCB,0);
+    fl_set_menu_entries(obj, fdmenu_menu_file_0);
+  fdui->menu_mission = obj = fl_add_menu(FL_PULLDOWN_MENU,45,5,70,20,"Mission");
+    fl_set_object_callback(obj,clumissionCB,0);
+  fl_end_form();
+
+  fdui->itelfields->fdui = fdui;
+
+  return fdui;
+}
+/*---------------------------------------*/
+
+FD_defnode *create_form_defnode(void)
+{
+  FL_OBJECT *obj;
+  FD_defnode *fdui = (FD_defnode *) fl_calloc(1, sizeof(*fdui));
+
+  fdui->defnode = fl_bgn_form(FL_NO_BOX, 846, 486);
+  obj = fl_add_box(FL_UP_BOX,0,0,846,486,"");
+  fdui->clu_mission = obj = fl_add_choice(FL_NORMAL_CHOICE2,55,60,190,25,"");
+    fl_set_object_lcolor(obj,FL_WHEAT);
+    fl_set_object_lsize(obj,FL_NORMAL_SIZE);
+    fl_set_object_lalign(obj,FL_ALIGN_TOP);
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  fdui->clu_nodename = obj = fl_add_input(FL_NORMAL_INPUT,60,150,190,25,"Choose a hypothesis name for\nthis concept.");
+    fl_set_object_lcolor(obj,FL_WHEAT);
+    fl_set_object_lsize(obj,FL_NORMAL_SIZE);
+    fl_set_object_lalign(obj,FL_ALIGN_TOP);
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+    fl_set_object_callback(obj,CLUnoneCB,0);
+  obj = fl_add_button(FL_NORMAL_BUTTON,115,250,90,25,"Done");
+    fl_set_object_callback(obj,clunodeCB,9);
+  obj = fl_add_text(FL_NORMAL_TEXT,50,20,205,35,"Choose the Mission Domain\nto which this node is to be added.");
+    fl_set_object_lcolor(obj,FL_WHEAT);
+    fl_set_object_lsize(obj,FL_NORMAL_SIZE);
+    fl_set_object_lalign(obj,FL_ALIGN_CENTER|FL_ALIGN_INSIDE);
+    fl_set_object_lstyle(obj,FL_BOLD_STYLE);
+  fl_end_form();
+
+  fdui->defnode->fdui = fdui;
+
+  return fdui;
+}
+/*---------------------------------------*/
+

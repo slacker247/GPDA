@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN Webtrends Scanner UDP Probe"; content: "|0A 68 65 6C 70 0A 71 75 69 74 0A|";reference:arachnids,308; classtype:attempted-recon; sid:637; rev:1;)

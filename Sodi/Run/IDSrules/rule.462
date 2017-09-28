@@ -1,0 +1,1 @@
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"INFO Inbound GNUTella Connect accept"; content: "GNUTELLA OK"; nocase; depth: 40; classtype:bad-unknown; sid:557; rev:1;)

@@ -1,0 +1,1475 @@
+<tracks version="KAT 1.0">
+<trackCollection>
+<timeInterval>
+ <time name="START" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.799</time>
+<time name="END" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.799</time>
+</timeInterval>
+<time name="AVERAGE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.799</time>
+<rbr halfHgt="7403.24" halfWid="7340.74" sinAng="1.000000" cosAng="0.000000">
+<pt d="3">-1.319822 0.769209 0.00</pt>
+</rbr>
+<tracker id="KAT"></tracker>
+<projection type="GEODETIC"></projection>
+<track trackId="2D352" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319006 0.769169 213.76</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+64.487984 -43.012085 47.759956 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">24.404610 29.607397 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+9.455930 10.259346 13.445940 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.319006 0.769169 213.76</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">15.390000 18.670000 0.55</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.199</time>
+</track>
+<track trackId="30220" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319972 0.769631 191.30</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+11.096251 -12.682804 98.145126 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-26.217505 -3.742009 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.888806 -0.015807 0.997297 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.319973 0.769631 191.37</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-25.030001 -3.570000 -0.50</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.399</time>
+</track>
+<track trackId="43476" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319807 0.769528 198.49</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+101.337135 -8.742894 154.664627 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">3.149373 -19.712830 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.975557 0.149260 0.065144 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.319806 0.769524 197.81</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">3.140000 -19.670000 0.47</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.199</time>
+</track>
+<track trackId="F4652" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320010 0.768445 214.69</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+99.964081 -0.637198 57.459171 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">0.450047 30.027597 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+1.002740 0.200378 14.369127 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.320010 0.768442 214.43</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-1.580000 29.469999 -0.79</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.599</time>
+</track>
+<track trackId="HH335" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.318754 0.768852 220.96</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+75.155579 -38.800365 39.341141 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">14.046422 21.952953 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+2.578141 2.466741 4.855051 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.318754 0.768852 220.96</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">13.690000 21.400000 -0.29</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.199</time>
+</track>
+<track trackId="JC577" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319184 0.769608 212.24</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+74.798080 -38.906155 39.389202 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">14.158072 21.997744 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.735399 -0.408610 0.363518 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.319184 0.769608 212.24</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">14.050000 21.830000 -1.02</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.199</time>
+</track>
+<track trackId="LR727" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320012 0.769241 209.44</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+107.849297 -12.221203 118.767799 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-21.975498 33.884907 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+3.136366 -3.295329 6.080435 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.320011 0.769241 209.26</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-10.450000 16.110001 -0.51</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.399</time>
+</track>
+<track trackId="NS067" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320385 0.769573 183.45</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+116.131332 -27.012646 144.570770 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-13.994610 23.182089 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+4.141213 -5.206334 9.622541 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.320386 0.769574 183.56</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-5.600000 9.280000 -0.44</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.399</time>
+</track>
+<track trackId="PF624" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320861 0.769668 175.36</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+60.737251 32.050552 73.472565 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">26.966513 -22.135988 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+8.027830 -5.770722 5.734829 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.320861 0.769668 175.40</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">21.150000 -17.360001 1.25</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.599</time>
+</track>
+<track trackId="PP640" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320043 0.769275 210.58</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+107.957184 -12.387569 119.024323 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-17.233271 26.572674 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.715863 0.436941 0.325497 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.320042 0.769273 210.15</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-17.299999 26.680000 -0.85</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.399</time>
+</track>
+<track trackId="R1132" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319179 0.769683 203.67</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+120.326599 -47.799629 211.755798 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-10.640536 24.899847 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.850935 0.346491 0.188182 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.319179 0.769683 203.68</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-10.610000 24.840000 -0.83</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.199</time>
+</track>
+<track trackId="UE033" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <dropped/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319667 0.769269 214.90</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+7624.619141 -24951.447266 82836.820312 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">9.879682 -32.760208 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+7.162588 -20.438946 68.772560 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:00.399</time>
+</track>
+<track trackId="ZB353" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319988 0.769217 203.48</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+113.817963 -23.219131 138.864258 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">13.459580 -22.551811 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.747995 0.421572 0.293249 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.319987 0.769216 203.25</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">13.320000 -22.330000 -0.49</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.399</time>
+</track>
+<track trackId="1T013" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319636 0.769002 214.84</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+1168.026123 -9735.751953 83217.242188 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">2.158827 -18.446424 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.718147 -3.690076 31.816702 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:00:40.399</time>
+</track>
+<track trackId="74054" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319636 0.769004 214.94</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+98.419647 -620.309265 6126.936523 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">2.105535 -20.677189 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.509488 -1.541265 15.488371 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:30.399</time>
+</track>
+<track trackId="JG664" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319119 0.768358 232.11</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+123368.250000 -120612.539062 118016.507812 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">7.634979 -7.467471 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+33.937462 -32.702301 32.486416 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:00:20.400</time>
+</track>
+<track trackId="34305" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319980 0.769630 191.49</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+21254.083984 3019.316162 530.900513 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-25.711607 -3.669802 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+46.880913 6.548619 1.934234 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:30.199</time>
+</track>
+<track trackId="AR362" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320190 0.769372 203.57</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+86912.296875 -56752.929688 37201.710938 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-33.453850 21.870197 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+59.422279 -38.193649 25.967993 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:00.399</time>
+</track>
+<track trackId="YZ030" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319990 0.768520 213.68</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+6652.558594 8208.783203 10141.031250 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">3.679606 4.543613 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+2.259769 2.731772 3.420686 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:00:30.599</time>
+</track>
+<track trackId="76363" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320589 0.768190 213.79</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+1046.962524 -7478.238770 54235.953125 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">1.249229 -9.057445 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.497264 -2.478528 18.125803 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:00:30.799</time>
+</track>
+<track trackId="3W351" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320353 0.770168 177.22</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+5.115142 7.306375 10.438358 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">0.052209 0.074585 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.003135 0.004469 0.006392 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:00:50.400</time>
+</track>
+<track trackId="G4732" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319731 0.768249 225.99</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+2044.616333 -921.454651 416.886902 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">3.635248 -1.639384 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+1.062294 -0.473022 0.226712 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:00:50.400</time>
+</track>
+<track trackId="DA441" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/> <screened/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320413 0.768968 201.56</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+125.833725 83.662094 59.116905 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">5.281687 3.580103 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.597358 0.388587 0.287477 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:40.600</time>
+</track>
+<track trackId="VB604" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320111 0.768480 215.37</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+6727.319824 -1901.393677 541.771484 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">4.618199 -1.306062 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+4.257677 -1.192669 0.377725 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:10.599</time>
+</track>
+<track trackId="4N415" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320091 0.769965 180.93</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+10657.835938 1509.156738 315.644409 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-33.044777 -4.723448 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+110.630730 15.670818 3.239243 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:50.200</time>
+</track>
+<track trackId="33416" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320008 0.768414 215.13</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+6.990197 0.519185 0.100963 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">0.734727 0.055059 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.023192 0.001691 0.000747 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:30.599</time>
+</track>
+<track trackId="5L166" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319836 0.769584 196.27</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+130789.351562 109766.265625 92167.492188 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-7.907028 -6.637393 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+155.801453 130.562469 109.862343 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:10.199</time>
+</track>
+<track trackId="PD315" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320005 0.769228 207.32</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+3025.149170 1688.085449 942.597351 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-2.196980 -1.226143 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+3.600993 2.007105 1.124875 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:10.399</time>
+</track>
+<track trackId="3D432" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319553 0.768269 227.98</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+5522.645996 -465.427673 69.422905 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">16.212339 -1.373773 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+13.481907 -1.116999 0.394493 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:30.399</time>
+</track>
+<track trackId="AQ473" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319049 0.769133 208.75</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+12.815355 24.395882 56.326584 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">1.367080 3.050840 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.096186 0.172618 0.404058 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:40.199</time>
+</track>
+<track trackId="EA521" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319804 0.769517 197.84</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+1201.555664 -6895.327148 43259.777344 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">3.463681 -21.680180 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+4.095919 -19.381981 122.316803 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:40.199</time>
+</track>
+<track trackId="4Q724" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.318877 0.769185 224.88</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+859.408569 817.115967 975.911133 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">26.244099 28.181616 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+12.099043 11.934877 13.800691 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:50.200</time>
+</track>
+<track trackId="LR040" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320043 0.769243 207.47</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+41830.539062 -11524.655273 3235.258789 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-19.782459 5.457519 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+239.600479 -65.946045 18.751730 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:40.400</time>
+</track>
+<track trackId="W1650" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320277 0.770134 181.56</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+1.109047 1.854893 3.132620 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-0.137608 -0.231809 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.008330 0.013898 0.023491 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:40.400</time>
+</track>
+<track trackId="NJ053" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320224 0.769665 185.50</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.648880 0.464896 2.176690 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-0.431725 -1.539843 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.009554 0.015581 0.060758 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:50.400</time>
+</track>
+<track trackId="5E461" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319548 0.768268 228.71</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+13135.516602 -1110.513916 124.085121 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">17.674252 -1.497651 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+37.682228 -3.167644 0.568257 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:40.400</time>
+</track>
+<track trackId="KM562" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320307 0.770131 180.10</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+255.055328 160.494019 116.018585 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-9.418288 -6.184310 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+1.897431 1.176082 0.878586 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:40.400</time>
+</track>
+<track trackId="K6041" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319985 0.769630 191.57</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+6718.014160 944.591553 234.776321 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-30.533274 -4.357996 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+197.688492 28.073294 5.006437 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:50.400</time>
+</track>
+<track trackId="AJ766" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320001 0.769229 205.99</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+247.373001 78.074265 32.042244 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-6.686319 -2.169163 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+1.633146 0.508042 0.231954 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:40.400</time>
+</track>
+<track trackId="LK333" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320892 0.769108 206.90</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+52.887241 -75.890984 154.136002 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">3.161067 -5.908477 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.697064 -1.073284 2.128970 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:50.600</time>
+</track>
+<track trackId="HP042" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320220 0.768958 200.57</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+648.931274 417.578125 279.987335 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-4.855630 -3.163279 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+2.136267 1.339919 0.952405 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:30.399</time>
+</track>
+<track trackId="AT002" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319145 0.768771 238.77</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+42830.687500 -22738.349609 12199.541016 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">19.018982 -10.120555 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+314.592834 -166.872925 89.795982 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:40.199</time>
+</track>
+<track trackId="VG422" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319934 0.769148 203.99</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+698.253174 -897.552979 1445.892700 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-6.571389 9.855454 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+7.105303 -9.159657 14.735072 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:50.400</time>
+</track>
+<track trackId="G4043" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319623 0.768281 216.95</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+792.766907 -638.709778 688.705444 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">15.460826 -14.252568 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+11.791536 -9.949005 10.170600 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:50.400</time>
+</track>
+<track trackId="6L246" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320375 0.770152 179.30</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+4589.106934 -16.818983 68.693192 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-28.891314 0.107494 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+137.238541 -0.508059 0.688196 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:50.400</time>
+</track>
+<track trackId="KQ071" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320578 0.768492 209.30</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+179.928879 -699.081299 6206.585938 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-2.716121 23.726141 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+1.382697 -3.351758 30.277615 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:40.600</time>
+</track>
+<track trackId="PA117" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319206 0.769427 207.18</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+860.847168 -285.340332 206.762817 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-13.347348 5.004221 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+14.912022 -5.216746 2.953699 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:50.200</time>
+</track>
+<track trackId="1H221" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319814 0.769554 197.69</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+275.098877 -1096.367676 6962.420898 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">3.164778 -19.809256 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+6.047536 -31.597713 198.778580 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:50.200</time>
+</track>
+<track trackId="64525" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319147 0.768772 238.61</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+5557.365234 -2904.127441 1645.174683 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">20.526146 -10.922560 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+159.113968 -84.138100 45.770370 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:50.200</time>
+</track>
+<track trackId="0C323" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <dropped/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319643 0.769462 261.65</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+45076612.000000 12648041.000000 19270252.000000 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-47.050617 6.227821 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+41533.125000 7828.465820 25560.357422 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:20.200</time>
+</track>
+<track trackId="1S124" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <dropped/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319275 0.769851 247.90</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+45106964.000000 12618999.000000 19241922.000000 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-1.085101 49.294567 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+41552.058594 7810.490234 25542.968750 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:20.200</time>
+</track>
+<track trackId="3Y660" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <dropped/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.321058 0.768836 286.14</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+42843944.000000 13506858.000000 19942534.000000 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-57.545475 9.945490 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+40566.679688 8528.935547 26105.533203 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:20.600</time>
+</track>
+<track trackId="56754" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320070 0.769967 181.27</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+54.441296 -127.699432 367.379089 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-152.945038 -21.865829 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+19845.289062 7070.287109 2518.978027 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.320070 0.769967 181.27</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-28.700001 -4.100000 -0.78</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.399</time>
+</track>
+<track trackId="7F510" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319727 0.769037 209.55</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+55.543324 -129.019089 366.149017 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">41.877777 33.507362 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+19777.333984 7143.352051 2580.144043 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.319728 0.769037 209.60</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">22.430000 17.950001 0.05</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.399</time>
+</track>
+<track trackId="CY116" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <dropped/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319260 0.769767 244.68</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+45079072.000000 12646194.000000 19268466.000000 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-0.073532 47.666836 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+41534.695312 7827.323242 25559.300781 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:20.200</time>
+</track>
+<track trackId="JL613" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.318850 0.768744 228.01</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+50.397640 -122.555275 371.252930 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">33.143791 42.659943 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+20059.968750 6785.472168 2295.293945 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.318850 0.768744 228.00</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">13.530000 17.420000 0.11</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:02:00.199</time>
+</track>
+<track trackId="QX203" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <dropped/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.318540 0.769428 227.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+45220772.000000 12492606.000000 19119432.000000 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">30.332251 56.394344 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+41621.875000 7732.260254 25466.531250 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:20.200</time>
+</track>
+<track trackId="X2617" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <dropped/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.318932 0.768462 148.32</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+44713200.000000 12996433.000000 19620944.000000 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">39.659626 -39.187008 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+41307.277344 8044.102539 25776.505859 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:20.200</time>
+</track>
+<track trackId="NA726" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319258 0.769722 233.61</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+23590456.000000 6906756.000000 8590173.000000 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-0.069533 45.074821 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+36482.382812 7575.352539 20030.023438 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:30.199</time>
+</track>
+<track trackId="4L106" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319705 0.769058 209.90</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+2100036.500000 742919.000000 432591.437500 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">34.234421 29.888062 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+24334.076172 7437.459473 7641.064941 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:50.400</time>
+</track>
+<track trackId="R2021" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319378 0.768933 105.88</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+23381986.000000 7125994.000000 8798151.000000 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">54.112808 -105.861664 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+36253.660156 7815.813965 20258.060547 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:30.199</time>
+</track>
+<track trackId="EM733" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320277 0.769293 145.88</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+22797656.000000 7263557.500000 8873501.000000 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">22.277166 -47.842758 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+35885.523438 8073.289062 20409.123047 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:30.399</time>
+</track>
+<track trackId="6V151" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320891 0.769867 277.58</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+23403610.000000 7108309.000000 8780945.000000 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-131.064148 -18.737623 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+36278.039062 7796.416992 20239.851562 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:30.199</time>
+</track>
+<track trackId="NV265" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320628 0.769569 169.88</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+1989301.125000 739152.750000 434632.531250 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">45.489086 -23.432148 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+23961.251953 7705.072754 7755.083496 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:50.600</time>
+</track>
+<track trackId="E0505" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.318484 0.769102 225.44</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+23571794.000000 6919323.000000 8601625.000000 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">56.418385 72.617065 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+36460.835938 7589.136230 20041.503906 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:30.199</time>
+</track>
+<track trackId="JA270" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.321255 0.768479 230.67</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+21678670.000000 7454055.000000 8979643.000000 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-51.426506 -17.435307 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+35172.132812 8510.496094 20673.310547 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:30.799</time>
+</track>
+<track trackId="WH371" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320819 0.768717 263.49</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+22130848.000000 7454016.000000 9026529.000000 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-35.488304 47.986988 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+35412.316406 8396.580078 20650.951172 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:30.599</time>
+</track>
+<track trackId="NX574" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320260 0.770096 238.56</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+9576116.000000 3069135.250000 2828240.000000 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-69.415344 44.545181 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+30814.634766 7525.457031 14268.980469 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:40.199</time>
+</track>
+<track trackId="YJ420" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320336 0.769935 218.70</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+2203163.750000 758620.000000 442245.343750 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-149.127151 -21.320005 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+24596.611328 7299.550781 7652.799805 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:50.200</time>
+</track>
+<track trackId="CZ536" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320704 0.768707 244.94</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+8906606.000000 3201160.500000 2927229.000000 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-25.016275 63.604805 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+29920.662109 8169.612793 14660.822266 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:40.600</time>
+</track>
+<track trackId="KG055" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319167 0.769775 219.29</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+2230039.750000 725934.062500 415124.531250 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-0.053275 80.219391 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+24854.964844 6985.042480 7391.589355 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:50.200</time>
+</track>
+<track trackId="ZQ205" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/> <extrapolated/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319141 0.769629 206.93</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+2225958.250000 730954.625000 419166.500000 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">39.525314 28.896465 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+24815.652344 7033.350586 7430.441406 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:01:50.200</time>
+</track>
+</trackCollection>
+</tracks>

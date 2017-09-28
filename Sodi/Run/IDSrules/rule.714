@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible Y2K Zelu Trojan"; content: "filename=\"Y2K.EXE""; nocase; reference:MCAFEE,10505; sid:757;  classtype:misc-activity; rev:3;)

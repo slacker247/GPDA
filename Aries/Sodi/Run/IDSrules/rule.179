@@ -1,0 +1,1 @@
+alert ip $EXTERNAL_NET any -> $HOME_NET any (msg:"DOS Jolt attack"; fragbits: M; dsize:408; classtype:attempted-dos; sid:268; rev:1;)

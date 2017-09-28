@@ -1,0 +1,201 @@
+/*
+ File:		FixedDatum.java
+ CVS Info:	$Id: FixedDatum.java,v 1.2 1998/01/27 18:44:16 mcgredo Exp $
+ Compiler:	jdk 1.3
+ */
+
+package PDUs;
+
+import mil.navy.nps.util.*;         // General-purpose utilities
+import disEnumerations.*;         // Enumerations for DIS
+
+import java.io.*;                               // input/output library
+import java.util.*;                             // utilities
+
+
+/**
+ * Special data record subclass of PDUElement.
+ *
+ *@version 1.0
+ *@author <a href="mailto:mcgredo@cs.nps.navy.mil"> Don McGregor</a> (<a href="http://www.npsnet.org/~mcgredo">http://www.npsnet.org/~mcgredo</a>)
+ *
+ *<dt><b>Location:</b>
+ *<dd>Web:  <a href="http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/FixedDatum.java">
+ *  http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/FixedDatum.java</a>
+ *
+ *<dd>or locally:  <a href="../../../../../../mil/navy/nps/dis/FixedDatum.java">
+ *  ~/mil/navy/nps/dis/FixedDatum.java</a>
+ *
+ *<dt><b>Hierarchy Diagram:</b>
+ *<dd><a href="../../../../../../dis-java-vrml/images/PduClassHierarchy.jpg"><IMG SRC="../../../../../../dis-java-vrml/images/PduClassHierarchyButton.jpg" ALIGN=ABSCENTER WIDTH=150 HEIGHT=21></a>
+ *
+ *<dt><b>Summary:</b>
+ *<dd>This record is constructed from fixed data types and their values.
+ *
+ *<dt><b>Explanation</b>
+ *<dd>The FixedDatum is usually kept as a part of the DataPdu. It contains only
+ *  an ID and a 32-bit value.<P>
+ *
+ *  This is a subclass of the PduElement class, the abstract class that all parts of a
+ *  PDU inherit from. It knows how to serialize, deserialize, and clone itself. It
+ *  is described on pp 108-109 in the DIS standard.<P>
+ *
+ *<dt><b>History:</b>
+ *<dd>		15Nov96 /Don McGregor    	/New
+ *<dd>		10Mar97 /Don McGregor    	/Changes for javadoc compliance
+ *<dd>		16Apr97 /Don McGregor    	/PrintStream passed to printValues
+ *<dd>		8Dec97	/Ronan Fauglas		/changes for documentation templates + complements in documentation
+ *<dd>		11Dec97	/Ronan Fauglas		/changes access methods names from "variable()" to "getVariable()"
+ *
+ *<dt><b>References:</b>
+ *<dd>		DIS Data Dictionary: <a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/105.htm">Fixed Datum Record Record </a>
+ *<dd>		DIS specification : IEEE 1278.1, 5.3.20
+ *
+ *@see PduElement 
+ */
+public class FixedDatum extends PduElement
+{
+    /**
+     *The fixed datum id shall be represented by a 32-bit enumeration.
+     *
+     *<dl>
+     *<dt><b>Value:</b>
+     *<dd> Enumeration; see references below for values.
+     *<dt><b>References:</b>
+     *<dd>	DIS Data Dictionary :<a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/aa.htm">Datum ID Field</a>
+     *<dd>	see section 7 in the EBV-DOC
+     *</dl>		
+     */
+    protected int   fixedDatumID;               // 32-bit enumeration
+
+    /**
+     *This field shall specify the value of fixed datum indicated by the fixed datum types.
+     *
+     *<dl>
+     *<dt><b>References:</b>
+     *<dd>	DIS Data Dictionary :<a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/106.htm">Fixed Datum Value Field</a>	
+     *</dl>
+     */
+    protected int   value;                      // the datum value, 32 bits
+
+    /**
+     *Constant value--size of a Fixed Datum Record; here :<code>sizeOf = 8 bytes</code>.
+     */
+    public static final int     sizeOf = 8;     // size, in bytes, of a serialized fixed datum
+
+
+/**
+ *Default constructor--fills with zeros for all values.
+ */
+public FixedDatum()     // constructor
+{
+    fixedDatumID = 0;
+    value = 0;
+}
+
+/**
+ *Constructs a new FixedDatum with the values specfied in parameters.
+ *
+ *@param pFixedDatumID the value of fixed Datum Identifier
+ *@param pValue the value of the Fixed Datum
+ */
+public FixedDatum(int pFixedDatumID, int pValue) // constructor
+{
+    fixedDatumID = pFixedDatumID;
+    value = pValue;
+}
+
+public Object clone()
+{
+    // make a copy of the object. We don't have any objects here, so we can
+    // just do a straight copy.
+
+    FixedDatum  newFixedDatum = new FixedDatum();
+
+    newFixedDatum.setFixedDatumID(fixedDatumID);
+    newFixedDatum.setValue(value);
+
+    return newFixedDatum;
+}
+
+/**
+ *@exception RuntimeException when IO Error occurs.
+ */
+public void serialize(DataOutputStream outputStream)
+{
+    try
+     {
+        
+        outputStream.writeInt(fixedDatumID);
+        outputStream.writeInt(value);
+     }
+    catch(IOException ioException)      // catch-all for all IO exceptions in the above code
+     {
+        throw new 
+            RuntimeException("Exception in FixedDatum. Error serializing unit.");
+     }
+
+    return;
+
+}
+
+
+/**
+ *@exception RuntimeException when IO Error occurs.
+ */
+public void deSerialize(DataInputStream inputStream)
+{
+  // no need to call super, since there are no ivars in the superclass.
+
+  try
+    {
+        fixedDatumID = inputStream.readInt();
+        value = inputStream.readInt();
+     }
+    catch(IOException ioException)      // catch-all for all IO exceptions in the above code
+     {
+        throw new 
+            RuntimeException("Exception in FixedDatum. Error deSerializing unit.");
+     }
+    
+    return;
+}   
+
+public int length()
+{
+    return sizeOf;          // 8 bytes long
+}
+
+public void printValues(int indentLevel, PrintStream printStream)
+{
+    // print the values of the object out, with correct level of
+    // indentation on the page.
+
+     
+  StringBuffer indent = ProtocolDataUnit.getPaddingOfLength(indentLevel);
+  int          idx, superclassIndent = indentLevel;
+
+    printStream.println(indent + "fixedDatumID: " + fixedDatumID);
+    printStream.println(indent + "value: " + value);
+
+    return;
+}
+
+// accessor methods
+
+public int getFixedDatumID()
+{ return fixedDatumID;
+}
+public void setFixedDatumID(int pFixedDatumID)
+{ fixedDatumID = pFixedDatumID;
+}
+
+public int getValue()
+{ return value;
+}
+public void setValue(int pValue)
+{ value = pValue;
+}
+
+} // end of class FixedDatum
+

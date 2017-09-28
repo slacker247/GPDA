@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI websendmail access"; flags: A+; uricontent: "/websendmail"; nocase; reference:cve,CVE-1999-0196; reference:arachnids,469; reference:bugtraq,2077; classtype:attempted-recon; sid:815; rev:2;)

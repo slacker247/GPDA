@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS exec-src access";flags: A+; content:"#filename=*.exe"; nocase; classtype:web-application-activity; sid:1011; rev:2;)

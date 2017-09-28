@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (msg:"BACKDOOR attempt"; flags: A+; content:"backdoor"; nocase; classtype:attempted-admin; sid:210; rev:1;)

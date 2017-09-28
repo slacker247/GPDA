@@ -1,0 +1,14 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Enemy_Name
+(
+	{Token.string == "North"}
+	{SpaceToken}
+	{Token.string == "Korea"} |
+	{Token.string == "Korean"}
+):Enemy_Name 
+ -->
+:Enemy_Name.Enemy_Name = {}

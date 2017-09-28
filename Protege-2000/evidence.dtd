@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT evidence (SystemClasses*, STANDARD-CLASS*, SLOT*, Evidence*, PAL-CONSTRAINT*)>
+<!ELEMENT SystemClasses (#PCDATA)>
+<!ATTLIST SystemClasses
+	id ID #IMPLIED
+>
+<!ELEMENT NAME (#PCDATA)>
+<!ATTLIST NAME
+	id ID #IMPLIED
+>
+<!ELEMENT ROLE (#PCDATA)>
+<!ATTLIST ROLE
+	id ID #IMPLIED
+>
+<!ELEMENT DOCUMENTATION (#PCDATA)>
+<!ATTLIST DOCUMENTATION
+	id ID #IMPLIED
+>
+<!ELEMENT CONSTRAINTS EMPTY>
+<!ATTLIST CONSTRAINTS
+	refid CDATA #IMPLIED
+>
+<!ELEMENT Instances (#PCDATA)>
+<!ATTLIST Instances
+	id ID #IMPLIED
+>
+<!ATTLIST Instances
+	refid IDREFS #IMPLIED
+>
+<!ELEMENT Subclasses (#PCDATA)>
+<!ATTLIST Subclasses
+	id ID #IMPLIED
+>
+<!ATTLIST Subclasses
+	refid IDREFS #IMPLIED
+>
+<!ELEMENT SlotValues (#PCDATA)>
+<!ATTLIST SlotValues
+	id ID #IMPLIED
+>
+<!ELEMENT SlotDefaultValue (#PCDATA)>
+<!ATTLIST SlotDefaultValue
+	id ID #IMPLIED
+>
+<!ELEMENT SlotType (#PCDATA)>
+<!ATTLIST SlotType
+	id ID #IMPLIED
+>
+<!ELEMENT SlotMinCard (#PCDATA)>
+<!ATTLIST SlotMinCard
+	id ID #IMPLIED
+>
+<!ELEMENT SlotMaxCard (#PCDATA)>
+<!ATTLIST SlotMaxCard
+	id ID #IMPLIED
+>
+<!ELEMENT SlotAllowedClass (#PCDATA)>
+<!ATTLIST SlotAllowedClass
+	id ID #IMPLIED
+>
+<!ELEMENT SlotMinimum (#PCDATA)>
+<!ATTLIST SlotMinimum
+	id ID #IMPLIED
+>
+<!ELEMENT SlotMaximum (#PCDATA)>
+<!ATTLIST SlotMaximum
+	id ID #IMPLIED
+>
+<!ELEMENT SlotDocumentation (#PCDATA)>
+<!ATTLIST SlotDocumentation
+	id ID #IMPLIED
+>
+<!ELEMENT SlotInverseSlot (#PCDATA)>
+<!ATTLIST SlotInverseSlot
+	id ID #IMPLIED
+>
+<!ELEMENT SlotConstraints (#PCDATA)>
+<!ATTLIST SlotConstraints
+	id ID #IMPLIED
+>
+<!ELEMENT SlotAllowedParents (#PCDATA)>
+<!ATTLIST SlotAllowedParents
+	id ID #IMPLIED
+>
+<!ELEMENT SlotSubslots (#PCDATA)>
+<!ATTLIST SlotSubslots
+	id ID #IMPLIED
+>
+<!ELEMENT TemplateSlots (#PCDATA)>
+<!ATTLIST TemplateSlots
+	id IDREFS #IMPLIED
+>
+<!ELEMENT SLOT (SlotType?, SlotAllowedClass*, SlotConstraints*, SlotDefaultValue*, SlotDocumentation*, SlotInverseSlot*, SlotMaxCard*, SlotMaximum?, SlotMinCard*, SlotMinimum?, SlotSubslots*, SlotValues*, SlotAllowedParents*)>
+<!ATTLIST SLOT
+	id ID #IMPLIED
+>
+<!ELEMENT OverriddenSLOT (SlotType?, SlotAllowedClass*, SlotConstraints*, SlotDefaultValue*, SlotDocumentation*, SlotInverseSlot*, SlotMaxCard*, SlotMaximum?, SlotMinCard*, SlotMinimum?, SlotSubslots*, SlotValues*, SlotAllowedParents*)>
+<!ATTLIST OverriddenSLOT
+	id IDREFS #IMPLIED
+>
+<!ELEMENT STANDARD-CLASS (CONSTRAINTS*, DOCUMENTATION*, NAME*, ROLE*, TemplateSlot*, OverriddenSLOT*)>
+<!ATTLIST STANDARD-CLASS
+	id ID #IMPLIED
+	superclass_id IDREFS #IMPLIED
+>
+<!ELEMENT Evidence (Arg-1?, Arg-2?, Arg-3?, Belief?, Description?, Disbelief?, Dur-Unit?, Duration?, External-Filename?, External_Level?, External_Node?, Level?, Mission-Domain?, Node?, Source?, Time?, Time-Unit?, Type?)>
+<!ATTLIST Evidence
+	id ID #IMPLIED
+	superclass_id IDREFS #IMPLIED
+>
+<!ELEMENT Arg-1 (#PCDATA)>
+<!ATTLIST Arg-1
+	id ID #IMPLIED
+>
+<!ELEMENT Arg-2 (#PCDATA)>
+<!ATTLIST Arg-2
+	id ID #IMPLIED
+>
+<!ELEMENT Arg-3 (#PCDATA)>
+<!ATTLIST Arg-3
+	id ID #IMPLIED
+>
+<!ELEMENT Belief (#PCDATA)>
+<!ATTLIST Belief
+	id ID #IMPLIED
+>
+<!ELEMENT Description (#PCDATA)>
+<!ATTLIST Description
+	id ID #IMPLIED
+>
+<!ELEMENT Disbelief (#PCDATA)>
+<!ATTLIST Disbelief
+	id ID #IMPLIED
+>
+<!ELEMENT Dur-Unit (#PCDATA)>
+<!ATTLIST Dur-Unit
+	id ID #IMPLIED
+>
+<!ELEMENT Duration (#PCDATA)>
+<!ATTLIST Duration
+	id ID #IMPLIED
+>
+<!ELEMENT External-Filename (#PCDATA)>
+<!ATTLIST External-Filename
+	id ID #IMPLIED
+>
+<!ELEMENT External_Level (#PCDATA)>
+<!ATTLIST External_Level
+	id ID #IMPLIED
+>
+<!ELEMENT External_Node (#PCDATA)>
+<!ATTLIST External_Node
+	id ID #IMPLIED
+>
+<!ELEMENT Level (#PCDATA)>
+<!ATTLIST Level
+	id ID #IMPLIED
+>
+<!ELEMENT Mission-Domain (#PCDATA)>
+<!ATTLIST Mission-Domain
+	id ID #IMPLIED
+>
+<!ELEMENT Node (#PCDATA)>
+<!ATTLIST Node
+	id ID #IMPLIED
+>
+<!ELEMENT Source (#PCDATA)>
+<!ATTLIST Source
+	id ID #IMPLIED
+>
+<!ELEMENT Time (#PCDATA)>
+<!ATTLIST Time
+	id ID #IMPLIED
+>
+<!ELEMENT Time-Unit (#PCDATA)>
+<!ATTLIST Time-Unit
+	id ID #IMPLIED
+>
+<!ELEMENT Type (#PCDATA)>
+<!ATTLIST Type
+	id ID #IMPLIED
+>

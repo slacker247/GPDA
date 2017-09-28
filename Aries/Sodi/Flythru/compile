@@ -1,0 +1,2 @@
+gcc -g -o skyfly skymain.c skyfly.c fly.c database.c image.c perfdraw.c dtedutils.c models.c glm.o -L. -lglui -lglut -lGLU -lGL -lm
+

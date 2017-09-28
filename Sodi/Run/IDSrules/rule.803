@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS /etc/inetd.conf access"; flags:A+; content:"/etc/inetd.conf";nocase; sid:1370; rev:1; classtype:web-application-activity;)

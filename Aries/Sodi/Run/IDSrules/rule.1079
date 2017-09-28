@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC availablemedia attempt";flags: A+; content:"xp_availablemedia"; nocase; classtype:web-application-attack; sid:1060; rev:2;)

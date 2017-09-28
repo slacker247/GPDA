@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Nessus 404 probe"; flags: A+; uricontent: "/nessus_is_probing_you_"; depth: 32;reference:arachnids,301; classtype:web-application-activity; sid:1102; rev:2;)

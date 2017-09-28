@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC /~root";flags: A+; uricontent:"/~root/"; nocase; classtype:attempted-recon; sid:1145; rev:2;)

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="MysqlPooledConnection.java">
+        <attr name="class_dependency_javax.sql.PooledConnection" stringvalue="MysqlPooledConnection"/>
+    </fileobject>
+    <fileobject name="MysqlDataSourceFactory.java">
+        <attr name="class_dependency_javax.naming.spi.ObjectFactory" stringvalue="MysqlDataSourceFactory"/>
+    </fileobject>
+    <fileobject name="LogicalHandle.java">
+        <attr name="SourceSync" bytevalue="0"/>
+        <attr name="class_dependency_java.sql.Connection" stringvalue="LogicalHandle"/>
+    </fileobject>
+    <fileobject name="MysqlXaDataSource.java">
+        <attr name="class_dependency_java.io.Serializable" stringvalue="MysqlXaDataSource"/>
+        <attr name="class_dependency_javax.sql.ConnectionPoolDataSource" stringvalue="MysqlXaDataSource"/>
+        <attr name="class_dependency_javax.sql.DataSource" stringvalue="MysqlXaDataSource"/>
+        <attr name="class_dependency_javax.naming.Referenceable" stringvalue="MysqlXaDataSource"/>
+        <attr name="class_dependency_com.mysql.jdbc.xa.XADataSourceImpl" stringvalue="MysqlXaDataSource"/>
+        <attr name="SourceSync" bytevalue="0"/>
+        <attr name="class_dependency_javax.sql.XADataSource" stringvalue="MysqlXaDataSource"/>
+    </fileobject>
+    <fileobject name="MysqlConnectionPoolDataSource.java">
+        <attr name="class_dependency_javax.sql.ConnectionPoolDataSource" stringvalue="MysqlConnectionPoolDataSource"/>
+        <attr name="class_dependency_com.mysql.jdbc.jdbc2.optional.MysqlDataSource" stringvalue="MysqlConnectionPoolDataSource"/>
+    </fileobject>
+    <fileobject name="MysqlXaDataSourceFactory.java">
+        <attr name="class_dependency_javax.naming.spi.ObjectFactory" stringvalue="MysqlXaDataSourceFactory"/>
+    </fileobject>
+    <fileobject name="MysqlDataSource.java">
+        <attr name="class_dependency_java.io.Serializable" stringvalue="MysqlDataSource"/>
+        <attr name="class_dependency_javax.sql.DataSource" stringvalue="MysqlDataSource"/>
+        <attr name="class_dependency_javax.naming.Referenceable" stringvalue="MysqlDataSource"/>
+        <attr name="EA-OpenIDE-Connection" serialvalue="aced0005737200146a6176612e7574696c2e4c696e6b65644c6973740c29535d4a60882203000078707704000000027372002a6f72672e6f70656e6964652e6c6f61646572732e436f6e6e656374696f6e537570706f72742450616972055f8af6f04a3bd80200024c00047479706574002b4c6f72672f6f70656e6964652f636f6f6b6965732f436f6e6e656374696f6e436f6f6b696524547970653b4c000576616c75657400124c6a6176612f6c616e672f4f626a6563743b78707372002e6f72672e6e65746265616e732e6d6f64756c65732e6a6176612e4a617661436f6e6e656374696f6e732454797065a83dd01001306d7402000149000666696c746572787000000050737200436f72672e6e65746265616e732e6d6f64756c65732e6a6176612e4a617661446174614f626a6563742450657273697374656e74436f6e6e656374696f6e48616e646c65ba16f1d2dd4c1cb60200014c000e646174614e6f646548616e646c6574001f4c6f72672f6f70656e6964652f6e6f6465732f4e6f64652448616e646c653b7870737200296f72672e6f70656e6964652e6c6f61646572732e446174614e6f6465244f626a65637448616e646c655bd0f82e01811d2e0200025a0005636c6f6e654c00036f626a7400244c6f72672f6f70656e6964652f66696c6573797374656d732f46696c654f626a6563743b787000737200326f72672e6f70656e6964652e66696c6573797374656d732e416273747261637446696c654f626a656374245265706c616365896fa1bce4b5219f0200024c000866696c654e616d657400124c6a6176612f6c616e672f537472696e673b4c000666734e616d6571007e000f787074004a4442436f6e6e6563742f636f6d2f6d7973716c2f6a6462632f6a646263322f6f7074696f6e616c2f4d7973716c436f6e6e656374696f6e506f6f6c44617461536f757263652e6a617661740019433a2f50726f6772616d2046696c65732f41737369737452517371007e00027371007e0006000000507371007e00087371007e000b007371007e000e740040636f6d2f6d7973716c2f6a6462632f6a646263322f6f7074696f6e616c2f4d7973716c436f6e6e656374696f6e506f6f6c44617461536f757263652e6a61766174001e483a2f4d7920446f63756d656e74732f4c696e75782f576f726b2f564b4278"/>
+    </fileobject>
+</attributes>

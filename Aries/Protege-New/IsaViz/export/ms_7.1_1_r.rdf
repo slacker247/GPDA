@@ -1,0 +1,14 @@
+<?xml version='1.0'?>
+<rdf:RDF
+    xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+    <rdf:Seq rdf:ID='JSPapersBySubj'>
+        <rdf:li rdf:resource='http://www.carchat.com/Sept97.html'/>
+        <rdf:li rdf:resource='http://www.dogworld.com/Aug96.doc'/>
+        <rdf:li rdf:resource='http://www.webnuts.net/Jan97.html'/>
+    </rdf:Seq>
+    <rdf:Seq rdf:ID='JSPapersByDate'>
+        <rdf:li rdf:resource='http://www.dogworld.com/Aug96.doc'/>
+        <rdf:li rdf:resource='http://www.webnuts.net/Jan97.html'/>
+        <rdf:li rdf:resource='http://www.carchat.com/Sept97.html'/>
+    </rdf:Seq>
+</rdf:RDF>

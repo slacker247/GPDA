@@ -1,0 +1,17 @@
+
+rotatez -90
+#rotatex 180
+#rotatey 90
+scale .0043 .0043 .0043
+translate 0.0 0.2 0.2
+color 250 250 250
+poly  3   
+ vtx  0  4  0
+ vtx  -2 0  0
+ vtx  2  0  0
+color 0 100 0
+poly  3   
+ vtx  0  4  0
+ vtx  -1 2  0
+ vtx  1  2  0
+

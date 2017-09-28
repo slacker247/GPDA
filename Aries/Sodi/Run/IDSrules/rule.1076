@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC ftp attempt";flags: A+; content:"ftp.exe"; nocase; classtype:web-application-activity; sid:1057; rev:2;)

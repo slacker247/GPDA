@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC .nsconfig access"; flags:A+; uricontent:"/.nsconfig"; classtype:attempted-recon; sid:1209; rev:1;)

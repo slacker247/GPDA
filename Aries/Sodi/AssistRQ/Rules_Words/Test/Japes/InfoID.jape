@@ -1,0 +1,15 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: InfoID
+
+    {Token.string == "ID"}
+    {Token.string == ":"}
+(
+    {Token.kind == number}
+)
+:ID
+-->
+:ID.ID = {}

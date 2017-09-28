@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC handler access"; flags: A+; uricontent:"/handler"; nocase; reference:bugtraq,380; reference:arachnids,235; reference:cve,CVE-1999-0148; classtype:attempted-recon; sid:1141; rev:2;)

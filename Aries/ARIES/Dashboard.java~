@@ -1,0 +1,514 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.BorderFactory;
+import java.lang.System.*;
+import java.util.Properties;
+
+public class Dashboard extends JPanel
+{
+  // Flash icons and labels
+  private ImageIcon blueIcon = new ImageIcon("images/blueOval.gif");
+  private ImageIcon greenIcon = new ImageIcon("images/greenOval.gif");
+  private ImageIcon orangeIcon = new ImageIcon("images/orangeOval.gif");
+//  private ImageIcon purpleIcon = new ImageIcon("images/purpleOval.gif");
+  private ImageIcon redIcon = new ImageIcon("images/redOval.gif");
+  private ImageIcon yellowIcon = new ImageIcon("images/yellowOval.gif");
+
+  private JLabel  blueLabel = new JLabel(blueIcon, SwingConstants.LEFT);
+  private JLabel  greenLabel = new JLabel (greenIcon, SwingConstants.LEFT);
+  private JLabel  orangeLabel = new JLabel(orangeIcon, SwingConstants.LEFT);
+//  private JLabel  purpleLabel = new JLabel(purpleIcon, SwingConstants.LEFT);
+  private JLabel  redLabel = new JLabel(redIcon, SwingConstants.LEFT);
+  private JLabel  yellowLabel = new JLabel(yellowIcon, SwingConstants.LEFT);
+
+  // Optimizer Metrics labels
+  private JLabel     probLabel = createDataLabel();
+  private JLabel     ratioLabel = createDataLabel();
+  private JLabel     ofLabel = createDataLabel();
+  private JLabel     simLabel = createDataLabel();
+  private JLabel     scoreLabel = createDataLabel();
+
+  // Panels
+  private JLabel     flashPanel = new JLabel
+    (new ImageIcon("images/NKorea.jpg"));
+  private JLabel     timeline = new JLabel
+    (new ImageIcon("images/Timeline2.jpg"));
+  private JLabel     amiPanel = new JLabel
+    (new ImageIcon("images/BNEScreen_1.jpg"));
+//  private JPanel     amiPanel = new JPanel();
+
+  private Color      panelColor = new Color(184, 181, 120);
+  private Color      edgeColor = new Color(169, 165, 90);
+
+  //----------------------------------------------------------------------------
+
+  public Dashboard()
+  {
+    BorderLayout  lo = new BorderLayout();
+    BorderLayout  flo = new BorderLayout();
+    JPanel        controlPanel = createControlPanel();
+    JPanel        appsPanel = createAppsPanel();
+    JPanel        flash2Panel = createFlash2Panel();
+
+    lo.setVgap(25);
+    setLayout(lo);
+    setBorder(BorderFactory.createEmptyBorder(25, 12, 25, 12)); // t, l, b, r
+
+    add(controlPanel, BorderLayout.PAGE_START);
+    add(appsPanel, BorderLayout.CENTER);
+    add(flash2Panel, BorderLayout.PAGE_END);
+  }
+
+  //----------------------------------------------------------------------------
+
+  protected JPanel createControlPanel()
+  {
+    Border  paneBorder = BorderFactory.createCompoundBorder
+      (BorderFactory.createLineBorder(edgeColor),
+       BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
+    JPanel  mainPanel = new JPanel();
+    JPanel  leftMainPanel = new JPanel();
+    JPanel  rightMainPanel = new JPanel();
+
+
+    ActionListener lafListener = new ActionListener()
+    {
+      public void actionPerformed (ActionEvent e)
+      {
+      }
+    };
+
+
+    // Control panel:
+
+    JPanel  ctlPanel = new JPanel();
+    ctlPanel.setLayout(new BorderLayout());
+    ctlPanel.setBorder(paneBorder);
+    ctlPanel.setBackground(panelColor);
+
+    JButton  exitBtn = new JButton("Planning");
+    exitBtn.setBackground(panelColor);
+    exitBtn.setPreferredSize(new Dimension(100, 40));
+    exitBtn.addMouseListener( new MouseListener() {
+	public void mouseClicked( MouseEvent e) {
+	   try {
+	     Runtime rt = Runtime.getRuntime();
+	     String cmd = "launchPlanning.sh";
+             Process proc = rt.exec(cmd);
+	   }
+	   catch(Exception rte) { };
+	}
+	public void mousePressed( MouseEvent e) { }
+	public void mouseReleased( MouseEvent e) { }
+	public void mouseEntered( MouseEvent e) { }
+	public void mouseExited( MouseEvent e) { }
+    } );
+    ctlPanel.add(exitBtn, BorderLayout.NORTH);
+
+    JButton  cuerBtn = new JButton("Memos");
+    cuerBtn.setBackground(panelColor);
+    cuerBtn.setPreferredSize(new Dimension(100, 40));
+    cuerBtn.addMouseListener( new MouseListener() {
+	public void mouseClicked( MouseEvent e) {
+	   try {
+	     Runtime rt = Runtime.getRuntime();
+	     String cmd = "mozilla /home/sodidemo/ARIES/AQFlash.swf";
+             Process proc = rt.exec(cmd);
+	   }
+	   catch(Exception rte) { };
+	}
+	public void mousePressed( MouseEvent e) { }
+	public void mouseReleased( MouseEvent e) { }
+	public void mouseEntered( MouseEvent e) { }
+	public void mouseExited( MouseEvent e) { }
+    } );
+    ctlPanel.add(cuerBtn, BorderLayout.CENTER);
+
+    JButton  bneBtn = new JButton("Evidence");
+    bneBtn.setBackground(panelColor);
+    bneBtn.setPreferredSize(new Dimension(100, 40));
+    bneBtn.addMouseListener( new MouseListener() {
+	public void mouseClicked( MouseEvent e) {
+	   try {
+	     Runtime rt = Runtime.getRuntime();
+	     String cmd = "VisualKB.sh";
+             Process proc = rt.exec(cmd);
+	   }
+	   catch(Exception rte) { };
+	}
+	public void mousePressed( MouseEvent e) { }
+	public void mouseReleased( MouseEvent e) { }
+	public void mouseEntered( MouseEvent e) { }
+	public void mouseExited( MouseEvent e) { }
+    } );
+    ctlPanel.add(bneBtn, BorderLayout.SOUTH);
+
+
+    // Status panel:
+
+    JPanel  statusPanel = new JPanel();
+    statusPanel.setLayout(new BorderLayout());
+    statusPanel.setBorder(paneBorder);
+    statusPanel.setBackground(panelColor);
+
+    JLabel  statusLabel = new JLabel("STATUS");
+    statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+    JPanel  flagsPanel = new JPanel();
+    JPanel  leftPanel = new JPanel();
+    JPanel  rightPanel = new JPanel();
+    flagsPanel.setLayout(new BorderLayout());
+    leftPanel.setLayout(new GridLayout(3, 1));
+    rightPanel.setLayout(new GridLayout(3, 1));
+
+    JRadioButton  strikeFlag = new JRadioButton("Global Strike");
+    JRadioButton  opFlag     = new JRadioButton("Information Operation");
+    JRadioButton  ctlFlag    = new JRadioButton("Space Control");
+    JRadioButton  defFlag    = new JRadioButton("Missile Defense");
+    JRadioButton  isrFlag    = new JRadioButton("ISR");
+    JRadioButton  socomFlag  = new JRadioButton("SOCOM");
+
+    strikeFlag.setBackground(panelColor);
+    defFlag.setBackground(panelColor);
+    opFlag.setBackground(panelColor);
+    isrFlag.setBackground(panelColor);
+    ctlFlag.setBackground(panelColor);
+    socomFlag.setBackground(panelColor);
+
+    strikeFlag.setSelected(true);
+    defFlag.setSelected(true);
+    opFlag.setSelected(true);
+    isrFlag.setSelected(true);
+    ctlFlag.setSelected(true);
+    socomFlag.setSelected(true);
+
+    leftPanel.add(strikeFlag);
+    leftPanel.add(opFlag);
+    leftPanel.add(ctlFlag);
+    rightPanel.add(defFlag);
+    rightPanel.add(isrFlag);
+    rightPanel.add(socomFlag);
+    flagsPanel.add(leftPanel, BorderLayout.LINE_START);
+    flagsPanel.add(rightPanel, BorderLayout.LINE_END);
+
+    statusPanel.add(statusLabel, BorderLayout.PAGE_START);
+    statusPanel.add(flagsPanel, BorderLayout.CENTER);
+
+
+    // Charts panel:
+
+    JPanel  chartsPanel = new JPanel();
+    GridLayout  glo = new GridLayout(0, 2);
+//    glo.setHgap(5);
+    chartsPanel.setLayout(glo);
+    chartsPanel.setBorder(paneBorder);
+    chartsPanel.setBackground(panelColor);
+
+    String[]      defStrs = {"Fighter", "PAC3", "Aegis", "Thaad"};
+    JPanel        defPanel = new JPanel();
+    BorderLayout  defLO = new BorderLayout();
+    defLO.setVgap(3);
+    defPanel.setLayout(defLO);
+    defPanel.setBackground(panelColor);
+
+    ImageIcon  defIcon = new ImageIcon("images/defChart.jpg");
+    JLabel     defChart = new JLabel(defIcon);
+    JComboBox  defMenu = new JComboBox(defStrs);
+
+    defChart.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+    defMenu.setBackground(panelColor);
+
+    defPanel.add(new JLabel("DEF. SUMMARY"), BorderLayout.PAGE_START);
+    defPanel.add(defMenu, BorderLayout.CENTER);
+    defPanel.add(new JLabel(defIcon), BorderLayout.PAGE_END);
+    defPanel.add(defChart, BorderLayout.PAGE_END);
+
+    String[]      offStrs = {"Fighter", "Bomber", "Aegis", "SLBM"};
+    JPanel        offPanel = new JPanel();
+    BorderLayout  offLO = new BorderLayout();
+    offLO.setVgap(3);
+    offPanel.setBackground(panelColor);
+    offPanel.setLayout(offLO);
+
+    ImageIcon  offIcon = new ImageIcon("images/offChart.jpg");
+    JLabel     offChart = new JLabel(offIcon);
+    JComboBox  offMenu = new JComboBox(offStrs);
+
+    offChart.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+    offMenu.setBackground(panelColor);
+
+    offPanel.add(new JLabel("OFF. SUMMARY"), BorderLayout.PAGE_START);
+    offPanel.add(offMenu, BorderLayout.CENTER);
+    offPanel.add(offChart, BorderLayout.PAGE_END);
+
+    chartsPanel.add(defPanel);
+    chartsPanel.add(offPanel);
+
+
+    // Metrics panel:
+
+    JPanel  metricsPanel = new JPanel();
+    metricsPanel.setLayout(new BorderLayout());
+    metricsPanel.setBorder(paneBorder);
+    metricsPanel.setBackground(panelColor);
+
+    JLabel  metricsLabel = new JLabel("OPTIMIZER METRICS");
+    metricsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+    JPanel  dataPanel = new JPanel();
+    dataPanel.setLayout(new BoxLayout(dataPanel, BoxLayout.Y_AXIS));
+    dataPanel.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
+    dataPanel.setBackground(panelColor);
+
+    JPanel  scorePanel = new JPanel();
+    scorePanel.setLayout(new BoxLayout(scorePanel, BoxLayout.X_AXIS));
+    scorePanel.setBackground(panelColor);
+    scorePanel.setAlignmentX(0);
+    scorePanel.add(new JLabel("COA Score  "));
+    scorePanel.add(scoreLabel);
+    scorePanel.add(new JLabel("  %"));
+
+    JPanel  probPanel = new JPanel();
+    probPanel.setLayout(new BoxLayout(probPanel, BoxLayout.X_AXIS));
+    probPanel.setBackground(panelColor);
+    probPanel.setAlignmentX(0);
+    probPanel.add(new JLabel("Probability of Success  "));
+    probPanel.add(probLabel);
+    probPanel.add(new JLabel("  %"));
+
+    JPanel  ratioPanel = new JPanel();
+    ratioPanel.setLayout(new BoxLayout(ratioPanel, BoxLayout.X_AXIS));
+    ratioPanel.setBackground(panelColor);
+    ratioPanel.setAlignmentX(0);
+    ratioPanel.add(new JLabel("Effects Ratio  "));
+    ratioPanel.add(ratioLabel);
+    ratioPanel.add(new JLabel("  of  "));
+    ratioPanel.add(ofLabel);
+
+    JPanel  simPanel = new JPanel();
+    simPanel.setLayout(new BoxLayout(simPanel, BoxLayout.X_AXIS));
+    simPanel.setBackground(panelColor);
+    simPanel.setAlignmentX(0);
+    simPanel.add(new JLabel("COA Similarity  "));
+    simPanel.add(simLabel);
+    simPanel.add(new JLabel("  %"));
+
+    dataPanel.add(scorePanel);
+    dataPanel.add(Box.createRigidArea(new Dimension(0, 2)));
+    dataPanel.add(probPanel);
+    dataPanel.add(Box.createRigidArea(new Dimension(0, 2)));
+    dataPanel.add(ratioPanel);
+    dataPanel.add(Box.createRigidArea(new Dimension(0, 2)));
+    dataPanel.add(simPanel);
+
+    // NOTE -- set values this way:
+    scoreLabel.setText("83");
+    probLabel.setText("95");
+    ratioLabel.setText("7");
+    ofLabel.setText("7");
+    simLabel.setText("87");
+
+    metricsPanel.add(metricsLabel, BorderLayout.PAGE_START);
+    metricsPanel.add(dataPanel, BorderLayout.CENTER);
+
+
+    // Map panel:
+
+    JPanel  mapPanel = new JPanel();
+    mapPanel.setLayout(new BorderLayout());
+    mapPanel.setBorder(paneBorder);
+    mapPanel.setBackground(panelColor);
+
+    ImageIcon  mapIcon = new ImageIcon("images/navmap3.jpg");
+    JButton    mapBtn = new JButton("Event Injector");
+
+    mapBtn.setBackground(panelColor);
+    mapPanel.add(new JLabel(mapIcon), BorderLayout.CENTER);
+    //mapPanel.add(mapBtn, BorderLayout.PAGE_END);
+
+
+    // Main panel:
+
+    mainPanel.setLayout(new BorderLayout());
+    leftMainPanel.setLayout(new BorderLayout());
+    rightMainPanel.setLayout(new BorderLayout());
+    mainPanel.setBackground(panelColor);
+    leftMainPanel.setBackground(panelColor);
+    rightMainPanel.setBackground(panelColor);
+
+    leftMainPanel.add(ctlPanel, BorderLayout.LINE_START);
+    leftMainPanel.add(statusPanel, BorderLayout.CENTER);
+    leftMainPanel.add(chartsPanel, BorderLayout.LINE_END);
+    rightMainPanel.add(metricsPanel, BorderLayout.LINE_START);
+    rightMainPanel.add(mapPanel, BorderLayout.CENTER);
+
+    mainPanel.add(leftMainPanel, BorderLayout.LINE_START);
+    mainPanel.add(rightMainPanel, BorderLayout.CENTER);
+
+    return mainPanel;
+  }
+
+  //----------------------------------------------------------------------------
+
+  protected JPanel createAppsPanel()
+  {
+//    Dimension  panelSize = new Dimension(480, 300);
+    JPanel  mainPanel = new JPanel();
+
+//    mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
+    mainPanel.setLayout(new GridLayout(1, 2, 20, 0)); // r, c, hs, vs
+
+    flashPanel.setBorder(BorderFactory.createLineBorder(edgeColor));
+    flashPanel.addMouseListener( new MouseListener() {
+	public void mouseClicked( MouseEvent e) {
+	   try {
+	     Runtime rt = Runtime.getRuntime();
+	     String cmd = "mozilla AQFlash.swf";
+             Process proc = rt.exec(cmd);
+	   }
+	   catch(Exception rte) { };
+	 }
+	public void mousePressed( MouseEvent e) { }
+	public void mouseReleased( MouseEvent e) { }
+	public void mouseEntered( MouseEvent e) { }
+	public void mouseExited( MouseEvent e) { }
+    } );
+
+    amiPanel.setBorder(BorderFactory.createLineBorder(edgeColor));
+    amiPanel.setBackground(panelColor);
+    amiPanel.addMouseListener( new MouseListener() {
+	public void mouseClicked( MouseEvent e) {
+	   try {
+	     Runtime rt = Runtime.getRuntime();
+	     String cmd = "VisualKB.sh";
+             Process proc = rt.exec(cmd);
+	   }
+	   catch(Exception rte) { };
+	}
+	public void mousePressed( MouseEvent e) { }
+	public void mouseReleased( MouseEvent e) { }
+	public void mouseEntered( MouseEvent e) { }
+	public void mouseExited( MouseEvent e) { }
+    } );
+
+    mainPanel.add(flashPanel);
+    mainPanel.add(amiPanel);
+
+    return mainPanel;
+  }
+
+  //----------------------------------------------------------------------------
+
+  protected JPanel createTextPanel()
+  {
+    JPanel  mainPanel = new JPanel();
+
+    greenLabel.setText
+      ("Utilize Japanese ISR... Intelligence Pending...");
+    redLabel.setText
+      ("Special Ops Mission... Seal Team Inserted to Neutralize Missile Launch Site...");
+    yellowLabel.setText
+      ("Integrate Missile Defense for potential launch... Aegis Standard Missile in Position...");
+    orangeLabel.setText
+      ("Increase Surveillance and Reconnaisance... SIA and Japanese Multi-Spectral Assets in place...");
+    blueLabel.setText
+      ("Conventional Global Strike... F117A to Eliminate TEL near DMZ...");
+
+    mainPanel.setLayout(new GridLayout(5, 1));
+//    mainPanel.setBackground(new Color(89, 89, 89));
+    mainPanel.setBackground(Color.WHITE);
+    mainPanel.add(greenLabel);
+    //mainPanel.add(purpleLabel);
+    mainPanel.add(yellowLabel);
+    mainPanel.add(redLabel);
+    mainPanel.add(blueLabel);
+    mainPanel.add(orangeLabel);
+
+    return mainPanel;
+  }
+
+  //----------------------------------------------------------------------------
+
+  protected JPanel createFlash2Panel()
+  {
+    Dimension  btnSize = new Dimension(50, 22);
+    BorderLayout  flo = new BorderLayout();
+    JPanel        mainPanel = new JPanel();
+
+    flo.setVgap(15);
+    mainPanel.setLayout(flo);
+
+    JPanel   textPanel = createTextPanel();
+    JPanel   btnsPanel = new JPanel();
+    JPanel   subPanel = new JPanel();
+    JButton  rewindBtn = new JButton("BACK");
+    JButton  playBtn = new JButton("PLAY");
+    JButton  stopBtn = new JButton("STOP");
+
+    rewindBtn.setMinimumSize(btnSize);
+    rewindBtn.setMaximumSize(btnSize);
+    rewindBtn.setPreferredSize(btnSize);
+    playBtn.setMinimumSize(btnSize);
+    playBtn.setMaximumSize(btnSize);
+    playBtn.setPreferredSize(btnSize);
+    stopBtn.setMinimumSize(btnSize);
+    stopBtn.setMaximumSize(btnSize);
+    stopBtn.setPreferredSize(btnSize);
+
+    subPanel.setLayout(new GridLayout(1, 3));
+    subPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+    subPanel.add(rewindBtn);
+    subPanel.add(playBtn);
+    subPanel.add(stopBtn);
+
+    btnsPanel.setLayout(new BoxLayout(btnsPanel, BoxLayout.Y_AXIS));
+    //btnsPanel.add(subPanel);
+
+    mainPanel.add(btnsPanel, BorderLayout.PAGE_START);
+    mainPanel.add(textPanel, BorderLayout.CENTER);
+    mainPanel.add(timeline, BorderLayout.PAGE_END);
+
+    return mainPanel;
+  }
+
+  //----------------------------------------------------------------------------
+
+  private JLabel createDataLabel()
+  {
+    Dimension  dataSize = new Dimension(30, 22);
+
+    JLabel  lbl = new JLabel();
+    lbl.setPreferredSize(dataSize);
+    lbl.setMinimumSize(dataSize);
+    lbl.setMaximumSize(dataSize);
+    lbl.setBorder(BorderFactory.createLoweredBevelBorder());
+    lbl.setOpaque(true);
+    lbl.setBackground(Color.WHITE);
+
+    return lbl;
+  }
+
+  //----------------------------------------------------------------------------
+
+  public static void main (String args[])
+  {
+    JFrame frame = new JFrame ("Dashboard");
+    JPanel pane = new Dashboard();
+
+    frame.addWindowListener(new WindowAdapter()
+    {
+      public void windowClosing(WindowEvent e)
+      {
+        System.exit(0);
+      }
+    });
+
+    frame.getContentPane().add (pane, BorderLayout.CENTER);
+    frame.pack();
+    frame.show();
+  }
+}
+

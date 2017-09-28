@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI sendmessage.cgi access"; uricontent:"/sendmessage.cgi"; nocase; flags:A+; classtype:attempted-recon; sid:1308; rev:1;)

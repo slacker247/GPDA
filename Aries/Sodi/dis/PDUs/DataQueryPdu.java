@@ -1,0 +1,422 @@
+/*
+ File:		DataQueryPdu.java
+ CVS Info:	$Id: DataQueryPdu.java,v 1.3 1998/01/28 08:28:18 mcgredo Exp $
+ Compiler:	jdk 1.3
+ */
+
+ package PDUs;
+ 
+ import java.util.*;                                           
+ import java.io.*;      
+ 
+ import mil.navy.nps.util.*;
+ import disEnumerations.*;
+
+ 
+/**
+ * Simulation management PDU to request exercise data.
+ *
+ *@version 1.0
+ *@author Antonio Alexandre Rua (<A HREF="http://www.garfield.fe.up.pt/~alexrua">http://www.garfield.fe.up.pt/~alexrua</A>)
+ *
+ *<dt><b>Location:</b>
+ *<dd>Web:  <a href="http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/DataQueryPdu.java">
+ *  http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/DataQueryPdu.java</a>
+ *
+ *<dd>or locally:  <a href="../../../../../../mil/navy/nps/dis/DataQueryPdu.java">
+ *  ~/mil/navy/nps/dis/DataQueryPdu.java</a>
+ *
+ *<dt><b>Hierarchy Diagram:</b>
+ *<dd><a href="../../../../../../dis-java-vrml/images/PduClassHierarchy.jpg"><IMG SRC="../../../../../../dis-java-vrml/images/PduClassHierarchyButton.jpg" ALIGN=ABSCENTER WIDTH=150 HEIGHT=21></a>
+ *
+ *<dt><b>Summary:</b>
+ *<dd> A request for data from an entity shall be communicated by issuing 
+ *  a Data Query PDU.
+ *
+ *<dt><b>Note:</b>
+ *<dd> We have flatenned the Data Query Datum Specification Record for the moment.
+ *  This might be changed in the future if we implement some other classes 
+ *  that need the same record.
+ *  Also note that we have implemented the fixedDatumIDlist and the variableDatumIDlist as a vector.
+ *
+ *<dt><b>History:</b>
+ *<dd>		16Sep97	/Antonio Alexandre Rua	/New
+ *<dd>		8Dec97	/Ronan Fauglas		/changes for documentation templates + complements in documentation
+ *<dd>		11Dec97	/Ronan Fauglas		/changed access methods: thisVariable() --> getThisVariable()
+ *
+ *<dt><b>References:</b>
+ *<dd>		DIS Data Dictionary :<a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/af.htm">Data Query PDU</a>	
+ *<dd>		DIS-Java-VRML Working Group: <a href="http://www.web3d.org/WorkingGroups/vrtp/dis-java-vrml/">http://www.web3d.org/WorkingGroups/vrtp/dis-java-vrml/</a>
+ *<dd>		DIS specification : IEEE 1278.1, Section 5.4.6.8, 4.4.5.4.8
+ *
+ *@see ProtocolDataUnit
+ *@see PduElement 
+ *@see SerializationInterface
+ */
+public class DataQueryPdu extends SimulationManagementFamily 
+{
+  /**
+   *Request ID - This field shall identify the data query request being made by the Simulation Manager.
+   *
+   *<dl>
+   *<dt><b>Value:</b>
+   *<dd>A 32-bit monotonically increasing integer identifier inserted by the Simulation Manager
+   *  into all Simulation Manager PDUs. 
+   *<dt><b>References:</b>
+   *<dd>	DIS Data Dictionary: <a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/99.htm">Request ID Field</a>
+   *</dl>
+   */
+  protected UnsignedInt requestID;
+
+  /**
+   * Time Interval - This field shall specify the time interval between issues of Data PDUs. 
+   *
+   *<dl>
+   *<dt><b>Value:</b>
+   *<dd>A value of zero in this field shall mean that the requested data
+   *  should be sent once and not at any previously specified time interval.
+   *<dt><b>References:</b>	
+   *<dd>	DIS Data Dictionary: <a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/a.htm">Time Stamp Field</a>
+   *<dd>		DIS specification : IEEE 1278.1, 5.3.31
+   *</dl>
+   */
+  protected UnsignedInt timeInterval;
+
+  /**
+   *List of fixed datums IDs.
+   *
+   *<dl>
+   *<dt><b>References:</b>
+   *<dd>	See section 7 in the EBV-DOC
+   *<dd>	DIS Data Dictionary: <a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/aa.htm">Datum ID Field</a>
+   *</dl>
+   */
+  protected Vector      fixedDatumIDList;          // list of fixed datums IDs
+
+  /**
+   *List of variable datums IDs.
+   *
+   *<dl>
+   *<dt><b>References:</b>
+   *<dd>	See section 7 in the EBV-DOC
+   *<dd>	DIS Data Dictionary: <a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/aa.htm">Datum ID Field</a>
+   *</dl>
+   */
+  protected Vector      variableDatumIDList;       // List of variable datums IDs
+ 
+  /**
+   *Constant value--size of a  PDU without header(fixed, counters + requestID + timeInterval).
+   *<code>sizeOf = 16 bytes</code>
+   */
+  public static final int sizeOf = 16;  // 16 bytes stands for 
+ 
+  /**
+   *An "exemplar" object, which is filled out to the state that is needed most of the time.
+   *
+   *<dl>
+   *<dt><b>Explanation</b>
+   *<dd>A brand new object has to have most of its values set,
+   *  such as the forceID, protocol version, and so on. This lets the user fill
+   *  out most of the values, save it in the class, then retrieve a copy of it
+   *  as needed. 
+   *</dl>
+   */
+  static protected DataQueryPdu exemplar;
+ 
+/**
+ *Default constructor--fills with zeros for all values.
+ */
+public DataQueryPdu()                                             // default constructor
+{
+  super.setPduType(PduTypeField.DATAQUERY);
+  requestID           = new UnsignedInt();
+  timeInterval        = new UnsignedInt();
+  fixedDatumIDList    = new Vector();
+  variableDatumIDList = new Vector();
+
+  return;
+}
+ 
+ public String pduName()
+{
+  return new String("Data Query PDU");
+}
+
+ public void  serialize(DataOutputStream outputStream)
+ {
+  /**
+     Serialize our data out to the stream. We first call the superclass,
+     so that all the data there is written out to the buffer first.
+     Then we serialize each of our ivars to the stream, being careful
+     about the order.
+ */
+ 
+  UnsignedInt     fixedDatumCount;        // number of fixed datums IDs
+  UnsignedInt     variableDatumCount;     // number of variable datums IDs
+  Enumeration     listContents;           // easy way to loop thru vector
+
+  //first serialize headers in superclasses
+   super.serialize(outputStream);         
+  //ivars
+  requestID.serialize(outputStream);
+  timeInterval.serialize(outputStream);
+  
+  // write out the number of fixed and variable datums IDs. 
+  fixedDatumCount    = new UnsignedInt(fixedDatumIDList.size());
+  variableDatumCount = new UnsignedInt(variableDatumIDList.size());
+  fixedDatumCount.serialize(outputStream);
+  variableDatumCount.serialize(outputStream);
+ 
+  // loop thru and write out all the elements of the list of fixed datums IDs.
+  listContents = fixedDatumIDList.elements();
+  while(listContents.hasMoreElements())
+  {
+    UnsignedInt  aID = (UnsignedInt)listContents.nextElement();
+    aID.serialize(outputStream);
+  }
+
+  // loop thru and write out all the elements of the list of variable datums IDs.
+  listContents = variableDatumIDList.elements();
+  while(listContents.hasMoreElements())
+  {
+    UnsignedInt  aID = (UnsignedInt)listContents.nextElement();
+    aID.serialize(outputStream);
+  }
+ 
+  return;
+}
+ 
+public void  deSerialize(DataInputStream inputStream)
+{
+  /**
+     deserialize our data from the stream. We first call the superclass,
+     so that all the data there is read into the buffer first.
+     Then we deserialize each of our ivars to the stream, being careful
+     about the order.
+  */
+ 
+  int             idx = 0;
+  UnsignedInt     variableDatumCount = new UnsignedInt(0), fixedDatumCount = new UnsignedInt(0);
+
+  super.deSerialize(inputStream);
+  // Do our ivars
+  requestID.deSerialize(inputStream);
+  timeInterval.deSerialize(inputStream);
+
+  //read in the number of Fixed and variable datum IDs   
+  fixedDatumCount.deSerialize(inputStream);
+  variableDatumCount.deSerialize(inputStream);
+ 
+  // read in the correct number of fixed datums IDs.
+  for(idx = 0; idx < fixedDatumCount.longValue(); idx++)
+  {
+    UnsignedInt  aID = new UnsignedInt();
+    aID.deSerialize(inputStream);
+    fixedDatumIDList.addElement(aID);
+  }
+
+  // read in the correct number of variable datums Ids.
+  for(idx = 0; idx < variableDatumCount.longValue(); idx++)
+  {
+    UnsignedInt  aID = new UnsignedInt();
+    aID.deSerialize(inputStream);
+    variableDatumIDList.addElement(aID);
+  }
+
+  return;
+} 
+ 
+public Object clone()
+{
+  /**
+     Clone the CommentPdu, being careful to not share any pointers between the
+     new object and the old object.
+   */
+ 
+  DataQueryPdu      newPdu = (DataQueryPdu)super.clone();     // new Data Query pdu
+  int fixedDatumCount;                     // number of fixedDatums IDs
+  int variableDatumCount;                  // number of variableDatums IDs
+  int idx;            
+ 
+  newPdu.setRequestID(requestID.longValue());
+  newPdu.setActionID(timeInterval.longValue());
+  
+  fixedDatumCount = fixedDatumIDList.size();
+  for(idx = 0; idx <fixedDatumCount; idx++)
+  {
+    newPdu.addFixedDatumID(this.fixedDatumIDAt(idx)); // makes copy when retrieved
+  }
+
+  variableDatumCount = variableDatumIDList.size();
+  for(idx = 0; idx <variableDatumCount; idx++)
+  {
+    newPdu.addVariableDatumID(this.variableDatumIDAt(idx)); // makes copy when retrieved
+  }
+ 
+  return newPdu;
+}
+ 
+public int length()
+{
+   /** calculate the length of the PDU on the fly. This should reflect the current length
+   of the PDU; if a variable datum is added, you have to call length() again
+   to find the current length. Note that this is the length of the PDU AS WRITTEN TO 
+   THE WIRE.
+    */
+ 
+  int   currentLength = 0;
+ 
+  currentLength = super.length() + DataQueryPdu.sizeOf + 
+                 (fixedDatumIDList.size() + variableDatumIDList.size())*4;
+ 
+  return currentLength;
+}
+ 
+public void printValues(int indentLevel, PrintStream printStream)
+{
+  // print the values of the object out, with correct level of
+  // indentation on the page.
+ 
+   
+  StringBuffer indent = ProtocolDataUnit.getPaddingOfLength(indentLevel);
+  int          idx, superclassIndent = indentLevel;
+  
+  printStream.println();
+  printStream.println("Data Query PDU");
+
+  // ugly wart: get the superclass over to the left a couple pixels, if we have any to spare,
+  // so the header info will be indented a bit less.
+  if(superclassIndent > 0)
+    superclassIndent -= 1;
+  super.printValues(superclassIndent, printStream);
+
+  // Yech. This fairly screams for a better way to handle ivars. p-list?
+  printStream.println(indent + "RequestID    : " + requestID.longValue() );
+  printStream.println(indent + "TimeInterval : " + timeInterval.longValue() );
+
+  //print out fixed datum IDs
+  for(idx=0; idx<fixedDatumIDList.size(); idx++)
+  {
+    printStream.println(indent + "Fixed Datum ID#"+ idx +": " + fixedDatumIDAt(idx) );
+  }
+  //print out variable datum IDs
+  for(idx=0; idx<variableDatumIDList.size(); idx++)
+  {
+    printStream.println(indent + "Variable Datum ID#"+ idx +": " + variableDatumIDAt(idx) );
+  }
+
+  return;
+}
+ 
+public DataQueryPdu   getExemplar()
+{
+  return (DataQueryPdu)exemplar.clone();
+}
+ 
+public void setExemplar(DataQueryPdu newExemplar)
+{
+  exemplar = newExemplar;
+}
+ 
+ 
+// Accessor methods
+ 
+ 
+public UnsignedInt getRequestID()
+{ return (UnsignedInt)requestID.clone();
+}
+public void setRequestID(long pRequestID )
+{ requestID = new UnsignedInt(pRequestID);
+}
+
+public UnsignedInt getTimeInterval()
+{ return (UnsignedInt)timeInterval.clone();
+}
+public void setActionID(long pActionID )
+{ timeInterval = new UnsignedInt(pActionID);
+}
+
+/**
+ *Returns the size of the List of fixed datums IDs.
+ *
+ *@return the size of the List of fixed datums IDs
+ */
+public int fixedDatumIDCount()
+{ return fixedDatumIDList.size();
+}
+ 
+/**
+ *Returns the size of the List of Variable datums IDs.
+ *
+ *@return the size of the List of Variable datums IDs
+ */
+public int variableDatumIDCount()
+{ return variableDatumIDList.size();
+}
+
+/**
+ *Adds a Fixed Datum ID at the end of the list.
+ *
+ *@param pFixedDatumID the Fixed Datum ID to be inserted in the list
+ */
+public void addFixedDatumID(long pFixedDatumID)
+{
+  fixedDatumIDList.addElement(new UnsignedInt(pFixedDatumID));
+  return;
+}
+
+/**
+ *Returns the Fixed Datum ID at the index given in parameter.
+ *
+ *@param pIdx the index of the Fixed Datum ID we want to obtain
+ *@return the the Fixed Datum ID pointed by the index in parameter
+ */
+public long fixedDatumIDAt(int pIdx)
+{
+  UnsignedInt   aID;
+  aID = (UnsignedInt)fixedDatumIDList.elementAt(pIdx);
+  return aID.longValue();
+}
+
+/**
+ *Suppress the current Fixed Datum ID list
+ */
+public void dropFixedDatumID()
+{
+     fixedDatumIDList = new Vector();
+}
+
+/**
+ *Inserts a Variable Datum ID at the end of the list.
+ *
+ *@param pVariableDatumID the Variable Datum ID to be inserted in the list
+ */
+public void addVariableDatumID(long pVariableDatumID)
+{
+  variableDatumIDList.addElement(new UnsignedInt(pVariableDatumID));
+  return;
+}
+
+/**
+ *Returns the Variable Datum ID at the index given in parameter.
+ *
+ *@param pIdx the index of the Variable Datum ID we want to obtain
+ *@return  the Variable Datum ID pointed by the index in parameter
+ */
+public long variableDatumIDAt(int pIdx)
+{
+  UnsignedInt   aID;
+  aID = (UnsignedInt)variableDatumIDList.elementAt(pIdx);
+  return aID.longValue();
+}
+
+/**
+ *Suppress the current Fixed Datum ID list
+ */
+public void dropVariableDatumID()
+{
+     variableDatumIDList = new Vector();
+}
+
+} 
+ 

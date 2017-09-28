@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 514 (msg:"RSERVICES rlogin bin"; flags: A+; content: "bin|00|bin|00|"; reference:arachnids,390; classtype:attempted-user; sid:607; rev:1;)

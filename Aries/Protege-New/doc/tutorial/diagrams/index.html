@@ -1,0 +1,339 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+   <title>Diagrams: A Guide for the Perplexed</title>
+</head>
+<!--#include file="header.html" --> 
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<!-- green banner with section title -->
+<tr> 
+	<td align="center" bgcolor="#026633" colspan="2" height="50" valign="middle"> 
+      <span class="greenBannerText">Diagrams: A Guide for the Perplexed</span></td>
+</tr>
+<!-- end green banner --></table>
+
+
+<br>
+<b><font face="Verdana, Arial, Helvetica, sans-serif">Table of Contents:</font></b> 
+<ol>
+  <li> <font size="2" face="Verdana, Arial, Helvetica, sans-serif"><a href="index.html#WhatIsADiagram">What 
+    is a Diagram</a></font></li>
+  <li> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="index.html#WalkingThroughAnExample">Walking 
+    Through an Example</a></font></li>
+  <li> <font size="2" face="Verdana, Arial, Helvetica, sans-serif"><a href="index.html#TheDiagramOntology">The 
+    Diagram Knowledge Base</a></font></li>
+</ol>
+<a NAME="WhatIsADiagram"></a><b><font face="Verdana, Arial, Helvetica, sans-serif">1. 
+What is a Diagram</font></b> 
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Most user interaction 
+  with the Protege GUI is done via forms. Each class has a form associated to 
+  it, and each instance is simply a filled out form. For example, the <a href="editor_in_ontology.gif">Editor</a> 
+  class has an <a href="editor_in_forms_layout.gif">associated form</a>, and instances 
+  of Editor are displayed as <a href="acquiring_an_editor.gif">filled-out forms</a>. 
+  This approach facilitates structured data entry for instances. More generally,&nbsp; 
+  it simplifies local interaction with the knowledge base (e.g., looking at and 
+  editing small number of instances in great detail). Often, however, users want 
+  to be able to view a large number of instances at once, along with selected 
+  relationships among the instances. </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Diagrams are one 
+  way to accomplish this latter goal. A diagram is, visually, a set of nodes and 
+  connectors (also known as &quot;links&quot; or &quot;wires&quot;) that join 
+  the nodes. Underlying these are instances of classes. Nodes map to domain objects 
+  and connectors map to instances of Connector-- a class the diagram widget uses 
+  to represent important relationships. When the user sees a diagram, they see 
+  a high-level summary of a large number of instances, without seeing a lot of 
+  the details of any particular instance. For example, in <a href="step9.gif">this 
+  diagram </a>(which we'll discuss in detail later), 8 nodes, which are instances 
+  of 3 distinct classes (represented by distinct shapes and colors), are displayed. 
+  In addition, 7 connectors, visually representing the &quot;supervises&quot; 
+  relationship are displayed. While the user cannot, for example, immediately 
+  determine the social security number of Mr. Science, she does immediately see 
+  Mr. Science's place in the organization chart (and, if she is a domain expert, 
+  can probably immediately intuit his roles and responsibilities within the organization). 
+  </font><br>
+  &nbsp;
+<p><a NAME="WalkingThroughAnExample"></a><b><font face="Verdana, Arial, Helvetica, sans-serif">2.</font><font size="+3"> 
+  </font><font face="Verdana, Arial, Helvetica, sans-serif">Walking Through an 
+  Example</font></b> 
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">To make this more 
+  concrete, we're going to walk through an example, adding the ability to use 
+  the diagram widget to an existing project. In this case, we will be adapting 
+  the newspaper project. </font><br>
+  &nbsp;
+<p><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif">Step 1:&nbsp; 
+  Load the existing project and decide what you will represent using diagrams</font></b> 
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">We will use <a href="step1.gif">the 
+  newspaper project</a>. We will use the diagram widget to visually represent 
+  the chain of command in the newsroom (e.g., we will create an organization chart). 
+  </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Step 2: Make 
+  sure the diagram project is included</b> </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">The next step is 
+  to make sure that the project being modified includes the diagrams project (the 
+  diagrams&nbsp; project contains a few key concept definitions the diagram widget 
+  requires). The diagram project is included in your Protege-2000 distribution, 
+  as part of the examples directory. To see if the diagrams project is already 
+  included, you can use the <i>Project</i> menu and choose the <a href="step2.gif"><i>Show 
+  Included Project</i>s</a> option. If the diagram project is not included,&nbsp; 
+  you can include it by using the <i>Include... </i>option on the <i>Project</i> 
+  menu. </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Step 3: Find 
+  the class you want to use in conjunction with the diagram widget</b> </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Our goal is to 
+  represent the managerial hierarchy (who reports to whom)&nbsp; visually&nbsp; 
+  in an organization chart. The newspaper project already contains a class, <i><a href="step3.gif">Organization</a></i>, 
+  which contains this information. So we will start by modifying <i>Organization</i>, 
+  to bring it in line with what the diagram widget requires. </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Step 4: Make 
+  the diagram class from step 3 a subclass of <i>Network</i> and change its metaclass 
+  to <i>Network_Metaclass</i></b> </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">We need to alter 
+  <i>Organization</i> in two ways: we need to make it a subclass of <i>Network</i> 
+  and we need to change its metaclass to <i>Network_Metaclass</i>. Both <i>Network</i> 
+  and <i>Network_Metaclass</i> are defined in the diagrams project we included 
+  as part of step 2.&nbsp; </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> Making <i>Organization</i> 
+  a subclass of <i>Network</i> causes 5 template slots to be attached to <i>Organization</i>. 
+  These slots will be used by the diagram widget to record information about the 
+  visual representation of the diagram (e.g., object locations and connectivity 
+  relationships).&nbsp; </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Changing the metaclass 
+  of <i>Organization</i> to <i>Network_Metaclass</i> attaches the slot <i>node_slot</i> 
+  to <i>Organization</i> as an own slot -- that is, <i>node_slot</i> appears on 
+  the Class Form for <i>Organization</i>. We will use <i>node_slot </i>to tell 
+  the diagram widget a little bit more about the structure of our intended diagram. 
+  (You can change the metaclass of an existing class by clicking the right mouse 
+  button to access the Class Menu. See <a href="../../users_guide/classes/metaclasses/change_meta.html">Changing 
+  the Metaclass of a Class</a> for more information.) </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">At the end of this 
+  step, <i>Organization</i> looks like <a href="step4.gif">this</a>. </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Step 5: Choose 
+  the nodes slot</b> </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Once we've finished 
+  altering the definition of <i>Organization</i>, we still need to set a value 
+  for <i>node_slo</i>t. The motivation for using <i>node_slot</i> is this: knowledge-bases 
+  should be structured, as much as possible, in ways that make sense to domain 
+  experts, based on their experience in the domain. In particular, choosing to 
+  use a diagram widget shouldn't alter the knowledge-base structure (in step 4, 
+  this precept is violated. But only a little bit, and only by adding slots to 
+  classes). </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">This rule leads 
+  to a problem: the diagram widget needs to know where to store the instances 
+  corresponding to the nodes in the diagram. Since the instances corresponding 
+  to nodes are often instances of important domain concepts, there is usually 
+  already a slot that points to them (unlike Connectors. The <i>connectors </i>slot 
+  attached to <i>Organization</i> probably isn't redundant with an existing slot). 
+  In our example, Organization already has a slot called <i>employees</i>, which 
+  points to all the employees in the Organization. </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">What we need to 
+  do is find a way to tell the diagram widget &quot;store the instances corresponding 
+  to the nodes in the diagram in <i>this slot</i>.&quot; We do this by storing 
+  a slot reference in&nbsp; <i>node_slot</i> does-- the diagram widget stores 
+  all the instances corresponding to nodes in a slot, which is the value of&nbsp; 
+  <i>node_slot.</i> </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">The value of <i>node_slot</i> 
+  must meet three criteria: it must be attached to must be attached to <i>Organization</i> 
+  as a template slot it must be multiple-valued, and it must be of type Instance. 
+  The value of<i> node_slot</i> is the slot is used by the diagram widget to store 
+  the instances which are displayed in the diagram as nodes. </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">In our example, 
+  <a href="step5.gif">we use the <i>employees</i> slot as the value of <i>node_slot</i></a>. 
+  </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Step 6: Create 
+  connectors</b> </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Connectors are 
+  classes whose instances store information about a link in a diagram. A definition 
+  of a connector&nbsp; records two distinct types of information: which types 
+  of objects can be connected by this link and which (if any) slots on the objects 
+  to fill out. In our example, there is a single type of connector, <i><a href="step6.gif">Supervises</a></i>. 
+  As with all connectors, Supervises is a subclass of <i>Connector</i> and an 
+  instance of <i>Connector_Metaclass</i>. An instance of <i>Supervisor</i> can 
+  connect an instance of <i>Editor</i> to an instance of <i>Employee</i>. And, 
+  when it does so, the <i>supervises</i> slot on the instance of <i>Editor</i> 
+  will point to the instance of <i>Employee</i>. </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Defining the connectors 
+  is the last step which involves modifying the ontology. The remaining steps 
+  all involve either configuring the diagram widget or acquiring instances. </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Step 7:&nbsp; 
+  Choose which slots to display and select the diagram widget:</b> </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">The first step 
+  in configuring the diagram class&nbsp; is probably to hide the slots it inherited 
+  from <i>Network</i>. These slots are automatically filled out by the diagram 
+  widget and contain information that, while important to the structure of the 
+  knowledge-base, are slots the user probably won't want to see. <br>
+  In our example, we hide all of the inherited slots: <i>connectors</i>,<i> last_divider_location</i>, 
+  <i>main_panel_height</i>, <i>main_panel_width</i>, and <i>layout_information</i>. 
+  </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">After doing this, 
+  <a href="step7.gif">we must still choose to use the diagram widget for the <i>employees</i> 
+  slot</a>. </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Step 8: Configure 
+  the diagram widget</b> </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Double-clicking 
+  on the diagrams widget brings up a panel with an extensive number of configuration 
+  options. These options allow the diagram widget to display different types of 
+  information (e.g., different node classes) in different ways. In <a href="step8.gif">our 
+  example</a>, our node types (<i>Editor</i>, <i>Columnist</i>, <i>Reporter</i>, 
+  and <i>Salesperson</i>) all have distinct visual representations. </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Step 9: Acquire 
+  instances</b> </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Finally, after 
+  all this hard work, knowledge-acquisition can actually take place. <a href="step9.gif">Here</a> 
+  is a screenshot of the diagram widget in action. </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Step 10: Send 
+  feedback to the Protege group</b> </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">The diagram widget 
+  is one of the more complex, and cumbersome, widgets that ships with Protege. 
+  As you use it, you will undoubtedly notice many shortcomings. We'd like to hear 
+  about them. The appropriate venue for comments and discussions is the <a href="mailto:protege-discussion@smi.stanford.edu">protege-discussion</a> 
+  mailing list. <br>
+  &nbsp; <br>
+  &nbsp; </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a NAME="TheDiagramOntology"></a><b>3. 
+  The Diagram Knowledge Base</b> </font>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">The diagrams knowledge 
+  base is a small knowledge base which must be included in any project which will 
+  use the diagram widget. The diagrams knowledge base contains the following 7 
+  classes: <br>
+  &nbsp; <br>
+  &nbsp; </font>
+<center>
+  <table BORDER WIDTH="80%">
+    <tr> 
+      <td><b>Class Name</b></td>
+      <td><b>What it Really Represents</b></td>
+      <td><b>Role in Diagrams Knowledge Base</b></td>
+      <td><b>Role during Ontology Design&nbsp;</b></td>
+      <td><b>Role during Knowledge Acquisition</b></td>
+    </tr>
+    <tr> 
+      <td>DiagramEntity</td>
+      <td>Nothing. DiagramEntity&nbsp; has no conceptual content at all.&nbsp;</td>
+      <td>DiagramEntity is only used to help organize the diagrams knowledge base 
+        ontology-- all other classes in the diagrams knowledge base are subclasses 
+        of DiagramEntity.&nbsp;</td>
+      <td>None.</td>
+      <td>None.</td>
+    </tr>
+    <tr> 
+      <td>Network</td>
+      <td>Subclasses of&nbsp; Network are&nbsp; classes which have some content 
+        which can be visualized as a diagram. That is, there is a slot attached 
+        to the subclass whose values can be viewed using the diagram widget.&nbsp;</td>
+      <td>Network is&nbsp; an abstract superclass of any class whose form will 
+        use the diagram widget. It defines 5 slots (<i>connectors</i>, <i>last_divider_location</i>, 
+        <i>layout_information</i>, <i>main_panel_height</i>, and <i>main_panel_width</i>) 
+        which the diagram widget will use to store information.&nbsp;</td>
+      <td>Domain classes which will use the diagram widget must be subclasses 
+        of Network That is, subclasses of Network are usually domain classes that 
+        have been (slightly) altered so that the diagram widget will work. Subclasses 
+        of Network&nbsp; must also be instances of Network_Metaclass in order 
+        for the diagram widget to function properly.&nbsp;</td>
+      <td>Instances of Network, or its subclasses,&nbsp; will be acquired from 
+        the user.</td>
+    </tr>
+    <tr> 
+      <td>Network_Metaclass</td>
+      <td>None.&nbsp;</td>
+      <td>Network_Metaclass is used to attach a single own slot, <i>node_slot</i>,&nbsp; 
+        to subclasses of Network.&nbsp;</td>
+      <td>Subclasses of Network should be instances of Network_Metaclass (rather 
+        than :STANDARD-CLASS). <i>node_slot</i>, which will be an own slot on 
+        the subclass of Network, must have its value set to a slot which is attached 
+        to the subclass of Network being configured.&nbsp;</td>
+      <td>The value of <i>node_slot</i> is used by the diagram widget. From the 
+        usr's point of view, once the ontology is defined, Network_Metaclass can 
+        be ignored.</td>
+    </tr>
+    <tr> 
+      <td>Connector</td>
+      <td>Subclasses of Connector are classes whose instances are visually represented, 
+        in a diagram, as a wire. Subclasses of Connector are reified slot-value 
+        bindings.&nbsp;</td>
+      <td>Connector is an abstract superclass which has two slots: <i>first_object</i> 
+        and <i>second_object</i>.&nbsp;</td>
+      <td>Subclasses of Connector are often not part of the conceptualization 
+        of a domain, but instead are explicitly added to the knowledge base in 
+        order to visually represent knowledge (<a href="index.html#Debate">*</a>).&nbsp; 
+        Subclasses of Connector must also be instances of Connector_Metaclass 
+        in order for the diagram widget to function properly.</td>
+      <td>Instances of Connector, or its subclasses, are usually generated automatically 
+        by the diagram widget, and stored in the <i>connectors</i> slot on an 
+        instance of Network.</td>
+    </tr>
+    <tr> 
+      <td>Connector_Metaclass</td>
+      <td>None.&nbsp;</td>
+      <td>Connector_Metaclass is used to attach a pair of own slots, <i>first_object_slot_pointer</i> 
+        and <i>second_object_slot_pointer</i>,&nbsp; to subclasses of Connector.&nbsp;</td>
+      <td>Subclasses of Connector should be instances of&nbsp; <br>
+        Connector_Metaclass (rather than :STANDARD-CLASS). <i>first_object_slot_pointer</i> 
+        and <i>second_object_slot_pointer</i> <br>
+        don't have to have values. But if a value is set, it should be to a slot 
+        which is attached to the appropriate object (e.g., the value of <i>first_object_slot_pointer</i> 
+        should be a slot which is actually attached to any object which can be 
+        stored in the slot <i>first_object</i>).&nbsp;</td>
+      <td>If one of the own slots on a subclass of connector has a value, the 
+        diagram widget will attempt to fill in the slot. For example: if <i>first_object_slot_pointer</i> 
+        has, as value, the slot <i>foo</i>, then when both the first_object and 
+        second_object slots on an instance of the subclass are filled in (e.g., 
+        visually when the wire is &quot;connected&quot; at both ends), the diagram 
+        widget will fill in the slot <i>foo</i> on the value of <i>first_object 
+        </i>with the value of <i>second_object</i>.</td>
+    </tr>
+    <tr> 
+      <td>ObjectLocation</td>
+      <td>An instance of ObjectLocation records the location of an object. The 
+        Location is stored as a Rectangle, the object could be any frame.</td>
+      <td>Used to record visual information. Objects in a diagram have locations 
+        that must be stored (so that if a knowledge base is closed and opened 
+        later, the diagram will look the same). ObjectLocation has two slots: 
+        <i>location</i> and <i>object</i>.</td>
+      <td>None. There is no reason to make any changes to this class, or to create 
+        subclasses of it. This class could be entirely hidden during knowledge 
+        acquisition.</td>
+      <td>Instances of ObjectLocation are&nbsp; generated automatically by the 
+        diagram widget, and stored in the <i>layout_information</i> slot on an 
+        instance of Network.</td>
+    </tr>
+    <tr> 
+      <td>Rectangle</td>
+      <td>&nbsp;</td>
+      <td></td>
+      <td>None. There is no reason to make any changes to this class, or to create 
+        subclasses of it. This class could be entirely hidden during knowledge 
+        acquisition.</td>
+      <td>Instances of Rectangle are&nbsp; generated automatically by the diagram 
+        widget, and stored in the <i>location</i> slot on an instance of ObjectLocation.</td>
+    </tr>
+    <tr> 
+      <td>Point</td>
+      <td></td>
+      <td></td>
+      <td>None. There is no reason to make any changes to this class, or to create 
+        subclasses of it. This class could be entirely hidden during knowledge 
+        acquisition.</td>
+      <td>Instances of Point are&nbsp; generated automatically by the diagram 
+        widget, and stored in the <i>upper_left_corner</i> and l<i>ower_right_corner</i> 
+        slots on an instance of Rectangle.</td>
+    </tr>
+  </table>
+</center>
+<font face="Verdana, Arial, Helvetica, sans-serif" size="2"><br>
+&nbsp; </font> 
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a NAME="Debate"></a>(*) 
+  Although there is some debate about this point. As one prominent user of diagrams 
+  has stated, &quot;Connector classes represent reified relations, and as such, 
+  they should be part of the conceptualization of a domain. It's true that are 
+  structured according to the specification of Connector class/metaclass so that 
+  they can be visualized, but I think it's better to encourage people to see them 
+  as playing a role in the conceptualization of the domain.&quot; </font><br>
+  &nbsp;
+
+<!--#include file="footer.html" -->
+</body>
+</html>

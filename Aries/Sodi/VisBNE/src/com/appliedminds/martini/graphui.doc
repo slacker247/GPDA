@@ -1,0 +1,926 @@
+<?xml version="1.0"?>
+<!DOCTYPE abiword PUBLIC "-//ABISOURCE//DTD AWML 1.0 Strict//EN" "http://www.abisource.com/awml.dtd">
+<abiword xmlns="http://www.abisource.com/awml.dtd" xmlns:awml="http://www.abisource.com/awml.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.0.2" fileformat="1.0" styles="unlocked">
+<!-- =====================================================================  -->
+<!-- This file is an AbiWord document.                                      -->
+<!-- AbiWord is a free, Open Source word processor.                         -->
+<!-- You may obtain more information about AbiWord at www.abisource.com     -->
+<!-- You should not edit this file by hand.                                 -->
+<!-- =====================================================================  -->
+
+<styles>
+<s type="P" name="Normal" basedon="" followedby="Current Settings" props="font-family:Times New Roman; margin-top:0pt; font-variant:normal; margin-left:0pt; text-indent:0in; widows:2; font-style:normal; font-weight:normal; text-decoration:none; color:000000; line-height:1.000000; text-align:left; margin-bottom:0pt; text-position:normal; margin-right:0pt; bgcolor:transparent; font-size:12pt; font-stretch:normal"/>
+<s type="P" name="Heading 1" basedon="Normal" followedby="Normal" props="keep-with-next:1; font-size:17pt; margin-bottom:0.0417in; line-height:1.000000; font-weight:bold; font-family:Arial; margin-top:0.3056in"/>
+<s type="P" name="Heading 3" basedon="Normal" followedby="Normal" props="keep-with-next:1; font-size:12pt; margin-bottom:0.0417in; line-height:1.000000; font-weight:bold; font-family:Arial; margin-top:0.3056in"/>
+</styles>
+<ignoredwords>
+<iw>BlueBoxUI</iw>
+<iw>GraphUI</iw>
+<iw>erMap</iw>
+<iw>KeyEvents</iw>
+<iw>apmindsf</iw>
+<iw>GreenPillUI</iw>
+<iw>Viewport</iw>
+<iw>daepark</iw>
+<iw>viewport</iw>
+<iw>HitTest</iw>
+<iw>javadoc</iw>
+<iw>HitTeste</iw>
+<iw>DrawableEdge</iw>
+<iw>DrawableNode</iw>
+<iw>GraphPanel</iw>
+<iw>DrawableGraph</iw>
+<iw>hitMap</iw>
+<iw>r</iw>
+<iw>MouseEvents</iw>
+</ignoredwords>
+<lists>
+<l id="1345944234" parentid="0" type="5" start-value="0" list-delim="%L" list-decimal="NULL"/>
+</lists>
+<pagesize pagetype="Letter" orientation="portrait" width="8.500000" height="11.000000" units="in" page-scale="1.000000"/>
+<section props="page-margin-right:0.6250in">
+<p style="Normal"><c props="lang:en-US">author:	daepark@apmindsf.com</c><c props="lang:en-US"></c></p>
+<p style="Normal"><c props="lang:en-US">date:	06/27/2002</c><c props="lang:en-US"></c></p>
+<p style="Heading 1"><c props="lang:en-US"></c><c props="lang:en-US">How to Build a Custom GraphUI for the Martini Toolkit</c></p>
+<p style="Normal"><c props="font-family:Times New Roman; text-decoration:none; color:000000; font-size:12pt; text-position:normal; font-weight:normal; font-style:normal; lang:en-US"></c></p>
+<p style="Normal"><c props="font-family:Times New Roman; text-decoration:none; color:000000; font-size:12pt; text-position:normal; font-weight:normal; font-style:normal; lang:en-US"></c><c props="lang:en-US">The GraphUI is ultimately responsible for drawing the graph elements onto the GraphPanel. Thus, a GraphUI controls the look and feel and will certainly dictate the kinds of feedback (events) that will be fired in response to user interactions </c><c props="font-family:Times New Roman; text-decoration:none; color:000000; font-size:12pt; text-position:normal; font-weight:normal; font-style:normal; lang:en-US">(mouse click on a node, mouse over an edge, etc.) </c><c props="lang:en-US">with the drawn graph. Specifically, the GraphUI has the following responsibilities:</c></p>
+<p level="1" listid="1345944234" parentid="0" style="Normal" props="start-value:0; text-indent:-0.3000in; list-style:Bullet List; field-font:Symbol; margin-left:0.5000in"><c props="list-tag:661023612; lang:en-US"></c><field type="list_label" props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></field><c type="list_label" props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt">	Draw graph elements (node and edges) to an arbitrary Graphics2D object</c></p>
+<p level="1" listid="1345944234" parentid="0" style="Normal" props="start-value:0; text-indent:-0.3000in; list-style:Bullet List; field-font:Symbol; margin-left:0.5000in"><c type="list_label" props="width:0in; list-tag:1343665940; font-family:Times New Roman; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal"></c><field type="list_label" props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></field><c type="list_label" props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt">	Create HitTester objects for each drawn element that will later be used for hit testing</c></p>
+<p level="1" listid="1345944234" parentid="0" style="Normal" props="start-value:0; text-indent:-0.3000in; list-style:Bullet List; field-font:Symbol; margin-left:0.5000in"><c type="list_label" props="width:0in; list-tag:1680409964; font-family:Times New Roman; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal"></c><field type="list_label" props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></field><c type="list_label" props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt">	Publicly announce the set of decoration identifiers it uses to attach to specific events (MouseEvents, KeyEvents, etc.) that are fired in response to user interaction.  These decoration identifiers should be clearly listed and defined in the class javadoc comments in all GraphUI implementations.</c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt">The following pictures show two applications using two different GraphUI implementations showing the same graph.</c><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c><image dataid="/mnt/home/daepark/screenshots/2002_06_28_125854_shot.png_0" props="height:3.80in; width:5.11in"/></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; font-style:normal; font-weight:bold; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal">Figure 1</c><c props="width:0in; font-family:Times New Roman; font-style:normal; font-weight:bold; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal"></c><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"> Topic Map Viewer using the GreenPillUI<pbr/></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c><image dataid="/mnt/home/daepark/screenshots/2002_06_28_125947_shot.png_0" props="height:3.80in; width:5.11in"/></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; font-style:normal; font-weight:bold; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal">Figure 2</c><c props="width:0in; font-family:Times New Roman; font-style:normal; font-weight:bold; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal"></c><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt">  The Nav History Viewer using the BlueBoxUI</c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Heading 3"><c props="lang:en-US">Drawing Graph Elements</c><c props="lang:en-US"></c></p>
+<p style="Normal"><c props="lang:en-US"></c></p>
+<p style="Normal"><c props="lang:en-US; height:0in; width:0in">In general, the GraphPanel delegates the actual drawing of the graph to the DrawableGraph. The DrawableGraph delegate the drawing of the nodes and edges to their corresponding DrawableNode and DrawableEdge objects which in turn delegate the drawing to the underlying GraphUI. </c><c props="lang:en-US; height:0in; width:0in"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt">The GraphUI interfaces for drawing a node and an edge are similar.</c><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">public void draw(Graphics2D graphics,</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">                 DrawableNode node,</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">                 Viewport viewport,</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">                 HitTesterMap hitMap,</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">                 DrawableGraphContext context,</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">                 boolean newBuffer)</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">public void draw(Graphics2D graphics,</c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">                 DrawableEdge edge,</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">                 Viewport viewport,</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">                 HitTesterMap hitMap,</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">                 DrawableGraphContext context,</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">                 boolean newBuffer)</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal">graphics</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal"></c><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"> - This is an arbitrary Graphics2D object whose image will ultimately be displayed in the GraphPanel. The GrapbUI is expected to draw onto this Graphics2D object.</c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal">node</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal"></c><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt">/</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal">edge</c><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"> - This is the graph element that is to be drawn by the GraphUI.</c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal">viewport</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal"></c><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"> - All positions of the graph elements (nodes and edges) are in an arbitrary (WORLD) coordinate system, which is not necessarily the same as the device (VIEWPORT) coordinate system used by the AWT. The Viewport allows transformation of coordinates between the two systems.</c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal">hitMap</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal"></c><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"> - The HitTesterMap maintains a map of HitTester objects to drawn graph elements. A HitTester simply knows about a drawn Shape object that is part of a graph element and associates a GraphUI specific decoration identifier to it. Since the HitTester object knows about how a particular graph element is drawing, it will ultimately be responsible for hit testing in response to user interaction with the drawn graph in the GraphPanel. The GraphUI implementations should create a HitTester for every drawn shape associated with a graph element and store them in this HitTesterMap.</c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal">context</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal"></c><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"> - The DrawableGraphContext is simply a lookup of the position and bounds of a graph element, probably assigned by some graph layout. These bounds are in an arbitrary (WORLD) coordinate system and GraphUI implementations should use the </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal">viewport</c><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"> to map them to the device coordinates when the graph element is being drawn. This context object can also keeps track of the "dirty-ness" of a graph element since it's last call to draw so that the GraphUI implementation can decide whether or not to repaint the graph element.</c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal">newBuffer</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal"></c><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"> - This flag and the DrawableGraphContext give the GraphUI rendering hints to whether or not repainting the graph element is necessary at all. A </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal">newBuffer == true</c><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"> almost always suggests a new Graphics2D object requiring a repaint of the graph element. When </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:12pt; height:0in; text-position:normal">newBuffer == false</c><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt">,  the Graphics2D object is the same graphics object used in the last draw. Therefore, if the graph element has changed since last call to draw, the GraphUI should first attempt to "erase" previously drawn element and then repaint it.</c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt">Here is the full implementation of the GreenPillUI draw node method.</c><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:10 pt"></c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">01 public void draw(Graphics2D graphics, </c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">02                  DrawableNode node,</c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">03                  Viewport viewport, </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">04                  HitTesterMap hit, </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">05                  DrawableGraphContext ctx,</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">06                  boolean newBuffer)</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">07 {</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">08   if (newBuffer == false) {</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">09     //</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">10     // if the node has changed or we need to repaint,</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">11     // erase drawn node on the existing buffer</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">12     //</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">13     if (node.hasChanged() || ctx.getNeedsRepaint(node)) {</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">14       erase(graphics, node, viewport, hit, ctx);</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">15     }</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">16   }</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">17 </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">18   //</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">19   // only draw the node if it needs to be repainted</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">20   // or has changed.</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">21   //</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">22   if (ctx.getNeedsRepaint(node) || node.hasChanged()) {</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">23     hit.removeAllHitTesters(node);</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">24     </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">25     if ("false".equals(node.getProperty(_prefs.getVisiblePropertyName()))) {</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">26       return;</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">27     }</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">28     </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">29     Rectangle2D nodeBounds = </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">30       viewport.mapWorldToViewport(ctx.getBounds(node));</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">31     </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">32     // Don't bother drawing excessively tiny nodes</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">33     if (nodeBounds.getHeight() &lt; _prefs.getSmallestVisibleNodeHeight())</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">34       {</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">35         return; // BAIL</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">36       }</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">37     </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">38     // Get the node DrawProps, adjusted for the view transform</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">39     DrawProps drawProps = getNodeViewportDrawProps(node, viewport);</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">40     </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">41     RoundRectangle2D shape = </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">42       _renderer.drawRoundedRectangle(graphics,</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">43                                      drawProps,</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">44                                      nodeBounds,  </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">45                                      new Point2D.Double</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">46                                      (nodeBounds.getHeight(),</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">47                                       nodeBounds.getHeight()));</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">48     </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">49     HitTester ht = new HitTester(shape, DECORATION_NODE, node);</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">50     hit.addHitTester(node, ht);</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">51     </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">52     // Don't bother drawing text with tiny fonts</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">53     if (drawProps.getFontSize() &lt; _prefs.getSmallestVisibleFontSize())</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">54       {</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">55         return; // BAIL</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">56       }</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">57     </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">58     // Draw the label</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">59     Point2D nodeCenter = new Point2D.Double(nodeBounds.getCenterX(),</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">60                                             nodeBounds.getCenterY());</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">61     </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">62     String text = ellipsify(GreenPillUtil.getNodeLabel(node));</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">63     </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">64     if (text != null) {</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">65       TextScreenData tdata = </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">66         _renderer.drawText(graphics, drawProps, text, nodeCenter);</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">67       HitTester tester = </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">68         new HitTester(tdata.getBounds(), DECORATION_NODE_TEXT, tdata);</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">69       hit.addHitTester(node, tester);</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">70     }</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">71     </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">72     drawNodeIcons(graphics, node, viewport, nodeBounds, hit);</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">73   }</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">74</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.1250in; margin-left:0pt"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal">75 } // end draw(...)</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10 pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="text-indent:0.2500in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt">Before GreenPillUI attempt to draw the node, it first checks if it needs to redraw the node at all. If it is not a new buffer and the node needs to be repainted or has changed since last call to draw, GreenPillUI "erases" the last drawn node image in preparation for drawing the new node image.</c><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">08   if (newBuffer == false) {</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">09     //</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">10     // if the node has changed or we need to repaint,</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">11     // erase drawn node on the existing buffer</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">12     //</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">13     if (node.hasChanged() || ctx.getNeedsRepaint(node)) {</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">14       erase(graphics, node, viewport, hit, ctx);</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">15     }</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">16   }</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal"><c props="lang:en-US; height:0in; width:0in">And then if the node needs to be repainted or has changed, GreenPillUI will draw the node.</c><c props="lang:en-US; height:0in; width:0in"></c></p>
+<p style="Normal"><c props="lang:en-US; height:0in; width:0in"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">18   //</c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">19   // only draw the node if it needs to be repainted</c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">20   // or has changed.</c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">21   //</c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">22   if (ctx.getNeedsRepaint(node) || node.hasChanged()) {</c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.0000in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal"><c props="lang:en-US; height:0in; width:0in">Now that the GraphUI is actually drawing the node, it should first remove all associated HitTester objects associated with the previous drawn node in preparation for adding updated HitTester objects for the newly drawn node.</c><c props="lang:en-US; height:0in; width:0in"></c></p>
+<p style="Normal"><c props="lang:en-US; height:0in; width:0in"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">23     hit.removeAllHitTesters(node);</c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt">The GreenPillUI then draws the actual rounded rectangle representing the node in the graph. The GraphUI may assume that the node has been layed out and its position and bounds stored in the DrawableGraphContext object before draw has been called. Its only responsibility is to convert the layed out position to the actual AWT device coordinates using the Viewport object when drawing the node elements on the actual Graphics2D object. Line 41 to 47 is where GreenPillUI draws the pill shaped rectangle. The drawn shape is associated with a HitTester with a decoration identifier, then added to the HitTesterMap.</c><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="width:0in; font-family:Times New Roman; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:12pt"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">29     Rectangle2D nodeBounds = </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">30       viewport.mapWorldToViewport(ctx.getBounds(node));</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:10pt">...</c><c props="width:0in; font-family:Courier; color:000000; font-weight:normal; lang:en-US; font-style:normal; text-position:normal; bgcolor:transparent; text-decoration:none; height:0in; font-size:10pt"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">38     // Get the node DrawProps, adjusted for the view transform</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">39     DrawProps drawProps = getNodeViewportDrawProps(node, viewport);</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">40     </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">41     RoundRectangle2D shape = </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">42       _renderer.drawRoundedRectangle(graphics,</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">43                                      drawProps,</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">44                                      nodeBounds,  </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">45                                      new Point2D.Double</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">46                                      (nodeBounds.getHeight(),</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">47                                       nodeBounds.getHeight()));</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">48     </c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">49     HitTester ht = new HitTester(shape, DECORATION_NODE, node);</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal">50     hit.addHitTester(node, ht);</c><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.0000in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="width:0in; font-family:Courier; font-style:normal; font-weight:normal; lang:en-US; color:000000; bgcolor:transparent; text-decoration:none; font-size:10pt; height:0in; text-position:normal"></c></p>
+<p style="Heading 3"><c props="lang:en-US; height:0in; width:0in"></c><c props="lang:en-US; height:0in; width:0in">Creating HitTester Objects</c></p>
+<p style="Normal"><c props="lang:en-US; height:0in; width:0in"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="lang:en-US; height:0in; width:0in"></c><c props="lang:en-US; height:0in; width:0in">In the GreenPillUI, a node is comprised of various image decorations that make up the overall drawn node: a pill shaped rectangle, a text label, and icon badge(s). If a user clicks on any of these decorating images of a node in the GraphPanel, an application may want to associate the decorating image to the node. This association of drawn image shapes to graph elements or hit testing is possible through the Martini hit testing framework. However, it is the specific GraphUI implementations that provide the actual HitTester objects that make this possible.</c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="lang:en-US; height:0in; width:0in"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="lang:en-US; height:0in; width:0in">Usually, when a GraphUI draws a decorating image that is part of a graph element (node or edge), the GraphUI should register a HitTester object associating the drawn image shape and the graph element, along with a decoration identifier. The GreenPillUI creates a HitTester object for each decorating image that make up the node.</c><c props="lang:en-US; height:0in; width:0in"></c></p>
+<p style="Normal" props="text-indent:0in; margin-left:0pt"><c props="lang:en-US; height:0in; width:0in"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">// draw pill shaped rectangle</c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">RoundRectangle2D shape = drawRoundedRectangle(...);</c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; text-decoration:none; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; font-size:10pt"></c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">HitTester ht = new HitTester(shape, DECORATION_NODE, node);</c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">hit.addHitTester(node, ht);</c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">...</c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">// draw text label</c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">TextScreenData tdata = drawText(...);</c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">HitTester tester = new HitTester(tdata.getBounds(), DECORATION_NODE_TEXT, tdata);</c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">hit.addHitTester(node, tester);</c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">...</c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">// draw icon badge</c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">Rectangle2D rect = drawNodeIcon(...);</c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; text-decoration:none; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; font-size:10pt"></c><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">hit.addHitTester(node, new HitTester(rect, DECORATION_NODE_ICON, node));</c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Heading 3"><c props="lang:en-US; height:0in; width:0in"></c><c props="lang:en-US; height:0in; width:0in">Decoration Identifiers</c></p>
+<p style="Normal"><c props="lang:en-US; height:0in; width:0in"></c></p>
+<p style="Normal"><c props="lang:en-US; height:0in; width:0in"></c><c props="lang:en-US; height:0in; width:0in">Decoration identifiers are GraphUI specific keys that refer to each individual drawn shape that make up a graph element. For example, t</c><c props="font-family:Times New Roman; text-decoration:none; color:000000; font-size:12pt; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US">he </c><c props="font-family:Courier; text-decoration:none; color:000000; font-size:12pt; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US">GreenPillUI.DECORATION_NODE_ICON</c><c props="font-family:Times New Roman; text-decoration:none; color:000000; font-size:12pt; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"> decoration id refers to the icon badge of a graph node, the </c><c props="font-family:Courier; text-decoration:none; color:000000; font-size:12pt; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US">GreenPillUI.DECORATION_NODE</c><c props="font-family:Times New Roman; text-decoration:none; color:000000; font-size:12pt; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"> decoration id refers to the pill shaped rectangle of the graph node, and the </c><c props="font-family:Courier; text-decoration:none; color:000000; font-size:12pt; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US">GreenPillUI.DECORATION_NODE_TEXT</c><c props="font-family:Times New Roman; text-decoration:none; color:000000; font-size:12pt; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"> decoration id refers to the text label of the node.</c></p>
+<p style="Normal"><c props="font-family:Times New Roman; text-decoration:none; color:000000; font-size:12pt; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"></c></p>
+<p style="Normal"><c props="font-family:Times New Roman; text-decoration:none; color:000000; font-size:12pt; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"></c><c props="font-family:Times New Roman; text-decoration:none; color:000000; font-size:12pt; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US">Once a decoration identifier is established as referring to a specific drawn shape of a graph element, a GraphUI implementation can use it to identify the shape stored in a HitTester object and what the underlying graph element is. Currently, a decoration identifier is established as referring to a specific drawn shape of a graph element by docummenting it as so in the javadoc class comments of the GraphUI implementation.</c></p>
+<p style="Normal"><c props="font-family:Times New Roman; text-decoration:none; color:000000; font-size:12pt; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">/**</c><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"> * GreenPillUI</c><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; text-decoration:none; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; font-size:10pt"> *</c><c props="font-family:Courier; text-decoration:none; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; font-size:10pt"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; text-decoration:none; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; font-size:10pt"> ...</c><c props="font-family:Courier; text-decoration:none; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; font-size:10pt"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"> * &lt;p&gt;This GraphUI generated events for the following UI Decoration</c></p>
+<p style="Normal" props="text-indent:0.1250in"><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"> *    identifiers:</c><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"></c></p>
+<p style="Normal" props="text-indent:0.1250in"><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"> * </c><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"></c></p>
+<p style="Normal" props="text-indent:0.1250in"><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"> * &lt;ul&gt;</c><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"></c></p>
+<p style="Normal" props="text-indent:0.1250in"><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"> * &lt;li&gt;NODE (returns a DrawableNode)</c><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"></c></p>
+<p style="Normal" props="text-indent:0.1250in"><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"> * &lt;li&gt;NODE_TEXT (returns a martinix.ui.TextScreenData)</c><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"></c></p>
+<p style="Normal" props="text-indent:0.1250in"><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"> * &lt;li&gt;NODE_ICON (returns a DrawableNode)</c><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"></c></p>
+<p style="Normal" props="text-indent:0.1250in"><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"> * &lt;li&gt;EDGE (returns a DrawableEdge)</c><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"></c></p>
+<p style="Normal" props="text-indent:0.1250in"><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"> * &lt;li&gt;EDGE_BUBBLE (returns a DrawableEdge)</c><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"></c></p>
+<p style="Normal" props="text-indent:0.1250in"><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"> * &lt;/ul&gt;</c><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"></c></p>
+<p style="Normal" props="text-indent:0.1250in"><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"> *</c><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"></c></p>
+<p style="Normal" props="text-indent:0.1250in"><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"> ...</c><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"></c></p>
+<p style="Normal" props="text-indent:0.1250in"><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"> */</c><c props="font-family:Courier; font-size:10 pt; color:000000; text-decoration:none; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"></c></p>
+<p style="Normal"><c props="font-family:Times New Roman; text-decoration:none; color:000000; font-size:12pt; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"> </c><c props="font-family:Times New Roman; text-decoration:none; color:000000; font-size:12pt; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"></c></p>
+<p style="Normal"><c props="font-family:Times New Roman; text-decoration:none; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; font-size:12pt">Given the above javadoc class comments, an application will know the kinds of events it can register for when using the GreenPillUI. Also, it will know the differnt graph element associated with each event.  For example, the </c><c props="font-family:Times New Roman; text-decoration:none; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; font-size:12pt"></c><c props="font-family:Times New Roman; text-decoration:none; color:000000; font-size:12pt; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US">application may register a mouse event listener with the GraphPanel, </c><c props="font-family:Times New Roman; font-size:12 pt; color:000000; text-decoration:none; height:0in; text-position:normal; font-weight:normal; width:0in; font-style:normal; lang:en-US">specifying the </c><c props="font-family:Courier; font-size:12 pt; color:000000; text-decoration:none; height:0in; text-position:normal; font-weight:normal; width:0in; font-style:normal; lang:en-US">GreenPillUI.DECORATION_NODE_ICON</c><c props="font-family:Times New Roman; font-size:12 pt; color:000000; text-decoration:none; height:0in; text-position:normal; font-weight:normal; width:0in; font-style:normal; lang:en-US"> decoration identifier.</c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Times New Roman; text-decoration:none; color:000000; font-size:12pt; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; lang:en-US"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">GraphPanel graphPanel = new GraphPanel(new GreenPillUI());</c><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">graphPanel.addDrawableGraphMouseEventListener</c><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">  (GreenPillUI.DECORATION_NODE_ICON,</c><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">   new DrawableGraphMouseEventListener() {</c><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">      public boolean handleDrawableGraphMouseEvent(DrawableGraphMouseEvent e) {</c><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">         DrawableNode node = (DrawableNode)e.getContext();</c><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">         ...</c><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">      }</c><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">   } );</c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.1250in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Courier; font-size:10pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.0000in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Times New Roman; font-size:12pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none">The application specific DrawableGraphMouseEventListener is able to expect the event context to be of type DrawableNode in reference to the javadoc class comments.</c><c props="font-family:Times New Roman; font-size:12pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.0000in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="font-family:Times New Roman; font-size:12pt; color:000000; lang:en-US; font-style:normal; text-position:normal; font-weight:normal; width:0in; height:0in; text-decoration:none"></c></p>
+<p style="Heading 3"><c props="lang:en-US; height:0in; width:0in"></c><c props="lang:en-US; height:0in; width:0in">Summary</c></p>
+<p style="Normal"><c props="lang:en-US; height:0in; width:0in"></c></p>
+<p style="Normal" props="margin-top:0.0000in; margin-left:0.0000in; text-indent:0.0000in; margin-bottom:0.0000in; line-height:1.000000; text-align:left; margin-right:0.0000in"><c props="lang:en-US; height:0in; width:0in"></c><c props="lang:en-US; height:0in; width:0in">A GraphUI is responsible for the low-level drawing functions of each individual graph elements (node and edges). Hit testing must be carefully configured by a GraphUI. The decoration identifiers used for hit testing must be clearly listed and defined in the javadoc class comments in all GraphUI implementations.</c></p>
+</section>
+<data>
+<d name="/mnt/home/daepark/screenshots/2002_06_28_125854_shot.png_0" mime-type="image/png" base64="yes">
+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
+XLggu6hmLHWtONlFNQsXLih4WnHW7z79i9xu7yvbAzh8+PCxxx473K/f//73AWAsDUBcpYGK
+ffe73/3ud7972mmnAcChQ4eef/55AFi5ciX/un379ltvvTX5c0g5A/T19d13333PPPNMsubB
+Bx9csWLFhz70oerq6uiQg3YqrUmaxx57jMs85phjrr322i996Uu/+c1vACAqbczljMDw9Rlr
+UQ8++CDEDd6pDQ19fX1amZqao/fs2TPeygjCzGHx4sUAcPzxx1ckkyJNxXR/InrhxVcOHO49
+66zGgyEdPlR44ynH/eqllx554vHeYi8iEpF13hZt0YaFvmJfMezrK/QXir19hcLB3tNObfja
+3/3pyHX95Be/tWtPPrtowYLqbFU2U12drc4E2epMxgQmY4xWfJQFmQV1S+qaz2vc/eK+NywM
+Vqz4nV/8IvfCi68sq1wMwFo7QiPsvfvv//rvmpqaU089deRyFJb67IcOHbr++uvf9ra3AcCT
+Tz756U9/GgA2btzIv37rW9+CcrZ+aDk/+tGPnn76qRVnnb323e9eunTpyy+//MOWHz799NNV
+2eyHL798uPqUVVq2/fSnjz36KAD09vUtPvaYY4891nv/pje+6cEfP3j//fe//e1vW7r0xLGU
+MwHGXs7LL7+cqaoq9PUuO+3000477bXXXisWi9poQLTWTr4mgjAtTF76H4HK6P5EtHP3y68f
+OHzuyhU9Bfd6T8Fofbi/+Mfve0dttroqMGyXPZGzzjpnrStaa60NQ9vXH+57rft/Wh8ata5n
+/87J119z+XHH1FZXBUFgjDEZY4zRRmvNth+RiPpD213oO9xfDEO7f39/WJM988zlT25/pujs
+GW9cWqkGYATr75wHgPvuu++KK66or68foRBUqJRKD054/vnnr7rq6uhXVCUL55573sGDB5M/
+S8pJ/vztb3/7P//zP6effvrVcWt90kknXXX1Vbfffnt7W9t71q7ljku5QRE49Lz6enuXLVt2
+9tln33777cfU1iqlnHPNq5r/87/+s62t7bnnnjv//PPf8573jlrOqJStz9CTHcrevXtvv/32
+s88++2Mf+xgBHD506ODBQ9oYJBqHciQIM4+/+qu/GstmjzzySDabLVl5JHR/T/TUzvyBQ70r
+V6549VD/oQMF79AZ+vWvXzOBeQl7UCEAkCfnnbUuDMNiMSyGxWJ/sb9oC4VCf6GvUCiMeoaF
+QuHpnburstXZbLYqYzJVmUyQyWSCIAiM0Vrp5ECeyIY2DK21bv/+g4WjsmeeuXz79mc6CsVz
+zmhQk7YIRFQyY0Ya6xwQHD50+Fvfuvvqq68aITislEJAUAQUKRxXX301KlbBBwxXsua8884F
+jJbTwYKonJjnn3vOOnfh2y/EwbLJhRdemMvtfP6551atugAAUA0UQQBAgAg4RGk5/bTTv/Mv
+3/njS//4hPp65xwCnlBfv6B6gbPWWvtnV//ZnV+/45JL3lu2nJdeeunf/+O7zz37PCHgQI2R
+4u0GryQEOP13fueDH/yTE086KSpntHvV1tb2L//ynVXNF1z+4Q8DYF/v4QOvHyAiE98gkqF/
+wlznggsumMAUbZPV/b33jz6Tb3v6mbc3vyX/cnehP1TKZDIZAABA7ynxtYnIOeecs84VwzAs
+2v6i7S/2W2uBaEyBTwIgstb2F/sh8ogRAL0jq7XWuuRY1jrrXLGveODAodeqgkXHHLOt/bF+
+S7+3omECnunYcbHUcOjgge98+zvX33A9S+1DQURUg0zu8uXLAaKWIDkdhWqQnD5EWudykj8P
+9x621i54w4L0SgBYsGBBGNrDh3vj9QO/suyulCrZBQCWNy53zj3yyCPvuOiiu+/+FiqsymZR
+4RsWLnznWy84+ZSTX3nllYFuyuByNt236dcv/nrNO9YsWLAgaeEAAIAIEAkAgZs+BCCgvt6+
+hx9+aNOmTX/913/D5Yx8px5++OG77777rW996xUbrujt7e3r7T148KB11phh22ZBmHukff9L
+ui8qQP/W2tHVlMnq/ocO9+145pf1Rx/b3dOndKhMkAmQIKQMegqVc4AKgQgQyHvvnbWh82Fo
+i8XQhkUbumIxBPLWjS7OWmed964YIiqNxX5EAiRCr502psyxPBWLobWuGIaHD/d6Z+uPPnbH
+M7/83TfWHbXoDaMebmSCYNiBbNZaICAgQHh13yt3fO2Ov7z+L8s2AOkWayjJT6OqVSXlLF/e
+aK39+c9+1tjYmN7s5z/7mbVueePy4Qosq7Pncrlzzjln85b/c8stX3711VcR8cQTT0TEc845
+p/u1HkSsrTmmZK+knB07drzrXe+6fPhIw1C89z/84Y9495F1/5///Off/Odvrv7937/ssste
+f/31AwcO8MYytkuYbyS+/9q9a4rvPKx/mIUxjECdrO5/1KI3vO/iC777n1sVqqWnnGydLXgy
+zjnvtVYqlYlIRN5757y1YRjaMCwWi2EYhtZZ8M5aN2pdrXXWWlCEIRKQB/BEzjtrAu1c2WOF
+YWitRXKBVi/v7drX9fIH33/x5E0/DJkrtVAoPPbYY845AAi5NwMAAAiY35P/whe+cPHFF8dd
+ogH279tXV1c33CFee+01Xujs7By5Mk91dKTLyWQyp55ySuu21qOOPvrtb387r/zpT3/6P62t
+S5cuzWQywxW4b9++N7xh0MXZtGnTrl27CoW+3r6+H/9466pVqzo7Oy+66KLOzs7GxsalS5f+
++Mc/XvCGBSUFJuWEoT148OCo9U9z8OBB60LeZWh9Eh599NFNmzb93u/93h/+4fsOHDgAcXs8
+qIMhCPMD9v3X7lxT+NCBs/XKnYefW//se99w3MJnfr19adVJJ1QtfWvN7w/dqwK6/5Ilx35w
+3cX/fv9PgKj+lJNCW+x3LgxDY4wxWmut2BYSeU/Whc4BOUveATkgh+Sdd96Pbv29d947jQjk
+gBR5Rc46/tMHpKIkcw8YyT7Weu+RXGDUy3t+/eorL39w3cVLjhs2U3NcpBWJ3t7exx57zBjD
+XqctFgEAAAGh/oT64xYv3rd/fz6fH5oDGmQyxpjhZC+lo0Po0XQMLie95gMf+MDXv/GN//je
+91pbW4899tjf/va3v93/W0Dw3nd2dp500kkElJb4uQ5Kq5Jystnsm5Ytu+S97/36N77x/R98
+/4ILViU/nXLKKQDw9NNPL126NNmrpJw3vrHhJz/5CRENp32V0NfXx/FqPmWlVdlzb2tr+9f/
+/a/NFzR/5KMfGforAqaEJUGY+1xwwQVN/++Kw80H1pkPIOHBDx1caBdl92dPqqo/rnBsTWER
+vF5mr8rk+y857tg/+cOLNt3/oHOu7uQTrXWWEIgyGqqzJhMYjQgAjshb7YisNc5m2DEvFm2h
+0D9CEDVBa71oYXU2W5XJGGNMEATaaGO0RlRm4BDF0PUecty5QKRA497dv3711Zcv+6N3Vsr0
+p+nt7f3Nb36zYNECDdEpWOcyVVVLjj/+pV//utBXeMc74tF6DkDH/wcAgEwmo7VBLG/9k7hl
+MJqUweWk15x6asMX/u4LP37wwWeffXbnzp3Lly8///zmBQsW3Hffpr/7u79bvfr3r7zyyvT2
+XAejdUk5F1/8B3/7+RtPP/30z3z6M/v37y/5tbe394knn/jSTTcn60vKue66T/7TP/7jgz/6
+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
+TkSuQmCC
+</d>
+<d name="/mnt/home/daepark/screenshots/2002_06_28_125947_shot.png_0" mime-type="image/png" base64="yes">
+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
+VIslAAAAAElFTkSuQmCC
+</d>
+</data>
+</abiword>

@@ -1,0 +1,175 @@
+New_Case								# Case ID
+    1									# 1 => JCS WO available, 0 => no JCS WO
+JCS-Order-1437.5						# JCS Warning Order file name
+    3									# No. of 'matching' JCS WOs in case base
+JCS-Order-1437.5				99.6
+    3									# No. of COAs for this WO
+COA11							98.6
+COA12							96.4
+COA13							92.8
+JCS-Order-1437.5				98.2
+    3                                   # No. of COAs for this WO
+COA21							97.5
+COA22							94.7
+COA23							90.6
+JCS-Order-1437.5				96.7
+    3                                   # No. of COAs for this WO
+COA31							92.8
+COA32							88.6
+COA33							79.5
+    0									# 1 => Commander's estimate available
+
+Dennis Ellis							# Case preparer
+Wed Aug  2 19:02:14 2000 				# Case creation date
+Wed Aug  2 19:02:14 2000 				# Case last used date
+0										# No. of times case used
+16										# Percent 'selected' keywords
+0.200000								# Case default 'low' weighting
+0.500000								# Case default 'medium' weighting
+0.800000								# Case default 'high' weighting
+#EOH -------------------------   End of Header ---------------------------# 
+########
+Mission            3
+#
+Type               9
+NMD                 3   0.0     9     0     0
+  GBI_Reserve                     
+  Follow-on_Threat                
+  Lethality_Threshold             
+  Always_Salvo                    
+  NWE_Avoidance                   
+  BMC2_Chooses                    
+  KV_Chooses                      
+  SBIRS-based                     
+  User                            
+ITWAA               3   0.0     0     0     0
+TAMD                3   0.0     0     0     0
+I/O                 3   0.0     0     0     0
+Nuclear             3   0.0     8     0     0
+  Target_List                     
+  Fratricide                      
+  Avoid_NUDET                     
+  Priorities                      
+  Timelines                       
+  Interoperation                  
+  C4I_Linkages                    
+  User                            
+Air                 3   0.0     0     0     0
+Surface             3   1.0     0     0     0
+Intel               3   1.0     0     0     0
+User                3   0.0     0     0     0
+#
+Objectives        14
+Deter               3   0.0     0     0     0
+Destroy             3   0.0     0     0     0
+Degrade             3   0.0     0     0     0
+Protect             3   0.0     0     0     1
+Deny                3   0.0     0     0     1
+Deploy              3   0.0     0     0     0
+Retaliate           3   0.0     0     0     0
+De-escal            3   0.0     0     0     0
+Assist              3   0.0     0     0     1
+Peacekeeping        3   0.0     0     0     0
+Deceive             3   0.0     0     0     0
+Coordinate          3   0.0     0     0     0
+Plan                3   0.0     0     0     0
+Show-of-Force       3   0.0     0     0     0
+#
+Content/Emphasis   13
+Detailed            3   0.0     0     0     1
+Annexes             3   0.0     0     0     0
+NMD                 3   0.0     0     0     0
+Logistics           3   0.0     4     0     1
+  Inadequate                      
+  Lift_Modes                      
+  Priority                        
+  Short_supply                    
+Nominal             3   0.0     0     0     0
+Nuclear             3   0.0     0     0     0
+ITWAA               3   0.0     0     0     0
+Intel               3   0.0     0     0     0
+Comm                3   0.0     0     0     0
+Humanitarian        3   0.0     0     0     0
+Public_Affairs      5   0.0     0     0     0
+Documented          3   0.0     0     0     0
+User                3   0.0     0     0     0
+########
+Threats            4
+#
+Characteristics    6
+Strategic           3   0.0     0     0     2
+Theater             3   0.0     0     0     0
+Accidental          3   0.0     0     0     0
+Regional            3   1.0     0     0     0
+Rogue               3   0.5     0     0     0
+Irrational          3   0.2     0     0     0
+#
+Nation/State       8
+Russia              3   0.0     0     0     0
+Korea               3   0.0     0     0     0
+Iraq                3   0.0     0     0     0
+China               3   0.0     0     0     0
+Iran                3   0.0     0     0     0
+Syria               3   0.0     0     0     0
+Unknown             3   0.0     0     0     0
+User                3   0.0     0     0     0
+#
+Enemy_Weapons      7
+Nuclear             3   0.0     0     0     0
+Chemical            3   0.0     0     0     0
+Biological          3   0.0     0     0     0
+Conventional        3   1.0     0     0     0
+Comm                3   0.0     0     0     0
+Propaganda          3   0.0     0     0     0
+User                3   0.0     0     0     0
+#
+Enemy_Platforms    9
+Land                3   0.0     0     0     0
+Sea                 3   0.0     0     0     0
+Air                 3   0.0     0     0     0
+Space               3   0.0     0     0     0
+Ballistic           3   0.0     0     0     0
+Computer            3   0.0     0     0     0
+Comm                3   0.0     0     0     0
+Non-Specific        3   0.0     0     0     0
+User                3   0.0     0     0     0
+########
+Assets             4
+#
+Defended_Areas     8
+CONUS               3   0.0     0     0     0
+Region              3   0.0     0     0     0
+Allies              3   1.0     0     0     0
+Info                3   0.0     0     0     1
+Space               3   0.0     0     0     0
+Links               3   0.0     0     0     0
+Capabilities        3   0.0     0     0     0
+Survivability       3   0.0     0     0     0
+#
+Sensors            4
+SBIRS               3   0.0     0     0     0
+NBC                 3   0.0     0     0     0
+UEWRS               3   0.0     0     0     0
+User                3   0.0     0     0     0
+#
+Weapon_Classes     8
+Nuclear             3   0.0     0     0     0
+Laser               3   0.0     0     0     0
+HPM                 3   0.0     0     0     0
+Conventional        3   1.0     0     0     0
+Comm                3   0.0     0     0     0
+Propaganda          3   0.0     0     0     0
+GBI                 3   0.0     0     0     0
+EW/IO               3   0.0     0     0     0
+#
+Weapon_Platforms    9
+Land                3   0.0     0     0     0
+Sea                 3   0.0     0     0     0
+Air                 3   0.0     0     0     0
+Space               3   0.0     0     0     0
+Ballistic           3   0.0     0     0     0
+Computer            3   0.0     0     0     0
+Comm                3   0.0     0     0     0
+Non-Specific        3   0.0     0     0     0
+User                3   0.0     0     0     0
+[EOF]

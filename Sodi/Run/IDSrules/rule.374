@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Unassigned! (Type 1) (Undefined Code)"; itype: 1; sid:459;  classtype:misc-activity; rev:4;)

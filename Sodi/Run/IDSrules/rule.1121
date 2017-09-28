@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Poll-it access"; flags: A+; uricontent:"/pollit/Poll_It_SSI_v2.0.cgi"; nocase; reference:cve,CAN-2000-0590; reference:bugtraq,1431; classtype:attempted-recon; sid:1106; rev:2;)

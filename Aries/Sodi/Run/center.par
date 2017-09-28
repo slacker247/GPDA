@@ -1,0 +1,17 @@
+command_centers {
+  type NORAD_COMMAND_CENTER
+  int icon 76
+}
+
+NORAD_COMMAND_CENTER {
+  float stale_track_time 120.0;
+  float lanl_bp_start_time 380000.0;
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}

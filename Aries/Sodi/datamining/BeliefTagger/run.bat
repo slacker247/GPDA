@@ -1,0 +1,3 @@
+#
+echo `pwd`
+java InterfaceMain

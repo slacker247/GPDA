@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET 3344 -> $HOME_NET 3345 (msg:"BACKDOOR Matrix 2.0 Client connect"; content:"activate"; reference:arachnids,83; sid:161;  classtype:misc-activity; rev:3;)

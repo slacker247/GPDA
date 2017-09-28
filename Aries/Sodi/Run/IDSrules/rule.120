@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (msg:"BACKDOOR HidePak backdoor attempt";flags: A+; content:"StoogR"; sid:219;  classtype:misc-activity; rev:3;)

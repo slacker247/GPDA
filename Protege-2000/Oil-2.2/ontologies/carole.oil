@@ -1,0 +1,70 @@
+begin-ontology
+ontology-container 
+title "macromolecule fragment"
+creator "robert stevens"
+subject "macromolecule generic ontology"
+description "example for a tutorial"
+description.release "1.0"
+publisher "R Stevens"
+type ontology
+format "pseudo-xml"
+identifier "http://www.ontoknowledge.org/oil/oil.pdf"
+source "http://img.cs.man.ac.uk/ismb00/mmexample.pdf"
+language "OIL"
+language "en-uk"
+
+ontology-definitions
+
+slot-def has_backbone 
+	inverse is_backbone_of
+
+slot-def part_of 
+	inverse is_part_of
+	properties transitive
+
+slot-def cellular_location
+	properties functional
+
+class-def rna 
+subclass-of 
+	nucleic_acid
+	slot-constraint has_backbone 
+	value-type ribophosphate
+
+class-def ribophosphate
+
+class-def deoxyribophosphate 
+
+disjoint ribophosphate deoxyribophosphate 
+
+class-def defined dna 
+	subclass-of nucleic_acid
+	slot-constraint has_backbone 
+     	value-type deoxyribophosphate 
+
+class-def dna 
+
+class-def rna
+
+disjoint dna rna
+
+class-def defined catalyst
+	subclass-of macromolecule
+	slot-constraint promotes 
+     	has-value reaction
+
+class-def defined enzyme 
+	subclass-of protein catalyst
+
+class-def defined mitochondrial 
+	slot-constraint cellular_location
+	has-value (mitochondrion or (slot-constraint part-of has-value mitochondrion))
+
+class-def defined succinate_dehydrogenase 
+	subclass-of enzyme 
+	slot-constraint promotes
+	value-type oxidation
+	slot-constraint cellular_location 
+	has-value (slot-constraint part-of has-value mitochondrion)
+
+end-ontology

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET !80 -> $HOME_NET 21554 (msg:"BACKDOOR GirlFriendaccess"; flags: A+; content:"Girl"; reference:arachnids,98; sid:145;  classtype:misc-activity; rev:3;)

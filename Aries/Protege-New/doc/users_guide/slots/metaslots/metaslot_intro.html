@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Understanding Metaslots</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="../../classes/images/serving_nerd.gif" width="48" height="48">   Understanding Metaslots<br>
+<img src="../../classes/images/header_line.gif" width="590" height="6"></h1>
+
+<p>Metaslots, or slot metaclasses, are similar to <a href="../../classes/metaclasses/metaclass_intro.html">metaclasses</a>,
+except that they determine the properties of slots instead of classes. A slot
+metaclass is a metaclass that can be used as a template to determine the way
+Protégé constructs a slot. By creating a new metaslot, you can create a different template
+for selected slots. This allows
+you to attach additional information to your slot at the class level. This is
+especially useful if you have several slots, each of which has a similar
+structure.</p>
+
+<p>If you have multiple metaslots in your project, Protégé allows you to
+choose which metaslot you want to use as the default for every new slot you
+create. This feature is not available for classes in Protégé-2000, since it is
+more useful for slots.</p>
+
+<p><font size="3">Metaslots are part of the :SLOT hierarchy in the Class Tab, which is
+included in every project. Every
+subclass of a metaslot is also a metaslot.&nbsp;</font></p>
+
+<p>Note that metaslots appear at the Class Tab. This is because every slot is an
+<i>instance</i> of a slot meta<i>class</i>. Slots are <i>not</i> values or
+subslots of a global slot.</p>
+
+<p><img border="0" src="images/metasl1.gif" width="440" height="201"></p>
+
+<h2>STANDARD-SLOT</h2>
+
+<p>By default, when a slot is created as part of a project, Protégé&nbsp; treats that
+slot as an instance of the slot metaclass :STANDARD-SLOT. The properties of
+:STANDARD-SLOT create the initial view of the slot and determine the properties
+in the Slot Form. Just as with :STANDARD-CLASS, you can look at :STANDARD-SLOT to see how the slots
+for a metaslot translate to properties of a slot.&nbsp;</p>
+
+<p>In a new project,&nbsp; :STANDARD-SLOT has a Default <img border="0" src="images/Default.gif" width="11" height="16">
+icon to indicate that it is the default metaslot used for creating new slots. If
+you create a new metaslot and change the default, the new default will have the <img border="0" src="images/Default.gif" width="11" height="16">
+icon.</p>
+
+<h3> Slots for :STANDARD-SLOT</h3>
+
+<p>Just as with :STANDARD-CLASS, the slots for :STANDARD-SLOT translate into
+fields in the <a href="../slot_form.html"> Slot Form</a>, as well as other associated properties of the slot.
+Various slots of :STANDARD-SLOT create the entry fields and any default values
+for Value Type, Cardinality, Maximum and Minimum, etc. The correspondence
+between slots for a metaclass and fields in the Class Form is explained in more
+detail in <a href="../../classes/metaclasses/metaclass_intro.html">Understanding Metaclasses</a>.</p>
+
+<p><img border="0" src="images/metasl2.gif" width="655" height="364"></p>
+
+<p><img border="0" src="images/metasl3.gif" width="611" height="316"></p>
+
+<p>Because of the power of metaclasses, you may want to be particularly cautious
+how much you experiment with a current project. It is a good idea to work on a
+copy.</p>
+
+<hr>
+
+<p><font size="3">Next:&nbsp;<a href="metaslot_create.html">Creating a Metaslot</a></font></p>
+
+<p><a href="../index.html">Slots Table of Contents</a></p>
+
+<p>&nbsp;</p>
+</body>
+</html>

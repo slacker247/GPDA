@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI rksh access";flags: A+; uricontent:"/rksh"; nocase; reference:cve,CAN-1999-0509; classtype:attempted-recon; sid:877; rev:1;)

@@ -1,0 +1,1377 @@
+/*		@(#)GR_Interface.C	1.11		11/13/92	*/
+#include "GR_Interface.H"
+#include "GR_Window.H"
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include <ctype.h>
+#include <sys/types.h>
+#include <time.h>
+#include "gltk.h"
+#include "gd.H"
+
+#define GR_MODULE
+//#define ONYX
+#define	GR_PERSPECTIVE	3 //make it consistent with other files;
+#define	GR_ORTHO	1
+#define	GR_MAX_OBJS	(64 * 1024 - 1)
+#define MAXPATS		120
+
+#define PI              M_PI
+
+static float		GR_worldxmin = 0.0;
+static float		GR_worldxmax = 0.0;
+static float		GR_worldymin = 0.0;
+static float		GR_worldymax = 0.0;
+static long		GR_viewtype = -1;
+static long		GR_init_done = 0;
+static void		*GR_obj_table[GR_MAX_OBJS];  /* For identifying objects */
+static GLuint		GR_name_buffer[GR_MAX_OBJS]; /* Name buffer for picking */
+static unsigned short	GR_nameidx = 0;		     /* obj_table place index */
+static void		*GR_hit_table[GR_MAX_OBJS];  /* Resulting pick hits */
+static long		GR_numhits;		/* Picking hit count */
+static long             GR_lasthit;             /* Last item hit */
+long			GR_pickflag = 0;	/* Picking enabled/disabled flag */
+static double		pick_x = 10.0;		/* Picking window X size */
+static double		pick_y = 10.0;		/* Picking window Y size */
+static unsigned long	patterns[MAXPATS][32];	/* Polygon fill patterns */
+static unsigned long	currpatt[32];		/* Current fill pattern */
+static unsigned long	linepats[MAXPATS];	/* Line patterns */
+static int		currentpattern = 0;	/* Current line pattern */
+static int		linerepeat = 1;		/* Line repeat factor */
+static float		curvensegs = 20.0;	/* Curve line seg count */
+extern int		GR_MouseX;		/* Current mouse X position */
+extern int		GR_MouseY;		/* Current mouse Y position */
+static int		GR_slices = 32;		/* Current Quadric slice count */
+static int		GR_stacks = 32;		/* Current Quadric stack count */
+int			LcdDigitX, LcdDigitY;	/* LCD char width & height */
+float			LcdPosX, LcdPosY, LcdPosZ;  /* Current LCD char position */
+unsigned char  		*LcdDigits[15];		/* LCD char bitmaps */
+static int              LcdInit = FALSE;        /* LcdMakeFont called? */
+
+#ifndef ONYX
+static long	GR_useMessagerFlag = 0;
+#include "Messager.H"
+#endif
+
+Widget			GR_toplevel;
+XtAppContext		GR_appcontext;
+GLXContext		GR_glxcontext;
+String 			*GR_fallback_resources = 0;
+
+static struct WindowElem
+{
+	GR_Window *window;
+	WindowElem *next;
+}*GR_windowlist;
+	
+
+void GR_errors()
+{
+GLenum error;
+
+  while ((error = glGetError()) != GL_NO_ERROR) {
+    fprintf(stderr, "Error: %s\n", (char *) gluErrorString(error));
+  }
+}
+
+void
+GR_registerWindow (GR_Window *window)
+{
+WindowElem *ptr;
+
+	if (!window)
+		return;
+
+	if (!GR_windowlist)
+	{
+		GR_windowlist = new WindowElem;
+		GR_windowlist->window = window;
+		GR_windowlist->next = 0;
+	}
+	else
+	{
+		ptr = new WindowElem;
+		ptr->next = GR_windowlist;
+		ptr->window = window;
+		GR_windowlist = ptr;
+	}
+}
+
+
+long		
+GR_get_color (short red, short green, short blue)
+{
+long color_index;
+
+	color_index = red + 256*green + 256*256*blue;
+	return color_index;
+}
+
+void
+GR_deflinestyle (short style, short pattern)
+{
+        if (style >= MAXPATS) {
+            fprintf(stderr, "deflinestyle: Pattern index too big. %d\n", style);
+            return;
+          }
+	if (style > 0)
+            linepats[style] = pattern;
+}
+
+void
+GR_lsrepeat(long factor)
+{
+	linerepeat = factor;
+}
+
+void
+GR_setlinestyle (short style)
+{
+	glLineStipple((GLint)linerepeat, (GLushort)linepats[style]);
+}
+
+void
+GR_defpattern (short n, short size, unsigned long pattern[])
+{
+int     i;
+
+        if (n >= MAXPATS) {
+            fprintf(stderr, "defpattern: Pattern index too big. %d\n", n);
+            return;
+          }
+        if (size != 32) {
+            fprintf(stderr, "defpattern: Only size 32 patterns supported\n");
+            return;
+          }
+        for (i=0; i<size; i++)
+            patterns[n][i] = pattern[i];
+}
+
+void
+GR_setpattern (short n)
+{
+int index, i;
+
+        index = (int)n;
+        currentpattern = index;
+	for (i=0; i<32; i++)
+	    currpatt[i] = patterns[index][i];
+        glPolygonStipple((GLubyte *)currpatt);
+        glEnable(GL_POLYGON_STIPPLE);
+}
+
+long
+GR_getpattern ()
+{
+        return (long)currentpattern;
+}
+
+long
+GR_deffont (char *font)
+{
+//	return GR_display->p_fonttable->setfont (font);
+   	return 0; // to supress compiler warning;
+}
+
+void
+GR_polf (long n, float varray[][3])
+{
+long i;
+
+	glBegin(GL_POLYGON);
+	for (i=0; i<n; i++)
+		glVertex3f(varray[i][0], varray[i][1], varray[i][2]);
+	glEnd();
+}
+
+void
+GR_poly (long n, float varray[][3])
+{
+long i;
+
+	glBegin(GL_LINE_LOOP);
+	for (i=0; i<n; i++)
+		glVertex3f(varray[i][0], varray[i][1], varray[i][2]);
+	glEnd();
+}
+
+void
+GR_polf2 (long n, float varray[][2])
+{
+long i;
+
+	glBegin(GL_POLYGON);
+	for (i=0; i<n; i++)
+		glVertex2f(varray[i][0], varray[i][1]);
+	glEnd();
+}
+
+void
+GR_poly2 (long n, float varray[][2])
+{
+long i;
+
+	glBegin(GL_LINE_LOOP);
+	for (i=0; i<n; i++)
+		glVertex2f(varray[i][0], varray[i][1]);
+	glEnd();
+}
+
+void
+GR_circf (float x, float y, float radius)
+{
+GLUquadricObj* circleobj;
+
+        circleobj = gluNewQuadric();
+        glTranslatef(x, y, 0.0);
+        gluQuadricDrawStyle(circleobj, (GLenum)GLU_FILL);
+        gluDisk(circleobj, 0.0, (GLdouble)radius, (GLint)180, (GLint)1);
+}
+
+void
+GR_circ (float x, float y, float radius)
+{
+GLUquadricObj* circleobj;
+
+        circleobj = gluNewQuadric();
+        glTranslatef(x, y, 0.0);
+        gluQuadricDrawStyle(circleobj, (GLenum)GLU_SILHOUETTE);
+        gluDisk(circleobj, 0.0, (GLdouble)radius, (GLint)180, (GLint)1);
+}
+
+void
+GR_arcf(float x, float y, float radius, float sangle, float eangle)
+{
+GLUquadricObj* arcobj;
+
+	arcobj = gluNewQuadric();
+	glTranslatef(x, y, 0.0);
+	gluQuadricDrawStyle(arcobj, (GLenum)GLU_FILL);
+        gluPartialDisk(arcobj, (GLdouble)0.0, (GLdouble)radius, 
+                       (GLint)180, (GLint)5,
+                       (GLdouble)(90.0-(0.1*sangle)),
+                       (GLdouble)(0.1*(eangle-sangle)));
+}
+
+void
+GR_arc(float x, float y, float radius, float sangle, float eangle)
+{
+GLUquadricObj* arcobj;
+
+	printf("doing ARC\n");
+	arcobj = gluNewQuadric();
+	glTranslatef(x, y, 0.0);
+	gluQuadricDrawStyle(arcobj, (GLenum)GLU_SILHOUETTE);
+	gluPartialDisk(arcobj, (GLdouble)0.0, (GLdouble)radius,
+		       (GLint)180, (GLint)5,
+	               (GLdouble)(90.0-(0.1*sangle)),
+		       (GLdouble)(0.1*(eangle-sangle)));
+}
+
+void
+GR_setslices(int slices)
+{
+	GR_slices = slices;
+}
+
+void
+GR_setstacks(int stacks)
+{
+	GR_stacks = stacks;
+}
+
+void
+GR_sphere(float radius, int *flags)
+{
+GLUquadricObj	*quadobj;
+int		i;
+GLenum          style = (GLenum) GLU_FILL;
+GLenum		orient = (GLenum) GLU_OUTSIDE;
+GLenum		normal = (GLenum) GLU_SMOOTH;
+GLenum          texture = GL_FALSE;
+
+   i = 0;
+   while ((GLenum)flags[i] != GR_QUADRIC_NULL) {
+        if ((GLenum)flags[i] == GR_QUADRIC_STYLE) style = (GLenum)flags[i+1];
+        if ((GLenum)flags[i] == GR_QUADRIC_NORMALS) normal = (GLenum)flags[i+1];
+        if ((GLenum)flags[i] == GR_QUADRIC_ORIENT) orient = (GLenum)flags[i+1];
+        if ((GLenum)flags[i] == GR_QUADRIC_TEXTURE) texture = (GLenum)flags[i+1];
+        i = i+2;
+     }
+   quadobj = gluNewQuadric();
+   gluQuadricDrawStyle(quadobj, (GLenum)style);
+   gluQuadricOrientation(quadobj, (GLenum)orient);
+   gluQuadricTexture(quadobj, (GLboolean)texture);
+   gluQuadricNormals(quadobj, (GLenum)normal);
+   gluSphere(quadobj, (GLdouble)radius, GR_slices, GR_stacks);
+   gluDeleteQuadric(quadobj);
+}
+
+void
+GR_cone(float base, float height, int *flags)
+{
+GLUquadricObj	*quadobj;
+int             i;
+GLenum          style = (GLenum) GLU_FILL;
+GLenum		orient = (GLenum) GLU_OUTSIDE;
+GLenum		normal = (GLenum) GLU_SMOOTH;
+GLenum          texture = GL_FALSE;
+
+   i = 0;
+   while ((GLenum)flags[i] != GR_QUADRIC_NULL) {
+        if ((GLenum)flags[i] == GR_QUADRIC_STYLE) style = (GLenum)flags[i+1];
+        if ((GLenum)flags[i] == GR_QUADRIC_NORMALS) normal = (GLenum)flags[i+1];
+        if ((GLenum)flags[i] == GR_QUADRIC_ORIENT) orient = (GLenum)flags[i+1];
+        if ((GLenum)flags[i] == GR_QUADRIC_TEXTURE) texture = (GLenum)flags[i+1];
+        i = i+2;
+     }
+   quadobj = gluNewQuadric();
+   gluQuadricDrawStyle(quadobj, style);
+   gluQuadricOrientation(quadobj, orient);
+   gluQuadricTexture(quadobj, texture);
+   gluQuadricNormals(quadobj, normal);
+   gluCylinder(quadobj, base, 0.0, height, GR_slices, GR_stacks);
+   gluDeleteQuadric(quadobj);
+}
+
+void
+GR_torus(float innerRadius, float outerRadius)
+{
+GLint           i, j;
+float           theta1, phi1, theta2, phi2, rings, sides;
+float           v0[03], v1[3], v2[3], v3[3];
+float           n0[3], n1[3], n2[3], n3[3];
+
+    rings = GR_stacks;
+    sides = GR_slices;
+
+    for (i = 0; i < rings; i++) {
+        theta1 = (float)i * 2.0 * PI / rings;
+        theta2 = (float)(i + 1) * 2.0 * PI / rings;
+        for (j = 0; j < sides; j++) {
+            phi1 = (float)j * 2.0 * PI / sides;
+            phi2 = (float)(j + 1) * 2.0 * PI / sides;
+
+            v0[0] = cos(theta1) * (outerRadius + innerRadius * cos(phi1));
+            v0[1] = -sin(theta1) * (outerRadius + innerRadius * cos(phi1));
+            v0[2] = innerRadius * sin(phi1);
+
+            v1[0] = cos(theta2) * (outerRadius + innerRadius * cos(phi1));
+            v1[1] = -sin(theta2) * (outerRadius + innerRadius * cos(phi1));
+            v1[2] = innerRadius * sin(phi1);
+
+            v2[0] = cos(theta2) * (outerRadius + innerRadius * cos(phi2));
+            v2[1] = -sin(theta2) * (outerRadius + innerRadius * cos(phi2));
+            v2[2] = innerRadius * sin(phi2);
+
+            v3[0] = cos(theta1) * (outerRadius + innerRadius * cos(phi2));
+            v3[1] = -sin(theta1) * (outerRadius + innerRadius * cos(phi2));
+            v3[2] = innerRadius * sin(phi2);
+
+            n0[0] = cos(theta1) * (cos(phi1));
+            n0[1] = -sin(theta1) * (cos(phi1));
+            n0[2] = sin(phi1);
+
+            n1[0] = cos(theta2) * (cos(phi1));
+            n1[1] = -sin(theta2) * (cos(phi1));
+            n1[2] = sin(phi1);
+
+            n2[0] = cos(theta2) * (cos(phi2));
+            n2[1] = -sin(theta2) * (cos(phi2));
+            n2[2] = sin(phi2);
+
+            n3[0] = cos(theta1) * (cos(phi2));
+            n3[1] = -sin(theta1) * (cos(phi2));
+            n3[2] = sin(phi2);
+
+            glBegin(GL_POLYGON);
+                glNormal3fv(n3);
+                glVertex3fv(v3);
+                glNormal3fv(n2);
+                glVertex3fv(v2);
+                glNormal3fv(n1);
+                glVertex3fv(v1);
+                glNormal3fv(n0);
+                glVertex3fv(v0);
+            glEnd();
+        }
+    }
+}
+
+void
+GR_crv(float points[4][3])
+{
+int		i;
+GLfloat		ctrlpoints[4][3] = {
+       		 { -1.0, -1.0, 0.0}, { -0.5, 1.0, 0.0},
+       		 {0.5, -1.0, 0.0}, {1.0, 1.0, 0.0}};
+GLUnurbsObj	*theNurb;
+GLfloat		knots[8] = {0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0};
+
+    glColor3f(1.0, 0.0, 0.0);
+/*
+    glMap1f(GL_MAP1_VERTEX_3, 0.0, 1.0, 3, 4, &ctrlpoints[0][0]);
+    glEnable(GL_MAP1_VERTEX_3);
+    glBegin(GL_LINE_STRIP);
+        for (i = 0; i <= curvensegs; i++)
+            glEvalCoord1f((GLfloat) i/curvensegs);
+    glEnd();
+*/
+    printf("doing CRV\n");
+    theNurb = gluNewNurbsRenderer();
+    gluNurbsProperty (theNurb, (GLenum)GLU_SAMPLING_TOLERANCE, 10.0);
+    gluBeginCurve(theNurb);
+    gluNurbsCurve(theNurb, 
+            8, knots,
+            3,
+            &points[0][0], 
+            4,
+            GL_MAP1_VERTEX_3);
+    gluEndCurve(theNurb);
+}
+
+void
+GR_curvebasis(short basisid)
+{
+//
+}
+
+void
+GR_curveprecision(short nsegs)
+{
+	curvensegs = (float)nsegs;
+}
+
+void
+GR_defbasis(short basisid, GR_matrix mat)
+{
+//
+}
+
+void
+GR_ortho (float left, float right, float bottom, float top, float near, float far)
+{
+	GR_viewtype = GR_ORTHO;
+	GR_worldxmin = left;
+	GR_worldxmax = right;
+	GR_worldymin = bottom;
+	GR_worldymax = top;
+	glOrtho((GLdouble)left, (GLdouble)right, (GLdouble)bottom,
+                (GLdouble)top,  (GLdouble)near,  (GLdouble)far);
+}
+
+void
+GR_ortho2 (float left, float right, float bottom, float top)
+{
+	GR_viewtype = GR_ORTHO;
+	GR_worldxmin = left;
+	GR_worldxmax = right;
+	GR_worldymin = bottom;
+	GR_worldymax = top;
+	gluOrtho2D((GLdouble)left, (GLdouble)right, (GLdouble)bottom, (GLdouble)top);
+}
+
+void
+GR_perspective (long fovy, float aspect, float near, float far)
+{
+	GR_viewtype = GR_PERSPECTIVE;
+	gluPerspective ((GLdouble)fovy, (GLdouble)aspect, (GLdouble)near, (GLdouble)far);
+}
+
+static void ConvertShort(unsigned short *array, long length)
+{
+unsigned long b1, b2;
+unsigned char *ptr;
+
+    ptr = (unsigned char *)array;
+    while (length--) {
+        b1 = *ptr++;
+        b2 = *ptr++;
+        *array++ = (b1 << 8) | (b2);
+    }
+}
+
+static void ConvertLong(GLuint *array, long length)
+{
+unsigned long b1, b2, b3, b4;
+unsigned char *ptr;
+
+    ptr = (unsigned char *)array;
+    while (length--) {
+        b1 = *ptr++;
+        b2 = *ptr++;
+        b3 = *ptr++;
+        b4 = *ptr++;
+        *array++ = (b1 << 24) | (b2 << 16) | (b3 << 8) | (b4);
+    }
+}
+
+IMAGE*
+iopen(const char* filname, const char* mode)
+{
+union {
+    int testWord;
+    char testByte[4];
+} endianTest;
+extern FILE	*INFOfp;
+FILE		*fileptr;
+int		i;
+IMAGE		*image;
+GLenum		swapFlag;
+int		x;
+
+   endianTest.testWord = 1;
+   if (endianTest.testByte[0] == 1) {
+       swapFlag = GL_TRUE;
+   } else {
+       swapFlag = GL_FALSE;
+   }
+
+   if ((fileptr = fopen(filname, "rb")) == NULL) {
+       perror(filname);
+       return NULL;
+   }
+
+   image   = (IMAGE *)malloc(sizeof(IMAGE));
+   if (image == NULL) { 
+       fprintf(stderr, "iopen: Out of memory!\n");
+       return image;
+   }
+//
+//	Set the stuff from the file
+//
+   image->imagic     = (fgetc(fileptr)<<8)  | fgetc(fileptr);
+   image->type       = (fgetc(fileptr)<<8)  | fgetc(fileptr);
+   image->dim        = (fgetc(fileptr)<<8)  | fgetc(fileptr);
+   image->xsize      = (fgetc(fileptr)<<8)  | fgetc(fileptr);
+   image->ysize      = (fgetc(fileptr)<<8)  | fgetc(fileptr);
+   image->zsize      = (fgetc(fileptr)<<8)  | fgetc(fileptr);
+   image->min        = (fgetc(fileptr)<<24) | (fgetc(fileptr)<<16) |
+                       (fgetc(fileptr)<<8)  | fgetc(fileptr);
+   image->max        = (fgetc(fileptr)<<24) | (fgetc(fileptr)<<16) |
+                       (fgetc(fileptr)<<8)  | fgetc(fileptr);
+   image->wastebytes = (fgetc(fileptr)<<24) | (fgetc(fileptr)<<16) |
+                       (fgetc(fileptr)<<8)  | fgetc(fileptr);
+   for (i=0; i<80; i++)
+      image->name[i] = fgetc(fileptr);
+   image->colormap   = (fgetc(fileptr)<<24) | (fgetc(fileptr)<<16) |
+                       (fgetc(fileptr)<<8)  | fgetc(fileptr);
+   if (INFOfp != NULL) {
+       fprintf(INFOfp, "iopen: File Name...... %s\n", filname);
+       fprintf(INFOfp, "iopen: Magic number... %d\n", image->imagic);
+       fprintf(INFOfp, "iopen: Type value..... %d\n", image->type);
+       fprintf(INFOfp, "iopen: Dimension...... %d\n", image->dim);
+       fprintf(INFOfp, "iopen: X size......... %d\n", image->xsize);
+       fprintf(INFOfp, "iopen: Y size......... %d\n", image->ysize);
+       fprintf(INFOfp, "iopen: Z size......... %d\n", image->zsize);
+       fprintf(INFOfp, "iopen: Min value...... %d\n", image->min);
+       fprintf(INFOfp, "iopen: Max value...... %d\n", image->max);
+       fprintf(INFOfp, "iopen: Wasted bytes... %d\n", image->wastebytes);
+       fprintf(INFOfp, "iopen: Image ID....... %s\n", image->name);
+       fflush(INFOfp);
+     }
+//
+//	Set the stuff that is used in-core only
+//
+   image->file   = (int)fileptr;
+
+   if ((image->type & 0xFF00) == 0x0100) {
+       x = image->ysize * image->zsize * sizeof(GLuint);
+       image->rowstart = (GLuint *)malloc(x);
+       image->rowsize  = (GLint *)malloc(x);
+       if (image->rowstart == NULL || image->rowsize == NULL) {
+           fprintf(stderr, "iopen: Out of memory!\n");
+           return NULL;
+       }
+       image->rleend = 512 + (2 * x);
+       fseek(fileptr, 512, SEEK_SET);
+       fread(image->rowstart, 1, x, fileptr);
+       fread(image->rowsize, 1, x, fileptr);
+       if (swapFlag) {
+           ConvertLong(image->rowstart, x/sizeof(GLuint));
+           ConvertLong((GLuint *)image->rowsize, x/sizeof(GLint));
+       }
+   }
+
+   return image;
+}
+
+void
+getrow(IMAGE* image, unsigned char* buffer, int y, int z)
+{
+FILE	*fileptr;
+unsigned char *iPtr, *oPtr, pixel;
+int	count;
+
+    fileptr = (FILE *)image->file;
+    if ((image->type & 0xFF00) == 0x0100) {
+        fseek(fileptr, image->rowstart[y+z*image->ysize], SEEK_SET);
+        fread(image->tmp, 1, (unsigned int)image->rowsize[y+z*image->ysize],
+              fileptr);
+
+        iPtr = image->tmp;
+        oPtr = buffer;
+        while (1) {
+            pixel = *iPtr++;
+            count = (int)(pixel & 0x7F);
+            if (!count) {
+                return;
+            }
+            if (pixel & 0x80) {
+                while (count--) {
+                    *oPtr++ = *iPtr++;
+                }
+            } else {
+                pixel = *iPtr++;
+                while (count--) {
+                    *oPtr++ = pixel;
+                }
+            }
+        }
+    } else {
+        fseek(fileptr, 512+(y*image->xsize)+(z*image->xsize*image->ysize),
+              SEEK_SET);
+        fread(buffer, 1, image->xsize, fileptr);
+    }
+}
+
+void
+getrowbw(IMAGE* image, unsigned short* buffer, int row, int column)
+{
+FILE	*fileptr;
+long	x, pos;
+unsigned char	a,l;
+
+	fileptr = (FILE *)image->file;
+	pos = row*image->ysize*image->zsize + sizeof(IMAGE);
+	for (x=0; x<image->xsize; x++) {
+	   a = fgetc(fileptr);
+	   l = fgetc(fileptr);
+           buffer[x] = (l<<8) || a;
+        }
+}
+
+void
+iclose(IMAGE* image)
+{
+   fclose((FILE *)image->file);
+   if (image->tmp  != NULL) (image->tmp);
+   if (image->rowstart != NULL) (image->rowstart);
+   if (image->rowsize != NULL) (image->rowsize);
+   free(image);
+}
+
+void
+rgbatocpack (unsigned char* r, unsigned char* g, unsigned char* b,
+             unsigned char* a, unsigned long*  l, int n)
+{
+   while (n>=8)
+   {
+      l[0] = a[0] | (b[0]<<8) | (g[0]<<16) | (r[0]<<24);
+      l[1] = a[1] | (b[1]<<8) | (g[1]<<16) | (r[1]<<24);
+      l[2] = a[2] | (b[2]<<8) | (g[2]<<16) | (r[2]<<24);
+      l[3] = a[3] | (b[3]<<8) | (g[3]<<16) | (r[3]<<24);
+      l[4] = a[4] | (b[4]<<8) | (g[4]<<16) | (r[4]<<24);
+      l[5] = a[5] | (b[5]<<8) | (g[5]<<16) | (r[5]<<24);
+      l[6] = a[6] | (b[6]<<8) | (g[6]<<16) | (r[6]<<24);
+      l[7] = a[7] | (b[7]<<8) | (g[7]<<16) | (r[7]<<24);
+      l += 8;
+      r += 8;
+      g += 8;
+      b += 8;
+      a += 8;
+      n -= 8;
+   }
+   while (n--)
+     *l++ = *a++ | ((*b++)<<8) | ((*g++)<<16) | ((*r++)<<24);
+}
+
+void
+rgbtocpack (unsigned char* r, unsigned char* g, unsigned char* b,
+            unsigned long* l, int n)
+{
+   while (n>=8)
+   {
+      l[0] = b[0] | (g[0]<<8) | (r[0]<<16);
+      l[1] = b[1] | (g[1]<<8) | (r[1]<<16);
+      l[2] = b[2] | (g[2]<<8) | (r[2]<<16);
+      l[3] = b[3] | (g[3]<<8) | (r[3]<<16);
+      l[4] = b[4] | (g[4]<<8) | (r[4]<<16);
+      l[5] = b[5] | (g[5]<<8) | (r[5]<<16);
+      l[6] = b[6] | (g[6]<<8) | (r[6]<<16);
+      l[7] = b[7] | (g[7]<<8) | (r[7]<<16);
+      l += 8;
+      r += 8;
+      g += 8;
+      b += 8;
+      n -= 8;
+   }
+   while (n--)
+     *l++ = *b++ | ((*g++)<<8) | ((*r++)<<16);
+}
+
+void
+GR_LcdMakeFont (int color, char *PathToGifs)
+{
+FILE            *fp;
+char            fileName[80];
+gdImagePtr      tvimage;
+unsigned char   c, r, g, b;
+unsigned char   *ptr;
+int             ix, iy, count, i;
+int             idigit;
+int             DORED=FALSE, DOGRN=FALSE, DOBLU=FALSE;
+
+static unsigned char slash[] = {
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0xd7,0xd7,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0xd7,0xd7,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0xd7,0xd7,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0xd7,0xd7,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0xd7,0xd7,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0xd7,0xd7,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xd7,0xd7,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xd7,0xd7,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xd7,0xd7,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xd7,0xd7,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xd7,0xd7,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xd7,0xd7,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+};
+static unsigned char period[] = {
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0xd7,0xd7,0xd7,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0xd7,0xd7,0xd7,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0xd7,0xd7,0xd7,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+};
+
+   if (LcdInit) return;
+   DORED=TRUE, DOGRN=FALSE, DOBLU=FALSE;
+   if (color == LcdBLACK)  { DORED = FALSE; }
+   if (color == LcdGREEN)  { DOGRN = TRUE; DORED = FALSE; }
+   if (color == LcdBLUE)   { DOBLU = TRUE; DORED = FALSE; }
+   if (color == LcdYELLOW) { DORED = TRUE; DOGRN = TRUE; }
+   if (color == LcdWHITE)  { DORED = TRUE; DOGRN = TRUE; DOBLU = TRUE; }
+   for (idigit=0; idigit<13; idigit++) {
+     sprintf(fileName, "%s/%d.gif", PathToGifs, idigit);
+//     printf("LCD input file name is %s\n", fileName);
+     fp = fopen(fileName, "rb");
+     tvimage = gdImageCreateFromGif(fp);
+     LcdDigitX = gdImageSX(tvimage);
+     LcdDigitY = gdImageSY(tvimage);
+//     printf("#define lcd_width %d\n", LcdDigitX);
+//     printf("#define lcd_hright %d\n", LcdDigitY);
+//     printf("static char lcd_bits[] = {\n");
+     LcdDigits[idigit] = (unsigned char *)malloc(LcdDigitX*LcdDigitY*4);
+     ptr = LcdDigits[idigit];
+     for (iy=0; iy<LcdDigitY; iy++) {
+       for (ix=0; ix<LcdDigitX; ix++) {
+         c = (unsigned char)gdImageGetPixel(tvimage, ix, LcdDigitY-1-iy);
+         r = DORED ? c:0;
+         g = DOGRN ? c:0;
+         b = DOBLU ? c:0;
+         *ptr++ = DORED ? c:0;
+         *ptr++ = DOGRN ? c:0;
+         *ptr++ = DOBLU ? c:0;
+         *ptr++ = 0;
+//         printf("0x%2.2x,", c);
+       }
+//       printf("\n");
+     }
+//     printf("}\n");
+     fclose(fp);
+   }
+   idigit = 13;
+   LcdDigits[idigit] = (unsigned char *)malloc(LcdDigitX*LcdDigitY*4);
+   ptr = LcdDigits[idigit];
+   i = (LcdDigitY*LcdDigitX);
+     for (iy=0; iy<LcdDigitY; iy++) {
+       for (ix=0; ix<LcdDigitX; ix++) {
+         i = i - 1;
+         c = (unsigned char)slash[i];
+         r = DORED ? c:0;
+         g = DOGRN ? c:0;
+         b = DOBLU ? c:0;
+         *ptr++ = DORED ? c:0;
+         *ptr++ = DOGRN ? c:0;
+         *ptr++ = DOBLU ? c:0;
+         *ptr++ = 0;
+       }
+     }
+   idigit = 14;
+   LcdDigits[idigit] = (unsigned char *)malloc(LcdDigitX*LcdDigitY*4);
+   ptr = LcdDigits[idigit];
+   i = (LcdDigitY*LcdDigitX);
+     for (iy=0; iy<LcdDigitY; iy++) {
+       for (ix=0; ix<LcdDigitX; ix++) {
+         i = i - 1;
+         c = (unsigned char)period[i];
+         r = DORED ? c:0;
+         g = DOGRN ? c:0;
+         b = DOBLU ? c:0;
+         *ptr++ = DORED ? c:0;
+         *ptr++ = DOGRN ? c:0;
+         *ptr++ = DOBLU ? c:0;
+         *ptr++ = 0;
+       }
+     }
+   LcdInit = TRUE;
+}
+
+long
+GR_LcdGetWidth()
+{
+	return LcdDigitX;
+}
+
+long
+GR_LcdGetHeight()
+{
+	return LcdDigitY;
+}
+
+void
+GR_LcdPrint(float *position, String message, int nchars, long color, int orient)
+{
+int	i, j;
+char	c;
+
+   if (!LcdInit) {
+      fprintf(stderr, "LcdPrint Error: Must call LcdMakeFont first.\n");
+      return;
+    }
+   LcdPosX = position[0];
+   LcdPosY = position[1];
+   LcdPosZ = position[2];
+
+   for (i=0; i<nchars; i++) {
+     glRasterPos3f(LcdPosX, LcdPosY, LcdPosZ);
+     c = message[i];
+     switch (c)
+       {
+	  case '0':
+	  case '1':
+          case '2':
+          case '3':
+          case '4':
+          case '5':
+          case '6':
+          case '7':
+          case '8':
+          case '9':
+	    j = c - '0';
+	    break;
+	  case ':':
+	    j = 10;
+	    break;
+	  case 'a':
+	  case 'A':
+	    j = 11;
+	    break;
+	  case 'p':
+	  case 'P':
+	    j = 12;
+	    break;
+	  case '/':
+	    j = 13;
+	    break;
+	  case '.':
+	    j = 14;
+	    break;
+	  default:
+	    goto skip;                   // Treat everything else as a space
+	    break;
+       }
+     glDrawPixels(LcdDigitX, LcdDigitY, GL_RGBA, GL_UNSIGNED_BYTE, LcdDigits[j]);
+skip:
+     if (orient == 0) {
+         LcdPosX = LcdPosX + LcdDigitX;
+     } else {
+         LcdPosY = LcdPosY + LcdDigitY;
+     }
+     j = 0;
+   }
+}
+
+void
+GR_screen_to_world (short xscreen, short yscreen, float &x, float &y)
+{
+long		xsize, ysize;
+long		xorg, yorg;
+
+	switch (GR_viewtype)
+	{
+		case	GR_PERSPECTIVE:
+			x = (float) xscreen;
+			y = (float) yscreen;
+			break;
+		
+		case	GR_ORTHO:
+			GR_getsize (&xsize, &ysize);
+			GR_getorigin (&xorg, &yorg);
+			xscreen -= (short) xorg;
+			yscreen -= (short) yorg;
+
+
+			x = GR_worldxmin + ((float)xscreen / (float)xsize) * (GR_worldxmax - GR_worldxmin);
+
+			y = GR_worldymin + ((float)yscreen / (float)ysize) * (GR_worldymax - GR_worldymin);
+
+			break;
+	}
+}
+
+void
+GR_world_to_screen (float xworld, float yworld, short &xscreen, short &yscreen)
+{
+long	xsize, ysize;
+long	xorg, yorg;
+
+	GR_getsize (&xsize, &ysize);
+	GR_getorigin (&xorg, &yorg);
+
+	xworld -= GR_worldxmin;
+	yworld -= GR_worldymin;
+
+	xscreen = (short) (xorg + (xworld / (GR_worldxmax - GR_worldxmin)) * xsize);
+	yscreen = (short) (yorg + (yworld / (GR_worldymax - GR_worldymin)) * ysize);
+
+}
+
+short
+GR_x_pixelsize (float width)
+{
+long	xsize, ysize;
+long xorg, yorg;
+short		xpixel;
+
+	GR_getsize (xsize, ysize);
+	GR_getorigin (xorg, yorg);
+
+	xpixel = (short) (width / ((GR_worldxmax - GR_worldxmin)) * xsize);
+
+	return xpixel;
+}
+
+short
+GR_y_pixelsize (float height)
+{
+long	xsize, ysize;
+long xorg, yorg;
+short		ypixel;
+
+	GR_getsize (xsize, ysize);
+	GR_getorigin (xorg, yorg);
+
+	ypixel = (short) (height / ((GR_worldymax - GR_worldymin)) * ysize);
+
+	return ypixel;
+}
+
+float
+GR_x_worldsize (short pixelwidth)
+{
+long	xsize, ysize;
+long xorg, yorg;
+float		xworld;
+
+	GR_getsize (xsize, ysize);
+	GR_getorigin (xorg, yorg);
+
+	xworld = ((float) pixelwidth / (float) xsize) * (GR_worldxmax - GR_worldxmin);
+
+	return xworld;
+}
+
+float
+GR_y_worldsize (short pixelheight)
+{
+long	xsize, ysize;
+long xorg, yorg;
+float		yworld;
+
+    GR_getsize (xsize, ysize);
+    GR_getorigin (xorg, yorg);
+
+    yworld = ((float) pixelheight / (float) ysize) * (GR_worldymax - GR_worldymin);
+
+    return yworld;
+}
+
+void
+GR_register_object (void *object)
+{
+    if (GR_pickflag)
+    {
+       if (GR_nameidx == GR_MAX_OBJS)
+       {
+	  printf ("WARNING: GR_pushobject - GR_MAX_OBJS reached (call ignored)\n");
+	  return;
+       }
+       //printf("Registering object at %d\n", GR_nameidx);
+       GR_obj_table [GR_nameidx] = object;
+       glLoadName (GR_nameidx);
+       GR_nameidx++;
+    }
+}
+
+void
+GR_picksize(short deltax, short deltay)
+{
+    pick_x = (double)deltax;
+    pick_y = (double)deltay;
+}
+/*
+void
+GR_getpick(int *position)
+{
+    position[0] = pick_x;
+    position[1] = pick_y;
+}
+*/
+void
+GR_bgnpick ()
+{
+int i;
+
+    printf("Begin picking...\n");
+    GR_nameidx = 0;	         /* start assigning names at 0 */
+    GR_pickflag = 1;             /* set pickmode to on */
+    for (i=0; i<GR_MAX_OBJS; i++) GR_name_buffer[i] = 0;
+    glSelectBuffer((GLsizei)GR_MAX_OBJS, (GLuint *)GR_name_buffer);
+    (void) glRenderMode(GL_SELECT);
+    glInitNames();
+    glPushName(9999);
+    //GR_pick (GR_name_buffer, GR_MAX_OBJS);
+}
+
+void
+GR_pick(int buffer[], long numnames)
+{
+GLint viewport[4];
+int x, y, k=0;
+
+    fprintf(stderr, "Should never be called\n");
+}
+
+void
+ProcessHits (GLint hits, GLuint buffer[])
+{
+unsigned int  i, j, k;
+long          last_item;
+GLuint        names, *ptr;
+
+    printf ("Hits = %d\n", hits);
+    ptr = (GLuint *) buffer;
+    for (i = 0; i < hits; i++) {        /*  for each hit  */
+        names = *ptr;
+        printf (" No. of names for hit %d is %d.", i+1, names); ptr++;
+        ptr++; ptr++;			/* Skip Z1 and Z2 */
+        printf (" Names are: ");
+        for (j = 0; j < names; j++) {   /*  for each name */
+            k = *ptr;
+            printf (" %d", k); ptr++;
+        }
+        printf (".");
+        printf (" Object ID is %0X.\n", GR_obj_table[k]);
+	last_item = *ptr;
+    }
+    GR_lasthit = last_item;
+}
+
+long
+GR_endpick ()
+{
+int nitems, index, item;
+
+//glMatrixMode(GL_PROJECTION);
+//glPopMatrix();
+//glFlush();
+//glMatrixMode(GL_MODELVIEW);
+    glFlush();
+    GR_numhits = glRenderMode(GL_RENDER);
+//  GR_numhits = endpick (GR_name_buffer);
+    GR_pickflag = 0;
+    printf("Objects registered is %d\n", GR_nameidx);
+    //for (index=0; index<20; index++)
+    //printf("Selection buffer[%d] = %d\n", index, GR_name_buffer[index]);
+    ProcessHits((GLint)GR_numhits, (GLuint *)GR_name_buffer);
+    /*
+    printf ("Hits = %d {", GR_numhits);
+    for (item=0,index=0; item<GR_numhits; item++)
+    {
+        nitems = GR_name_buffer [index] + index + 1;
+        printf ("Item %d of %d (", index, nitems);
+        for (index++; index < nitems; index++)
+    	{
+     	    if (index == nitems - 1)
+         	printf ("%0X", GR_obj_table [GR_name_buffer [index]]);
+	     else
+		printf ("%0X ", GR_obj_table [GR_name_buffer [index]]);
+	}
+	printf (")");
+    }
+    printf ("}\n");
+    */
+    return GR_numhits;
+}
+
+/****************************************************************************
+ GR_top_hit --
+
+  Returns the object registered which was the last object drawn under the
+  cursor. This routine is appropriate for 2D applications where the objects
+  are drawn in order from back to front on the screen.
+*****************************************************************************/
+void*
+GR_top_hit ()
+{
+long hit, index, nitems;
+long last_item = 9999;
+
+    fprintf(stderr, "Last object hit %d of %d hits\n", GR_lasthit, GR_numhits);
+
+    for (index=0, hit = 0; hit < GR_numhits; index += nitems+3, hit++)
+    {
+       nitems = GR_name_buffer[index];
+       if (nitems != 0)
+	  last_item = GR_name_buffer[index+nitems+2];
+    }
+    if (last_item < 9999)
+    {
+       printf ("returning %0X, index %d\n", GR_obj_table[last_item], last_item);
+       //last_item = 85;                     //  --------------------->> TEMP
+       return GR_obj_table[last_item];
+    }
+    else
+       return GR_obj_table[85] /* 0 */;
+}
+
+/****************************************************************************
+	GR_get_all_hits --
+
+	Returns an array of pointers to void containing all the registered objects
+	picked during the last pick session. The first element in the array is the
+	number of objects stored. Use this routine for 3D applications to get all
+	the objects under the cursor. By simply traversing through the array and
+	checking the z-depth, or distance from the viewpoint, the object on top
+	can be generally discovered.
+
+	NOTE: 
+	The array returned is statically allocated in this module and had better not
+	be deleted!!!
+*******************************************************************************/
+
+#ifdef LATER
+void**
+GR_get_all_hits ()
+{
+C_List	namelist;
+long		objcount = 0;
+void*		objptr;
+long hit, index, nitems, j;
+
+	for (index=0, hit = 0; hit<GR_numhits; index += nitems+1, hit++)
+	{
+		nitems = GR_name_buffer [index];
+		for (j=1; j<=nitems; j++)
+		{
+			if (namelist.add_unique_tail (GR_obj_table [GR_name_buffer [index + j]]))
+				objcount++;
+		}
+	}
+
+	GR_hit_table [0] = (void *) objcount;
+
+	objptr = namelist.head ();
+	index = 1;
+	while (objptr)
+	{
+		GR_hit_table [index] = objptr;
+		index++;
+		objptr = namelist.next ();
+	}
+
+	return GR_hit_table;
+}
+#endif
+
+GR_Point
+GR_Point::cross (GR_Point vec2)
+{
+GR_Point result;
+
+	result.x = y * vec2.z - z * vec2.y;
+	result.y = -(x * vec2.z - z * vec2.x);
+	result.z = x * vec2.y - y * vec2.x;
+
+	return result;
+}
+
+float
+GR_Point::operator * (GR_Point &vec2)
+{
+float result;
+
+	result = x * vec2.x + y * vec2.y + z * vec2.z;
+	return result;
+}
+
+float
+GR_Point::length ()
+{
+	return sqrt (length2());
+}
+
+GR_Point
+GR_Point::normalize ()
+{
+GR_Point	result;
+float			rootxyz;
+
+	rootxyz = sqrt ( x*x + y*y + z*z);
+
+	result.x = x / rootxyz;
+	result.y = y / rootxyz;
+	result.z = z / rootxyz;
+
+	return result;
+}
+
+GR_Point
+GR_Point::operator * (GR_matrix& gmat)
+{
+GR_Point	result;
+/*
+	result.x = 
+		  x * gmat[0, 0] 
+		+ y * gmat[1, 0] 
+		+ z * gmat[2, 0]
+		+ gmat.element [3, 0];
+
+	result.y = 
+		  x * gmat[0, 1] 
+		+ y * gmat[1, 1] 
+		+ z * gmat[2, 1]
+		+ gmat.element [3, 1];
+
+	result.z = 
+		  x * gmat[0, 2] 
+		+ y * gmat[1, 2] 
+		+ z * gmat[2, 2]
+		+ gmat[3, 2];
+*/
+	return result;
+}
+
+GR_Point
+GR_Point::operator + (GR_Point& point)
+{
+GR_Point result;
+/*
+	result.x = x + point.x;
+	result.y = y + point.y;
+	result.z = z + point.z;
+*/
+	return result;
+}
+
+GR_Point
+GR_Point::operator - (GR_Point& point)
+{
+GR_Point result;
+
+	result.x = x - point.x;
+	result.y = y - point.y;
+	result.z = z - point.z;
+
+	return result;
+}
+
+GR_Point
+GR_Point::operator - ()
+{
+GR_Point result;
+
+	result.x = -x;
+	result.y = -y;
+	result.z = -z;
+
+	return result;
+}
+
+Boolean
+GR_backgroundProc (XtPointer)
+{
+WindowElem *ptr;
+GR_Window *window;
+long curtime;
+
+#ifndef ONYX
+	if (GR_useMessagerFlag)
+// DRE		msg_read_message ();
+#endif
+
+	ptr = GR_windowlist;
+	curtime = time (0);
+	while (ptr)
+	{
+		window = ptr->window;
+		if (curtime - window->lastDrawTime() > 0)
+	        {
+          		window->draw ();
+                }
+
+		ptr = ptr->next;
+	}
+
+	return FALSE;
+}
+
+void
+GR_useMessager (long tf)
+{
+#ifndef ONYX
+	GR_useMessagerFlag = tf;
+#endif
+}
+
+void
+GR_startup (int argc, char *argv[])
+{
+	GR_windowlist = 0;
+
+	linepats[0] = 0xFFFF;		// Solid line
+	linepats[1] = 0xF0F0;		// Dashed line
+	linepats[2] = 0xF00F;		// Long Dashed line
+	linepats[3] = 0x8888;		// Dotted line
+/*
+	GR_toplevel = XtAppInitialize (&GR_appcontext, argv[0],
+					NULL, 0, (Cardinal *)&argc, argv,
+					GR_fallback_resources, NULL, 0);
+*/
+	GR_init_done = 1;
+}

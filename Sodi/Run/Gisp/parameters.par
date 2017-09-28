@@ -1,0 +1,14 @@
+parameters {
+  logical error_flag T
+  logical on_off T
+  logical magnet F
+  logical test_prox F
+  float test_prox_time 1000.0
+  string output MOUNTAIN
+  logical interact T
+  float VMAX 0.7
+  float maxalt 1500.0
+  logical show_mem F
+  float mem_time 10000.0
+}
+

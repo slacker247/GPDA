@@ -1,0 +1,207 @@
+; Saved on Tue Apr 06 12:18:15 PDT 1999
+
+(defclass Project
+    (is-a USER)
+    (role concrete)
+    (single-slot browser_slot_names
+	(type INSTANCE)
+;+	(allowed-classes Property_List)
+	(create-accessor read-write))
+    (multislot customized_instance_widgets
+	(type INSTANCE)
+;+	(allowed-classes Widget)
+	(create-accessor read-write))
+    (multislot hidden_classes
+    	(type STRING)
+        (create-accessor read-write))
+    (single-slot default_instance_widget_class_name
+	(type STRING)
+	(create-accessor read-write))
+    (single-slot default_cls_metaclass
+    	(type STRING)
+        (default ":STANDARD-CLASS")
+        (create-accessor read-write))
+    (single-slot default_slot_metaclass
+    	(type STRING)
+        (default ":STANDARD-SLOT")
+        (create-accessor read-write))
+    (single-slot default_facet_metaclass
+    	(type STRING)
+        (default ":STANDARD-FACET")
+        (create-accessor read-write))
+    (multislot included_projects
+	(type STRING)
+	(create-accessor read-write))
+    (multislot java_packages
+	(type STRING)
+	(create-accessor read-write))
+    (single-slot sources
+	(type INSTANCE)
+;+	(allowed-classes Property_List)
+	(create-accessor read-write))
+    (multislot tabs
+	(type INSTANCE)
+;+	(allowed-classes Widget)
+	(create-accessor read-write))
+    (single-slot journaling_enabled
+    	(type SYMBOL)
+        (allowed-values true false)
+        (default false))
+    (single-slot options
+    	(type INSTANCE)
+        (allowed-classes Options))
+    (single-slot next_frame_number
+        (type INTEGER))
+; unused
+	(multislot all_knowledge_base_factory_names
+    	(type STRING))
+    (single-slot property_map
+        (type INSTANCE)
+;+	(allowed-classes Map))
+    (single-slot widget_mapper_properties
+    	(type INSTANCE)
+        (allowed-classes Property_List)))
+
+(defclass Options
+	(is-a USER)
+    (role concrete)
+    (single-slot display_hidden_classes
+    	(type SYMBOL)
+        (allowed-values true false)
+        (default true))
+    (single-slot display_abstract_class_icon
+    	(type SYMBOL)
+        (allowed-values true false)
+        (default true))
+    (single-slot confirm_on_remove
+    	(type SYMBOL)
+        (allowed-values true false)
+        (default false))
+    (single-slot is_readonly
+    	(type SYMBOL)
+        (allowed-values true false)
+        (default false))
+    (single-slot update_modification_slots
+	(type SYMBOL)
+        (allowed-values true false)
+	(default false))
+    (single-slot display_multi_parent_class_icon
+    	(type SYMBOL)
+        (allowed-values true false)
+        (default true)))
+
+(defclass Property
+	(is-a USER)
+	(role abstract)
+	(single-slot name_
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass Boolean
+	(is-a Property)
+	(role concrete)
+	(single-slot boolean_value
+		(type SYMBOL)
+		(allowed-values false true)
+		(create-accessor read-write)))
+
+(defclass Dimension
+	(is-a Property)
+	(role concrete)
+	(single-slot height
+		(type INTEGER)
+		(create-accessor read-write))
+	(single-slot width
+		(type INTEGER)
+		(create-accessor read-write)))
+
+(defclass Integer
+	(is-a Property)
+	(role concrete)
+	(single-slot integer_value
+		(type INTEGER)
+		(create-accessor read-write)))
+
+(defclass Property_List
+	(is-a Property)
+	(role concrete)
+	(multislot properties
+		(type INSTANCE)
+;+		(allowed-classes Property)
+		(create-accessor read-write)))
+
+(defclass Rectangle
+	(is-a Property)
+	(role concrete)
+	(single-slot height
+		(type INTEGER)
+		(create-accessor read-write))
+	(single-slot width
+		(type INTEGER)
+		(create-accessor read-write))
+	(single-slot x
+		(type INTEGER)
+		(create-accessor read-write))
+	(single-slot y
+		(type INTEGER)
+		(create-accessor read-write)))
+
+(defclass String
+	(is-a Property)
+	(role concrete)
+	(single-slot string_value
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass Widget
+	(is-a Property)
+	(role concrete)
+	(slot x
+		(type INTEGER)
+		(create-accessor read-write))
+	(slot y
+		(type INTEGER)
+		(create-accessor read-write))
+	(slot width
+		(type INTEGER)
+		(create-accessor read-write))
+	(slot height
+		(type INTEGER)
+		(create-accessor read-write))
+	(single-slot label
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot property_list
+		(type INSTANCE)
+;+		(allowed-classes Property_List)
+		(create-accessor read-write))
+	(single-slot is_hidden
+    		(type SYMBOL)
+        	(allowed-values true false)
+        	(default false))
+	(single-slot widget_class_name
+		(type STRING)
+		(default "edu.stanford.smi.protege.widget.FormWidget")
+		(create-accessor read-write)))
+
+(defclass Map_Entry
+    (is-a USER)
+    (role concrete)
+    (single-slot key
+        (type STRING))
+    (single-slot key_class
+        (type STRING))
+    (single-slot value
+        (type STRING))
+    (single-slot value_class
+        (type STRING)))
+
+(defclass Map
+    (is-a USER)
+    (role concrete)
+    (multislot referenced_maps
+         (type INSTANCE)
+;+       (allowed-classes Map))
+    (multislot entries
+        (type INSTANCE)
+;+      (allowed-classes Map_Entry))) 

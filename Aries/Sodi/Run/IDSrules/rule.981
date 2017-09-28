@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS ISAPI .ida attempt"; uricontent:".ida?"; nocase; dsize:>239; flags:A+; reference:arachnids,552; classtype:web-application-attack; reference:cve,CAN-2000-0071; sid:1243; rev:2;)

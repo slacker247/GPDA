@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP webtrends scanner"; content: "|00 00 00 00 45 45 45 45 45 45 45 45 45 45 45 45|"; itype: 8; icode: 0; reference:arachnids,307; classtype:attempted-recon; sid:476; rev:1;)

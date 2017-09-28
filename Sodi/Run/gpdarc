@@ -1,0 +1,482 @@
+[iow]
+IOW                                # Domain name
+Development                        # Testbed mode
+Information_Operations_Warfare     # Domain description
+#
+#   Menu items (must be 5 menus with 'n' items each)
+#
+    1   Assessments           0
+Situation_Assessment...       0
+    3   Determine_Strategy    0 
+Data_Mining...                0
+Clustering...                 0
+Data_Manager...               0
+    1   COA_Development       0
+Combined_Planning...          0
+    1   Detailed_Planning     0
+Plan_Update                   0
+    2   Execution_Monitor     0
+Timeline_Enforcer...          0
+Situation_Awareness...        0
+#
+#   Tools
+#
+    7   Knowledge_Manager     0
+Ontology_Editor        1    Protege.sh
+Text_Extraction        1    Gate.sh
+Oil_Editor             1    OilEd.sh
+Weka_Data_Miner        1    Weka.sh
+CViz_Data_Miner        1    CViz.sh
+Word_Net               1    WordNet.sh
+Network_Status         1    NetStat.sh
+#
+#   Labels for the status area
+#
+MISSION_STATUS
+  Alert_Lvl:                  5                  G
+  Firewall                    4                  G
+  DoS                         0                  G
+  Network:                    NIPRNET            G
+  Msn_Constraints             None               G
+  IOW_Task_Order:             IOW-16Jul01        G
+  Current_OpPlan:             OpPlan-1411.8      G
+#
+#   Labels for the Mission Summary area
+#
+ATTACK_SUMMARY
+  Web_Defacements             5
+  DoS_Attacks                 12
+  Sys._Penetrations           0
+  Trojan_Horses               3
+  Ping_Saturations            1
+  Detected_Viruses            5
+  Intrusions                  8
+  DNS_Attacks                 5
+#
+#   Labels for the Assets Summary area
+#
+    2    Def._Summary
+Firewalls
+DoS
+    2    Off._Summary
+Firewalls
+DoS
+#
+#   Pixmap filename for Situation Awareness area on Top Level window
+#
+NMDaware.xpm
+#
+SitAware-AOC.xpm              1
+SitRisk-NMD.xpm
+IOWback.xpm
+#
+Web_Defacements               0
+DoS/DDoS_Attacks              0
+System Penetrations           0
+Trojan_Horses                 0
+Ping_Saturations              0
+Detected_Viruses              0
+Intrusion_Attempts            1
+DNS_Attacks                   0
+#
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               3
+Port_Status                   3
+IDS_Rules                     3
+#
+# ------------------------------------------------------------------
+#
+[nmd]
+NMD                                # Domain name
+Development                        # Testbed mode
+Offense/Defense_Intgration         # Domain description
+#
+#   Menu items (must be 5 menus with 'n' items each)
+#
+    5   Assessments           0
+Situation_Assessment...       0
+Readiness_Assessment...       0
+Attack_Assessment...          1
+Force_Management...           1
+Force_Survival...             1
+#Drawdown_Curves...           1
+    3   Determine_Strategy    0
+Data_Mining...                0
+Clustering...                 0
+Data_Manager...               0
+    1   COA_Development       0
+Combined_Planning...          0
+    4   Detailed_Planning     0
+Plan_Update...                0
+Plan_Optimization...          0
+Target_Assessment...          0
+Engagement_Planner...         0
+   11   Execution_Monitor     0
+Decision_Timeline...          0
+NMD_Situation_Awareness...    1
+Engagement_Summary...         0
+Tracks...                     0
+Defense_Options...            1
+Management_By_Exception...    1
+Missile_Order_of_Battle...    1
+Defend_Task_Plan...           1
+Survey_Task_Plan...           1
+Threat_Characteristics...     1
+Threatened_Assets...          1
+#
+#   Tools
+#
+    6   Tools                 0
+Protege     1    Protege.sh
+OilEd       1    OilEd.sh
+Weka        1    Weka.sh
+CViz        1    CViz.sh
+WordNet     1    WordNet.sh
+NetStat     0    NetStat.sh
+#
+#   Labels for the status area
+#
+MISSION_STATUS
+  DEFCON                      5         G
+  RP                          2         G
+  DEA                         Hold      G
+  ROE                         N-America G
+  Msn_Constraints             None      G
+  Mission_Obj                 Current   G
+  Execution_Plan              Area-Def  G
+#
+#   Labels for the Mission Summary area
+#
+MISSION_SUMMARY  
+  Tot_Exp_Threats             25
+  Tot_Exp_Targets             25
+  Tot_Targets_Killed          12
+  Cur_Exp_Targets             13
+  No._of_Leakers              0
+  Targets_in_Track            5
+  Targets_Engaged             4
+  Not_Engaged                 1
+#
+#   Labels for the Assets Summary area
+#
+    1    Def._Summary
+GBI
+    6    Off._Summary
+ICBM
+SLBM
+Bomber
+Recce
+C&C
+Tanker
+#
+#   Pixmap filename for Situation Awareness area on Top Level window
+#
+NMDaware.xpm
+#
+SitAware-NMD.xpm              0
+SitRisk-NMD.xpm
+NMDback.xpm
+#
+Web_Defacements               0
+DoS/DDoS_Attacks              0
+System Penetrations           0
+Trojan_Horses                 0
+Ping_Saturations              0
+Detected_Viruses              0
+Intrusion_Attempts            1
+DNS_Attacks                   0
+#
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               0
+#
+# -----------------------------------------------------------------
+#
+[aoc]
+AOC                                # Domain name
+Development                        # Testbed mode
+Air_Operations_Center              # Domain description
+#
+#   Menu items (must be 5 menus with 'n' items each)
+#
+    2   Assessments           0
+Situation_Assessment...       0
+Readiness_Assessment...       0
+    3   Determine_Strategy    0
+Data_Mining...                0
+Clustering...                 0
+Data_Manager...               0
+    1   COA_Development       0
+Combined_Planning...          0
+    4   Detailed_Planning     0
+Plan_Update...                0
+Plan_Optimization...          0
+Target_Assessment...          0
+Engagement_Planner...         0
+    2   Execution_Monitor     0
+Decision_Timeline...          0
+Situation_Awareness...        0
+#
+#   Tools
+#
+   10   Tools                 0
+Ontology_Manager  1   Protege.sh
+Text_Extraction   1   Gate.sh
+Data_Mining       1   Weka.sh
+WordNet           1   WordNet.sh
+Network_Status    0   NetStat.sh
+OilEd             1   OilEd.sh
+CViz              1   CViz.sh
+Terrain_Reasoner  1   reasoner
+PAC3_Firing_Unit  1   patriot
+UAV_Simulator     1   skyfly
+#
+#   Labels for the status area
+#
+MISSION_STATUS
+  DEFCON:                     5                  G
+  JAOP                        _                  G
+  GAT                         _                  G
+  Area:                       DPRK               G
+  SPIN_Constraint             SPIN-16Jul01       G
+  Air_Task_Order:             ATO-16Jul01        G
+  Current_MAAP:               MAAP-1411-8        G
+#
+#   Labels for the Mission Summary area
+#
+MISSION_SUMMARY
+  Tot_Exp_Threats             25
+  Tot_Exp_Targets             25
+  Tot_Targets_Killed          12
+  Cur_Exp_Targets             13
+  No._of_Leakers              0
+  Targets_in_Track            5
+  Targets_Engaged             4
+  Not_Engaged                 1
+#
+#   Labels for the Assets Summary area
+#
+    4    Def._Summary
+Fighter
+PAC3
+Aegis
+Thaad
+    4    Off._Summary
+Fighter
+Bomber
+Aegis
+SLBM
+#
+#   Pixmap filename for Situation Awareness area on Top Level window
+#
+NMDaware.xpm
+#
+SitAware-AOC.xpm              0
+SitRisk-AOC.xpm
+AOCback.xpm
+#
+Threat_Tracks                 0
+Sensors                       0
+Sensor_Coverages              0
+Interceptors                  0
+Interceptor_Tracks            0
+Population_Centers            0
+SAM_Sites                     1
+Other_MC2A                    0
+#
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               0
+#
+# ------------------------------------------------------------------
+#
+[doh]
+DOH                                # Domain name
+Development                        # Testbed mode
+Homeland_Defense                   # Domain description
+#
+#   Menu items (must be 5 menus with 'n' items each)
+#
+    2   Assessments           0
+Situation_Assessment...       0
+Readiness_Assessment...       0
+    3   Determine_Strategy    0
+Data_Mining...                0
+Clustering...                 0
+Data_Manager...               0
+    1   COA_Development       0
+Combined_Planning...          0
+    4   Detailed_Planning     0
+Plan_Update...                0
+Plan_Optimization...          0
+Target_Assessment...          0
+Engagement_Planner...         0
+    2   Execution_Monitor     0
+Decision_Timeline...          0
+Situation_Awareness...        1
+#
+#   Tools
+#
+    6   Tools                 0
+Protege     1    Protege.sh
+OilEd       1    OilEd.sh
+Weka        1    Weka.sh
+CViz        1    CViz.sh
+WordNet     1    WordNet.sh
+NetStat     0    NetStat.sh
+#
+#   Labels for the status area
+#
+STATUS
+  DEFCON:                     5                  G
+  JAOP                        _                  G
+  GAT                         _                  G
+  Area:                       DPRK               G
+  Msn_Constraints             None               G
+  Air_Task_Order:             ATO-16Jul01        G
+  Current_MAAP:               MAAP-1411.8        G
+#
+#   Labels for the Mission Summary area
+#
+MISSION_SUMMARY
+  Tot_Exp_Threats             25
+  Tot_Exp_Targets             25
+  Tot_Targets_Killed          12
+  Cur_Exp_Targets             13
+  No._of_Leakers              0
+  Targets_in_Track            5
+  Targets_Engaged             4
+  Not_Engaged                 1
+#
+#   Labels for the Assets Summary area
+#
+    4    Def._Summary
+Fighter
+PAC3
+Aegis
+Thaad
+    4    Off._Summary
+Fighter
+Bomber
+Aegis
+SLBM
+#
+#   Pixmap filename for Situation Awareness area on Top Level window
+#
+AOCaware.xpm
+#
+SitAware-AOC.xpm              0
+SitRisk-AOC.xpm
+AOCback.xpm
+#
+Web_Defacements               0
+DoS/DDoS_Attacks              0
+System Penetrations           0
+Trojan_Horses                 0
+Ping_Saturations              0
+Detected_Viruses              0
+Intrusion_Attempts            1
+DNS_Attacks                   0
+#
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               0
+#
+# ------------------------------------------------------------------
+#
+[xyz]
+IOW                                # Domain name
+Development                        # Testbed mode
+Information_Operations_Warfare     # Domain description
+#
+#   Menu items (must be 5 menus with 'n' items each)
+#
+    1   Assessments           0
+Situation_Assessment...       0
+    3   Determine_Strategy    0 
+Data_Mining...                0
+Clustering...                 0
+Data_Manager...               0
+    1   COA_Development       0
+Combined_Planning...          0
+    0   Detailed_Planning     0
+    1   Execution_Monitor     0
+Timeline_Enforcer             0
+#
+#   Tools
+#
+    7   Knowledge_Manager     0
+Ontology_Editor        1    Protege.sh
+Text_Extraction        1    Gate.sh
+Oil_Editor             1    OilEd.sh
+Weka_Data_Miner        1    Weka.sh
+CViz_Data_Miner        1    CViz.sh
+Word_Net               1    WordNet.sh
+Network_Status         1    NetStat.sh
+#
+#   Labels for the status area
+#
+STATUS
+  Alert_Lvl:                  5                  G
+  Firewall                    4                  G
+  DoS                         0                  G
+  Network:                    NIPRNET            G
+  Msn_Constraints             None               G
+  IOW_Task_Order:             IOW-16Jul01        G
+  Current_OpPlan:             OpPlan-1411.8      G
+#
+#   Labels for the Mission Summary area
+#
+ATTACK_SUMMARY
+  Web_Defacements             5
+  DoS_Attacks                 12
+  Sys._Penetrations           0
+  Trojan_Horses               3
+  Ping_Saturations            1
+  Detected_Viruses            5
+  Intrusions                  4
+  DNS_Attacks                 5
+#
+#   Labels for the Assets Summary area
+#
+    2    Def._Summary
+Firewalls
+DoS
+    2    Off._Summary
+Firewalls
+DoS
+#
+#   Pixmap filename for Situation Awareness area on Top Level window
+#
+*None*
+#
+SitAware-AOC.xpm              0
+SitRisk-AOC.xpm
+IOWback.xpm
+#
+Web_Defacements               0
+DoS/DDoS_Attacks              0
+System Penetrations           0
+Trojan_Horses                 0
+Ping_Saturations              0
+Detected_Viruses              0
+Intrusion_Attempts            1
+DNS_Attacks                   0
+#
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               0
+Firewall_Status               0

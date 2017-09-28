@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Webtrends HTTP probe"; content: "User-Agent|3a| Webtrends Security Analyzer|0d0a|"; flags: A+;reference:arachnids,309; classtype:web-application-activity; sid:1101; rev:2;)

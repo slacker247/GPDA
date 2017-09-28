@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 635 (msg:"EXPLOIT x86 linux mountd overflow"; content:"|eb40 5E31 c040 8946 0489 c340 8906|";reference:cve,CVE-1999-0002; classtype:attempted-admin; sid:317; rev:1;)

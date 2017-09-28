@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Setting the Default Metaslot</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="../../classes/images/serving_nerd.gif" width="48" height="48">  
+Setting the Default Metaslot<br>
+<img src="../../classes/images/header_line.gif" width="590" height="6"></h1>
+
+<p><b>Note: </b>Before you create and use metaslots (slot metaclasses), you should be confident
+with the basic Protégé interface and be comfortable designing a project, and
+creating and modifying classes, slots, forms and instances.</p>
+
+<p>If you have multiple metaslots in your project, Protégé allows you to
+choose which metaslot you want to use as the default for every new slot you
+create. The default metaslot is denoted by a Default <img border="0" src="images/Default.gif" width="11" height="16">
+icon at the right.</p>
+
+<p><font size="3">To set a metaslot as the default:</font></p>
+
+<ol>
+  <li>Click on the metaslot you want to use in the Class Relationship pane. This
+    must be a class that is subordinate to :SLOT.<br>
+    <img border="0" src="images/default_slot1.gif" width="282" height="152"></li>
+  <li><font size="3">Click the right mouse button and select <b>Set as default
+    slot metaclass</b> from the <a href="../../classes/class_menu.html">Class
+    Menu</a>. This option is available only when a metaslot is selected.<br>
+    <img border="0" src="images/default_slot2.gif" width="258" height="231"></font></li>
+  <li><font size="3">The selected metaslot becomes the default, as indicated by
+    the </font><img border="0" src="images/Default.gif" width="11" height="16"> icon. Now, unless you
+    choose otherwise, every new slot you create will use the new default slot as
+    its template and inherit the properties defined by the default.<font size="3"><br>
+    <img border="0" src="images/default_slot3.gif" width="285" height="173"></font></li>
+</ol>
+
+<p><font size="3">It is also possible to remove the default property from a
+metaslot without designating a new metaslot. To do this:</font></p>
+<ol>
+  <li><font size="3">Select the default metaslot in the Class Relationship pane.</font></li>
+  <li><font size="3">Click the right mouse button and select <b>Unset as default
+    slot metaclass</b>.</font></li>
+</ol>
+<p><font size="3">If you do this, no default metaslot will be
+designated. In this case, if you have only one concrete metaslot, it will be
+used as the default. If you have more than one concrete metaslot, then you will
+be prompted to choose a metaslot each time you create a new slot.</font></p>
+
+<hr>
+
+<p><font size="3">Next:&nbsp;<a href="change_meta.html">Changing the Metaslot of
+a Slot</a></font></p>
+
+<p><a href="../index.html">Slots Table of Contents</a></p>
+</body>
+</html>

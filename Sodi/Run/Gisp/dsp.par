@@ -1,0 +1,68 @@
+parameters {
+  logical on_off T
+}
+
+no_dsp_names {
+}
+
+dsp_names {
+  type DSP0
+  type DSP1
+  type DSP2
+  type DSP3
+  type DSP4
+  type DSP5
+}
+
+DSP0 {
+  float longitude 0.0;
+  type DSP_IR_SENSOR
+  int icon 45
+}
+
+DSP1 {
+  float longitude 60.0;
+  type DSP_IR_SENSOR
+  int icon 45
+}
+
+DSP2 {
+  float longitude 120.0;
+  type DSP_IR_SENSOR
+  int icon 45
+}
+
+DSP3 {
+  float longitude 180.0;
+  type DSP_IR_SENSOR
+  int icon 45
+}
+
+DSP4 {
+  float longitude 240.0;
+  type DSP_IR_SENSOR
+  int icon 45
+}
+
+DSP5 {
+  float longitude 300.0;
+  type DSP_IR_SENSOR
+  int icon 45
+}
+
+DSP_IR_SENSOR {
+  float scan_time 10.0
+  float rmin 0.0
+  float rmax 6000.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed T
+  logical los T
+  float error 2.0
+  int icon 45
+}
+
+NULL {
+}
+

@@ -1,0 +1,167 @@
+; Mon Sep 17 15:17:53 GMT-03:00 2001
+; 
+;+ (version "1.6 beta")
+;+ (build "Build 795")
+
+
+(defclass :CLIPS_TOP_LEVEL_SLOT_CLASS
+	(is-a USER)
+	(role concrete)
+	(single-slot year-of-the-month
+		(type INSTANCE)
+;+		(allowed-classes Year)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot day-of-the-week
+		(type SYMBOL)
+		(allowed-values SUNDAY MONDAY TUESDAY WEDNESDAY THRUSDAY FRIDAY SATURDAY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot month
+		(type INSTANCE)
+;+		(allowed-classes Months)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot milisseconds
+		(type INTEGER)
+		(range 0 999)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot day
+		(type INTEGER)
+		(range 1 31)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot month-number
+		(type INTEGER)
+		(range 1 12)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot month-date
+		(type INSTANCE)
+;+		(allowed-classes Month)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot minutes
+		(type INTEGER)
+		(range 0 59)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot time
+		(type INSTANCE)
+;+		(allowed-classes Time)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot year
+		(type INTEGER)
+		(range ?VARIABLE 2100)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot seconds
+		(type INTEGER)
+		(range 0 59)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot hours
+		(type INTEGER)
+		(range 0 23)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot nanosseconds
+		(type INTEGER)
+		(range 0 999999)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Months
+	(is-a USER)
+	(role concrete)
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot month-number
+		(type INTEGER)
+		(range 1 12)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Date
+	(is-a USER)
+	(role concrete)
+	(single-slot time
+		(type INSTANCE)
+;+		(allowed-classes Time)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot day-of-the-week
+		(type SYMBOL)
+		(allowed-values SUNDAY MONDAY TUESDAY WEDNESDAY THRUSDAY FRIDAY SATURDAY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot month-date
+		(type INSTANCE)
+;+		(allowed-classes Month)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot day
+		(type INTEGER)
+		(range 1 31)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Time
+	(is-a USER)
+	(role concrete)
+	(single-slot minutes
+		(type INTEGER)
+		(range 0 59)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot milisseconds
+		(type INTEGER)
+		(range 0 999)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot nanosseconds
+		(type INTEGER)
+		(range 0 999999)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot seconds
+		(type INTEGER)
+		(range 0 59)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot hours
+		(type INTEGER)
+		(range 0 23)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Month
+	(is-a USER)
+	(role concrete)
+	(single-slot month
+		(type INSTANCE)
+;+		(allowed-classes Months)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot year-of-the-month
+		(type INSTANCE)
+;+		(allowed-classes Year)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Year
+	(is-a USER)
+	(role concrete)
+	(single-slot year
+		(type INTEGER)
+		(range ?VARIABLE 2100)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))

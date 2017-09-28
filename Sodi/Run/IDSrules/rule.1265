@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 6000 (msg:"X11 MITcookie"; flags: A+; content: "MIT-MAGIC-COOKIE-1"; reference:arachnids,396; classtype:bad-unknown; sid:1225; rev:1;)

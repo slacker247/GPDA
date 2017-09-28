@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI webplus version access"; flags: A+; uricontent: "/webplus?about "; nocase;reference:arachnids,470;classtype:attempted-recon; sid:812; rev:1;)

@@ -1,0 +1,105 @@
+package com.appliedminds.martini.animation;
+
+
+/**
+ * A TransformTarget is an interface that represents an object that
+ * has a transform that supports get and set.
+ *
+ * @author daepark@apmindsf.com
+ */
+public interface TransformTarget extends AnimationTarget {
+
+
+	/**
+	 * Sets this transform to the matrix specified by the 6 double
+	 * precision values.
+	 *
+	 * @param m00,&nbsp;m01,&nbsp;m02,&nbsp;m10,&nbsp;m11,&nbsp;m12 the
+	 * 6 values that compose the 3x3 transformation matrix
+	 * @see java.awt.geom.AffineTransform#setTransform
+	 */
+	public void setTransform(double m00, 
+													 double m10, 
+													 double m01, 
+													 double m11, 
+													 double m02, 
+													 double m12);
+
+	/**
+	 * Retrieves the 6 specifiable values of the affine transformation,
+	 * and places them into an array of double precisions values.  The
+	 * values are stored in the array as
+	 * {&nbsp;m00&nbsp;m10&nbsp;m01&nbsp;m11&nbsp;m02&nbsp;m12&nbsp;}.
+	 * An array of 4 doubles can also be specified, in which case only
+	 * the first four elements representing the non-transform parts of
+	 * the array are retrieved and the values are stored into the array
+	 * as {&nbsp;m00&nbsp;m10&nbsp;m01&nbsp;m11&nbsp;}
+	 *
+	 * @param matrix the double array used to store the returned values.
+	 * @see java.awt.geom.AffineTransform#getMatrix
+	 */
+	public void getMatrix(double[] flatmatrix);
+
+
+	/**
+	 * A TransformTarget where the target is a Shape object.
+	 */
+	public class Shape implements TransformTarget {
+
+		private Shape __shape;
+		private double __m00;
+		private double __m10;
+		private double __m01;
+		private double __m11;
+		private double __m02;
+		private double __m12;
+		
+		public Shape(Shape shape) {
+			this.setTarget(__shape);
+		}
+
+		public void setTarget(Object o) {
+			__shape = (Shape)o;
+		}
+
+		public Object getTarget() {
+			return (__shape);
+		}
+
+		public void setShape(Shape shape) {
+			this.setTarget(shape);
+		}
+
+		public Shape getShape() {
+			return ((Shape)this.getTarget());
+		}
+
+		public void setTransform(double m00, 
+														 double m10, 
+														 double m01, 
+														 double m11, 
+														 double m02, 
+														 double m12) 
+		{
+			__m00 = m00;
+			__m10 = m10;
+			__m01 = m01;
+			__m11 = m11;
+			__m02 = m02;
+			__m12 = m12;
+		}
+
+		public void getMatrix(double[] flatmatrix) {
+			flatmatrix[0] = __m00;
+			flatmatrix[1] = __m10;
+			flatmatrix[2] = __m01;
+			flatmatrix[3] = __m11;
+			if (flatmatrix.length > 5) {
+				flatmatrix[4] = __m02;
+				flatmatrix[5] = __m12;
+			}
+		}
+
+	} // end class TransformTarget.Shape
+	
+} // end class TransformTarget

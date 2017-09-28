@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registry install_date="2003-05-09 09:48:41" version="1.1" last_modified="2003-05-09 09:48:52">
+	<products>
+		<product name="Protege-2000  Version 1.8" id="994d7f3a-1ec1-11b2-b321-ef29621bcc1c" version="1.0.0.0" copyright="2002" info_url="" support_url="" location="/home/dre/Protege-2000" last_modified="2003-05-09 09:48:46">
+			<vendor name="Stanford Medical Informatics" id="994d7f3b-1ec1-11b2-b320-ef29621bcc1c" home_page="" email="fergerson@smi.stanford.edu"/>
+			<feature name="Application" last_modified="2003-05-09 09:48:47">
+			<![CDATA[This installs the application]]>
+				<component ref_id="994da60a-1ec1-11b2-b354-ef29621bcc1c" version="1.0.0.0" location="/home/dre/Protege-2000/UninstallerData/Uninstall_Protege"/>
+				<component ref_id="994da60a-1ec1-11b2-b353-ef29621bcc1c" version="1.0.0.0" location="/home/dre/Protege-2000/Protege-2000"/>
+			</feature>
+			<feature name="Help" last_modified="2003-05-09 09:48:47">
+			<![CDATA[This installs the help files]]>
+				<component ref_id="994da60a-1ec1-11b2-b354-ef29621bcc1c" version="1.0.0.0" location="/home/dre/Protege-2000/UninstallerData/Uninstall_Protege"/>
+				<component ref_id="994da60a-1ec1-11b2-b353-ef29621bcc1c" version="1.0.0.0" location="/home/dre/Protege-2000/Protege-2000"/>
+			</feature>
+		</product>
+	</products>
+	<components>
+		<component id="994da60a-1ec1-11b2-b353-ef29621bcc1c" version="1.0.0.0" name="C- Appl., Help" location="/home/dre/Protege-2000/Protege-2000" vendor="Stanford Medical Informatics">
+			<resource keyfile="false" name="lax.jar" location="/home/dre/Protege-2000/lax.jar" type="file" uninstall="true"/>
+			<resource keyfile="true" name="Protege-2000" location="/home/dre/Protege-2000/Protege-2000" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="Protege-2000.lax" location="/home/dre/Protege-2000/Protege-2000.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name="protege.jar" location="/home/dre/Protege-2000/protege.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="index.html" location="/home/dre/Protege-2000/index.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="readme.txt" location="/home/dre/Protege-2000/readme.txt" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Protege-2000.ico" location="/home/dre/Protege-2000/Protege-2000.ico" type="file" uninstall="true"/>
+			<resource keyfile="false" name="run_protege.sh" location="/home/dre/Protege-2000/run_protege.sh" type="file" uninstall="true"/>
+			<resource keyfile="false" name="plugins" location="/home/dre/Protege-2000/plugins/" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="JGo.jar" location="/home/dre/Protege-2000/plugins/JGo.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="JGoLayout.jar" location="/home/dre/Protege-2000/plugins/JGoLayout.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="meta-inf" location="/home/dre/Protege-2000/plugins/meta-inf" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="manifest.examples" location="/home/dre/Protege-2000/plugins/meta-inf/manifest.examples" type="file" uninstall="true"/>
+			<resource keyfile="false" name="manifest.mf" location="/home/dre/Protege-2000/plugins/meta-inf/manifest.mf" type="file" uninstall="true"/>
+			<resource keyfile="false" name="query_tab.jar" location="/home/dre/Protege-2000/plugins/query_tab.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="rdf-api.jar" location="/home/dre/Protege-2000/plugins/rdf-api.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="rdf_backend.jar" location="/home/dre/Protege-2000/plugins/rdf_backend.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="standard_extensions.jar" location="/home/dre/Protege-2000/plugins/standard_extensions.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="xerces.jar" location="/home/dre/Protege-2000/plugins/xerces.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="examples" location="/home/dre/Protege-2000/examples/" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="newspaper" location="/home/dre/Protege-2000/examples/newspaper" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="newspaper.pins" location="/home/dre/Protege-2000/examples/newspaper/newspaper.pins" type="file" uninstall="true"/>
+			<resource keyfile="false" name="newspaper.pont" location="/home/dre/Protege-2000/examples/newspaper/newspaper.pont" type="file" uninstall="true"/>
+			<resource keyfile="false" name="newspaper.pprj" location="/home/dre/Protege-2000/examples/newspaper/newspaper.pprj" type="file" uninstall="true"/>
+			<resource keyfile="false" name="rdf" location="/home/dre/Protege-2000/examples/rdf" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="MotorVehicle.pprj" location="/home/dre/Protege-2000/examples/rdf/MotorVehicle.pprj" type="file" uninstall="true"/>
+			<resource keyfile="false" name="MotorVehicle.rdf" location="/home/dre/Protege-2000/examples/rdf/MotorVehicle.rdf" type="file" uninstall="true"/>
+			<resource keyfile="false" name="MotorVehicle.rdfs" location="/home/dre/Protege-2000/examples/rdf/MotorVehicle.rdfs" type="file" uninstall="true"/>
+			<resource keyfile="false" name="projects" location="/home/dre/Protege-2000/projects/" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="diagram_widget" location="/home/dre/Protege-2000/projects/diagram_widget" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="diagram.pins" location="/home/dre/Protege-2000/projects/diagram_widget/diagram.pins" type="file" uninstall="true"/>
+			<resource keyfile="false" name="diagram.pont" location="/home/dre/Protege-2000/projects/diagram_widget/diagram.pont" type="file" uninstall="true"/>
+			<resource keyfile="false" name="diagram.pprj" location="/home/dre/Protege-2000/projects/diagram_widget/diagram.pprj" type="file" uninstall="true"/>
+			<resource keyfile="false" name="pal_query" location="/home/dre/Protege-2000/projects/pal_query" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="pal_query.pins" location="/home/dre/Protege-2000/projects/pal_query/pal_query.pins" type="file" uninstall="true"/>
+			<resource keyfile="false" name="pal_query.pont" location="/home/dre/Protege-2000/projects/pal_query/pal_query.pont" type="file" uninstall="true"/>
+			<resource keyfile="false" name="pal_query.pprj" location="/home/dre/Protege-2000/projects/pal_query/pal_query.pprj" type="file" uninstall="true"/>
+			<resource keyfile="false" name="table_widget" location="/home/dre/Protege-2000/projects/table_widget" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="table.pins" location="/home/dre/Protege-2000/projects/table_widget/table.pins" type="file" uninstall="true"/>
+			<resource keyfile="false" name="table.pont" location="/home/dre/Protege-2000/projects/table_widget/table.pont" type="file" uninstall="true"/>
+			<resource keyfile="false" name="table.pprj" location="/home/dre/Protege-2000/projects/table_widget/table.pprj" type="file" uninstall="true"/>
+			<resource keyfile="false" name="doc" location="/home/dre/Protege-2000/doc/" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="tutorial" location="/home/dre/Protege-2000/doc/tutorial" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="diagrams" location="/home/dre/Protege-2000/doc/tutorial/diagrams" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="acquiring_an_editor.gif" location="/home/dre/Protege-2000/doc/tutorial/diagrams/acquiring_an_editor.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="editor_in_forms_layout.gif" location="/home/dre/Protege-2000/doc/tutorial/diagrams/editor_in_forms_layout.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="editor_in_ontology.gif" location="/home/dre/Protege-2000/doc/tutorial/diagrams/editor_in_ontology.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="footer.html" location="/home/dre/Protege-2000/doc/tutorial/diagrams/footer.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="header.html" location="/home/dre/Protege-2000/doc/tutorial/diagrams/header.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="index.html" location="/home/dre/Protege-2000/doc/tutorial/diagrams/index.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step1.gif" location="/home/dre/Protege-2000/doc/tutorial/diagrams/step1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step2.gif" location="/home/dre/Protege-2000/doc/tutorial/diagrams/step2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step3.gif" location="/home/dre/Protege-2000/doc/tutorial/diagrams/step3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step4.gif" location="/home/dre/Protege-2000/doc/tutorial/diagrams/step4.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step5.gif" location="/home/dre/Protege-2000/doc/tutorial/diagrams/step5.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step6.gif" location="/home/dre/Protege-2000/doc/tutorial/diagrams/step6.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step7.gif" location="/home/dre/Protege-2000/doc/tutorial/diagrams/step7.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step8.gif" location="/home/dre/Protege-2000/doc/tutorial/diagrams/step8.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step9.gif" location="/home/dre/Protege-2000/doc/tutorial/diagrams/step9.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="get_started" location="/home/dre/Protege-2000/doc/tutorial/get_started" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="create_class.html" location="/home/dre/Protege-2000/doc/tutorial/get_started/create_class.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create_proj.html" location="/home/dre/Protege-2000/doc/tutorial/get_started/create_proj.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create_query.html" location="/home/dre/Protege-2000/doc/tutorial/get_started/create_query.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create_slot.html" location="/home/dre/Protege-2000/doc/tutorial/get_started/create_slot.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="custom_form.html" location="/home/dre/Protege-2000/doc/tutorial/get_started/custom_form.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="enter_instance.html" location="/home/dre/Protege-2000/doc/tutorial/get_started/enter_instance.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="images" location="/home/dre/Protege-2000/doc/tutorial/get_started/images" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="create1.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create10.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create10.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create11.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create11.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create19.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create19.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create2.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create20.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create20.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create21.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create21.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create22.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create22.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create23.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create23.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create24.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create24.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create25.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create25.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create26.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create26.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create27.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create27.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create28.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create28.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create29.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create29.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create3.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create30.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create30.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create31.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create31.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create32.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create32.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create33.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create33.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create4.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create4.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create5.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create5.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create6.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create6.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create7.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create7.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create8.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create8.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create9.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/create9.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="custom4.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/custom4.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="custom5.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/custom5.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="custom6.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/custom6.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="custom7.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/custom7.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="custom8.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/custom8.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="custom9.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/custom9.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="enter_42.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/enter_42.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="enter_43.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/enter_43.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="enter_44.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/enter_44.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="enter_45.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/enter_45.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="enter_46.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/enter_46.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="forms_browser_key.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/forms_browser_key.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="forms_instances.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/forms_instances.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="forms_tab.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/forms_tab.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="header_line.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/header_line.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="LoadQuery.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/LoadQuery.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="newprojectbutton.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/newprojectbutton.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="NewProjectScreen.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/NewProjectScreen.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="query12.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/query12.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="query13.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/query13.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="query14.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/query14.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="query_screen.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/query_screen.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="SaveChanges.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/SaveChanges.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="SaveQuery.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/SaveQuery.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="save_p1.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/save_p1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="save_p2.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/save_p2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="save_p3.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/save_p3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="SelectFormat.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/SelectFormat.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="select_float.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/select_float.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="serving_nerd.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/serving_nerd.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slot_buttons.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/slot_buttons.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slot_form_byname.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/slot_form_byname.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slot_form_generic.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/slot_form_generic.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slot_highlight_Auth.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/slot_highlight_Auth.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slot_inherit.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/slot_inherit.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slot_inherit_multiple.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/slot_inherit_multiple.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slot_see_byname.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/slot_see_byname.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="StartDialog.gif" location="/home/dre/Protege-2000/doc/tutorial/get_started/images/StartDialog.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="index.html" location="/home/dre/Protege-2000/doc/tutorial/get_started/index.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="save_proj.html" location="/home/dre/Protege-2000/doc/tutorial/get_started/save_proj.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="graph_widget" location="/home/dre/Protege-2000/doc/tutorial/graph_widget" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="gettingstarted_step2.gif" location="/home/dre/Protege-2000/doc/tutorial/graph_widget/gettingstarted_step2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="gettingstarted_step3.gif" location="/home/dre/Protege-2000/doc/tutorial/graph_widget/gettingstarted_step3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="gettingstarted_step5a.gif" location="/home/dre/Protege-2000/doc/tutorial/graph_widget/gettingstarted_step5a.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="gettingstarted_step5b.gif" location="/home/dre/Protege-2000/doc/tutorial/graph_widget/gettingstarted_step5b.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="gettingstarted_step6a.gif" location="/home/dre/Protege-2000/doc/tutorial/graph_widget/gettingstarted_step6a.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="gettingstarted_step6b.gif" location="/home/dre/Protege-2000/doc/tutorial/graph_widget/gettingstarted_step6b.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="gettingstarted_step7a.gif" location="/home/dre/Protege-2000/doc/tutorial/graph_widget/gettingstarted_step7a.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="gettingstarted_step7b.gif" location="/home/dre/Protege-2000/doc/tutorial/graph_widget/gettingstarted_step7b.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="gettingstarted_step7c.gif" location="/home/dre/Protege-2000/doc/tutorial/graph_widget/gettingstarted_step7c.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="gettingstarted_step8a.gif" location="/home/dre/Protege-2000/doc/tutorial/graph_widget/gettingstarted_step8a.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="gettingstarted_step8b.gif" location="/home/dre/Protege-2000/doc/tutorial/graph_widget/gettingstarted_step8b.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="gettingstarted_WidgetConfigurationDlg.gif" location="/home/dre/Protege-2000/doc/tutorial/graph_widget/gettingstarted_WidgetConfigurationDlg.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="gettingstarted_WidgetConfigurationDlg2.gif" location="/home/dre/Protege-2000/doc/tutorial/graph_widget/gettingstarted_WidgetConfigurationDlg2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="GraphWidgetExample.zip" location="/home/dre/Protege-2000/doc/tutorial/graph_widget/GraphWidgetExample.zip" type="file" uninstall="true"/>
+			<resource keyfile="false" name="index.html" location="/home/dre/Protege-2000/doc/tutorial/graph_widget/index.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="resizeHandleExample.gif" location="/home/dre/Protege-2000/doc/tutorial/graph_widget/resizeHandleExample.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="selectionColorExample.gif" location="/home/dre/Protege-2000/doc/tutorial/graph_widget/selectionColorExample.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="tables" location="/home/dre/Protege-2000/doc/tutorial/tables" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="acquiiring_an_editor.gif" location="/home/dre/Protege-2000/doc/tutorial/tables/acquiiring_an_editor.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="editor_in_forms_layout.gif" location="/home/dre/Protege-2000/doc/tutorial/tables/editor_in_forms_layout.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="editor_in_ontology.gif" location="/home/dre/Protege-2000/doc/tutorial/tables/editor_in_ontology.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="footer.html" location="/home/dre/Protege-2000/doc/tutorial/tables/footer.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="header.html" location="/home/dre/Protege-2000/doc/tutorial/tables/header.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="index.html" location="/home/dre/Protege-2000/doc/tutorial/tables/index.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step1.gif" location="/home/dre/Protege-2000/doc/tutorial/tables/step1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step10.gif" location="/home/dre/Protege-2000/doc/tutorial/tables/step10.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step11.gif" location="/home/dre/Protege-2000/doc/tutorial/tables/step11.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step12.gif" location="/home/dre/Protege-2000/doc/tutorial/tables/step12.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step2.gif" location="/home/dre/Protege-2000/doc/tutorial/tables/step2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step3.gif" location="/home/dre/Protege-2000/doc/tutorial/tables/step3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step4.gif" location="/home/dre/Protege-2000/doc/tutorial/tables/step4.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step6.gif" location="/home/dre/Protege-2000/doc/tutorial/tables/step6.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step6_sidenote.gif" location="/home/dre/Protege-2000/doc/tutorial/tables/step6_sidenote.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step7.gif" location="/home/dre/Protege-2000/doc/tutorial/tables/step7.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step8.gif" location="/home/dre/Protege-2000/doc/tutorial/tables/step8.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="step9.gif" location="/home/dre/Protege-2000/doc/tutorial/tables/step9.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="users_guide" location="/home/dre/Protege-2000/doc/users_guide" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="classes" location="/home/dre/Protege-2000/doc/users_guide/classes" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="adding_a_parent.html" location="/home/dre/Protege-2000/doc/users_guide/classes/adding_a_parent.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="back_references_pane.html" location="/home/dre/Protege-2000/doc/users_guide/classes/back_references_pane.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="classes_tab.html" location="/home/dre/Protege-2000/doc/users_guide/classes/classes_tab.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_buttons.html" location="/home/dre/Protege-2000/doc/users_guide/classes/class_buttons.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_form.html" location="/home/dre/Protege-2000/doc/users_guide/classes/class_form.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_icons.html" location="/home/dre/Protege-2000/doc/users_guide/classes/class_icons.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_inst_tab.html" location="/home/dre/Protege-2000/doc/users_guide/classes/class_inst_tab.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_menu.html" location="/home/dre/Protege-2000/doc/users_guide/classes/class_menu.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_relationship_pane.html" location="/home/dre/Protege-2000/doc/users_guide/classes/class_relationship_pane.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_window.html" location="/home/dre/Protege-2000/doc/users_guide/classes/class_window.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="creating_a_class.html" location="/home/dre/Protege-2000/doc/users_guide/classes/creating_a_class.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="deleting_a_class.html" location="/home/dre/Protege-2000/doc/users_guide/classes/deleting_a_class.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="display_class_inst.html" location="/home/dre/Protege-2000/doc/users_guide/classes/display_class_inst.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="editing_a_class.html" location="/home/dre/Protege-2000/doc/users_guide/classes/editing_a_class.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="finding_a_class.html" location="/home/dre/Protege-2000/doc/users_guide/classes/finding_a_class.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="hiding_a_class.html" location="/home/dre/Protege-2000/doc/users_guide/classes/hiding_a_class.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="images" location="/home/dre/Protege-2000/doc/users_guide/classes/images" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="Abstract.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Abstract.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Add.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Add.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="allowed_parents.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/allowed_parents.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Boolean_False.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Boolean_False.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Boolean_True.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Boolean_True.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Cascade.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Cascade.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Class.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Class.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="ClassButtons.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/ClassButtons.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="ClassReferences.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/ClassReferences.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_created.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/class_created.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_edit_create.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/class_edit_create.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Class_edit_pane.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Class_edit_pane.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_form.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/class_form.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_inst.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/class_inst.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_menu.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/class_menu.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_relationship_pane.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/class_relationship_pane.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Class_tab.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Class_tab.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="CloseAllWindows.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/CloseAllWindows.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Collapse.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Collapse.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="config_class_inst.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/config_class_inst.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Create.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Create.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="CreateSlot.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/CreateSlot.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create_subclass.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/create_subclass.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Delete.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Delete.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Expand.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Expand.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Find.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Find.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="header_line.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/header_line.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="HiddenClass.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/HiddenClass.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="hiding10.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/hiding10.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="hiding9.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/hiding9.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Hierarchy_closed.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Hierarchy_closed.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Hierarchy_open.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Hierarchy_open.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="LookupBar.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/LookupBar.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="LookupBarInContext.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/LookupBarInContext.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Metaclass.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Metaclass.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="multiple.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/multiple.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="OverriddenSlot.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/OverriddenSlot.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="pop_create.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/pop_create.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="pop_delete.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/pop_delete.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="ReadonlyClass.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/ReadonlyClass.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="RelationshipMenu.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/RelationshipMenu.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Remove.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Remove.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="RemoveSlotOverride.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/RemoveSlotOverride.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="replace_parent1.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/replace_parent1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="replace_parent2.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/replace_parent2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="see_class_inst.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/see_class_inst.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="SelectClasses.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/SelectClasses.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="serving_nerd.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/serving_nerd.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="SlotButtons.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/SlotButtons.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="SlotDirect.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/SlotDirect.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="SlotInherited.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/SlotInherited.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="SlotsTab.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/SlotsTab.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slot_form.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/slot_form.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slot_relationship.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/slot_relationship.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="superclass_context2.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/superclass_context2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Superclass_in_context.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Superclass_in_context.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="superclass_menu.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/superclass_menu.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="template_slots.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/template_slots.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="temp_slot_menu.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/temp_slot_menu.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Value_instance1.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Value_instance1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Value_Instance2.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Value_Instance2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Value_Instance3.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Value_Instance3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Value_Instance4.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Value_Instance4.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Value_Symbol1.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Value_Symbol1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Value_Symbol2.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Value_Symbol2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Value_Symbol3.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Value_Symbol3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Value_Type.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/Value_Type.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="View.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/View.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="viewin5.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/viewin5.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="ViewSlotAtClass.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/ViewSlotAtClass.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="ViewTopLevelSlot.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/images/ViewTopLevelSlot.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="index.html" location="/home/dre/Protege-2000/doc/users_guide/classes/index.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="index_long.html" location="/home/dre/Protege-2000/doc/users_guide/classes/index_long.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="jumping_to_a_parent.html" location="/home/dre/Protege-2000/doc/users_guide/classes/jumping_to_a_parent.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="metaclasses" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="change_meta.html" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/change_meta.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="change_meta_sub.html" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/change_meta_sub.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create_class_use_meta.html" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/create_class_use_meta.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="images" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="change10.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/change10.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="change11.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/change11.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="change3.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/change3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="change5.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/change5.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="change6.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/change6.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="change7.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/change7.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="change8.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/change8.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="change9.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/change9.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create1.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/create1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create2.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/create2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create3.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/create3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create4.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/create4.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create5.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/create5.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create6.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/create6.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create_wines1.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/create_wines1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create_wines2.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/create_wines2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="metacl1.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/metacl1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="metacl2.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/metacl2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="metacl3.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/metacl3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="metacl4.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/metacl4.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="metacl5.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/metacl5.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="metacl6.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/metacl6.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="metacl7.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/metacl7.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="sub_change1.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/sub_change1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="sub_change2.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/images/sub_change2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="metaclass_create.html" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/metaclass_create.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="metaclass_intro.html" location="/home/dre/Protege-2000/doc/users_guide/classes/metaclasses/metaclass_intro.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="removing_a_parent.html" location="/home/dre/Protege-2000/doc/users_guide/classes/removing_a_parent.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="replacing_a_parent.html" location="/home/dre/Protege-2000/doc/users_guide/classes/replacing_a_parent.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="superclasses_pane.html" location="/home/dre/Protege-2000/doc/users_guide/classes/superclasses_pane.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="template_slot_buttons.html" location="/home/dre/Protege-2000/doc/users_guide/classes/template_slot_buttons.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="template_slot_pane.html" location="/home/dre/Protege-2000/doc/users_guide/classes/template_slot_pane.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="viewing_backreferences.html" location="/home/dre/Protege-2000/doc/users_guide/classes/viewing_backreferences.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="viewing_referenced_classes.html" location="/home/dre/Protege-2000/doc/users_guide/classes/viewing_referenced_classes.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="_borders" location="/home/dre/Protege-2000/doc/users_guide/classes/_borders" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="bottom.htm" location="/home/dre/Protege-2000/doc/users_guide/classes/_borders/bottom.htm" type="file" uninstall="true"/>
+			<resource keyfile="false" name="top.htm" location="/home/dre/Protege-2000/doc/users_guide/classes/_borders/top.htm" type="file" uninstall="true"/>
+			<resource keyfile="false" name="_derived" location="/home/dre/Protege-2000/doc/users_guide/classes/_derived" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="classes_tab.html_txt_class_tab.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/_derived/classes_tab.html_txt_class_tab.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_relationship_pane.html_txt_class_relationship_pane.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/_derived/class_relationship_pane.html_txt_class_relationship_pane.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="superclasses_pane.html_txt_superclass_context2.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/_derived/superclasses_pane.html_txt_superclass_context2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="_overlay" location="/home/dre/Protege-2000/doc/users_guide/classes/_overlay" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="classes_tab.html_txt_class_tab.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/_overlay/classes_tab.html_txt_class_tab.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_relationship_pane.html_txt_class_relationship_pane.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/_overlay/class_relationship_pane.html_txt_class_relationship_pane.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="superclasses_pane.html_txt_superclass_context2.gif" location="/home/dre/Protege-2000/doc/users_guide/classes/_overlay/superclasses_pane.html_txt_superclass_context2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="constraints.html" location="/home/dre/Protege-2000/doc/users_guide/constraints.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="extending_protege.html" location="/home/dre/Protege-2000/doc/users_guide/extending_protege.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="forms" location="/home/dre/Protege-2000/doc/users_guide/forms" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="additional_widgets.html" location="/home/dre/Protege-2000/doc/users_guide/forms/additional_widgets.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="advanced_widgets.html" location="/home/dre/Protege-2000/doc/users_guide/forms/advanced_widgets.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="browser_key.html" location="/home/dre/Protege-2000/doc/users_guide/forms/browser_key.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="changing_form_characteristics.html" location="/home/dre/Protege-2000/doc/users_guide/forms/changing_form_characteristics.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="contains.html" location="/home/dre/Protege-2000/doc/users_guide/forms/contains.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="forms_pane.html" location="/home/dre/Protege-2000/doc/users_guide/forms/forms_pane.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="forms_tab.html" location="/home/dre/Protege-2000/doc/users_guide/forms/forms_tab.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="form_buttons.html" location="/home/dre/Protege-2000/doc/users_guide/forms/form_buttons.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="form_configuration.html" location="/home/dre/Protege-2000/doc/users_guide/forms/form_configuration.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="form_edit_pane.html" location="/home/dre/Protege-2000/doc/users_guide/forms/form_edit_pane.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="imagemap.html" location="/home/dre/Protege-2000/doc/users_guide/forms/imagemap.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="images" location="/home/dre/Protege-2000/doc/users_guide/forms/images" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="bool_combo_w.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/bool_combo_w.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="bool_w_list.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/bool_w_list.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="browse_form.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/browse_form.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="browse_instance.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/browse_instance.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="checkbox.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/checkbox.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="combobox.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/combobox.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="configure_widget_button.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/configure_widget_button.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="configure_widget_general.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/configure_widget_general.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="config_inst_row.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/config_inst_row.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="config_inst_row2.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/config_inst_row2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="config_inst_row3.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/config_inst_row3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="contains_widget.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/contains_widget.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="CustomizedForm.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/CustomizedForm.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="forms_pane.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/forms_pane.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="forms_tab.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/forms_tab.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="form_configure_layout.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/form_configure_layout.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="form_configure_widget.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/form_configure_widget.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="form_e3.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/form_e3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="header_line.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/header_line.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="instancefield.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/instancefield.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="instancerow.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/instancerow.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="instances_tab.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/instances_tab.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="instance_table.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/instance_table.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="LayoutLikeOtherForm.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/LayoutLikeOtherForm.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="LayoutLikeParent.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/LayoutLikeParent.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="NewspaperForm.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/NewspaperForm.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="radio.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/radio.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Relayout.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/Relayout.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="RemoveCustomizations.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/RemoveCustomizations.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="running_nerd.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/running_nerd.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slider_bad.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/slider_bad.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slider_good.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/slider_good.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="tab.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/tab.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="table_widget.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/table_widget.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="widget_menu.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/images/widget_menu.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="index.html" location="/home/dre/Protege-2000/doc/users_guide/forms/index.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="index_long.html" location="/home/dre/Protege-2000/doc/users_guide/forms/index_long.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="instancerow.html" location="/home/dre/Protege-2000/doc/users_guide/forms/instancerow.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="instancetable.html" location="/home/dre/Protege-2000/doc/users_guide/forms/instancetable.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="modifying_controls_appearance.html" location="/home/dre/Protege-2000/doc/users_guide/forms/modifying_controls_appearance.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="select_widget_type.html" location="/home/dre/Protege-2000/doc/users_guide/forms/select_widget_type.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slider.html" location="/home/dre/Protege-2000/doc/users_guide/forms/slider.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="understanding_forms.html" location="/home/dre/Protege-2000/doc/users_guide/forms/understanding_forms.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="widget_configuration.html" location="/home/dre/Protege-2000/doc/users_guide/forms/widget_configuration.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="widget_default_types.html" location="/home/dre/Protege-2000/doc/users_guide/forms/widget_default_types.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="widget_type_menu.html" location="/home/dre/Protege-2000/doc/users_guide/forms/widget_type_menu.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="_derived" location="/home/dre/Protege-2000/doc/users_guide/forms/_derived" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="form_edit_pane.html_txt_form_e3.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/_derived/form_edit_pane.html_txt_form_e3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="_overlay" location="/home/dre/Protege-2000/doc/users_guide/forms/_overlay" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="form_edit_pane.html_txt_form_e3.gif" location="/home/dre/Protege-2000/doc/users_guide/forms/_overlay/form_edit_pane.html_txt_form_e3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="glossary.html" location="/home/dre/Protege-2000/doc/users_guide/glossary.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="images" location="/home/dre/Protege-2000/doc/users_guide/images" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="BackReferences.gif" location="/home/dre/Protege-2000/doc/users_guide/images/BackReferences.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="header_line.gif" location="/home/dre/Protege-2000/doc/users_guide/images/header_line.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="InverseSlot.gif" location="/home/dre/Protege-2000/doc/users_guide/images/InverseSlot.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="nerd.gif" location="/home/dre/Protege-2000/doc/users_guide/images/nerd.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="NewProject.gif" location="/home/dre/Protege-2000/doc/users_guide/images/NewProject.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="process.gif" location="/home/dre/Protege-2000/doc/users_guide/images/process.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="UpdateWinProject.gif" location="/home/dre/Protege-2000/doc/users_guide/images/UpdateWinProject.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="index.html" location="/home/dre/Protege-2000/doc/users_guide/index.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="instances" location="/home/dre/Protege-2000/doc/users_guide/instances" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="boolean_widgets.html" location="/home/dre/Protege-2000/doc/users_guide/instances/boolean_widgets.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_pane_at_instances.html" location="/home/dre/Protege-2000/doc/users_guide/instances/class_pane_at_instances.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_widgets.html" location="/home/dre/Protege-2000/doc/users_guide/instances/class_widgets.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="creating_an_instance.html" location="/home/dre/Protege-2000/doc/users_guide/instances/creating_an_instance.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="creating_a_widget_instance.html" location="/home/dre/Protege-2000/doc/users_guide/instances/creating_a_widget_instance.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="deleting_an_instance.html" location="/home/dre/Protege-2000/doc/users_guide/instances/deleting_an_instance.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="editing_an_instance.html" location="/home/dre/Protege-2000/doc/users_guide/instances/editing_an_instance.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="field_buttons.html" location="/home/dre/Protege-2000/doc/users_guide/instances/field_buttons.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="finding_an_instance.html" location="/home/dre/Protege-2000/doc/users_guide/instances/finding_an_instance.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="float_widgets.html" location="/home/dre/Protege-2000/doc/users_guide/instances/float_widgets.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="images" location="/home/dre/Protege-2000/doc/users_guide/instances/images" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="Abstract.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/Abstract.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Add.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/Add.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="BadFloat.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/BadFloat.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="BadInteger.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/BadInteger.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Boolean_False.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/Boolean_False.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Boolean_True.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/Boolean_True.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Class.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/Class.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="ClassInstance.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/ClassInstance.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="classmult.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/classmult.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="ClassWidget.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/ClassWidget.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Create.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/Create.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="creati5.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/creati5.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="creati6.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/creati6.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="creati7.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/creati7.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="creati8.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/creati8.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="creati9.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/creati9.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Delete.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/Delete.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="FieldButtons.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/FieldButtons.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="find.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/find.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="findin6.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/findin6.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="FloatMultiple.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/FloatMultiple.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="FloatSingle.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/FloatSingle.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="header_line.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/header_line.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="HiddenClass.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/HiddenClass.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Hierarchy_closed.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/Hierarchy_closed.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Hierarchy_open.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/Hierarchy_open.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="incorrect_value.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/incorrect_value.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Instance.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/Instance.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="InstanceButtons.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/InstanceButtons.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="InstanceForm.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/InstanceForm.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="InstanceMultiple.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/InstanceMultiple.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="InstancePane.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/InstancePane.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="InstancesTab.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/InstancesTab.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="InstanceWidget.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/InstanceWidget.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="IntegerMultiple.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/IntegerMultiple.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="IntegerSingle.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/IntegerSingle.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="LookupBar.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/LookupBar.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="missing_required.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/missing_required.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="multiple.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/multiple.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="ReadonlyInstance.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/ReadonlyInstance.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Remove.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/Remove.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="required.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/required.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="StringMultiple.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/StringMultiple.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="StringSingle.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/StringSingle.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Symbol.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/Symbol.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="SymbolSingle1.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/SymbolSingle1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="SymbolSingle2.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/SymbolSingle2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="View.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/View.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="writing_nerd.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/images/writing_nerd.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="index.html" location="/home/dre/Protege-2000/doc/users_guide/instances/index.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="instances_form.html" location="/home/dre/Protege-2000/doc/users_guide/instances/instances_form.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="instances_pane.html" location="/home/dre/Protege-2000/doc/users_guide/instances/instances_pane.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="instances_tab.html" location="/home/dre/Protege-2000/doc/users_guide/instances/instances_tab.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="instance_buttons.html" location="/home/dre/Protege-2000/doc/users_guide/instances/instance_buttons.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="instance_widgets.html" location="/home/dre/Protege-2000/doc/users_guide/instances/instance_widgets.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="integer_widgets.html" location="/home/dre/Protege-2000/doc/users_guide/instances/integer_widgets.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="moving_an_instance.html" location="/home/dre/Protege-2000/doc/users_guide/instances/moving_an_instance.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="standard_fields.html" location="/home/dre/Protege-2000/doc/users_guide/instances/standard_fields.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="string_widgets.html" location="/home/dre/Protege-2000/doc/users_guide/instances/string_widgets.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="symbol_widgets.html" location="/home/dre/Protege-2000/doc/users_guide/instances/symbol_widgets.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="_derived" location="/home/dre/Protege-2000/doc/users_guide/instances/_derived" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="instances_tab.html_txt_InstancesTab.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/_derived/instances_tab.html_txt_InstancesTab.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="_overlay" location="/home/dre/Protege-2000/doc/users_guide/instances/_overlay" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="instances_tab.html_txt_InstancesTab.gif" location="/home/dre/Protege-2000/doc/users_guide/instances/_overlay/instances_tab.html_txt_InstancesTab.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="newspaper_example.html" location="/home/dre/Protege-2000/doc/users_guide/newspaper_example.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="planning_a_project.html" location="/home/dre/Protege-2000/doc/users_guide/planning_a_project.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="projects" location="/home/dre/Protege-2000/doc/users_guide/projects" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="building_a_project.html" location="/home/dre/Protege-2000/doc/users_guide/projects/building_a_project.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="cascading_open_forms.html" location="/home/dre/Protege-2000/doc/users_guide/projects/cascading_open_forms.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="closing_all_windows.html" location="/home/dre/Protege-2000/doc/users_guide/projects/closing_all_windows.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="configure_project.html" location="/home/dre/Protege-2000/doc/users_guide/projects/configure_project.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="creating_a_project.html" location="/home/dre/Protege-2000/doc/users_guide/projects/creating_a_project.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="images" location="/home/dre/Protege-2000/doc/users_guide/projects/images" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="Add.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/Add.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="billingchart_html.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/billingchart_html.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="BuildingProject2.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/BuildingProject2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="BuildingProject3.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/BuildingProject3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="BuildingProject4.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/BuildingProject4.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Cascade.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/Cascade.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="choose_jdbc.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/choose_jdbc.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="choose_rdf.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/choose_rdf.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="CloseAllWindows.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/CloseAllWindows.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="config7.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/config7.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="config8.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/config8.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="CreateYellow.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/CreateYellow.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="DeleteYellow.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/DeleteYellow.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="header_line.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/header_line.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="html1.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/html1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="ImportJDBC.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/ImportJDBC.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="ImportRDF.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/ImportRDF.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="import_rdf.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/import_rdf.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="index_html.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/index_html.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="journaling.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/journaling.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="NewProject.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/NewProject.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="newprojectbutton.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/newprojectbutton.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="OpenProject.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/OpenProject.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="open_startup.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/open_startup.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="ReadOnlyClass.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/ReadOnlyClass.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="ReadonlyDirectSlot.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/ReadonlyDirectSlot.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="ReadonlyInstance.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/ReadonlyInstance.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="SaveDatabase.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/SaveDatabase.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="SaveProject.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/SaveProject.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="save_rdf.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/save_rdf.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="SavingText.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/SavingText.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="saving_rdf.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/saving_rdf.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="select_class.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/select_class.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="select_format.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/select_format.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="select_import_format.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/select_import_format.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="serving_nerd.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/serving_nerd.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slider_horiz.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/slider_horiz.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slider_vert.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/slider_vert.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="StartDialog.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/StartDialog.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="yellow1.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/yellow1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="yellow2.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/yellow2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="yellow3.gif" location="/home/dre/Protege-2000/doc/users_guide/projects/images/yellow3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="importing_database_project.html" location="/home/dre/Protege-2000/doc/users_guide/projects/importing_database_project.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="importing_rdf_project.html" location="/home/dre/Protege-2000/doc/users_guide/projects/importing_rdf_project.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="importing_text_project.html" location="/home/dre/Protege-2000/doc/users_guide/projects/importing_text_project.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="including_a_project.html" location="/home/dre/Protege-2000/doc/users_guide/projects/including_a_project.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="index.html" location="/home/dre/Protege-2000/doc/users_guide/projects/index.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="opening_a_project.html" location="/home/dre/Protege-2000/doc/users_guide/projects/opening_a_project.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="removed_query_stuff.htm" location="/home/dre/Protege-2000/doc/users_guide/projects/removed_query_stuff.htm" type="file" uninstall="true"/>
+			<resource keyfile="false" name="renaming_a_project.html" location="/home/dre/Protege-2000/doc/users_guide/projects/renaming_a_project.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="saving_a_database_project.html" location="/home/dre/Protege-2000/doc/users_guide/projects/saving_a_database_project.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="saving_a_project.html" location="/home/dre/Protege-2000/doc/users_guide/projects/saving_a_project.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="saving_HTML.html" location="/home/dre/Protege-2000/doc/users_guide/projects/saving_HTML.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="saving_new_format.html" location="/home/dre/Protege-2000/doc/users_guide/projects/saving_new_format.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="saving_RDF_project.html" location="/home/dre/Protege-2000/doc/users_guide/projects/saving_RDF_project.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="saving_text_project.html" location="/home/dre/Protege-2000/doc/users_guide/projects/saving_text_project.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="small_window.html" location="/home/dre/Protege-2000/doc/users_guide/projects/small_window.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="yellow_stickies.html" location="/home/dre/Protege-2000/doc/users_guide/projects/yellow_stickies.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="protege_migration.html" location="/home/dre/Protege-2000/doc/users_guide/protege_migration.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="queries" location="/home/dre/Protege-2000/doc/users_guide/queries" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="clear_query.html" location="/home/dre/Protege-2000/doc/users_guide/queries/clear_query.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create_complex_query.html" location="/home/dre/Protege-2000/doc/users_guide/queries/create_complex_query.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create_query.html" location="/home/dre/Protege-2000/doc/users_guide/queries/create_query.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="images" location="/home/dre/Protege-2000/doc/users_guide/queries/images" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="boolean_q.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/boolean_q.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_q.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/class_q.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="class_query.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/class_query.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="float_q.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/float_q.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="LoadQuery.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/LoadQuery.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="query_6.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/query_6.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="query_7.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/query_7.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="query_library.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/query_library.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="query_name.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/query_name.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="query_pane.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/query_pane.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="query_tab.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/query_tab.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="SaveQuery.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/SaveQuery.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="search_results.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/search_results.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="select_class.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/select_class.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="select_slot.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/select_slot.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slot_query.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/slot_query.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="string_q.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/string_q.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="symbol_q.gif" location="/home/dre/Protege-2000/doc/users_guide/queries/images/symbol_q.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="index.html" location="/home/dre/Protege-2000/doc/users_guide/queries/index.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="index_long.html" location="/home/dre/Protege-2000/doc/users_guide/queries/index_long.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="query_library.html" location="/home/dre/Protege-2000/doc/users_guide/queries/query_library.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="query_pane.html" location="/home/dre/Protege-2000/doc/users_guide/queries/query_pane.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="query_tab.html" location="/home/dre/Protege-2000/doc/users_guide/queries/query_tab.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="retrieve_query.html" location="/home/dre/Protege-2000/doc/users_guide/queries/retrieve_query.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="run_query.html" location="/home/dre/Protege-2000/doc/users_guide/queries/run_query.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="saving_query.html" location="/home/dre/Protege-2000/doc/users_guide/queries/saving_query.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="search_results.html" location="/home/dre/Protege-2000/doc/users_guide/queries/search_results.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="rdf_support.html" location="/home/dre/Protege-2000/doc/users_guide/rdf_support.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slots" location="/home/dre/Protege-2000/doc/users_guide/slots" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="adding_a_slot.html" location="/home/dre/Protege-2000/doc/users_guide/slots/adding_a_slot.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="creating_a_slot.html" location="/home/dre/Protege-2000/doc/users_guide/slots/creating_a_slot.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="creating_subslot.html" location="/home/dre/Protege-2000/doc/users_guide/slots/creating_subslot.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="deleting_a_slot.html" location="/home/dre/Protege-2000/doc/users_guide/slots/deleting_a_slot.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="editing_a_slot.html" location="/home/dre/Protege-2000/doc/users_guide/slots/editing_a_slot.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="editing_slot_properties.html" location="/home/dre/Protege-2000/doc/users_guide/slots/editing_slot_properties.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="edit_top_level.htm" location="/home/dre/Protege-2000/doc/users_guide/slots/edit_top_level.htm" type="file" uninstall="true"/>
+			<resource keyfile="false" name="images" location="/home/dre/Protege-2000/doc/users_guide/slots/images" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="cardinality.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/images/cardinality.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create_subslot.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/images/create_subslot.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="delete_slot_menu.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/images/delete_slot_menu.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="inverse_ select_slot.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/images/inverse_ select_slot.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="inverse_slot_field.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/images/inverse_slot_field.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="inverse_slot_form.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/images/inverse_slot_form.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="inverse_slot_form2.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/images/inverse_slot_form2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slots_tab.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/images/slots_tab.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slot_form.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/images/slot_form.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slot_menu.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/images/slot_menu.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slot_menu_create.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/images/slot_menu_create.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="subslot_in_window.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/images/subslot_in_window.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="index.html" location="/home/dre/Protege-2000/doc/users_guide/slots/index.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="index_long.html" location="/home/dre/Protege-2000/doc/users_guide/slots/index_long.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="inverse_slots.html" location="/home/dre/Protege-2000/doc/users_guide/slots/inverse_slots.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="make_inverse_slot.html" location="/home/dre/Protege-2000/doc/users_guide/slots/make_inverse_slot.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="metaslots" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="change_meta.html" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/change_meta.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create_subslot_use_meta.html" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/create_subslot_use_meta.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="images" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/images" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="change10.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/images/change10.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="change11.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/images/change11.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="change9.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/images/change9.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create_meta_sub1.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/images/create_meta_sub1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create_meta_sub2.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/images/create_meta_sub2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create_meta_sub3.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/images/create_meta_sub3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create_m_slot1.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/images/create_m_slot1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="create_m_slot2.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/images/create_m_slot2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Default.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/images/Default.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="default_slot1.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/images/default_slot1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="default_slot2.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/images/default_slot2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="default_slot3.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/images/default_slot3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="metasl1.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/images/metasl1.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="metasl2.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/images/metasl2.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="metasl3.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/images/metasl3.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="metaslot_create.html" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/metaslot_create.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="metaslot_default.html" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/metaslot_default.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="metaslot_intro.html" location="/home/dre/Protege-2000/doc/users_guide/slots/metaslots/metaslot_intro.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="override_slot.htm" location="/home/dre/Protege-2000/doc/users_guide/slots/override_slot.htm" type="file" uninstall="true"/>
+			<resource keyfile="false" name="remove_slot_overrides.html" location="/home/dre/Protege-2000/doc/users_guide/slots/remove_slot_overrides.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="removing_a_slot.html" location="/home/dre/Protege-2000/doc/users_guide/slots/removing_a_slot.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slots_tab.html" location="/home/dre/Protege-2000/doc/users_guide/slots/slots_tab.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slot_buttons.html" location="/home/dre/Protege-2000/doc/users_guide/slots/slot_buttons.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slot_form.html" location="/home/dre/Protege-2000/doc/users_guide/slots/slot_form.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="slot_menu.html" location="/home/dre/Protege-2000/doc/users_guide/slots/slot_menu.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="value_type_menu.html" location="/home/dre/Protege-2000/doc/users_guide/slots/value_type_menu.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="_derived" location="/home/dre/Protege-2000/doc/users_guide/slots/_derived" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="slot_form.html_txt_slot_form.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/_derived/slot_form.html_txt_slot_form.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="_overlay" location="/home/dre/Protege-2000/doc/users_guide/slots/_overlay" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="slot_form.html_txt_slot_form.gif" location="/home/dre/Protege-2000/doc/users_guide/slots/_overlay/slot_form.html_txt_slot_form.gif" type="file" uninstall="true"/>
+			<resource keyfile="false" name="table_of_contents.html" location="/home/dre/Protege-2000/doc/users_guide/table_of_contents.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="using_help.html" location="/home/dre/Protege-2000/doc/users_guide/using_help.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="what_is_protege.html" location="/home/dre/Protege-2000/doc/users_guide/what_is_protege.html" type="file" uninstall="true"/>
+			<resource keyfile="false" name="source" location="/home/dre/Protege-2000/source/" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="protege_src.1.8.zip" location="/home/dre/Protege-2000/source/protege_src.1.8.zip" type="file" uninstall="true"/>
+			<resource keyfile="false" name="query_tab_src.1.8.zip" location="/home/dre/Protege-2000/source/query_tab_src.1.8.zip" type="file" uninstall="true"/>
+			<resource keyfile="false" name="rdf_backend_src.1.8.zip" location="/home/dre/Protege-2000/source/rdf_backend_src.1.8.zip" type="file" uninstall="true"/>
+			<resource keyfile="false" name="standard_extensions_src.1.8.zip" location="/home/dre/Protege-2000/source/standard_extensions_src.1.8.zip" type="file" uninstall="true"/>
+			<resource keyfile="false" name="protege.properties" location="/home/dre/Protege-2000/protege.properties" type="file" uninstall="true"/>
+		</component>
+		<component id="994da60a-1ec1-11b2-b354-ef29621bcc1c" version="1.0.0.0" name="InstallAnywhere Uninstall Component" location="/home/dre/Protege-2000/UninstallerData/Uninstall_Protege" vendor="Stanford Medical Informatics">
+			<resource keyfile="false" name="Protege-2000__Version_1.8_InstallLog.xml" location="/home/dre/Protege-2000/Protege-2000__Version_1.8_InstallLog.xml" type="file" uninstall="true"/>
+			<resource keyfile="false" name="UninstallerData" location="/home/dre/Protege-2000/UninstallerData" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="uninstaller.jar" location="/home/dre/Protege-2000/UninstallerData/uninstaller.jar" type="file" uninstall="true"/>
+			<resource keyfile="true" name="Uninstall_Protege" location="/home/dre/Protege-2000/UninstallerData/Uninstall_Protege" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="Uninstall_Protege.lax" location="/home/dre/Protege-2000/UninstallerData/Uninstall_Protege.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name=".com.zerog.registry.xml" location="/home/dre/Protege-2000/UninstallerData/.com.zerog.registry.xml" type="file" uninstall="true"/>
+		</component>
+	</components>
+</registry>

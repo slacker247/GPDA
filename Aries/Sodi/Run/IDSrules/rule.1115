@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC cybercop scan";flags: A+; uricontent:"/cybercop"; nocase; reference:arachnids,374; classtype:web-application-activity; sid:1099; rev:2;)

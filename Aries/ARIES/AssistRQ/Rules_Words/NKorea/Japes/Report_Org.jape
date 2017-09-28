@@ -1,0 +1,15 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Report_Org
+
+{Report_Affil}
+{Token.string == "."}
+(
+      {Token.kind == word}
+)
+:Report_Org 
+ -->
+:Report_Org.Report_Org = {}

@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible MyPics Worm"; content: "|6E 61 6D 65 20 3D 22 70 69 63 73 34 79 6F 75 2E 65 78 65 22|"; reference:MCAFEE,10467; sid:777;  classtype:misc-activity; rev:3;)

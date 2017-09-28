@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC cgitest.exe attempt"; uricontent: "/cgitest.exe|0d0a|user"; nocase; flags: A+; offset: 4; reference:arachnids,265; classtype:attempted-recon; sid:1182; rev:3;)

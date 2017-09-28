@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible NAVIDAD Worm"; content: "NAVIDAD.EXE"; nocase; sid:722;  classtype:misc-activity; rev:3;)

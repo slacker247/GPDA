@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET 1024: -> $HOME_NET 2589 (msg:"BACKDOOR - Dagger_1.4.0_client_connect"; flags: A+; content: "|0b 00 00 00 07 00 00 00|Connect"; depth: 16; reference:arachnids,483; sid:104;  classtype:misc-activity; rev:3;)

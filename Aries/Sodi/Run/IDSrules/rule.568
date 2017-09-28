@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN IP Eye SYN Scan"; flags: S; seq: 1958810375; reference:arachnids,236; classtype:attempted-recon; sid:622; rev:1;)

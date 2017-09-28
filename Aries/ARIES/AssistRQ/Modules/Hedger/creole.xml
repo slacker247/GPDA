@@ -1,0 +1,15 @@
+<!-- resource.xml Hedger -->
+<!--  jeffmac, 26/8/2002 -->
+<!-- $Id: resource.xml,v 1.1 2001/05/31 16:06:02 hamish Exp $ -->
+<CREOLE-DIRECTORY>
+<CREOLE>
+  <RESOURCE>
+    <NAME>Hedger</NAME>
+    <JAR>Hedger.jar</JAR>
+    <CLASS>Hedger</CLASS>
+            <PARAMETER NAME="document" RUNTIME="true">gate.Document</PARAMETER>
+            <PARAMETER NAME="workingdir" RUNTIME="false" COMMENT="The location of the files">java.net.URL</PARAMETER>
+	    <PARAMETER NAME="outputname" RUNTIME="false" DEFAULT="temp.txt">java.lang.String</PARAMETER>
+        </RESOURCE>
+</CREOLE>
+</CREOLE-DIRECTORY>

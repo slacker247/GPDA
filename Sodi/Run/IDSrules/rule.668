@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (msg:"TELNET bsd exploit client finishing"; flags: A+; dsize: >200; content: "|FF F6 FF F6 FF FB 08 FF F6|"; offset: 200; depth: 50; classtype: successful-admin; sid: 1253; rev:3; reference: bugtraq,3064; reference:cve,CAN-2001-0554;)

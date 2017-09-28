@@ -1,0 +1,171 @@
+This is a backup files of FZ_CLIPS.6.04.  96-04-02
+
+
+
+
+
+
+                     Version 6.04 Release Notes
+
+1) The following bugs are fixed by version 6.04.
+
+   * CLIPS would hang during an unwatch command if a binary file
+     had been loaded that contained an *or* conditional element.
+
+   * An illformed construct name consisting of a module name and
+     separater followed by a space would cause a crash.
+
+   * Embedding only test CEs within not and/or and CEs did not work
+     properly.
+     
+   * Undefined variable errors in rules using an *or* conditional
+     element could cause crashes.
+     
+   * The loop iteration in the GetNthWatchValue and GetNthWatchName
+     functions in watch.c does not correctly update the pointer to
+     the current watch item.
+     
+   * Garbage collection during a load-instances call could
+     prematurely remove symbols from the symbol table.
+      
+   * Nested calls to CLIPSFunctionCall and/or certain other functions
+     from an embedded application could cause premature garbage
+     collection while a function is executing.
+
+2) There are many file updates included with this release version.
+   Most of the files have no functional changes, but are included
+   because of additional documentation added to the source code.
+   You will need the entire set of source files either for 6.0, 
+   6.01, 6.02, or 6.03 to supply the files not provided with the
+   bug fix updates.
+
+3) Project files have been updated for Borland C++ 4.5 and Metrowerks
+   CodeWarrior 1.3. Before making the Borland project file, you will
+   need to also add an OBJECTS directory to the SOURCE directory you
+   are instructed to create in the directions from the Interfaces Guide.
+   Command line project versions without the machine specific interface
+   code have not been provided for either the Macintosh or Windows 3.1.
+   The makefile for creating a memory-enhanced 386 DOS version of 
+   CLIPS using the Zortech 3.1 compiler is still provided.
+
+4) Drag and drop is now supported in the Macintosh interface.
+
+5) The following files have been added to the core CLIPS source code:
+   emathfun.h, factfun.c, factfun.h, iofun.h, prdctfun.h, textpro.h,
+   tmpltutl.c, and tmpltutl.h. The following files have been removed
+   from the core CLIPS source code: tmpltcom.c and tmpltcom.h.
+   
+   The following files were added to the Macintosh interface source 
+   code: dsplscrl.c, dsplscrl.h, dsplwdrg.c, dsplwdrg.h, editwdrg.c,
+   and editwdrg.h.
+   
+   The CLP_EDIT flag in setup.h is now EMACS_EDITOR.
+      
+6) Some minor additional functionality has been added.
+
+   C equivalents for the eval and build functions are available:
+
+      VOID Eval(theString,returnValue)
+        char *theString;
+        DATA_OBJECT_PTR returnValue;
+
+      The argument theString contains the expression to be
+      evaluated. The return value is returned in the
+      returnValue argument.
+
+      int Build(theString)
+        char *theString;
+
+      The argument theString contains the construct to be
+      added. If the construct is successfully parsed, the
+      function returns TRUE, otherwise FALSE.
+      
+   New loading and batch options:
+      
+      The load* function loads a set of constructs without
+      displaying the construct characters or the defining/
+      redefining messages. Error messages are still printed.
+      The function returns TRUE if the file was successfully
+      opened, otherwise FALSE. Its syntax is:
+
+      (load* <file-name>)
+
+      The function Load is still used for calls from
+      embedded C applications.
+
+      The batch* silently evaluates a series of commands
+      found in the specified file. The batch* command does
+      not replace standard input and thus you can't use
+      a batch* file to provide input to functions such as
+      read and readline (batch will still work for this
+      purpose). The function returns TRUE if the file was
+      successfully opened, otherwise FALSE. Its syntax is:
+
+      (batch* <file-name>)
+
+      Its C access function is:
+
+      int BatchStar(fileName)
+        char *fileName;
+
+      This function is not available in a run-time module.
+
+      Two new command line options are available. The -f2
+      option loads a file using batch*. The -l function
+      loads a construct file. The syntax is
+
+      -f2 <file-name>
+      -l  <file-name>
+
+   New fact functions:
+
+      (fact-existp <fact-address-or-index>)
+
+      Returns TRUE if the fact exists, otherwise FALSE
+      is returned.
+
+      (fact-relation <fact-address-or-index>)
+
+      Returns the deftemplate name of the fact. Returns
+      FALSE if the specified fact doesn't exist.
+
+      (fact-slot-value <fact-address-or-index> <slot-name>)
+
+      Returns the contents of a slot (use the slot name
+      implied for the implied multifield slot of an ordered
+      fact). Returns the value FALSE if the slot name is
+      invalid or the fact doesn't exist.
+
+      (fact-slot-names <fact-address-or-index>)
+
+      Returns the slot names associated with a fact in a
+      multifield value. Returns FALSE if the fact doesn't
+      exist.
+
+      (get-fact-list [<module-name>])
+
+      Returns the list of facts visible to the specified
+      module or to the current module if none is specified.
+      If * is specified then all facts are returned.
+
+      The equivalent C function calls are:
+
+      long int FactExistp(theFact)
+        VOID *theFact;
+
+      VOID *FactRelation(theFact)
+        VOID *theFact;
+
+      VOID FactSlotValue(theFact,theSlotName,returnValue)
+        VOID *theFact;
+        char *theSlotName;
+        DATA_OBJECT *returnValue;
+
+      VOID FactSlotNames(theFact,returnValue)
+        VOID *theFact;
+        DATA_OBJECT *returnValue;
+
+      VOID GetFactList(returnValue,theModule)
+        DATA_OBJECT *returnValue;
+        VOID *theModule;
+

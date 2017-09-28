@@ -1,0 +1,2947 @@
+/***********************************************************************
+
+New things for Version 0.8:
+
+         1) Allow input file name specification on command line
+         2) Make display of error ellipses (J3.0 messages) optional
+
+New things for Version 0.7:
+
+         1) File editor for 'scheme.dat'
+	 2) Data input from socket connection (optional)
+	 3) Variable display area size
+	 4) Multiple defended areas per GBI farm
+	 5) Automatic processing of assets at startup
+	 6) Persistent Save/Recall of views using QuickView buttons
+	 7) File Selection dialog box if 'input_file' parameter = '*'
+	 8) Sensor file (sensors.dat) replaced by 'assets.par'
+	 9) Display of R2 asset from Track Viewer
+	10) Selection and view of asset details from Asset Viewer
+	11) Display Classification header and trailer
+	12) Picking of sensor or trail displays 'Track View' dialog
+	13) User defined views on 'Region' menu using 'region.dat'
+	14) Movie capability via BMP file per frame
+	15) Reset button starts playback from beginning
+ 
+........................................................................
+
+Things to do:
+
+ 	 3) Weather, clouds, blending
+	 4) Curves, arcs, cones, etc
+	 7) Flat maps
+	 8) GIF image display
+	 9) Link control                                  DRE - 08/28/98
+	11) JTMDP Requirements Scrubber display
+	13) Simulated Commander testbed
+	16) Air Objects with trails
+	17) Stroke text
+	21) Fix Startup textured earth lighting		  DRE - 03/08/99
+	22) Use Polygon Offset for grids & boundaries
+	23) Put clouds on transparent overlay globe
+	24) Implement RESET
+	26) Implement Movie making capabilities
+        29) Misc. cleanup
+	      1) Allow FOV < 1.0
+	      5) Fix user view from sensor
+	      7) Use MBV boundaries & gridlines
+ 
+........................................................................
+
+Some hard-coded object types:
+
+     21xx         - Defended Areas
+     19xx         - Assets
+     1717         - Track Error Cylinders
+      800         - Star field
+      329         - 2D Map
+      300         - Low-res textured earth
+      301         - Med-red textured earth
+      302         - Hi-res textured earth
+      320         - Shore lines
+      321         - Political boundaries
+      330         - Grid lines
+      200         - Blue earth
+      201         - Regional area
+      202         - Clouds
+      203         - Storms
+      204         - Fog
+      205         - Dispersion clouds
+      210         - Terrain
+
+************************************************************************/ 
+
+#include <stdio.h>
+#include <unistd.h>
+#include <math.h>
+#include <time.h>
+//#include <osfcn.h>
+#include <signal.h>
+#include <sys/types.h>
+//#include <malloc.h>
+
+#include <Xm/MainW.h>
+#include <Xm/CascadeB.h>
+#include <Xm/CascadeBG.h>
+#include <Xm/Form.h>
+#include <Xm/Frame.h>
+#include <Xm/ScrolledW.h>
+#include <Xm/List.h>
+#include <Xm/Label.h>
+#include <Xm/LabelG.h>
+#include <Xm/MessageB.h>
+#include <Xm/PushB.h>
+#include <Xm/PushBG.h>
+#include <Xm/RowColumn.h>
+#include <Xm/Scale.h>
+#include <Xm/SeparatoG.h>
+#include <Xm/Separator.h>
+#include <Xm/TextF.h>
+#include <Xm/DrawingA.h>
+#include <X11/keysym.h>
+#include <X11/Xutil.h>
+#include <GL/GLwDrawA.h>
+
+#include "def.H"
+#include "DataParser.H"			// 'speedes.par' file parser
+#include "GR_DispList.H"
+#include "GR_Window.H"
+#include "GR_DispObj.H"
+#include "GR_Shell.H"
+#include "GR_Model.H"
+#include "GR_Tearth.H"
+#include "GR_Tearth2.H"
+#include "GR_Tearth3.H"
+#include "GR_Lines.H"
+#include "GR_Area.H"
+#include "GR_Army.H"
+#include "GR_Bearth.H"
+#include "GR_Carib.H"
+#include "GR_Region.H"
+#include "GR_Cloud.H"
+#include "GR_Surface.H"
+#include "GR_Terrain.H"
+#include "GR_Stars.H"
+#include "GR_work.H"
+#include "GISP_Globals.H"
+#include "winbmp.H"
+//#include "texture.H"
+#include "glfont.H"
+
+#define descfile     "Models.desc"
+#define YES          1
+#define NO           0
+
+#define expf(x) ((float)exp((x)))
+
+struct VIEWITEM {
+   int               VMODE;
+   int               LAT;
+   int               LON;
+   int               ALT;
+   int               FOV;
+   int               FOVDIV;
+   int               AZI;
+   int               LOOKLAT;
+   int               LOOKLON;
+   int               LOOKALT;
+   int               LOOKAZI;
+   char              ITEMNAME[24];
+};
+
+FILE            *INFOfp;
+FILE            *TIMEfp;
+FILE            *DBUGfp;
+FILE            *STATfp;
+FILE            *VIEWfp;
+FILE            *MPEGfp;
+char            *VUDEBUG;
+char            *SPEEDES;
+char            *TIMING;
+char            *STATS;
+char            *CLASS;
+//char            *MONITOR;
+char            *INFILE = NULL;
+int             PLAYBACK, AUTORUN, AUTOEXIT, NOEXIT, LOGGING;
+double          TIMESTEP = 0.0;
+int             REGION;
+Boolean         TEXTURED, GRIDLINE, BOUNDARY;
+Boolean         SHOWR2;                      // Show R2 sensor duels
+Boolean         KEEPLINK;                    // Keep sensor link lines
+Boolean         DROPTRACK;                   // Process 'Drop track' messages if TRUE
+Boolean         LABELTRACK;                  // Label tracks if TRUE
+Boolean         SHOWTRACK, SHOWTRAIL, SHOWIMPACT, SHOWERROR;
+Boolean         ASSETS;
+Boolean         RECORDING = FALSE;
+int             PROX, FILEINPUT, SOCKINPUT;
+char            *INPUTSRC;
+int             YESNO;
+
+int             process_id;
+int             frame_no;
+int             image_no;
+int             run_no;
+int             rec_entered = FALSE;
+int             yn_answer;
+struct VIEWITEM *focusmenu;
+
+char            VERSION[24];
+
+char            shorefile[80];
+char            polifile[80];
+char            texturefile[80];
+char            rgbfile[80];
+char            starfile[80];
+char            elevdir[80];
+char            caribdir[80];
+char            cloudfile[80];
+char            earthdir[80];
+char            *texfile;
+
+GR_DispList	*displist;
+GR_DispList     *sps_displist;
+GR_DispList     *sps_links_displist;
+GR_DispList     *trail_displist;
+GR_DispList     *sensor_displist;
+GR_DispList     *cloud_displist;
+GR_Cloud        *cloud;
+
+GR_Model        *models, *Searth33, *Adiz222;
+GR_Window       *gwindow;
+
+GR_Blueearth    *Bearth200;
+GR_Tearth  	*Tearth300;
+GR_Tearth2  	*Tearth301;
+GR_Tearth3  	*Tearth302;
+
+GR_Lines        *ShoreLines320, *PoliLines321;
+GR_Gridlines    *Grid330;
+GR_Sensor       *dome_sensor, *cone_sensor, *GBRs[16];
+GR_Stars	*Star800;
+GR_Surface      *storm;
+GR_Terrain      *terrain;
+
+long            current_earth_type = 0;
+long		star_type = 800;
+
+Boolean         first_Area[36][18];
+GR_Area         *Area[36][18];
+
+Carib           *carib;
+//GR_Region       *carib;
+
+//int             using_speedes = TRUE;
+
+int             v_LAT     = 0;
+int             v_LON     = 0;
+int             v_ALT     = 2500;
+int             v_FOV     = 132;
+int             v_FOVDIV  = 1;
+int             v_AZI     = 0;
+int             v_LOOKLAT = 0;
+int             v_LOOKLON = 0;
+int             v_LOOKALT = 0;
+int             v_LOOKAZI = 0;
+int             VMODE     = 0; // 0: normal; 1: tangential;
+static int      MODE_1=0,LAT_1=0,LON_1=0,ALT_1=6700,FOV_1=62,AZI_1=0;
+static int      MODE_2=0,LAT_2=0,LON_2=0,ALT_2=6700,FOV_2=62,AZI_2=0;
+int             saved_vu = FALSE;
+//
+//   Motif stuff
+//
+Widget          execstat, modestat;
+Widget          scaleLAT, scaleLON, scaleALT, scaleFOV, scaleAZI;
+Widget          textarea, timewidget;
+Pixel           fg_red, fg_yellow, bg_grey, fg_green, fg_blue;
+Pixmap          redledpix, grnledpix, yelledpix, bluledpix;
+XtIntervalId    clockid;
+static String   fallback_resources [] = {
+   "*background: lightsteelblue",
+   "*XmScale*foreground: black",
+   "*XmScale*resizable: TRUE",
+   "*XmScale*XmNhighlightOnEnter: True",
+   "*.a.minimum: -90",
+   "*.a.maximum: 90",
+   "*.a.value: 0",
+   "*.o.minimum: -180",
+   "*.o.maximum: 180",
+   "*.o.value: 0",
+   "*.l.minimum: 0",
+   "*.l.maximum: 60000",
+   "*.l.value: 6700",
+   "*.v.minimum: 1",
+   "*.v.maximum: 180",
+   "*.v.value: 90",
+   "*XmMessageBox*foreground: white",
+   "*XmMessageBox*background: steelblue",
+   "*Logo.foreground: steelblue4",
+   NULL };
+//
+//   Network socket stuff
+//
+int             portid;
+char            *hostid;
+
+        int korwidth, korheight, korcomponents;
+        unsigned  *korimage; 
+
+/* ---------------------------------------------------------------------- */
+
+Widget makeMenuBar (char*, Widget);
+Widget makeViewBar (char*, Widget);
+Widget makePanel (char*, Widget, Widget);
+extern Widget makeSpanel (char*, Widget, Widget); // SPEEDES panel
+Widget makeList (char*, Widget);
+Widget createOneScale (Widget, char, XmString, XtCallbackProc);
+int    GetYesNo(char *str);
+void   toggleCB(Widget toggle_box, XtPointer n, XmToggleButtonCallbackStruct* cbs);
+void   responseCB(Widget w, XtPointer answer, XtPointer cbs);
+
+extern void view_finderCB ();
+//extern void FlatMap (char* texfile, int areano, float lat, float lon);
+extern GR_Window *vfwindow;
+extern void model_viewerCB (Widget);
+extern void asset_init ();
+extern void asset_viewerCB (Widget);
+//extern void time_viewerCB (Widget);
+extern void map_viewerCB (Widget);
+extern void track_editCB (Widget);
+extern void track_viewCB (Widget);
+extern GR_Window *mvwindow;
+extern GR_Window *tmwindow;
+
+extern void OpenInputFile(char *infilename);
+extern void CloseInputFile();
+extern void speedes_init ();
+extern void input_init();
+extern void input_finish ();
+extern void TrackInit(Widget);
+void logoCB (Widget, XtPointer, XtPointer);
+void viewsCB (Widget, XtPointer, XtPointer);
+void focusCB (Widget, XtPointer, XtPointer);
+void earthCB (Widget, XtPointer, XtPointer);
+void lightingCB (Widget, XtPointer, XtPointer);
+void backgroundCB (Widget, XtPointer, XtPointer);
+void weatherCB (Widget, XtPointer, XtPointer);
+void optionCB (Widget, XtPointer, XtPointer);
+void toolsCB (Widget, XtPointer, XtPointer);
+extern void cyclesCB (Widget menuitem, XtPointer itemno, XmAnyCallbackStruct* call_data);
+void helpCB (Widget, XtPointer, XtPointer);
+void help_doneCB (Widget dialog, XtPointer, XtPointer);
+
+void earthtypeCB  (Widget, XtPointer, XtPointer);
+void earthareaCB  (Widget, XtPointer, XtPointer);
+void earthlinesCB (Widget, XtPointer, XtPointer);
+void earthadizCB  (Widget, XtPointer, XtPointer);
+void earthgridCB  (Widget, XtPointer, XtPointer);
+void cloudCB ();
+
+void forceCB (Widget, XtPointer client_data, XtPointer);
+void viewCB (Widget, XtPointer client_data, XtPointer);
+void memoryCB (Widget, XtPointer client_data, XtPointer);
+void recordCB (Widget, XtPointer client_data, XtPointer);
+void changeScaleCB (Widget, char, XmScaleCallbackStruct*);
+void clockCB (Widget, XtPointer, XmListCallbackStruct* call_data);
+void pareditorCB ();
+
+void setvparamsf(GR_Window* win, int vmode,
+		 float lat, float lon, float alt, float fov, float azi);
+void setvparams (GR_Window* win, int vmode,
+		 int lat, int lon, int alt, int fov, int azi);
+
+//extern void spsCB ();
+extern XtWorkProcId spsId;
+extern Boolean spsWP (XtPointer);
+
+extern void demoCB ();
+extern XtWorkProcId demoId;
+extern Boolean demoWP (XtPointer);
+extern void sps_fplayCB ();
+extern void sps_linksCB (Widget, XtPointer, XtPointer);
+extern void sps_com_linksCB (Widget, XtPointer, XtPointer);
+extern void sps_sen_linksCB (Widget, XtPointer, XtPointer);
+
+//extern void makeRasterFont(void); 
+
+char *
+strsub(char *istr, char och, char nch)
+{
+int    i;
+
+   for (i=0; i<strlen(istr); i++) if (istr[i] == och) istr[i] = nch;
+   return (istr);
+}
+
+/* ---------------------------------------------------------------------- */
+
+void setvparamsf(GR_Window* win, int vmode,
+		 float lat, float lon, float alt, float fov, float azi)		 
+{
+float vx, vy, vz;
+float lx, ly, lz;
+float p_lat, p_lon, p_alt, p_azi;
+float l_lat, l_lon, l_alt, l_azi;
+float Kt = 2.50; // tangential view constant;
+   
+   p_lat = lat*M_PI/180.0;
+   p_lon = lon*M_PI/180.0;
+   p_alt = 1 + alt/RE;
+   p_azi = azi*M_PI/180.0;
+
+   l_lat = v_LOOKLAT*M_PI/180.0;
+   l_lon = v_LOOKLON*M_PI/180.0;
+   l_alt = 1.0 + v_LOOKALT/RE;
+   l_azi = v_LOOKAZI*M_PI/180.0;
+   
+   win->twist (0);
+   if (vmode == 0) // normal view:
+   {
+      vx = cos (p_lat) * sin (p_lon) * p_alt;
+      vy = sin (p_lat) * p_alt;
+      vz = cos (p_lat) * cos (p_lon) * p_alt;
+      lx = 0.0;
+      ly = 0.0;
+      lz = 0.0;
+   }
+   else // tangential view:
+   {
+      p_alt = 2 - exp (-alt/RE);
+
+      // for now fix the alt:
+
+      vx = -Kt * sin (p_azi) * cos (p_lon)
+	   + Kt * cos (p_azi) * sin (p_lat) * sin (p_lon)
+	   + cos (p_lat) * sin (p_lon);
+      vy = -Kt * cos(p_azi) * cos(p_lat)
+	   + sin (p_lat);
+      vz = Kt * sin (p_azi) * sin (p_lon)
+	   + Kt * cos (p_azi) * sin (p_lat) * cos (p_lon)
+	   + cos (p_lat) * cos (p_lon);
+      
+      lx = cos (p_lat) * sin (p_lon);
+      ly = sin (p_lat);
+      lz = cos (p_lat) * cos (p_lon);
+      if (p_lat < 0)
+	win->twist (180);      
+   }
+   win->field_of_view ((float)fov/(float)v_FOVDIV);
+   win->view_position(vx, vy, vz);
+   win->look_vector(lx, ly, lz);
+}
+
+void setvparams (GR_Window* win, int vmode,
+		 int lat, int lon, int alt, int fov, int azi)
+{
+   setvparamsf(win, vmode,
+	       (float)lat, (float)lon, (float)alt, (float)fov, (float)azi);
+}
+
+/*----------------------------- MAIN -------------------------------------*/
+
+void GR_initialize (int argc, char *argv[]);
+
+void
+main (int argc, char *argv[])
+{
+time_t    clock;
+struct tm *ltime;
+char      *str;
+char      chfile[64];
+
+   strcpy(VERSION, "0.8");
+
+   printf("\n\n");
+   printf("  -- Joint Theater Air and Missile Visualizer (JTAMV) --\n");
+   printf("                   (Version %s)", VERSION);
+   printf("\n\n");
+
+   process_id = getpid();
+   frame_no   = 1;
+   image_no   = 1;
+   run_no     = 1;
+
+   FILEINPUT = FALSE;
+   SOCKINPUT = FALSE;
+
+   DATA_PARSER gispparser("graphics.par");
+                gispparser.GoTo("display", NULL);
+   CLASS      = gispparser.GetString("class");
+   REGION     = gispparser.GetInt("region");
+   TIMESTEP   = (double)gispparser.GetFloat("step_time");
+   AUTORUN    = gispparser.GetLogical("autorun");
+   AUTOEXIT   = gispparser.GetLogical("autoexit");
+   NOEXIT     = gispparser.GetLogical("noexit");
+   TEXTURED   = gispparser.GetLogical("textured");
+   GRIDLINE   = gispparser.GetLogical("gridline");
+   BOUNDARY   = gispparser.GetLogical("boundary");
+   ASSETS     = gispparser.GetLogical("assets");
+   SHOWTRACK  = gispparser.GetLogical("tracks");
+   SHOWTRAIL  = gispparser.GetLogical("trails");
+   SHOWIMPACT = gispparser.GetLogical("impacts");
+   SHOWERROR  = gispparser.GetLogical("trkerror");
+   LABELTRACK = gispparser.GetLogical("label_track");
+   DROPTRACK  = gispparser.GetLogical("drop_track");
+   SHOWR2     = gispparser.GetLogical("show_r2");
+   KEEPLINK   = gispparser.GetLogical("keep_links");
+   LOGGING    = gispparser.GetLogical("logging");
+   texfile    = gispparser.GetString("tex_file");
+   INPUTSRC   = gispparser.GetString("input_source");
+
+   if (strcmp(INPUTSRC, "File") == 0) FILEINPUT = TRUE;
+   if (strcmp(INPUTSRC, "Socket") == 0) SOCKINPUT = TRUE;
+
+   if (argc > 1) {           // Command line overrides .par file
+      FILEINPUT = TRUE;
+	  SOCKINPUT = FALSE;
+      INFILE = argv[1];
+      fprintf(stderr, "Inputting from file %s\n", INFILE);
+   }
+
+   if (SOCKINPUT) {
+                  gispparser.GoTo("input", NULL);
+      portid    = gispparser.GetInt("portid");
+      hostid    = gispparser.GetString("hostid");
+      fprintf(stderr, "Inputting from host %s [%d]\n", hostid, portid);
+   }
+
+   gispparser.GoTo("parameters", NULL);
+   PLAYBACK = (int)gispparser.GetLogical("input_file");
+
+   if ((VUDEBUG = getenv("JTAMVDEBUG")) != NULL)
+      DBUGfp = fopen("jtamvdbug.file", "w+");
+   if ((TIMING = getenv("JTAMVTIMING")) != NULL)
+      TIMEfp = fopen("jtamvtime.file", "w+");
+   if ((STATS = getenv("JTAMVSTATS")) != NULL)
+      STATfp = fopen("jtamvstat.file", "w+");
+
+   time(&clock);
+   ltime = localtime(&clock);
+   str = asctime(ltime);
+
+   if (LOGGING) {
+      sprintf(chfile, "jtamv%d.log", process_id);
+      INFOfp = fopen(chfile, "w+");
+   }
+
+   if (INFOfp != NULL) {
+      fprintf(INFOfp, "JTAMV:   JTAMV Information output file for %s\n", str);
+      fprintf(INFOfp, "JTAMV:   The ID of this process is %d\n", process_id);
+      fprintf(INFOfp, "JTAMV:   Timing is %s\n", (TIMING==NULL ? "disabled" : "enabled"));
+      fprintf(INFOfp, "JTAMV:   Debugging is %s\n", (VUDEBUG==NULL ? "disabled" : "enabled"));
+      fprintf(INFOfp, "JTAMV:   Statistics is %s\n", (STATS==NULL ? "disabled" : "enabled"));
+      fprintf(INFOfp, "JTAMV:   Run Mode is %s\n", (PLAYBACK ? "playback" : "realtime"));
+      fprintf(INFOfp, "\n");
+   }
+
+   GR_fallback_resources = fallback_resources; 
+   GR_startup (argc, argv);
+   GR_initialize (argc, argv);
+
+   clockid = XtAppAddTimeOut(GR_appcontext, 1000,
+                    (XtTimerCallbackProc)clockCB, NULL);
+
+   if (INFOfp != NULL) {
+      fprintf(INFOfp, "\n");
+      fprintf(INFOfp, "JTAMV:   -----   Initialization Complete   -----\n");
+      fprintf(INFOfp, "\n");
+      fflush(INFOfp);
+   }
+
+   XtAppMainLoop (GR_appcontext);
+}
+
+/* --------------------------------------------------------------------- */
+
+void
+GR_initialize (int argc, char *argv[])
+{
+   Display	*dpy;
+   GR_Shell	*shell;
+   Widget 	form, menubar, panel, frame, glframe;
+   Widget       viewbar, msgtitle, botsep, vertsep;
+   Widget       spanel, tpanel, drawing;
+   Widget	eventtitle, cyclemenu;
+   XmString     title0, title1, title2, title3, title4, title, xstr;
+   XFontStruct  *font;
+   XmFontList   fontlist;
+   XColor       color, unused;
+   Pixel        fg_color, top_shadow, bottom_shadow, fg_ret, select_color;
+   Colormap     cmap;
+   char		*DATADIR;
+   char         *BITMAPDIR;
+   char		*FWDIR;
+   char         littlestr[40];
+   char         bigstring[160];
+   char         filename[120];
+
+   
+   if ((DATADIR=getenv("DATADIR")) == NULL)
+	DATADIR = "./RSD_Data";
+   sprintf (caribdir, "%s", DATADIR);
+   sprintf (earthdir, "%s", DATADIR);
+   sprintf (elevdir,  "%s", DATADIR);
+   sprintf (shorefile, "%s%s", DATADIR, "/World.asc");
+   sprintf (polifile, "%s%s", DATADIR, "/WorldPoli.asc");
+   //sprintf (texturefile, "%s%s", DATADIR, "/jpl_earth.rgb");
+   //sprintf (texturefile, "%s%s", DATADIR, "/earth-hires.rgb");
+   sprintf (texturefile, "%s/%s", DATADIR, texfile);
+   sprintf (starfile, "%s%s", DATADIR, "/stars.dat");
+   sprintf (rgbfile, "%s%s", DATADIR, "/4320earth.rgb");
+   sprintf (cloudfile, "%s%s", DATADIR, "/clouds.bw");
+
+   /*
+   for (i=0; i<36; i++)
+   {
+      for (j=0; j<18; j++)
+      {
+         first_Area[i][j] = TRUE;
+      }
+   }
+   */
+
+//	Set up the program's widget instance hierarchy. A Motif OpenGL
+//	drawing area widget is nested in a frame widget that is nested
+//	in the applications's top-level widget. In addition, several
+//	menu and control widgets are nested in the frame widget.
+//
+//				GR_toplevel
+//				    |
+//				  frame
+//				    |
+//				   form
+//             |----------|---------+----------|---------|
+//	    menubar    viewbar     Panel     Spanel     Gframe
+//							  |
+//						       Gwindow
+//						       (OpenGL)
+//
+
+   GR_toplevel = XtOpenApplication(&GR_appcontext, "Jtamv", NULL, 0, &argc, argv,
+                 GR_fallback_resources, applicationShellWidgetClass, NULL, 0);
+   dpy = XtDisplay(GR_toplevel);
+
+   frame = XmCreateFrame(GR_toplevel, "frame", NULL, 0);
+   XtManageChild(frame);
+
+//   shell = new GR_Shell;
+//   shell->createWidget ("XRSD"); // Note, name is still argv[0];
+//   form = XmCreateForm (shell->widget(), "Form", NULL, 0);
+
+   form = XmCreateForm(frame, "Form", NULL, 0);
+   XtVaSetValues (form,
+		  XmNshadowThickness,  0,
+		  NULL);
+   XtManageChild (form);
+
+   XtVaGetValues(frame, XmNcolormap, &cmap, NULL);
+   XAllocNamedColor(XtDisplay(frame), cmap, "red",    &color, &unused);
+   fg_red = color.pixel;
+   XAllocNamedColor(XtDisplay(frame), cmap, "blue",   &color, &unused);
+   fg_blue = color.pixel;
+   XAllocNamedColor(XtDisplay(frame), cmap, "yellow", &color, &unused);
+   fg_yellow = color.pixel;
+   XAllocNamedColor(XtDisplay(frame), cmap, "green",  &color, &unused);
+   fg_green = color.pixel;
+   XAllocNamedColor(XtDisplay(frame), cmap, "grey",   &color, &unused);
+   bg_grey = color.pixel;
+   XmGetColors(XtScreen(frame), cmap, fg_red, &fg_ret, &top_shadow,
+               &bottom_shadow, &select_color);
+
+   if ((BITMAPDIR=getenv("BITMAPDIR")) == NULL) {
+        BITMAPDIR = "./BitMaps";
+   }
+   Boolean pixerror = False;
+   sprintf (filename, "%s%s", BITMAPDIR, "/led-yellow.xpm");
+   yelledpix = XmGetPixmap(XtScreen(GR_toplevel), filename,
+                   BlackPixelOfScreen(XtScreen(GR_toplevel)),
+                   WhitePixelOfScreen(XtScreen(GR_toplevel)));
+   if (yelledpix == XmUNSPECIFIED_PIXMAP) {
+       printf("Can't create Yellow LED pixmap\n"); pixerror = True;
+   }
+   sprintf (filename, "%s%s", BITMAPDIR, "/led-green.xpm");
+   grnledpix = XmGetPixmap(XtScreen(GR_toplevel), filename,
+                   BlackPixelOfScreen(XtScreen(GR_toplevel)),
+                   WhitePixelOfScreen(XtScreen(GR_toplevel)));
+   if (grnledpix == XmUNSPECIFIED_PIXMAP) {
+       printf("Can't create Green LED pixmap\n"); pixerror = True;
+   }
+   sprintf (filename, "%s%s", BITMAPDIR, "/led-red.xpm");
+   redledpix = XmGetPixmap(XtScreen(GR_toplevel), filename,
+                   BlackPixelOfScreen(XtScreen(GR_toplevel)),
+                   WhitePixelOfScreen(XtScreen(GR_toplevel)));
+   if (redledpix == XmUNSPECIFIED_PIXMAP) {
+       printf("Can't create Red LED pixmap\n"); pixerror = True;
+   }
+   sprintf (filename, "%s%s", BITMAPDIR, "/led-blue.xpm");
+   bluledpix = XmGetPixmap(XtScreen(GR_toplevel), filename,
+                   BlackPixelOfScreen(XtScreen(GR_toplevel)),
+                   WhitePixelOfScreen(XtScreen(GR_toplevel)));
+   if (bluledpix == XmUNSPECIFIED_PIXMAP) {
+       printf("Can't create Blue LED pixmap\n"); pixerror = True;
+   }
+//
+//      Add the Time-of-Day clock...
+//
+   font = XLoadQueryFont(dpy,
+          "-adobe-courier-bold-*-*-*-15-*-*-*-*-*-*-*");
+   fontlist = XmFontListCreate(font, "charset1");
+   XmString timetitle = XmStringCreateLtoR("  ", "charset1");
+   timewidget  = XtVaCreateManagedWidget("time", xmLabelWidgetClass, form,
+                 XmNheight,           20,
+                 XmNwidth,            100,
+                 XmNalignment,        XmALIGNMENT_CENTER,
+                 XmNlabelType,        XmSTRING,
+                 XmNlabelString,      timetitle,
+                 XmNfontList,         fontlist,
+                 XmNshadowThickness,  2,
+                 XmNtopAttachment,    XmATTACH_FORM,
+                 XmNrightAttachment,  XmATTACH_FORM,
+                 NULL);
+   XmStringFree(timetitle);
+
+   XmString blnktitle = XmStringCreateLtoR("  ", "charset1");
+   Widget blnkwidget  = XtVaCreateManagedWidget("time", xmLabelWidgetClass, form,
+                 XmNheight,           20,
+                 XmNwidth,            100,
+                 XmNalignment,        XmALIGNMENT_CENTER,
+                 XmNlabelType,        XmSTRING,
+                 XmNlabelString,      blnktitle,
+                 XmNfontList,         fontlist,
+                 XmNshadowThickness,  2,
+                 XmNtopAttachment,    XmATTACH_FORM,
+                 XmNleftAttachment,   XmATTACH_FORM,
+                 NULL);
+   XmStringFree(blnktitle);
+//
+//      Add the classification header and trailer...
+//
+   font = XLoadQueryFont(dpy,
+          "-adobe-courier-bold-*-*-*-20-*-*-*-*-*-*-*");
+   fontlist = XmFontListCreate(font, "charset1");
+   XmString classtitle   = XmStringCreateLtoR(CLASS, "charset1");
+   Widget titlewidget  = XtVaCreateManagedWidget("class", xmLabelWidgetClass, form,
+                 XmNheight,           25,
+                 XmNalignment,        XmALIGNMENT_CENTER,
+                 XmNlabelType,        XmSTRING,
+                 XmNlabelString,      classtitle,
+                 XmNfontList,         fontlist,
+                 XmNforeground,       fg_red,
+                 XmNshadowThickness,  2,
+                 XmNtopAttachment,    XmATTACH_FORM,
+                 XmNleftAttachment,   XmATTACH_WIDGET,
+                 XmNleftWidget,       blnkwidget,
+                 XmNrightAttachment,  XmATTACH_WIDGET,
+                 XmNrightWidget,      timewidget,
+                 NULL);
+   Widget titlesep = XtVaCreateManagedWidget("TitleSep", xmSeparatorWidgetClass, form,
+                 XmNheight,           6,
+                 XmNorientation,      XmHORIZONTAL,
+                 XmNseparatorType,    XmSHADOW_ETCHED_IN,
+                 XmNleftAttachment,   XmATTACH_FORM,
+                 XmNrightAttachment,  XmATTACH_FORM,
+                 XmNtopAttachment,    XmATTACH_WIDGET,
+                 XmNtopWidget,        titlewidget,
+                 NULL);
+
+   Widget trailwidget  = XtVaCreateManagedWidget("class", xmLabelWidgetClass, form,
+                 XmNheight,           25,
+                 XmNalignment,        XmALIGNMENT_CENTER,
+                 XmNlabelType,        XmSTRING,
+                 XmNlabelString,      classtitle,
+                 XmNfontList,         fontlist,
+                 XmNforeground,       fg_red,
+                 XmNshadowThickness,  2,
+                 XmNbottomAttachment, XmATTACH_FORM,
+                 XmNleftAttachment,   XmATTACH_FORM,
+                 XmNrightAttachment,  XmATTACH_FORM,
+                 NULL);
+   Widget trailsep = XtVaCreateManagedWidget("TrailSep", xmSeparatorWidgetClass, form,
+                 XmNheight,           6,
+                 XmNorientation,      XmHORIZONTAL,
+                 XmNseparatorType,    XmSHADOW_ETCHED_IN,
+                 XmNleftAttachment,   XmATTACH_FORM,
+                 XmNrightAttachment,  XmATTACH_FORM,
+                 XmNbottomAttachment, XmATTACH_WIDGET,
+                 XmNbottomWidget,     trailwidget,
+                 NULL);
+   XmStringFree(classtitle);
+//
+//      Add the LED indicators...
+//
+   modestat = XtVaCreateManagedWidget("RecLed", xmDrawingAreaWidgetClass, form,
+                 XmNwidth,            16,
+                 XmNheight,           16,
+                 XmNmarginHeight,     2,
+                 XmNspacing,          2,
+                 XmNtopAttachment,    XmATTACH_WIDGET,
+                 XmNtopWidget,        titlesep,
+                 XmNrightAttachment,  XmATTACH_FORM,
+                 NULL);
+   XtVaSetValues(modestat, XmNbackgroundPixmap, redledpix, NULL);
+   XmString recstr = XmStringCreateLtoR("Rec. Status", "charset1");
+   Widget movlabel = XtVaCreateManagedWidget("Header", xmLabelWidgetClass, form,
+                 XmNwidth,            100,
+                 XmNheight,           16,
+                 XmNmarginHeight,     2,
+                 XmNmarginWidth,      2,
+                 XmNalignment,        XmALIGNMENT_END,
+                 XmNlabelType,        XmSTRING,
+                 XmNlabelString,      recstr,
+                 XmNforeground,       fg_yellow,
+                 XmNrightAttachment,  XmATTACH_WIDGET,
+                 XmNrightWidget,      modestat,
+                 XmNtopAttachment,    XmATTACH_WIDGET,
+                 XmNtopWidget,        titlesep,
+                 NULL);
+   XmStringFree(recstr);
+
+   execstat = XtVaCreateManagedWidget("RunLed", xmDrawingAreaWidgetClass, form,
+                 XmNwidth,            16,
+                 XmNheight,           16,
+                 XmNmarginHeight,     2,
+                 XmNspacing,          2,
+                 XmNtopAttachment,    XmATTACH_WIDGET,
+                 XmNtopWidget,        titlesep,
+                 XmNrightAttachment,  XmATTACH_WIDGET,
+                 XmNrightWidget,      movlabel,
+                 NULL);
+   if (SOCKINPUT)
+      XtVaSetValues(execstat, XmNbackgroundPixmap, bluledpix, NULL);
+   else
+      XtVaSetValues(execstat, XmNbackgroundPixmap, redledpix, NULL);
+   recstr = XmStringCreateLtoR("Run Status", "charset1");
+   Widget runlabel = XtVaCreateManagedWidget("Header", xmLabelWidgetClass, form,
+                 XmNwidth,            100,
+                 XmNheight,           16,
+                 XmNmarginHeight,     2,
+                 XmNmarginWidth,      2,
+                 XmNalignment,        XmALIGNMENT_END,
+                 XmNlabelType,        XmSTRING,
+                 XmNlabelString,      recstr,
+                 XmNforeground,       fg_yellow,
+                 XmNrightAttachment,  XmATTACH_WIDGET,
+                 XmNrightWidget,      execstat,
+                 XmNtopAttachment,    XmATTACH_WIDGET,
+                 XmNtopWidget,        titlesep,
+                 NULL);
+   XmStringFree(recstr);
+//
+//      Add the Menus and Viewbar...
+//
+   menubar = makeMenuBar("Menubar", form);
+   XtVaSetValues (menubar,
+		 XmNtopAttachment,    XmATTACH_WIDGET,
+                 XmNtopWidget,        titlesep,
+		 XmNleftAttachment,   XmATTACH_FORM,
+		 XmNtopOffset,        2,
+		 XmNleftOffset,       5,
+		 NULL);
+
+   viewbar = makeViewBar("Viewbar", form);
+   XtVaSetValues (viewbar,
+		 XmNtopAttachment,    XmATTACH_WIDGET,
+                 XmNtopWidget,        modestat,
+		 XmNrightAttachment,  XmATTACH_FORM,
+		 XmNtopOffset,        30,
+		 XmNrightOffset,      0,
+		 NULL);
+//
+//      Add speedes interface buttons (above trailer)...
+//
+   spanel = makeSpanel("Spanel", form, trailsep);
+
+   botsep = XtVaCreateManagedWidget("BotSep", xmSeparatorWidgetClass, form,
+                 XmNheight,           5,
+                 XmNorientation,      XmHORIZONTAL,
+                 XmNseparatorType,    XmSHADOW_ETCHED_IN,
+                 XmNleftAttachment,   XmATTACH_FORM,
+                 XmNrightAttachment,  XmATTACH_FORM,
+                 XmNbottomAttachment, XmATTACH_WIDGET,
+                 XmNbottomWidget,     spanel,
+                 NULL);
+//
+//      Add view control buttons (above speedes control panel)...
+//
+   panel = makePanel("Panel", form, botsep);
+
+   textarea = XtVaCreateManagedWidget("MainText", xmLabelWidgetClass, form,
+                 XmNwidth,            200,
+                 XmNheight,           100,
+                 XmNmarginHeight,     2,
+                 XmNalignment,        XmALIGNMENT_BEGINNING,
+		 XmNshadowThickness,  3,
+	       //XmNborderWidth       1,
+                 XmNlabelType,        XmSTRING,
+                 XmNrightAttachment,  XmATTACH_FORM,
+		 XmNrightOffset,      1,
+                 XmNtopAttachment,    XmATTACH_WIDGET,
+		 XmNtopWidget,        viewbar,
+                 NULL);
+   sprintf(bigstring, "\n");
+   sprintf(littlestr, "%5d\n", 0);
+   strcat (bigstring, littlestr);
+   sprintf(littlestr, "%5d\n", 0);
+   strcat (bigstring, littlestr);
+   sprintf(littlestr, "%5d\n", 0);
+   strcat (bigstring, littlestr);
+   sprintf(littlestr, "%5d\n", 0);
+   strcat (bigstring, littlestr);
+   sprintf(littlestr, "%5s\n", "P");
+   strcat (bigstring, littlestr);
+   sprintf(littlestr, "%5s\n", "ES");
+   strcat (bigstring, littlestr);
+   strcat (bigstring, "\0");
+   xstr = XmStringCreateLtoR(bigstring, XmSTRING_DEFAULT_CHARSET);
+   XtVaSetValues(textarea, XmNlabelString, xstr, NULL);
+
+//
+//      Add the globe panel (OpenGL widget)...
+//
+   glframe = XtVaCreateManagedWidget ("Gframe", xmFrameWidgetClass, form,
+		 XmNwidth,            480,
+                 XmNshadowType,       XmSHADOW_ETCHED_IN,
+                 XmNshadowThickness,  3,
+		 XmNtopAttachment,    XmATTACH_WIDGET,
+		 XmNtopWidget,        menubar,
+		 XmNtopOffset,        2,
+                 XmNbottomAttachment, XmATTACH_WIDGET,
+                 XmNbottomWidget,     panel,
+		 XmNleftAttachment,   XmATTACH_FORM,
+		 XmNleftOffset,       2,
+		 XmNrightAttachment,  XmATTACH_WIDGET,
+		 XmNrightWidget,      viewbar,
+				      //XmNrightOffset,      2,
+		 NULL);
+//
+//	Check for an OpenGL capable visual, open it, and link OpenGL
+//	to it.
+//
+   gwindow = new GR_Window();
+   gwindow->doublebuffer ();
+   gwindow->rgbmode ();
+   gwindow->settop(GR_toplevel, GR_appcontext, glframe);
+
+   gwindow->GR_Widget::createWidget("Gwindow", glframe);
+
+   gwindow->set_viewmode (GR_PERSPECTIVE);
+   gwindow->aspect(1);
+   gwindow->near(0.1);
+   gwindow->far(100.0);
+   /*
+   gwindow->set_viewmode (GR_ORTHO2);
+   gwindow->left (-180.0*RADDEG);
+   gwindow->right (180.0*RADDEG);
+   gwindow->bottom (-90.0*RADDEG);
+   gwindow->top (90.0*RADDEG);
+   gwindow->near (-1.0);
+   gwindow->far (1.0);
+   */
+//
+//   Build all the object display lists
+//
+   displist = new GR_DispList;
+   gwindow->addDispList (displist);
+   sps_displist = new GR_DispList;
+   gwindow->addDispList (sps_displist, "sps_displist");
+   sps_links_displist = new GR_DispList;
+   gwindow->addDispList (sps_links_displist, "sps_links_displist");
+   trail_displist = new GR_DispList;
+   gwindow->addDispList (trail_displist, "trail_displist");
+   sensor_displist = new GR_DispList;
+   gwindow->addDispList (sensor_displist, "sensor_displist");
+//
+//   shell->realize ();
+//
+   VMODE = 0;
+   v_LAT = 0;
+   v_LON = 0;
+   v_ALT = 6700;
+   v_FOV = 62;
+   v_AZI = 0;
+   setvparams (gwindow, VMODE, v_LAT, v_LON, v_ALT, v_FOV, v_AZI);
+   XmScaleSetValue (scaleLAT, v_LAT);
+   XmScaleSetValue (scaleLON, v_LON);
+   XmScaleSetValue (scaleALT, v_ALT);
+   XmScaleSetValue (scaleFOV, v_FOV);
+   XmScaleSetValue (scaleAZI, v_AZI);
+
+   if ( (VIEWfp = fopen("viewsave.dat", "r+")) != NULL) {
+      fscanf(VIEWfp, "%d %d %d %d %d %d\n",
+             &MODE_1, &LAT_1, &LON_1, &ALT_1, &FOV_1, &AZI_1);
+      fscanf(VIEWfp, "%d %d %d %d %d %d\n",
+             &MODE_2, &LAT_2, &LON_2, &ALT_2, &FOV_2, &AZI_2);
+      fclose(VIEWfp);
+   }
+
+   models = new GR_Model (descfile);
+
+   Searth33 = new GR_Model (0, 33);
+   if (Searth33)
+   {
+     displist->add_object (*Searth33);
+     current_earth_type = 33;
+   }
+
+   focusCB (NULL, (XtPointer)REGION, NULL);	// Start with whatever is in .par file
+   earthtypeCB(NULL, (XtPointer)4, NULL);	//   and Blue Earth
+   if (BOUNDARY)
+     earthlinesCB(NULL, (XtPointer)1, NULL);	// Shorelines & boundaries
+   if (GRIDLINE)
+     earthgridCB(NULL, (XtPointer)1, NULL);	// Grid lines
+   lightingCB(NULL, (XtPointer)1, NULL);	// Moon light
+   if (TEXTURED) 
+       earthtypeCB(NULL, (XtPointer)0, NULL);	// If textured earth wanted
+   if(ASSETS)
+       asset_init();                            // If asset display wanted
+
+   TrackInit(GR_toplevel);
+   //makeRasterFont();
+   glfontMake(GL_ALLFONTS);                     // Build the fonts
+   //glfontSet(GL_STROKE);                        // Set default font to stroke
+
+   if (AUTORUN) sps_fplayCB();		        // If PLAYBACK, start the display
+
+   if (FILEINPUT || SOCKINPUT) {
+      PROX = FALSE;
+      input_init();
+      PLAYBACK = FALSE;
+   } else {
+      PROX = TRUE;
+      speedes_init ();		        // Initialize SPEEDES interface
+   }
+
+   fprintf(stderr, "   ----- JTAMV Initialization Complete -----\n"); 
+}
+/*                                                                             */
+/* ---------------------------- major widget components ---------------------- */
+/*                                                                             */
+Widget
+makeMenuBar (char* name, Widget parent)
+{
+Widget v_menubar;
+Widget menupane;
+Widget submenu;
+Widget dummywidget;
+XmString on, off;
+XmString logo, open, close, reset, quit;
+XmString focus, afr, nam, mideast, fareast, cam_th, mideast_th, nes_th;
+XmString region7, region8, region9;
+XmString earth, type, boundarylines, area, grid, cover, fight;
+XmString lighting, sun, moon, lightoff;
+XmString background, original, black, darkred, grey;
+XmString weather, cloud, storm, foggy, disperse;
+XmString links, all_links_on, all_links_off, com_links_on, com_links_off;
+XmString sen_links_on, dsp_links_on,  sbr_links_on,  gbr_links_on,  gbi_links_on;
+XmString sen_links_off,dsp_links_off, sbr_links_off, gbr_links_off, gbi_links_off;
+XmString views, redraw, normal, tangent, save1, restore1, save2, restore2;
+XmString options, tracks, trails, impacts, labels, drops, showr2, keeps;
+XmString tools, finder, viewer, timer, shooter, mapper, tester, demo, editer;
+XmString help, mouse, about, panel_1, panel_2;
+char     initial_set[12][12] = { "button_0", "button_1", "button_2", "button_3",
+                                 "button_4", "button_5", "button_6", "button_7",
+                                 "button_8", "button_9", "button_10", "button_11" };
+int      i, n_items;
+char     chtemp[24];
+FILE     *menufile;
+//
+// --------------------------   Menu Bar   ---------------------------
+//   
+   logo       = XmStringCreateSimple("File");
+   // program    = XmStringCreateSimple("Program");
+   views      = XmStringCreateSimple("View");
+   focus      = XmStringCreateSimple("Region");
+   earth      = XmStringCreateSimple("Earth");
+   lighting   = XmStringCreateSimple("Lighting");
+   background = XmStringCreateSimple("Background");
+   weather    = XmStringCreateSimple("Weather");
+   links      = XmStringCreateSimple("Links");
+   options    = XmStringCreateSimple("Options");
+   tools      = XmStringCreateSimple("Tools");
+   help       = XmStringCreateSimple("Help");
+
+   v_menubar = XmVaCreateSimpleMenuBar (parent, name,
+		XmVaCASCADEBUTTON, logo,         'F',
+                XmVaCASCADEBUTTON, views,        'V',
+		XmVaCASCADEBUTTON, focus,        'R',
+		XmVaCASCADEBUTTON, earth,        'A',
+		XmVaCASCADEBUTTON, lighting,     'L',
+	      //XmVaCASCADEBUTTON, background,   'B',
+		XmVaCASCADEBUTTON, weather,      'W',
+		XmVaCASCADEBUTTON, links,        'K',
+		XmVaCASCADEBUTTON, options,      'O',
+		XmVaCASCADEBUTTON, tools,        'T',
+                XmVaCASCADEBUTTON, help,         'H',
+		NULL);
+   XtVaSetValues (v_menubar, XmNspacing, 5, NULL);  
+//
+// --------------------------   File menu   --------------------------
+//
+   open    = XmStringCreateSimple ("Open...");
+   close   = XmStringCreateSimple ("Close");
+   reset   = XmStringCreateSimple ("Reset");
+   quit    = XmStringCreateSimple ("Quit");
+   menupane = XmVaCreateSimplePulldownMenu (v_menubar, "File", 0, logoCB,
+              XmVaPUSHBUTTON, open,  NULL, NULL, NULL,
+              XmVaPUSHBUTTON, close,  NULL, NULL, NULL,
+              XmVaSEPARATOR,
+              XmVaPUSHBUTTON, reset,   NULL, NULL, NULL,
+              XmVaSEPARATOR,
+              XmVaPUSHBUTTON, quit,    NULL, NULL, NULL,
+              NULL);
+   XmStringFree (open);
+   XmStringFree (close);
+   XmStringFree (reset);
+   XmStringFree (quit);
+//
+// --------------------------   View menu   --------------------------
+//
+   redraw   = XmStringCreateSimple ("Redraw");
+   normal   = XmStringCreateSimple ("Normal View");
+   tangent  = XmStringCreateSimple ("Tangential");
+   save1    = XmStringCreateSimple ("Save 1");
+   restore1 = XmStringCreateSimple ("Recall 1");
+   save2    = XmStringCreateSimple ("Save 2");
+   restore2 = XmStringCreateSimple ("Recall 2");
+   menupane = XmVaCreateSimplePulldownMenu (v_menubar, "views", 1, viewsCB,
+              XmVaPUSHBUTTON, redraw, NULL, NULL, NULL,
+              XmVaPUSHBUTTON, normal, NULL, NULL, NULL,
+              XmVaPUSHBUTTON, tangent, NULL, NULL, NULL,
+              XmVaSEPARATOR,
+              XmVaPUSHBUTTON, save1, NULL, NULL, NULL,
+              XmVaPUSHBUTTON, restore1, NULL, NULL, NULL,
+              XmVaSEPARATOR,
+              XmVaPUSHBUTTON, save2, NULL, NULL, NULL,
+              XmVaPUSHBUTTON, restore2, NULL, NULL, NULL,
+              NULL);
+   XmStringFree (redraw);
+   XmStringFree (normal);
+   XmStringFree (tangent);
+   XmStringFree (save1);
+   XmStringFree (restore1);
+   XmStringFree (save2);
+   XmStringFree (restore2); 
+/*
+   Widget logo_b =   
+   XtVaCreateManagedWidget ("Logo", xmCascadeButtonWidgetClass, v_menubar,
+                            XmNlabelString, logo,
+                            XmNmnemonic, 'A',
+                            XmNsubMenuId, menupane,
+                            NULL);
+
+   Pixel fg, bg;
+   XtVaGetValues (logo_b, XmNforeground, &fg, XmNbackground, &bg, NULL);
+
+   char *BITMAPDIR;
+   char logofile[80];
+     
+   if ((BITMAPDIR=getenv("BITMAPDIR"))==NULL)
+   {
+	BITMAPDIR = "./BitMaps";
+   }
+	
+   sprintf (logofile, "%s%s", BITMAPDIR, "/gisp.bit");
+   
+   Pixmap pixmap =
+     XmGetPixmap(XtScreen(logo_b), logofile, fg, bg);
+   if (pixmap == XmUNSPECIFIED_PIXMAP)
+     printf("   Couldn't load bitmap file %s.\n", logofile);
+   else
+     XtVaSetValues (logo_b,
+		    XmNlabelType, XmPIXMAP,
+		    XmNlabelPixmap, pixmap,
+		    NULL);
+*/
+//
+// -------------------------   Region menu   -------------------------
+//
+   focusmenu = new VIEWITEM[10];
+   for (i=0; i<10; i++) {
+      focusmenu[i].VMODE = 0;
+      focusmenu[i].LAT = 0;
+      focusmenu[i].LON = 0;
+      focusmenu[i].ALT = 6700;
+      focusmenu[i].FOV = 42;
+      focusmenu[i].FOVDIV = 1;
+      focusmenu[i].AZI = 0;
+      focusmenu[i].LOOKLAT = 0;
+      focusmenu[i].LOOKLON = 0;
+      focusmenu[i].LOOKALT = 0;
+      focusmenu[i].LOOKAZI = 0;
+      strcpy(focusmenu[i].ITEMNAME, "Unassigned");
+   }
+   strcpy(focusmenu[0].ITEMNAME, "Africa (0,0)");
+   focusmenu[0].FOV = 62;
+   strcpy(focusmenu[1].ITEMNAME, "N. America");
+   focusmenu[1].LAT = 37; focusmenu[1].LON = -102; focusmenu[1].FOV = 62;
+   strcpy(focusmenu[2].ITEMNAME, "Middle East");
+   focusmenu[2].LAT = 33; focusmenu[2].LON = 45; focusmenu[2].FOV = 62;
+   strcpy(focusmenu[3].ITEMNAME, "Korea (NWA)");
+   focusmenu[3].LAT = 45; focusmenu[3].LON = 127; focusmenu[3].FOV = 1; focusmenu[3].VMODE = 2;
+   strcpy(focusmenu[4].ITEMNAME, "C.A. Theater");
+   focusmenu[4].LAT = 23; focusmenu[4].LON = -85;
+   strcpy(focusmenu[5].ITEMNAME, "M.E. Theater");
+   focusmenu[5].LAT = 29; focusmenu[5].LON = 47;
+   strcpy(focusmenu[6].ITEMNAME, "N.E. Siberia");
+   focusmenu[6].LAT = 57; focusmenu[6].LON = 165;
+
+   if ((menufile = fopen("regions.dat", "r")) != NULL) {
+      fscanf(menufile, "%d\n", &n_items);
+      if (n_items > 10) n_items = 10;
+      for (i=0; i<n_items; i++) {
+         fscanf(menufile, "%d %d %d %d %d %d %s\n", &focusmenu[i].VMODE,
+                &focusmenu[i].LAT, &focusmenu[i].LON, &focusmenu[i].ALT,
+                &focusmenu[i].FOV, &focusmenu[i].AZI,  focusmenu[i].ITEMNAME);
+         strsub(focusmenu[i].ITEMNAME, '_', ' ');
+      }
+      fclose(menufile);
+   } else fprintf(stderr, " Warning: Using default region views!!!\n");
+
+   afr        = XmStringCreateSimple (focusmenu[0].ITEMNAME);
+   nam        = XmStringCreateSimple (focusmenu[1].ITEMNAME);
+   mideast    = XmStringCreateSimple (focusmenu[2].ITEMNAME);
+   fareast    = XmStringCreateSimple (focusmenu[3].ITEMNAME);
+   cam_th     = XmStringCreateSimple (focusmenu[4].ITEMNAME);
+   mideast_th = XmStringCreateSimple (focusmenu[5].ITEMNAME);
+   nes_th     = XmStringCreateSimple (focusmenu[6].ITEMNAME);
+   region7    = XmStringCreateSimple (focusmenu[7].ITEMNAME);
+   region8    = XmStringCreateSimple (focusmenu[8].ITEMNAME);
+   region9    = XmStringCreateSimple (focusmenu[9].ITEMNAME);
+   menupane = XmVaCreateSimplePulldownMenu (v_menubar, "focus", 2, focusCB,
+              XmVaRADIOBUTTON, afr, NULL, NULL, NULL,
+              XmVaRADIOBUTTON, nam, NULL, NULL, NULL,
+              XmVaRADIOBUTTON, mideast, NULL, NULL, NULL,
+              XmVaRADIOBUTTON, fareast, NULL, NULL, NULL,
+              XmVaRADIOBUTTON, cam_th, NULL, NULL, NULL,
+              XmVaRADIOBUTTON, mideast_th, NULL, NULL, NULL,
+              XmVaRADIOBUTTON, nes_th, NULL, NULL, NULL,
+              XmVaRADIOBUTTON, region7, NULL, NULL, NULL,
+              XmVaRADIOBUTTON, region8, NULL, NULL, NULL,
+              XmVaRADIOBUTTON, region9, NULL, NULL, NULL,
+              XmNradioBehavior, True,
+              XmNradioAlwaysOne, True,
+              NULL);
+   if (dummywidget = XtNameToWidget (menupane, initial_set[REGION]))
+      XtVaSetValues (dummywidget, XmNset, True, NULL);
+   XmStringFree (afr);
+   XmStringFree (nam);
+   XmStringFree (mideast);
+   XmStringFree (fareast);
+   XmStringFree (mideast_th);
+   XmStringFree (cam_th);
+   XmStringFree (nes_th);
+   XmStringFree (region7);
+   XmStringFree (region8);
+   XmStringFree (region9);
+//
+// -------------------------   Earth menu   --------------------------
+//
+   on            = XmStringCreateSimple ("On");
+   off           = XmStringCreateSimple ("Off");
+
+   type          = XmStringCreateSimple ("Type");
+   area          = XmStringCreateSimple ("Areas");
+   boundarylines = XmStringCreateSimple ("Boundaries");
+   grid          = XmStringCreateSimple ("Grid");
+   menupane = XmVaCreateSimplePulldownMenu (v_menubar, "earth", 3, earthCB,
+              XmVaCASCADEBUTTON, type, NULL, 
+              XmVaCASCADEBUTTON, area, NULL, 
+              XmVaCASCADEBUTTON, boundarylines, NULL,
+              XmVaCASCADEBUTTON, grid, NULL,
+              NULL);
+   XmStringFree (type);
+   XmStringFree (area);
+   XmStringFree (boundarylines);
+   XmStringFree (grid);
+   //
+   // ..... Earth's 'Type' submenu ................
+   //
+   XmString texture, texture2, texture3, simple, blue, none;
+   texture  = XmStringCreateSimple ("Texture -- Low");  
+   texture2 = XmStringCreateSimple ("Texture -- Med");  
+   texture3 = XmStringCreateSimple ("Texture -- Hi");  
+   simple   = XmStringCreateSimple ("Polygon");  
+   blue     = XmStringCreateSimple ("Blue Earth");  
+   none     = XmStringCreateSimple ("None");  
+   submenu  = XmVaCreateSimplePulldownMenu (menupane, "Submenu0", 0, earthtypeCB,
+             XmVaRADIOBUTTON, texture, NULL, NULL, NULL,
+             XmVaRADIOBUTTON, texture2, NULL, NULL, NULL,
+             XmVaRADIOBUTTON, texture3, NULL, NULL, NULL,
+             XmVaRADIOBUTTON, simple, NULL, NULL, NULL,
+             XmVaRADIOBUTTON, blue, NULL, NULL, NULL,
+             XmVaRADIOBUTTON, none, NULL, NULL, NULL,
+             XmNradioBehavior, True,
+             XmNradioAlwaysOne, True,
+             NULL);
+   XmStringFree (texture);
+   XmStringFree (texture2);
+   XmStringFree (texture3);
+   XmStringFree (simple);
+   XmStringFree (blue);
+   XmStringFree (none);
+   if (dummywidget = XtNameToWidget (submenu, "button_3"))
+      XtVaSetValues (dummywidget, XmNset, True, NULL);
+   //
+   // ..... Earth's 'Areas' submenu ................
+   //
+   XmString load_carib, unload_carib, load, unload;
+   load_carib   = XmStringCreateSimple ("Load Caribbean");
+   unload_carib = XmStringCreateSimple ("Unload Caribbean");
+   load         = XmStringCreateSimple ("Load");
+   unload       = XmStringCreateSimple ("Unload");
+   submenu = XmVaCreateSimplePulldownMenu (menupane, "Submenu1", 1, earthareaCB,
+             XmVaRADIOBUTTON, load_carib, NULL, NULL, NULL,
+             XmVaRADIOBUTTON, unload_carib, NULL, NULL, NULL,
+             XmVaRADIOBUTTON, load, NULL, NULL, NULL,
+             XmVaRADIOBUTTON, unload, NULL, NULL, NULL,
+             XmNradioBehavior, True,
+             XmNradioAlwaysOne, True,
+             NULL);
+   XmStringFree (load_carib);
+   XmStringFree (unload_carib);
+   XmStringFree (load);
+   XmStringFree (unload);
+   if (dummywidget = XtNameToWidget (submenu, "button_0"))
+      XtVaSetValues (dummywidget, XmNset, True, NULL);
+   //
+   // ..... Earth's 'Boundaries' submenu ................
+   //
+   submenu = XmVaCreateSimplePulldownMenu (menupane, "Submenu2", 2, earthlinesCB,
+             XmVaRADIOBUTTON, off, NULL, NULL, NULL,
+             XmVaRADIOBUTTON, on, NULL, NULL, NULL,
+             XmNradioBehavior, True,
+             XmNradioAlwaysOne, True,
+             NULL);
+   if (dummywidget = XtNameToWidget (submenu, initial_set[BOUNDARY]))
+      XtVaSetValues (dummywidget, XmNset, True, NULL);
+   //
+   // ..... Earth's 'Grid' submenu ................
+   //  
+   submenu = XmVaCreateSimplePulldownMenu (menupane, "Submenu3", 3, earthgridCB,
+             XmVaRADIOBUTTON, off, NULL, NULL, NULL,
+             XmVaRADIOBUTTON, on, NULL, NULL, NULL,
+             XmNradioBehavior, True,
+             XmNradioAlwaysOne, True,
+             NULL);
+   if (dummywidget = XtNameToWidget (submenu, initial_set[GRIDLINE]))
+      XtVaSetValues (dummywidget, XmNset, True, NULL);
+
+   XmStringFree (on);
+   XmStringFree (off);
+//
+// ------------------------   Lighting menu   ------------------------
+//
+   sun      = XmStringCreateSimple ("Sun Light");
+   moon     = XmStringCreateSimple ("Moon Light");
+   lightoff = XmStringCreateSimple ("Light Off");
+   original = XmStringCreateSimple ("Original");
+   black    = XmStringCreateSimple ("Black");
+   darkred  = XmStringCreateSimple ("Dark Red");
+   grey     = XmStringCreateSimple ("Grey");
+   menupane = XmVaCreateSimplePulldownMenu (v_menubar, "lighting", 4, lightingCB,
+              XmVaRADIOBUTTON, sun, NULL, NULL, NULL,
+              XmVaRADIOBUTTON, moon, NULL, NULL, NULL,
+              XmVaRADIOBUTTON, lightoff, NULL, NULL, NULL,
+              XmVaSEPARATOR,
+              XmVaRADIOBUTTON, original, NULL, NULL, NULL,
+              XmVaRADIOBUTTON, black, NULL, NULL, NULL,
+              XmVaRADIOBUTTON, darkred, NULL, NULL, NULL,
+              XmVaRADIOBUTTON, grey, NULL, NULL, NULL,
+              XmNradioBehavior, True,
+              XmNradioAlwaysOne, True,
+              NULL);
+   /*
+   if (dummywidget = XtNameToWidget (menupane, "button_0"))
+      XtVaSetValues (dummywidget, XmNset, True, NULL);
+
+   // ----- background menu ------;
+   menupane = XmVaCreateSimplePulldownMenu (v_menubar, "background", 5, backgroundCB,
+              XmVaRADIOBUTTON, original, NULL, NULL, NULL,
+              XmVaRADIOBUTTON, black, NULL, NULL, NULL,
+              XmVaRADIOBUTTON, darkred, NULL, NULL, NULL,
+              XmVaRADIOBUTTON, grey, NULL, NULL, NULL,
+              XmNradioBehavior, True,
+              XmNradioAlwaysOne, True,
+              NULL);
+   */
+   XmStringFree (sun);
+   XmStringFree (moon);
+   XmStringFree (lightoff);
+   XmStringFree (original);
+   XmStringFree (black);
+   XmStringFree (darkred);
+   XmStringFree (grey);
+   if (dummywidget = XtNameToWidget (menupane, "button_1"))
+      XtVaSetValues (dummywidget, XmNset, True, NULL);
+//
+// ------------------------   Weather menu   ------------------------
+//
+   cloud = XmStringCreateSimple ("Clouds");
+   storm = XmStringCreateSimple ("Storm");
+   foggy = XmStringCreateSimple ("Fog");
+   disperse = XmStringCreateSimple ("Dispersion");
+   menupane = XmVaCreateSimplePulldownMenu (v_menubar, "weather", 5, 
+              weatherCB,
+              XmVaPUSHBUTTON, cloud, NULL, NULL, NULL,
+              XmVaPUSHBUTTON, storm, NULL, NULL, NULL,
+              XmVaPUSHBUTTON, foggy, NULL, NULL, NULL,
+              XmVaSEPARATOR,
+              XmVaPUSHBUTTON, disperse, NULL, NULL, NULL,
+              NULL);
+   XmStringFree (cloud);
+   XmStringFree (storm);
+   XmStringFree (foggy);
+   XmStringFree (disperse);
+//
+// --------------------------   Link menu   --------------------------
+//
+   all_links_on  = XmStringCreateSimple ("All Links On");
+   all_links_off = XmStringCreateSimple ("All Links Off");
+   com_links_on  = XmStringCreateSimple ("Com Links On");
+   com_links_off = XmStringCreateSimple ("Com Links Off");
+   sen_links_on  = XmStringCreateSimple ("Sensor Links On");
+   sen_links_off = XmStringCreateSimple ("Sensor Links Off");
+   dsp_links_on  = XmStringCreateSimple ("DSP Links On");
+   dsp_links_off = XmStringCreateSimple ("DSP Links Off");
+   sbr_links_on  = XmStringCreateSimple ("SBIRS Links On");
+   sbr_links_off = XmStringCreateSimple ("SBIRS Links Off");
+   gbr_links_on  = XmStringCreateSimple ("GBR Links On");
+   gbr_links_off = XmStringCreateSimple ("GBR Links Off");
+   gbi_links_on  = XmStringCreateSimple ("GBI Links On");
+   gbi_links_off = XmStringCreateSimple ("GBI Links Off");
+   menupane = XmVaCreateSimplePulldownMenu (v_menubar, "links", 6, sps_linksCB,
+	       XmVaPUSHBUTTON, all_links_on, NULL, NULL, NULL,
+	       XmVaPUSHBUTTON, all_links_off, NULL, NULL, NULL,
+	       XmVaSEPARATOR,
+	       XmVaPUSHBUTTON, com_links_on, NULL, NULL, NULL,
+	       XmVaPUSHBUTTON, com_links_off, NULL, NULL, NULL,
+	       XmVaSEPARATOR,
+	       XmVaPUSHBUTTON, sen_links_on, NULL, NULL, NULL,
+	       XmVaPUSHBUTTON, sen_links_off, NULL, NULL, NULL,
+	       XmVaSEPARATOR,
+	       XmVaPUSHBUTTON, dsp_links_on, NULL, NULL, NULL,
+	       XmVaPUSHBUTTON, dsp_links_off, NULL, NULL, NULL,
+	       XmVaSEPARATOR,
+	       XmVaPUSHBUTTON, sbr_links_on, NULL, NULL, NULL,
+	       XmVaPUSHBUTTON, sbr_links_off, NULL, NULL, NULL,
+	       XmVaSEPARATOR,
+	       XmVaPUSHBUTTON, gbr_links_on, NULL, NULL, NULL,
+	       XmVaPUSHBUTTON, gbr_links_off, NULL, NULL, NULL,
+	       XmVaSEPARATOR,
+	       XmVaPUSHBUTTON, gbi_links_on, NULL, NULL, NULL,
+	       XmVaPUSHBUTTON, gbi_links_off, NULL, NULL, NULL,
+	       NULL);
+   XmStringFree (all_links_on);
+   XmStringFree (all_links_off);
+   XmStringFree (com_links_on);
+   XmStringFree (com_links_off);
+   XmStringFree (sen_links_on);
+   XmStringFree (sen_links_off);
+   XmStringFree (dsp_links_on);
+   XmStringFree (dsp_links_off);
+   XmStringFree (sbr_links_on);
+   XmStringFree (sbr_links_off);
+   XmStringFree (gbr_links_on);
+   XmStringFree (gbr_links_off);
+   XmStringFree (gbi_links_on);
+   XmStringFree (gbi_links_off);
+   /*
+   // ..... start Links' submenus ................
+   on = XmStringCreateSimple ("On");
+   off = XmStringCreateSimple ("Off");
+   submenu = XmVaCreateSimplePulldownMenu (menupane, "LinksSubmenu2", 2,
+             sps_com_linksCB,
+             XmVaPUSHBUTTON, on, NULL, NULL, NULL,
+             XmVaPUSHBUTTON, off, NULL, NULL, NULL,
+             NULL);
+   submenu = XmVaCreateSimplePulldownMenu (menupane, "LinksSubmenu3", 4,
+             sps_sen_linksCB,
+             XmVaPUSHBUTTON, on, NULL, NULL, NULL,
+             XmVaPUSHBUTTON, off, NULL, NULL, NULL,
+             NULL);
+   */
+   //XmStringFree (restore2);
+//
+// -------------------------   Options menu   -------------------------
+//
+   tracks   = XmStringCreateSimple ("Show Tracks");
+   trails   = XmStringCreateSimple ("Show Trails");
+   impacts  = XmStringCreateSimple ("Show Impacts");
+   labels   = XmStringCreateSimple ("Label Tracks");
+   drops    = XmStringCreateSimple ("Drop Tracks");
+   showr2   = XmStringCreateSimple ("Show R2 Links");
+   keeps    = XmStringCreateSimple ("Keep Links");
+   menupane = XmVaCreateSimplePulldownMenu (v_menubar, "Opts", 7, optionCB,
+              XmVaRADIOBUTTON, tracks,  NULL, NULL, NULL,
+              XmVaRADIOBUTTON, trails,  NULL, NULL, NULL,
+              XmVaRADIOBUTTON, impacts, NULL, NULL, NULL,
+	      XmVaSEPARATOR,
+              XmVaRADIOBUTTON, labels,  NULL, NULL, NULL,
+              XmVaRADIOBUTTON, drops,   NULL, NULL, NULL,
+              XmVaRADIOBUTTON, showr2,  NULL, NULL, NULL,
+              XmVaRADIOBUTTON, keeps,   NULL, NULL, NULL,
+              NULL);
+   if (dummywidget = XtNameToWidget (menupane, "button_0"))
+      XtVaSetValues (dummywidget, XmNset, SHOWTRACK, NULL);
+   if (dummywidget = XtNameToWidget (menupane, "button_1"))
+      XtVaSetValues (dummywidget, XmNset, SHOWTRAIL, NULL);
+   if (dummywidget = XtNameToWidget (menupane, "button_2"))
+      XtVaSetValues (dummywidget, XmNset, SHOWIMPACT, NULL);
+   if (dummywidget = XtNameToWidget (menupane, "button_3"))
+      XtVaSetValues (dummywidget, XmNset, LABELTRACK, NULL);
+   if (dummywidget = XtNameToWidget (menupane, "button_4"))
+      XtVaSetValues (dummywidget, XmNset, DROPTRACK, NULL);
+   if (dummywidget = XtNameToWidget (menupane, "button_5"))
+      XtVaSetValues (dummywidget, XmNset, SHOWR2, NULL);
+   if (dummywidget = XtNameToWidget (menupane, "button_6"))
+      XtVaSetValues (dummywidget, XmNset, KEEPLINK, NULL);
+   XmStringFree (tracks);
+   XmStringFree (trails);
+   XmStringFree (impacts);
+   XmStringFree (labels);
+   XmStringFree (drops);
+   XmStringFree (showr2);
+   XmStringFree (keeps);
+//
+// --------------------------   Tools menu   --------------------------
+//
+   finder  = XmStringCreateSimple ("View   Finder");
+   viewer  = XmStringCreateSimple ("Model  Viewer");
+   timer   = XmStringCreateSimple ("Time   Viewer");
+   shooter = XmStringCreateSimple ("Asset  Viewer");
+   mapper  = XmStringCreateSimple ("Map    Viewer");
+   tester  = XmStringCreateSimple ("Scheme Editor");
+   demo    = XmStringCreateSimple ("Track  Viewer");
+   editer  = XmStringCreateSimple ("Parameter Editor");
+   menupane = XmVaCreateSimplePulldownMenu (v_menubar, "Tools", 8, toolsCB,
+              XmVaPUSHBUTTON, finder,  NULL, NULL, NULL,
+              XmVaPUSHBUTTON, viewer,  NULL, NULL, NULL,
+              XmVaPUSHBUTTON, timer,   NULL, NULL, NULL,
+              XmVaPUSHBUTTON, shooter, NULL, NULL, NULL,
+              XmVaPUSHBUTTON, mapper,  NULL, NULL, NULL,
+              XmVaPUSHBUTTON, demo,    NULL, NULL, NULL,
+              XmVaPUSHBUTTON, tester,  NULL, NULL, NULL,
+              XmVaPUSHBUTTON, editer,  NULL, NULL, NULL,
+              NULL);
+   XmStringFree (finder);
+   XmStringFree (viewer);
+   XmStringFree (timer);
+   XmStringFree (shooter);
+   XmStringFree (mapper);
+   XmStringFree (tester);
+   XmStringFree (demo);
+   XmStringFree (editer);
+//
+// --------------------------   Help menu   --------------------------
+//
+   mouse   = XmStringCreateSimple ("Mouse Operations");
+   panel_1 = XmStringCreateSimple ("View Control");
+   panel_2 = XmStringCreateSimple ("Simulation Control");
+   about   = XmStringCreateSimple ("About JTAMV");
+   menupane = XmVaCreateSimplePulldownMenu (v_menubar, "help", 9, helpCB,
+               XmVaPUSHBUTTON, mouse, NULL, NULL, NULL,
+	       XmVaSEPARATOR,
+               XmVaPUSHBUTTON, about, NULL, NULL, NULL,
+	      //XmVaPUSHBUTTON, panel_1, NULL, NULL, NULL,
+              //XmVaPUSHBUTTON, panel_2, NULL, NULL, NULL,
+              NULL);
+   XmStringFree (mouse);
+   XmStringFree (about);
+   XmStringFree (panel_1);
+   XmStringFree (panel_2);
+   
+   XmStringFree (logo);
+   XmStringFree (focus);
+   XmStringFree (earth);
+   XmStringFree (lighting);
+   XmStringFree (background);
+   XmStringFree (weather);
+   XmStringFree (links);
+   XmStringFree (views);
+   XmStringFree (tools);
+   XmStringFree (help);
+   
+   XtManageChild(v_menubar);
+
+   return (v_menubar);
+}
+
+/* ------ */
+
+
+Widget
+makeViewBar (char* name, Widget parent)
+{
+   Widget v_viewbar;
+   Widget v_force, v_normal, v_tangent, v_sav1, v_sav2, v_rec1, v_rec2;
+   Widget v_option, v_flip;
+
+   Pixel fg, bg;
+   Pixmap pixmap;
+   char *BITMAPDIR;
+   char *FWDIR;
+   char normalbit[80], tangentbit[80];
+   char sav1bit[80], rec1bit[80], sav2bit[80], rec2bit[80];
+   char optionbit[80];
+   char flipbit[80];
+ 
+   if ((BITMAPDIR=getenv("BITMAPDIR"))==NULL)
+	BITMAPDIR = "./BitMaps";
+   
+   sprintf (normalbit,  "%s%s", BITMAPDIR, "/normal.bit");
+   sprintf (tangentbit, "%s%s", BITMAPDIR, "/tangent.bit"); 
+   sprintf (sav1bit,    "%s%s", BITMAPDIR, "/sav1.bit"); 
+   sprintf (rec1bit,    "%s%s", BITMAPDIR, "/rec1.bit"); 
+   sprintf (sav2bit,    "%s%s", BITMAPDIR, "/sav2.bit"); 
+   sprintf (rec2bit,    "%s%s", BITMAPDIR, "/rec2.bit"); 
+   sprintf (optionbit,  "%s%s", BITMAPDIR, "/option.bit"); 
+   sprintf (flipbit,    "%s%s", BITMAPDIR, "/camera.bit"); 
+
+   v_viewbar = XmCreateRowColumn (parent, name, NULL, 0);
+   XtManageChild (v_viewbar);
+   XtVaSetValues (v_viewbar,
+                  XmNorientation,  XmVERTICAL, 
+                  XmNspacing,      2,
+                  XmNmarginHeight, 0,
+                  NULL);
+
+   v_force = XtVaCreateManagedWidget
+     ("RD", xmPushButtonWidgetClass, v_viewbar,
+      XmNwidth, 10,
+      XmNheight, 30,
+      NULL);
+   XtAddCallback (v_force, XmNactivateCallback, forceCB, (XtPointer)0);
+
+   v_normal = XtVaCreateManagedWidget
+     ("Normal", xmPushButtonWidgetClass, v_viewbar,
+      XmNwidth, 20,
+      XmNheight, 20,
+      NULL);
+   XtAddCallback (v_normal, XmNactivateCallback, viewCB, (XtPointer)0);
+   XtVaGetValues (v_normal, XmNforeground, &fg, XmNbackground, &bg, NULL);
+   pixmap = XmGetPixmap (XtScreen (v_normal), normalbit, fg, bg);
+   if (pixmap == XmUNSPECIFIED_PIXMAP)
+     printf ("  Cannot find bitmap file %s\n", normalbit);
+   else
+     XtVaSetValues (v_normal,
+                    XmNlabelType, XmPIXMAP,
+                    XmNlabelPixmap, pixmap,
+                    NULL);
+   
+   v_tangent = XtVaCreateManagedWidget
+     ("Tangent",
+      xmPushButtonWidgetClass, v_viewbar,
+      XmNwidth, 20,
+      XmNheight, 20,
+      NULL);
+   XtAddCallback (v_tangent, XmNactivateCallback, viewCB, (XtPointer)1);
+   XtVaGetValues (v_normal, XmNforeground, &fg,
+		  XmNbackground, &bg, NULL);
+   pixmap = XmGetPixmap (XtScreen (v_normal), tangentbit, fg, bg);
+   if (pixmap == XmUNSPECIFIED_PIXMAP)
+     printf ("  Cannot find bitmap file %s\n", tangentbit);
+   else
+     XtVaSetValues (v_tangent,
+                    XmNlabelType, XmPIXMAP,
+                    XmNlabelPixmap, pixmap,
+                    NULL);
+
+   v_sav1 = XtVaCreateManagedWidget
+     ("SV1",
+      xmPushButtonWidgetClass, v_viewbar,
+      XmNwidth, 20,
+      XmNheight, 20,
+      NULL);
+   XtAddCallback (v_sav1, XmNactivateCallback, memoryCB, (XtPointer)1);
+   XtVaGetValues (v_sav1, XmNforeground, &fg,
+		  XmNbackground, &bg, NULL);
+   pixmap = XmGetPixmap (XtScreen (v_sav1), sav1bit, fg, bg);
+   if (pixmap == XmUNSPECIFIED_PIXMAP)
+     printf ("  Cannot find bitmap file %s\n", sav1bit);
+   else
+     XtVaSetValues (v_sav1,
+                    XmNlabelType, XmPIXMAP,
+                    XmNlabelPixmap, pixmap,
+                    NULL);
+   
+   v_rec1 = XtVaCreateManagedWidget
+     ("RC1",
+      xmPushButtonWidgetClass, v_viewbar,
+      XmNwidth, 20,
+      XmNheight, 20,
+      NULL);
+   XtAddCallback (v_rec1, XmNactivateCallback, memoryCB, (XtPointer)101);
+   XtVaGetValues (v_rec1, XmNforeground, &fg,
+		  XmNbackground, &bg, NULL);
+   pixmap = XmGetPixmap (XtScreen (v_rec1), rec1bit, fg, bg);
+   if (pixmap == XmUNSPECIFIED_PIXMAP)
+     printf ("  Cannot find bitmap file %s\n", rec1bit);
+   else
+     XtVaSetValues (v_rec1,
+                    XmNlabelType, XmPIXMAP,
+                    XmNlabelPixmap, pixmap,
+                    NULL);
+   
+   v_sav2 = XtVaCreateManagedWidget
+     ("SV2",
+      xmPushButtonWidgetClass, v_viewbar,
+      XmNwidth, 20,
+      XmNheight, 20,
+      NULL);
+   XtAddCallback (v_sav2, XmNactivateCallback, memoryCB, (XtPointer)2);
+   XtVaGetValues (v_sav2, XmNforeground, &fg,
+		  XmNbackground, &bg, NULL);
+   pixmap = XmGetPixmap (XtScreen (v_sav2), sav2bit, fg, bg);
+   if (pixmap == XmUNSPECIFIED_PIXMAP)
+     printf ("  Cannot find bitmap file %s\n", sav2bit);
+   else
+     XtVaSetValues (v_sav2,
+                    XmNlabelType, XmPIXMAP,
+                    XmNlabelPixmap, pixmap,
+                    NULL);
+
+   v_rec2 = XtVaCreateManagedWidget
+     ("RC2",
+      xmPushButtonWidgetClass, v_viewbar,
+      XmNwidth, 20,
+      XmNheight, 20,
+      NULL);
+   XtAddCallback (v_rec2, XmNactivateCallback, memoryCB, (XtPointer)102);
+   XtVaGetValues (v_rec2, XmNforeground, &fg,
+		  XmNbackground, &bg, NULL);
+   pixmap = XmGetPixmap (XtScreen (v_rec2), rec2bit, fg, bg);
+   if (pixmap == XmUNSPECIFIED_PIXMAP)
+     printf ("  Cannot find bitmap file %s\n", rec2bit);
+   else
+     XtVaSetValues (v_rec2,
+                    XmNlabelType, XmPIXMAP,
+                    XmNlabelPixmap, pixmap,
+                    NULL);
+   
+   v_option = XtVaCreateManagedWidget
+     ("MPEG",
+      xmPushButtonWidgetClass, v_viewbar,
+      XmNwidth, 20,
+      XmNheight, 20,
+      NULL);
+   XtAddCallback (v_option, XmNactivateCallback, recordCB, (XtPointer)1);
+   XtVaGetValues (v_option, XmNforeground, &fg,
+		  XmNbackground, &bg, NULL);
+   pixmap = XmGetPixmap (XtScreen (v_option), optionbit, fg, bg);
+   if (pixmap == XmUNSPECIFIED_PIXMAP)
+     printf ("  Cannot find bitmap file %s\n", optionbit);
+   else
+     XtVaSetValues (v_option,
+                    XmNlabelType, XmPIXMAP,
+                    XmNlabelPixmap, pixmap,
+                    NULL);
+   
+   v_flip = XtVaCreateManagedWidget
+     ("SNAP",
+      xmPushButtonWidgetClass, v_viewbar,
+      XmNwidth, 20,
+      XmNheight, 20,
+      NULL);
+   XtAddCallback (v_flip, XmNactivateCallback, recordCB, (XtPointer)0);
+   XtVaGetValues (v_flip, XmNforeground, &fg,
+		  XmNbackground, &bg, NULL);
+   pixmap = XmGetPixmap (XtScreen (v_flip), flipbit, fg, bg);
+   if (pixmap == XmUNSPECIFIED_PIXMAP)
+     printf ("  Cannot find bitmap file %s\n", flipbit);
+   else
+     XtVaSetValues (v_flip,
+                    XmNlabelType, XmPIXMAP,
+                    XmNlabelPixmap, pixmap,
+                    NULL);
+   
+   return (v_viewbar);
+}
+
+/* ------ */
+Widget
+makePanel (char* name, Widget parent, Widget botattach)
+{
+   Widget	v_panel;
+   XmString	title;
+   int          rpos, pcent, i;
+   XColor	color, unused;
+   Pixel	bg_color, fg_color, top_shadow, bottom_shadow, fg_ret, select_color;
+   Colormap	cmap;
+
+   v_panel = parent;
+
+   title = XmStringCreateSimple("Latitude");
+   scaleLAT = createOneScale (v_panel, 'a', title, (XtCallbackProc)changeScaleCB);
+   XtVaSetValues (scaleLAT,
+                  XmNleftAttachment,     XmATTACH_POSITION,
+                  XmNleftPosition,       1,
+                  XmNrightAttachment,    XmATTACH_POSITION,
+                  XmNrightPosition,      20,
+                  XmNbottomAttachment,   XmATTACH_WIDGET,
+                  XmNbottomWidget,       botattach,
+                  NULL);
+
+   title = XmStringCreateSimple("Longitude");
+   scaleLON = createOneScale (v_panel, 'o', title, (XtCallbackProc)changeScaleCB);
+   XtVaSetValues (scaleLON,
+                  XmNleftAttachment,     XmATTACH_POSITION,
+                  XmNleftPosition,       21,
+                  XmNrightAttachment,    XmATTACH_POSITION,
+                  XmNrightPosition,      40,
+                  XmNbottomAttachment,   XmATTACH_WIDGET,
+                  XmNbottomWidget,       botattach,
+                  NULL);
+
+   title = XmStringCreateSimple("Altitude");
+   scaleALT = createOneScale (v_panel, 'l', title, (XtCallbackProc)changeScaleCB);
+   XtVaSetValues (scaleALT,
+                  XmNleftAttachment,     XmATTACH_POSITION,
+                  XmNleftPosition,       41,
+                  XmNrightAttachment,    XmATTACH_POSITION,
+                  XmNrightPosition,      60,
+                  XmNbottomAttachment,   XmATTACH_WIDGET,
+                  XmNbottomWidget,       botattach,
+		  XmNscaleMultiple,      100,
+                  NULL);
+
+   title = XmStringCreateSimple("Field of View");
+   scaleFOV = createOneScale (v_panel, 'v', title, (XtCallbackProc)changeScaleCB);
+   XmStringFree (title);
+   XtVaSetValues (scaleFOV,
+                  XmNleftAttachment,     XmATTACH_POSITION,
+                  XmNleftPosition,       61,
+                  XmNrightAttachment,    XmATTACH_POSITION,
+                  XmNrightPosition,      80,
+                  XmNbottomAttachment,   XmATTACH_WIDGET,
+                  XmNbottomWidget,       botattach,
+                  NULL);
+ 
+   title = XmStringCreateSimple("Azimuth");
+   scaleAZI = createOneScale (v_panel, 'z', title, (XtCallbackProc)changeScaleCB);
+   XtVaSetValues (scaleAZI,
+                  XmNleftAttachment,     XmATTACH_POSITION,
+                  XmNleftPosition,       81,
+                  XmNrightAttachment,    XmATTACH_POSITION,
+                  XmNrightPosition,      100,
+                  XmNbottomAttachment,   XmATTACH_WIDGET,
+                  XmNbottomWidget,       botattach,
+                  NULL);
+
+   XmStringFree (title);
+
+   return (scaleLAT);  /* Return a widget for top attachment */
+}
+
+Widget
+createOneScale(Widget parent, char code, XmString title, XtCallbackProc CB)
+{
+   Widget scale;
+   Arg args[10];
+   register int n;
+   char name[2];
+
+   name[0] = code;
+   name[1] = '\0';
+
+   n = 0;
+   XtSetArg (args[n], XmNorientation,   XmHORIZONTAL); n++;
+   XtSetArg (args[n], XmNshowValue,     True);         n++;
+   XtSetArg (args[n], XmNtitleString,   title);        n++;
+   XtSetArg (args[n], XmNscaleMultiple, 1);            n++;
+   XtSetArg (args[n], XmNtopOffset,     5);            n++;
+   scale = XmCreateScale (parent, name, args, n);
+
+   XtAddCallback (scale, XmNvalueChangedCallback, CB, (XtPointer)code);
+   XtAddCallback (scale, XmNdragCallback, CB, (XtPointer)code);
+   
+   XtManageChild (scale);
+
+   return (scale);
+}
+/*                                                                             */
+/* ----------------------------   Main Menu Callbacks   ---------------------- */
+/*                                                                             */
+void
+clockCB (Widget, XtPointer, XmListCallbackStruct* call_data)
+{
+char      *text;
+time_t    clock;
+struct tm *ltime;
+char      *str;
+int       i, imon;
+char      chtime[16];
+char      chtoday[16];
+XmString  xstr;
+
+   time(&clock);
+   ltime = gmtime(&clock);          //        012345678901234567890123
+   str = asctime(ltime);            // str = 'Fri Aug 14 10:39:03 1998'
+                                    
+   for (i=0; i<8; i++)              // Copy ASCII time
+      chtime[i] = str[i+11];
+   chtime[8] = 'Z';
+   chtime[9] = '\0';
+   /*
+   sprintf(chtoday, "%02.2d%s", i, "/29/2000Z");
+   chtoday[3] = str[8]; if (str[8] == ' ') chtoday[3] = '0';
+   chtoday[4] = str[9];
+   for (i=0; i<4; i++)             // Copy ASCII year
+      chtoday[i+6] = str[i+20];
+   */
+   xstr = XmStringCreateLtoR(chtime, "charset1");
+   XtVaSetValues(timewidget, XmNlabelString, xstr, NULL);
+   XmStringFree(xstr);
+
+   clockid = XtAppAddTimeOut(GR_appcontext, 1000,
+                    (XtTimerCallbackProc)clockCB, NULL);
+}
+
+void
+logoCB (Widget, XtPointer client_data, XtPointer)
+{
+int             answer;
+int             item_no = (int) client_data;
+char            filename[8];
+
+   switch (item_no) {
+
+     case 0:					// File Open
+       sprintf(filename, "*");
+       OpenInputFile(filename);
+       break;
+
+     case 1:					// File Close
+       CloseInputFile();
+       break;
+
+     case 2:                                    // Reset
+       /*
+       delete displist;
+       displist = new GR_DispList;
+       gwindow->addDispList (displist);
+       */
+       gwindow->rem_all_namedDispLists ();
+       break;
+
+     case 3:					// quit
+       if (saved_vu) {
+           answer = GetYesNo("View Registers Changed.\nSave New Values?");
+           if (answer == YES) {
+              if ( (VIEWfp = fopen("viewsave.dat", "w+")) != NULL) {
+                 fprintf(VIEWfp, "%d %d %d %d %d %d\n",
+                        MODE_1, LAT_1, LON_1, ALT_1, FOV_1, AZI_1);
+                 fprintf(VIEWfp, "%d %d %d %d %d %d\n",
+                        MODE_2, LAT_2, LON_2, ALT_2, FOV_2, AZI_2);
+                 fclose(VIEWfp);
+              }
+	   }
+       }
+       if (rec_entered) recordCB(NULL, (XtPointer)3, NULL);
+       input_finish();
+       if (INFOfp != NULL) fclose(INFOfp);
+	   if (NOEXIT) {
+	     XIconifyWindow(XtDisplay(GR_toplevel),
+		                XtWindow(GR_toplevel),
+						0/*XtScreen(GR_toplevel)*/);
+	   }
+	   else exit (0);
+       break;
+
+     default:
+       break;
+   } 
+}
+
+int
+GetYesNo(char *str)
+{
+Widget     dialog, toggle;
+Arg        arg[10];
+int        answer;
+int        scn, response, pad1, pad2, pad3, pad4;
+XmString   xstr, defval, YESstr, NOstr;
+int        i, nargs, xferbytes;
+
+      yn_answer = -1;
+      xstr   = XmStringCreateLtoR(str, XmSTRING_DEFAULT_CHARSET);
+      defval = XmStringCreateLtoR("User Verify", XmSTRING_DEFAULT_CHARSET);
+      YESstr = XmStringCreateLtoR("Yes", XmSTRING_DEFAULT_CHARSET);
+      NOstr  = XmStringCreateLtoR("No", XmSTRING_DEFAULT_CHARSET); 
+      nargs = 0;
+      XtSetArg (arg[0], XmNmessageString,     xstr); nargs++;
+      XtSetArg (arg[1], XmNautoUnmanage,      True); nargs++;
+      XtSetArg (arg[2], XmNdialogStyle,       XmDIALOG_FULL_APPLICATION_MODAL); nargs++;
+      XtSetArg (arg[3], XmNuserData,          0); nargs++;
+      XtSetArg (arg[4], XmNdialogTitle,       defval); nargs++;
+      XtSetArg (arg[5], XmNokLabelString,     YESstr); nargs++;
+      XtSetArg (arg[6], XmNcancelLabelString, NOstr); nargs++;
+      dialog = XmCreateWarningDialog (GR_toplevel, "Dialog", arg, nargs);
+      XmStringFree (xstr);
+      XmStringFree (defval);
+      XmStringFree (YESstr);
+      XmStringFree (NOstr);
+      XtAddCallback(dialog, XmNcancelCallback, responseCB, &answer);
+      XtAddCallback(dialog, XmNokCallback,     responseCB, &answer);
+      XtManageChild (dialog);
+      XtPopup(XtParent(dialog), XtGrabNone);
+      while (yn_answer < 0) XtAppProcessEvent(GR_appcontext, XtIMAll);
+      XtDestroyWidget(dialog);
+      return(yn_answer);
+}
+/*
+void
+toggleCB(Widget toggle, XtPointer n, XmToggleButtonCallbackStruct *cbs)
+{
+  if (cbs->set)
+    YESNO = (int) n;
+  else
+    YESNO = NO;
+}
+*/
+void
+responseCB(Widget w, XtPointer answer, XtPointer/*XmAnyCallbackStruct **/cbs)
+{
+   yn_answer = YES;
+/*
+   switch (cbs->reason) {
+   case XmCR_OK:
+     answer = (XtPointer)YES;
+     break;
+   case XmCR_CANCEL:
+     answer = (XtPointer)NO;
+     break;
+   }
+*/
+}
+
+void
+focusCB (Widget, XtPointer client_data, XtPointer)
+{
+   int item_no = (int) client_data;
+
+   VMODE    = focusmenu[item_no].VMODE;
+   v_ALT    = focusmenu[item_no].ALT;
+   v_FOV    = focusmenu[item_no].FOV;
+   v_FOVDIV = focusmenu[item_no].FOVDIV;
+   v_LAT    = focusmenu[item_no].LAT;
+   v_LON    = focusmenu[item_no].LON;
+   v_AZI    = focusmenu[item_no].AZI;
+
+   XmScaleSetValue (scaleLAT, v_LAT);
+   XmScaleSetValue (scaleLON, v_LON);
+   XmScaleSetValue (scaleALT, v_ALT);
+   XmScaleSetValue (scaleFOV, v_FOV);
+   XmScaleSetValue (scaleAZI, v_AZI);
+   
+   setvparams (gwindow, VMODE, v_LAT, v_LON, v_ALT, v_FOV, v_AZI);
+   
+   if (vfwindow && vfwindow->get_awake())
+     vfwindow->draw ();
+}
+
+void
+earthCB (Widget, XtPointer client_data, XtPointer)
+{
+int item_no = (int) client_data;
+
+   printf ("..... Warning: earthCB is called....\n");
+}
+
+void
+earthtypeCB (Widget, XtPointer client_data, XtPointer)
+{
+int item_no = (int) client_data;
+static Boolean first_300 = TRUE;
+static Boolean first_301 = TRUE;
+static Boolean first_302 = TRUE;
+static Boolean first_310 = TRUE;
+static Boolean first_33  = FALSE;
+static Boolean first_200 = TRUE;
+static Boolean first_800 = TRUE;
+
+   if (first_800) {
+      first_800 = FALSE;
+      Star800   = new GR_Stars(255, 255, 255, starfile, 800);
+   }
+
+   star_type = 800;
+   if (displist->inlist_by_type (star_type))
+       displist->delete_object_by_type (star_type);
+   displist->add_object (*Star800);
+
+   switch (item_no) {
+     case 0:  // texture -- low
+     case 1:  // texture -- med
+     case 2:  // texture -- high
+       if (current_earth_type!=300) {
+          if (first_300) {
+             first_300 = FALSE;
+	     Tearth300 = new GR_Tearth (texturefile, 4, 0, 0);
+          }
+          if (displist->inlist_by_type (current_earth_type))
+             displist->delete_object_by_type (current_earth_type);
+          displist->add_object (*Tearth300);
+          current_earth_type = 300;
+       }
+       break;
+/*
+     case 1:  // texture -- med
+       if (current_earth_type!=301)
+       {
+          if (first_301)
+          {
+             first_301 = FALSE;
+             Tearth301 = new GR_Tearth2 (earthdir, 301);
+          }
+          if (displist->inlist_by_type (current_earth_type))
+             displist->delete_object_by_type (current_earth_type);
+          displist->add_object (*Tearth301);
+          current_earth_type = 301;
+       }
+       break;
+
+     case 2:  // texture -- high
+       if (current_earth_type!=302) {
+          if (first_302) {
+             first_302 = FALSE;
+             Tearth302 = new GR_Tearth3 (earthdir, 302);
+          }
+          if (displist->inlist_by_type (current_earth_type))
+             displist->delete_object_by_type (current_earth_type);
+          displist->add_object (*Tearth302);
+          current_earth_type = 302;
+       }
+       break;
+*/
+     case 3:   // simple
+       if (current_earth_type!=33) {
+          if (first_33) {
+             first_33 = FALSE;
+             Searth33 = new GR_Model (0, 33);
+          }
+          if (displist->inlist_by_type (current_earth_type))
+             displist->delete_object_by_type (current_earth_type);
+          displist->add_object (*Searth33);
+          current_earth_type = 33;
+       }
+       break;
+
+     case 4:   // blue 
+       if (current_earth_type!=200) {
+          if (first_200) {
+             first_200= FALSE;
+             Bearth200 = new GR_Blueearth (200);
+          }
+          if (displist->inlist_by_type (current_earth_type))
+             displist->delete_object_by_type (current_earth_type);
+          displist->add_object (*Bearth200);
+          current_earth_type = 200;
+       }
+       break;
+
+     case 5:   // none
+       if (current_earth_type!=0) {
+          displist->delete_object_by_type (current_earth_type);
+          current_earth_type = 0;
+       }
+       break;
+
+     default:
+       break;
+   }
+}
+ 
+void
+earthareaCB (Widget, XtPointer client_data, XtPointer)
+{
+int            item_no = (int) client_data;
+int            x, y;
+long           type;
+static Boolean first_Caribbean = TRUE;
+
+   x = ((v_LON + 180)/10)%36;          // 0 to 35;
+   y = ((v_LAT + 90)/10)%18;           // 0 to 17;
+   type = y*36+x+1000;
+
+   switch (item_no) {
+
+    case 0:                            // load Caribbean
+      if (first_Caribbean) {
+	 first_Caribbean = FALSE;
+	 carib = new Carib(caribdir, 201);
+         //carib = new GR_Region("carib", 201, 9);
+         //carib = new GR_Region("neasia", 201, 4);
+      }
+      displist->delete_object_by_type (201); // hard code type for now
+      displist->add_object (carib);
+      break;
+ 
+    case 1:                            // unload Caribbean
+      displist->delete_object_by_type (201);
+      break;
+/*
+    case 2:                            // load
+      if (first_Area[x][y]) {
+	 first_Area[x][y] = FALSE;
+	 Area[x][y] = new GR_Area (rgbfile, elevdir, type, v_LON, v_LAT);
+      }
+      if (!displist->inlist_by_type (type))
+	displist->add_object(*Area[x][y]);
+      break;
+
+    case 3:                            // unload
+      if (displist->inlist_by_type (type))
+	displist->delete_object_by_type(type);
+      break;
+*/
+    default:
+      break;
+   }
+}
+
+void
+earthlinesCB (Widget, XtPointer client_data, XtPointer)
+{
+int item_no = (int) client_data;
+static Boolean first_320 = TRUE;
+
+   switch (item_no) {
+
+     case 0:  // off
+       if (displist->inlist_by_type (320)) {
+          displist->delete_object_by_type (320);
+          displist->delete_object_by_type (321);
+       }
+       break;
+
+     case 1:  // on
+       if (first_320) {
+          first_320 = FALSE;
+          work_progress (0, "Reading boundary lines");
+          PoliLines321  = new GR_Lines (255,255,255,polifile,321); 
+          ShoreLines320 = new GR_Lines (255,255,255,shorefile,320); 
+          work_progress (2, NULL);
+          work_progress (3, NULL); 
+       }
+       if (!displist->inlist_by_type (320)) {
+          displist->add_object (*ShoreLines320);
+          displist->add_object (*PoliLines321);
+       }
+       break;
+
+     default:
+       break;
+   }
+}
+
+void
+earthgridCB (Widget, XtPointer client_data, XtPointer)
+{
+int            item_no = (int) client_data;
+static Boolean first_330 = TRUE;
+float          lat, lon, alt, x0, y0, z0, x, y, z;
+float          rad = 1.005;
+
+   switch (item_no) {
+     case 0:  // off
+       if (displist->inlist_by_type (330))
+          displist->delete_object_by_type (330);
+       break;
+
+     case 1:  // on
+       if (first_330) {
+          first_330 = FALSE;
+          Grid330 = new GR_Gridlines (155,155,0,10,330);
+       }
+       if (!displist->inlist_by_type (330))
+          displist->add_object (*Grid330);
+       break;
+
+     default:
+       break;
+   }
+}
+
+extern unsigned long WidgetBackgroundToGlRgb (Widget);
+
+void
+lightingCB (Widget, XtPointer client_data, XtPointer)
+{
+int            item_no = (int) client_data;
+long           org_background;
+static Boolean first_sun = TRUE;
+static Boolean first_moon= TRUE;
+//
+//	Define the Lighting Model parameters
+//
+   static float mat_AMBIENT[]      = { 0.3, 0.3, 0.3, 1.0 };
+   static float mat_DIFFUSE[]      = { 0.8, 0.8, 0.8, 1.0 };
+   static float mat_EMISSION[]     = { 0.3, 0.3, 0.3, 1.0 };
+   static float mat_SPECULAR[]     = { 0.8, 0.8, 0.8, 1.0 };
+   static float mat_SHININESS[]    = { 10.0 };
+   static float dullmat_AMBIENT[]  = { 0.2, 0.2, 0.2, 1.0 };
+   static float dullmat_DIFFUSE[]  = { 0.5, 0.5, 0.5, 1.0 };
+   static float dullmat_EMISSION[] = { 0.3, 0.3, 0.3, 1.0 };
+   static float dullmat_SPECULAR[] = { 0.4, 0.4, 0.4, 1.0 };
+   static float dullmat_SHININESS[] = { 5.0 };
+   static float sunlt_LCOLOR[]    = { 0.2, 0.8, 0.5, 0.0 };
+   static float sunlt_POSITION[]  = {-1.0, 1.0, 2.0, 0.0 };
+   static float sunlt_AMBIENT[]   = { 0.1, 0.1, 0.1, 1.0 };
+   static float sunlt_DIFFUSE[]   = { 1.0, 1.0, 1.0, 1.0 };
+   static float sunlt_SPECULAR[]  = { 1.0, 1.0, 1.0, 1.0 };
+   static float light_POSITION[]  = {-1.0,-1.0, 2.0, 0.0 };
+   static float moonlt_LCOLOR[]   = { 0.1, 0.1, 0.8, 0.0 };
+   static float moonlt_POSITION[] = {-1.0, 1.0, 2.0, 0.0 };
+   static float nonelt_LCOLOR[]   = { 0.1, 0.1, 0.6, 0.0 };
+   static float nonelt_POSITION[] = { 0.0, 0.0, 1.0, 0.0 };
+   static float lm_LMAMBIENT[] = { 0.5, 0.5, 0.5, 1.0 };
+   static float lm_LOCALVIEWER[] = { 1.0 };
+   static float dulllm_LMAMBIENT[] = { 0.2, 0.2, 0.2, 1.0 };
+   static float dulllm_LOCALVIEWER[] = { 1.0 };
+
+   switch (item_no)
+   {
+     case 0:            // sun light:
+       //glMaterialfv(GL_FRONT, GL_AMBIENT, mat_AMBIENT);
+       //glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_DIFFUSE);
+       //glMaterialfv(GL_FRONT, GL_EMISSION, mat_EMISSION);
+       //glMaterialfv(GL_FRONT, GL_SPECULAR, mat_SPECULAR);
+       //glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, mat_SHININESS);
+       glLightfv(GL_LIGHT0,  GL_POSITION, sunlt_POSITION);
+       glLightfv(GL_LIGHT0,  GL_DIFFUSE,  sunlt_LCOLOR);
+       glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lm_LMAMBIENT);
+       glLightModelfv(GL_LIGHT_MODEL_LOCAL_VIEWER, lm_LOCALVIEWER);
+       glShadeModel(GL_SMOOTH);
+       glEnable(GL_LIGHT0);
+       glEnable(GL_LIGHTING);
+       //glEnable(GL_COLOR_MATERIAL);
+       break;
+
+     case 1:             // moon light:
+       //glMaterialfv(GL_FRONT, GL_AMBIENT, dullmat_AMBIENT);
+       //glMaterialfv(GL_FRONT, GL_DIFFUSE, dullmat_DIFFUSE);
+       //glMaterialfv(GL_FRONT, GL_EMISSION, dullmat_EMISSION);
+       //glMaterialfv(GL_FRONT, GL_SPECULAR, dullmat_SPECULAR);
+       //glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, dullmat_SHININESS);
+       glLightfv(GL_LIGHT0,  GL_POSITION, moonlt_POSITION);
+       glLightfv(GL_LIGHT0,  GL_DIFFUSE,  moonlt_LCOLOR);
+       glLightModelfv(GL_LIGHT_MODEL_AMBIENT, dulllm_LMAMBIENT);
+       glLightModelfv(GL_LIGHT_MODEL_LOCAL_VIEWER, dulllm_LOCALVIEWER);
+       glShadeModel(GL_SMOOTH);
+       glEnable(GL_LIGHT0);
+       glEnable(GL_LIGHTING);
+       //glEnable(GL_COLOR_MATERIAL);
+       break;
+
+     case 2:             // light off: 
+       glDisable(GL_LIGHT0);
+       glDisable(GL_LIGHTING);
+       break;
+
+     case 3:             // original:
+       if (gwindow) {
+          org_background = WidgetBackgroundToGlRgb (gwindow->widget());
+          gwindow->color(org_background);
+       }
+       break;
+
+     case 4:             // black:
+          if (gwindow) gwindow->color(0,0,0); 
+       break;
+
+     case 5:             // dark red:
+          if (gwindow) gwindow->color(110,0,4);
+       break;
+
+     case 6:             // grey:
+          if (gwindow) gwindow->color(232,228,226);
+       break;
+
+     default:	         // All others, light off
+          glLightfv(GL_LIGHT0,  GL_POSITION, nonelt_POSITION);
+          glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lm_LMAMBIENT);
+          glLightModelfv(GL_LIGHT_MODEL_LOCAL_VIEWER, lm_LOCALVIEWER);
+       break;
+    }
+}
+
+
+void
+backgroundCB (Widget, XtPointer client_data, XtPointer)
+{
+   int item_no = (int) client_data;
+   long org_background;
+
+   if (gwindow) {
+   switch (item_no) {
+     case 0:       // original:
+        org_background = WidgetBackgroundToGlRgb (gwindow->widget());
+        gwindow->color(org_background);
+        break;
+     case 1:        // black:
+        gwindow->color(0,0,0); 
+        break;
+     case 2:        // dark red:
+        gwindow->color(110,0,4);
+        break;
+     case 3:        // grey:
+        gwindow->color(32,28,26);
+        break;
+     default:
+        break;
+   }
+   }
+}
+
+void
+weatherCB (Widget, XtPointer client_data, XtPointer)
+{
+int             item_no = (int) client_data;
+static Boolean  first_cloud = TRUE;
+static Boolean  cloud_on = FALSE;
+static Boolean  storm_on = FALSE;
+
+   if (first_cloud) {
+      cloud_displist = new GR_DispList;
+      gwindow->addDispList (cloud_displist, "cloud_displist");
+      // to ensure the "cloud_displist" is always attached even after 
+      // the main reset button is pressed -- added 07/09/93 by Y.Tung;
+      first_cloud = FALSE;
+   }
+ 
+   switch (item_no){
+      case 0: // Clouds
+        if (!cloud_on) {
+          cloud = new GR_Cloud (202, cloudfile);
+          cloud_displist->add_object (*cloud);
+        } else {
+	  cloud_displist->delete_object_by_type(202);
+	}
+        cloud_on = !cloud_on;
+        break;
+
+      case 1: // Storm
+        if (!storm_on) {
+          storm = new GR_Surface("../RSD_Data/isosurf.dat", 203, 35.7, 129.0, 400.0);
+          cloud_displist->add_object (*storm);
+        } else {
+	  cloud_displist->delete_object_by_type(203);
+	}
+        storm_on = !storm_on;
+        //terrain = new GR_Terrain(210, 1, 31.5, -97.5, "n31.dte");
+        //displist->add_object (*terrain);
+	break;
+
+      default:
+        break;
+   }
+
+   gwindow->draw ();
+}
+
+void
+viewsCB (Widget, XtPointer client_data, XtPointer)
+{
+int memorycode;
+
+  memorycode = (int)client_data;
+
+  switch (memorycode)
+  {  
+     case 0:
+       gwindow->draw();
+       break;
+
+     case 1:
+       viewCB(NULL, (XtPointer)0, NULL);
+       break;
+
+     case 2:
+       viewCB(NULL, (XtPointer)1, NULL);
+       break;
+
+     case 3:  // save 1
+       memoryCB(NULL, (XtPointer)1, NULL);
+       break;
+
+     case 4:  // recall 1
+       memoryCB(NULL, (XtPointer)101, NULL);
+       break;
+
+     case 5: // save 2
+       memoryCB(NULL, (XtPointer)2, NULL);
+       break;
+
+     case 6: // recall 2
+       memoryCB(NULL, (XtPointer)102, NULL);
+       break;
+
+     default:
+       break;
+  }
+}
+
+void
+optionCB (Widget, XtPointer client_data, XtPointer)
+{
+int memorycode;
+
+  memorycode = (int)client_data;
+
+  switch (memorycode) {  
+     case 0: // Show Tracks
+       SHOWTRACK = !SHOWTRACK;
+       break;
+
+     case 1: // Show Trails
+       SHOWTRAIL = !SHOWTRAIL;
+       break;
+
+     case 2: // Show Impacts
+       SHOWIMPACT = !SHOWIMPACT;
+       break;
+
+     case 3: // Label Tracks
+       LABELTRACK = !LABELTRACK;
+       break;
+
+     case 4: // Drop Tracks
+       DROPTRACK = !DROPTRACK;
+       break;
+
+     case 5: // Show R2 Links
+       SHOWR2 = !SHOWR2;
+       break;
+
+     case 6: // Keep Links
+       KEEPLINK = !KEEPLINK;
+       break;
+
+     default:
+       break;
+  }
+}
+
+void
+toolsCB (Widget, XtPointer client_data, XtPointer)
+{
+int    item_no = (int) client_data;
+
+   switch (item_no) {
+
+     case 0:					// View finder
+       view_finderCB ();
+       break;
+
+     case 1:					// Model viewer
+       model_viewerCB(GR_toplevel);
+       break;
+
+     case 2:
+#ifdef Linux					// Time management viewer
+       //time_viewerCB(GR_toplevel);
+#endif
+       break;
+
+     case 3:                                    // Asset Viewer
+       asset_viewerCB(GR_toplevel);
+       break;
+
+     case 4:
+#ifdef Linux					// Flat Map
+       //map_viewerCB(GR_toplevel);
+#endif
+       break;
+
+     case 5:					// Track Viewer
+       track_viewCB(GR_toplevel);
+       break;
+
+     case 6:					// Color Scheme Editor
+       track_editCB(GR_toplevel);
+       break;
+
+     case 7:					// Parameter Editor
+       pareditorCB();
+       break;
+
+     default:
+       break;
+   } 
+}
+
+void
+helpCB (Widget w, XtPointer client_data, XtPointer)
+{
+int          item_no = (int) client_data;
+int          nargs;
+Widget       idialog, adialog;
+XmString     helptext, aboutext, xstr;
+Arg          args[2];
+char         *helpstr, *aboutstr;
+char         littlestr[40];
+char         bigstring[160];
+Widget       theform = XtParent(XtParent(XtParent(XtParent(w))));
+   // Level 1. Menupane7; 2. popup_Menupane0; 3. Menubar; 4. Form. 
+ 
+   switch (item_no)
+   {
+      case 0:   // mouse operations:
+	xstr = XmStringCreateSimple("Mouse Operations");
+
+        helpstr = "Mouse Operations:\n Left: picking;\n Shift_Left: track ball action.";
+        helptext = XmStringCreateLtoR (helpstr, XmSTRING_DEFAULT_CHARSET);
+ 
+        XtSetArg (args[0], XmNmessageString, helptext);
+        XtSetArg (args[1], XmNautoUnmanage, False);
+        idialog = XmCreateInformationDialog (gwindow->widget(),"helpd",args,2);
+
+        XtVaSetValues (idialog, XmNdialogTitle, xstr, NULL);
+        XtUnmanageChild (XmMessageBoxGetChild(idialog,XmDIALOG_CANCEL_BUTTON));
+        XtUnmanageChild (XmMessageBoxGetChild(idialog,XmDIALOG_HELP_BUTTON));
+        //XtSetSensitive (XmMessageBoxGetChild(idialog,XmDIALOG_CANCEL_BUTTON), False);
+        //XtSetSensitive (XmMessageBoxGetChild(idialog,XmDIALOG_HELP_BUTTON), False);
+        XtAddCallback (idialog, XmNokCallback, help_doneCB, NULL);
+        XtManageChild (idialog);
+        XtPopup (XtParent(idialog), XtGrabNone);
+
+	XmStringFree (xstr);
+        XmStringFree (helptext); 
+        break;
+
+      case 1:   // About:
+	xstr = XmStringCreateSimple("About JTAMV");
+
+        sprintf(bigstring, "\n");
+        sprintf(littlestr, "Joint Theater Air\n");
+        strcat (bigstring, littlestr);
+        sprintf(littlestr, "and Missile Viewer\n\n");
+        strcat (bigstring, littlestr);
+        sprintf(littlestr, "Version %s\n", VERSION);
+        strcat (bigstring, littlestr);
+        strcat (bigstring, "\0");
+        aboutext = XmStringCreateLtoR (bigstring, XmSTRING_DEFAULT_CHARSET);
+
+	nargs = 0;
+        XtSetArg (args[nargs], XmNmessageString, aboutext); nargs++;
+        XtSetArg (args[nargs], XmNautoUnmanage,  False);    nargs++;
+        adialog = XmCreateInformationDialog (gwindow->widget(), "aboutd", args, nargs);
+
+        XtVaSetValues (adialog, XmNdialogTitle, xstr, NULL);
+        XtUnmanageChild (XmMessageBoxGetChild(adialog,XmDIALOG_CANCEL_BUTTON));
+        XtUnmanageChild (XmMessageBoxGetChild(adialog,XmDIALOG_HELP_BUTTON));
+        //XtSetSensitive (XmMessageBoxGetChild(adialog,XmDIALOG_CANCEL_BUTTON), False);
+        //XtSetSensitive (XmMessageBoxGetChild(adialog,XmDIALOG_HELP_BUTTON), False);
+        XtAddCallback (adialog, XmNokCallback, help_doneCB, NULL);
+        XtManageChild (adialog);
+        XtPopup (XtParent(adialog), XtGrabNone);
+
+	XmStringFree (xstr);
+        XmStringFree (aboutext); 
+        break;
+
+      case 2:
+	XtUnmapWidget (XtNameToWidget (theform, "Spanel"));
+	XtMapWidget (XtNameToWidget (theform, "Panel"));
+	break;
+
+      case 3:
+	XtUnmapWidget (XtNameToWidget (theform, "Panel"));
+	XtMapWidget (XtNameToWidget (theform, "Spanel"));
+	break;	
+
+      default:
+        break;
+   }
+}
+
+void
+help_doneCB (Widget dialog, XtPointer, XtPointer)
+{
+   XtDestroyWidget (dialog);
+}
+
+
+/* ---------------- control panel CB's ----------------- */
+
+void
+forceCB(Widget, XtPointer client_data, XtPointer)
+{
+   gwindow->draw();
+}
+
+void
+viewCB (Widget, XtPointer client_data, XtPointer)
+{
+   int new_vmode = (int)client_data; // 0: normal; 1: tangential;
+
+   if (VMODE != new_vmode)
+   {
+      if ((VMODE == 0) && (new_vmode == 1)) // from normal to tangent:
+      {
+	 v_FOV = v_FOV*(15 + v_ALT/1000)/30;
+	 // v_ALT /= 10;
+	 XmScaleSetValue (scaleFOV, v_FOV);
+	 XmScaleSetValue (scaleALT, v_ALT);
+      }
+      else if ((VMODE == 1) && (new_vmode == 0)) // from tangent to normal:
+      {
+	 v_FOV = v_FOV*30/(15 + v_ALT/1000);
+	 // v_ALT *= 10;
+	 XmScaleSetValue (scaleFOV, v_FOV);
+	 XmScaleSetValue (scaleALT, v_ALT);
+      }
+      VMODE = new_vmode;
+      setvparams (gwindow, VMODE, v_LAT, v_LON, v_ALT, v_FOV, v_AZI);
+      gwindow->draw();
+   }
+}
+
+void
+memoryCB (Widget, XtPointer client_data, XtPointer)
+{
+  int memorycode = (int)client_data; // #: save; 100+# recall;
+  Boolean recall = FALSE;
+
+  switch (memorycode)
+  {  
+     case 1:  // save 1
+       MODE_1 = VMODE;
+       LAT_1 = v_LAT;
+       LON_1 = v_LON;
+       ALT_1 = v_ALT;  
+       FOV_1 = v_FOV;
+       AZI_1 = v_AZI;
+       saved_vu = TRUE;
+       break;
+
+     case 2: // save 2
+       MODE_2 = VMODE;
+       LAT_2 = v_LAT;
+       LON_2 = v_LON;
+       ALT_2 = v_ALT; 
+       FOV_2 = v_FOV;
+       AZI_2 = v_AZI;
+       saved_vu = TRUE;
+       break;
+
+     case 101:  // recall 1
+       VMODE = MODE_1; 
+       v_LAT = LAT_1;
+       v_LON = LON_1;
+       v_ALT = ALT_1;
+       v_FOV = FOV_1;
+       v_AZI = AZI_1;
+       recall = TRUE;
+       break;
+
+     case 102: // recall 2
+       VMODE = MODE_2; 
+       v_LAT = LAT_2;
+       v_LON = LON_2;
+       v_ALT = ALT_2;
+       v_FOV = FOV_2;
+       v_AZI = AZI_2;
+       recall = TRUE;
+       break;
+
+     default:
+       break;
+  }
+
+  if (recall)
+  {
+     setvparams (gwindow, VMODE, v_LAT, v_LON, v_ALT, v_FOV, v_AZI);
+
+     XmScaleSetValue (scaleLAT, v_LAT);
+     XmScaleSetValue (scaleLON, v_LON);
+     XmScaleSetValue (scaleALT, v_ALT);
+     XmScaleSetValue (scaleFOV, v_FOV);
+     XmScaleSetValue (scaleAZI, v_AZI);
+     
+     gwindow->draw();
+ 
+     if (vfwindow && vfwindow->get_awake())
+        vfwindow->draw();
+  }
+}
+
+
+void
+changeScaleCB (Widget, char code, XmScaleCallbackStruct* call_data)
+{
+   switch (code)
+   {
+    case 'a':
+      v_LAT = call_data->value;
+      break;
+    case 'o':
+      v_LON = call_data->value;
+      break;
+    case 'l':
+      v_ALT = call_data->value;
+      break;
+    case 'v':
+      v_FOV = call_data->value;
+      gwindow->field_of_view((float)v_FOV);
+      break;
+    case 'z':
+      v_AZI = call_data->value;
+      break;
+    default:
+      XtWarning ("Unknown code in changeScaleCB function.");
+      return;
+   }
+
+   setvparams (gwindow, VMODE, v_LAT, v_LON, v_ALT, v_FOV, v_AZI);
+   gwindow->request_draw(100);
+
+   if (vfwindow && vfwindow->get_awake())
+     vfwindow->draw ();
+}
+
+void
+recordCB (Widget, XtPointer client_data, XtPointer)
+{
+static GLINFO    *glhead;
+void             *pixels;
+BITMAPINFO       *header;
+int              irc;
+char             filename[120];
+
+   int item_no = (int) client_data;
+
+   switch (item_no) {
+      case 0:                             // Take a snapshoot of the display area
+        sprintf(filename, "IMG%5.5d_%5.5d.bmp", process_id, image_no);
+        glhead = GetGLBitmap();
+        if (glhead != NULL) {
+           header = glhead->head;
+           pixels = glhead->bits;
+           irc = SaveDIBitmap(filename, header, pixels);        
+           if (irc == 0) {
+              image_no = image_no + 1;
+	   }
+           free(glhead->bits);
+           free(glhead->head);
+	   free(glhead);
+	}
+        break;
+
+      case 1:                             // Start/Stop recording
+        if (!rec_entered) {
+           sprintf(filename, "MOV%5.5d_%5.5d.mpg", process_id, frame_no);
+           if ((MPEGfp = fopen(filename, "wb")) == NULL) break;
+           rec_entered = TRUE;
+        }
+        RECORDING = !RECORDING;
+	if (RECORDING)
+	   XtVaSetValues(modestat, XmNbackgroundPixmap, grnledpix, NULL);
+	else
+	   XtVaSetValues(modestat, XmNbackgroundPixmap, redledpix, NULL);
+	break;
+
+      case 2:                             // Record a frame
+        if (rec_entered && RECORDING) {
+	   sprintf(filename, "BMP%5.5d_%5.5d.bmp", process_id, frame_no);
+           glhead = GetGLBitmap();
+	   if (glhead != NULL) {
+              header = glhead->head;
+              pixels = glhead->bits;
+              irc = SaveDIBitmap(filename, header, pixels);
+              if (irc == 0) {
+                 frame_no = frame_no + 1;
+	      }
+              free(glhead->bits);
+              free(glhead->head);
+	      free(glhead);
+	   }
+	}
+	break;
+
+      case 3:                             // Finish up recording
+        if (rec_entered) {
+           fclose(MPEGfp);
+           rec_entered = FALSE;
+           RECORDING = FALSE;
+	   XtVaSetValues(modestat, XmNbackgroundPixmap, redledpix, NULL);
+        }
+	break;
+
+      default:
+        break;
+   }
+   /*
+   static Boolean default_panel = TRUE;
+   
+   Widget theform = XtParent(XtParent(w));
+   // Level 1. Viewbar; 2. Form.
+
+   default_panel = !default_panel;
+   if (default_panel)
+   {
+      XtUnmapWidget (XtNameToWidget (theform, "Panel"));
+      XtMapWidget (XtNameToWidget (theform, "Spanel"));
+   }
+   else
+   {
+      XtUnmapWidget (XtNameToWidget (theform, "Spanel"));
+      XtMapWidget (XtNameToWidget (theform, "Panel"));
+   }
+   
+   */
+}
+
+
+/* === */
+/*
+void
+cloudCB ()
+{
+   static Boolean first_cloud = TRUE;
+   static Boolean on_flag = FALSE;
+   
+   if (first_cloud) {
+      printf ("cloudCB is called, will use file %s...\n", cloudfile);
+
+      cloud = new GR_Cloud (202, cloudfile);
+      cloud_displist = new GR_DispList;
+      gwindow->addDispList (cloud_displist, "cloud_displist");
+      cloud_displist->add_object (*cloud);
+      printf ("....will draw the clouds...\n");
+      first_cloud = FALSE;
+   } else {
+      if (!on_flag)
+	 cloud_displist->delete_objects ();
+      else {
+         gwindow->addDispList (cloud_displist, "cloud_displiat");
+	 // to ensure the "cloud_displist" is always attached even after 
+         // the main reset button is pressed -- added 07/09/93 by Y.Tung; 
+         cloud_displist->add_object (*cloud);
+         printf ("....will draw the clouds...\n");
+      }
+      on_flag = !on_flag;
+   }
+
+   gwindow->draw ();
+}
+*/
+void
+pareditorCB ()
+{
+Widget   dialog;
+Arg      arg[10];
+char     str [1280];
+XmString xstr;
+int      i, pid;
+
+   switch (pid = fork()) {
+   case 0:
+     execlp("jtamved", "jtamved", NULL);
+     perror("jtamved");
+     exit (255);
+     break;
+   case -1:
+     printf("Child process startup failed.\n");
+     break;
+   }
+}

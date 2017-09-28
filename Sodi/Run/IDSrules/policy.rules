@@ -1,0 +1,37 @@
+# (C) Copyright 2001, Martin Roesch, Brian Caswell, et al.  All rights reserved.
+# $Id: policy.rules,v 1.14 2001/10/29 01:52:54 roesch Exp $
+#-------------
+# POLICY RULES
+#-------------
+#
+
+alert tcp $HOME_NET any -> $EXTERNAL_NET 1863 (msg:"INFO msn chat access";flags: A+; content:"|746578742F706C61696E|"; depth:100; classtype:not-suspicious; sid:540; rev:2;)
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"INFO icq access"; flags: A+; content: "User-Agent\:ICQ"; classtype:not-suspicious; sid:541; rev:2;)
+alert tcp $HOME_NET any -> $EXTERNAL_NET 6666:7000 (msg:"INFO Possible IRC Access"; flags: A+; content: "NICK "; classtype:not-suspicious; sid:542; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP STOR 1MB possible warez site"; flags: A+; content:"STOR 1MB"; nocase; depth: 8; classtype:bad-unknown; sid:543; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP RETR 1MB possible warez site"; flags: A+; content:"RETR 1MB"; nocase; depth: 8; classtype:bad-unknown; sid:544; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP CWD / - possible warez site"; flags: A+; content:"CWD / "; nocase; depth: 6; classtype:bad-unknown; sid:545; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP \"CWD  \" possible warez site"; flags: A+; content:"CWD  "; nocase; depth: 5; classtype:bad-unknown; sid:546; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP \"MKD  \" possible warez site"; flags: A+; content:"MKD  "; nocase; depth: 5; classtype:bad-unknown; sid:547; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP \"MKD . \" possible warez site"; flags: A+; content:"MKD ."; nocase; depth: 5; classtype:bad-unknown; sid:548; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP \"MKD / \" possible warez site"; flags: A+; content:"MKD / "; nocase; depth: 6; classtype:bad-unknown; sid:554; rev:2;)
+alert tcp $HOME_NET any -> $EXTERNAL_NET 8888 (msg:"INFO napster login"; flags: A+; content:"|00 0200|"; offset: 1; depth: 3;  classtype:bad-unknown; sid:549; rev:2;)
+alert tcp $HOME_NET any -> $EXTERNAL_NET 8888 (msg:"INFO napster new user login"; flags: A+; content: "|00 0600|"; offset: 1; depth: 3;  classtype:bad-unknown; sid:550; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 8888 (msg:"INFO napster download attempt"; flags: A+; content: "|00 cb00|"; offset: 1; depth: 3;  classtype:bad-unknown; sid:551; rev:1;)
+alert tcp $EXTERNAL_NET 8888 -> $HOME_NET any (msg:"INFO napster upload request"; flags: A+; content: "|00 5f02|"; offset: 1; depth: 3; classtype:bad-unknown;  sid:552; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"INFO FTP anonymous FTP"; content:"anonymous"; nocase; flags:A+; classtype:not-suspicious; sid:553; rev:1;)
+alert tcp $HOME_NET 23 -> $EXTERNAL_NET any (msg:"INFO wingate telnet active"; content:"WinGate>"; flags: A+; reference:arachnids,366; reference:cve,CAN-1999-0657; classtype:bad-unknown; sid:555; rev:1;)
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"INFO Outbound GNUTella Connect request"; content: "GNUTELLA CONNECT"; nocase; depth: 40; classtype:bad-unknown; sid:556; rev:1;)
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"INFO Inbound GNUTella Connect accept"; content: "GNUTELLA OK"; nocase; depth: 40; classtype:bad-unknown; sid:557; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"INFO Outbound GNUTella Connect accept"; content: "GNUTELLA OK"; nocase; depth: 40; classtype:bad-unknown; sid:558; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"INFO Inbound GNUTella Connect request"; content: "GNUTELLA CONNECT"; nocase; depth: 40; classtype:bad-unknown; sid:559; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"INFO VNC Active on Network"; flags: A+; content:"RFB 003.003"; classtype:bad-unknown; sid:560; rev:1;)
+alert tcp $HOME_NET any <> $EXTERNAL_NET 6699 (msg:"INFO Napster Client Data"; flags: A+; content:".mp3"; nocase; classtype:bad-unknown; sid:561; rev:1;)
+alert tcp $HOME_NET any <> $EXTERNAL_NET 7777 (msg:"INFO Napster Client Data"; flags: A+; content:".mp3"; nocase; classtype:bad-unknown; sid:562; rev:1;)
+alert tcp $HOME_NET any <> $EXTERNAL_NET 6666 (msg:"INFO Napster Client Data"; flags: A+; content:".mp3"; nocase; classtype:bad-unknown; sid:563; rev:1;)
+alert tcp $HOME_NET any <> $EXTERNAL_NET 5555 (msg:"INFO Napster Client Data"; flags: A+; content:".mp3"; nocase; classtype:bad-unknown; sid:564; rev:1;)
+alert tcp $HOME_NET any <> $EXTERNAL_NET 8875 (msg:"INFO Napster Server Login"; flags: A+; content:"anon@napster.com"; classtype:bad-unknown; sid:565; rev:1;)
+alert udp $EXTERNAL_NET any -> $HOME_NET 5632 (msg:"MISC PCAnywhere Startup"; content:"ST"; depth: 2; reference:arachnids,239; classtype:bad-unknown; sid:566; rev:1;)
+alert tcp $SMTP 25 -> $EXTERNAL_NET any (msg:"SMTP relaying denied"; flags: A+; content: "550 5.7.1"; depth:70;  reference:arachnids,249; classtype:bad-unknown; sid:567; rev:4;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 9100 (msg:"INFO hp jetdirect LCD modification attempt"; flags:A+; content:"@PJL RDYMSG DISPLAY ="; classtype:bad-unknown; reference:bugtraq,2245; reference:arachnids,302; sid:568; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 9001 (msg:"INFO hp jetdirect LCD modification attempt"; flags:A+; content:"@PJL RDYMSG DISPLAY ="; classtype:bad-unknown; reference:bugtraq,2245; reference:arachnids,302; sid:510; rev:2;)

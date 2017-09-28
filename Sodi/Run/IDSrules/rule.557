@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 32770: (msg:"RPC rusers query"; content:"|0000000000000002000186A2|";offset:5; reference:cve,CVE-1999-0626; reference:arachnids,136; classtype:attempted-recon; sid:612; rev:1;)

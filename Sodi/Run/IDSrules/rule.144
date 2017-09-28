@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 27665 (msg:"DDOS Trin00\:Attacker to Master default startup password";flags: A+; content:"betaalmostdone"; reference:arachnids,197; classtype:attempted-dos; sid:233; rev:1;)

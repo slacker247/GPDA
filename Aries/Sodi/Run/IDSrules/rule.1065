@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Cisco IOS HTTP configuration attempt"; uricontent:"/level/"; uricontent:"/exec/"; flags:A+; classtype:web-application-attack; reference:bugtraq,2936; sid:1250; rev:2;)

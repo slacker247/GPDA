@@ -1,0 +1,168 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<title>The Query Pane</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+</head>
+
+<body>
+
+<h1><img src="../classes/images/serving_nerd.gif" width="48" height="48">   The
+Query Pane<br>
+<img src="../classes/images/header_line.gif" width="590" height="6"></h1>
+
+<p>The Query Pane allows you to enter, modify, or save your queries.&nbsp;</p>
+
+<p align="center"><img border="0" src="images/query_pane.gif" width="807" height="384"></p>
+
+<p>The Query Pane has the following components:</p>
+
+<ol>
+  <li>One or more <a href="#query bar"> query bars</a>, where you can construct a query by selecting a
+    class, slot, criterion, and value.</li>
+  <li>The <a href="#combined query"> Combined Query buttons</a>, which allow you to add and remove additional
+    query bars, and to specify how they are combined.</li>
+  <li>The <a href="#find"> Find button</a>, which allows you to run your query.</li>
+  <li>The <a href="#name and save"> Query Name bar and Save Query button</a>, which allow you to name and save
+    a query.</li>
+</ol>
+<h2><a name="query bar"></a>Query Bar(s)</h2>
+<p>Each query bar has:</p>
+<ol>
+  <li>A Class entry field, which allows you to specify a class by clicking the
+    Select Class <img border="0" src="../classes/images/Add.gif" width="19" height="19">
+    button. If a class is already shown, using the Select Class <img border="0" src="../classes/images/Add.gif" width="19" height="19">
+    button replaces it. You can also view the selected class by clicking the
+    View <b><img border="0" src="../classes/images/View.gif" width="15" height="15"></b> button, or remove it by
+    clicking the Remove <img border="0" src="../classes/images/Remove.gif" width="19" height="19"> button.&nbsp;</li>
+  <li>A Slot entry field, which allows you to specify a slot by clicking the
+    Select Slot <img border="0" src="../classes/images/Add.gif" width="19" height="19">
+    button. If a slot is already shown, using the Select Slot <img border="0" src="../classes/images/Add.gif" width="19" height="19">
+    button replaces it. You can also view the selected slot by clicking the
+    View <b><img border="0" src="../classes/images/View.gif" width="15" height="15"></b> button, or remove it by
+    clicking the Remove <img border="0" src="../classes/images/Remove.gif" width="19" height="19"> button.&nbsp;</li>
+  <li>A criteria menu, which allows you to set the criteria for the query based
+    on the slot.&nbsp;</li>
+  <li>A value entry bar or menu, which allows you to set the value for
+    comparison. The entry type is based on the slot value type.</li>
+</ol>
+
+<p>Choices for the criteria menu and value are as follows:</p>
+<table border="0" width="96%">
+  <tr>
+    <td width="28%" valign="top"><b>Slot Type</b></td>
+    <td width="43%" valign="top"><b>Criteria Menu</b></td>
+    <td width="98%" valign="top"><b>Action</b></td>
+  </tr>
+  <tr>
+    <td width="28%" valign="top">Boolean</td>
+    <td width="43%" valign="top"><img border="0" src="images/boolean_q.gif" width="171" height="19"></td>
+    <td width="98%" valign="top">Verifies whether or not the Boolean value is <b>true</b>
+      or <b>false</b>, as selected from the menu at the right.</td>
+  </tr>
+  <tr>
+    <td width="28%" valign="top">Class</td>
+    <td width="43%" valign="top"><img border="0" src="images/class_q.gif" width="170" height="42"></td>
+    <td width="98%" valign="top">The selected criterion is compared to a class
+      selected at the right. To select a class, click the Select Class <img border="0" src="../classes/images/Add.gif" width="19" height="19">
+      button. To remove a class, click the Remove <img border="0" src="../classes/images/Remove.gif" width="19" height="19">
+      button. Only one class can be selected.</td>
+  </tr>
+  <tr>
+    <td width="28%" valign="top">Float</td>
+    <td width="43%" valign="top"><img border="0" src="images/float_q.gif" width="172" height="61"></td>
+    <td width="98%" valign="top">The selected criterion is compared to the value
+      typed in the Float entry bar at the right.</td>
+  </tr>
+  <tr>
+    <td width="28%" valign="top">Instance</td>
+    <td width="43%" valign="top"><img border="0" src="images/class_q.gif" width="170" height="42"></td>
+    <td width="98%" valign="top">The selected criterion is compared to an
+      instance selected at the right. To select an instance, click the Select
+      Instance <img border="0" src="../classes/images/Add.gif" width="19" height="19">
+      button. To remove an instance, click the Remove <img border="0" src="../classes/images/Remove.gif" width="19" height="19">
+      button. Only one instance can be selected.</td>
+  </tr>
+  <tr>
+    <td width="28%" valign="top">Integer</td>
+    <td width="43%" valign="top"><img border="0" src="images/float_q.gif" width="172" height="61"></td>
+    <td width="98%" valign="top">The selected criterion is compared to the value
+      typed in the Integer entry bar at the right.</td>
+  </tr>
+  <tr>
+    <td width="28%" valign="top">String</td>
+    <td width="43%" valign="top"><img border="0" src="images/string_q.gif" width="171" height="117"></td>
+    <td width="98%" valign="top">The selected criterion is compared to all or
+      part of a string typed in the entry bar to the right. For example,
+      selecting <b>begins with</b> and typing M in the String entry bar will
+      find all instances of the selected class/slot combination that begin with
+      M.</td>
+  </tr>
+  <tr>
+    <td width="28%" valign="top">Symbol</td>
+    <td width="43%" valign="top"><img border="0" src="images/symbol_q.gif" width="171" height="41"></td>
+    <td width="98%" valign="top">The Symbol entry bar to the right becomes a
+      drop-down menu that displays all possible values for the slot. The
+      selected criterion is compared to the value.&nbsp;</td>
+  </tr>
+</table>
+<h2><a name="combined query"></a>Combined Query Buttons</h2>
+<table border="0" width="100%">
+  <tr>
+    <td width="18%"><b>More</b></td>
+    <td width="82%">Click this button to create an additional query bar, which
+      can then be set with class, slot, and criterion.</td>
+  </tr>
+  <tr>
+    <td width="18%"><b>Fewer</b></td>
+    <td width="82%">If there are two are more query bars, click this button to
+      remove the bottommost query bar.</td>
+  </tr>
+  <tr>
+    <td width="18%"><b>Clear</b></td>
+    <td width="82%">Click this button to clear all query bars and reduce the
+      Query Pane to a single, blank query bar.</td>
+  </tr>
+  <tr>
+    <td width="18%"><b>Match All</b></td>
+    <td width="82%">For two or more query bars, click this button to specify
+      that any instance found must match all the criteria (the intersection or
+      AND) specified in the query bars.</td>
+  </tr>
+  <tr>
+    <td width="18%"><b>Match Any</b></td>
+    <td width="82%">For two or more query bars, click this button to specify
+      that any instance found must match at least one of the criteria (the union
+      or OR) specified in the query bars.</td>
+  </tr>
+</table>
+<h2><a name="find"></a>Find Button</h2>
+<table border="0" width="100%">
+  <tr>
+    <td width="18%"><b>Find</b></td>
+    <td width="82%">When the query has been set up as desired, click this button
+      to find all instances that match the selected criteria.</td>
+  </tr>
+</table>
+
+<h2><a name="name and save"></a>Query Name and Save Query</h2>
+<p>The Query Name bar at the bottom of the pane allows you name a query by
+typing any string.</p>
+<table border="0" width="100%">
+  <tr>
+    <td width="18%"><img border="0" src="images/SaveQuery.gif" width="15" height="16"></td>
+    <td width="82%">When the query has been set up as desired, click this button
+      to save the query in the <a href="query_library.html">Query Library</a>
+      using the name in the Query Name bar.</td>
+  </tr>
+</table>
+
+<hr align="left">
+
+<p><font size="3">Next: </font><a href="search_results.html">The Search Results Pane</a></p>
+<p><font size="3"><a href="index.html">Queries Table of Contents</a></font></p>
+</body>
+</html>

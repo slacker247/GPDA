@@ -1,0 +1,1 @@
+alert TCP $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE rad overflow attempt"; uricontent:"/fp30reg.dll"; nocase; dsize: >258; flags: A+; classtype:web-application-attack; reference:arachnids,555; reference:bugtraq,2906; reference: cve,CAN-2001-0341; sid:1246; rev:2;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS fpcount attempt"; flags: A+; uricontent:"/fpcount.exe"; content:"Digits=-"; nocase; reference:bugtraq,2252; classtype:web-application-attack; sid:1012; rev:3;)

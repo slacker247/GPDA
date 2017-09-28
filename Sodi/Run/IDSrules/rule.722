@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible NewApt.Worm - pirate.exe"; content: "filename=\"PIRATE.EXE\""; nocase; reference:MCAFEE,10540; sid:765;  classtype:misc-activity; rev:3;)

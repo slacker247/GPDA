@@ -1,0 +1,408 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; I) [Netscape]">
+   <meta name="Author" content="William Grosso">
+   <title>Tables: A Guide for the Perplexed</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+&nbsp;
+<center>
+<p><font size="+4">Tables: A Guide for the Perplexed</font></center>
+
+<hr WIDTH="100%">
+<br><b><font size="+3">Table of Contents:</font></b>
+<ol>
+<li>
+<font size="+1"><a href="index.html#WhatIsATable">What is a Table</a></font></li>
+
+<li>
+<a href="index.html#WalkingThroughAnExample"><font size="+1">Walking Through an Exampl</font>e</a></li>
+
+<li>
+<font size="+1"><a href="index.html#TheTableKnowledgeBase">The Table Knowledge Base</a></font></li>
+</ol>
+<a NAME="WhatIsATable"></a><b><font size="+3">1. What is a Table</font></b>
+<p>Most user interaction with the Protege GUI is done via forms. Each class
+has a form associated to it, and each instance is simply a filled out form.
+For example, the <a href="editor_in_ontology.gif">Editor</a> class has
+an <a href="editor_in_forms_layout.gif">associated form</a>, and instances
+of Editor are displayed as <a href="acquiring_an_editor.gif">filled-out
+forms</a>. This approach facilitates structured data entry for instances.
+More generally,&nbsp; it simplifies local interaction with the knowledge
+base (e.g., looking at and editing small number of instances in great detail).
+Often, however, there is additional structure in the knowledge base, which
+the standard forms-based interface and the default widget set do not adequately
+represent.
+<p>Tables are complex widgets, designed to help elicit and visualize functional
+relationships in a knowledge base.&nbsp; Most widgets are entirely user-interface
+devices which&nbsp; don't make any ontological commitments. For example,
+you can choose to use a ContainsWidget instead of an InstanceListWidget
+without making any ontological changes or changing, in any way, the underlying
+semantics of the knowledge base. The only commitment implied by the use
+of ContainsWidget is that a particular slot has a value type of instance.
+<p>Table widgets, on the other hand, reflect an underlying functional relationship
+in the knowledge base. In order to use table widgets, you must structure
+your knowledge base in a certain way. The<a href="step3.gif"> tables knowledge
+base</a>, which is required by the table widgets, contains non-trivial
+conceptual definitions which you must use, and extend, in order to use
+table widgets. This means that the decision to use tables is not lightly
+made, and that using table widgets in projects and knowledge bases which
+weren't explciitly designed to be used with them might be problematic.
+<p><a NAME="WalkingThroughAnExample"></a><b><font size="+3">2. Walking Through
+an Example</font></b>
+<p>To make this more concrete, we're going to walk through an example,
+adding the ability to use a table widget to an existing project. In this
+case, we will be adapting the newspaper project.
+<p><b><font size="+1">Step 1: Load the existing project</font></b>
+<p>We will use <a href="step1.gif">the newspaper project</a>.
+<p><b><font size="+1">Step 2: Make sure the tables project is included</font></b>
+<p>The next step is to make sure that the project being modified includes
+the tables project (the tables project contains a few key concept definitions
+the table widgets require). The tables project is included in your Protege-2000
+distribution, as part of the examples directory. To see if the tables project
+is already included, you can use the <i>Project</i> menu and choose the
+<a href="step2.gif"><i>Show Included Project</i>s</a> option. If the tables
+project is not included,&nbsp; you can include it by using the <i>Include...
+</i>option
+on the <i>Project</i> menu.
+<p><b><font size="+1">Step 3: Decide what functional relationships should
+exist in the knowledge base</font></b>
+<p>We will use a table widget to visualize pricing structures. The cost
+of an advertisement depends upon the size of the ad and the section of
+the paper it is placed in. This means that cost is a function (of two variables)
+and therefore, once the knowledge-base structure is definedd,&nbsp; the
+ideal candidate for visualization in a table widget.
+<p><b><font size="+1">Step 4: Define the domain of the underlying function</font></b>
+<p>The first step in using table widgets is to define the domain of the
+function you are representing. The domain is currently restricted to two
+axes (eventually we will allow more than two dimensions) and each axis
+must be an enumerable finite set. For example,&nbsp; both &quot;the integers
+between 0 and 10&quot; and &quot;all subclasses of a particular class&quot; are valid
+domain axes (they're finite sets, and can be enumerated). As is using a
+set of symbols (defined as the allowed values of a slot that has a value
+type of symbol).&nbsp; Sets like &quot;floating point numbers between 0 and
+10&quot; or &quot;strings&quot; are not valid domain axes.
+<p>In our example, we've <a href="step4.gif">defined two term hierarchies</a>
+inside the class hierachy, and we will use these to define axes. That is,
+one axis will be subclasses of <i>Section</i>. And the other will be subclasses
+of <i>Size of advertisement</i>.
+<p>Using the class hierarchy to define axes is a common design decision.
+The main reason for using the class hierarchy to do this, rather than simply
+defining a set of symbols, is that symbols are defined locally, on each
+slot. If more than one slot is referencing the same set of terms, using
+a class hierarchy simplifies maintenance. This is because a single change
+in terminology is enacted by a single change to term hierarchy. If the
+terms were encoded using symbols, the change would have to be made at each
+slot which took values from the symbol set.
+<p><b><font size="+1">Step 5: Define the range of the underlying function</font></b>
+<p>The next step is to decide what the range of the underlying function
+is. If it is going to be instances of a class, you need to define that
+class. In our case, however, we're simply going to use floating point numbers
+to represent price. So our function will encode information like:
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The standard price of a <i>Single page</i> advertisement in the <i>Lifestyles</i>
+section is 450.0
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The standard price of a <i>Single page</i> advertisement in the <i>Science</i>
+section is 495.0
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The standard price of a <i>Single page</i> advertisement in the <i>Local
+News </i>section is 625.0
+<p><b><font size="+1">Step 6: Decide what type of entries to use</font></b>
+<p>Defining the domain axes, and deciding on a range value type, is tantamount
+to defining three slots. That is, the above information could be viewed
+as
+<br>filling out the values for the slots <i>size</i>, <i>section</i>, and
+<i>standard
+price </i>in three case.
+<p>The logical next question to consider is, therefore, what class or classes
+to attach these slots to. The decision boils down to this: is there a single
+conceptual entity containing both the domain and range values ? Or are
+the domain and range values conceptually distinct entities which happen
+to be in&nbsp; a functional relationship.
+<p>An example of the latter might be a table containing mortality rates.
+There is a functional relationship between a person's height and weight,
+and their expected lifespan. That is, there is a domain object (Person)
+with two slots that participate in the functional relationship. The domain,
+considered as a whole, is a conceptually distinct entity.
+<p>In our case, the domain consists of a section and a size. There is no
+clear conceptual reason to create a class (<i>SectionAndSize</i> ?)&nbsp;
+aside from the fact that it would useful as a domain for this functional
+relationship. So, we will create an entry class that has both domain and
+range slots attached to it. To do this, we need to subclass <i>SingleObjectEntry</i>
+(an abstract class contained in the tables knowledge base), making sure
+that our new class, <i><a href="step6.gif">BillingChartEntry</a></i>, is
+an instance of <i>EntryMetaclass</i>.
+<p>We also add three own slots, corresponding to our domain and range slots,
+to the class we've just defined, and set their facets accordingly.
+<p><b>Side-note</b>: If we were using separate domain and range objects,
+then our definition of <i>BillingChartEntry</i> would be slightly different.
+In this scenario, we would create a domain class, <i>SectionAndSize</i>
+and attach the slots <i>section </i>and<i> size</i> to it. After which,
+we would create a range class definition, <i>Price</i>, and attach the
+slot <i>standard-price</i> to it.&nbsp; <i>BillingChartEntry</i> would
+be a subclass of <i>DomainRangeObjectPairEntry</i> (instead of <i>SingleObjectEntry</i>)
+and we'd need to set the allowed-values facet of <i>:domain-value</i> and
+<i>:range-value</i>
+to reflect our domain and range classes. Finally, <i>BillingChartEntry</i>
+would still need to be an instance of <i>EntryMetaclass</i>. This scenario
+is pictured <a href="step6_sidenote.gif">here</a>.
+<p><b><font size="+1">Step 7: Annotate the Entry class definition by filling
+out the own slots</font></b>
+<p>Instances of <i>BillingChartEntry</i> will embody individual statements
+of the type discussed in Step 5. That is, for each sentence like
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The standard price of a <i>Single page</i> advertisement in the <i>Lifestyles</i>
+section is 450.0
+<p>there will be an instance of <i>BillingChartEntry</i> in the knowledge
+base. But we still have to tell the widget, and record in the knowledge
+base, which slots are domain slots and which slots are range slot. E.g.,
+there is no apriori reason, so far, that the interpretation of an instance
+of <i>BillingChartEntry</i> couldn't be
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The section of a 450.0 with size <i>Single page</i> is <i>Lifestyles</i>
+<p>The way we record this information is by using the own slots that <i>BillingChartEntry</i>
+acquires from being an instance of <i>EntryMetaClass</i>. There are two
+slots on <i>BillingChartEntry</i>: <i>:domain-value-slots</i> and<i> :range-value-slot</i>.
+<i>:domain-value-slots</i>
+stores pointers to two slots (which must be attached to <i>BillingChartEntry</i>)
+which hold the domain values. And
+<i>:range-value-slot</i> stores a pointer
+to the slot (which must be attached to <i>BillingChartEntry</i>) that holds
+the range value. The fully configured
+<i>BillingChartEntry</i> class can
+be viewed <a href="step7.gif">here</a>.
+<p><b>Side-note</b>: If we were using separate domain and range objects,
+we would still do much the same thing: <i>:domain-value-slots</i> and <i>:range-value-slot</i>
+would still be own slots attached to <i>BillingChartEntry</i> (since <i>BillingChartEntry</i>
+would still be an instance of <i>EntryMetaclass</i>). The only difference
+is that, instead of pointing to slots attached to BillingChartEntry, they
+would point to slots attached to the associated value objects (namely <i>SectionAndSize</i>
+and <i>Price</i>).
+<p><b><font size="+1">Step 8: Create the functional class, including a slot
+for &quot;entries&quot;</font></b>
+<p>At this point, we've created enough ontological structure to accurately
+represent sentences such as
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The standard price of a <i>Single page</i> advertisement in the <i>Lifestyles</i>
+section is 450.0
+<p>The next step is to represent the entire function.That is, we need to
+define a class which holds a lot of individual entries (the function is
+the set of all the entries). This is relatively easy to do-- we simply
+create a subclass of <i>BoundedDomain_EnumeratedFunction</i> (a class defined
+in the datastructues knowledge base)&nbsp; and attach a slot which holds
+multiple instances of our entry class. <a href="step8.gif">In our case</a>,
+we define <i>BillingChart</i> and attach the slot <i>rates</i>.
+<br>Note that the class we define must also be an instance of <i>EnumeratedRelationMetaclass</i>
+<p><b><font size="+1">Step 9: Annotate the functional class definition by
+filling out the own slots</font></b>
+<p>The final ontological step is to say which slot holds the entries. The
+class <i>BillingChart</i> has an own slot, <i>:entry-slot</i>, which it
+got by being an instance of <i>EnumeratedRelationMetaclass</i>. We <a href="step9.gif">set
+this slot</a> to point at <i>rates</i>.
+<br>&nbsp;
+<p><b><font size="+1">Step 10: Choose which slots to display and select the
+table widget</font></b>
+<p>After all this ontological work, which boiled down to deifning a functional
+relationship between concepts in our knowledge base, we still need to configure
+the forms. The first step in doing so is going to <a href="step10.gif">the
+form for the <i>BillingChart</i></a> and selecting the table widget for
+the slot <i>rates</i>.
+<p><b><font size="+1">Step 11: Configure the table widget</font></b>
+<p>Double-clicking on the table widget brings up a panel with an extensive
+number of configuration options. These options allow the table widget to
+display different types of information&nbsp; in different ways and enable
+options such as i<a href="step11.gif">n-place editing</a>.
+<p><b><font size="+1">Step 12: Acquire instances</font></b>
+<p>Finally, after all this hard work, knowledge-acquisition can actually
+take place. <a href="step12.gif">Here</a> is a screenshot of the table
+widget in action.
+<p><b><font size="+1">Step 13: Send feedback to the Protege group</font></b>
+<p>The table widgets are some of the more complex, and cumbersome, widgets
+that ships with Protege. As you use them, you will undoubtedly notice many
+shortcomings. We'd like to hear about them. The appropriate venue for comments
+and discussions is the <a href="mailto:protege-discussion@smi.stanford.edu">protege-discussion</a>
+mailing list.
+<br>&nbsp;
+<p><a NAME="TheTableKnowledgeBase"></a><b><font size="+3">3. The Table Knowledge
+Base</font></b>
+<p>The core conceptual definitions for tables are contained in the tables
+knowledge base. There are 9 core classes which the table widgets use:
+<br>&nbsp;
+<br>&nbsp;
+<center><table BORDER WIDTH="80%">
+<tr>
+<td><b>Class Name</b></td>
+
+<td><b>What it Really Represents</b></td>
+
+<td><b>Role in tables Knowledge Base</b></td>
+
+<td><b>Role during Ontology Design&nbsp;</b></td>
+
+<td><b>Role during Knowledge Acquisition</b></td>
+</tr>
+
+<tr>
+<td>TableEntity</td>
+
+<td>Nothing. DataStructure has no conceptual content at all.&nbsp;</td>
+
+<td>DataStructure is only used to help organize the diagrams knowledge
+base ontology-- all other classes in the diagrams knowledge base are subclasses
+of DataStructure.&nbsp;</td>
+
+<td>None.</td>
+
+<td>None.</td>
+</tr>
+
+<tr>
+<td>EnumeratedRelation</td>
+
+<td></td>
+
+<td></td>
+
+<td>None.&nbsp;</td>
+
+<td><i>EnumeratedRelation</i> is an abstract superclass of <i>EnumeratedFunction</i>,
+and so plays some role in structuring the&nbsp; knowledge base. But it
+has no direct role in knowledge acquisition.</td>
+</tr>
+
+<tr>
+<td>EnumeratedRelationMetaclass</td>
+
+<td></td>
+
+<td></td>
+
+<td>Subclasses of <i>BoundedDomainEnumeratedFunction</i> should be instances
+of <i>EnumeratedRelationMetaclass</i> (rather than :STANDARD-CLASS). <i>:entry_slot</i>,
+which will be an own slot on the subclass of <i>BoundedDomain_EnumeratedFunction</i>,
+must have its value set to a slot which is attached to the subclass of
+<i>BoundedDomain_EnumeratedFunction</i>
+being configured.&nbsp;</td>
+
+<td>The value of <i>entries</i> is used by the various table widgets. From
+the user's point of view, once the ontology is defined, <i>EnumeratedRelationMetaclass</i>can
+be ignored.</td>
+</tr>
+
+<tr>
+<td>EnumeratedFunction</td>
+
+<td></td>
+
+<td></td>
+
+<td>None.</td>
+
+<td><i>EnumeratedFunction</i> is an abstract superclass of <i>BoundedDomain_EnumeratedFunction</i>,
+and so plays some role in structuring the&nbsp; knowledge base. But it
+has no direct role in knowledge acquisition.</td>
+</tr>
+
+<tr>
+<td>BoundedDomain_EnumeratedFunction</td>
+
+<td></td>
+
+<td></td>
+
+<td>Domain classes which will use one of the table widgets must be subclasses
+of <i>BoundedDomain_EnumeratedFunction.</i> Subclasses of <i>BoundedDomain_EnumeratedFunction</i>&nbsp;
+must also be instances of <i>EnumeratedRelationMetaclass</i> in order for
+the table widgets to function properly.&nbsp;</td>
+
+<td>Instances of <i>BoundedDomain_EnumeratedFunction,</i> or its subclasses,&nbsp;
+will be acquired from the user.</td>
+</tr>
+
+<tr>
+<td>Entry</td>
+
+<td></td>
+
+<td></td>
+
+<td>None.</td>
+
+<td>An instance of <i>BoundedDomain_EnumeratedFunction</i> consists of
+some domain specific information (which the table widgets don't care about)
+and a slot which points to multiple instances of some subclass of <i>Entry</i>.
+These instances are generated by the table widgets, in response to user
+actions, and, taken as a whole, constitute the actual functional relationship
+being modeled.&nbsp;</td>
+</tr>
+
+<tr>
+<td>EntryMetaclass</td>
+
+<td></td>
+
+<td></td>
+
+<td>Subclasses of either <i>DomainRangeObjectPairEntry</i> or <i>SingleObjectEntry</i>&nbsp;
+should be instances of <i>EntryMetaclass</i> (rather than :STANDARD-CLASS).
+This will cause the slots <i>:domain_value_slots</i> and <i>:range_value_slots</i>
+to be attached to the subclass as own slots.&nbsp;</td>
+
+<td>The values of <i>:domain_value_slots</i> and <i>:range_value_slots</i>
+are used by the various table widgets to construct the user interface.
+From the user's point of view, once the ontology is defined, <i>EntryMetaclass</i>
+can be ignored.</td>
+</tr>
+
+<tr>
+<td>DomainRangeObjectPairEntry</td>
+
+<td></td>
+
+<td></td>
+
+<td>One of the two defined subclasses of <i>Entry</i>. <i>DomainRangeObjectPairEntry</i>
+carries the semantics that the domain and range of the function are encapsulated
+in separate objects (and that the role of an instance of the entry class
+for the function is to contain pointers to an instance of the domain class
+and an instance of the range class in its <i>:domain-value</i> and <i>:range-value
+slots</i>). When <i>DomainRangeObjectPairEntry</i> is used as the base
+class for the functional entry class, the interpretation of <i>:domain_value_slots</i>
+and <i>:range_value_slots</i> is that they refer to slots on the domain
+and range objects (not to slots on the functional entry class).&nbsp;</td>
+
+<td>The user doesn't have to consciously consider that she is creating
+instances of some subclass of <i>DomainRangeObjectPairEntry</i>. Instead,
+these are created automatically by the table widget and stored in the knowledge
+base.&nbsp;</td>
+</tr>
+
+<tr>
+<td>SingleObjectEntry</td>
+
+<td></td>
+
+<td></td>
+
+<td>One of the two defined subclasses of <i>Entry</i>. <i>SingleObjectEntry</i>
+carries the semantics that the domain and range of the function don't actually
+exist as separate objects, but instead are simply slot values on the functional
+entry class (and that, therefore, the role of an instance of the entry
+class is to encapsulate some part of the function). When <i>SingleObjectEntry</i>
+is used as the base class for the functional entry class, the interpretation
+of <i>:domain_value_slots</i> and <i>:range_value_slots</i> is that they
+refer to slots on the functional entry class.</td>
+
+<td>The user doesn't have to consciously consider that she is creating
+instances of some subclass of <i>SingleObjectEntry</i>. Instead, these
+are created automatically by the table widget and stored in the knowledge
+base.</td>
+</tr>
+</table></center>
+
+<br>&nbsp;
+</body>
+</html>

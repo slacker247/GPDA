@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS ps command attempt"; flags:A+; uricontent:"/bin/ps"; nocase; sid:1328; rev:1; classtype:web-application-attack;)

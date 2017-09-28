@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 5631 -> $EXTERNAL_NET any (msg:"MISC Invalid PCAnywhere Login"; content:"Invalid login"; offset:5; depth:13; flags:A+; classtype:unsuccessful-user; sid:511; rev:1;)

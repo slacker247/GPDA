@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Talentsoft Web+ exploit attempt"; flags: A+; uricontent:"/webplus.cgi?Script=/webplus/webping/webping.wml"; reference:bugtraq,1725; classtype:web-application-attack; sid:1097; rev:1;)

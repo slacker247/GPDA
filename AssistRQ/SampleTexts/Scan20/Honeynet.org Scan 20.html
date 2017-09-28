@@ -1,0 +1,64 @@
+<html><head><title>Honeynet.org Scan 20</title></head>
+<body><center><h1>Honeynet.org Scan20</h1></center>
+Submitted by: 
+<ul>
+<li>Brian Buckeye (brian@blindpanic.com)
+</li><li>Jim Clausing (clausing@computer.org)
+</li><li>Skip Frizzell (skip@blindpanic.com)
+</li><li>Mike Joy (joyis4u2@yahoo.com)
+</li><li>Kevin Liston (kliston@infornographic.com)
+</li><li>Rita Will (rwill@columbus.rr.com)
+</li></ul>
+<li><a href="http://project.honeynet.org/scans/scan20/sol/32/chronological.html">Chronological List of Events</a>
+</li><li><a href="http://project.honeynet.org/scans/scan20/sol/32/incident.html">The Incident involving 172.16.1.102</a>
+</li><li><a href="http://project.honeynet.org/scans/scan20/sol/32/players.html">List of the Players</a>
+</li><li><a href="http://project.honeynet.org/scans/scan20/sol/32/snort/snort.html">Tools and Techniques: Snort</a>
+</li><li><a href="http://project.honeynet.org/scans/scan20/sol/32/forensics.html">Tools and Techniques: Forensics</a>
+</li><li><a href="http://project.honeynet.org/scans/scan20/sol/32/Ethereal.html">Tools and Techniques: Ethereal</a>
+<br>
+<h2>Q&amp;A</h2>
+<h3>1.  What is a NOP slide, and how is this one different from the NOP slide in the rpc.statd exploit in Scan 10?</h3>
+<p> NOP is the assembly mnemonic for No Operation.  It serves as a place
+holder in a buffer-overflow, increasing the size of the target that the guessed
+return-pointer must hit. It is placed before the malicious code in the exploit
+packet.   Scan 10 exploit was on a i386 while Scan 20 was on a Sparc system.
+ The NOP code is different between these two architectures.  </p><h3>2.  The attack was on 08 Jan, 2002.  Would Snort have generated an alert then for the attack?</h3>
+<p>
+The rule that was triggered in our analysis of the capture cites these bulletins:
+</p><ul>
+<li><a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2001-0803">CAN-2001-0803</a>  which was created on March 9th, 2002.
+</li><li><a href="http://www.cert.org/advisories/CA-2002-01.html">CA-2002-01</a> Originally released January 14th, 2002
+</li></ul> The snort signature was not publicly available before the CERT
+notification on the 14th of January, 6 days after the attack had occurred. 
+<p>
+A snort rule that triggers on pattern: /bin/sh, on any high-port would have caught the overflow attempts.
+</p><h3>3.  In the exploit code, the command "/bin/sh sh -i" is given, what is its purpose, and why is 'sh' shown twice?</h3>
+<p> The purpose is to open a root-shell on the ingreslock port using inetd,
+allowing the attacker to issue commands on the victim.  The 'sh' is used
+twice because that is the format required by the <a href="http://project.honeynet.org/scans/scan20/sol/32/inetd.conf.html">inetd.conf</a> file. 
+</p><h3>4.  The attacker executed a variety of commands on the hacked Solaris
+box.  Which commands were automated by the exploit, which commands were manual
+by the attacker himself?  </h3>
+<p> It appears that the entire session was automated.  The scan and exploit
+session seems well sychronized, and the ingreslock session appears to be
+scripted.  </p><h3>5.  What is sun1, and how does it work?</h3>
+<p>
+sun1 is a wrapper for /bin/login which will allow login without a password.
+
+</p><h3>6.  What did you learn from this exercise?</h3>
+<p>
+This was their first exposure to Ethereal for most of the team members.  Everyone though it was a very fine tool.<br>
+For half of the team, this was their first look at Intrusion Detection and Incident Handling.<br>
+One found the historical study of snort rules and CERT bulletins to be more fascinating than is probably healthy.<br>
+The editor learned quite a bit about manageing a geo-diverse team.<br>
+</p><h3>7.  How long did this challenge take you?</h3>
+<ul>
+<li> 14 person-hours were spent in analysis or group meetings discussing the Scan
+</li><li> An additional 12 were spent in putting the report together, and fact-checking
+</li></ul>
+<p>
+</p><h3>Bonus Question: one of the commands executed durring the attack is: <blockquote>echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'` </blockquote>  What is the purpose of this command and what does 'BD' stand for?</h3>
+<p>  This command will return the Process ID of the inetd daemon using the
+/tmp/x config file, in other words, the process running the root-shell on
+the ingreslock port.  Our intuition tells us that BD stands for "Back Door." 
+</p></li></body></html>

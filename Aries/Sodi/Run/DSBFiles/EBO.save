@@ -1,0 +1,31 @@
+   6  Effects_Based_Ops      # Levels, CaseID
+   0    6 Assessment_Sources      Level #, Nodes this level, Hypothesis
+     0    0.000000 0.000000 -999999.000000   JSTARS
+     1    0.000000 0.000000 -999999.000000   Predator
+     2    0.139667 0.046556 35.700001   SAR
+     3    0.422500 0.056333 147.600006   Open_Source
+     4    0.453000 0.226500 144.399994   RC-135
+     5    0.700000 0.200000 173.800003   PAC3
+   1    6 Targets      Level #, Nodes this level, Hypothesis
+     0    0.000000 0.000000 -999999.000000   SA-13
+     1    0.000000 0.000000 -999999.000000   SU-24MP
+     2    0.139667 0.046556 35.700001   Scud-B_Site
+     3    0.160559 0.044930 147.600006   Chemical_Plant
+     4    0.404732 0.174413 147.600006   C2_Site
+     5    0.700000 0.200000 173.800003   Taepo_Dong
+   2    5 Tactical_Task      Level #, Nodes this level, Hypothesis
+     0    0.000000 0.000000 -999999.000000   Destroy_SA_Sites
+     1    0.000000 0.000000 -999999.000000   Destroy_Fencer_A/C
+     2    0.139667 0.046556 35.700001   Destroy_Launch_Sites
+     3    0.160559 0.044930 147.600006   Destroy_Factorys
+     4    0.531968 0.148701 173.800003   Kill_Taepo_Dongs
+   3    3 Tactical_Objectives      Level #, Nodes this level, Hypothesis
+     0    0.000000 0.000000 -999999.000000   Destroy_Enemy_JADS
+     1    0.000000 0.000000 -999999.000000   Destroy_Mobile_Targets
+     2    0.203151 0.056217 173.800003   Destroy_Missiles
+   4    2 Operational_Objectives      Level #, Nodes this level, Hypothesis
+     0    0.000000 0.000000 -999999.000000   Gain_Air_Superiority
+     1    0.121891 0.033730 173.800003   Destroy_WMD_Delivery
+   5    2 Strategic_Objectives      Level #, Nodes this level, Hypothesis
+     0    0.000000 0.000000 -999999.000000   Effect_Enemy_Forces
+     1    0.121891 0.033730 173.800003   Minimize_WMD_Threat

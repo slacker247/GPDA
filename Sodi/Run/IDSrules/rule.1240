@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC SWEditServlet directory traversal attempt"; uricontent:"/SWEditServlet"; content:"template=../../../"; flags:A+; classtype:attempted-user; sid:1241; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET 27374 -> $HOME_NET any (msg:"BACKDOOR subseven 22"; flags: A+; content: "|0d0a5b52504c5d3030320d0a|"; reference:arachnids,485; sid:103;  classtype:misc-activity; rev:3;)

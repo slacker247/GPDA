@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI webspirs directory traversal attempt"; uricontent:"/webspirs.cgi"; nocase; content:"../../"; nocase; flags:A+; reference:bugtraq,2362; classtype:web-application-attack; sid:900; rev:2;)

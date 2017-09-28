@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE posting"; flags: A+; content:"POST"; uricontent:"/author.dll"; nocase; classtype:web-application-activity; sid:939; rev:2;)

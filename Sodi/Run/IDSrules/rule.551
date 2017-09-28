@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 513 (msg:"RSERVICES rsh root";flags: A+; content:"root|00|root|00|"; reference:arachnids,389; classtype:attempted-admin; sid:606; rev:1;)

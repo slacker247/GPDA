@@ -1,0 +1,22 @@
+    3    HazMat_Alert                       0     0.0     0.0 H
+      5     Evidence
+  M-UAV
+  HazMat
+  OSINT
+  LA_EOC
+  FEMA_DB
+      5     Indicators
+  Imagery_Changes
+  Crowed_Hospitals
+  Chem/Bio_Fallout
+  Physical_Attack
+  Seismic_Activity
+      3     Outcomes
+  Accident				0.75     3.0
+  Hostile_Event				0.75     3.0
+  Natural_Phenomena			0.75     3.0
+#  Evidence labels follow. Must be 3, each < 5 chars
+Lat      Lon      Alt
+#  Default time units follow. Must be: Sec, Min, Hour, or Days
+Min
+<EOF>

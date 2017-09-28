@@ -1,0 +1,111 @@
+#!/bin/sh
+#
+
+#############################################################
+# YOU MAY NEED TO SET ONE OR BOTH OF THESE PATHS
+LINUX_JAVA_PATH="/usr/local/Java/bin"
+#LINUX_JAVA_PATH="/usr/java/jre1.3.1_02/bin"
+#SUNOS_JAVA_PATH="/appl/webtools/JDK1.2"
+
+# YOU MAY WANT TO SET THIS PATH 
+MYPLACE="`dirname $0`/.."
+
+# YOU SHOULDN'T NEED ANY CHANGE ANYTHING BEYOND THIS POINT
+#############################################################
+
+
+case "`uname -sr|tr ' ' _`" in
+    Linux*)         # Linux
+	if [ -n "${LINUX_JAVA_PATH}" ]; then
+	    JAVADIR=${JAVADIR:-${LINUX_JAVA_PATH}}
+	fi
+	;;
+    SunOS_5*)       # Solaris
+	if [ -n "${SUNOS_JAVA_PATH}" ]; then
+	    JAVADIR=${JAVADIR:-${SUNOS_JAVA_PATH}}
+	fi
+	;;
+    *)              # The rest (SunOS 4.x as well)
+	echo "Unsupported environment."
+	exit 1
+	;;
+esac
+
+# --- Unix Shell settings
+SHELL=/bin/sh
+
+if [ ! -x $SHELL ]; then
+    cat 1>&2 <<EOF
+
+I did not find the Bourne shell executable $SHELL, please fix me!
+You should edit the file $0
+and put the full path of your sh, bash, or bsh in the line
+
+SHELL=$SHELL
+
+EOF
+    exit 1
+fi
+
+# -------------------------------------------------
+
+# --- Java settings
+if [ -n "${JAVADIR}" -a -x ${JAVADIR}/bin/java ]; then 
+    JAVA=${JAVA:-"${JAVADIR}/bin/java"}
+    PATH=${JAVADIR}/bin:${PATH}
+elif which java >/dev/null 2>&1; then
+    JAVA="java"
+else
+    echo "I didn't find the Java 1.2 executable." 1>&2
+    echo "The variable JAVADIR probably isn't properly set." 1>&2
+    exit 1
+fi
+JD=${MYPLACE}/java
+DTD=${JD}/fact.dtd
+CLASSPATH="${JD}/fact.jar"
+HEAPSIZE=32
+# -------------------------------------------------
+
+# --- Lisp settings
+REASONER=shiq                       # shiq or fact
+LISPDIR=${MYPLACE}/lisp
+LISPNAME="FaCTLisp"
+# -------------------------------------------------
+
+
+# --- Thick layer
+FACT="FaCTServer"
+# -------------------------------------------------
+
+
+# --- NameService
+NSHOST=${HOSTNAME:-`hostname`}
+NSPORT=${CORBANSPORT:-8000}
+# -------------------------------------------------
+
+
+# --- Argument processing
+until [ -z "$1" ]
+do
+    case "$1" in
+	-ns[hH]ost) shift; [ -n "$1" ] && NSHOST="$1" ;;
+	-ns[pP]ort) shift; [ -n "$1" ] && NSPORT="$1" ;;
+	-ns[fF]ile) shift; [ -n "$1" ] && NSFILE="$1" ;;
+	-[Ff]a[Cc][Tt]) REASONER=fact ;;
+	-mem) shift; [ -n "$1" ] && HEAPSIZE="$1" ;;
+	-d|-debug) DEBUG="yes" ;;
+	*) 
+	    echo "Usage: `basename $0` [-nsHost host] [-nsPort port] [-nsFile file] [-fact]"
+ 	    exit 1
+	    ;;
+    esac
+    shift
+done
+# -------------------------------------------------
+
+NSURL=file:${NSFILE}
+IDURL=file:${IDFILE}
+JAVA="${JAVA} -Xmx${HEAPSIZE}m"
+
+export CLASSPATH PATH JAVA DTD FACT SHELL
+

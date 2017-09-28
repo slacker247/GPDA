@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any <- $HOME_NET 23 (msg:"TELNET login incorrect"; content:"Login incorrect"; flags: A+; reference:arachnids,127; classtype:bad-unknown; sid:718; rev:2;)

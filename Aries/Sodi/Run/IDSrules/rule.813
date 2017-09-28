@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI wwwboard passwd access"; flags: A+; uricontent: "/wwwboard/passwd.txt"; nocase;reference:arachnids,463; classtype:attempted-recon; sid:807; rev:1;)

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Creating a Class Using a Metaclass</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="../images/serving_nerd.gif" width="48" height="48"> Creating a
+Class Using a
+Metaclass<br>
+<img src="../images/header_line.gif" width="590" height="6"></h1>
+
+<p>Once you have added one or more metaclasses to your project, either by
+creating them directly, or by including a project that already has metaclasses,
+you can select the metaclass you want to use to create a class. When you create
+a class using a non-standard metaclass, the class is given the attributes
+specified by the selected metaclass.&nbsp;Unless you make changes, every new
+subclass you create for class will also use the selected metaclass.</p>
+
+<p>This example uses the newspaper_extended project, which includes the diagram
+project and tables project, both of which supply metaclass structure. You can
+also use these structures in your own projects by including the corresponding
+project. However, you must structure your project in a specific way in order to
+be able to use these features. See the <a href="../../../tutorial/index.html">tutorial</a>
+for more information.&nbsp;&nbsp;</p>
+
+<p>If you create a class using the Create <font size="3"><img border="0" src="../images/Create.gif" width="12" height="16">
+</font> button, you will use the metaclass of the direct superclass as the metaclass for
+the new class. Unless you have made changes, this is the default :STANDARD-CLASS.</p>
+
+<p>To create a class using a non-standard metaclass:</p>
+
+<ol>
+  <li><font size="3">In the <a href="../class_relationship_pane.html">Class Relationship Pane</a>,
+    find the class that you want as the superclass of the new class.&nbsp;<br>
+    <img border="0" src="images/create1.gif" width="285" height="304"></font></li>
+  <li><font size="3">Click the right mouse button and select &quot;Create
+    subclass using metaclass...&quot;&nbsp;<br>
+    <img border="0" src="images/create2.gif" width="259" height="183"></font></li>
+  <li><font size="3">A dialog box displays the Concrete metaclasses, which are
+    the classes you can use when creating a class. You cannot create a class as
+    an instance of an Abstract metaclass.<br>
+    </font><img border="0" src="images/create3.gif" width="323" height="233"></li>
+  <li><font size="3">Select the metaclass that has the properties that you want
+    and click OK.&nbsp;<br>
+    The new class will be added under the highlighted
+    class. It will have the Class Form determined by the selected metaclass. The
+    name of the metaclass you used is displayed at the top of the Class Form,
+    immediately after the name of the class. The Class Form may include additional widgets that are not part of :STANDARD-CLASS.<br>
+    </font><img border="0" src="images/create4.gif" width="928" height="593"></li>
+  <li><font size="3">Use the <a href="../class_form.html">Class Form</a> to name the class, choose its role, create constraints, and create and edit
+    slots.&nbsp;</font></li>
+</ol>
+
+<hr>
+
+<p><font size="3">Next:&nbsp;<a href="change_meta.html">Changing the Metaclass of a Class</a> </font></p>
+
+<p><a href="../index.html"><font size="3">Classes Table of Contents</font></a></p>
+</body>
+</html>

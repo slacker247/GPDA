@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC VirusWall FtpSaveCVP access"; flags:A+; uricontent:"/FtpSaveCVP.dll"; nocase; classtype:attempted-recon; sid:1235; rev:1;)

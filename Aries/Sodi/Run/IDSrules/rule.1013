@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS bdir.ht access"; uricontent:"/bdir.htr"; nocase; flags:A+; classtype:web-application-activity; sid:1000; rev:2;)

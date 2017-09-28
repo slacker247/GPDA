@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION datasource username attempt";flags: A+; content:"CF_SETDATASOURCEUSERNAME()"; nocase; reference:bugtraq,550; classtype:web-application-attack; sid:909; rev:1;)

@@ -1,0 +1,219 @@
+Project Honeynet, Scan of the month - April 2002 (SCAN 20) 
+Analysis and Answers
+Date: 25.04.2002
+Author: Arndt Lueckerath <al@shebang.org>
+
+
+-------------------------------------------------------------------------------
+Abstract
+-------------------------------------------------------------------------------
+
+
+This document deals with the analysis of a break-in into a Solaris8 Sparc 
+machine that was remotely compromised with the dtspcd exploit.
+
+
+-------------------------------------------------------------------------------
+Getting prepared
+-------------------------------------------------------------------------------
+
+
+Fetch the log file from the honeynet web server using wget.
+
+# wget http://project.honeynet.org/scans/scan20/0108@000-snort.log.tar.gz
+
+After this verify the md5-checksum against the one provided by honeynet. 
+
+# md5sum 0108\@000-snort.log.tar.gz 
+612be364f54ca5fcb47cf70e69419175  0108@000-snort.log.tar.gz
+
+The checksum matches. 
+
+-------------------------------------------------------------------------------
+Answers to the questions
+-------------------------------------------------------------------------------
+
+
+1.) What is a NOP slide, and how is this one different from the NOP slide 
+in the rpc.statd exploit in Scan10?
+
+
+In short: A NOP-slide is a technique used in buffer overflows, where NOP 
+instructions, that is an instruction that does nothing, are placed in front 
+of a buffer that holds the actual exploit code. 
+
+buffer to exploit = [ | NOP NOP NOP | CODE | ]
+
+If the attacker wants to overflow a certain buffer in a program, he needs 
+to know the exact address of that buffer inside the stack segment of the 
+process memory. In fact, trying to guess the exact address of that buffer 
+is nearly impossible. Therefore a trick is used to increase the chances of 
+getting the address by putting a bunch of NOP bytes, which actually do 
+nothing, in front of the buffer. With this approach, only an address that 
+resides inside the frame of NOP commands needs to be guessed. To give an 
+example, if we would add 100 NOP commands, we would increase our chance to 
+guess a good address by the factor 100. 
+To compare this with an example of the real world: The fact that it is 
+nearly impossible to win money in lottery, people engage themselves into 
+betting groups where each member holds a share of the profits. Instead of 
+only one person who has a small chance to win, the group fills out 
+thousands of lottery tickets with the intention to get a much bigger chance 
+to win. This is exactly what a NOP-slide does, namely increasing the 
+chances to "win".
+
+The difference between the NOP-slide that was used by the rpc.statd exploit 
+and the one that we deal with here, relates from the different 
+architectures that are involved. While in a x86-architecture a value of 
+0x90 is the machine opcode for the NOP instruction things are different in 
+SPARC-architecture. SPARC instructions are always 4 bytes long, that is 
+they occupy 32 bits in memory. Furthermore, they are ordered in memory in 
+"big-endian" style, that is the high byte is placed at the lowest address. 
+Another fact is that big-endian byte ordering reflects the ordering of the 
+bytes that are sent over the network. 
+
+Characteristic of a NOP-slide is that it consists of a long sequence of 
+equal commands that do nothing (NOP = no operation), because we want to 
+have a good chance to guess a fine address. In our exploit the following 
+bytes are used as the sequence of the NOP-slide: 
+
+0x40 01000000 
+0x11 00010001
+0x80 10000000
+0x1c 00011100
+
+
+By looking at an opcode table (see referencs) we can see that this opcodes 
+represent the BPOS instruction (branch on positive). A branch instruction 
+is used for conditional branches in a program. In our case it would jump if 
+a previous executed arithmetic operation resulted in a positive value. We 
+cannot say if this was actually the case, so the branch is executed by the 
+chance of 50 percent. That means also, if the branch is executed it does 
+not act as a NOP command and the exploit would not work. 
+We can prove this by the fact that the attacker needed to execute the 
+exploit twice until the break-in succeeded.  
+
+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+
+01/08-16:46:04.378306 208.61.1.160:3592 -> 172.16.1.102:6112
+TCP TTL:48 TOS:0x0 ID:41388 IpLen:20 DgmLen:1500 DF
+***AP*** Seq: 0xFEE2C115  Ack: 0x5F66192F  Win: 0x3EBC  TcpLen: 32
+TCP Options (3) => NOP NOP TS: 463986683 4158792
+0x0000: 00 E0 1E 60 70 40 08 00 20 F6 D3 58 08 00 45 00  ...`p@.. ..X..E.
+0x0010: 05 DC A1 AC 40 00 30 06 24 1C D0 3D 01 A0 AC 10  ....@.0.$..=....
+0x0020: 01 66 0E 08 17 E0 FE E2 C1 15 5F 66 19 2F 80 18  .f........_f./..
+0x0030: 3E BC E1 E9 00 00 01 01 08 0A 1B A7 DF FB 00 3F  >..............?
+0x0040: 75 48 30 30 30 30 30 30 30 32 30 34 31 30 33 65  uH0000000204103e
+0x0050: 30 30 30 31 20 20 34 20 00 00 00 31 30 00 80 1C  0001  4 ...10...
+0x0060: 40 11 80 1C 40 11 10 80 01 01 80 1C 40 11 80 1C  @...@.......@...
+0x0070: 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C  @...@...@...@...
+0x0080: 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C  @...@...@...@...
+
+
+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+
+01/08-16:46:04.828506 208.61.1.160:3593 -> 172.16.1.102:6112
+TCP TTL:48 TOS:0x0 ID:41395 IpLen:20 DgmLen:1500 DF
+***AP*** Seq: 0xFE961D1A  Ack: 0x5F6FDE45  Win: 0x3EBC  TcpLen: 32
+TCP Options (3) => NOP NOP TS: 463986729 4158838
+0x0000: 00 E0 1E 60 70 40 08 00 20 F6 D3 58 08 00 45 00  ...`p@.. ..X..E.
+0x0010: 05 DC A1 B3 40 00 30 06 24 15 D0 3D 01 A0 AC 10  ....@.0.$..=....
+0x0020: 01 66 0E 09 17 E0 FE 96 1D 1A 5F 6F DE 45 80 18  .f........_o.E..
+0x0030: 3E BC C0 B3 00 00 01 01 08 0A 1B A7 E0 29 00 3F  >............).?
+0x0040: 75 76 30 30 30 30 30 30 30 32 30 34 31 30 33 65  uv0000000204103e
+0x0050: 30 30 30 32 20 20 34 20 00 00 00 31 30 00 80 1C  0002  4 ...10...
+0x0060: 40 11 80 1C 40 11 10 80 01 01 80 1C 40 11 80 1C  @...@.......@...
+0x0070: 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C  @...@...@...@...
+
+
+There is an excellent article about buffer overflows and how they work in 
+general published in Phrack Magazin issue 49 (see references).
+
+
+2.) The attack was on 08 Jan, 2002. Would Snort have generated an alert 
+then for the attack? 
+
+
+We were told that this was the first time when the characteristics of this 
+type of attack were recorded. Therefore snort could not have generated an 
+exact alert for that attack. 
+However, I suppose that snort have generated an alert which indicated that 
+SPARC shellcode has been sent over the network. 
+
+SPARC NOOP "SHELLCODE sparc NOOP"; content:"|801c 4011 801c
+
+
+3.) In the exploit code, the command "/bin/sh sh -i" is given, what is its 
+purpose, and why is 'sh' shown twice? 
+
+
+This command is part of a sequence that is executed by the exploit code. 
+The purpose of the command is to bind an interactive shell on the ingres 
+port (1542) of the compromised system or in other words to create a 
+backdoor. This is done with an inetd configuration file that is created 
+with this sequence and is named /tmp/x. This is alos why sh is shown twice 
+because in an inetd configuration files the first entry represents the full 
+path to the server program while the latter represents the arguments of the 
+server. 
+Usually tcpd is used as the server program, which has the purpose to filter 
+connections by allowing only certain ip adresses to a local service. 
+
+
+4.) The attacker executed a variety of commands on the hacked Solaris box. 
+Which commands were automated by the exploit, which commands were manual by 
+the attacker himself? 
+
+
+The command sequence is as follows: 
+
+/bin/ksh -c \
+echo "ingreslock stream tcp nowait root \
+/bin/sh sh -i">/tmp/x;
+/usr/sbin/inetd -s /tmp/x;\
+sleep 10;\
+/bin/rm -f /tmp/x
+
+
+The purpose of the sequence is explained in question 3.
+
+
+5.) What is sun1, and how does it work? 
+
+
+Sun1 is simply a modified login command. It is fetched from the ftp server 
+with the ip address 64.224.118.115.
+
+
+6.) What did you learn from this exercise? 
+
+
+A lot about SPARC ;)
+
+
+7.) How long did this challenge take you?
+
+4 hours for the analysis; 
+2 hours for the write-up.
+
+
+Bonus Question: 
+
+One of the commands executed during the attack is 
+echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'` 
+What is the purpose of this command and what does 'BD' stand for?
+
+The purpose of this sequence is printing the process IDs (PID) of the inetd 
+processes that serve the backdoors. I suppose that BD means "backdoor".
+ 
+
+-------------------------------------------------------------------------------
+References
+-------------------------------------------------------------------------------
+
+
+SPARC Assembly Language Reference Manual
+
+http://sundocs.princeton.edu:8888/ab2/coll.45.13/SPARC/@Ab2TocView?
+
+PHRACK Magazin issue 49
+
+http://www.phrack.org

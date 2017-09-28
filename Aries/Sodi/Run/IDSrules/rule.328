@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Echo Reply"; itype: 0; icode: 0; sid:408;  classtype:misc-activity; rev:4;)

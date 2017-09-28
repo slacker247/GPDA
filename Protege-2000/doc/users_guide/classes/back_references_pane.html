@@ -1,0 +1,185 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The References Pane</title>
+</head>
+
+<body>
+
+<h1><img src="images/serving_nerd.gif" width="48" height="48">  The
+Back-References Pane<br>
+<img src="images/header_line.gif" width="590" height="6"></h1>
+
+<p>In a complex project, it is possible to have many different relationships
+between classes, instances, and slots. The Back-References pane allows you to view a
+list of all the frames that reference the selected frame.</p>
+
+<p>The following information is included in the Back-References pane:</p>
+
+<ul>
+  <li>The <a href="back_references_pane.html#view"> View Button</a>: Allows you to view the highlighted frame.</li>
+  <li>The <a href="back_references_pane.html#frame"> Frame column</a>: Shows the name of each frame that references the item,
+    with an icon indicating its type.</li>
+  <li>The <a href="back_references_pane.html#slot_value"> Slot Value column</a>: Shows the slot in which the frame references the
+    item.&nbsp;</li>
+  <li>The <a href="back_references_pane.html#facet_value"> Facet Value column</a>: Shows any facet information for the slot.</li>
+</ul>
+<p><map name="FPMap1">
+<area href="back_references_pane.html#frame" coords="2, 47, 176, 206" shape="rect">
+<area href="back_references_pane.html#slot_value" shape="rect" coords="176, 47, 377, 208">
+<area nohref shape="rect" coords="381, 44, 511, 208">
+<area href="back_references_pane.html#view" shape="rect" coords="485, 24, 511, 46"></map><img border="0" src="images/ClassReferences.gif" usemap="back_references_pane.html#FPMap1" width="515" height="248"></p>
+
+<p>The Back-References pane can be viewed by selecting an item and clicking on
+the Back-References&nbsp; button. See <a href="viewing_backreferences.html">Viewing
+Back-References</a> for more information.</p>
+
+<h2><a name="view"></a>The View Button</h2>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="11%"><b><img border="0" src="images/View.gif" width="15" height="15"></b></td>
+    <td width="89%"><b>V(iew) button:</b> Click this button to open the form for
+      the highlighted frame. Depending on the frame, this could be the <a href="class_form.html">Class
+      Form</a>, the <a href="../slots/slot_form.html">Slot Form</a>, or the <a href="../instances/instances_form.html">Instances
+      Form</a>.</td>
+  </tr>
+</table>
+
+<h2><a name="frame"></a>The Frame Column</h2>
+
+<p>This column shows the name of each frame that references the highlighted
+item, along with icons that give further information about the referencing
+frame.&nbsp;</p>
+
+<p>The icon to the left of the name indicates the type of frame. The following
+standard icons can appear:</p>
+
+  <table border="0" width="100%">
+    <tr>
+    <td width="11%"><img border="0" src="images/Class.gif" align="left" width="15" height="16"></td>
+    <td width="89%">A yellow <b>C</b> icon indicates an editable class.</td>
+    </tr>
+    <tr>
+    <td width="11%"><img border="0" src="images/Metaclass.gif" width="15" height="16"></td>
+    <td width="89%">A green <b>C</b> icon indicates a metaclass, that is a class
+      that inherits from :CLASS.</td>
+    </tr>
+    <tr>
+    <td width="11%"><img border="0" src="images/ReadonlyClass.gif" width="15" height="16"></td>
+    <td width="89%">A pale <b>C</b> icon indicates a class that is imported from
+      another project. Imported classes cannot be edited.</td>
+    </tr>
+    <tr>
+      <td width="12%"><img border="0" src="images/SlotDirect.gif" align="left" width="17" height="18"></td>
+      <td width="88%">A blue <b>S</b> icon indicates a direct slot.</td>
+    </tr>
+    <tr>
+      <td width="12%"><img border="0" src="images/SlotInherited.gif" align="left" width="15" height="16"></td>
+      <td width="88%">A gray <b>S</b> icon indicates an inherited slot.&nbsp;</td>
+    </tr>
+    <tr>
+    <td width="11%"><img border="0" src="../instances/images/Instance.gif" width="15" height="15"></td>
+    <td width="89%">A pink <b>I</b> icon indicates an editable instance. For
+      instances, the class where the instance appears is given in parentheses
+      after the instance name.&nbsp;</td>
+    </tr>
+    <tr>
+    <td width="11%"><img border="0" src="../instances/images/ReadonlyInstance.gif" width="15" height="15"></td>
+    <td width="89%">A gray <b>I</b> icon indicates an instance that cannot
+be edited. For instances, the class where the instance appears is given in
+      parentheses after the instance name.&nbsp;</td>
+    </tr>
+  </table>
+
+<p>The icons (if any) to the right of the name give further information about
+the frame. The following standard icons can appear:</p>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="11%"> <img border="0" src="images/Abstract.gif" width="11" height="16"> </td>
+    <td width="89%">
+
+<p>Indicates an abstract class.&nbsp;</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="11%"><img border="0" src="images/multiple.gif" width="12" height="16">
+    </td>
+    <td width="89%">Indicates a class with multiple superclasses.&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="11%"><img border="0" src="images/HiddenClass.gif" width="11" height="16">
+    </td>
+    <td width="89%">Indicates a hidden class.</td>
+  </tr>
+</table>
+
+<h2><a name="slot_value"></a>The Slot Value Column</h2>
+
+<p>For the frame in the Frame column, this column specifies the slot that
+actually references the selected item.&nbsp;</p>
+<p>Note that Protégé-2000 provides standard slots which indicate the
+relationship between the selected item and the referencing frame:&nbsp;</p>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="31%"> DIRECT-INSTANCES </td>
+    <td width="69%">
+
+The selected item is a direct instance of the frame.
+    </td>
+  </tr>
+  <tr>
+    <td width="31%">DIRECT-SUPERCLASSES
+    </td>
+    <td width="69%">The selected item is a direct superclass of the frame.</td>
+  </tr>
+  <tr>
+    <td width="31%">DIRECT-SUBCLASSES
+    </td>
+    <td width="69%">The selected item is a direct subclass of the frame.</td>
+  </tr>
+  <tr>
+    <td width="31%">SLOT-VALUE-TYPE
+    </td>
+    <td width="69%">The frame is a slot and the selected item appears as one of
+      its values. If the selected item is an instance, it may be a value. If the
+      selected item is a class, it may be an Allowed Parent (for a slot of type
+      Class) or an Allowed Class (for a slot of type Instance). See <a href="../slots/value_type_menu.html">The
+      Value Type</a> menu for more information.</td>
+  </tr>
+</table>
+
+<p>The name of any other slot in the project may also appear in this column.</p>
+
+<h2><a name="facet_value"></a>The Facet Value Column</h2>
+
+<p>This column gives information about the facet value for certain types of
+back-references, and gives information about the slot relationships between
+classes.&nbsp;</p>
+<p>For example, an item may appear as a value for a slot which is called by that
+frame. In the illustration above, the class <b>Author</b> appears as an Allowed
+Class for the slot <b>author</b>, as shown in the second row. In addition, the
+slot <b>author</b> appears as a slot for the class <b>Article</b>. Therefore, <b>Article</b>
+references <b>Author</b>. This reference appears in the fifth row in the
+example.&nbsp;</p>
+<p>For an embedded reference of this type, the facet value column specifies
+whether the selected item appears as an Allowed Class or an Allowed Parent.</p>
+
+<p>For classes, it is also possible to view those classes that are related
+through a particular slot using the Class Relationship Menu. See <a href="viewing_referenced_classes.html">Viewing
+Class Relationships</a> for more information.</p>
+
+<hr>
+
+<p>Next: <a href="creating_a_class.html"><font size="3">Creating a Class</font></a></p>
+
+<p><a href="index.html">Classes Table of Contents</a></p>
+
+</body>
+
+</html>

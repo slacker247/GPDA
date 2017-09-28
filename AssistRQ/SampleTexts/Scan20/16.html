@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+  <title>Honeynet Scan 20 -- Response</title></head>
+
+<body bgcolor="#ddd9dd">
+<div align="center"><b>Honeynet Scan of the Month # 20</b><br>
+     </div>
+         
+<div align="center"><b>Analaysis of a Solaris 8 compromise via dtspcd 
+  exploit.</b>  <br>
+     </div>
+         
+<div align="left"><b>Challenge:</b> <br>
+     </div>
+         
+<div align="left">To analyze a binary traffic capture of the breakin and determine
+the answers to the 7 questions posed ( plus 1 bonus question ).<br>
+     <br>
+     <b>Questions:</b> <br>
+     1.  What is a NOP slide, and how is this one different from the NOP
+slide   in the rpc.statd exploit in Scan10? <br>
+     2.  The attack was on 08 Jan, 2002. Would Snort have generated an alert
+  then for the attack? <br>
+     3.  In the exploit code, the command "/bin/sh sh -i" is given, what
+is  its  purpose, and why is 'sh' shown twice? <br>
+     4.  The attacker executed a variety of commands on the hacked Solaris
+ box.  Which commands were automated by the exploit, which commands were
+manual  by the attacker himself? <br>
+     5.  What is sun1, and how does it work? <br>
+     6.  What did you learn from this exercise? <br>
+     7.  How long did this challenge take you?  <br>
+     <br>
+     Bonus Question: One of the commands executed during the attack is  <br>
+     <br>
+     echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print
+ $2}'`    <br>
+     <br>
+     What is the purpose of this command and what does 'BD' stand for?  <br>
+     <br>
+     <b>A) Preparation</b><br>
+     <br>
+     On my Toshiba Tecra running Slackware Linux 8.0, I created a directory 
+ for  the project called Honeynet20. Then, I downloaded the binary capture 
+ file,  verifying it via the md5sum command. Since this is a Solaris exploit, 
+ I chose  to do initial analysis on a non-Solaris machine. I also made available 
+ a Sun Blade workstation and an OpenBSD 3.0 box. The Sun Blade and OpenBSD machines
+ would be used off the production network to test the sun1 file which is the 
+ focus of question # 5.  <br>
+     <br>
+     <b>B) Initial Analysis</b><br>
+     <br>
+     I opened the logfile in Ethereal and generally scanned the traffic to
+ gather an understanding of the network's activity. This is to provide the
+ context for the actual attack. First, I looked through it to see the type
+ of activity. Then I sorted by hosts to see which hosts were initiating
+numerous  different  types of connections or connecting to many different
+hosts. This would indicate  that they are footprinting the network. There
+are numerous scans against the honeynet hosts in progress. This is a hostile
+place! Here is my initial analysis of the network.  	<br>
+     <br>
+     The following hosts scanned or exploited honeynet hosts: 	<br>
+         
+<ul>
+       <li>195.174.97.101 	ftp scans the network. 	                      </li>
+       <li>207.126.96.163 	Firewalk scan against 172.16.1.101. * 	      </li>
+       <li>207.239.115.11 	possible telnet scan. Too little information. </li>
+       <li>208.61.69.153 	performs sun dtspcd vulnerability scan. 	  </li>
+       <li>208.61.1.160 	actually connects and exploits the vulnerability 
+against   host 172.16.1.102. This and the previous host are controlled by 
+our perpetrator. It is this traffic I will concentrate on. 	              </li>
+       <li>211.152.65.34 	performs web scan against network. 	          </li>
+       <li>217.151.160.42 	performs Firewalk scan against network. *     </li>
+       <li>217.80.224.252 	ftp scan against network. 	                  </li>
+       <li>217.84.21.136 	nntp scan against network. 	                  </li>
+       <li>218.7.3.19 		sunrpc scan against network. 	 	          </li>
+         
+</ul>
+     <br>
+     * We can recognize a Firewalk scan by the udp traffic aimed at increasing 
+  port numbers and with increasing TTLs but not in response to a traceroute 
+  initiated by the host for which they are destined.  Firewalk is very similar 
+  to traceroute, upon which it is built, but in reverse, making it easy to 
+ miss or dismiss as traceroute traffic.   <br>
+     <br>
+     <b>C) Focus on Questions</b> 	<br>
+     <br>
+<ol>
+       <li>What is a NOP slide, and how is this one different from the NOP
+ slide  in the rpc.statd exploit in Scan10? <br>
+ <br>
+   A NOP slide or sled is a string of machine language Null OPerations leading 
+  into the exploit code. The idea is that if the return address to the current 
+  function is anywhere in your NOP slide, then the computer will just execute 
+  Null OPerations until it reaches and executes your commands. The specific 
+  NOP slide in this code is the long string of "80 1c 40 11" leading into 
+the  /bin/ksh call in data payload of packets 543, 555, 568 and 581. This differs 
+  from the NOP slide in Scan 10 because that NOP slide was aimed at an intel 
+  based machine. Therefore, the NOP slide was a long series of 0x90s which 
+ is the Intel x86 NOP code. The Scan 20 exploit occurs on a 64-bit Ultra Sparc
+  running Solaris whose NOP code is 0x801c4011. NOP codes are architecture 
+ dependent.  <br>
+ <br>
+ Verifying this proved tricky. Ethereal and Snort both break the traffic into 
+ two columns of 8 bytes each. This break made it look like the NOP code was 
+ "40 11 80 1c." Furthermore, searches on Google for variations of "sparc NOP" 
+ kept yielding completely different NOP codes. Eventually, I realized that 
+ this is an Ultra-Sparc. Redoing the Google search with <br>
+ Ultra sparc NOP "40 11"<br>
+ yielded the correct code of "80 1c 40 11." That was sufficient verification for me. 
+ Furthermore, I found a pdf which describes buffer overflows with examples. This 
+ is a nice overview without the assembly code level discussion in AlephOne's famous
+ <a href="http://www.insecure.org/stf/smashstack.txt">
+ "Smashing the Stack for Fun and Profit"</a>. It also includes a table 
+ of NOP codes for various architectures. I should note that this pdf is Chapter 14 
+ of "Intrusion Signatures and Analysis" by Steven Northcutt et. al.
+ <br>
+ <a href="http://www.cccure.org/amazon/idssignature.pdf">
+idssignature.pdf</a><br>
+  </li><br>
+      <li>The attack was on 08 Jan, 2002. Would Snort have generated an alert 
+ then for the attack?<br>
+ <br>
+  Snort would not have detected this attack. In the snort database of rules, 
+  the dtspcd exploit rule is ID #1398. In the credits for this rule it is listed
+  as being created on January 22nd, almost 2 weeks after the exploit. <br>
+<a href="http://www.snort.org/snort-db/sid.html?id=1398">
+Snort's dtspcd exploit rule</a><br>
+  </li><br>
+    <li>In the exploit code, the command "/bin/sh sh -i" is given, what 
+is its purpose, and why is 'sh' shown twice?<br>
+ <br>
+  The command is echoed to the file /tmp/x, then a new instance of inetd 
+  is executed using this file as it's configuration file; that is the 
+  '-s /tmp/x' argument. The syntax for inetd.conf states to place the full 
+  pathname to the executable followed by how it should be called and all its 
+  command line arguments. This allows for cases in which  binaries that 
+  behave differently depending on the name by which they are called, can be 
+  called with whatever name is necessary. This is most noticeable in tcpwrappers 
+  where inetd calls /usr/sbin/tcpd followed by the program name to be wrapped. 
+  In this case, the full path is '/bin/sh', the name to use when calling 
+  the program is 'sh' and the '-i' is the command line argument to pass. 
+  '-i' puts the shell in interactive mode. That is, opens stdin and stdout. 
+  Without this switch, the shell would be opened with no user interactivity 
+  possible. The next time a tcp connection comes into port 1524, ingreslock, 
+  an interactive shell is spawned.
+</li><br>
+       <li>The attacker executed a variety of commands on the hacked Solaris 
+  box. Which commands were automated by the exploit, which commands were manual
+  by the attacker himself?<br>
+  <br>
+  Immediately following the fourth overflow attempt, there is a connection 
+ to the ingreslock port on 172.16.1.102. Only 1/8th of a second after the 
+completion of the TCP handshake, a packet is sent that contains the following 
+commands separated by a semi-colon, the common unix command separator:<br>
+uname -a;<br>
+ls -l /core /var/dt/tmp/DTSPCD.log;<br>
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;<br>
+export PATH;<br>
+echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`;<br>
+These commands are the automated commands from the exploit. The packet arrived too 
+soon after the handshake for these to have been humanly generated. They set up the 
+attacker's environment and provide a little useful information.  All the other 
+commands are from our attacker. <br>
+  <br>
+  At one point, a series of commands comes one or two to a packet totalling 
+  4 commands in just over 1/2 second.  These commands were cut-and-pasted 
+  from another window, such as a text editor. We know this because when 
+  there are two commands in one packet, they are separated by a linefeed
+  rather than a semi-colon as in a script or such as a person typing two 
+  commands at once in a terminal would have used. Had they not been 
+  cut-and-pasted, the linefeed would have sent the first command and it 
+  would have been processed before the second one could have been typed 
+  thus resulting in one command per packet. I verified this by configuring 
+  inetd with the '/bin/sh sh -i' command, running Snort and cutting and 
+  pasting commands from a vi session in a different window. More than 
+  one command came through, but not all the commands I had pasted.
+</li><br>
+    <li>What is sun1, and how does it work? <br>
+	<br>
+	Unfortunately, I never came to a satisfactory answer for this. Normally 
+	an attacker replacing /bin/login would be using a backdoored and/or 
+	username and password logger.  While I still suspect that that is what 
+	sun1 is, I did try very hard to pin down its purpose. What follows 
+	is a description of the steps I took to identify sun1.<br>
+	<br>
+	In the network traffic, we can see the attacker replace /bin/login. 
+	After this, the attacker telnets in from 66.156.236.56. They never 
+	type anything, and no shell prompt is returned, so we have very 
+	little to go on. They only connect and exit. There is a small 
+	flurry of telnet control commands, but it is hard to associate them 
+	with the actions of sun1.<br>
+	<br>
+	Using Ethereal's "Follow TCP Stream" capability, I reconstructed 
+	the file. This is as simple as identifying any packet in the ftp 
+	transfer, right-clicking on it and choosing "Follow TCP Stream." 
+	Ethereal reconstructs the data of the file transfer and presents 
+	it to you in a new window. From that point, you click on the "Save As" 
+	button and save it to disk. Running the file command from the linux 
+	machine produced this output:<br>
+	sun1: ELF 32-bit MSB executable, SPARC, version 1, statically linked, stripped<br>
+	<br>
+	I copied it over to the Sun Blade and ran a series of strings 
+	comparisons. They were not very rewarding. It did not seem to match 
+	up well to /bin/login at all. Nor to sh, tcsh, in.telnetd, nor any 
+	of several other files I tried. There were clearly a large number of 
+	network oriented strings in the file such as getsockopts, setsockopts, 
+	Network unreachable, etc. I thought I was on to something, but some 
+	persistent Google searches on the strings showed they were the standard
+	system err messages from errlist.c, present because of sun1's being
+	statically linked. I briefly thought it could be an irc 
+	bot. This was re-enforced when I found the string "pirc," which is a 
+	known irc client. But doing string comparisons to mirc and pirc showed 
+	they had little in common.<br>
+	<br>
+	I had planned on actually running the file on the Sun Blade while 
+	connecting from the OpenBSD box, but the file could not execute on 
+	my system. The file command run on the Sun Blade produced an error 
+	that the ELF header was invalid or corrupt. With this final avenue 
+	closed to me, I reluctantly accepted that I just wasn't going to find 
+	out sun1's purpose.  </li><br> 
+   <li>What did you learn from this exercise?<br>
+    <br>
+  This turned out to be a very valuable experience. I learned something at
+  nearly evey turn. Here are the main things I learned. <br>
+  <br>
+  I learned not to let the presentation of the traffic influence my view
+ of the way the traffic really flowed on the network. I was sidetracked 
+ verifying the NOP slide, because of the way Snort and Ethereal presented 
+ the traffic capture. I mistakenly tried to trackdown a NOP  slide of 
+ 0x4011801c instead of the real NOP of 0x801c4011.<br>
+ <br>
+ I learned about Snort's rules database which is a project to supply useful
+ information about the various attacks and the signatures to identify them.
+ The project needs help and anyone can contribute.<br>
+<a href="http://www.snort.org/snort-db/help-us.html">
+http://www.snort.org/snort-db/help-us.html</a><br>
+<br>
+ I also learned more of the nature of the telnet protocol in attempts to
+ understand sun1. Specifically the purpose of the control commands. Largely 
+ thanks to W. Richard Stevens' TCP/IP Illustrated.
+</li><br>
+       <li>How long did this challenge take you?<br>
+  <br>
+  This took me longer than it should have. I was inefficient in some of 
+  my research which I wouldn't be if I were to do it over. Also, I obsessed 
+  a bit over sun1, wasting time in the process. Including the report, I spent 
+  about 10 hours on this scan. Broken down roughly along the following lines.
+	<ul>
+		<li>1 hour on set up.                                  </li>
+		<li>1 hour on initial analysis such as reading traffic.</li>
+		<li>1 hour verifying the NOP.                          </li>
+		<li>1 hour researching the Snort signatures.           </li>
+		<li>3 hours working on the Sun1 file.                  </li>
+		<li>1 hour answering the remaining questions.          </li>
+		<li>2 hours writing and formatting my response.        </li>
+	</ul>
+</li>
+</ol>
+     <br>
+     <b>Bonus Question)</b> <br>
+ <br>
+ One of the commands executed during the attack is<br>
+ <br>
+ echo   "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`<br>
+ <br>What  is the purpose of this command and what does 'BD' stand for?<br>
+ <br>
+This command line presents the user with the Process ID (PID) of the 
+errant inetd that was started via the exploit. Presumably so the attacker 
+could kill the process, though he never did. The BD certainly refers to 
+Back Door. Specifically, the command 'ps -fed' will print full listings 
+of all processes including the command lines by which they are called. 
+Since the exploit caused a second instance of inetd to be invoked with 
+the arguments '-s /tmp/x', the grep will reduce the output  of 'ps -fed'
+to only those lines that have that string in them; the miscreant inetd(s) 
+and the grep itself which took the string '-s /tmp/x,' as an argument and 
+is therefore a match. The second grep returns only those lines <em>not</em> 
+containing the word grep (the -v switch inverts the search, only returning 
+non-matching lines) which leaves only the inetd(s) process 
+information. Finally, that is piped to awk and the second column of the 
+output is returned. Under a 'ps -fed', this column contains the PIDs. The 
+results are seen in packet #602 from 172.16.1.102 to the attacker:<br> 
+ BD PID(s): 3476
+     </div>
+         
+</body></html>

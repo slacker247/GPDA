@@ -1,0 +1,37 @@
+# (C) Copyright 2001, Martin Roesch, Brian Caswell, et al.  All rights reserved.
+# $Id: scan.rules,v 1.10 2001/10/29 01:52:54 roesch Exp $
+#-----------
+# SCAN RULES
+#-----------
+# These signatures are representitive of network scanners.  These include
+# port scanning, ip mapping, and various application scanners. 
+#
+# NOTE: This does NOT include web scanners such as whisker.  Those are
+# in web*
+#
+
+alert tcp $EXTERNAL_NET 10101 -> $HOME_NET any (msg:"SCAN myscan"; ttl: >220; ack: 0; flags: S;reference:arachnids,439; classtype:attempted-recon; sid:613; rev:1;)
+alert tcp $EXTERNAL_NET 31790 -> $HOME_NET 31789 (msg:"SCAN trojan hack-a-tack probe"; content: "A"; depth: 1;  reference:arachnids,314; flags:A+; classtype:attempted-recon; sid:614; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 1080 (msg:"SCAN Proxy attempt";flags:S; classtype:attempted-recon; sid:615; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 113 (msg:"SCAN ident version"; flags: A+; content: "VERSION|0A|"; depth: 16;reference:arachnids,303; classtype:attempted-recon; sid:616; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 22 (msg:"SCAN ssh-research-scanner"; flags: A+; content:"|00 00 00 60 00 00 00 00 00 00 00 00 01 00 00 00|"; classtype:attempted-recon; sid:617; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 3128 (msg:"INFO - Possible Squid Scan"; flags:S; classtype:attempted-recon; sid:618; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 80 (msg:"SCAN cybercop os probe"; flags: SF12; dsize: 0; reference:arachnids,146; classtype:attempted-recon; sid:619; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 8080 (msg:"SCAN Proxy attempt";flags:S; classtype:attempted-recon; sid:620; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN FIN"; flags: F; reference:arachnids,27; classtype:attempted-recon; sid:621; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN IP Eye SYN Scan"; flags: S; seq: 1958810375; reference:arachnids,236; classtype:attempted-recon; sid:622; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN NULL";flags:0; seq:0; ack:0; reference:arachnids,4; classtype:attempted-recon; sid:623; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN SYN FIN";flags:SF; reference:arachnids,198; classtype:attempted-recon; sid:624; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN XMAS";flags:SRAFPU; reference:arachnids,144; classtype:attempted-recon; sid:625; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN cybercop os probe"; content: "AAAAAAAAAAAAAAAA"; flags: PA12; depth: 16; reference:arachnids,149; classtype:attempted-recon; sid:626; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN cybercop os probe"; content: "AAAAAAAAAAAAAAAA"; flags: SFU12; ack: 0; depth: 16; reference:arachnids,150; classtype:attempted-recon; sid:627; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN nmap TCP";flags:A;ack:0; reference:arachnids,28; classtype:attempted-recon; sid:628; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN nmap fingerprint attempt";flags:SFPU; reference:arachnids,05; classtype:attempted-recon; sid:629; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN synscan portscan"; id: 39426; flags: SF;reference:arachnids,441; classtype:attempted-recon; sid:630; rev:1;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP cybercop scan ehlo";flags: A+; content:"ehlo cybercop|0a|quit|0a|"; reference:arachnids,372; classtype:attempted-recon; sid:631; rev:1;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP cybercop scan expn";flags: A+; content:"expn cybercop"; reference:arachnids,371; classtype:attempted-recon; sid:632; rev:1;)
+alert udp $EXTERNAL_NET any -> $HOME_NET 10080:10081 (msg:"SCAN Amanda client version"; content:"Amanda"; nocase; classtype:attempted-recon; sid:634; rev:1;)
+alert udp $EXTERNAL_NET any -> $HOME_NET 49 (msg:"SCAN XTACACS logout"; content: "|8007 0000 0700 0004 0000 0000 00|";reference:arachnids,408; classtype:bad-unknown; sid:635; rev:1;)
+alert udp $EXTERNAL_NET any -> $HOME_NET 7 (msg:"SCAN cybercop udp bomb"; content:"cybercop"; reference:arachnids,363; classtype:bad-unknown; sid:636; rev:1;)
+alert udp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN Webtrends Scanner UDP Probe"; content: "|0A 68 65 6C 70 0A 71 75 69 74 0A|";reference:arachnids,308; classtype:attempted-recon; sid:637; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN NMAP XMAS";flags:FPU; reference:arachnids,30; classtype:attempted-recon; sid:1228; rev:1;)

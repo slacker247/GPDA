@@ -1,0 +1,130 @@
+<tracks version="KAT 1.0">
+<trackCollection>
+<timeInterval>
+ <time name="START" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:00:10.799</time>
+<time name="END" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:00:10.799</time>
+</timeInterval>
+<time name="AVERAGE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:00:10.799</time>
+<rbr halfHgt="5990.57" halfWid="6068.63" sinAng="1.000000" cosAng="0.000000">
+<pt d="3">-1.319735 0.769153 0.00</pt>
+</rbr>
+<tracker id="KAT"></tracker>
+<projection type="GEODETIC"></projection>
+<track trackId="21027" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320517 0.769733 177.57</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+96.856056 8.692215 75.575539 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-10.118944 28.381239 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.891443 0.303218 0.149095 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.320523 0.769744 179.66</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-10.060000 28.230000 -0.60</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:00:10.399</time>
+</track>
+<track trackId="74054" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.319704 0.769424 201.10</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+63.125004 -44.439182 46.413155 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-12.156853 -14.655752 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+0.703223 -0.357624 0.568734 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.319704 0.769424 201.11</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-11.340000 -13.670000 -0.17</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:00:10.199</time>
+</track>
+<track trackId="EH115" quality="1" transit="CONSTRAINED" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320167 0.768529 212.98</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+146.953400 19.678921 108.182968 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-40.566658 -16.982204 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+5.785840 2.003701 1.838248 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.320182 0.768533 215.38</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">-5.070000 12.210000 -0.38</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:00:10.599</time>
+</track>
+<track trackId="WP765" quality="1" transit="UNCONSTRAINED" type="FLIER" classification="WHEELED">
+<status> <confirmed/></status>
+<normalEstimate>
+<position>
+<pt d="3">-1.320001 0.769655 190.04</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+108.627846 -182.064102 341.503418 
+</covMatrix>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">33.349838 30.878727 0.00</pt>
+<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+17218.996094 9426.975586 5161.088379 
+</covMatrix>
+</velocity>
+</normalEstimate>
+<truth id="unknown" application="unknown">
+ <acceleration>
+<pt d="3">0.000000 0.000000 0.00</pt>
+</acceleration>
+<position>
+<pt d="3">-1.320001 0.769655 190.03</pt>
+</position>
+<velocity vType="VECTOR">
+<pt d="3">12.010000 11.120000 0.09</pt>
+</velocity>
+</truth>
+<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">26 MAY 2000 12:00:10.399</time>
+</track>
+</trackCollection>
+</tracks>

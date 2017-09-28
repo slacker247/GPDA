@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Replacing a Parent</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="images/serving_nerd.gif" WIDTH="48" HEIGHT="48"> Replacing a Superclass<br>
+<img src="images/header_line.gif" width="590" height="6"></h1>
+
+<p>You can replace a superclass of a class using drag-and-drop in the <a href="class_relationship_pane.html"><font size="3">Class Relationship pane</font></a>.
+To replace a superclass:
+<ol>
+  <li>Select the subclass you want to move</li>
+  <li>Hold down the mouse button and drag the subclass on top of the new superclass.&nbsp;</li>
+  <li>Release the mouse. The subclass will now be located under the selected superclass. Note that the slots of the dragged class will automatically change to reflect the
+inheritance from the new superclass.</li>
+</ol>
+
+<p>The following example shows how to make <b>Columnist</b> inherit from <b>Employee</b>
+rather than the class <strong>Person</strong>. 
+
+<ol>
+  <li>Highlight <b>Columnist</b> in the <a href="class_relationship_pane.html"><font size="3">Class
+    Relationship pane</font></a>. Because <b>Columnist</b> has more than one superclass, you must make sure to select the copy of <b>Columnist</b> that is
+    under <b>Employee</b>. (When a class has more than one superclass, you can use
+    the Superclasses pane to select the copy that you want. See <a href="jumping_to_a_parent.html">Jumping
+    to a Different Superclass</a> for more information.) Note that the Slots
+    information for <b>Columnist</b> reflects the slots it inherits from <b>Person</b>.<br>
+    <img border="0" src="images/replace_parent1.gif" width="552" height="453"> </li>
+  <li>Hold down the mouse button and drag <b>Columnist</b> on top of the new superclass
+    <b>Employee</b>.</li>
+  <li>Release the mouse button to drop the
+    class. <b>Employee</b> is highlighted and the <a href="class_relationship_pane.html"><font size="3">Class Relationship pane</font></a>
+    redisplays to show the new hierarchy. The dragged class and all of
+    its subclasses are moved from the original superclass to the new superclass.</li>
+</ol>
+
+<p align="center"><img border="0" src="images/replace_parent2.gif" width="335" height="438"></p>
+
+<p>Notice that if you highlight <b>Columnist</b> after it has been repositioned,
+it now has three additional slots. These are the new slots it inherits from <b>Employee</b>.
+When you replace the superclass of a class, you will often lose and gain slots.</p>
+
+<hr>
+
+<p><font size="3">Next: <a href="adding_a_parent.html">Adding a Superclass</a></font></p>
+
+<p><a href="index.html"><font size="3">Classes Table of Contents</font></a></p>
+</body>
+</html>

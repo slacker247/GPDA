@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI man.sh access";flags: A+; uricontent:"/man.sh"; nocase;classtype:attempted-recon; sid:859; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC long basic authorization string"; flags:A+; content:"Authorization\: Basic "; nocase; dsize:>1000; classtype:attempted-dos; reference:bugtraq,3230; sid:1260; rev:2;)

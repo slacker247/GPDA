@@ -1,0 +1,18 @@
+# (C) Copyright 2001, Martin Roesch, Brian Caswell, et al.  All rights reserved.
+# $Id: porn.rules,v 1.2 2001/10/29 01:52:54 roesch Exp $
+#-------------
+# PORN RULES
+#-------------
+#
+
+alert tcp $EXTERNAL_NET 80 -> $HOME_NET any (msg:"PORN free XXX"; content:"FREE XXX"; nocase; flags:A+; classtype:kickass-porn; sid:1310; rev:1;)
+alert tcp $EXTERNAL_NET 80 -> $HOME_NET any (msg:"PORN hardcore anal"; content:"hardcore anal"; nocase; flags:A+; classtype:kickass-porn; sid:1311; rev:1;)
+alert tcp $EXTERNAL_NET 80 -> $HOME_NET any (msg:"PORN nude cheerleader"; content:"nude cheerleader"; nocase; flags:A+; classtype:kickass-porn; sid:1312; rev:1;)
+alert tcp $EXTERNAL_NET 80 -> $HOME_NET any (msg:"PORN up skirt"; content:"up skirt"; nocase; flags:A+; classtype:kickass-porn; sid:1313; rev:1;)
+alert tcp $EXTERNAL_NET 80 -> $HOME_NET any (msg:"PORN young teen"; content:"young teen"; nocase; flags:A+; classtype:kickass-porn; sid:1314; rev:1;)
+alert tcp $EXTERNAL_NET 80 -> $HOME_NET any (msg:"PORN hot young sex"; content:"hot young sex"; nocase; flags:A+; classtype:kickass-porn; sid:1315; rev:1;)
+alert tcp $EXTERNAL_NET 80 -> $HOME_NET any (msg:"PORN fuck fuck fuck"; content:"fuck fuck fuck"; nocase; flags:A+; classtype:kickass-porn; sid:1316; rev:1;)
+alert tcp $EXTERNAL_NET 80 -> $HOME_NET any (msg:"PORN anal sex"; content:"anal sex"; nocase; flags:A+; classtype:kickass-porn; sid:1317; rev:1;)
+alert tcp $EXTERNAL_NET 80 -> $HOME_NET any (msg:"PORN hardcore rape"; content:"hardcore rape"; nocase; flags:A+; classtype:kickass-porn; sid:1318; rev:1;)
+alert tcp $EXTERNAL_NET 80 -> $HOME_NET any (msg:"PORN real snuff"; content:"real snuff"; nocase; flags:A+; classtype:kickass-porn; sid:1319; rev:1;)
+alert tcp $EXTERNAL_NET 80 -> $HOME_NET any (msg:"PORN fuck movies"; content:"fuck movies"; nocase; flags:A+; classtype:kickass-porn; sid:1320; rev:1;)

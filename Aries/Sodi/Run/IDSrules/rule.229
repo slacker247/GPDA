@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 518 (msg:"EXPLOIT ntalkd x86 linux overflow"; content:"|0103 0000 0000 0001 0002 02e8|"; reference:bugtraq,210; classtype:attempted-admin; sid:313; rev:2;)

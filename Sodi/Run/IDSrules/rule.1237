@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Tomcat sourcode view"; flags:A+; uricontent:".js%2570"; nocase; classtype:attempted-recon; sid:1236; rev:1;)

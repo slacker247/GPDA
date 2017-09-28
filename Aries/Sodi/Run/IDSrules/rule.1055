@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS webhits access"; uricontent: ".htw"; flags: A+; dsize: >400;reference:arachnids,237; classtype:web-application-activity; sid:1044; rev:2;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE fpsrvadm.exe access";flags: A+; uricontent:"/fpsrvadm.exe"; nocase; classtype:web-application-activity; sid:943; rev:2;)

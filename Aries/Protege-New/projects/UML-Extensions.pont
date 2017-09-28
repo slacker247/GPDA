@@ -1,0 +1,145 @@
+; Mon Apr 21 10:40:55 PDT 2003
+; 
+;+ (version "1.8")
+;+ (build "Build 1029")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS
+	(is-a USER)
+	(role concrete)
+	(single-slot %3AUML-AGGREGATION-KIND
+		(type SYMBOL)
+		(allowed-values aggregation composition)
+;+		(cardinality 0 1)
+;+		(associated-facet UML-Extensions_00024)
+		(create-accessor read-write))
+	(single-slot %3AUML-VISIBILITY
+		(type SYMBOL)
+		(allowed-values private package public protected)
+		(default public)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3AUML-TAG
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3AUML-RETURN-TYPE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3AUML-STEREOTYPE
+;+		(comment "The optional class stereotype.")
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(associated-facet UML-Extensions_00029)
+		(create-accessor read-write))
+	(single-slot %3AUML-PARAMETER-NAME
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot %3AUML-TAGGED-VALUES
+		(type INSTANCE)
+;+		(allowed-classes %3AUML-TAGGED-VALUE)
+;+		(associated-facet UML-Extensions_00032)
+		(create-accessor read-write))
+	(multislot %3AUML-METHODS
+		(type INSTANCE)
+;+		(allowed-classes %3AUML-OPERATION)
+		(create-accessor read-write))
+	(single-slot %3AUML-TAG-VALUE
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3AUML-DATATYPE
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3AUML-OPERATION-NAME
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot %3AUML-PARAMETERS
+		(type INSTANCE)
+;+		(allowed-classes %3AUML-PARAMETER)
+		(create-accessor read-write)))
+
+(defclass %3AUML-CLASS "The metaclass of all classes that can have operations associated to them."
+	(is-a %3ASTANDARD-CLASS)
+	(role concrete)
+	(multislot %3AUML-TAGGED-VALUES
+		(type INSTANCE)
+;+		(allowed-classes %3AUML-TAGGED-VALUE)
+		(create-accessor read-write))
+	(multislot %3AUML-METHODS
+		(type INSTANCE)
+;+		(allowed-classes %3AUML-OPERATION)
+		(create-accessor read-write))
+	(single-slot %3AUML-STEREOTYPE
+;+		(comment "The optional class stereotype.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass %3AUML-SLOT
+	(is-a %3ASTANDARD-SLOT)
+	(role concrete)
+	(single-slot %3AUML-AGGREGATION-KIND
+		(type SYMBOL)
+		(allowed-values aggregation composition)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3AUML-STEREOTYPE
+;+		(comment "The optional class stereotype.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot %3AUML-TAGGED-VALUES
+		(type INSTANCE)
+;+		(allowed-classes %3AUML-TAGGED-VALUE)
+		(create-accessor read-write)))
+
+(defclass %3AUML-OPERATION
+	(is-a %3ASYSTEM-CLASS)
+	(role concrete)
+	(single-slot %3AUML-VISIBILITY
+		(type SYMBOL)
+		(allowed-values private package public protected)
+		(default public)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3AUML-OPERATION-NAME
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot %3AUML-PARAMETERS
+		(type INSTANCE)
+;+		(allowed-classes %3AUML-PARAMETER)
+		(create-accessor read-write))
+	(single-slot %3AUML-RETURN-TYPE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass %3AUML-PARAMETER
+	(is-a %3ASYSTEM-CLASS)
+	(role concrete)
+	(single-slot %3AUML-DATATYPE
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3AUML-PARAMETER-NAME
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass %3AUML-TAGGED-VALUE "A tagged value (a String-String pair) similar to a hashtable."
+	(is-a %3ASYSTEM-CLASS)
+	(role concrete)
+	(single-slot %3AUML-TAG-VALUE
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3AUML-TAG
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))

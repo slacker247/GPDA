@@ -1,0 +1,888 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE rdf:RDF [
+	 <!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	 <!ENTITY IW_DCI 'http://protege.stanford.edu/IW-DCI#'>
+	 <!ENTITY a 'http://protege.stanford.edu/system#'>
+	 <!ENTITY rdfs 'http://www.w3.org/TR/1999/PR-rdf-schema-19990303#'>
+]>
+<rdf:RDF xmlns:rdf="&rdf;"
+	 xmlns:IW_DCI="&IW_DCI;"
+	 xmlns:a="&a;"
+	 xmlns:rdfs="&rdfs;">
+<rdf:Property rdf:about="&IW_DCI;ALLY-AFFIL"
+	 a:maxCardinality="1"
+	 rdfs:label="ALLY-AFFIL">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;ALLY-DESC"
+	 a:maxCardinality="1"
+	 rdfs:label="ALLY-DESC">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;ALLY-NAME"
+	 a:maxCardinality="1"
+	 rdfs:label="ALLY-NAME">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;ALLY-ORG"
+	 a:maxCardinality="1"
+	 rdfs:label="ALLY-ORG">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;BELIEF"
+	 a:maxCardinality="1"
+	 a:maxValue="1.0"
+	 a:minCardinality="1"
+	 a:minValue="0.0"
+	 a:range="float"
+	 rdfs:label="BELIEF">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;CONCEPTS"
+	 a:defaultValues="Outcomes"
+	 a:maxCardinality="6"
+	 a:minCardinality="3"
+	 rdfs:label="CONCEPTS">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+	<a:defaultValues>Evidence</a:defaultValues>
+	<a:defaultValues>Indicators</a:defaultValues>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;CUTOFF"
+	 a:maxCardinality="1"
+	 a:maxValue="100000.0"
+	 a:minValue="0.0"
+	 a:range="float"
+	 rdfs:label="CUTOFF">
+	<rdfs:domain rdf:resource="&IW_DCI;Exec_DCI_Mission"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdfs:Class rdf:about="&IW_DCI;Confuse_Enemy"
+	 rdfs:label="Confuse_Enemy">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Deceive_Intruder"/>
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Exploit_Intercepts"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Counter_PSYOPS"
+	 rdfs:label="Counter_PSYOPS">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Psychological_Ops"/>
+</rdfs:Class>
+<rdf:Property rdf:about="&IW_DCI;DISBELIEF"
+	 a:maxCardinality="1"
+	 a:maxValue="1.0"
+	 a:minCardinality="1"
+	 a:minValue="0.0"
+	 a:range="float"
+	 rdfs:label="DISBELIEF">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdfs:Class rdf:about="&IW_DCI;Deceive_Intruder"
+	 rdfs:label="Deceive_Intruder">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Counter_PSYOPS"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Delay_Effects"
+	 rdfs:label="Delay_Effects">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Deceive_Intruder"/>
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Deny_Access"/>
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Disrupt_Attack"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Denial_of_Service"
+	 rdfs:label="Denial_of_Service">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Site"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Deny_Access"
+	 rdfs:label="Deny_Access">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Protect_Networks"/>
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Protect_Software"/>
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Secure_Site"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Disrupt_Attack"
+	 rdfs:label="Disrupt_Attack">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Counter_PSYOPS"/>
+</rdfs:Class>
+<rdf:Property rdf:about="&IW_DCI;ENEMY-AFFIL"
+	 a:maxCardinality="1"
+	 rdfs:label="ENEMY-AFFIL">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;ENEMY-DESC"
+	 a:maxCardinality="1"
+	 rdfs:label="ENEMY-DESC">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;ENEMY-NAME"
+	 a:maxCardinality="1"
+	 rdfs:label="ENEMY-NAME">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;ENEMY-ORG"
+	 a:maxCardinality="1"
+	 rdfs:label="ENEMY-ORG">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;EVID-SOURCES"
+	 a:defaultValues="Site"
+	 a:maxCardinality="6"
+	 a:minCardinality="3"
+	 rdfs:label="EVID-SOURCES">
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+	<a:defaultValues>Cnt</a:defaultValues>
+	<a:defaultValues>Rate</a:defaultValues>
+</rdf:Property>
+<rdfs:Class rdf:about="&IW_DCI;Exec_DCI_Mission"
+	 rdfs:label="Exec_DCI_Mission">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Confuse_Enemy"/>
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Delay_Effects"/>
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Inhibit_Intrusion"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Expert"
+	 rdfs:label="Expert">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Exploit_Intercepts"
+	 rdfs:label="Exploit_Intercepts">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Counter_PSYOPS"/>
+</rdfs:Class>
+<rdf:Property rdf:about="&IW_DCI;FUSE-END"
+	 a:defaultValues="0.0"
+	 a:maxCardinality="1"
+	 a:range="float"
+	 rdfs:label="FUSE-END">
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;FUSE-MODE"
+	 a:defaultValues="1"
+	 a:maxCardinality="1"
+	 a:range="integer"
+	 rdfs:label="FUSE-MODE">
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;FUSE-START"
+	 a:defaultValues="0.0"
+	 a:maxCardinality="1"
+	 a:range="float"
+	 rdfs:label="FUSE-START">
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;FUSE-TUNIT"
+	 a:defaultValues="H"
+	 a:maxCardinality="1"
+	 rdfs:label="FUSE-TUNIT">
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;HOW-ACTION"
+	 a:maxCardinality="1"
+	 rdfs:label="HOW-ACTION">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;HOW-ADJECT"
+	 a:maxCardinality="1"
+	 rdfs:label="HOW-ADJECT">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;HOW-CASUAL"
+	 a:maxCardinality="1"
+	 a:maxValue="10000000"
+	 a:minValue="0"
+	 a:range="integer"
+	 rdfs:label="HOW-CASUAL">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;HOW-COST"
+	 a:maxCardinality="1"
+	 a:maxValue="100000000"
+	 a:minValue="0"
+	 a:range="integer"
+	 rdfs:label="HOW-COST">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;HOW-DESC1"
+	 a:maxCardinality="1"
+	 rdfs:label="HOW-DESC1">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;HOW-DESC2"
+	 a:maxCardinality="1"
+	 rdfs:label="HOW-DESC2">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;HOW-DESC3"
+	 a:maxCardinality="1"
+	 rdfs:label="HOW-DESC3">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;HOW-INJURY"
+	 a:maxCardinality="1"
+	 a:maxValue="10000000"
+	 a:minValue="0"
+	 a:range="integer"
+	 rdfs:label="HOW-INJURY">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;INFO-ID"
+	 a:maxCardinality="1"
+	 rdfs:label="INFO-ID">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdfs:Class rdf:about="&IW_DCI;Inhibit_Intrusion"
+	 rdfs:label="Inhibit_Intrusion">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Deny_Access"/>
+</rdfs:Class>
+<rdf:Property rdf:about="&IW_DCI;MISSION"
+	 a:maxCardinality="1"
+	 a:minCardinality="1"
+	 rdfs:label="MISSION">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;PARTY-AFFIL"
+	 a:maxCardinality="1"
+	 rdfs:label="PARTY-AFFIL">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;PARTY-DESC"
+	 a:maxCardinality="1"
+	 rdfs:label="PARTY-DESC">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;PARTY-NAME"
+	 a:maxCardinality="1"
+	 rdfs:label="PARTY-NAME">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;PARTY-ORG"
+	 a:maxCardinality="1"
+	 rdfs:label="PARTY-ORG">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;PREPARED"
+	 a:maxCardinality="1"
+	 rdfs:label="PREPARED">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;PREPDATE"
+	 a:maxCardinality="1"
+	 rdfs:label="PREPDATE">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdfs:Class rdf:about="&IW_DCI;PSYOPS"
+	 rdfs:label="PSYOPS">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Physical_Attack"
+	 rdfs:label="Physical_Attack">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Site"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Protect_Networks"
+	 rdfs:label="Protect_Networks">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Denial_of_Service"/>
+	<rdfs:subClassOf rdf:resource="&IW_DCI;System_Intrusion"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Protect_Software"
+	 rdfs:label="Protect_Software">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Software_Bugs"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Psychological_Ops"
+	 rdfs:label="Psychological_Ops">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;PSYOPS"/>
+</rdfs:Class>
+<rdf:Property rdf:about="&IW_DCI;REPORT-AFFIL"
+	 a:maxCardinality="1"
+	 rdfs:label="REPORT-AFFIL">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;REPORT-DESC"
+	 a:maxCardinality="1"
+	 rdfs:label="REPORT-DESC">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;REPORT-NAME"
+	 a:maxCardinality="1"
+	 rdfs:label="REPORT-NAME">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;REPORT-ORG"
+	 a:maxCardinality="1"
+	 rdfs:label="REPORT-ORG">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;SOURCE"
+	 a:maxCardinality="1"
+	 a:minCardinality="1"
+	 rdfs:label="SOURCE">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdfs:Class rdf:about="&IW_DCI;SYSTEM-CLASS"
+	 rdfs:comment="IW DCI Mission"
+	 rdfs:label="SYSTEM-CLASS">
+	<rdfs:subClassOf rdf:resource="&rdfs;Resource"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Secure_Site"
+	 rdfs:label="Secure_Site">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Physical_Attack"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Site"
+	 rdfs:label="Site">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Software_Bugs"
+	 rdfs:label="Software_Bugs">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Expert"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;System_Intrusion"
+	 rdfs:label="System_Intrusion">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Site"/>
+</rdfs:Class>
+<rdf:Property rdf:about="&IW_DCI;THRESHOLD"
+	 a:defaultValues="0.75"
+	 a:maxCardinality="1"
+	 a:maxValue="1.0"
+	 a:minValue="0.0"
+	 a:range="float"
+	 rdfs:label="THRESHOLD">
+	<rdfs:domain rdf:resource="&IW_DCI;Exec_DCI_Mission"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;TIME-UNIT"
+	 a:defaultValues="Min"
+	 a:maxCardinality="1"
+	 rdfs:label="TIME-UNIT">
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WEIGHTS"
+	 a:defaultValues="1.0"
+	 a:maxCardinality="6"
+	 a:maxValue="1.0"
+	 a:minCardinality="1"
+	 a:minValue="0.0"
+	 a:range="float"
+	 rdfs:label="WEIGHTS">
+	<rdfs:domain rdf:resource="&IW_DCI;Confuse_Enemy"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHAT-ACTION"
+	 a:maxCardinality="1"
+	 rdfs:label="WHAT-ACTION">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHAT-DESC"
+	 a:maxCardinality="1"
+	 rdfs:label="WHAT-DESC">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHAT-OBJECT"
+	 a:maxCardinality="1"
+	 rdfs:label="WHAT-OBJECT">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHEN-DURATION"
+	 a:maxCardinality="1"
+	 rdfs:label="WHEN-DURATION">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHEN-END"
+	 a:maxCardinality="1"
+	 rdfs:label="WHEN-END">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHEN-START"
+	 a:maxCardinality="1"
+	 rdfs:label="WHEN-START">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHEN-TFRAME"
+	 a:maxCardinality="1"
+	 rdfs:label="WHEN-TFRAME">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHERE-ALT"
+	 a:maxCardinality="1"
+	 a:maxValue="100000.0"
+	 a:minValue="0.0"
+	 a:range="float"
+	 rdfs:label="WHERE-ALT">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHERE-CITY"
+	 a:maxCardinality="1"
+	 rdfs:label="WHERE-CITY">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHERE-LAT"
+	 a:maxCardinality="1"
+	 a:maxValue="90.0"
+	 a:minValue="-90.0"
+	 a:range="float"
+	 rdfs:label="WHERE-LAT">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHERE-LOCALE"
+	 a:maxCardinality="1"
+	 rdfs:label="WHERE-LOCALE">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHERE-LON"
+	 a:maxCardinality="1"
+	 a:maxValue="180.0"
+	 a:minValue="-180.0"
+	 a:range="float"
+	 rdfs:label="WHERE-LON">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHERE-NATION"
+	 a:maxCardinality="1"
+	 rdfs:label="WHERE-NATION">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHERE-REGION"
+	 a:maxCardinality="1"
+	 rdfs:label="WHERE-REGION">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHERE-STRUCT"
+	 a:maxCardinality="1"
+	 rdfs:label="WHERE-STRUCT">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHY-OPERATIONAL"
+	 a:maxCardinality="1"
+	 rdfs:label="WHY-OPERATIONAL">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHY-STRATEGIC"
+	 a:maxCardinality="1"
+	 rdfs:label="WHY-STRATEGIC">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHY-TACTICAL"
+	 a:maxCardinality="1"
+	 rdfs:label="WHY-TACTICAL">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHY-TASK"
+	 a:maxCardinality="1"
+	 rdfs:label="WHY-TASK">
+	<rdfs:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<a:OverridingProperty rdf:about="&a;Confuse_Enemy_WEIGHTS"
+	 a:maxCardinality="6"
+	 a:maxValue="1.0"
+	 a:minCardinality="1"
+	 a:minValue="0.0"
+	 a:range="float">
+	<a:domain rdf:resource="&IW_DCI;Confuse_Enemy"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WEIGHTS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+	<a:defaultValues>0.47</a:defaultValues>
+	<a:defaultValues>0.7</a:defaultValues>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;Exec_DCI_Mission_CUTOFF"
+	 a:defaultValues="100.0"
+	 a:maxCardinality="1"
+	 a:maxValue="100000.0"
+	 a:minValue="0.0"
+	 a:range="float">
+	<a:overriddenProperty rdf:resource="&IW_DCI;CUTOFF"/>
+	<a:domain rdf:resource="&IW_DCI;Exec_DCI_Mission"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;Exec_DCI_Mission_THRESHOLD"
+	 a:defaultValues="0.75"
+	 a:maxCardinality="1"
+	 a:maxValue="1.0"
+	 a:minValue="0.0"
+	 a:range="float">
+	<a:domain rdf:resource="&IW_DCI;Exec_DCI_Mission"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;THRESHOLD"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_ALLY-AFFIL"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;ALLY-AFFIL"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_ALLY-DESC"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;ALLY-DESC"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_ALLY-NAME"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;ALLY-NAME"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_ALLY-ORG"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;ALLY-ORG"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_BELIEF"
+	 a:maxCardinality="1"
+	 a:maxValue="1.0"
+	 a:minCardinality="1"
+	 a:minValue="0.0"
+	 a:range="float">
+	<a:overriddenProperty rdf:resource="&IW_DCI;BELIEF"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_CONCEPTS"
+	 a:maxCardinality="6"
+	 a:minCardinality="3">
+	<a:overriddenProperty rdf:resource="&IW_DCI;CONCEPTS"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+	<a:defaultValues>Assessment Sources</a:defaultValues>
+	<a:defaultValues>Operational Objective</a:defaultValues>
+	<a:defaultValues>Strategic Objective</a:defaultValues>
+	<a:defaultValues>Tactical Objective</a:defaultValues>
+	<a:defaultValues>Task</a:defaultValues>
+	<a:defaultValues>Threat</a:defaultValues>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_DISBELIEF"
+	 a:maxCardinality="1"
+	 a:maxValue="1.0"
+	 a:minCardinality="1"
+	 a:minValue="0.0"
+	 a:range="float">
+	<a:overriddenProperty rdf:resource="&IW_DCI;DISBELIEF"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_ENEMY-AFFIL"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;ENEMY-AFFIL"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_ENEMY-DESC"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;ENEMY-DESC"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_ENEMY-NAME"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;ENEMY-NAME"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_ENEMY-ORG"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;ENEMY-ORG"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_HOW-ACTION"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;HOW-ACTION"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_HOW-ADJECT"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;HOW-ADJECT"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_HOW-CASUAL"
+	 a:maxCardinality="1"
+	 a:maxValue="10000000"
+	 a:minValue="0"
+	 a:range="integer">
+	<a:overriddenProperty rdf:resource="&IW_DCI;HOW-CASUAL"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_HOW-COST"
+	 a:maxCardinality="1"
+	 a:maxValue="100000000"
+	 a:minValue="0"
+	 a:range="integer">
+	<a:overriddenProperty rdf:resource="&IW_DCI;HOW-COST"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_HOW-DESC1"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;HOW-DESC1"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_HOW-DESC2"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;HOW-DESC2"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_HOW-DESC3"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;HOW-DESC3"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_HOW-INJURY"
+	 a:maxCardinality="1"
+	 a:maxValue="10000000"
+	 a:minValue="0"
+	 a:range="integer">
+	<a:overriddenProperty rdf:resource="&IW_DCI;HOW-INJURY"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_INFO-ID"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;INFO-ID"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_MISSION"
+	 a:maxCardinality="1"
+	 a:minCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;MISSION"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_PARTY-AFFIL"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;PARTY-AFFIL"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_PARTY-DESC"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;PARTY-DESC"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_PARTY-NAME"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;PARTY-NAME"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_PARTY-ORG"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;PARTY-ORG"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_PREPARED"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;PREPARED"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_PREPDATE"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;PREPDATE"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_REPORT-AFFIL"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;REPORT-AFFIL"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_REPORT-DESC"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;REPORT-DESC"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_REPORT-NAME"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;REPORT-NAME"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_REPORT-ORG"
+	 a:maxCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;REPORT-ORG"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_SOURCE"
+	 a:maxCardinality="1"
+	 a:minCardinality="1">
+	<a:overriddenProperty rdf:resource="&IW_DCI;SOURCE"/>
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHAT-ACTION"
+	 a:maxCardinality="1">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHAT-ACTION"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHAT-DESC"
+	 a:maxCardinality="1">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHAT-DESC"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHAT-OBJECT"
+	 a:maxCardinality="1">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHAT-OBJECT"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHEN-DURATION"
+	 a:maxCardinality="1">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHEN-DURATION"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHEN-END"
+	 a:maxCardinality="1">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHEN-END"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHEN-START"
+	 a:maxCardinality="1">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHEN-START"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHEN-TFRAME"
+	 a:maxCardinality="1">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHEN-TFRAME"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHERE-ALT"
+	 a:maxCardinality="1"
+	 a:maxValue="100000.0"
+	 a:minValue="0.0"
+	 a:range="float">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHERE-ALT"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHERE-CITY"
+	 a:maxCardinality="1">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHERE-CITY"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHERE-LAT"
+	 a:maxCardinality="1"
+	 a:maxValue="90.0"
+	 a:minValue="-90.0"
+	 a:range="float">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHERE-LAT"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHERE-LOCALE"
+	 a:maxCardinality="1">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHERE-LOCALE"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHERE-LON"
+	 a:maxCardinality="1"
+	 a:maxValue="180.0"
+	 a:minValue="-180.0"
+	 a:range="float">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHERE-LON"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHERE-NATION"
+	 a:maxCardinality="1">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHERE-NATION"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHERE-REGION"
+	 a:maxCardinality="1">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHERE-REGION"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHERE-STRUCT"
+	 a:maxCardinality="1">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHERE-STRUCT"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHY-OPERATIONAL"
+	 a:maxCardinality="1">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHY-OPERATIONAL"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHY-STRATEGIC"
+	 a:maxCardinality="1">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHY-STRATEGIC"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHY-TACTICAL"
+	 a:maxCardinality="1">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHY-TACTICAL"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+<a:OverridingProperty rdf:about="&a;SYSTEM-CLASS_WHY-TASK"
+	 a:maxCardinality="1">
+	<a:domain rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+	<a:overriddenProperty rdf:resource="&IW_DCI;WHY-TASK"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</a:OverridingProperty>
+</rdf:RDF>

@@ -1,0 +1,102 @@
+#----------------------------------------------------------------
+# Makefile for LANL_BP
+#
+#----------------------------------------------------------------
+#  C and C++ compiler flags:
+
+#  Define the Architecture here once and for all
+
+ARCH = SUN4
+#ARCH = SGI
+#ARCH = KSR1
+
+FLAGS = -D$(ARCH) -DCROS -DMERC -DHOST -DFASTCOMB -DCPP20
+C       = cc
+C++     = CC
+FOR	= f77
+CFLAGS  = $(FLAGS) -g -c -lm
+CCFLAGS = $(FLAGS) -g -c -lm
+FFLAGS =  -L/usr/lang/SC1.0 -lF77 -g -c
+#
+# external libraries (machine constants are in the PORT library)
+#
+# C++ language source files
+CCSRC = lanl_bp.C \
+	kepler.C \
+	eom.C \
+	convert.C \
+	base_space.C \
+	queue.C \
+	holder.C \
+	parser.C \
+	spline6.C \
+	basetype.C \
+	gentype.C \
+	genint.C \
+	genfloat.C \
+	genstring.C \
+	genenum.C \
+	genlogical.C \
+	host_user.C
+#
+# C  language source files
+CSRC = Cros_lib.c
+
+#
+# F language source files
+
+FSRC =	gpals_sim.f \
+	fortsetup.f \
+	conin1.f \
+	distance.f \
+	engagement_plan.f \
+	expected_damage.f \
+	feas.f \
+	fly_threat.f \
+	get_data.f \
+	giinterp.f \
+	gisrchar.f \
+	gilnchaz.f \
+	giprobk.f \
+	giquad.f \
+	giroots.f \
+	gistate.f \
+	initial.f \
+	matrix.f \
+	pre_process.f \
+	read_data.f \
+	read_threats.f \
+	wta.f
+
+#
+# Object files:
+#OBJECTS = $(CCSRC:.C=.o)  $(CSRC:.c=.o)
+OBJECTS = $(CCSRC:.C=.o)  $(CSRC:.c=.o) $(FSRC:.f=.o)
+
+lanl_bp : $(OBJECTS)
+#	$(C++) -v $(FLAGS) -L/usr/lang/SC1.0 -g -o lanl_bp $(OBJECTS) \
+#	-lm -lF77  -lU77 -lI77 -lisam -lmpc
+	$(C++) -v $(FLAGS) -L/usr/lang/SC1.0 -g -o lanl_bp $(OBJECTS) -lm -lF77
+
+#...............................................................
+# keep track of include file dependencies:
+.KEEP_STATE:
+#
+# clear suffix defaults and specify our own:
+.SUFORIXES:
+.SUFFIXES: .c .C .o .s .f
+#
+# specify how to make a .o file from a .c file
+.c.o:
+	$(C) $(CFLAGS) $<
+# specify how to make a .o file from a .c file
+.C.o:
+	$(C++) $(CCFLAGS) $<
+#specify how to make a .o file from a .f file
+.f.o:
+	$(FOR) $(FFLAGS) $<
+#
+#  end of Makefile
+#===============================================================
+
+

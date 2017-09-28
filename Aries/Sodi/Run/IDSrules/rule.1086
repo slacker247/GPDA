@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC tftp attempt";flags: A+; content:"tftp.exe"; nocase; classtype:web-application-activity; sid:1068; rev:2;)

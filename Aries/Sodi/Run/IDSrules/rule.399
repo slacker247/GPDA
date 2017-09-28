@@ -1,0 +1,1 @@
+alert icmp any any -> any any (msg:"ICMP Destination Unreachable (Communication with Destination Host is Administratively Prohibited)"; itype: 3; icode: 10; sid:486;  classtype:misc-activity; rev:2;)

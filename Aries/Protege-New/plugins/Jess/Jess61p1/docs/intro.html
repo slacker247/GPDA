@@ -1,0 +1,750 @@
+<html>
+
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Jess, the Java Expert System Shell - Introduction</title>
+<link title="style" href="stylesheet.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<h2>1.
+        Introduction</h2>
+
+
+<a name="abstract">
+<h3>1.1. Abstract</h3>
+</a>
+This report describes Jess, an expert system shell and scripting
+language written entirely in Sun Microsystem's Java language. Jess
+supports the development of rule-based expert systems which can be
+tightly coupled to code written in the powerful, portable Java
+language. The syntax of the Jess language is discussed, and a
+comprehensive list of supported functions is presented. Guides to
+calling Java functions from Jess, to extending Jess by writing Java
+code, and to embedding Jess in Java applications are also included.
+
+
+
+<a name="compatibility">
+<h3>1.2. Compatibility</h3>
+</a>
+Jess 6.1 is compatible with all versions of Java starting with Java
+1.2. In particular, this includes JDK 1.4 (or "Java 2" as it is now
+known.) Versions numbered 4.x are compatible with JDK 1.0, and the 5.x
+versions work with JDK 1.1.
+<blockquote>
+        When compiling Jess with JDK 1.4, you will see warnings
+        concerning the use of the new keyword <tt>assert</tt> as a
+        method name. This is normal -- note that these are warnings,
+        not errors. The <tt>assert</tt> method is deprecated in Jess
+        6.1 and will be removed in Jess 7.0. Until then, these
+        warnings are harmless.
+</blockquote>
+
+
+
+
+
+<a name="mail">
+<h3>1.3. Mailing List</h3>
+</a>
+
+There is a Jess email discussion list you can join. To get information
+about the jess-users list, send a message to majordomo@sandia.gov
+containing the text
+
+<pre>
+  help
+  info jess-users
+  end
+</pre>
+
+as the body of the message. There is an archive of the list at
+http://www.mail-archive.com/jess-users@sandia.gov .
+
+
+
+
+<a name="bugs">
+<h3>1.4. Bugs</h3>
+</a>
+
+      This is the first Jess 6.1 release candidate. There may still be
+      bugs. Please read the <a href="release_notes.html">release
+      notes</a> for specific information. Comments and bug reports
+      are welcome. Contact me at <tt>ejfried@ca.sandia.gov</tt> so I
+      can fix them for a later release.
+
+
+
+
+<a name="assumptions">
+<h3>1.5. Assumptions</h3>
+</a>
+Jess is a programmer's library. The library itself is written in
+Java. The library serves as an interpreter for another language, which
+I will refer to in this document as the Jess language. The Jess
+language is very similar to the language defined by the CLIPS expert
+system shell, which in turn is a highly specialized form of LISP.
+<p align=""></p>
+Therefore, I am going to assume that you, the reader, are a programmer
+who will be using either one or both of these languages. I will
+assume that all readers have at least a minimal facility with
+Java. You must have a Java compiler and runtime system, and you must
+know how to use it at least in a simple way. You should know how to
+use it to
+
+<ul>
+
+<li>compile a collection of Java source files</li>
+
+<li>run a Java application</li>
+
+<li>deal with configuration issues like the CLASSPATH variable</li>
+
+</ul>
+
+If you do not have at least this passing familiarity with a Java
+environment, then may I suggest you purchase an introductory book on
+the topic.
+<p align=""></p>
+For those readers who are going to program in the Jess language, I
+assume general familiarity with the principles of programming. I will
+describe the entire Jess language, so no familiarity with LISP is
+required. Furthermore, I will attempt to describe, to the extent
+possible, the important concepts of rule-based systems as they apply
+to Jess. Again, though, I will assume that the reader has some
+familiarity with these concepts and more. If you are unfamiliar with
+rule-based systems, you may want to purchase a text on this topic as
+well.
+<p align=""></p>
+Many readers will want to extend Jess' capabilities by either adding
+commands (written in Java) to the Jess language, or embedding the
+Jess library in a Java application. Others will want to use the Jess
+language's Java integration capabilities to call Java functions from
+Jess language programs. In sections of this document targeted towards
+these readers, I will assume moderate knowledge of Java programming. I
+will not teach any aspects of the Java language. The interested reader
+is once again referred to your local bookstore.
+<p align=""></p>
+This document contains a <a href="references.html">bibliography</a>
+wherein a number of books on all these topics are listed.
+
+
+
+<a name="setup">
+<h3>1.6. Getting ready</h3>
+</a>
+
+<a name="unpacking">
+<h4>1.6.1. Unpacking the Distribution</h4>
+</a>
+
+If you download Jess for UNIX, you can extract the files using tar and
+gunzip:
+<pre>
+        gunzip Jess61p1.tgz
+        tar xf Jess61p1.tar
+</pre>
+
+If you downloaded Jess for Windows, you get a .zip file which should be
+unzipped using a Win32-aware unzip program like <a href="http://www.winzip.com">WinZip</a>. Don't use PKUNZIP since it
+cannot handle long file names.
+
+<p align=""></p>
+When Jess is unpacked, you should have a directory named <tt>Jess61p1/</tt>.
+There are two kinds of Jess distributions: <i>binary-only</i> and
+<i>source.</i> Inside this directory should be the following files and
+subdirectories, depending on which type of distribution you have:
+<p align=""></p>
+
+<table>
+
+<tr>
+
+<td><tt>docs/</tt></td>
+
+<td>This documentation</td>
+
+</tr>
+
+
+<tr>
+
+<td><tt>jess/</tt></td>
+
+<td>A directory containing the <tt>jess</tt> package. There are many
+source files in here that implement Jess's inference engine. Others
+implement a number of Jess GUIs and command-line
+interfaces. <tt>Main.java</tt> implements the Jess command-line
+interface. <tt>Console.java</tt> is a very simple GUI console for
+Jess; <tt>ConsoleApplet.java</tt> is an applet version of the same. If
+you have a binary-only distribution of Jess, this directory will
+contain only the <tt>examples</tt> subdirectory.
+</td>
+
+</tr>
+
+
+<tr>
+
+<td><tt>examples/</tt></td>
+
+<td>A directory of tiny example Jess files.</td>
+
+</tr>
+
+
+<tr>
+
+<td><tt>jess/examples</tt></td>
+
+<td>A directory of more complicated examples, containing example Java source
+files. </td>
+
+</tr>
+
+
+<tr>
+
+<td><tt>jess.jar (optional)</tt></td>
+
+<td>A Java archive file containing the Jess classes
+themselves. Binary distribution only.</td>
+
+</tr>
+
+
+<tr>
+
+<td><tt>Makefile (optional)</tt></td>
+
+<td>A simple makefile for Jess. Source distribution only.</td>
+
+</tr>
+
+</table>
+
+
+
+
+<a name="compiling">
+<h4>1.6.2. Compiling Jess</h4>
+</a>
+If you have a source distribution of Jess, you have a set of Java
+source files, and you'll need to compile them first before you can run
+Jess. If you have a binary distribution, you can skip this section. If
+you have a <tt>make</tt> utility (any UNIX-like <tt>make</tt>; you
+could use the <a href="http://sourceware.cygnus.com/cygwin/">CygWin
+environment</a> on Windows), you can just run <tt>make</tt> and the
+enclosed Makefile will build everything. You will have to edit it a
+bit first to specify the path to your Java compiler. Otherwise, you
+can compile Jess by typing a few commands yourself. Using Sun's JDK on
+some version of Windows, the commands
+<pre>
+  javac -d . jess\*.java
+  javac -d . jess\awt\*.java
+  javac -d . jess\factory\*.java
+</pre>
+
+would work just fine, given that <tt>Jess61p1/</tt> is your current
+directory.
+        <blockquote>
+          
+<i>
+            NOTE: Jess works fine with JDK 1.4, but you will get
+            warnings during the compilation about a conflict between
+            the new Java keyword "assert" amd the Jess function
+            <tt>jess.Rete.assert()</tt>.  These are just warnings, and
+            they don't stop the compilation. This function is now
+            deprecated in Jess and will be phased out over the next
+            few versions.
+          </i>
+        
+</blockquote>
+
+<p align=""></p>
+If you have problems, be sure that if you have the
+<tt>CLASSPATH</tt> environment variable set, it includes '.', the
+current directory. <i>Don't</i> try to compile from
+inside the <tt>Jess61p1/jess/</tt> directory; it won't work.
+<p align=""></p>
+If you're on a UNIX system instead of a Windows system, you can use
+the commands given above, but you'll need to change the backslashes
+(\) into forward slashes (/).
+
+<p align=""></p>
+You must
+use a Java 2 compiler to compile Jess. The resulting code
+will run on any Java 2 or later VM. Jess works great with JDK 1.3.
+
+<p align=""></p>
+There are a number of optional example source files in the subdirectories
+<tt>Jess61p1/jess/examples</tt>/ that aren't compiled if you follow
+the instructions above. You can compile the examples one at a
+time. For example, to compile the example named <tt>pumps</tt> using
+the JDK on a Windows system, you can use the command
+<pre>
+  javac -d . jess\examples\pumps\*.java
+</pre>
+
+
+<hr>
+
+<blockquote>
+<b>
+Again, <i>don't</i> set your current directory to, for example,
+Jess61p1/jess/examples/pumps/ to compile the pumps example: it will <i>not</i>
+work. The compiler will report all sorts of errors about classes not being
+found and the jess package not being found. Compile everything from the
+Jess61p1 directory. I can't stress this enough: this is by far the most
+common problem people have in getting started with Jess!
+</b>
+</blockquote>
+
+<hr>
+
+I personally use the <a href="http://www.ibm.com/research/jikes">Jikes</a>
+Java compiler from IBM. The compiler itself is very fast -- it compiles all
+of Jess in just a few seconds on my machine. I highly recommend it,
+and it's free!
+
+
+
+<a name="examples">
+<h4>1.6.3. Jess Example Programs</h4>
+</a>
+
+There are a few trivial example programs (in the examples/ directory)
+that you can use to confirm
+that you have properly compiled Jess. These include <tt>fullmab.clp</tt>,
+<tt>zebra.clp</tt>, and <tt>wordgame.clp</tt>. <tt>fullmab.clp</tt> is
+a version of the classic Monkey and Bananas problem. To run it yourself
+from the command line, just type:
+
+<pre>
+  java jess.Main examples/fullmab.clp
+</pre>
+
+(if you've got a source distribution) or
+
+<pre>
+  java -classpath jess.jar jess.Main examples/fullmab.clp
+</pre>
+
+(if you've got a binary-only distribution) and the problem should
+run, producing a few screens of output. Any file of Jess code can be
+run this way. Many simple CLIPS programs will also run unchanged in
+Jess. Note that giving Jess a file name on the command line is like
+using the <a href="functions.html#batch"><tt>batch</tt></a> command in
+CLIPS. Therefore, you generally need to make sure that the file ends
+with:
+
+<pre>
+  (reset)
+  (run)
+</pre>
+
+or no rules will fire. The <tt>zebra.clp</tt> and <tt>wordgame.clp</tt>
+programs are two classic CLIPS examples selected to show how Jess deals
+with tough situations. These examples both generate large numbers of partial
+pattern matches, so they are slow and use up a lot of memory. Other examples
+include <tt>sticks.clp</tt> (an interactive game), <tt>frame.clp</tt>
+(a demo of building a graphical interface using Jess's Java integration
+capabilities), and <tt>animal.clp.</tt> Note that <tt>animal.clp</tt>
+is hardwired to expect a data file to exist in a subdirectory
+examples/ of the current directory.
+<p align=""></p>
+In the <tt>jess/examples/*</tt> subdirectories, you will find some more complex
+examples, all of which contain both Java and Jess code. As such, these
+are generally examples of how to tie Jess and Java together. The
+<i>Pumps</i> examples is a full working program that demonstrates how
+Jess rules can react to the properties of Java Beans.
+
+
+
+<a name="cli">
+<h4>1.6.4. Command-line Interface</h4>
+</a>
+Jess has an interactive command-line interface. Just type <tt>java
+          jess.Main</tt> (or <tt>java -classpath jess.jar jess.Main</tt>)
+to get a <tt>Jess&gt;</tt> prompt. To execute a file of CLIPS code from the
+command prompt, use the <a href="functions.html#batch"><tt>batch</tt></a> command:
+<pre>
+  Jess&gt; (batch examples/sticks.clp)
+  Who moves first (Computer: c Human: h)?
+</pre>
+Note that in the preceding example, you type what follows the
+<tt>Jess&gt;</tt> prompt, and Jess responds with the text on the next line. I will
+follow this convention throughout this manual.
+<p align=""></p>
+You can use the Jess <a href="functions.html#system"><tt>system</tt></a> command to invoke an editor from the
+Jess command line to edit a file of Jess code before reading it in with
+<a href="functions.html#batch"><tt>batch</tt></a>. <a href="functions.html#system"><tt>system</tt></a> also helps to allow non-Java programmers
+to integrate Jess with other applications. Given that you have an application
+named <tt>xlogo</tt> on your system, try:
+<pre>
+  
+<b>Jess&gt; </b>(system xlogo &amp;)
+  <i>&lt;External-Address:java.lang.UNIXProcess&gt;</i>
+
+</pre>
+The <tt>&amp;</tt> character makes the program run in the background. Omitting
+it will keep the system command from returning until the called program
+exits. The <a href="functions.html#system"><tt>system</tt></a> command returns the
+Java Process object representing the launched application.
+
+<p align=""></p>
+The class <tt>jess.Console</tt> is a graphical version of the Jess command-line
+interface. You type into a text field at the bottom of the window, and
+output appears in a scrolling window above. Type <tt>java jess.Console</tt>
+to try it.
+
+
+<a name="applet">
+<h4>1.6.5. Jess as an Applet</h4>
+</a>
+The class <tt>jess.ConsoleApplet</tt> is a generic Jess applet that uses
+the same display as the <tt>jess.Console</tt> class. It can be used in
+general question-and-answer situations simply by embedding the applet class
+on a Web page. The applet accepts two applet parameters. The value of an
+<tt>INPUT</tt> parameter will be interpreted as a Jess program to run when
+starting up. Note that when this program halts, the Jess prompt will appear
+in the applet window. The applet also accept a <tt>COMPACT</tt> parameter.
+If present, <tt>ConsoleApplet</tt> will contain only a bare-bones version
+of Jess (no optional functions will be loaded).
+ <p align=""></p>
+
+
+<p align="">Since Jess 6 uses the Java 2 API, it won't work in the native JVM
+of most deployed web browsers. Netscape 4.x and all versions of
+Microsoft Internet Explorer use some version of a JDK 1.1 Java Virtual
+Machine. You can use Jess 4 or 5 in these browsers, or you can require
+the user to download the Java Plug-In. A full discussion of this topic
+is beyond the scope of this document -- you're encouraged to get a
+book that covers deploying applets on the Web if you're interested.
+</p>
+
+Note that even in Jess 4 and 5, the ConsoleApplet and ConsoleDisplay
+classes use the Java 1.1 event model, which is still not supported by
+some of the installed base of Web browsers; the Plug-in might still be
+necessary. Don't use <tt>ConsoleApplet</tt> if you want to deploy
+highly portable applets! Actually, the idea of deploying Jess as an
+applet makes less and less sense these days; a much better alternative
+is to run Jess on the server side (as a servlet, for example) and run
+only the GUI on the client. Good applets are generally very small (a
+few tens of kilobytes), while Jess's class files now occupy hundreds
+of kilobytes.
+
+
+
+
+
+<a name="good_application">
+<h3>1.7. What makes a good Jess application?</h3>
+</a>
+
+Jess can be used in two overlapping ways. First, it can be a rule
+engine - a special kind of program that very efficiently applies
+rules to data. A rule-based program can have hundreds or even
+thousands of <a href="language.html#rules"><i>rules</i></a>, and Jess
+will continually apply them to data in
+the form of a <a href="language.html#knowledge"><i>knowledge
+base</i></a>. Often the rules will represent the heuristic knowledge
+of a human expert in some domain, and the knowledge base will
+represent the state of an evolving situation (an interview, an
+emergency). In this case, they are said to constitute an
+<i>expert system.</i> Expert systems are widely used in many
+domains. Among the newest applications of expert systems are as the
+reasoning part of <i>intelligent agents</i>, in enterprise resource
+planning (ERP) systems,  and in order validation for electronic commerce.
+
+<p align=""></p>
+But the Jess language is also a general-purpose programing language,
+and furthermore, it can directly access all Java classes and
+libraries. For this reason, Jess is also frequently used as a dynamic
+scripting or rapid application development environment. While Java
+code generally must be compiled before it can be run, a line of Jess
+code is executed immediately upon being typed. This allows you to
+experiment with Java APIs interactively, and build up large programs
+incrementally. It is also very easy to extend the Jess language with
+new commands written in Java or in Jess itself, and so the Jess
+language can be customized for specific applications.
+
+<p align=""></p>
+Jess is therefore useful in a wide range of situations. One
+application for which Jess is not so well suited is as an applet
+intended for Internet use. Jess's size (a few hundred kilobytes of
+compiled code) makes it too large for applet use except on high-speed
+LANs. Furthermore, some of Jess's capabilities are lost when it is
+used in a browser: for example, access to Java APIs from the Jess
+language may not work at all due to security restrictions in some
+browsers. When building Web-based applications using Jess, you should
+strongly consider using Jess on the server side (in a servlet, for
+example.)
+
+<a name="jess_vs_prolog">
+<h4>1.7.1. Jess vs. Prolog</h4>
+</a>
+
+As in all pursuits, in programming you should choose the right tool
+for the right job. Prolog and a Rete-based system like Jess are very
+different.  The central concept in Prolog is backwards chaining: given
+the rules
+
+<pre>
+  human(Socrates).
+  mortal(X) :- human(X).
+</pre>
+
+you might be interested in knowing if <tt>mortal(Socrates)</tt> was
+true.  Prolog uses the rules to find it by looking for
+<tt>human(Socrates).</tt> Note that if you forget the result and ask
+for it again, Prolog has to compute it again.
+<p align=""></p>
+The central concept in Jess, though, is forwards chaining. Here, you
+have
+
+<pre>
+  
+<b>Jess&gt; </b>(assert (human Socrates))
+  <b>Jess&gt; </b>(defrule mortal (human ?X) =&gt; (assert (mortal ?X)))
+  <b>Jess&gt; </b>(watch facts)
+  <b>Jess&gt; </b>(run)
+  <i> ==&gt; f-1 (MAIN::mortal Socrates)
+  1</i>
+
+</pre>
+
+You don't specifically want to know <tt>(mortal Socrates)</tt> but
+rather you want to know what happens given that <tt>(human
+Socrates)</tt> is known. <tt>(mortal Socrates)</tt> is a result. After
+the rule has fired, <tt>(mortal Socrates)</tt> is known, and the rule
+<tt>mortal</tt> never has to assert this fact again.
+<p align=""></p>
+
+One more difference is that Prolog is really meant to be used from the
+console; i.e., you're actually supposed to sit down and type
+<tt>mortal(Socrates).</tt> In Jess, only developers do this; the
+command line is not intended for end-users. Prolog is really about
+answering queries, while Jess is about acting in response to inputs.
+<p align=""></p>
+
+Jess is different than some Rete-based systems in that it includes
+both a kind of <a href="language.html#chaining">backwards
+chaining</a> and a construct called <a href="language.html#queries">defquery</a> which lets you make
+direct queries of the knowledge base. Both of these help Jess a better
+fit for some Prolog applications, but they don't make Jess into a
+Prolog-like system. Prolog is optimized, in a sense, for space, at the
+cost of speed. Jess (and its Rete algorithm) is optimized for speed at
+the cost of space. The Rete algorithm is all about computing things
+-once- so they never need to be recomputed, and then reusing
+them. Prolog's approach is targeted at exploring large numbers of
+possibilities once, while Rete is aimed at exploring medium-sized
+numbers of possibilities repeatedly.
+<p align=""></p>
+
+Regarding different ways to express the kinds of relationships Prolog
+can express: Jess offers a rich set of possiblities. Here's one in
+which the mortality is encoded directly into the facts, so it never
+needs to be computed at all:
+
+<pre>
+  
+<b>Jess&gt; </b>(deftemplate being (slot name))
+  <b>Jess&gt; </b>(deftemplate mortal extends being)
+  <b>Jess&gt; </b>(deftemplate immortal extends being)
+  <b>Jess&gt; </b>(deftemplate monster extends mortal)
+  <b>Jess&gt; </b>(deftemplate human extends mortal)
+  <b>Jess&gt; </b>(deftemplate god extends immortal)
+
+  <b>Jess&gt; </b>(defrule list-all-humanoids
+    ;; fire for all beings, gods, monsters, and humans
+    (being (name ?n))
+    =&gt;
+    (printout t ?n " is a being " crlf))
+
+  <b>Jess&gt; </b>(defrule list-all-mortals
+    ;; fires only for mortal things
+    (mortal (name ?n))
+    =&gt;
+    (printout t ?n " is mortal " crlf))
+
+  <b>Jess&gt; </b>(deffacts beings (human (name Bob)) (monster (name Gollum))
+                          (god (name Zeus)))
+
+  <b>Jess&gt; </b>(reset)
+  <b>Jess&gt; </b>(run)
+  <i>  Zeus is a being
+  Gollum is mortal
+  Gollum is a being
+  Bob is a being
+  Bob is mortal
+  5</i>
+
+</pre>
+
+Here's another that's closer in spirit to the Prolog example.
+
+<pre>
+  
+<b>Jess&gt; </b>(deftemplate thing (slot type) (slot name))
+
+  <b>Jess&gt; </b>(deffacts things
+    (thing (type human) (name Socrates))
+    (thing (type mineral) (name Slate))
+    (thing (type vegetable) (name Carrot))
+    (thing (type dog) (name Rover))
+    (thing (type human) (name Bob)))
+
+  <b>Jess&gt; </b>(deffacts mortality
+    (mortal human)
+    (mortal dog))
+
+  <b>Jess&gt; </b>(defrule list-all-mortals
+    ;; fires for dogs and humans
+    (mortal ?type)
+    (thing (type ?type) (name ?n))
+    =&gt;
+    (printout t ?n " is mortal." crlf))
+  <b>Jess&gt; </b>(reset)
+  <b>Jess&gt; </b>(run)
+  <i>  Rover is mortal.
+  Bob is mortal.
+  Socrates is mortal.
+  3</i>
+
+</pre>
+
+There's a fact that expresses that humans are mortal, and one for
+each human known. In this example, no extra facts are
+generated. Nevertheless, the mortality of Socrates is remembered (in
+the <a href="rete.html">Rete network</a>) and may be used to
+optimize some later computation.
+
+
+
+
+
+
+<a name="performance">
+<h3>1.8. About Jess and performance</h3>
+</a>
+
+Jess's rule engine uses an improved form of a well-known algorithm
+called <a href="rete.html">Rete</a> (latin for "net") to match rules
+against the knowledge base. Jess is actually faster than some popular
+expert system shells written in C, especially on large problems, where
+performance is dominated by algorithm quality.
+<p align=""></p>
+Note that Rete is an algorithm that explicitly trades space for speed,
+so Jess' memory usage is not inconsiderable. Jess does contain some
+commands which will allow you to sacrifice some performance to
+decrease memory usage. Nevertheless, Jess' memory usage is not
+ridiculous, and moderate-sized programs will fit easily into Java's
+default 16M heap.
+
+<a name="hotspot">
+<h4>1.8.1. Sun's HotSpot Virtual Machine</h4>
+</a>
+
+Because Jess is a memory-intensive application, its performance is
+sensitive to the behavior of the Java garbage collector. Recent JVMs
+from Sun feature an advanced Java runtime called HotSpot which
+includes a flexible, configurable garbage collection
+subsystem. Excellent articles on GC performance tuning are available
+<a href="http://developer.java.sun.com/developer/TechTips/2000/tt1222.html#tip2">
+at Sun's web site.</a> Although every Jess rule base is different,
+in general, Jess will benefit if the heap size and the object nursery
+size are each set larger than the default. For example, on my machine,
+Jess' performance on the Miranker <i>manners</i> benchmark with 90
+guests is improved by 25% by increasing the initial heap size and
+nursery size to 32 and 16 megabytes, respectively, from their defaults
+of 16 meg and 640K. You can do this using
+
+<pre>
+     java -XX:NewSize=16m -Xms32m -Xmx32m jess.Main <i>&lt;scriptfile&gt;</i>
+
+</pre>
+
+Note that the object nursery is a subset of the Java heap set aside
+for recently-allocated objects; the total heap size in this example is
+32M, not 48M.
+
+
+
+
+
+
+<a name="application_types">
+<h3>1.9. Command-line, GUI, or embedded?</h3>
+</a>
+
+As we've discussed, Jess can be used in many ways. Besides the
+different categories of problems Jess can be applied to, being a
+library, it is amenable to being used in many different kinds of Java
+programs. Jess can be used in command-line applications, GUI
+applications, servlets, and applets. Furthermore, Jess can either
+provide the Java <tt>main()</tt> for your program, or you can write it
+yourself. You can develop Jess applications (with or without GUIs)
+without compiling a single line of Java code. You can also write Jess
+applications which are controlled entirely by Java code you write,
+with a  minumum of Jess language code.
+<p align=""></p>
+The most important step in developing a Jess application is to choose
+an architecture from among the almost limitless range of
+possibilities. One way to organize the possibilities is to list them
+in increasing order of the amount of Java programming involved.
+
+<ol>
+
+<li>Pure Jess language scripts. No Java code at all.</li>
+
+
+<li>Pure Jess language scripts, but the scripts access Java APIs.</li>
+
+
+<li>Mostly Jess language scripts, but some custom Java code in the
+    form of new Jess commands written in Java.</li>
+
+
+<li>Half Jess language scripts, with a substantial amount of Java code
+    providing custom commands and APIs; <tt>main()</tt> provided by
+    Jess.</li>
+
+
+<li>Half Jess language scripts, with a substantial amount of Java code
+    providing custom commands and APIs; <tt>main()</tt> written by
+    you.</li>
+
+
+<li>Mostly Java code, which loads Jess language scripts at runtime.</li>
+
+
+<li>All Java code, which maniulates Jess entirely through its Java
+    API. This option is not fully supported at this time, but will
+    in a future release.</li>
+
+</ol>
+
+
+Examples of some of these types of applications are package with
+Jess. The basic examples like <tt>wordgame.clp</tt>,
+<tt>zebra.clp</tt>, and <tt>fullmab.clp</tt> are all type 1)
+programs. <tt>draw.clp</tt> and <tt>frame.clp</tt> are type 2)
+programs. The <tt>pumps</tt> example is packaged two ways. If you run
+it using the script file <tt>pumps.clp</tt>, it is a type 4) program;
+if you run it using <tt>MainInJava.java</tt>, it is a type 6)
+application.
+<p align=""></p>
+Your choice can be guided by many factors, but ultimately it will
+depend on what you feel most comfortable with. Types 4) and 5) are
+most prevalent in real-world applications.
+
+
+<p>
+<i><a href="index.html">Back to index</a></i>
+</p>
+</body>
+
+</html>

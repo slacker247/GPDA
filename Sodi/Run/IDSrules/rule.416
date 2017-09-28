@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 1417 (msg:"MISC Insecure TIMBUKTU Password"; content: "|05 00 3E|"; flags: A+; depth: 16; reference:arachnids,229; classtype:bad-unknown; sid:505; rev:1;)

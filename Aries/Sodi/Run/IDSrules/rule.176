@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS EXPLOIT x86 freebsd";flags: A+; content:"|eb6e 5ec6 069a 31c9 894e 01c6 4605|"; classtype:attempted-admin; sid:266; rev:1;)

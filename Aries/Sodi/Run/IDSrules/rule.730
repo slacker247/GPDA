@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible Happy99 Virus"; content:"X-Spanska\:Yes"; reference:MCAFEE,10144; sid:773;  classtype:misc-activity; rev:3;)

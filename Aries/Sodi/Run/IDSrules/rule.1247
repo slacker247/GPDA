@@ -1,0 +1,1 @@
+alert tcp $HTTP_SERVERS any -> $EXTERNAL_NET 80 (msg:"WEB-MISC PHPLIB remote command attempt"; flags:A+; uricontent:"/db_mysql.inc"; reference:bugtraq,3079; classtype:attempted-user; sid:1255; rev:1;)

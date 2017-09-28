@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET 3345 -> $HOME_NET 3344 (msg:"BACKDOOR Matrix 2.0 Server access"; content:"logged in";  reference:arachnids,83; sid:162;  classtype:misc-activity; rev:3;)

@@ -1,0 +1,237 @@
+/*
+ File:		StartResumePdu.java
+ CVS Info:	$Id: StartResumePdu.java,v 1.3 1998/01/28 08:28:24 mcgredo Exp $
+ Compiler:	jdk 1.3
+ */
+
+package PDUs;                                       // package to which we belong
+
+import mil.navy.nps.util.*;         // General-purpose utilities
+import disEnumerations.*;         // Enumerations for DIS
+
+import java.util.*;                                             // utility stuff we need
+import java.io.*;                                               // input/output for serialization
+
+/**
+ * Simulation management PDU to start or resume an exercise.
+ *
+ *@version 1.0
+ *@author Antonio Alexandre Rua (<A HREF="http://www.garfield.fe.up.pt/~alexrua">http://www.garfield.fe.up.pt/~alexrua</A>)
+ *
+ *<dt><b>Location:</b>
+ *<dd>Web:  <a href="http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/StartResumePdu.java">
+ *  http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/StartResumePdu.java</a>
+ *
+ *<dd>or locally:  <a href="../../../../../../mil/navy/nps/dis/StartResumePdu.java">
+ *  ~/mil/navy/nps/dis/StartResumePdu.java</a>
+ *
+ *<dt><b>Hierarchy Diagram:</b>
+ *<dd><a href="../../../../../images/PduClassHierarchy.jpg"><IMG SRC="../../../../../images/PduClassHierarchyButton.jpg" ALIGN=ABSCENTER WIDTH=150 HEIGHT=21></a>
+ *
+ *<dt><b>Summary:</b>
+ *<dd> The Start/Resume of an exercise shall be communicated using a Start/Resume PDU. 
+ *
+ *<dt><b>History:</b>
+ *<dd>		16Sep97	/Antonio Alexandre Rua	/New
+ *<dd>		8Dec97	/Ronan Fauglas		/changes for documentation templates + complements in documentation
+ *<dd>		11Dec97	/Ronan Fauglas		/changed access methods: thisVariable() --> getThisVariable()
+ *
+ *<dt><b>References:</b>
+ *<dd>		DIS Data Dictionary :<a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/9b.htm">
+ *		Start/Resume PDU</a>	
+ *<dd>		DIS-Java-VRML Working Group: <a href="http://www.web3d.org/WorkingGroups/vrtp/dis-java-vrml/"> 
+ *		http://www.web3d.org/WorkingGroups/vrtp/dis-java-vrml/</a>
+ *<dd>		DIS specification : IEEE 1278.1, Section 4.4.5.4, 5.4.6.3
+ *
+ *@see ProtocolDataUnit
+ *@see PduElement 
+ *@see SerializationInterface
+ */
+public class StartResumePdu extends SimulationManagementFamily 
+{
+    /**
+     *Real-World Time - This field shall specify the real-world time (UTC) at which the entity
+     *is to start/resume in the exercies. 
+     *This information shall be used by the participating simulation applications 
+     *to start/resume an exercise synchronously.
+     */
+    protected ClockTime realWorldTime;
+
+    /**
+     *Simulation Time - This field shall specify the simulation time (time of day in the simulated world in UTC) 
+     *at which the entity will start/resume in the exercise.
+     */
+    protected ClockTime simulationTime;
+
+    /**
+     *Request ID - This field shall identify the specific and unique start/resume request being made by the simulation manager.
+     *
+     *<dl>
+     *<dt><b>Value:</b>
+     *<dd>A 32-bit monotonically increasing integer identifier inserted by the Simulation Manager
+     *  into all Simulation Manager PDUs. 
+     *<dt><b>References:</b>
+     *<dt><b>References:</b>
+     *<dd>	DIS Data Dictionary: <a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/99.htm">Request ID Field</a>
+     *</dl>
+     */
+    protected UnsignedInt requestID;        //identifies entity creation request by SM
+      
+    /**
+     *Constant value--total size of an Action Request PDU including header
+     *<code>sizeOf = 44 bytes</code>
+     */
+    public static final int sizeOf = 44; // The total size of PDU is known 
+
+    /**
+     *An "exemplar" object, which is filled out to the state that is needed most of the time.
+     *
+     *<dl>
+     *<dt><b>Explanation</b>
+     *<dd>A brand new object has to have most of its values set,
+     *  such as the forceID, protocol version, and so on. This lets the user fill
+     *  out most of the values, save it in the class, then retrieve a copy of it
+     *  as needed. 
+     *</dl>
+     */
+    static protected StartResumePdu exemplar;
+
+/**
+ *Default constructor--fills with zeros for all values.
+ */
+public StartResumePdu()                                             // default constructor
+{
+  setPduType(PduTypeField.STARTRESUME);
+  realWorldTime = new ClockTime();
+  simulationTime = new ClockTime();
+  requestID = new UnsignedInt();
+
+  return;
+}
+
+public void  serialize(DataOutputStream outputStream)
+{
+ /**
+    Serialize our data out to the stream. We first call the superclass,
+    so that all the data there is written out to the buffer first.
+    Then we serialize each of our ivars to the stream, being careful
+    about the order.
+*/
+
+  // takes care of all the header variables in the two consecutive superclasses
+  super.serialize(outputStream);          
+  // write out ivars
+  realWorldTime.serialize(outputStream);
+  simulationTime.serialize(outputStream);
+  requestID.serialize(outputStream);
+
+  return;
+}
+
+public void  deSerialize(DataInputStream inputStream)
+{
+ /**
+    deserialize our data from the stream. We first call the superclass,
+    so that all the data there is read into the buffer first.
+    Then we deserialize each of our ivars to the stream, being careful
+    about the order.
+ */
+
+  super.deSerialize(inputStream);
+  // Do our ivars
+  realWorldTime.deSerialize(inputStream);
+  simulationTime.deSerialize(inputStream);
+  requestID.deSerialize(inputStream);
+
+  return;
+}
+
+public Object clone()
+{
+ /**
+    Clone the CommentPdu, being careful to not share any pointers between the
+    new object and the old object.
+  */
+
+  StartResumePdu newPdu = (StartResumePdu)super.clone();     // new Create Entity Pdu pdu
+
+  newPdu.setRealWorldTime(this.getRealWorldTime());
+  newPdu.setSimulationTime(this.getSimulationTime());
+  newPdu.setRequestID(this.getRequestID());
+
+  return newPdu;
+}
+
+public int length()
+{
+  return sizeOf;
+}
+
+public String pduName()
+{
+  return new String("Start Resume PDU");
+}
+
+public void printValues(int indentLevel, PrintStream printStream)
+{
+  // print the values of the object out, with correct level of
+  // indentation on the page.
+   
+  StringBuffer indent = ProtocolDataUnit.getPaddingOfLength(indentLevel);
+  int          idx, superclassIndent = indentLevel;
+
+
+  printStream.println();
+  printStream.println("Start Resume PDU");
+
+  // ugly wart: get the superclass over to the left a couple pixels, if we have any to spare,
+  // so the header info will be indented a bit less.
+  if(superclassIndent > 0)
+    superclassIndent -= 1;
+  super.printValues(superclassIndent, printStream);
+  
+  printStream.println(indent + "Real-World Time");
+  realWorldTime.printValues(indentLevel+1, printStream);
+  printStream.println(indent + "Simulation Time");
+  simulationTime.printValues(indentLevel+1, printStream);
+  printStream.println(indent + "Request ID: "+requestID.longValue());
+
+  return;
+}
+
+public StartResumePdu getExemplar()
+{
+    return (StartResumePdu)exemplar.clone();
+}
+public void setExemplar(StartResumePdu newExemplar)
+{
+    exemplar = newExemplar;
+}
+
+
+// Accessor methods
+public ClockTime getRealWorldTime()
+{  return (ClockTime)realWorldTime.clone();
+}
+public void setRealWorldTime(ClockTime pRealWorldTime)
+{  realWorldTime=pRealWorldTime;
+}
+
+public ClockTime getSimulationTime()
+{  return (ClockTime)simulationTime.clone();
+}
+public void setSimulationTime(ClockTime pSimulationTime)
+{  simulationTime=pSimulationTime;
+}
+
+public UnsignedInt getRequestID()
+{  return (UnsignedInt)requestID.clone();
+}
+public void setRequestID(UnsignedInt pRequestID)
+{  requestID = pRequestID;
+}
+public void setRequestID(long pRequestID)
+{  requestID = new UnsignedInt(pRequestID);
+}
+
+}   // end of class StartResumePdu

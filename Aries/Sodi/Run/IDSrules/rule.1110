@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC webstore directory traversal"; uricontent:"/web_store.cgi?page=../.."; flags:A+; classtype:web-application-attack; sid:1094; rev:2;)

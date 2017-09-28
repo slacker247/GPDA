@@ -1,0 +1,442 @@
+<HTML>
+
+<HEAD>
+<TITLE>Subdue 5.0</TITLE>
+</HEAD>
+
+<BODY bgcolor="white">
+
+<img src="subdue_logo.gif" width=150 height=150>
+
+<H1>Subdue - Version 5.0</H1>
+
+<P>
+Subdue Home Page: <A
+HREF="http://ailab.uta.edu/subdue">http://ailab.uta.edu/subdue</A>
+</P>
+
+<P>
+The Subdue knowledge discovery system finds interesting and repetitive
+subgraphs (substructures) in the input data, which is a labeled,
+directed graph.  Subdue behaves as a concept learner if negative
+graphs are given.  Subdue can be used to generate a hierarchical,
+conceptual clustering of the input graph by specifying multiple
+iterations.  See the <tt>-eval</tt> and <tt>-iterations</tt> options
+for more information on concept learning and clustering modes.  Below
+are descriptions of Subdue's command-line options, input format and
+several auxiliary programs.
+</P>
+
+<h2>Platforms</h2>
+
+<p>
+Subdue has been developed and tested on Redhat Linux 7.3 and 8.0 using gcc,
+but should compile and run on most UNIX systems.  A windows port is
+forthcoming.
+</p>
+
+<h2>Usage</h2>
+
+<tt>
+subdue [-beam #]
+       [-eval #]
+       [-iterations #]
+       [-limit #]
+       [-nsubs #]
+       [-out &lt;outfile&gt;]
+       [-output #]
+       [-overlap]
+       [-prune]
+       [-ps &lt;psfile&gt;]
+       [-threshold #]
+       [-undirected]
+       [-valuebased]
+       &lt;inputfile&gt;
+</tt>
+
+<H2>Command-Line Options</H2>
+
+<DL>
+
+<P>
+<DT> <TT>-beam #</TT>
+
+<DD> This parameter specifies the beam width of Subdue's search.  Only
+     the best <tt>beam</tt> substructures (or all the substructures
+     with the best <tt>beam</tt> values) are kept on the frontier of
+     the search.  The exact meaning of the beam width is determined by
+     the <tt>-valuebased</tt> option described below.  Default is 4.
+</P>
+
+<P>
+<DT> <TT>-eval #</TT>
+
+<DD> Subdue has three methods available for evaluating candidate
+     substructures. <br>
+
+     (1) Minimum Description Length (MDL) - The value of a
+     substructure S in graph G is value(S,G) = DL(G)/(DL(S)+DL(G|S)),
+     where DL is the description length in bits, and (G|S) is G
+     compressed with S.  If a negative graph Gn is present, then
+     value(S,Gp,Gn) =
+     [DL(Gp)+DL(Gn)]/[DL(S)+DL(Gp|S)+DL(Gn)-DL(Gn|S)].  MDL is the
+     default evaluation method. <br>
+
+     (2) Size - The value of a substructure S in graph G is value(S,G)
+     = size(G)/(size(S)+size(G|S)), where
+     size(g)=(#vertices(g)+#edge(g)), and (G|S) is G compressed with
+     S.  If a negative graph Gn is present, then value(S,Gp,Gn) =
+     [size(Gp)+size(Gn)]/[size(S)+size(Gp|S)+size(Gn)-size(Gn|S)].
+     The size measure is faster to compute than the MDL measure, but
+     less consistent. <br>
+
+     (3) Set Cover - The value of a substructure S is computed as the
+     number of positive examples containing S plus the number of
+     negative examples not containing S, this quantity divided by the
+     total number of examples.  If this evaluation method is chosen,
+     then the compression done at the end of each iteration is
+     replaced by just removing all positive examples containing S.
+
+</P>
+
+<P>
+<DT> <TT>-iterations #</TT>
+
+<DD> The number of iterations made over the input graph in which the
+     best substructure from the previous iteration is used to compress
+     the graph for use in the next iteration.  Default is 1, which
+     implies only one pass, no compression.  A value of 0 causes
+     Subdue to iterate until no compression is possible, which
+     produces a hierarchical, conceptual clustering of the input
+     graphs.  If Subdue is using the set-cover evaluation method (see
+     the <tt>-eval</tt> option), then iterations stop when no more
+     positive examples can be removed.
+</P>
+
+<P>
+<DT> <TT>-limit #</TT>
+
+<DD> The number of different substructures to consider in each
+     iteration. The default value is computed based on the input graph
+     as (Vertices + Edges) / 2.
+</P>
+
+<P>
+<DT> <TT>-maxsize #</TT>
+
+<DD> This argument specifies the maximum number of vertices that can
+     be in a reported substructure.  Larger substructures are pruned
+     from the search space.  Default is the number of vertices in the
+     input graph.
+</P>
+
+<P>
+<DT> <TT>-minsize #</TT>
+
+<DD> This arguments specifies the minimum number of vertices that must
+     be in a substructure before it is reported.  Default is 1.
+</P>
+
+<P>
+<DT> <TT>-nsubs #</TT>
+
+<DD> This argument specifies the maximum length of the list of best
+     substructures found during the discovery.  The default value is
+     3.
+</P>
+
+<P>
+<DT> <TT>-out &lt;outfile&gt;</TT>
+
+<DD> If given, this option writes machine-readable output to the given
+     file name.  The file will contain the best substructure found at
+     each iteration, each prefaced by the SUB_TOKEN string specified
+     in subdue.h (usually just "S").
+</P>
+
+<P>
+<DT> <TT>-output #</TT>
+
+<DD> This argument controls the amount of Subdue's screen output.
+     Valid values are:<br>
+     (1) Print best substructure found at each iteration.<br>
+     (2) Print -nsubs best substructures at each iteration.  Default.<br>
+     (3) Same as 2, plus prints the instances of the best substructures.<br>
+     (4) Same as 3, plus prints substructure countdown and the best
+         substructure found so far.
+     (5) Same as 4, plus prints each substructure considered.
+</P>
+
+<P>
+<DT> <TT>-overlap</TT>
+
+<DD> Subdue normally will not allow overlap among the instances of a
+     substructure.  Specifying this argument will allow overlap.
+     During graph compression an OVERLAP_&lt;iteration&gt; edge is
+     added between each pair of overlapping instances, and external
+     edges to shared vertices are duplicated to all instances sharing
+     the vertex.  Allowing overlap slows Subdue considerably.
+</P>
+
+<P>
+<DT> <TT>-prune</TT>
+
+<DD> This option tells Subdue to prune the search space by discarding
+     substructures whose value is less than that of their parent's
+     substructure.  Since the evaluation heuristics are not monotonic,
+     pruning may cause Subdue to miss some good substructures, but improves
+     the running time.  The default is no pruning.
+</P>
+
+<P>
+<DT> <TT>-ps &lt;psfile&gt;</TT>
+
+<DD> This option allows the input of a file containing predefined
+     substructures.  These substructures are used to compress the
+     input graph.  The order of the substructures in the file is
+     important, because the substructures are tried in order and
+     compression based on an earlier substructure may remove instances
+     of later substructures.  Also, the matching process follows the
+     constraints of the <tt>-overlap</tt> and <tt>-threshold</tt>
+     options.  See the section on "Predefined Substructure Input File
+     Format" for a description of the format of this file.  Note that
+     this is essentially subgraph isomorphism and therefore
+     NP-Complete, i.e., exponential running time in the size of the
+     input graph.
+</P>
+
+<P>
+<DT> <TT>-threshold #</TT>
+
+<DD> The fraction of the size (vertices+edges) of an instance by which
+     the instance can be different (according to the graph
+     transformation costs defined in subdue.h) from the substructure
+     definition.  I.e., the graphs match if matchcost(sub,inst) <=
+     size(inst)*threshold.  Default is 0.0, which implies graphs must
+     match exactly.
+</P>
+
+<P>
+<DT> <TT>-undirected</TT>
+
+ <DD> Subdue assumes that edges in the input graph file defined using
+      `<TT>e</TT>' are directed edges.  Specifying this argument makes
+      these edges undirected.  Note that graph file edges defined with
+      `<TT>u</TT>' are always undirected, and edges defined with
+      `<TT>d</TT>' are always directed.
+</P>
+
+<P>
+<DT> <TT>-valuebased</TT>
+
+<DD> Normally, Subdue's beam width implies that only the <tt>beam</tt>
+     best substructures are kept on the frontier of the search.  If
+     the <tt>-valuebased</tt> option is given, then the beam width is
+     interpretted as keeping all the substructures with the top
+     <tt>beam</tt> values on the frontier of the search.
+</P>
+
+</DL>
+
+<H2>Input File Format</H2>
+
+<P>
+Subdue's input file consists of one or more graphs, each starting from
+vertex 1.  Each graph is prefaced by either "XP", indicating a
+positive example, or "XN" indicating a negative example.  If the first
+(or only) graph in the file is positive, then its "XP" can be
+omitted.  Each graph is a sequence of vertices and edges defined as
+follows.
+</P>
+
+<P>
+A vertex is defined as
+
+<BLOCKQUOTE><TT>
+v &lt;#&gt; &lt;label&gt;
+</TT></BLOCKQUOTE>
+
+where <TT>&lt;#&gt;</TT> is a unique vertex ID for the graph and
+<TT>&lt;label&gt;</TT> is any string or real number.  Strings
+containing whitespace or the comment character must be surrounded by
+double-quotes.  Vertex IDs for a graph must start at 1 and must
+increase by 1 for each successive vertex.
+</P>
+
+<P>
+An edge is defined as one of the following:
+
+<BLOCKQUOTE><TT>
+e &lt;v1&gt; &lt;v2&gt; &lt;label&gt; <BR>
+d &lt;v1&gt; &lt;v2&gt; &lt;label&gt; <BR>
+u &lt;v1&gt; &lt;v2&gt; &lt;label&gt;
+</TT></BLOCKQUOTE>
+
+where <TT>&lt;v1&gt;</TT> and <TT>&lt;v2&gt;</TT> are the vertex ID's
+for the source vertex and the target vertex respectively and
+<TT>&lt;label&gt;</TT> is any string or real number.  Strings
+containing whitespace or the comment character must be surrounded by
+double-quotes.  Edges beginning with `<TT>e</TT>' are assumed directed
+unless option `<TT>-undirected</TT>' is specified at the command line,
+in which case all `<TT>e</TT>' edges become undirected.  Edges
+beginning with `<TT>d</TT>' are always directed, and edges beginning
+with `<TT>u</TT>' are always undirected.
+</P>
+
+<P>
+Comments are designated by the percent `<TT>%</TT>' sign.  Anything
+after a `<TT>%</TT>' until the end of the line will be ignored (unless
+the % is part of a quoted label).
+</P>
+
+Several sample graph files are included in the <tt>graphs</tt>
+directory.
+
+<H2>Predefined Substructure Input File Format</H2>
+
+The optional predefined substructure file follows the format of the
+main input file, except that each graph is prefaced by "PS",
+indicating the start of a predefined substructure.  The "PS" is
+optional for the first graph in the file.
+
+<h2>Auxiliary Programs</h2>
+
+<h3>Inexact Graph Match (<tt>gm</tt>)</h3>
+
+<h4>Usage</h4>
+
+<tt>gm &lt;graphfile&gt; &lt;graphfile&gt;</tt>
+
+<p>
+The inexact graph match program computes the cost of transforming the
+larger of the input graphs into the smaller according to the
+transformation costs defined in <tt>subdue.h</tt>.  The program
+returns this cost and the mapping of vertices in the larger graph to
+vertices in the smaller graph.  The graph file format is the same as
+for Subdue, but with only one graph per file.
+</p>
+
+<h3>Subgraph Isomorphism (<tt>sgiso</tt>)</h3>
+
+<h4>Usage:</h4>
+
+<tt>sgiso [-dot &lt;dotfile&gt;] [-overlap] [-threshold #]
+ &lt;graphfile1&gt; &lt;graphfile2&gt;</tt>
+
+<p>
+Finds and prints all instances of g1 in g2.  If -overlap is given,
+then instances may overlap in g2.  If -threshold is given, then
+instances may not be an exact match to g1, but the cost of
+transforming g1 to the instance is less than the threshold fraction of
+the size of the larger graph.  Default threshold is 0.0, i.e., exact
+match.  The graph file format is the same as for Subdue, but with only
+one graph per file.  Note that this is an NP-Complete problem, i.e.,
+exponential running time.  If the <tt>-dot</tt> filename is given,
+then g2 is written to the file in dot format, but with instances
+highlighted in blue.  More information about dot format and the
+programs to visualize dot graphs can be found at the <a
+href="http://www.research.att.com/sw/tools/graphviz/">GraphViz</a>
+website at AT&amp;T Research Labs.
+</p>
+
+<h3>Minimum Description Length (<tt>mdl</tt>)</h3>
+
+<h4>Usage:</h4>
+
+<tt>mdl [-dot &lt;dotfile&gt;] [-overlap] [-threshold #]
+&lt;graphfile1&gt; &lt;graphfile2&gt;</tt>
+
+<p>
+Computes the description length of g1, g2 and g2 compressed with g1
+along with the final MDL compression measure:
+dl(g2)/(dl(g1)+dl(g2|g1).  Also, prints the size-based compression
+information.  If -overlap is given, then instances of g1 may overlap
+in g2.  If -threshold is given, then instances in g2 may not be an
+exact match to g1, but the cost of transforming g1 to the instance is
+less than the threshold fraction of the size of the larger graph.
+Default threshold is 0.0, i.e., exact match.  The graph file format is
+the same as for Subdue, but with only one graph per file.  If the
+<tt>-dot</tt> filename is given, then the compressed graph is written
+to the file in dot format, with instances replaced by "SUB" vertices
+and overlap indicated by "OVERLAP" edges.  More information about dot
+format and the programs to visualize dot graphs can be found at the <a
+href="http://www.research.att.com/sw/tools/graphviz/">GraphViz</a>
+website at AT&amp;T Research Labs.
+</p>
+
+<h3>Substructure to Dot Format Conversion (<tt>subs2dot</tt>)</h3>
+
+<h4>Usage</h4>
+
+<tt>subs2dot &lt;subsfile&gt; &lt;dotfile&gt;</tt>
+
+<p>
+Writes the substructures defined in <tt>&lt;subsfile&gt;</tt> to
+<tt>&lt;dotfile&gt;</tt> in dot format.  The substructures file is in
+the format produced by the Subdue <tt>-out</tt> option above.  Each
+substructure is defined as a subgraph cluster, and if a substructure
+S2 refers to a previously-discovered substructure S1, then a directed
+edge is added from S1's cluster to S2's cluster.  The result is a
+lattice-like hierarchy of substructures.  More information about dot
+format and the programs to visualize dot graphs can be found at the <a
+href="http://www.research.att.com/sw/tools/graphviz/">GraphViz</a>
+website at AT&amp;T Research Labs.
+</p>
+
+<h3>Graph to Dot Format Conversion (<tt>graph2dot</tt>)</h3>
+
+<h4>Usage</h4>
+
+<tt>graph2dot &lt;graphfile&gt; &lt;dotfile&gt;</tt>
+
+<p>
+Writes a Subdue-format graph defined in <tt>&lt;graphfile&gt;</tt> to
+<tt>&lt;dotfile&gt;</tt> in dot format.  The graph may contain positive and
+negative examples.  More information about dot format and the programs to
+visualize dot graphs can be found at the <a
+href="http://www.research.att.com/sw/tools/graphviz/">GraphViz</a> website
+at AT&amp;T Research Labs.
+</p>
+
+<h2>Credits</h2>
+
+<p>
+The Subdue project is directed by Dr. Diane Cook and Dr. Larry Holder
+in the Department of Computer Science and Engineering at the
+University of Texas at Arlington.  All code and documentation are
+<b>Copyright &copy; University of Texas at Arlington</b>.
+</p>
+
+<p>
+The Subdue project has benefitted greatly from funding agencies and
+students over the years, who are listed below.
+</p>
+
+<h3>Funding</h3>
+
+<ul>
+<li> Defense Advanced Research Projects Agency (DARPA)
+<li> National Aeronautics and Space Administration (NASA)
+<li> National Science Foundation (NSF)
+<li> Texas Higher Education Coordinating Board (THECB)
+</ul>
+
+<h3>Students</h3>
+
+<ul>
+<li> Ravindra Chittimoori, Masters 1999.
+<li> Surnjani Djoko, PhD 1995.
+<li> Gehad Gelal, Masters 1997.
+<li> Jesus Gonzalez, Masters 1999, PhD 2001.
+<li> Istvan Jonyer, Masters 2000.
+<li> Tom Lai, Masters 1994.
+<li> Ron Maglothin, Masters 1999.
+<li> Nitish Manocha, Masters 2000.
+<li> Prasad Parthasarthy, Masters 1997.
+<li> Stephen Poe, Masters 1995.
+<li> Gayathri Sampath, Masters 2001.
+<li> Shaobing Su, Masters 1998.
+</ul>
+
+</BODY>
+</HTML>

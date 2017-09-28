@@ -1,0 +1,1 @@
+alert tcp $HOME_NET any -> $EXTERNAL_NET 8888 (msg:"INFO napster new user login"; flags: A+; content: "|00 0600|"; offset: 1; depth: 3;  classtype:bad-unknown; sid:550; rev:2;)

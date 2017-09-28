@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 113 (msg:"SCAN ident version"; flags: A+; content: "VERSION|0A|"; depth: 16;reference:arachnids,303; classtype:attempted-recon; sid:616; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET 80 -> $HOME_NET any (msg:"EXPLOIT netscape 4.7 client overflow"; content: "|33 C9 B1 10 3F E9 06 51 3C FA 47 33 C0 50 F7 D0 50|"; flags: A+; reference:bugtraq,822; reference:arachnids,215; classtype:attempted-user; sid:283; rev:2;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 1433 (msg:"MS-SQL sp_delete_alert - log file deletion"; content: "s|00|p|00|_|00|d|00|e|00|l|00|e|00|t|00|e|00|_|00|a|00|l|00|e|00|"; nocase; flags: AP; offset: 8; classtype:attempted-user; sid:684; rev:1;)

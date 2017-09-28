@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Address Mask Request"; itype: 17; icode: 0; sid:388;  classtype:misc-activity; rev:4;)

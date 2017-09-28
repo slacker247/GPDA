@@ -1,0 +1,158 @@
+! Parts (C) 1996 By Greg J. Badros <gjb@cs.duke.edu>
+! Modification for Linux-Mandrake by Chmouel Boudjnah <chmouel@mandraksoft.com>
+! You may use this file as specified under the GNU General Public License
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! emacs, xemacs
+
+emacs*Background: DarkSlateGray
+emacs*Foreground: Wheat
+emacs*pointerColor: Orchid
+emacs*cursorColor: Orchid
+emacs*bitmapIcon: on
+emacs*font: fixed
+emacs.geometry: 80x25
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! xterm (and friends)
+
+XTerm*highlightSelection:  true
+! Uncomment this to use color for the bold attribute
+XTerm*VT100*colorBDMode:  on
+XTerm*VT100*colorBD:  blue
+! Uncomment this to use color for underline attribute
+XTerm.VT100*colorULMode:  on
+XTerm.VT100*underLine:  off
+XTerm*VT100*colorUL:  magenta
+! Uncomment this to display the scrollbar 
+XTerm*scrollBar:  true
+
+! This resource specifies whether or not to ignore the 'alternate screen'
+! of applications such as vi.  When it is on, these applications will restore
+! the contents of the screen when they are exited to what they were before
+! they were started.  When it is off, the contents of vi will remain on the
+! screen after the program is quit.
+XTerm.VT100.titeInhibit:  true
+
+! Uncomment this to turn off color mode in your xterms
+!XTerm.VT100*colorMode:  off
+XTerm.VT100*dynamicColors:  on
+
+! Number of lines of scrollback to save
+XTerm*saveLines:	1500
+
+xterm*reverseWrap:	true
+
+!*Geometry:              +5+5
+*visualBell:		true
+*scrollTtyOutput:	False
+*scrollKey:		True
+Scrollbar.JumpCursor:	True
+
+! Suppr support.
+*VT100.Translations: #override \
+<Key>BackSpace: string(0x7F)\n\
+<Key>Delete: string("\033[3~")\n\
+<Key>Home: string("\033[1~")\n\
+<Key>End: string("\033[4~")
+
+! GVim great Colors.
+Vim*background:	black
+Vim*foreground:	lightyellow
+Vim*font:		-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-15-*5
+Vim*geometry:	88x35
+Vim*menuBackground: black
+Vim*menuForeground: moccasin
+
+#ifdef COLOR
+*customization: -color
+#endif
+
+Jtamv.width: 900
+Jtamv.height: 650
+Jtamv*background: lightsteelblue
+Jtamv*fontList: -*-lucidatypewriter-*-*-*-*-12-*-*-*-*-*-*-*
+Jtamv*Menubar*fontList: -*-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-1
+Jtamv*XmRowColumn*fontList: -*-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-1
+Jtamv*XmScale*fontList: -*-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-1
+Jtamv*View*fontList: -*-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-1
+Jtamv*Memory*fontList: -*-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-1
+Jtamv*XmForm*resizable: TRUE
+Jtamv*XmFrame*ShadowType: XmSHADOW_IN
+Jtamv*XmFrame*ShadowThickness: 2
+Jtamv*XmRowColumn*XmNspacing: 5
+Jtamv*Normal*labelString: NORM
+Jtamv*Tangent*labelString: TANG
+Jtamv*XmScale*XmNscaleHeight: 10
+Jtamv*XmScale*XmNhighlightOnEnter: True
+Jtamv*XmScale.minimum: -90
+Jtamv*XmScale.maximum: 90
+Jtamv*.a.minimum: -90
+Jtamv*.a.maximum: 90
+Jtamv*.a.value: 0
+Jtamv*.o.minimum: -180
+Jtamv*.o.maximum: 180
+Jtamv*.o.value: 0
+Jtamv*.l.minimum:  0
+Jtamv*.l.maximum: 12800
+Jtamv*.l.value: 6700
+Jtamv*.v.minimum: 1
+Jtamv*.v.maximum: 180
+Jtamv*.v.value: 62
+Jtamv*XmList.height: 425
+Jtamv*Quit*background: red
+Jtamv*Pane*background: steelblue4
+Jtamv*XmDialogShell*BE_Pane*background: pink2
+Jtamv*XmDialogShell*DSP_Pane*background: lightcoral
+Jtamv*XmDialogShell*GBI_Pane*background: seagreen
+Jtamv*XmDialogShell*MISSILE_Pane*background: tan
+Jtamv*xMDialogShell*other_Pane*background: turquoise4
+
+ViewFinder*background: darkslategrey
+ViewFinder*width: 440
+ViewFinder*height: 280
+ViewFinder*XmForm*resizable: TRUE
+ViewFinder.VFForm.VFControl.XmPushButton.background: grey70
+ViewFinder.VFForm.VFControl.AZIAreaFrame*background: grey70
+ViewFinder.VFForm.VFControl.AZIAreaFrame*foreground: darkslategrey
+ViewFinder.VFForm.VFControl.AZIAreaFrame*foreground: firebrick4
+
+ModelViewer.width: 720
+ModelViewer.height: 400
+ModelViewer*fontList: -*-lucidatypewriter-*-*-*-*-17-*-*-*-*-*-*-*
+ModelViewer*XmList*fontList: -*-lucidatypewriter-*-*-*-*-14-*-*-*-*-*-*-*
+ModelViewer*foreground: white
+ModelViewer*background: steelblue
+ModelViewer*XmForm*resizable: TRUE
+ModelViewer*XmFrame*background: dark slate grey
+ModelViewer*highlightColor: tomato4
+ModelViewer*XmScale*XmNscaleWidth: 150
+ModelViewer*XmScale*XmNscaleHeight: 6
+ModelViewer*XmScale*XmNhighlightOnEnter: True
+ModelViewer*XmScale.minimum: -90
+ModelViewer*XmScale.maximum: 90
+ModelViewer*.A.minimum: -90
+ModelViewer*.A.maximum: 90
+ModelViewer*.A.value: 20
+ModelViewer*.O.minimum: -180
+ModelViewer*.O.maximum: 180
+ModelViewer*.O.value: 50
+ModelViewer*.F.minimum: 1
+ModelViewer*.F.maximum: 180
+ModelViewer*.F.value: 30
+ModelViewer*MVForm*MVControl*XmPushButton.background: thistle4
+ModelViewer*XmPushButton.background: thistle4
+
+Asf_Panel*fontList: -*-helvetica-*-r-narrow-*-17-*-*-*-*-*-*-1
+Asf_Panel*background: grey50
+Asf_Statistics_Panel*fontList: -*-helvetica-*-r-narrow-*-17-*-*-*-*-*-*-1
+Asf_Statistics_Panel*background: darkslategrey
+Asf_Statistics_Panel*Quit.foreground: black
+Asf_Statistics_Panel*Quit.background: lightgrey
+Asfeom_Panel*fontList: -*-helvetica-*-r-narrow-*-17-*-*-*-*-*-*-1
+Asfeom_Panel*background: grey50
+Asfeom_Statistics_Panel*fontList: -*-helvetica-*-r-narrow-*-17-*-*-*-*-*-*-1
+Asfeom_Statistics_Panel*background: darkslategrey
+Asfeom_Statistics_Panel*Quit.foreground: black
+Asfeom_Statistics_Panel*Quit.background: lightgrey
+

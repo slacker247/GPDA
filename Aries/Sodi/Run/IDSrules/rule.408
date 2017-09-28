@@ -1,0 +1,1 @@
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"INFO psyBNC access"; content:"Welcome!psyBNC@lam3rz.de"; flags:A+; classtype:bad-unknown; sid:493; rev:2;)

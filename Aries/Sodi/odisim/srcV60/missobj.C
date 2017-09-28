@@ -1,0 +1,333 @@
+// missobj.C method file
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include "def.h"
+#include "missobj.H"
+
+#include "scud.H"
+#include "ss09.H"
+#include "ss18.H"
+#include "ss24.H"
+#include "stop.H"
+
+#include "intss18.H"
+
+#include "freeobjs.H"
+extern C_FREEOBJS freeobjs;
+
+/************************************************************************
+* C_MISSOBJ : construct a missobj object				*
+************************************************************************/
+C_MISSOBJ::C_MISSOBJ() {
+
+/*
+  set_rancourse();
+  reset_fixed_script();
+*/
+
+  cruise_vel = 8.0;
+  max_vel = 8.0;
+
+}
+
+/************************************************************************
+* init_missobj : initialize the missobj object				*
+************************************************************************/
+void C_MISSOBJ::init_missobj(char *nm, char *ty) {
+
+//  printf("misstype %s created\n",misstype->get_name());
+
+  NAME = nm;
+  missile = NULL;
+
+  if (!strcmp(ty,"SCUD")) {
+    missile = new C_SCUD();
+  }
+
+  if (!strcmp(ty,"SS09")) {
+    missile = new C_SS09();
+  }
+
+  if (!strcmp(ty,"SS18")) {
+    missile = new C_SS18();
+  }
+
+  if (!strcmp(ty,"SS24")) {
+    missile = new C_SS24();
+  }
+
+  if (!strcmp(ty,"INTSS18")) {
+    missile = new C_INTSS18();
+  }
+
+
+  if (missile == NULL) {
+    fprintf(stderr,"Error (MISSOBJ), bad type %s for %s\n",ty,NAME);
+    exit(1);
+  }else{
+    missile->set_rbq(rbq);
+  }
+
+}
+
+/************************************************************************
+* aim : aim the missile							*
+************************************************************************/
+void C_MISSOBJ::aim(double t, double lai, double loi, double laf, double lof,
+                    double Hapogee, double est_tof) {
+  int status;
+
+  launch_time = t;
+  lati = lai;
+  loni = loi;
+  latf = laf;
+  lonf = lof;
+
+  if (launch_time == -1) {
+    status = missile->aim_latlon(0.0, lati, loni, latf, lonf, Hapogee, est_tof);
+  }else{
+    status = missile->aim_latlon(launch_time, lati, loni, latf, lonf, Hapogee, est_tof);
+  }
+
+  missile->set_ECR();
+  fprintf(stderr,"%s aimed in %d iterations\n",NAME,status);
+}
+
+/************************************************************************
+* make_script : take the missile stages and make a script		*
+************************************************************************/
+void C_MISSOBJ::make_script() {
+  int i;
+  int len;
+  int nstages;
+  double t;
+  double X[3], V[3];
+  C_EOM *eom;
+  C_STOP *stop;
+
+  nstages = missile->get_nstages();
+  for (i=0; i<=nstages; i++) {
+    eom = missile->get_stage(i);
+    script->push_bot(eom);
+  }
+
+  t = missile->get_end_time();
+  missile->get_pos_vel(t,X,V);
+  stop = (C_STOP *)freeobjs.new_object(STOP);
+  stop->init(t,X);
+  script->push_bot(stop);
+
+  eom = (C_EOM *)script->get_top();
+  len = script->get_length();
+  for (i=0; i<len; i++) {
+    eom->set_sequence(i);
+    eom->set_object_type(OBJECT_TYPE);
+    eom->set_object_id(LOCAL_ID);
+    eom->set_object_node(NODE);
+    eom->set_id(GLOBAL_ID);
+    eom = (C_EOM *)eom->get_link();
+  }
+
+}
+
+/************************************************************************
+* print_trajectory : print out the trajectory of the missile		*
+************************************************************************/
+void C_MISSOBJ::print_trajectory(int nsteps) {
+  FILE *outfp;
+  int i;
+  double start_time_temp;
+  double end_time;
+  double t,t1,t2;
+  double dt;
+  double X[3],X1[3],X2[3];
+  double V[3],V1[3],V2[3];
+  double la,lo;
+  double dlat, dlon;
+  double alt;
+  double vel;
+  C_EOM *eom;
+  C_EOM *eom1;
+  C_EOM *eom2;
+  int nstages;
+  double d0,d1,d2,d;
+  char filename[128];
+
+  //fprintf(stderr,"\nMissile\n");
+
+  nstages = missile->get_nstages();
+  for (i=0; i<=nstages; i++) {
+    eom = missile->get_stage(i);
+    fprintf(stderr,"Stage %d, T0 = %f, Tend = %f\n",
+	i+1,
+	eom->get_start_time(),
+	eom->get_endtime());
+  }
+
+  for (i=0; i<nstages; i++) {
+    eom1 = missile->get_stage(i);
+    eom2 = missile->get_stage(i+1);
+    t1 = eom1->get_endtime() - 0.000001;
+    t2 = eom2->get_start_time() + 0.000001;
+    eom1->get_pos_vel(t1,X1,V1);
+    eom2->get_pos_vel(t2,X2,V2);
+    d0 = X2[0]-X1[0];
+    d1 = X2[1]-X1[1];
+    d2 = X2[2]-X1[2];
+    d = sqrt(d0*d0+d1*d1+d2*d2);
+    if (d > 0.001) {
+      fprintf(stderr,"Segments do not line up\n");
+    }
+  }
+
+  start_time_temp = missile->get_start_time();
+  end_time = missile->get_end_time();
+
+  dt = (end_time - start_time_temp) / double(nsteps);
+  t = start_time_temp;
+
+  sprintf(filename, "%s.jdn", NAME);
+  outfp = fopen(filename, "w");
+  for (i=0; i<=nsteps; i++) {
+    missile->get_pos_vel(t,X,V);
+    alt = sqrt(X[0]*X[0]+X[1]*X[1]+X[2]*X[2]) - RE;
+    vel = sqrt(V[0]*V[0]+V[1]*V[1]+V[2]*V[2]);
+    fprintf(stdout,
+      "%s t= %f Pxyz= %f %f %f Vxyz= %f %f %f Alt= %f Vel= %f\n",
+      NAME,t,X[0],X[1],X[2],V[0],V[1],V[2],alt,vel);
+	fprintf(outfp, "%f %s %s %d %f %f %f %s %d %f %f %f %f %f\n",
+		    t, "J 3.6 0 0", NAME, 15, X[0]*1000.0, X[1]*1000.0, X[2]*1000.0,
+			"RV", 4, alt, vel, 90.0, 50.0, 30.0, 0.0);
+    t += dt;
+  }
+  fclose(outfp);
+
+//...... check that lat and lon are correct
+
+  xyz_to_latlon(X,la,lo);
+  dlat = latf - la;
+  dlon = lonf - lo;
+  fprintf(stderr,"Delta lat, lon = %f %f\n",dlat,dlon);
+
+  fprintf(stderr,"\n");
+
+}
+
+/************************************************************************
+* test_trajectory : test the trajectory of the missile			*
+************************************************************************/
+int C_MISSOBJ::test_trajectory() {
+  double start_time_temp;
+  double end_time;
+  double t;
+  double dt;
+  double X[3],X1[3],X2[3];
+  double V[3],V1[3],V2[3];
+  double la,lo;
+  double dlat, dlon;
+  double magv, magv12;
+  double cosv;
+  double V12[3];
+  int retval;
+  C_EOM *eom;
+  C_BASE_STAGE *stage;
+  double d0,d1,d2,d;
+  double time;
+  int i;
+  int nstages;
+
+//...... loop through time and make sure that the velocity is consistent
+
+  retval = 1;
+  start_time_temp = missile->get_start_time();
+  end_time = missile->get_end_time();
+
+  missile->get_pos_vel(start_time_temp,X1,V1);
+
+  dt = 1.0;
+  t = start_time_temp + dt;
+  for (t=start_time_temp+dt; t<end_time - dt; t+=dt) {
+
+    missile->get_pos_vel(t,X2,V2);
+
+    V[0] = (X2[0]-X1[0]) / dt;
+    V[1] = (X2[1]-X1[1]) / dt;
+    V[2] = (X2[2]-X1[2]) / dt;
+    magv = sqrt(V[0]*V[0]+V[1]*V[1]+V[2]*V[2]);
+
+    V12[0] = (V1[0]+V2[0])/2.0;
+    V12[1] = (V1[1]+V2[1])/2.0;
+    V12[2] = (V1[2]+V2[2])/2.0;
+
+    magv12 = sqrt(V12[0]*V12[0]+V12[1]*V12[1]+V12[2]*V12[2]);
+
+    if (fabs(magv-magv12)/(1.0+magv+magv12) > 0.1) {
+      fprintf(stderr,"Warning (missobj) bad velocity magnitude %f, %f, at time %f\n",
+	magv, magv12, t-start_time_temp);
+      retval = 0;
+    }
+
+    cosv = (V[0]*V12[0]+V[1]*V12[1]+V[2]*V12[2]) / (magv*magv12);
+
+    if (cosv < 0.99) {
+      fprintf(stderr,"Warning (missobj) bad velocity direction\n");
+      retval = 0;
+    }
+
+    X1[0] = X2[0];
+    X1[1] = X2[1];
+    X1[2] = X2[2];
+
+    V1[0] = V2[0];
+    V1[1] = V2[1];
+    V1[2] = V2[2];
+
+  }
+
+//...... check that eoms are standalone
+
+  nstages = missile->get_nstages();
+  for (i=0; i<=nstages; i++) {
+    eom = missile->get_stage(i);
+    time = (eom->get_start_time() + eom->get_endtime()) / 2.0;
+    eom->get_pos_vel(time,X1,V1);
+    missile->get_pos_vel(time,X2,V2);
+    d0 = X2[0]-X1[0];
+    d1 = X2[1]-X1[1];
+    d2 = X2[2]-X1[2];
+    d = d0*d0+d1*d1+d2*d2;
+    if (d > 0.000001) {
+      fprintf(stderr,"Warning (missobj) eom not standalone\n");
+      retval = 0;
+    }
+    d0 = V2[0]-V1[0];
+    d1 = V2[1]-V1[1];
+    d2 = V2[2]-V1[2];
+    d = d0*d0+d1*d1+d2*d2;
+    if (d > 0.000001) {
+      fprintf(stderr,"Warning (missobj) eom not standalone\n");
+      retval = 0;
+    }
+
+    stage = (C_BASE_STAGE *)eom;
+    stage->check_spline6();
+
+  }
+
+//...... check that lat and lon are correct
+
+  missile->get_pos_vel(end_time,X,V);
+  xyz_to_latlon(X,la,lo);
+  dlat = latf - la;
+  dlon = lonf - lo;
+  if (fabs(dlat) + fabs(dlon) > 0.001) {
+    fprintf(stderr,"Delta lat, lon = %f %f\n",dlat,dlon);
+    retval = 0;
+  }
+
+  return retval;
+
+}

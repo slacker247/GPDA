@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 139 (msg:"NETBIOS SMB D$access";flags: A+; content:"\\D$|00 41 3a 00|"; reference:arachnids,336; classtype:attempted-recon; sid:536; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC nc.exe attempt";flags: A+; content:"nc.exe"; nocase; classtype:web-application-activity; sid:1062; rev:2;)

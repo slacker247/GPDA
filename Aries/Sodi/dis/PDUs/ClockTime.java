@@ -1,0 +1,215 @@
+/*
+ File:		ClockTime.java
+ CVS Info:	$Id: ClockTime.java,v 1.2 1998/01/27 18:43:57 mcgredo Exp $
+ Compiler:	jdk 1.3
+ */
+
+package PDUs;
+
+import mil.navy.nps.util.*;         // General-purpose utilities
+import disEnumerations.*;         // Enumerations for DIS
+
+import java.io.*;                               // input/output library
+import java.util.*;                             // utilities
+
+/**
+ * Special clock time reporting class.
+ *
+ *@version 1.0
+ *@author Antonio Alexandre Rua (<A HREF="http://www.garfield.fe.up.pt/~alexrua">http://www.garfield.fe.up.pt/~alexrua</A>)
+ *
+ *<dt><b>Location:</b>
+ *<dd>Web:  <a href="http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/ClockTime.java">
+ *  http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/ClockTime.java</a>
+ *
+ *<dd>or locally:  <a href="../../../../../../mil/navy/nps/dis/ClockTime.java">
+ *  ~/mil/navy/nps/dis/ClockTime.java</a>
+ *
+ *<dt><b>Hierarchy Diagram:</b>
+ *<dd><a href="../../../../../../dis-java-vrml/images/PduClassHierarchy.jpg"><IMG SRC="../../../../../../dis-java-vrml/images/PduClassHierarchyButton.jpg" ALIGN=ABSCENTER WIDTH=150 HEIGHT=21></a>
+ *
+ *<dt><b>Summary:</b>
+ *<dd>Time measurements that surpass one hour shall be represented by a Clock Time Record.
+ *  The time represented shall be either real-world time (UTC) or simulation time. 
+ *  The simulation time shall be the UTC of the simulation exercise.
+ *
+ *<dt><b>Note:</b>
+ *<dd>Here we don't implement the Timestamp record. 
+ *  Yet we don't have the same trouble using it as in ProtocolDataUnit.
+ *  You should consult our on-line documentation to see the trouble using time.
+ *
+ *<dt><b>History:</b>
+ *<dd>		16Sep97	/Antonio Alexandre Rua	/New
+ *<dd>		8Dec97	/Ronan Fauglas		/changes for documentation templates + complements in documentation
+ *<dd>		11Dec97	/Ronan Fauglas		/changed access methods: thisVariable() --> getThisVariable()
+ *
+ *<dt><b>References:</b>
+ *<dd>		DIS-Java-VRML Working Group: <a href="http://www.web3d.org/WorkingGroups/vrtp/dis-java-vrml/">http://www.web3d.org/WorkingGroups/vrtp/dis-java-vrml/</a>
+ *<dd>		DIS Data Dictionary :<a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/9c.htm">Clock Time Record</a>	
+ *<dd>		DIS specification : IEEE 1278.1, Section 5.3.8
+ *
+ *@see ProtocolDataUnit
+ *@see PduElement 
+ *@see SerializationInterface
+ *@see SimulationManagementFamily
+ */
+public class ClockTime extends PduElement
+{
+    /**
+     *Hours - This field shall specify the hours since 0000 hours January 1, 1970 UTC.
+     *
+     *<dl>
+     *<dt><b>Value:</b>
+     *<dd> Expressed in hours
+     *<dt><b>References:</b>
+     *<dd>	DIS Data Dictionary :<a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/9f.htm">Hours field</a>	
+     *</dl>
+     */
+    protected int         hour;               // 32-bit integer
+
+    /**
+     *Time Past the Hour - This field shall specify the time past the hour indicated in Hour field.
+     *
+     *<dl>
+     *<dt><b>Value:</b>
+     *<dd> This field is actually a Timestamp. 
+     *  See the references below for more information.
+     *<dt><b>References:</b>
+     *<dd>	DIS Data Dictionary :<a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/a.htm">Hours field</a>	
+     *</dl>
+     */
+    protected UnsignedInt timePastHour;       // 32-bit unsigned integer
+
+    /**
+     *Constant value--size of a Clock Time Record; here :<code>sizeOf = 8 bytes</code>.
+     */
+    public static final int     sizeOf = 8;     // size, in bytes, of a serialized ClockTime
+
+
+/**
+ *Default constructor--fills with zeros for all values.
+ */
+public ClockTime()     // constructor
+{
+    hour = 0;
+    timePastHour = new UnsignedInt();
+}
+
+/**
+ *Constructs a new ClockTime object whose values are passed in parameters.
+ *
+ *@param pHour the passed hours since 0000 hours January 1, 1970 UTC
+ *@param pTimePastHour the Timestamp of the new object
+ *
+ */
+public ClockTime(long pHour, long pTimePastHour) // constructor
+{
+    hour = (int)pHour;
+    timePastHour = new UnsignedInt(pTimePastHour);
+}
+
+public Object clone()
+{
+    // make a copy of the object. We don't have any objects here, so we can
+    // just do a straight copy.
+    ClockTime  newClockTime = new ClockTime();
+
+    newClockTime.setHour(hour);
+    newClockTime.setTimePastHour(this.getTimePastHour());
+
+    return newClockTime;
+}
+
+/**
+ *@exception RuntimeException when an IO Error occurs.
+ */
+public void serialize(DataOutputStream outputStream)
+{
+    try
+     {
+        outputStream.writeInt(hour);
+        timePastHour.serialize(outputStream);
+     }
+    catch(IOException ioException)      // catch-all for all IO exceptions in the above code
+     {
+        throw new 
+            RuntimeException("Exception in ClockTime. Error serializing unit.");
+     }
+
+    return;
+}
+
+
+/**
+ *@exception RuntimeException when an IO Error occurs.
+ */
+public void deSerialize(DataInputStream inputStream)
+{
+  // no need to call super, since there are no ivars in the superclass.
+
+  try
+    {
+        hour = inputStream.readInt();
+        timePastHour.deSerialize(inputStream);
+    }
+  catch(IOException ioException)      // catch-all for all IO exceptions in the above code
+    {
+        throw new 
+            RuntimeException("Exception in ClockTime. Error deSerializing unit.");
+    }
+
+  return;
+}   
+
+public int length()
+{
+  return sizeOf;          // 8 bytes long
+}
+
+public void printValues(int indentLevel, PrintStream printStream)
+{
+  // print the values of the object out, with correct level of
+  // indentation on the page.
+  char[]  indent = new char[indentLevel];
+  int     idx = 0;
+  String  spacing;
+
+  for(idx = 0; idx < indentLevel; idx++)
+      indent[idx] = ' ';
+  spacing = new String(indent);
+
+  printStream.println(indent + "Hour: " + hour);
+  printStream.println(indent + "Time Past Hour: "+timePastHour.longValue());
+    
+  return;
+}
+
+// accessor methods
+
+public int getHour()
+{ return hour;
+}
+public void setHour(int pHour)
+{ hour = pHour;
+}
+public void setHour(long pHour)
+{ hour = (int)pHour;
+}
+
+public int getTimePastHour()
+{ return ((UnsignedInt)timePastHour.clone()).intValue();
+}
+public void setTimePastHour(UnsignedInt pTimePastHour)
+{ timePastHour = pTimePastHour;
+}
+public void setTimePastHour(long pTimePastHour)
+{ timePastHour = new UnsignedInt(pTimePastHour);
+}
+
+public void setValues(long pHour,long pTimePastHour)
+{ hour = (int)pHour;
+  timePastHour = new UnsignedInt(pTimePastHour);
+}
+
+} // end of class ClockTime
+

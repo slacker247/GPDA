@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION getodbcin attempt";flags: A+; content:"CFUSION_GETODBCINI()"; nocase; reference:bugtraq,550; classtype:web-application-attack; sid:923; rev:2;)

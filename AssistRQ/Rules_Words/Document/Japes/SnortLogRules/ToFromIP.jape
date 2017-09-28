@@ -1,0 +1,24 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: ToIP
+Priority: 25
+
+    {Token.subkind == dashpunct}
+    {Token.kind == symbol}
+    {SpaceToken.kind == space}
+(
+    {Address.kind == ip}
+):ToIP -->
+:ToIP.ToIP = {}
+
+
+Rule: FromIP
+Priority: 20
+
+(
+    {Address.kind == ip}
+):FromIP -->
+:FromIP.FromIP = {}

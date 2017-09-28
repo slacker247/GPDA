@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION getodbcdsn access";flags: A+; content:"CFUSION_GETODBCDSN()"; nocase; reference:bugtraq,550; classtype:web-application-attack; sid:916; rev:2;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI ppdscgi.exe access";flags: A+; uricontent:"/ppdscgi.exe"; nocase; reference:bugtraq,491; classtype:attempted-recon; sid:889; rev:1;)

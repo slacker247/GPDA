@@ -1,0 +1,39 @@
+<?xml version='1.0'?>
+<rdf:RDF
+    xmlns:RDFNsId1='http://www.gcf.org/'
+    xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+    <rdf:Bag rdf:ID='L02'>
+        <rdf:li>
+            <rdf:Statement
+                 rdf:object='2'>
+                <rdf:predicate rdf:resource='http://www.gcf.org/v2.5subject'/>
+                <rdf:subject>
+                    <rdf:Description rdf:about='http://www.w3.org/PICS/Underview.html'
+                         RDFNsId1:v2.5subject='2'>
+                        <RDFNsId1:v2.5density rdf:ID='RDFAnon1'>1</RDFNsId1:v2.5density>
+                        <RDFNsId1:v2.5color.hue rdf:ID='RDFAnon2'>1</RDFNsId1:v2.5color.hue>
+                    </rdf:Description>
+                </rdf:subject>
+            </rdf:Statement>
+        </rdf:li>
+        <rdf:li rdf:resource='#RDFAnon1'/>
+        <rdf:li rdf:resource='#RDFAnon2'/>
+    </rdf:Bag>
+    <rdf:Bag rdf:ID='L01'>
+        <rdf:li>
+            <rdf:Statement
+                 rdf:object='0.5'>
+                <rdf:predicate rdf:resource='http://www.gcf.org/v2.5suds'/>
+                <rdf:subject>
+                    <rdf:Description rdf:about='http://www.w3.org/PICS/Overview.html'
+                         RDFNsId1:v2.5suds='0.5'>
+                        <RDFNsId1:v2.5density rdf:ID='RDFAnon3'>0</RDFNsId1:v2.5density>
+                        <RDFNsId1:v2.5color.hue rdf:ID='RDFAnon4'>1</RDFNsId1:v2.5color.hue>
+                    </rdf:Description>
+                </rdf:subject>
+            </rdf:Statement>
+        </rdf:li>
+        <rdf:li rdf:resource='#RDFAnon3'/>
+        <rdf:li rdf:resource='#RDFAnon4'/>
+    </rdf:Bag>
+</rdf:RDF>

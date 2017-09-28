@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 10498 (msg:"DDOS mstream agent pong to handler" ; content: "pong"; classtype:attempted-dos; sid:246; rev:1;)

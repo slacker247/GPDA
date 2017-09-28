@@ -1,0 +1,114 @@
+                           Command-line Invocation
+-{G,N,E}<attr>=<value>  set graph/node/edge attribute
+-l<file> load graphics library
+-o<file> output file
+-T<lang> output language: dot (attributed), ps, hpgl, pcl, mif, 
+  gif, ismap, canon (prettyprinted); plain:
+    graph SCALE WIDTH HEIGHT
+    node NAME X Y WIDTH HEIGHT LABEL STYLE SHAPE COLOR
+    edge TAIL HEAD N X1 Y1 .. XN YN LABEL XL YL STYLE COLOR
+    stop
+-v verbose
+-V version
+                                   Comments
+// c++ like: to end of line, or
+/* c-like: between delimiters */
+
+                                dot Attributes
+Commas inside [...] list and semicolons inside {...} list are optional.
+Default value is first. Booleans can be true,false,TRUE,FALSE,1,0
+undocumented*
+added+ by vladimir@cs.ualberta.ca (Dec 97)
+
+                          Graph/Subgraph Attributes
+bgcolor* background color
+center in the page
+clusterrank local,global,none
+concentrate merge edges with common head/tail. Doesn't work for short edges
+  (they don't have virtual nodes to merge).
+layers* id:id:id:id range of layers (docs wrongly say "layerseq")
+margin 0.5,0.5in
+mclimit 1.0 min cross iterations factor
+nodesep 0.25in
+nslimit,nslimit1* bound network simplex iterations to n * number-of-nodes
+ordering [],out edges go out from left to right in creation order.
+  Works for subgraphs too (?)
+orientation portrait,landscape
+page unit of pagination (eg 8.5,11in)
+pagedir* [LRBT][LRBT] set major and minor pagination order
+quantum* 0.0. If non-zero, make node size a multiple of the quantum
+rank [],same,min,max,source(abs.min),sink(abs.max). Source and sink only allow
+  1 node (?)
+rankdir TB,LR top-to-bottom or left-to-right
+ranksep 0.5in. This is extra to the size of nodes. If "equally",
+  exact_ranksep=TRUE (all ranks are the same distance apart). 
+ratio [], f (add space to achieve width/height=f), fill (add space to achieve
+  size.x/size.y), compress (remove space), auto (reduce by half or print on
+  multiple pages)
+rotate if 90deg, same as orientation=landscape
+searchsize* 30 for network simplex algorithm for ranking nodes
+size of graph (eg 8.5,11in)
+                               Node Attributes
+fixedsize* don't expand node to accommodate label
+group* edges connecting nodes in the same group have weight*=100 and
+  xpenalty=CL_CROSS (cluster crossing penalty). Thus, they should go
+  "vertically". Similar to a vertical "rank=same", but only if there's an edge.
+height,width 0.5,0.75in
+shape ellipse,polygon,box,circle,diamond,doublecircle,doubleoctagon,egg,
+  hexagon,house,invhouse,invtrapezium,invtriangle,octagon,parallelogram,
+  plaintext,trapezium,triangle,tripleoctagon
+  record,epsf, Mcircle,Mdiamond,Msquare (little diagonals), Mrecord (rounded)
+shapefile for shape=epsf
+attrs for shape=polygon
+  sides n-gon
+  peripheries how many lines to draw around it
+  orientation (rotation 0..360)
+  regular (height=width)
+  skew left-to-right (eg parallelogram=0.6)
+  distortion top-to-bottom (eg trapezium=-0.4)
+toplabel,bottomlabel* for Mcircle and Mdiamond (AUXLABELS)
+
+                               Edge Attributes
+arrowsize* 1.0 size factor (norm_length=10,norm_width=5,
+  inv_length=6,inv_width=7,dot_radius=2)
+constraint* if FALSE then xpenalty=weight=0
+decorate draw line from edge to label
+dir none,forward,back,both
+id* doc says it's used to distinguish edge, but program doesn't mention it
+minlen 1 min inter-rank distance
+tailport=":t",headport=":h"* same as specifying m:t->n:h instead of simply
+  m->n. Valid ports for polygons are s,e,w,n,se,ne,nw,sw. 
+  Notes: polygon_port skips the first char of the name (it assumes the name is
+  of the form ":t" or ":h"). 
+weight importance for mincross(?)
+arrowhead,arrowtail+ none,normal,inv,dot,odot,invdot,invodot. 
+  Only work for -Tps.
+headlabel,taillabel+ these are placed a fixed offset from the edge port and no
+  allowance is made for their size, so they better be short. Don't work for
+  -Tdot and -Tplain
+labeldistance+ 1.0 factor. port_label_distance=10: from port to {head,tai}label
+labelangle -25 degrees. pos is CCW, neg is CW.
+labelfontcolor,labelfontname,labelfontsize+ for {head,tail}label
+samehead,sametail+ aim edges with the same val of this attr to the same port, 
+  being the average of their natural landing points. 
+tailclip,headclip if FALSE disable shape clipping at endpoint
+
+                              Common Attributes
+color black,...
+comment* of object in ps/mif file
+fontcolor black,...
+fontname {times,helvetica,courier,palatino}-{roman,bold,italic|oblique,
+  bolditalic|boldoblique},zapfdingbats,symbol, stick,stickcw (internal)
+fontsize 14 points
+label use \n\l\r for centered/left/right lines. \N or "" use the node name.
+  Subgraph labels work only for clusters.
+layer [],all,all:id,id:all,id:id. Range of layers where this element appears.
+showboxes* (debugging) show spline boxes (1=before, 2=after fitsplines)
+style bold,dashed,dotted,filled,invis,unfilled,solid,"any ps command".
+  For node: rounded, diagonals
+URL for ismap. Graph: default url, node: node's region url.
+
+                      Output Attributes (-Tdot, -Tplain)
+node: pos, rects (record rectangles), width, height,
+edge: pos="s,x0,y0;x1,y1;...;e,xn,yn", lp (label pos),
+graph: lp (label pos), bb (bounding box)

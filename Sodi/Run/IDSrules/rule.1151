@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Cisco Web DOS attempt"; flags: A+; content: "|20 2F 25 25|"; depth: 16; reference:arachnids,275; classtype:attempted-dos; sid:1138; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS showcode access"; uricontent:"/Sites/Samples/Knowledge/Push/ViewCode.asp"; flags: A+; nocase; classtype:web-application-activity; sid:1035; rev:2;)

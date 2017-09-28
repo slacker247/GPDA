@@ -1,0 +1,59 @@
+# (C) Copyright 2001, Martin Roesch, Brian Caswell, et al.  All rights reserved.
+# $Id: web-attacks.rules,v 1.1 2001/11/02 16:00:51 cazz Exp $
+# ----------------
+# WEB ATTACKS
+# ----------------
+# These signatures are generic signatures that will catch common commands 
+# used to exploit form variable vulnerabilities.  These signatures should 
+# not false very often.  
+#
+# Please email example PCAP log dumps to snort-sigs@lists.sourceforge.net 
+# if you find one of these signatures to be too false possitive.
+
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS ps command attempt"; flags:A+; uricontent:"/bin/ps"; nocase; sid:1328; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS /bin/ps command attempt"; flags:A+; uricontent:"ps%20"; nocase; sid:1329; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS wget command attempt"; flags:A+; content:"wget%20";nocase; sid:1330; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS uname -a command attempt"; flags:A+; content:"uname%20-a";nocase; sid:1331; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS /usr/bin/id command attempt"; flags:A+; content:"/usr/bin/id";nocase; sid:1332; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS id command attempt"; flags:A+; content:"\;id";nocase; sid:1333; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS echo command attempt"; flags:A+; content:"/bin/echo";nocase; sid:1334; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS kill command attempt"; flags:A+; content:"/bin/kill";nocase; sid:1335; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS chmod command attempt"; flags:A+; content:"/bin/chmod";nocase; sid:1336; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS chgrp command attempt"; flags:A+; content:"/usr/bin/chgrp";nocase; sid:1337; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS chown command attempt"; flags:A+; content:"/usr/sbin/chown";nocase; sid:1338; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS chsh command attempt"; flags:A+; content:"/usr/bin/chsh";nocase; sid:1339; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS tftp command attempt"; flags:A+; content:"tftp%20";nocase; sid:1340; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS /usr/bin/gcc command attempt"; flags:A+; content:"/usr/bin/gcc";nocase; sid:1341; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS gcc command attempt"; flags:A+; content:"gcc%20-o";nocase; sid:1342; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS /usr/bin/cc command attempt"; flags:A+; content:"/usr/bin/cc";nocase; sid:1343; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS cc command attempt"; flags:A+; content:"cc%20";nocase; sid:1344; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS /usr/bin/cpp command attempt"; flags:A+; content:"/usr/bin/cpp";nocase; sid:1345; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS cpp command attempt"; flags:A+; content:"cpp%20";nocase; sid:1346; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS /usr/bin/g++ command attempt"; flags:A+; content:"/usr/bin/g++";nocase; sid:1347; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS g++ command attempt"; flags:A+; content:"g++%20";nocase; sid:1348; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS bin/python access attempt"; flags:A+; content:"bin/python";nocase; sid:1349; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS python access attempt"; flags:A+; content:"python%20";nocase; sid:1350; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS bin/tclsh execution attempt"; flags:A+; content:"bin/tclsh";nocase; sid:1351; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS tclsh execution attempt"; flags:A+; content:"tclsh8%20";nocase; sid:1352; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS bin/nasm command attempt"; flags:A+; content:"bin/nasm";nocase; sid:1353; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS nasm command attempt"; flags:A+; content:"nasm%20";nocase; sid:1354; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS /usr/bin/perl execution attempt"; flags:A+; content:"/usr/bin/perl";nocase; sid:1355; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS perl execution attempt"; flags:A+; content:"perl%20";nocase; sid:1356; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS nt admin addition attempt"; flags:A+; content:"net localgroup administrators /add";nocase; sid:1357; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS traceroute command attempt"; flags:A+; content:"traceroute%20";nocase; sid:1358; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS ping command attempt"; flags:A+; content:"/bin/ping";nocase; sid:1359; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS netcat command attempt"; flags:A+; content:"nc%20";nocase; sid:1360; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS nmap command attempt"; flags:A+; content:"nmap%20";nocase; sid:1361; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS xterm command attempt"; flags:A+; content:"/usr/X11R6/bin/xterm";nocase; sid:1362; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS X application to remote host attempt"; flags:A+; content:"%20-display%20";nocase; sid:1363; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS lsof command attempt"; flags:A+; content:"lsof%20";nocase; sid:1364; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS rm command attempt"; flags:A+; content:"rm%20";nocase; sid:1365; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS mail command attempt"; flags:A+; content:"/bin/mail";nocase; sid:1366; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS mail command attempt"; flags:A+; content:"mail%20";nocase; sid:1367; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS /bin/ls| command attempt"; flags:A+; uricontent:"/bin/ls|"; nocase; sid:1368; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS /bin/ls command attempt"; flags:A+; uricontent:"/bin/ls"; nocase; sid:1369; rev:1; classtype:web-application-attack;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS /etc/inetd.conf access"; flags:A+; content:"/etc/inetd.conf";nocase; sid:1370; rev:1; classtype:web-application-activity;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS /etc/motd access"; flags:A+; content:"/etc/motd";nocase; sid:1371; rev:1; classtype:web-application-activity;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS /etc/shadow access"; flags:A+; content:"/etc/shadow";nocase; sid:1372; rev:1; classtype:web-application-activity;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS conf/httpd.conf attempt"; flags:A+; content:"conf/httpd.conf";nocase; sid:1373; rev:1; classtype:web-application-activity;)
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS .htgroup access"; flags:A+; uricontent:".htgroup"; nocase; sid:1374; rev:1; classtype:web-application-activity;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (msg:"BACKDOOR HideSource backdoor attempt";flags: A+; content:"wank"; sid:220;  classtype:misc-activity; rev:3;)

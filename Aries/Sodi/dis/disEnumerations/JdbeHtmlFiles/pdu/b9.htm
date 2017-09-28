@@ -1,0 +1,320 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>DIS Data Dictionary: Emission System Record</TITLE>
+
+
+
+</HEAD>
+
+<BODY>
+
+<h1> DIS Data Dictionary - PDU Data</h1><i>Created by <a
+
+href="http://huachuca-jdbe.army.mil/">JDBE</a> at Ft. Huachuca,
+
+Arizona</i><br clear=all><p><dl><dd>
+
+<p>
+
+<b>Current standard:  IEEE 1278.1</b>
+
+<p><BR><H4>Emission System Record</H4>
+
+<B>Size: </B>640<BR>
+
+<B>Description: </B>One, several or all of the emitter systems on a particular entity may be described in a single Electromagnetic Emission PDU(10)**. The following information shall be provided for each Emission System Record:<BR>
+
+<BR>
+
+1) System Data Length - This field shall specify the length of this emitter system's data (including beam data and its track/jam information) in 32-bit words. The length shall include the System Data Length field. This field shall be represented by an 8-bit unsigned integer.<BR>
+
+2) Number of Beams - This field shall specify the number of beams being described in the current PDU for the system being described. This field shall be represented by an 8-bit unsigned integer.<BR>
+
+3) Emitter System - This field shall specify information about a particular emitter system. This field shall be represented by an Emitter System Record (see 5.3.11).<BR>
+
+4) Location - This field shall specify the location of the antenna beam source with respect to the emitting entity's coordinate system. This location shall be the origin of the emitter coordinate system which shall be parallel to the entity coordinate system. This field shall be represented by an Entity Coordinate Vector Record (see 5.3.33.1)<BR>
+
+f) The frollowing information shall be provided for each beam:<BR>
+
+1) Beam Data Length - This field shall specify the length of this beam's data (including track/jam information) in 32-bit words. The length shall include the Beam Data Length field. This field shall be represented by an 8-bit  unsigned integer.<BR>
+
+2) Beam ID Number - This field shall specify a unique emitter database number assigned to differentiate between otherwise similar or identical emitter beams within an emitter system. This field shall be represented by an 8-bit unsigned integer. Once established for an exercise, the Beam ID numbers shall not be changed during that exercise.<BR>
+
+3) Beam Parameter Index - This field shall specify a beam parameter index number that shall be used by receiving entities in conjunction with the emitter name field to provide a pointer to the stored database parameters required to regenerate the beam. This field shall be represented by a 16-bit unsigned integer.<BR>
+
+4) Fundamental Parameter Data - This field shall specify dynamic parameters of the emitter. This field shall be represented by a Fundamental Parameter Data Record (see 5.3.22).<BR>
+
+5) Beam Function - This field shall specify the function of a particular beam. This field shall be represented by an 8-bit enumeration (see Section 8 in EBV-DOC).<BR>
+
+6) Number of Targets in Track/Jam Field - This field, in conjuction with the following field, provides a mechanism for an emitter to identify targets that are being illuminated by a track beam or target emitters it is attempting to jam. When employed by a tracking emitter, this field shall specify the number of targets that are being identified as being tracked. When employed by a jamming emitter, this field shall specify the number of emitters the system is attempting to jam. This field shall be represented by an 8-bit unsigned integer. When the number of entities being tracked or jammed exceeds a certain threshold then the High Density Track/Jam field shall be used and zero shall be entered in the Number of Targets in Track/Jam field. The threshold may be established at exercise start or during the exercise by means of Simulation Management PDUs. If no value is established, the default shall be TARGETS_IN_TJ_FIELD_DFLT.<BR>
+
+7) High Density Track/Jam - This field shall be used to indicate whether or not the receiving simulation applications can assume that all targets, in the scan pattern which the sending emitter can track (for a phased array system) or jam (for a jamming system), are being tracked or jammed respectively. When high density track/jam is selected, the system issuing the PDU shall not include any entries in the track/jam field. This field shall be represented by an 8-bit enumberation (see Section 8 in EBV-DOC).<BR>
+
+8) Jamming Mode Sequence - This field shall be used to identify one or multiple jamming techniques being applied. This field shall be represened by a 32-bit unsigned integer.<BR>
+
+9) The following information shall be provided for each track/jam target:<BR>
+
+     *  Track/Jam Field - This field shall identify the targets in an emitter track or emitters a system is attempting to jam. For single track emitter systems this field shall be used to identify the target the system is tracking. I the system is tracking a target cluster then all the targets in the cluster shall be identified in this field.  The system shall not indicate a target(s) in this field if the system determines that the track has been physically offset from the target(s) by jamming. This field shall be represented by an Entity Identifier Record (see 5.3.14), an Emitter Identifier and a Beam Identifier. The Emitter and Beam Identifiers shall be specified by 8-bit unsigned integers. For a tracking emission, the Emitter and Beam ID fields shall each contain zero. For a jamming emission, these identifiers are defined as follows:<BR>
+
+     *  Emitter Identifier - The Emitter Identifier shall be the Emitter ID number of the emitter for which the jamming emission is intended.<BR>
+
+     *  Beam Identifier - The Beam Identifier shall be Beam ID number of the emitter beam for which the jamming emission is intended.<BR>
+
+<BR>
+
+The maximum number of emitter systems (N(max)), beams in system i (M(i-max)), and targets in track/jam beam j (P(j-max)) is a function of the maximum PDU size specified in the Standard for Distributed Interactive Simulation - Communication Services and Profiles, and must adhere to the following relationship<BR>
+
+<BR>
+
+<BR>
+
+(10)** It should be noted that caution must be exercised to ensure that the number of systems being described does not cause the PDU length to exceed the maximum PDU length specified in IEEE Standard for Distributed Interactive Simulation - Communication Services and Profiles.<BR>
+
+<P>
+
+<H3>Record Components:</H3>
+
+<TABLE BORDER> <TR><TH ALIGN=CENTER>Item Name</TH>
+
+<TH ALIGN=CENTER>Bit Length</TH>
+
+<TH ALIGN=CENTER>Opt</TH>
+
+<TH ALIGN=CENTER>Opt Ctl</TH>
+
+<TH ALIGN=CENTER>Rpt</TH>
+
+<TH ALIGN=CENTER>Rpt Ctl</TH>
+
+</TR>
+
+<TR><TD><A HREF="ba.htm" >System Data Length Field</A></TD>
+
+<TD>8</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="bb.htm" >Number of Beams Field</A></TD>
+
+<TD>8</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="2a.htm" >Padding - 16bit Field</A></TD>
+
+<TD>16</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="bc.htm" >Emitter System Record</A></TD>
+
+<TD>32</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="1e.htm" >Location Record</A></TD>
+
+<TD>96</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="c0.htm" >Beam Data Length Field</A></TD>
+
+<TD>8</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="c1.htm" >Beam ID Number Field</A></TD>
+
+<TD>8</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="c2.htm" >Beam Parameter Index Field</A></TD>
+
+<TD>16</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="c3.htm" >Fundamental Parameter Data Record</A></TD>
+
+<TD>320</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="ce.htm" >Beam Function Field</A></TD>
+
+<TD>8</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="cf.htm" >Number of Targets in Track/Jam Field Field</A></TD>
+
+<TD>8</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="d0.htm" >High Density Track/Jam Field</A></TD>
+
+<TD>8</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="50.htm" >Padding - 8bit Field</A></TD>
+
+<TD>8</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="d1.htm" >Jamming Mode Sequence Field</A></TD>
+
+<TD>32</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="d2.htm" >Track/Jam Record</A></TD>
+
+<TD>64</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+ </TABLE>
+
+<HR><i>For questions regarding the content of the DIS Data
+
+Dictionary, <br>please contact Jeff Wicks, <a href="mailto:jwicks@ist.ucf.edu">jwicks@ist.ucf.edu</a></i><p><i>Other problems may be reported to the WebMaster,<a
+
+href="mailto:www@sc.ist.ucf.edu">www@sc.ist.ucf.edu</a></i><br>
+
+<hr>
+
+Generated by the DIS Data Dictionary
+
+
+
+</BODY>
+
+</HTML>
+

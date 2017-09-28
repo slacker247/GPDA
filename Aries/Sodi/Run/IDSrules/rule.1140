@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC AuthChangeUr access";flags: A+; content:"_AuthChangeUrl?"; nocase; classtype:attempted-recon; sid:1126; rev:1;)

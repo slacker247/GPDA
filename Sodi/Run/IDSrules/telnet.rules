@@ -1,0 +1,23 @@
+# (C) Copyright 2001, Martin Roesch, Brian Caswell, et al.  All rights reserved.
+# $Id: telnet.rules,v 1.15 2001/10/29 01:52:54 roesch Exp $
+#-------------
+# TELNET RULES
+#-------------
+#
+# These signatures are based on various telnet exploits and unpassword 
+# protected accounts.
+# 
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (msg:"TELNET SGI telnetd format bug"; flags: A+; content: "_RLD"; content: "/bin/sh";reference:arachnids,304; classtype:attempted-admin; sid:711; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (msg:"TELNET ld_library_path";flags: A+; content:"ld_library_path"; reference:arachnids,367; classtype:attempted-admin; sid:712; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (msg:"TELNET livingston DOS";flags: A+; content:"|fff3 fff3 fff3 fff3 fff3|"; reference:arachnids,370; classtype:attempted-dos; sid:713; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (msg:"TELNET resolv_host_conf";flags: A+; content:"resolv_host_conf"; reference:arachnids,369; classtype:attempted-admin; sid:714; rev:1;)
+alert tcp $EXTERNAL_NET any <- $HOME_NET 23 (msg:"TELNET Attempted SU from wrong group"; content: "to su root"; nocase; flags: A+; classtype:attempted-admin; sid:715; rev:2;)
+alert tcp $EXTERNAL_NET any <- $HOME_NET 23 (msg:"TELNET not on console"; flags: A+; content:"not on system console"; nocase; reference:arachnids,365; classtype:bad-unknown; sid:717; rev:2;)
+alert tcp $EXTERNAL_NET any <- $HOME_NET 23 (msg:"TELNET login incorrect"; content:"Login incorrect"; flags: A+; reference:arachnids,127; classtype:bad-unknown; sid:718; rev:2;)
+alert tcp $EXTERNAL_NET any <- $HOME_NET 23 (msg:"TELNET root login"; content:"login\: root"; flags: A+; classtype:suspicious-login; sid:719; rev:1;)
+alert tcp $EXTERNAL_NET any <- $HOME_NET 23 (msg:"TELNET bsd telnet exploit response"; flags: A+; content: "|0D0A|[Yes]|0D0A FFFE 08FF FD26|"; classtype: attempted-admin; sid: 1252; rev: 4; reference: bugtraq,3064; reference:cve,CAN-2001-0554;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (msg:"TELNET bsd exploit client finishing"; flags: A+; dsize: >200; content: "|FF F6 FF F6 FF FB 08 FF F6|"; offset: 200; depth: 50; classtype: successful-admin; sid: 1253; rev:3; reference: bugtraq,3064; reference:cve,CAN-2001-0554;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (msg:"TELNET 4Dgifts SGI account attempt";flags: A+; content:"4Dgifts"; classtype:suspicious-login; sid:709; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (msg:"TELNET EZsetup account attempt";flags: A+; content:"OutOfBox"; classtype:suspicious-login; sid:710; rev:2;)
+alert tcp $EXTERNAL_NET any <- $HOME_NET 23 (msg:"TELNET access";flags: A+; content:"|FF FD 18 FF FD 1F FF FD 23 FF FD 27 FF FD 24|"; reference:arachnids,08; reference:cve,CAN-1999-0619; classtype:not-suspicious; sid:716; rev:1;)

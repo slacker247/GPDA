@@ -1,0 +1,1 @@
+alert tcp any any -> any 25 (msg:"Virus - Successful eurocalculator execution"; flags:PA; content: "funguscrack@hotmail.com"; nocase; sid:736;  classtype:misc-activity; rev:3;)

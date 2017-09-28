@@ -1,0 +1,13 @@
+# (C) Copyright 2001, Martin Roesch, Brian Caswell, et al.  All rights reserved.
+# $Id: info.rules,v 1.11 2001/10/29 01:52:54 roesch Exp $
+#-----------
+# INFO RULES
+#-----------
+
+alert tcp $EXTERNAL_NET 80 -> $HOME_NET any (msg:"INFO Connection Closed MSG from Port 80"; content:"Connection closed by foreign host"; nocase; flags:A+; classtype:unknown; sid:488; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"INFO FTP No Password"; content: "pass |0d|"; nocase; reference:arachnids,322; flags:A+; classtype:unknown; sid:489; rev:2;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"INFO battle-mail traffic"; content:"BattleMail"; flags:A+; classtype:unknown; sid:490; rev:2;)
+alert tcp $HOME_NET 21 -> $EXTERNAL_NET any (msg:"FTP Bad login"; content:"530 Login "; nocase; flags:A+; classtype:bad-unknown; sid:491; rev:2;)
+alert tcp $HOME_NET 23 -> $EXTERNAL_NET any (msg:"TELNET Bad Login"; content: "Login failed";  nocase; flags:A+; classtype:bad-unknown; sid:492; rev:3;)
+alert tcp $HOME_NET 23 -> $EXTERNAL_NET any (msg:"TELNET Bad Login"; content: "Login incorrect"; nocase; flags:A+; classtype:bad-unknown; sid:1251; rev:2;)
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"INFO psyBNC access"; content:"Welcome!psyBNC@lam3rz.de"; flags:A+; classtype:bad-unknown; sid:493; rev:2;)

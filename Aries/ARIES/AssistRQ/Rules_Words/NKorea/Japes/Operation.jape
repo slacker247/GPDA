@@ -1,0 +1,13 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Operation
+	{Report_Name.kind == name}
+	{Token.string == "@"}
+(
+    {Token.kind == word, Token.orth == allCaps}
+):Operation
+ -->
+:Operation.Operation = {}

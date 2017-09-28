@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Destination Unreachable (Host Precedence Violation)"; itype: 3; icode: 14; sid:397;  classtype:misc-activity; rev:4;)

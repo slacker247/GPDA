@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC HP Openview Manager DOS"; flags:A+; uricontent:"/OvCgi/OpenView5.exe?Context=Snmp&Action=Snmp&Host=&Oid="; nocase; dsize:>202; reference:bugtraq,2845; sid:1258;  classtype:misc-activity; rev:2;)

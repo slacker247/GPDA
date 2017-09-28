@@ -1,0 +1,13 @@
+parameters {
+  string command_center NORAD_COMMAND_CENTER
+  string command_center1 BAR_3
+  string eye_command_center BRILLIANT_EYE_000_001
+  float start_time 58000
+  float tend 65000.0
+  float cycle_time 30.0
+  int min_cpu_time 3
+  int max_cpu_time 30
+  int n_tracks 50
+  logical print_flag F
+  logical launch_position T
+}

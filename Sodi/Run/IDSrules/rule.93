@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET 60000 -> $HOME_NET 2140 (msg:"BACKDOOR DeepThroat 3.1 Hide Window Client Request"; content:"26";  reference:arachnids,106; sid:192;  classtype:misc-activity; rev:3;)

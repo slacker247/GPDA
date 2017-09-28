@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS codebrowser Exair access";flags: A+; uricontent:"/iissamples/exair/howitworks/codebrws.asp"; nocase; reference:cve,CVE-1999-0499; classtype:web-application-activity; sid:1004; rev:2;)

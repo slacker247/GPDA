@@ -1,0 +1,129 @@
+; Wed Jan 16 01:22:29 PST 2002
+; 
+;+ (version "1.6.1")
+;+ (build "Build 828")
+
+
+(defclass :CLIPS_TOP_LEVEL_SLOT_CLASS
+	(is-a USER)
+	(role concrete)
+	(multislot :KEYWORDS
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot :NUM_CLASSES
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot :KEY_CLASSES
+		(type SYMBOL)
+;+		(allowed-parents :THING)
+		(create-accessor read-write))
+	(single-slot :MATURITY
+;+		(comment "I just made up the allowed values. I'm not sure which ones would make sense.")
+		(type SYMBOL)
+		(allowed-values :ALPHA :BETA :INTERMEDIATE :PRE_RELEASE :MATURE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :SUBJECT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :VERSION
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :NUM_INSTANCES
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :THUMBNAIL_FILE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :PROJECT_NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :ORGANIZATION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :URL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass :SUMMARY
+	(is-a :ANNOTATION)
+	(role concrete)
+	(single-slot :NAME
+;+		(comment "For the browser to work, the name of the instance for the :SUMMARY class should be \":SUMMARY_INSTANCE\".")
+		(type STRING)
+		(default ":SUMMARY_INSTANCE")
+;+		(value ":SUMMARY_INSTANCE")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :VERSION
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :URL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :MATURITY
+;+		(comment "I just made up the allowed values. I'm not sure which ones would make sense.")
+		(type SYMBOL)
+		(allowed-values :ALPHA :BETA :INTERMEDIATE :PRE_RELEASE :MATURE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :SUBJECT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :CREATOR
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :NUM_CLASSES
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :ORGANIZATION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :THUMBNAIL_FILE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :MODIFICATION-TIMESTAMP
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :PROJECT_NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot :DOCUMENTATION
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot :NUM_INSTANCES
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot :KEYWORDS
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot :CREATION-TIMESTAMP
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot :KEY_CLASSES
+		(type SYMBOL)
+;+		(allowed-parents :THING)
+		(create-accessor read-write))
+	(single-slot :MODIFIER
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

@@ -1,0 +1,18 @@
+----------------------------------------------------------------------
+                    Store and Fetch Example
+----------------------------------------------------------------------
+
+This is a simple example of transferring Java objects between Jess and
+Java using the 'store' and 'fetch' functions. The class Main is the
+Java main program which drives everything; note how it provides the
+Java program some input parameters using 'store', then retrieves the
+results using 'fetch'. It contains an embedded Jess program; notice
+how this latter program uses "fetch" and "store" to retrieve inputs
+and store outputs.
+
+To run this problem, type
+
+        java jess.examples.xfer.Main
+
+from the JessXX/ directory (after compiling these source files; -please-
+read the part in the README about compiling Java source.)

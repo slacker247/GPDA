@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC netscape servers suite DOS"; flags: A+; uricontent:"/dsgw/bin/search?context="; nocase; classtype:web-application-attack; sid:1081; rev:3; reference:bugtraq,1868;)

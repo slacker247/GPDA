@@ -1,0 +1,15 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: City
+
+    {Token.string == "City"}
+    {Token.string == ":"}
+    {SpaceToken.kind == space}
+(
+    {Token.kind == word}
+):City
+ -->
+:City.City = {}

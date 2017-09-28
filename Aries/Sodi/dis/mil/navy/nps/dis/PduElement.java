@@ -1,0 +1,166 @@
+/*
+ File:		PduElement.java
+ CVS Info:	$Id: PduElement.java,v 1.2 1998/01/27 18:44:20 mcgredo Exp $
+ Compiler:	jdk 1.3
+ */
+
+package mil.navy.nps.dis;           // package we belong to
+
+import mil.navy.nps.util.*;         // General-purpose utilities
+import mil.navy.nps.disEnumerations.*;         // Enumerations for DIS
+
+//import java.io.*;
+import java.io.*;     // for PrintStream
+
+/**
+ * Abstract (uninstantiated) class for all PDU data elements (embedded data structures).
+ *
+ *@version 1.0
+ *@author <a href="mailto:mcgredo@cs.nps.navy.mil"> Don McGregor</a> (<a href="http://www.npsnet.org/~mcgredo">http://www.npsnet.org/~mcgredo</a>)
+ *
+ *<dt><b>Location:</b>
+ *<dd>Web:  <a href="http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/PduElement.java">
+ *  http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/PduElement.java</a>
+ *
+ *<dd>or locally:  <a href="../../../../../../mil/navy/nps/dis/PduElement.java">
+ *  ~/mil/navy/nps/dis/PduElement.java</a>
+ *
+ *<dt><b>Hierarchy Diagram:</b>
+ *<dd><a href="../../../../../../dis-java-vrml/images/PduClassHierarchy.jpg"><IMG SRC="../../../../../../dis-java-vrml/images/PduClassHierarchyButton.jpg" ALIGN=ABSCENTER WIDTH=150 HEIGHT=21></a>
+ *
+ *<dt><b>Summary:</b>
+ *<dd>This abstract is inherited by all PDU classes; 
+ *  it can represent either a full PDU or simply a part of it.
+ *
+ *<dt><b>Explanation:</b>
+ *<dd>The PduElement is an abstract class that other PDU classes inherit
+ *  from. A pdu element can be a part of a pdu (such as the header
+ *  portion of a full pdu) or a full pdu. It knows how to serialize
+ *  and deserialize itself from or to a stream. Serialization must be
+ *  <b>to big endian format</b>, and deserialization is assumed to be <b>from
+ *  big endian format</b>.<P>
+ *
+ *  Data is serialized or read from byte array input or output streams,
+ *  which are closely related to the datagram buffers used to read or
+ *  write datagrams to the wire.<P>
+ *
+ *  This conforms to the SerializationInterface, a "protocol" (in obj-c
+ *  terminology) that defines an abstract interface. See that interface
+ *  for details. It also supports the Cloneable interface, with a public
+ *  visibility rather than the default protected visibility.<P>
+ *
+ *  All elements should implement a length() method, which specifies how
+ *  many bytes the object will take up when serialized. Note that this 
+ *  might not be the same size as the current object; for example, the
+ *  DIS standard specifies padding in a number of places to bring things
+ *  up to word boundaries. The padding is not present in the object's ivars,
+ *  but is when the object is written to the wire. Also, the length of a PDU
+ *  might change over time, as (for example) more articulation parameters
+ *  get added to the ESPDU.<P>
+ *
+ *  As a debugging and analysis aid, printValues will dump to stdout the
+ *  values of all the instance variables, plus any other information deemed
+ *  appropriate. The printValues method takes an argument of the number of
+ *  spaces to indent the values, to make things prettier. Typically you'll
+ *  increment the indent value as you go farther down the object hierarchy.<p>
+ *
+ *<dt><b>History:</b>
+ *<dd>		04Oct96	/DRM     		/New
+ *<dd>		09Oct96	/Don McGregor    	/changed name to PduElement, added to mil.navy.nps.dis package
+ *<dd>		28Oct96	/Don McGregor    	/added length() method
+ *<dd>		10Mar97	/Don McGregor    	/changes for javadoc
+ *<dd>		16Apr97	/Don McGregor    	/PrintStream passed to printValues
+ *<dd>		8Dec97	/Ronan Fauglas   	/Changes for documentation templates + complements in documentation
+ *<dd>		11Dec97	/Ronan Fauglas		/changed access methods to class variables() to "getVariable()"
+ *
+ *<dt><b>References:</b>
+ *<dd>		DIS-Java-VRML Working Group: <a href="http://www.web3d.org/WorkingGroups/vrtp/dis-java-vrml/">http://www.web3d.org/WorkingGroups/vrtp/dis-java-vrml/</a>
+ *<dd>		DIS Data Dictionary: <a href="http://SISO.sc.ist.ucf.edu/dis/">http://SISO.sc.ist.ucf.edu/dis/</a>
+ *<dd>		DIS specification : IEEE 1278.1
+ *
+ *<dt><b>Location:</b>
+ *<dd>Web:  <a href="http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/PduElement.java">
+ *  http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/PduElement.java</a>
+ *
+ *<dd>or locally:  <a href="../../../../../../mil/navy/nps/dis/PduElement.java">
+ *  ~/mil/navy/nps/dis/PduElement.java</a>
+ *
+ *@see SerializationInterface
+ *@see Cloneable
+ *@see java.lang.Object
+ */
+abstract public class PduElement extends Object implements SerializationInterface, Cloneable
+{
+
+     /**
+      *Serialize our data out to the stream. Subclasses
+      *of us should call <code>super.Serialize()</code> to make sure
+      *the superclasse's data is serialized out. The order
+      *in which instance variables are serialized is significant. They must
+      *be serialized in the same order they appear in the DIS
+      *spec.
+      *Prints out some information during execution if debugging flag is set.
+      *
+      *@param outputStream the stream to which this object is serialized
+      */
+     abstract public void   serialize(DataOutputStream outputStream);
+
+     /**
+      *Deserialize our data from the input stream. Subclasses
+      *of us should call <code>super.deSerialize</code> to make sure
+      *the superclass's data are properly affected. The order
+      *in which instance variables are serialized is significant. They must
+      *be deSerialized in the same order as they have been serialized as specified by the DIS spec.
+      *
+      *@param inputStream the stream from which this object is initialized
+      */
+     abstract public void   deSerialize(DataInputStream inputStream);
+
+     /**
+      *Returns the length of the object when serialized in a stream.
+      *
+      *@return the length of the object when serialized in a stream
+      */
+     abstract public int    length();                                   // returns size of object AS WRITTEN TO WIRE
+
+     /**
+      *Prints the generated serialized object for debugging.
+      *
+      *@param indentLevel number of spaces to indent for visibility
+      *@param printstream defines the ouput stream
+      */
+     abstract public void   printValues(int indentLevel, PrintStream printStream);               // INPUT: number of spaces to indent
+
+     /**
+      *Makes deep copies of all the instance variables, so we don't have two objects
+      *pointing to the same data. The accessor methods make copies of the
+      *objects, rather than returning the objects themselves. The runtime
+      *provides the right object type with the call to super.clone(), and 
+      *we cast it to our type. Subclasses should do the same thing, and all
+      *these ivars will be taken care of automatically.
+      *
+      *@return a clone of this instance
+      *@exception  RuntimeException if the object doesn't support cloning.
+      *
+      *@see java.lang.Object
+      */
+     public Object clone()
+        {
+            Object  newObject;
+
+            try
+                {
+                    newObject = super.clone();
+                }
+            catch (CloneNotSupportedException cloneError)
+                {
+                    throw new 
+                        RuntimeException("Exception in PduElement. Error cloning object.");
+                }
+    return newObject;
+}
+                    
+                
+
+};
+

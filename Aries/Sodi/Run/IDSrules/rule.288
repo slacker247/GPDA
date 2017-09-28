@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP PING *NIX"; content:"|101112131415161718191a1b1c1d1e1f|";itype:8;depth:32; sid:366;  classtype:misc-activity; rev:4;)

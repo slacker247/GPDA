@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible Matrix worm"; content: "Software provide by [MATRiX]"; nocase;  sid:734;  classtype:misc-activity; rev:3;)

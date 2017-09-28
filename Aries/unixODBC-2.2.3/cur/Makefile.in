@@ -1,0 +1,868 @@
+# Makefile.in generated automatically by automake 1.4 from Makefile.am
+
+# Copyright (C) 1994, 1995-8, 1999 Free Software Foundation, Inc.
+# This Makefile.in is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+
+SHELL = @SHELL@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+VPATH = @srcdir@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
+bindir = @bindir@
+sbindir = @sbindir@
+libexecdir = @libexecdir@
+datadir = @datadir@
+sysconfdir = @sysconfdir@
+sharedstatedir = @sharedstatedir@
+localstatedir = @localstatedir@
+libdir = @libdir@
+infodir = @infodir@
+mandir = @mandir@
+includedir = @includedir@
+oldincludedir = /usr/include
+
+DESTDIR =
+
+pkgdatadir = $(datadir)/@PACKAGE@
+pkglibdir = $(libdir)/@PACKAGE@
+pkgincludedir = $(includedir)/@PACKAGE@
+
+top_builddir = ..
+
+ACLOCAL = @ACLOCAL@
+AUTOCONF = @AUTOCONF@
+AUTOMAKE = @AUTOMAKE@
+AUTOHEADER = @AUTOHEADER@
+
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@ $(AM_INSTALL_PROGRAM_FLAGS)
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+transform = @program_transform_name@
+
+NORMAL_INSTALL = :
+PRE_INSTALL = :
+POST_INSTALL = :
+NORMAL_UNINSTALL = :
+PRE_UNINSTALL = :
+POST_UNINSTALL = :
+build_alias = @build_alias@
+build_triplet = @build@
+host_alias = @host_alias@
+host_triplet = @host@
+target_alias = @target_alias@
+target_triplet = @target@
+AS = @AS@
+AWK = @AWK@
+CC = @CC@
+CPP = @CPP@
+CXX = @CXX@
+CXXCPP = @CXXCPP@
+DLLTOOL = @DLLTOOL@
+DPMSINC = @DPMSINC@
+DPMSLIB = @DPMSLIB@
+ECHO = @ECHO@
+EXEEXT = @EXEEXT@
+GLINC = @GLINC@
+GLLIB = @GLLIB@
+GMSGFMT = @GMSGFMT@
+ICONV_CHAR_ENCODING = @ICONV_CHAR_ENCODING@
+ICONV_UNICODE_ENCODING = @ICONV_UNICODE_ENCODING@
+IDL = @IDL@
+INCLTDL = @INCLTDL@
+KDE_EXTRA_RPATH = @KDE_EXTRA_RPATH@
+KDE_INCLUDES = @KDE_INCLUDES@
+KDE_LDFLAGS = @KDE_LDFLAGS@
+KDE_RPATH = @KDE_RPATH@
+KDE_USE_FINAL_FALSE = @KDE_USE_FINAL_FALSE@
+KDE_USE_FINAL_TRUE = @KDE_USE_FINAL_TRUE@
+LEX = @LEX@
+LFLAGS = @LFLAGS@
+LIBADD_CRYPT = @LIBADD_CRYPT@
+LIBADD_DL = @LIBADD_DL@
+LIBCOMPAT = @LIBCOMPAT@
+LIBCRYPT = @LIBCRYPT@
+LIBDL = @LIBDL@
+LIBICONV = @LIBICONV@
+LIBJPEG = @LIBJPEG@
+LIBLTDL = @LIBLTDL@
+LIBMICO = @LIBMICO@
+LIBNSL = @LIBNSL@
+LIBPNG = @LIBPNG@
+LIBPTHREAD = @LIBPTHREAD@
+LIBPYTHON = @LIBPYTHON@
+LIBQIMGIO = @LIBQIMGIO@
+LIBSOCKET = @LIBSOCKET@
+LIBTIFF = @LIBTIFF@
+LIBTOOL = @LIBTOOL@
+LIBUCB = @LIBUCB@
+LIBZ = @LIBZ@
+LIB_KAB = @LIB_KAB@
+LIB_KDECORE = @LIB_KDECORE@
+LIB_KDEUI = @LIB_KDEUI@
+LIB_KFILE = @LIB_KFILE@
+LIB_KFM = @LIB_KFM@
+LIB_KFORMULA = @LIB_KFORMULA@
+LIB_KHTML = @LIB_KHTML@
+LIB_KIMGIO = @LIB_KIMGIO@
+LIB_KIO = @LIB_KIO@
+LIB_MEDIATOOL = @LIB_MEDIATOOL@
+LIB_QT = @LIB_QT@
+LIB_SMB = @LIB_SMB@
+LIB_VERSION = @LIB_VERSION@
+LIB_X11 = @LIB_X11@
+LN_S = @LN_S@
+MAKEINFO = @MAKEINFO@
+MICO_INCLUDES = @MICO_INCLUDES@
+MICO_LDFLAGS = @MICO_LDFLAGS@
+MOC = @MOC@
+MSGFMT = @MSGFMT@
+OBJDUMP = @OBJDUMP@
+OBJEXT = @OBJEXT@
+PACKAGE = @PACKAGE@
+PAMINC = @PAMINC@
+PAMLIBPATHS = @PAMLIBPATHS@
+PAMLIBS = @PAMLIBS@
+PTH_CFLAGS = @PTH_CFLAGS@
+PTH_CPPFLAGS = @PTH_CPPFLAGS@
+PTH_LDFLAGS = @PTH_LDFLAGS@
+PTH_LIBS = @PTH_LIBS@
+PYTHONINC = @PYTHONINC@
+PYTHONLIB = @PYTHONLIB@
+QT_INCLUDES = @QT_INCLUDES@
+QT_LDFLAGS = @QT_LDFLAGS@
+RANLIB = @RANLIB@
+READLINE = @READLINE@
+SHLIBEXT = @SHLIBEXT@
+STRIP = @STRIP@
+TOPSUBDIRS = @TOPSUBDIRS@
+USER_INCLUDES = @USER_INCLUDES@
+USER_LDFLAGS = @USER_LDFLAGS@
+USE_NLS = @USE_NLS@
+VERSION = @VERSION@
+XGETTEXT = @XGETTEXT@
+XPMINC = @XPMINC@
+XPMLIB = @XPMLIB@
+X_EXTRA_LIBS = @X_EXTRA_LIBS@
+X_INCLUDES = @X_INCLUDES@
+X_LDFLAGS = @X_LDFLAGS@
+YACC = @YACC@
+all_includes = @all_includes@
+all_libraries = @all_libraries@
+idldir = @idldir@
+kde_appsdir = @kde_appsdir@
+kde_bindir = @kde_bindir@
+kde_cgidir = @kde_cgidir@
+kde_confdir = @kde_confdir@
+kde_datadir = @kde_datadir@
+kde_htmldir = @kde_htmldir@
+kde_icondir = @kde_icondir@
+kde_includes = @kde_includes@
+kde_libraries = @kde_libraries@
+kde_locale = @kde_locale@
+kde_mimedir = @kde_mimedir@
+kde_minidir = @kde_minidir@
+kde_servicesdir = @kde_servicesdir@
+kde_servicetypesdir = @kde_servicetypesdir@
+kde_sounddir = @kde_sounddir@
+kde_toolbardir = @kde_toolbardir@
+kde_wallpaperdir = @kde_wallpaperdir@
+micodir = @micodir@
+msql_headers = @msql_headers@
+msql_libraries = @msql_libraries@
+qt_includes = @qt_includes@
+qt_libraries = @qt_libraries@
+x_includes = @x_includes@
+x_libraries = @x_libraries@
+
+lib_LTLIBRARIES = libodbccr.la
+
+INCLUDES = -I../include             -I../DriverManager $(INCLTDL)
+
+
+EXTRA_DIST =  	cursorlibrary.h 	cur.exp
+
+@QNX_TRUE@libodbccr_la_LIBADD = 	-L$(prefix)/lib -lodbc 	$(LIBLTDL) $(LIBADD_DL)
+@QNX_FALSE@libodbccr_la_LIBADD = 	../DriverManager/libodbc.la 	$(LIBLTDL) $(LIBADD_DL)
+
+libodbccr_la_LDFLAGS =  	-version-info @LIB_VERSION@ 	-export-symbols cur.exp -export-dynamic 	-module
+
+
+# PAH - Redundant?
+#libodbccr_la_DEPENDENCIES = \
+#    $(LIBLTDL)
+
+libodbccr_la_SOURCES =      SQLAllocHandle.c     SQLAllocHandleStd.c     SQLAllocStmt.c     SQLBindCol.c     SQLBindParam.c     SQLBindParameter.c     SQLCancel.c     SQLCloseCursor.c     SQLColAttribute.c     SQLColAttributes.c     SQLColumnPrivileges.c     SQLColumns.c     SQLConnect.c     SQLCopyDesc.c     SQLDescribeCol.c     SQLDescribeParam.c     SQLEndTran.c     SQLError.c     SQLExecDirect.c     SQLExecute.c     SQLExtendedFetch.c     SQLFetch.c     SQLFetchScroll.c     SQLForeignKeys.c     SQLFreeHandle.c     SQLFreeStmt.c     SQLGetConnectAttr.c     SQLGetConnectOption.c     SQLGetCursorName.c     SQLGetData.c     SQLGetDescField.c     SQLGetDescRec.c     SQLGetDiagRec.c     SQLGetDiagField.c     SQLGetInfo.c     SQLGetStmtAttr.c     SQLGetStmtOption.c     SQLGetTypeInfo.c     SQLMoreResults.c     SQLNativeSql.c     SQLNumParams.c     SQLNumResultCols.c     SQLParamData.c     SQLParamOptions.c     SQLPrepare.c     SQLPrimaryKeys.c     SQLProcedureColumns.c     SQLProcedures.c     SQLPutData.c     SQLRowCount.c     SQLSetConnectAttr.c     SQLSetConnectOption.c     SQLSetCursorName.c     SQLSetDescRec.c     SQLSetDescField.c     SQLSetParam.c     SQLSetPos.c     SQLSetScrollOptions.c     SQLSetStmtAttr.c     SQLSetStmtOption.c     SQLSpecialColumns.c     SQLStatistics.c     SQLTablePrivileges.c     SQLTables.c     SQLTransact.c
+
+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+CONFIG_CLEAN_FILES = 
+LTLIBRARIES =  $(lib_LTLIBRARIES)
+
+
+DEFS = @DEFS@ -I. -I$(srcdir) 
+CPPFLAGS = @CPPFLAGS@
+LDFLAGS = @LDFLAGS@
+LIBS = @LIBS@
+@QNX_FALSE@libodbccr_la_DEPENDENCIES =  ../DriverManager/libodbc.la
+@QNX_TRUE@libodbccr_la_DEPENDENCIES = 
+libodbccr_la_OBJECTS =  SQLAllocHandle.lo SQLAllocHandleStd.lo \
+SQLAllocStmt.lo SQLBindCol.lo SQLBindParam.lo SQLBindParameter.lo \
+SQLCancel.lo SQLCloseCursor.lo SQLColAttribute.lo SQLColAttributes.lo \
+SQLColumnPrivileges.lo SQLColumns.lo SQLConnect.lo SQLCopyDesc.lo \
+SQLDescribeCol.lo SQLDescribeParam.lo SQLEndTran.lo SQLError.lo \
+SQLExecDirect.lo SQLExecute.lo SQLExtendedFetch.lo SQLFetch.lo \
+SQLFetchScroll.lo SQLForeignKeys.lo SQLFreeHandle.lo SQLFreeStmt.lo \
+SQLGetConnectAttr.lo SQLGetConnectOption.lo SQLGetCursorName.lo \
+SQLGetData.lo SQLGetDescField.lo SQLGetDescRec.lo SQLGetDiagRec.lo \
+SQLGetDiagField.lo SQLGetInfo.lo SQLGetStmtAttr.lo SQLGetStmtOption.lo \
+SQLGetTypeInfo.lo SQLMoreResults.lo SQLNativeSql.lo SQLNumParams.lo \
+SQLNumResultCols.lo SQLParamData.lo SQLParamOptions.lo SQLPrepare.lo \
+SQLPrimaryKeys.lo SQLProcedureColumns.lo SQLProcedures.lo SQLPutData.lo \
+SQLRowCount.lo SQLSetConnectAttr.lo SQLSetConnectOption.lo \
+SQLSetCursorName.lo SQLSetDescRec.lo SQLSetDescField.lo SQLSetParam.lo \
+SQLSetPos.lo SQLSetScrollOptions.lo SQLSetStmtAttr.lo \
+SQLSetStmtOption.lo SQLSpecialColumns.lo SQLStatistics.lo \
+SQLTablePrivileges.lo SQLTables.lo SQLTransact.lo
+CFLAGS = @CFLAGS@
+COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(LIBTOOL) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(LDFLAGS) -o $@
+DIST_COMMON =  README Makefile.am Makefile.in
+
+
+DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
+
+TAR = gtar
+GZIP_ENV = --best
+SOURCES = $(libodbccr_la_SOURCES)
+OBJECTS = $(libodbccr_la_OBJECTS)
+
+all: all-redirect
+.SUFFIXES:
+.SUFFIXES: .S .c .lo .o .obj .s
+$(srcdir)/Makefile.in: Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
+	cd $(top_srcdir) && $(AUTOMAKE) --gnu --include-deps cur/Makefile
+
+Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status
+	cd $(top_builddir) \
+	  && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= $(SHELL) ./config.status
+
+
+mostlyclean-libLTLIBRARIES:
+
+clean-libLTLIBRARIES:
+	-test -z "$(lib_LTLIBRARIES)" || rm -f $(lib_LTLIBRARIES)
+
+distclean-libLTLIBRARIES:
+
+maintainer-clean-libLTLIBRARIES:
+
+install-libLTLIBRARIES: $(lib_LTLIBRARIES)
+	@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(libdir)
+	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    echo "$(LIBTOOL)  --mode=install $(INSTALL) $$p $(DESTDIR)$(libdir)/$$p"; \
+	    $(LIBTOOL)  --mode=install $(INSTALL) $$p $(DESTDIR)$(libdir)/$$p; \
+	  else :; fi; \
+	done
+
+uninstall-libLTLIBRARIES:
+	@$(NORMAL_UNINSTALL)
+	list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+	  $(LIBTOOL)  --mode=uninstall rm -f $(DESTDIR)$(libdir)/$$p; \
+	done
+
+.c.o:
+	$(COMPILE) -c $<
+
+# FIXME: We should only use cygpath when building on Windows,
+# and only if it is available.
+.c.obj:
+	$(COMPILE) -c `cygpath -w $<`
+
+.s.o:
+	$(COMPILE) -c $<
+
+.S.o:
+	$(COMPILE) -c $<
+
+mostlyclean-compile:
+	-rm -f *.o core *.core
+	-rm -f *.$(OBJEXT)
+
+clean-compile:
+
+distclean-compile:
+	-rm -f *.tab.c
+
+maintainer-clean-compile:
+
+.c.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+.s.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+.S.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+mostlyclean-libtool:
+	-rm -f *.lo
+
+clean-libtool:
+	-rm -rf .libs _libs
+
+distclean-libtool:
+
+maintainer-clean-libtool:
+
+libodbccr.la: $(libodbccr_la_OBJECTS) $(libodbccr_la_DEPENDENCIES)
+	$(LINK) -rpath $(libdir) $(libodbccr_la_LDFLAGS) $(libodbccr_la_OBJECTS) $(libodbccr_la_LIBADD) $(LIBS)
+
+tags: TAGS
+
+ID: $(HEADERS) $(SOURCES) $(LISP)
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	here=`pwd` && cd $(srcdir) \
+	  && mkid -f$$here/ID $$unique $(LISP)
+
+TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	test -z "$(ETAGS_ARGS)$$unique$(LISP)$$tags" \
+	  || (cd $(srcdir) && etags $(ETAGS_ARGS) $$tags  $$unique $(LISP) -o $$here/TAGS)
+
+mostlyclean-tags:
+
+clean-tags:
+
+distclean-tags:
+	-rm -f TAGS ID
+
+maintainer-clean-tags:
+
+distdir = $(top_builddir)/$(PACKAGE)-$(VERSION)/$(subdir)
+
+subdir = cur
+
+distdir: $(DISTFILES)
+	@for file in $(DISTFILES); do \
+	  d=$(srcdir); \
+	  if test -d $$d/$$file; then \
+	    cp -pr $$/$$file $(distdir)/$$file; \
+	  else \
+	    test -f $(distdir)/$$file \
+	    || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
+	    || cp -p $$d/$$file $(distdir)/$$file || :; \
+	  fi; \
+	done
+SQLAllocHandle.lo SQLAllocHandle.o : SQLAllocHandle.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLAllocHandleStd.lo SQLAllocHandleStd.o : SQLAllocHandleStd.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLAllocStmt.lo SQLAllocStmt.o : SQLAllocStmt.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLBindCol.lo SQLBindCol.o : SQLBindCol.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLBindParameter.lo SQLBindParameter.o : SQLBindParameter.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLBindParam.lo SQLBindParam.o : SQLBindParam.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLCancel.lo SQLCancel.o : SQLCancel.c cursorlibrary.h ../libltdl/ltdl.h \
+	../include/sqlext.h ../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLCloseCursor.lo SQLCloseCursor.o : SQLCloseCursor.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLColAttribute.lo SQLColAttribute.o : SQLColAttribute.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLColAttributes.lo SQLColAttributes.o : SQLColAttributes.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLColumnPrivileges.lo SQLColumnPrivileges.o : SQLColumnPrivileges.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLColumns.lo SQLColumns.o : SQLColumns.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLConnect.lo SQLConnect.o : SQLConnect.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLCopyDesc.lo SQLCopyDesc.o : SQLCopyDesc.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLDescribeCol.lo SQLDescribeCol.o : SQLDescribeCol.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLDescribeParam.lo SQLDescribeParam.o : SQLDescribeParam.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLEndTran.lo SQLEndTran.o : SQLEndTran.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLError.lo SQLError.o : SQLError.c cursorlibrary.h ../libltdl/ltdl.h \
+	../include/sqlext.h ../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLExecDirect.lo SQLExecDirect.o : SQLExecDirect.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLExecute.lo SQLExecute.o : SQLExecute.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLExtendedFetch.lo SQLExtendedFetch.o : SQLExtendedFetch.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLFetch.lo SQLFetch.o : SQLFetch.c cursorlibrary.h ../libltdl/ltdl.h \
+	../include/sqlext.h ../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLFetchScroll.lo SQLFetchScroll.o : SQLFetchScroll.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLForeignKeys.lo SQLForeignKeys.o : SQLForeignKeys.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLFreeHandle.lo SQLFreeHandle.o : SQLFreeHandle.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLFreeStmt.lo SQLFreeStmt.o : SQLFreeStmt.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLGetConnectAttr.lo SQLGetConnectAttr.o : SQLGetConnectAttr.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLGetConnectOption.lo SQLGetConnectOption.o : SQLGetConnectOption.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLGetCursorName.lo SQLGetCursorName.o : SQLGetCursorName.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLGetData.lo SQLGetData.o : SQLGetData.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLGetDescField.lo SQLGetDescField.o : SQLGetDescField.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLGetDescRec.lo SQLGetDescRec.o : SQLGetDescRec.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLGetDiagField.lo SQLGetDiagField.o : SQLGetDiagField.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLGetDiagRec.lo SQLGetDiagRec.o : SQLGetDiagRec.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLGetInfo.lo SQLGetInfo.o : SQLGetInfo.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLGetStmtAttr.lo SQLGetStmtAttr.o : SQLGetStmtAttr.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLGetStmtOption.lo SQLGetStmtOption.o : SQLGetStmtOption.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLGetTypeInfo.lo SQLGetTypeInfo.o : SQLGetTypeInfo.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLMoreResults.lo SQLMoreResults.o : SQLMoreResults.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLNativeSql.lo SQLNativeSql.o : SQLNativeSql.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLNumParams.lo SQLNumParams.o : SQLNumParams.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLNumResultCols.lo SQLNumResultCols.o : SQLNumResultCols.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLParamData.lo SQLParamData.o : SQLParamData.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLParamOptions.lo SQLParamOptions.o : SQLParamOptions.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLPrepare.lo SQLPrepare.o : SQLPrepare.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLPrimaryKeys.lo SQLPrimaryKeys.o : SQLPrimaryKeys.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLProcedureColumns.lo SQLProcedureColumns.o : SQLProcedureColumns.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLProcedures.lo SQLProcedures.o : SQLProcedures.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLPutData.lo SQLPutData.o : SQLPutData.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLRowCount.lo SQLRowCount.o : SQLRowCount.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLSetConnectAttr.lo SQLSetConnectAttr.o : SQLSetConnectAttr.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLSetConnectOption.lo SQLSetConnectOption.o : SQLSetConnectOption.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLSetCursorName.lo SQLSetCursorName.o : SQLSetCursorName.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLSetDescField.lo SQLSetDescField.o : SQLSetDescField.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLSetDescRec.lo SQLSetDescRec.o : SQLSetDescRec.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLSetParam.lo SQLSetParam.o : SQLSetParam.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLSetPos.lo SQLSetPos.o : SQLSetPos.c cursorlibrary.h ../libltdl/ltdl.h \
+	../include/sqlext.h ../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLSetScrollOptions.lo SQLSetScrollOptions.o : SQLSetScrollOptions.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLSetStmtAttr.lo SQLSetStmtAttr.o : SQLSetStmtAttr.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLSetStmtOption.lo SQLSetStmtOption.o : SQLSetStmtOption.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLSpecialColumns.lo SQLSpecialColumns.o : SQLSpecialColumns.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLStatistics.lo SQLStatistics.o : SQLStatistics.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+SQLTablePrivileges.lo SQLTablePrivileges.o : SQLTablePrivileges.c \
+	cursorlibrary.h ../libltdl/ltdl.h ../include/sqlext.h \
+	../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLTables.lo SQLTables.o : SQLTables.c cursorlibrary.h ../libltdl/ltdl.h \
+	../include/sqlext.h ../include/sql.h ../include/sqltypes.h \
+	../DriverManager/drivermanager.h ../include/log.h \
+	../include/lst.h ../include/ini.h ../include/odbcinstext.h \
+	../include/odbcinst.h ../include/sqlucode.h \
+	../DriverManager/__stats.h
+SQLTransact.lo SQLTransact.o : SQLTransact.c cursorlibrary.h \
+	../libltdl/ltdl.h ../include/sqlext.h ../include/sql.h \
+	../include/sqltypes.h ../DriverManager/drivermanager.h \
+	../include/log.h ../include/lst.h ../include/ini.h \
+	../include/odbcinstext.h ../include/odbcinst.h \
+	../include/sqlucode.h ../DriverManager/__stats.h
+
+info-am:
+info: info-am
+dvi-am:
+dvi: dvi-am
+check-am: all-am
+check: check-am
+installcheck-am:
+installcheck: installcheck-am
+install-exec-am: install-libLTLIBRARIES
+install-exec: install-exec-am
+
+install-data-am:
+install-data: install-data-am
+
+install-am: all-am
+	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
+install: install-am
+uninstall-am: uninstall-libLTLIBRARIES
+uninstall: uninstall-am
+all-am: Makefile $(LTLIBRARIES)
+all-redirect: all-am
+install-strip:
+	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
+installdirs:
+	$(mkinstalldirs)  $(DESTDIR)$(libdir)
+
+
+mostlyclean-generic:
+
+clean-generic:
+
+distclean-generic:
+	-rm -f Makefile $(CONFIG_CLEAN_FILES)
+	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
+
+maintainer-clean-generic:
+mostlyclean-am:  mostlyclean-libLTLIBRARIES mostlyclean-compile \
+		mostlyclean-libtool mostlyclean-tags \
+		mostlyclean-generic
+
+mostlyclean: mostlyclean-am
+
+clean-am:  clean-libLTLIBRARIES clean-compile clean-libtool clean-tags \
+		clean-generic mostlyclean-am
+
+clean: clean-am
+
+distclean-am:  distclean-libLTLIBRARIES distclean-compile \
+		distclean-libtool distclean-tags distclean-generic \
+		clean-am
+	-rm -f libtool
+
+distclean: distclean-am
+
+maintainer-clean-am:  maintainer-clean-libLTLIBRARIES \
+		maintainer-clean-compile maintainer-clean-libtool \
+		maintainer-clean-tags maintainer-clean-generic \
+		distclean-am
+	@echo "This command is intended for maintainers to use;"
+	@echo "it deletes files that may require special tools to rebuild."
+
+maintainer-clean: maintainer-clean-am
+
+.PHONY: mostlyclean-libLTLIBRARIES distclean-libLTLIBRARIES \
+clean-libLTLIBRARIES maintainer-clean-libLTLIBRARIES \
+uninstall-libLTLIBRARIES install-libLTLIBRARIES mostlyclean-compile \
+distclean-compile clean-compile maintainer-clean-compile \
+mostlyclean-libtool distclean-libtool clean-libtool \
+maintainer-clean-libtool tags mostlyclean-tags distclean-tags \
+clean-tags maintainer-clean-tags distdir info-am info dvi-am dvi check \
+check-am installcheck-am installcheck install-exec-am install-exec \
+install-data-am install-data install-am install uninstall-am uninstall \
+all-redirect all-am all installdirs mostlyclean-generic \
+distclean-generic clean-generic maintainer-clean-generic clean \
+mostlyclean distclean maintainer-clean
+
+
+# Tell versions [3.59,3.63) of GNU make to not export all variables.
+# Otherwise a system limit (for SysV at least) may be exceeded.
+.NOEXPORT:

@@ -1,0 +1,532 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE rdf:RDF [
+	 <!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	 <!ENTITY IW_DCI 'http://protege.stanford.edu/IW-DCI#'>
+	 <!ENTITY a 'http://protege.stanford.edu/system#'>
+	 <!ENTITY rdfs 'http://www.w3.org/TR/1999/PR-rdf-schema-19990303#'>
+]>
+<rdf:RDF xmlns:rdf="&rdf;"
+	 xmlns:IW_DCI="&IW_DCI;"
+	 xmlns:a="&a;"
+	 xmlns:rdfs="&rdfs;">
+<rdf:Property rdf:about="&IW_DCI;ALLY-AFFIL"
+	 a:maxCardinality="1"
+	 rdfs:label="ALLY-AFFIL">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;ALLY-DESC"
+	 a:maxCardinality="1"
+	 rdfs:label="ALLY-DESC">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;ALLY-NAME"
+	 a:maxCardinality="1"
+	 rdfs:label="ALLY-NAME">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;ALLY-ORG"
+	 a:maxCardinality="1"
+	 rdfs:label="ALLY-ORG">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;BELIEF"
+	 a:maxCardinality="1"
+	 a:maxValue="1.0"
+	 a:minCardinality="1"
+	 a:minValue="0.0"
+	 a:range="float"
+	 rdfs:label="BELIEF">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdfs:Class rdf:about="&IW_DCI;Confuse_Enemy"
+	 rdfs:label="Confuse_Enemy">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Deceive_Intruder"/>
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Exploit_Intercepts"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Counter_PSYOPS"
+	 rdfs:label="Counter_PSYOPS">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Psychological_Ops"/>
+</rdfs:Class>
+<rdf:Property rdf:about="&IW_DCI;DISBELIEF"
+	 a:maxCardinality="1"
+	 a:maxValue="1.0"
+	 a:minCardinality="1"
+	 a:minValue="0.0"
+	 a:range="float"
+	 rdfs:label="DISBELIEF">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdfs:Class rdf:about="&IW_DCI;Deceive_Intruder"
+	 rdfs:label="Deceive_Intruder">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Counter_PSYOPS"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Delay_Effects"
+	 rdfs:label="Delay_Effects">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Deceive_Intruder"/>
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Deny_Access"/>
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Disrupt_Attack"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Denial_of_Service"
+	 rdfs:label="Denial_of_Service">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Site"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Deny_Access"
+	 rdfs:label="Deny_Access">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Protect_Networks"/>
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Protect_Software"/>
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Secure_Site"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Disrupt_Attack"
+	 rdfs:label="Disrupt_Attack">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Counter_PSYOPS"/>
+</rdfs:Class>
+<rdf:Property rdf:about="&IW_DCI;ENEMY-AFFIL"
+	 a:maxCardinality="1"
+	 rdfs:label="ENEMY-AFFIL">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;ENEMY-DESC"
+	 a:maxCardinality="1"
+	 rdfs:label="ENEMY-DESC">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;ENEMY-NAME"
+	 a:maxCardinality="1"
+	 rdfs:label="ENEMY-NAME">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;ENEMY-ORG"
+	 a:maxCardinality="1"
+	 rdfs:label="ENEMY-ORG">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdfs:Class rdf:about="&IW_DCI;Exec_DCI_Mission"
+	 rdfs:label="Exec_DCI_Mission">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Confuse_Enemy"/>
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Delay_Effects"/>
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Inhibit_Intrusion"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Expert"
+	 rdfs:label="Expert">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Exploit_Intercepts"
+	 rdfs:label="Exploit_Intercepts">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Counter_PSYOPS"/>
+</rdfs:Class>
+<rdf:Property rdf:about="&IW_DCI;HOW-ACTION"
+	 a:maxCardinality="1"
+	 rdfs:label="HOW-ACTION">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;HOW-ADJECT"
+	 a:maxCardinality="1"
+	 rdfs:label="HOW-ADJECT">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;HOW-CASUAL"
+	 a:maxCardinality="1"
+	 a:maxValue="1.0E7"
+	 a:minValue="0.0"
+	 a:range="integer"
+	 rdfs:label="HOW-CASUAL">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;HOW-COST"
+	 a:maxCardinality="1"
+	 a:maxValue="1.0E8"
+	 a:minValue="0.0"
+	 a:range="integer"
+	 rdfs:label="HOW-COST">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;HOW-DESC1"
+	 a:maxCardinality="1"
+	 rdfs:label="HOW-DESC1">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;HOW-DESC2"
+	 a:maxCardinality="1"
+	 rdfs:label="HOW-DESC2">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;HOW-DESC3"
+	 a:maxCardinality="1"
+	 rdfs:label="HOW-DESC3">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;HOW-INJURY"
+	 a:maxCardinality="1"
+	 a:maxValue="1.0E7"
+	 a:minValue="0.0"
+	 a:range="integer"
+	 rdfs:label="HOW-INJURY">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;INFO-ID"
+	 a:maxCardinality="1"
+	 rdfs:label="INFO-ID">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdfs:Class rdf:about="&IW_DCI;Inhibit_Intrusion"
+	 rdfs:label="Inhibit_Intrusion">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Deny_Access"/>
+</rdfs:Class>
+<rdf:Property rdf:about="&IW_DCI;MISSION"
+	 a:maxCardinality="1"
+	 a:minCardinality="1"
+	 rdfs:label="MISSION">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;PARTY-AFFIL"
+	 a:maxCardinality="1"
+	 rdfs:label="PARTY-AFFIL">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;PARTY-DESC"
+	 a:maxCardinality="1"
+	 rdfs:label="PARTY-DESC">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;PARTY-NAME"
+	 a:maxCardinality="1"
+	 rdfs:label="PARTY-NAME">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;PARTY-ORG"
+	 a:maxCardinality="1"
+	 rdfs:label="PARTY-ORG">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;PREPARED"
+	 a:maxCardinality="1"
+	 rdfs:label="PREPARED">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;PREPDATE"
+	 a:maxCardinality="1"
+	 rdfs:label="PREPDATE">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdfs:Class rdf:about="&IW_DCI;PSYOPS"
+	 rdfs:label="PSYOPS">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Physical_Attack"
+	 rdfs:label="Physical_Attack">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Site"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Protect_Networks"
+	 rdfs:label="Protect_Networks">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Denial_of_Service"/>
+	<rdfs:subClassOf rdf:resource="&IW_DCI;System_Intrusion"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Protect_Software"
+	 rdfs:label="Protect_Software">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Software_Bugs"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Psychological_Ops"
+	 rdfs:label="Psychological_Ops">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;PSYOPS"/>
+</rdfs:Class>
+<rdf:Property rdf:about="&IW_DCI;REPORT-AFFIL"
+	 a:maxCardinality="1"
+	 rdfs:label="REPORT-AFFIL">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;REPORT-DESC"
+	 a:maxCardinality="1"
+	 rdfs:label="REPORT-DESC">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;REPORT-NAME"
+	 a:maxCardinality="1"
+	 rdfs:label="REPORT-NAME">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;REPORT-ORG"
+	 a:maxCardinality="1"
+	 rdfs:label="REPORT-ORG">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;SOURCE"
+	 a:maxCardinality="1"
+	 a:minCardinality="1"
+	 rdfs:label="SOURCE">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdfs:Class rdf:about="&IW_DCI;SYSTEM-CLASS"
+	 rdfs:label="SYSTEM-CLASS">
+	<rdfs:subClassOf rdf:resource="&rdfs;Resource"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Secure_Site"
+	 rdfs:label="Secure_Site">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Physical_Attack"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Site"
+	 rdfs:label="Site">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;SYSTEM-CLASS"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;Software_Bugs"
+	 rdfs:label="Software_Bugs">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Expert"/>
+</rdfs:Class>
+<rdfs:Class rdf:about="&IW_DCI;System_Intrusion"
+	 rdfs:label="System_Intrusion">
+	<rdfs:subClassOf rdf:resource="&IW_DCI;Site"/>
+</rdfs:Class>
+<rdf:Property rdf:about="&IW_DCI;WHAT-ACTION"
+	 a:maxCardinality="1"
+	 rdfs:label="WHAT-ACTION">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHAT-DESC"
+	 a:maxCardinality="1"
+	 rdfs:label="WHAT-DESC">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHAT-OBJECT"
+	 a:maxCardinality="1"
+	 rdfs:label="WHAT-OBJECT">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHEN-DURATION"
+	 a:maxCardinality="1"
+	 rdfs:label="WHEN-DURATION">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHEN-END"
+	 a:maxCardinality="1"
+	 rdfs:label="WHEN-END">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHEN-START"
+	 a:maxCardinality="1"
+	 rdfs:label="WHEN-START">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHEN-TFRAME"
+	 a:maxCardinality="1"
+	 rdfs:label="WHEN-TFRAME">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHERE-ALT"
+	 a:maxCardinality="1"
+	 a:maxValue="100000.0"
+	 a:minValue="0.0"
+	 a:range="float"
+	 rdfs:label="WHERE-ALT">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHERE-CITY"
+	 a:maxCardinality="1"
+	 rdfs:label="WHERE-CITY">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHERE-LAT"
+	 a:maxCardinality="1"
+	 a:maxValue="90.0"
+	 a:minValue="-90.0"
+	 a:range="float"
+	 rdfs:label="WHERE-LAT">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHERE-LOCALE"
+	 a:maxCardinality="1"
+	 rdfs:label="WHERE-LOCALE">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHERE-LON"
+	 a:maxCardinality="1"
+	 a:maxValue="180.0"
+	 a:minValue="-180.0"
+	 a:range="float"
+	 rdfs:label="WHERE-LON">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHERE-NATION"
+	 a:maxCardinality="1"
+	 rdfs:label="WHERE-NATION">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHERE-REGION"
+	 a:maxCardinality="1"
+	 rdfs:label="WHERE-REGION">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHERE-STRUCT"
+	 a:maxCardinality="1"
+	 rdfs:label="WHERE-STRUCT">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHY-OPERATIONAL"
+	 a:maxCardinality="1"
+	 rdfs:label="WHY-OPERATIONAL">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHY-STRATEGIC"
+	 a:maxCardinality="1"
+	 rdfs:label="WHY-STRATEGIC">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHY-TACTICAL"
+	 a:maxCardinality="1"
+	 rdfs:label="WHY-TACTICAL">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&IW_DCI;WHY-TASK"
+	 a:maxCardinality="1"
+	 rdfs:label="WHY-TASK">
+	<rdfs:domain rdf:resource="&IW_DCI;Expert"/>
+	<rdfs:domain rdf:resource="&IW_DCI;PSYOPS"/>
+	<rdfs:domain rdf:resource="&IW_DCI;Site"/>
+	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+</rdf:RDF>

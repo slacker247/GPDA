@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible Freelink Worm"; content:"|4C 49 4E 4B 53 2E 56 42 53|"; reference:MCAFEE,10225; sid:746;  classtype:misc-activity; rev:3;)

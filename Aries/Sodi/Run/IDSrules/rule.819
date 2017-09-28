@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI webplus directory trasversal"; flags: A+; uricontent: "/webplus?script"; nocase; content: "../";reference:arachnids,471;classtype:web-application-attack; sid:813; rev:1;)

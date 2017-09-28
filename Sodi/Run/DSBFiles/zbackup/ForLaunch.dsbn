@@ -1,0 +1,75 @@
+# Tree height, Name, Discrete, Start time, End time, Time unit
+3  Foreign_Launch  0  0.0  0.0  M
+
+6     Evidence_Sources
+  SBIRS       SBIRS_detected_something
+  STRAT       STRAT_has_information
+  Political   there_is_political_impact
+  Intel       Intel_has_information
+  Radar       radar_detected_something
+  Fire        there_is_fire
+
+4     Hypothesis
+  Foreign_Launch    the launch_is_foreign
+  Anticipated       the launch_was_anticipated
+  Friendly_Impact   the impact_is_friendly
+  Space_Launch      there_is_a_space_launch
+
+3     Conclusions
+  Hostile      the_foreign_launch_is_hostile      0.75  100.0
+  Deliberate   the_foreign_launch_is_deliberate   0.75  100.0
+  ICBM         the_foreign_launch_is_an_ICBM      0.75  100.0
+
+true    B and D matrices are listed separately
+#B   E0      E1      E2      E3      E4      E5
+   0.700   0.700   1.000   1.000   0.700   1.000   -- H0
+
+   0.000   0.400   1.000   1.000   0.000   0.000   -- H1
+
+   1.000   1.000   0.500   0.500   1.000   1.000   -- H2
+
+   1.000   1.000   0.500   0.500   1.000   1.000   -- H3
+
+
+#D   E0      E1      E2      E3      E4      E5
+   0.700   0.700   1.000   1.000   0.700   1.000   -- H0
+
+   0.000   0.400   1.000   1.000   0.000   0.000   -- H1
+
+   1.000   1.000   0.500   0.500   1.000   1.000   -- H2
+
+   1.000   1.000   0.500   0.500   1.000   1.000   -- H3
+
+
+#B   H0      H1      H2      H3
+   0.800   0.900   1.000   0.300   -- A0
+
+   0.000   1.000   0.000   1.000   -- A1
+
+   0.500   0.700   0.000   1.000   -- A2
+
+#D   H0      H1      H2      H3
+
+   0.800   0.900   1.000   0.300   -- A0
+
+   0.000   1.000   0.000   1.000   -- A1
+
+   0.500   0.700   0.000   1.000   -- A2
+
+
+9  Possibilities
+0.00  0.00  impossible
+0.01  0.05  extremely_unlikely
+0.05  0.20  very_low_chance
+0.20  0.38  small_chance
+0.38  0.60  may
+0.60  0.79  meaningful_chance
+0.79  0.95  most_likely
+0.95  0.99  extremely_likely
+1.00  1.00  certain
+
+#  Evidence labels follow. Must be 3, each < 5 chars
+Lat      Lon      Alt
+#  Default time units follow. Must be: Sec, Min, Hour, or Days
+Min
+<EOF>

@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible Resume Worm"; content: "filename=\"NORMAL.DOT\""; nocase; reference:MCAFEE,98661; sid:800;  classtype:misc-activity; rev:3;)

@@ -1,0 +1,2076 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <memory.h>
+#include <math.h> 
+#include <time.h>
+#include <signal.h>
+#include <sys/ioctl.h>
+#ifdef SC_THREADS
+#include "pthread.h"
+#endif
+/*
+ *   Include the network/socket stuff
+ */
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <string.h>
+#include <unistd.h>
+#include <stream.h>
+#include <rpc/xdr.h>
+#define SIGCHILD SIGCLD 
+/*
+ *   Include the SimCmdr stuff
+ */
+#include "forms.h"
+#include "DSBforms.h"
+#include "DSBproc.h"
+#include "DSBalgo.h"
+#include "FOGtypes.h"
+
+#define YES      1
+#define NO       0
+#define POLLRATE 5000
+
+/* --------------------------------------------------------------------- */
+
+typedef struct {
+  char          ChType[40];
+  char          ifilename[128];
+  char          dfilename[128];
+  char          afilename[128];
+  char          hfilename[128];
+} DSBTYPE;
+
+/* --------------------------------------------------------------------- */
+
+int             DSBwinX, DSBwinY;
+int             DSBwinW, DSBwinH;
+char            DSBlabel[32];
+Window          DSBwinid;
+/*
+ *   Dempster-Shafer belief network stuff
+ */
+DSBTYPE         dsbtypes[10];
+struct assesstype currentype;
+struct evid     evidences[50];
+int             discrete = FALSE;
+int             num_types;                   // No. of assessment types
+int             curr_type;                   // Current assessment type
+int             num_sources;                 // No. of evidence sources
+int             curr_source;                 // Current evidence source
+int             hyp_levels;                  // No. of hypothesis levels
+int             num_hyp[4];                  // No. of hypothesis at current level
+int             curr_hyp;                    // Current hypothesis
+int             num_assess;                  // No. of assessments
+int             curr_assess;                 // Current assessment
+int             save_assess;
+int             num_param;                   // No. of parameters
+int             curr_param;                  // Current parameter
+int             num_evid = 0;
+int             curr_evid = 0;
+
+int             pushed = 1;
+
+int             time_unit;
+int             case_id = 1111;
+int             evid_item;
+int             browser_line = 0;
+int             browser_mod  = 0;            // 0=> 'add', 1=> 'modify'
+float           ByNameVals[5] = { 0.0, 0.5, 0.75, 0.95, 1.0 };
+float           confidence, plause, disbelief;
+float           startT = 0.0, Tend, Tstart;
+float           Tin;
+float           latitude, longitude, altitude;
+
+float           Xtime[8][50];
+float           Ybelief[8][50];
+float           Yplause[8][50];
+char            dsbtemp[128];
+char            chtemp[128];
+char            dsline[1280];
+char            chTunit, chnone;
+char            chblank[2];
+char            chTstart[32];
+char            chsource[16];
+char            chdescript[128];
+
+int             WxFrame = 0;
+int             WxCount = 6;
+int             WxDelay = 1000;
+int             WxStop = 0;
+char            WxFormat[64];
+char            xpmfiles[10][8] = { "0.xpm", "1.xpm", "2.xpm", "3.xpm", "4.xpm",
+                                    "5.xpm", "6.xpm", "7.xpm", "8.xpm", "9.xpm" }; 
+
+FD_input        *fd_input;
+FD_assess       *fd_assess;
+FD_network      *fd_network;
+FD_dsbelief     *fd_dsbelief;
+FD_assessadd    *fd_assessadd;
+FD_dshelpevid   *fd_dshelpevid;
+FD_dsexplain    *fd_dsexplain;
+FD_orgbelief    *fd_orgbelief;
+
+FL_OBJECT       *ipm, *npm, *apm, *hpm;
+FL_OBJECT       *graph;
+FL_OBJECT       *timeunit;
+Pixmap          LCDigit[10];
+
+float           SrcX[10], SrcY[10], SrcW[10], SrcH[10];
+float           Box1X, Box1Y, Box1W, Box1H;
+float           HypX[10], HypY[10], HypW[10], HypH[10];
+float           Box2X, Box2Y, Box2W, Box2H;
+float           ConX[10], ConY[10], ConW[10], ConH[10];
+
+int             n_lines1, n_lines2;
+short           LHindex1[100], RHindex1[100];
+short           LHindex2[100], RHindex2[100]; 
+float           Slope1[100], Intercept1[100];
+float           Slope2[100], Intercept2[100];
+
+/* --------------------------------------------------------------------- */
+
+void DSBinit();
+void DSBshow(int xpos, int ypos, int width, int height, Window winid);
+void DSBexitCB(FL_OBJECT *ob, long data);
+
+void DSinit(char *filename);
+void DSload(char *filename);
+void DSsave(const char *file);
+
+void draw_net();
+const char *filter(FL_OBJECT *ob, double value, int prec);
+int buttonpressCB(FL_OBJECT *ob, int event, FL_Coord mx, FL_Coord my, int key, void *raw);
+
+extern int  EraseActiveEntry(char *text);
+extern int  StoreActiveEntry(char *text);
+extern char *strsub(char *istr, char och, char nch); 
+/*                                                                       */
+/* --------------------------------------------------------------------- */
+/*              M A I N   P R O G R A M   S T A R T S   H E R E          */
+/* --------------------------------------------------------------------- */
+/*                                                                       */
+void DSBinit()
+{
+FILE            *typefp;
+int             i,j;
+char            chtemp[128];
+
+   fd_input = create_form_input();
+   fd_assess = create_form_assess();
+   fd_network = create_form_network();
+   fd_dsbelief = create_form_dsbelief();
+   fd_assessadd = create_form_assessadd();
+   fd_dshelpevid = create_form_dshelpevid();
+   fd_dsexplain = create_form_dsexplain();
+   fd_orgbelief = create_form_orgbelief();
+
+   strcpy(DSBlabel, "Situation Assessment");
+//
+// Define the look of the browsers
+//
+   fl_set_browser_fontsize(fd_input->input_browser, FL_MEDIUM_SIZE);
+   fl_set_browser_fontstyle(fd_input->input_browser, FL_FIXED_STYLE|FL_BOLD_STYLE);
+   fl_set_browser_fontstyle(fd_assess->ass_browser, FL_FIXED_STYLE);
+//
+   fl_deactivate_object(fd_input->load_but);
+   fl_deactivate_object(fd_input->save_but);
+   fl_deactivate_object(fd_input->assess_reset_but);
+   fl_deactivate_object(fd_input->add_but);
+   fl_deactivate_object(fd_input->mod_but);
+   fl_deactivate_object(fd_input->del_but);
+   fl_deactivate_object(fd_input->input_exec_but);
+   fl_deactivate_object(fd_input->netw_but);
+   fl_deactivate_object(fd_input->assm_but);
+
+   fl_hide_object(fd_input->load_hint);
+   fl_hide_object(fd_input->exec_hint);
+
+   //fl_add_canvas_handler(fd_PATcontrol->canvas, Expose,      exposeCB, 0);
+   //fl_add_canvas_handler(fd_PATcontrol->canvas, ButtonPress, buttonpressCB, 0); 
+//
+//----------------------------------------------------------------------------------
+//
+// Load the initial Assessment types
+// 
+   typefp = fopen("DSBinit.dat", "r");
+   do fgets(dsbtemp, 128, typefp); while (dsbtemp[0] == '#');    // Read # assessments
+   sscanf(dsbtemp, "%d", &num_types);
+
+   for (j=0; j<num_types; j++) {
+     do fgets(dsbtemp, 128, typefp); while (dsbtemp[0] == '#');  // Read assessment type
+     sscanf(dsbtemp, "%s", dsbtypes[j].ChType);
+     strsub(dsbtypes[j].ChType, '_', ' ');
+     fl_addto_choice(fd_input->asstype_menu, dsbtypes[j].ChType);
+     do fgets(dsbtemp, 128, typefp); while (dsbtemp[0] == '#');  // Read init file name
+     sscanf(dsbtemp, "%s", dsbtypes[j].ifilename);
+     do fgets(dsbtemp, 128, typefp); while (dsbtemp[0] == '#');  // Read matrix file name
+     sscanf(dsbtemp, "%s", dsbtypes[j].afilename);
+     do fgets(dsbtemp, 128, typefp); while (dsbtemp[0] == '#');  // Read data file name
+     sscanf(dsbtemp, "%s", dsbtypes[j].dfilename);
+     do fgets(dsbtemp, 128, typefp); while (dsbtemp[0] == '#');  // Read hints file name
+     sscanf(dsbtemp, "%s", dsbtypes[j].hfilename);
+   }
+   fclose(typefp);
+
+   return;
+}
+
+int DSBclose(FL_FORM *form, void *data)
+{
+   DSBexitCB(NULL, 0);
+}
+
+void DSBshow(int xpos, int ypos, int width, int height, Window mainwinID)
+{
+
+   if(!fl_form_is_visible(fd_input->input) ) {
+      fl_transient();
+      fl_winposition(xpos, ypos);
+      fl_initial_winsize(width, height);
+      DSBwinid = fl_prepare_form_window(fd_input->input,
+                                     FL_PLACE_POSITION,FL_TRANSIENT, "Assess-Input");
+      fl_winreshape(DSBwinid, xpos, ypos, width, height);
+      fl_get_wingeometry(DSBwinid, &DSBwinX, &DSBwinY, &DSBwinW, &DSBwinH);
+      DSBwinX = DSBwinX + 4;
+      DSBwinY = DSBwinY + 24;
+      fl_show_form_window(fd_input->input);
+      fl_set_form_atclose(fd_input->input, DSBclose, 0);
+      StoreActiveEntry("Assess-Input");
+   }
+
+   return;
+}
+
+void DSBexitCB(FL_OBJECT *ob, long data)
+{
+   fl_hide_form(fd_input->input);
+   EraseActiveEntry("Assess-Input");
+
+   return;
+}
+
+void DSBnoneCB(FL_OBJECT *ob, long data)
+{
+
+   return;
+}
+
+/* --------------------------------------------------------------------- */
+
+const char *filter(FL_OBJECT *ob, double value, int prec)
+{
+static char buf[32];
+
+  sprintf(buf, "%d", value);
+  return buf;
+}
+
+void DSinit(char *filename)
+{
+FILE            *INITfp;
+FILE            *EVIDfp;
+int             i, j, k, mode;
+float           startTime, endTime;
+float           plause, disbelief;
+float           bthresh, tthresh;
+float           fogfactors[2];
+const char      *fname;
+char            timeUnit;
+char            chtime;
+char            chtemp[128];
+char            evid_lab1[8], evid_lab2[8], evid_lab3[8];
+
+
+   curr_type = fl_get_choice(fd_input->asstype_menu)-1;
+
+   strcpy(currentype.chname, dsbtypes[curr_type].ChType);
+
+   fname = filename;
+   if (strcmp(fname, "*") == 0) {
+     fname = fl_show_fselector("Initialization file", "./", "*.init", NULL);
+   }
+   if ((INITfp = fopen(fname, "r")) == NULL) return;
+   do fgets(dsbtemp, 128, INITfp); while (dsbtemp[0] == '#');    // Read type
+   sscanf(dsbtemp, "%s %d %f %f %c", chtemp, &mode, &startTime, &endTime, &timeUnit);
+   if (mode == 0)
+     discrete = TRUE;
+   else
+     discrete = FALSE;
+   fprintf(stderr, "Mode is %d\n", discrete);
+//
+// Get the initial Evidence sources for current type
+//
+   for (i=0; i<6; i++) {
+     fl_hide_object(fd_dsbelief->src_title[i]);
+     fl_hide_object(fd_dsbelief->src_chart[i]);
+     fl_clear_chart(fd_dsbelief->src_chart[i]);
+   }
+
+   do fgets(dsbtemp, 128, INITfp); while (dsbtemp[0] == '#');    // Read # sources and label
+   sscanf(dsbtemp, "%d %s", &num_sources, chtemp);
+   strsub(chtemp, '_', '\n');
+   fl_set_object_label(fd_dsbelief->src_label, chtemp);
+   curr_source = 0;
+   fl_clear_choice(fd_assessadd->add_src_choice);
+   for (i=0; i<num_sources; i++) {
+       fl_show_object(fd_dsbelief->src_title[i]);
+       fl_show_object(fd_dsbelief->src_chart[i]);
+       do fgets(dsbtemp, 128, INITfp); while (dsbtemp[0] == '#');
+       sscanf(dsbtemp, "%s", chtemp);
+       strcpy(currentype.sources[i].chsource, chtemp);
+       strsub(currentype.sources[i].chsource, '_', ' ');
+       strsub(chtemp, '_', '\n');
+       fl_addto_choice(fd_assessadd->add_src_choice, currentype.sources[i].chsource);
+       //fl_set_object_label(fd_assess->assess_round[i], currentype.sources[i].chsource);
+       fl_set_object_label(fd_network->src_title[i], chtemp);
+       fl_set_object_label(fd_dsbelief->src_title[i], chtemp);
+       fl_set_chart_bounds(fd_network->src_chart[i], 0.0, 1.0);
+       fl_add_chart_value(fd_network->src_chart[i], (double)0.0, "U", FL_YELLOW);
+       fl_add_chart_value(fd_network->src_chart[i], (double)0.0, "D", FL_RED);
+       fl_add_chart_value(fd_network->src_chart[i], (double)0.0, "B", FL_BLUE);
+
+       fl_add_chart_value(fd_dsbelief->src_chart[i], (double)0.0, "U", FL_YELLOW);
+       fl_add_chart_value(fd_dsbelief->src_chart[i], (double)0.0, "D", FL_RED);
+       fl_add_chart_value(fd_dsbelief->src_chart[i], (double)0.0, "B", FL_BLUE);
+
+       fl_set_slider_bounds(fd_orgbelief->bdu_src_belief[i],    0.0, 1.0);
+       fl_set_slider_bounds(fd_orgbelief->bdu_src_disbelief[i], 0.0, 1.0);
+       fl_set_slider_bounds(fd_orgbelief->bdu_src_unknown[i],   0.0, 1.0);
+       fl_set_slider_value(fd_orgbelief->bdu_src_belief[i],     0.0);
+       fl_set_slider_value(fd_orgbelief->bdu_src_disbelief[i],  0.0);
+       fl_set_slider_value(fd_orgbelief->bdu_src_unknown[i],    0.0);
+   }
+    //fl_set_button(fd_assess->assess_round[0], pushed);
+//
+// Get the default Hypothesis for the current type
+//
+   for (i=0; i<6; i++) {
+     fl_hide_object(fd_dsbelief->hyp_title[i]);
+     fl_hide_object(fd_dsbelief->hyp_chart[i]);
+     fl_clear_chart(fd_dsbelief->hyp_chart[i]);
+     fl_hide_object(fd_dsbelief->hyp1_title[i]);
+     fl_hide_object(fd_dsbelief->hyp1_chart[i]);
+     fl_clear_chart(fd_dsbelief->hyp1_chart[i]);
+     fl_hide_object(fd_dsbelief->hyp2_title[i]);
+     fl_hide_object(fd_dsbelief->hyp2_chart[i]);
+     fl_clear_chart(fd_dsbelief->hyp2_chart[i]);
+     fl_hide_object(fd_dsbelief->hyp3_title[i]);
+     fl_hide_object(fd_dsbelief->hyp3_chart[i]);
+     fl_clear_chart(fd_dsbelief->hyp3_chart[i]);
+   }
+   fl_show_object(fd_dsbelief->level2_title);
+   fl_show_object(fd_dsbelief->level3_title);
+   fl_show_object(fd_dsbelief->level4_title);
+
+   do fgets(dsbtemp, 128, INITfp); while (dsbtemp[0] == '#');    // Read # hypothesis levels
+   sscanf(dsbtemp, "%d", &hyp_levels);
+   k = 0;
+   do fgets(dsbtemp, 128, INITfp); while (dsbtemp[0] == '#');    // Read # hypothesis and label
+   sscanf(dsbtemp, "%d %s", &num_hyp[k], chtemp);                //   for this level
+   strsub(chtemp, '_', '\n');
+   fl_set_object_label(fd_dsbelief->hyp_label, chtemp);
+   curr_hyp = 0;
+   for (i=0; i<num_hyp[k]; i++) {
+       fl_show_object(fd_dsbelief->hyp_title[i]);
+       fl_show_object(fd_dsbelief->hyp_chart[i]);
+       do fgets(dsbtemp, 128, INITfp); while (dsbtemp[0] == '#');
+       sscanf(dsbtemp, "%s", chtemp);
+       strcpy(currentype.hypothesis[i][k].chhypoth, chtemp);
+       strsub(currentype.hypothesis[i][k].chhypoth, '_', ' ');
+       strsub(chtemp, '_', '\n');
+       fl_set_object_label(fd_dsbelief->hyp_title[i], chtemp);
+       fl_add_chart_value(fd_dsbelief->hyp_chart[i], (double)0.0, "U", FL_YELLOW);
+       fl_add_chart_value(fd_dsbelief->hyp_chart[i], (double)0.0, "D", FL_RED);
+       fl_add_chart_value(fd_dsbelief->hyp_chart[i], (double)0.0, "B", FL_BLUE);
+
+       fl_set_object_label(fd_network->hyp_title[i], chtemp);
+       fl_add_chart_value(fd_network->hyp_chart[i], (double)0.0, "U", FL_YELLOW);
+       fl_add_chart_value(fd_network->hyp_chart[i], (double)0.0, "D", FL_RED);
+       fl_add_chart_value(fd_network->hyp_chart[i], (double)0.0, "B", FL_BLUE);
+       /*
+       fl_set_slider_bounds(fd_orgbelief->bdu_hyp_belief[i],    0.0, 1.0);
+       fl_set_slider_bounds(fd_orgbelief->bdu_hyp_disbelief[i], 0.0, 1.0);
+       fl_set_slider_bounds(fd_orgbelief->bdu_hyp_unknown[i],   0.0, 1.0);
+       fl_set_slider_value(fd_orgbelief->bdu_hyp_belief[i],     0.0);
+       fl_set_slider_value(fd_orgbelief->bdu_hyp_disbelief[i],  0.0);
+       fl_set_slider_value(fd_orgbelief->bdu_hyp_unknown[i],    0.0);
+       */
+   }
+
+   if (hyp_levels > 1) {
+     k = 1;
+     do fgets(dsbtemp, 128, INITfp); while (dsbtemp[0] == '#');    // Read # hypothesis
+     sscanf(dsbtemp, "%d %s", &num_hyp[k], chtemp);                //   for this level
+     strsub(chtemp, '_', '\n');
+     fl_set_object_label(fd_dsbelief->hyp1_label, chtemp);
+     fl_hide_object(fd_dsbelief->level2_title);
+     for (i=0; i<num_hyp[k]; i++) {
+       fl_show_object(fd_dsbelief->hyp1_title[i]);
+       fl_show_object(fd_dsbelief->hyp1_chart[i]);
+       do fgets(dsbtemp, 128, INITfp); while (dsbtemp[0] == '#');
+       sscanf(dsbtemp, "%s", currentype.hypothesis[i][k].chhypoth);
+       strsub(currentype.hypothesis[i][k].chhypoth, '_', '\n');
+       fl_set_object_label(fd_dsbelief->hyp1_title[i], currentype.hypothesis[i][k].chhypoth);
+       fl_add_chart_value(fd_dsbelief->hyp1_chart[i], (double)0.0, "U", FL_YELLOW);
+       fl_add_chart_value(fd_dsbelief->hyp1_chart[i], (double)0.0, "D", FL_RED);
+       fl_add_chart_value(fd_dsbelief->hyp1_chart[i], (double)0.0, "B", FL_BLUE);
+     }
+   }
+
+   if (hyp_levels > 2) {
+     k = 2;
+     do fgets(dsbtemp, 128, INITfp); while (dsbtemp[0] == '#');    // Read # hypothesis
+     sscanf(dsbtemp, "%d %s", &num_hyp[k], chtemp);                //   for this level
+     strsub(chtemp, '_', '\n');
+     fl_set_object_label(fd_dsbelief->hyp2_label, chtemp);
+     fl_hide_object(fd_dsbelief->level3_title);
+     for (i=0; i<num_hyp[k]; i++) {
+       fl_show_object(fd_dsbelief->hyp2_title[i]);
+       fl_show_object(fd_dsbelief->hyp2_chart[i]);
+       do fgets(dsbtemp, 128, INITfp); while (dsbtemp[0] == '#');
+       sscanf(dsbtemp, "%s", currentype.hypothesis[i][k].chhypoth);
+       strsub(currentype.hypothesis[i][k].chhypoth, '_', '\n');
+       fl_set_object_label(fd_dsbelief->hyp2_title[i], currentype.hypothesis[i][k].chhypoth);
+       fl_add_chart_value(fd_dsbelief->hyp2_chart[i], (double)0.0, "U", FL_YELLOW);
+       fl_add_chart_value(fd_dsbelief->hyp2_chart[i], (double)0.0, "D", FL_RED);
+       fl_add_chart_value(fd_dsbelief->hyp2_chart[i], (double)0.0, "B", FL_BLUE);
+     }
+   }
+
+   if (hyp_levels > 3) {
+     k = 3;
+     do fgets(dsbtemp, 128, INITfp); while (dsbtemp[0] == '#');    // Read # hypothesis
+     sscanf(dsbtemp, "%d %s", &num_hyp[k], chtemp);                //   for this level
+     strsub(chtemp, '_', '\n');
+     fl_set_object_label(fd_dsbelief->hyp3_label, chtemp);
+     fl_hide_object(fd_dsbelief->level4_title);
+     for (i=0; i<num_hyp[k]; i++) {
+       fl_show_object(fd_dsbelief->hyp3_title[i]);
+       fl_show_object(fd_dsbelief->hyp3_chart[i]);
+       do fgets(dsbtemp, 128, INITfp); while (dsbtemp[0] == '#');
+       sscanf(dsbtemp, "%s", currentype.hypothesis[i][k].chhypoth);
+       strsub(currentype.hypothesis[i][k].chhypoth, '_', '\n');
+       fl_set_object_label(fd_dsbelief->hyp3_title[i], currentype.hypothesis[i][k].chhypoth);
+       fl_add_chart_value(fd_dsbelief->hyp3_chart[i], (double)0.0, "U", FL_YELLOW);
+       fl_add_chart_value(fd_dsbelief->hyp3_chart[i], (double)0.0, "D", FL_RED);
+       fl_add_chart_value(fd_dsbelief->hyp3_chart[i], (double)0.0, "B", FL_BLUE);
+     }
+   }
+//
+// Get the default Assessments for the current type
+//
+   for (i=0; i<6; i++) {
+     fl_hide_object(fd_dsbelief->con_title[i]);
+     fl_hide_object(fd_dsbelief->con_chart[i]);
+     fl_clear_chart(fd_dsbelief->con_chart[i]);
+     fl_set_object_label(fd_assess->assm_text[i], " ");
+   }
+
+   do fgets(dsbtemp, 128, INITfp); while (dsbtemp[0] == '#');    // Read # assessments
+   sscanf(dsbtemp, "%d %s", &num_assess, chtemp);
+   curr_assess = 0;
+   strsub(chtemp, '_', '\n');
+   fl_set_object_label(fd_dsbelief->con_label, chtemp);
+   currentype.assessment[0].belief = 90.0;
+   currentype.assessment[0].plause = 95.0;
+   currentype.assessment[1].belief = 5.0;
+   currentype.assessment[1].plause = 10.0;
+   currentype.assessment[2].belief = 1.0;
+   currentype.assessment[2].plause = 1.0;
+
+   currentype.assessment[0].piecolor = FL_RED;
+   currentype.assessment[1].piecolor = FL_BLUE;
+   currentype.assessment[2].piecolor = FL_YELLOW;
+
+   for (i=0; i<num_assess; i++) {
+       fl_show_object(fd_dsbelief->con_title[i]);
+       fl_show_object(fd_dsbelief->con_chart[i]);
+       do fgets(dsbtemp, 128, INITfp); while (dsbtemp[0] == '#');
+       sscanf(dsbtemp, "%s %f %f", currentype.assessment[i].chassess, &bthresh, &tthresh);
+       strsub(currentype.assessment[i].chassess, '_', ' ');
+       fl_set_object_label(fd_assess->assm_text[i],  currentype.assessment[i].chassess);
+       strcpy(dsbtemp, currentype.assessment[i].chassess);
+       strsub(dsbtemp, ' ', '\n');
+       fl_set_object_label(fd_network->netw_text[i], dsbtemp);
+       fl_set_object_label(fd_dsbelief->con_title[i],  dsbtemp);
+
+       fl_add_chart_value(fd_network->con_chart[i], (double)0.0, "U", FL_YELLOW);
+       fl_add_chart_value(fd_network->con_chart[i], (double)0.0, "D", FL_RED);
+       fl_add_chart_value(fd_network->con_chart[i], (double)0.0, "B", FL_BLUE);
+
+       fl_add_chart_value(fd_dsbelief->con_chart[i], (double)0.0, "U", FL_YELLOW);
+       fl_add_chart_value(fd_dsbelief->con_chart[i], (double)0.0, "D", FL_RED);
+       fl_add_chart_value(fd_dsbelief->con_chart[i], (double)0.0, "B", FL_BLUE);
+       /*
+       fl_set_slider_bounds(fd_orgbelief->bdu_con_belief[i],    0.0, 1.0);
+       fl_set_slider_bounds(fd_orgbelief->bdu_con_disbelief[i], 0.0, 1.0);
+       fl_set_slider_bounds(fd_orgbelief->bdu_con_unknown[i],   0.0, 1.0);
+       fl_set_slider_value(fd_orgbelief->bdu_con_belief[i],     0.0);
+       fl_set_slider_value(fd_orgbelief->bdu_con_disbelief[i],  0.0);
+       fl_set_slider_value(fd_orgbelief->bdu_con_unknown[i],    0.0);
+       */
+       //
+       currentype.assessment[i].Bthreshold = bthresh;
+       currentype.assessment[i].Tthreshold = tthresh;
+       currentype.assessment[i].select = i;
+       //
+       fl_set_chart_bounds(fd_assess->belief_pie, 0.0, 1.0);
+       fl_add_chart_value(fd_assess->belief_pie, (double)0.0, "",
+                  currentype.assessment[i].piecolor);
+       fl_set_chart_bounds(fd_assess->disbelief_pie, 0.0, 1.0);
+       fl_add_chart_value(fd_assess->disbelief_pie, (double)0.0, "",
+                  currentype.assessment[i].piecolor);
+   }
+
+   do fgets(dsbtemp, 128, INITfp); while (dsbtemp[0] == '#');
+   sscanf(dsbtemp, "%s %s %s", evid_lab1, evid_lab2, evid_lab3);
+
+   do fgets(dsbtemp, 128, INITfp); while (dsbtemp[0] == '#');
+   chTunit = dsbtemp[0];
+   if ((chTunit == 'S') || (chTunit == 's')) {
+     fl_set_button(fd_assess->assesstunit[0], pushed);
+     fl_set_button(fd_input->inputtunit[0], pushed);
+   }
+   else if ((chTunit == 'M') || (chTunit == 'm')) {
+     fl_set_button(fd_assess->assesstunit[1], pushed);
+     fl_set_button(fd_input->inputtunit[1], pushed);
+   }
+   else if ((chTunit == 'H') || (chTunit == 'h')) {
+     fl_set_button(fd_assess->assesstunit[2], pushed);
+     fl_set_button(fd_input->inputtunit[2], pushed);
+   }
+   else if ((chTunit == 'D') || (chTunit == 'd')) {
+     fl_set_button(fd_assess->assesstunit[3], pushed);
+     fl_set_button(fd_input->inputtunit[3], pushed);
+   }
+
+   fclose(INITfp);
+
+   fl_set_object_label(fd_assess->assess_type, currentype.chname);
+   fl_set_object_label(fd_network->assess_type, currentype.chname);
+   sprintf(dsbtemp, "%-36s %-14s %-14s %-16s %-12s", "Evidence Source", "Time",
+           evid_lab1, evid_lab2, evid_lab3);
+   fl_set_object_label(fd_assess->evid_title, dsbtemp);
+
+   fl_clear_browser(fd_input->input_browser);
+   fl_clear_browser(fd_assess->ass_browser);
+
+   sprintf(chtemp, "%-20s %-15s %-18s %-10s %-8s", "Source", "Belief",
+           "Disbelief", "Time", "Duration");
+   fl_set_object_label(fd_input->input_browser, chtemp);
+
+   save_assess = curr_assess;
+
+   num_evid = 0;
+}
+
+void DSload(char *filename)
+{
+FILE            *EVIDfp;
+int             i, j, k, nevid, item, ievid;
+float           plause, disbelief, dur, degrade;
+float           fogfactors[2];
+float           xx[2], y1[2], y2[2];
+const char      *fname;
+char            chtime, chdur;
+char            chlat[16], chlon[16], chalt[16];
+char            chsource[32];
+char            chtemp[128];
+char            chtmp[32];
+
+//
+//   Get the evidence available up to now
+//
+   fname = filename;
+   if (strcmp(fname, "*") == 0) {
+     fname = fl_show_fselector("Load file", "./", "*.evid", NULL);
+   }
+   if ((EVIDfp = fopen(fname, "r")) == NULL) return;
+   do fgets(dsbtemp, 128, EVIDfp); while (dsbtemp[0] == '#');
+   sscanf(dsbtemp, "%d %s %s", &nevid, chTstart, chtemp);
+//
+// Display the CASE id & data epoch time in all forms
+// 
+   fl_set_input(fd_input->input_caseid, chtemp);
+   fl_set_object_label(fd_assess->case_id, chtemp);
+   fl_set_object_label(fd_network->case_id, chtemp);
+   fl_set_object_label(fd_dsbelief->case_id, chtemp);
+   fl_set_object_label(fd_input->sdate_text, chTstart);
+   fl_set_object_label(fd_assess->sdate_text, chTstart);
+   fl_set_object_label(fd_network->sdate_text, chTstart);
+   fl_set_object_label(fd_dsbelief->sdate_text, chTstart);
+   //
+   Tend   = -1000000.0;                   // We want time in minutes
+   Tstart = 10000000.0;
+   i = -1;
+   while (1) {
+     do fgets(dsbtemp, 128, EVIDfp); while ((dsbtemp[0] == '#') && !feof(EVIDfp));
+     if (feof(EVIDfp)) break;
+     sscanf(dsbtemp, "%d %f %f %f %c %f %c %s %s %s %s", &ievid,
+            &confidence, &disbelief, &Tin, &chtime, &dur, &chdur,
+            chlat, chlon, chalt, chtemp);
+
+     fprintf(stderr, "%d %f %f %f %c %f %c %s %s %s %s\n", ievid,
+            confidence, disbelief, Tin, chtime, dur, chdur,
+            chlat, chlon, chalt, chtemp);
+
+     //
+     //   DSB handles time in minutes
+     //
+     if ((chtime == 'S') || (chtime == 's')) Tin = Tin/60.0;
+     else if ((chtime == 'H') || (chtime == 'h')) Tin = Tin*60.0;
+     else if ((chtime == 'D') || (chtime == 'd')) Tin = Tin*60.0*24.0;
+     if ((chdur == 'S') || (chdur == 's')) dur = dur/60.0;
+     else if ((chdur == 'H') || (chdur == 'h')) dur = dur*60.0;
+     else if ((chdur == 'D') || (chdur == 'd')) dur = dur*60.0*24.0;
+     //
+     if (confidence < 0.0) confidence = -confidence;
+     if (disbelief  < 0.0) disbelief  = -disbelief;
+     //
+     //   Store resulting evidence
+     //
+     i++;
+
+     strcpy(evidences[i].chdescript, chtemp);
+     strcpy(evidences[i].latitude,   chlat);
+     strcpy(evidences[i].longitude,  chlon);
+     strcpy(evidences[i].altitude,   chalt);
+     evidences[i].Tin        = Tin;
+     evidences[i].duration   = dur;
+     evidences[i].confidence = confidence;
+     evidences[i].plause     = 1.0 - disbelief;
+     evidences[i].disbelief  = disbelief;
+     evidences[i].valid      = TRUE;
+     item = ievid;
+     /*
+     for (k=0; k<num_sources; k++) {
+       if (strcmp(chsource, currentype.sources[k].chsource) == 0) {
+         item = k+1;
+	 break;
+       }
+     }
+     if (item < 0) {
+       evidences[i].valid = FALSE;
+       fprintf(stderr, "No match for evidence source %s\n",  chsource);
+     }
+     */
+     evidences[i].source = item;
+     strcpy(evidences[i].chsource, currentype.sources[ievid-1].chsource);
+
+     if (Tin > Tend) Tend = Tin;
+     if (Tin < Tstart) Tstart = Tin;
+   }
+   fclose(EVIDfp);
+   num_evid = i+1;
+   curr_evid = 0;
+
+   for (i=0; i<num_evid; i++) {
+     if (discrete) {
+       //
+       //   Ignore any evidence that's too old or too new
+       //
+       if ((evidences[i].Tin+evidences[i].duration < Tend) || (evidences[i].Tin > Tend)) {
+         evidences[i].valid = FALSE;
+         evidences[i].confidence = 0.0;
+         evidences[i].disbelief  = 0.0;
+       }
+       //
+       //   Degrade belief and disbelief due to time
+       //
+       degrade = 1.0 - ((Tend-evidences[i].Tin)/evidences[i].duration);
+       evidences[i].confidence = evidences[i].confidence * degrade;
+       evidences[i].disbelief = evidences[i].disbelief * degrade;
+     }
+     //
+     //   Apply FOW if enabled
+     //
+     if (FOGtest()) {
+       if (FOGget(FOG_LOSS, FOG_EVIDENCE, fogfactors) > 0)
+	 evidences[i].confidence = evidences[i].confidence -
+                                   fogfactors[1]*evidences[i].confidence;
+     }
+     //
+     //   Show user for editting or running
+     //
+     strcpy(chtemp, "None");
+     if (evidences[i].confidence > ByNameVals[0]) strcpy(chtemp, "Possible");
+     if (evidences[i].confidence > ByNameVals[1]) strcpy(chtemp, "Probable");
+     if (evidences[i].confidence > ByNameVals[2]) strcpy(chtemp, "Confirmed");
+     if (evidences[i].confidence > ByNameVals[3]) strcpy(chtemp, "Certain");
+     strcpy(chtmp, "None");
+     if (evidences[i].disbelief > ByNameVals[0]) strcpy(chtmp, "Possible");
+     if (evidences[i].disbelief > ByNameVals[1]) strcpy(chtmp, "Probable");
+     if (evidences[i].disbelief > ByNameVals[2]) strcpy(chtmp, "Confirmed");
+     if (evidences[i].disbelief > ByNameVals[3]) strcpy(chtmp, "Certain");
+     sprintf(dsbtemp, "%9s (%4.1f)  %9s (%4.1f)",
+             chtemp, evidences[i].confidence*100.0,
+             chtmp, evidences[i].disbelief*100.0);
+     sprintf(chtemp, "%-18s %-30s %10.2f %10.2f",
+             evidences[i].chsource, dsbtemp, evidences[i].Tin, evidences[i].duration);
+     fl_addto_browser(fd_input->input_browser, chtemp);
+   }
+
+   fl_activate_object(fd_input->save_but);
+   fl_activate_object(fd_input->assess_reset_but);
+   fl_activate_object(fd_input->add_but);
+   fl_activate_object(fd_input->mod_but);
+   fl_activate_object(fd_input->del_but);
+   fl_activate_object(fd_input->input_exec_but);
+   fl_activate_object(fd_input->netw_but);
+   fl_activate_object(fd_input->assm_but);
+//
+//   Display an example graph
+//
+   graph = fd_assess->conf_plot;
+   fl_set_xyplot_overlay_type(graph, 1, FL_CIRCLE_XYPLOT);
+   fl_set_xyplot_overlay_type(graph, 2, FL_DASHED_XYPLOT);
+   fl_set_xyplot_overlay_type(graph, 3, FL_DASHED_XYPLOT);
+   fl_set_xyplot_xbounds(graph, Tstart, Tend*1.1);
+   fl_set_xyplot_ybounds(graph, 0.0, 140.0);
+   fl_set_xyplot_ytics(graph, 14, 0);
+
+   xx[0] = 0.0;
+   y1[0] = 0.0;
+   fl_set_xyplot_data(graph, xx, y1, 1, "Confidence of Assessment","Time (min)","%");
+   fl_delete_xyplot_text(graph, currentype.assessment[save_assess].chassess);
+   fl_add_xyplot_text(graph, 160.0, 1.2,
+                      currentype.assessment[curr_assess].chassess,
+                      FL_ALIGN_LEFT,
+                      currentype.assessment[curr_assess].piecolor);
+}
+
+void DSsave(const char *filename)
+{
+int   i,j;
+char  chtemp[128];
+FILE  *SAVEfp;
+//
+//   Save the evidence
+//
+   SAVEfp = fopen(filename, "w+");
+   fprintf(SAVEfp, "%5d %s %s\n", num_evid, chTstart, fl_get_input(fd_input->input_caseid));
+   for (i=0; i<num_evid; i++) {
+       fprintf(SAVEfp, "%5d  %f  %f  %f %c  %f %c  %s  %s  %s  %-20s\n",
+              evidences[i].source,   evidences[i].confidence, 1.0-evidences[i].plause,
+	      evidences[i].Tin, 'M', evidences[i].duration, 'M',
+              evidences[i].latitude, evidences[i].longitude,  evidences[i].altitude,
+              evidences[i].chdescript);
+   }
+   fclose(SAVEfp);
+}
+
+void draw_net()
+{
+int             item = 0;
+int             i, j, k;
+int             lwidth, lstyle;
+int             savwidth;
+FL_COLOR        lcolor[10] = { FL_BLACK, FL_RED, FL_GREEN, FL_BLUE, FL_DARKGOLD,
+                               FL_CYAN,  FL_TOMATO, FL_MAGENTA, FL_SLATEBLUE, FL_ORCHID };
+//
+//   Draw the network topology
+//
+   savwidth = fl_get_linewidth();
+   lwidth = 2;
+   lstyle = FL_SOLID;
+   //
+   k = 0;
+   n_lines1 = 0;
+   for (i=0; i<num_hyp[k]; i++) {
+     for (j=0; j<num_sources; j++) {
+       fl_linewidth(lwidth);
+       fl_linestyle(lstyle);
+       fl_line((int)Box1X, (int)(SrcY[j]+(SrcH[j]/2)),
+               (int)(Box1X+Box1W), (int)(HypY[i]+(HypH[i]/2)), lcolor[j]);
+       Slope1[n_lines1] = ((SrcY[j]+(SrcH[j]/2)) - (HypY[i]+(HypH[i]/2))) /
+                           (Box1X - (Box1X+Box1W));
+       Intercept1[n_lines1] = (SrcY[j]+(SrcH[j])/2) - Slope1[j]*Box1X;
+       LHindex1[n_lines1] = j+1;
+       RHindex1[n_lines1] = i+1;
+       /*
+       fprintf(stderr, "Box 1 Line %d, Slope=%f Intercept=%f LH=%d RH=%d\n",
+	       n_lines1, Slope1[n_lines1], Intercept1[n_lines1],
+               LHindex1[n_lines1], RHindex1[n_lines1]);
+       */
+       n_lines1++;
+     }
+   }
+   //
+   n_lines2 = 0;
+   for (i=0; i<num_assess; i++) {
+     for (j=0; j<num_hyp[k]; j++) {
+       fl_linewidth(lwidth);
+       fl_linestyle(lstyle);
+       fl_line((int)Box2X, (int)(HypY[j]+(HypH[j]/2)),
+               (int)(Box2X+Box2W), (int)(ConY[i]+(ConH[i]/2)), lcolor[j]);
+       Slope2[n_lines2] = ((HypY[j]+(HypY[j]/2)) - (ConY[i]+(ConH[i]/2))) /
+                           (Box2X - (Box2X+Box2W));
+       Intercept2[n_lines2] = (HypY[j]+(HypH[j])/2) - Slope2[j]*Box2X;
+       LHindex2[n_lines2] = j+1;
+       RHindex2[n_lines2] = i+1;
+       n_lines2++;
+     }
+   }
+
+   fl_linewidth(savwidth);
+}
+/*                                                                       */
+/* --------------------------------------------------------------------- */
+/*      C A L L B A C K    R O U T I N E S    S T A R T    H E R E       */
+/* --------------------------------------------------------------------- */
+/*                                                                       */
+void input_menuCB(FL_OBJECT *object, long item_no)
+{
+int item = 0;
+
+   fl_clear_browser(fd_input->input_browser); 
+   fl_clear_browser(fd_assess->ass_browser); 
+   curr_type = fl_get_choice(fd_input->asstype_menu)-1;
+   fl_set_object_label(fd_assess->assess_type, currentype.chname);
+   fl_set_object_label(fd_network->assess_type, currentype.chname);
+   fl_set_object_label(fd_dsbelief->assess_type, currentype.chname);
+   DSinit(dsbtypes[fl_get_choice(fd_input->asstype_menu)-1].ifilename);
+   fl_activate_object(fd_input->load_but);
+   fl_show_object(fd_input->load_hint); 
+}
+
+void input_saveCB(FL_OBJECT *object, long item_no)
+{
+int        item = 0;
+const char *otfilename;
+
+   sprintf(chtemp, "DSB_%s.evid", fl_get_input(fd_input->input_caseid));
+   otfilename = fl_show_fselector("Save file", "./", "*.evid", chtemp);
+   if (otfilename != NULL) {
+     DSsave(otfilename);
+   }
+}
+
+void input_loadCB(FL_OBJECT *object, long item_no)
+{
+int             item = 0;
+const char      *fname;
+char            filename[128];
+
+   resetCB(NULL, 0);
+
+   DSload(dsbtypes[fl_get_choice(fd_input->asstype_menu)-1].dfilename);
+   fl_hide_object(fd_input->load_hint);
+   fl_show_object(fd_input->exec_hint);
+
+   fname = dsbtypes[fl_get_choice(fd_input->asstype_menu)-1].afilename;
+   if (strcmp(fname, "*") == 0) {
+     fname = fl_show_fselector("Attribute file", "./", "*.att", NULL);
+   }
+   strcpy(filename, fname);
+   DS_AlgoInit(filename, 0);
+}
+
+void input_browserCB(FL_OBJECT *object, long item_no)
+{
+int item = 0;
+
+   browser_line = fl_get_browser(fd_input->input_browser);
+   if (browser_line < 0) browser_line = 0;
+}
+
+void netdrawCB(FL_OBJECT *object, long item_no)
+{
+int             i, j, k, item = 0;
+int             lwidth, lstyle;
+int             savwidth;
+float           nonbelief;
+float           ImpactWeight;
+const char      *ifield;
+char            In_String[64];   /* Out - Parent node name                            */
+char            Out_String[64];  /* Out - Child node name                             */
+char            B_String[64];    /* Out - String describing belief value              */
+char            D_String[64];    /* Out - String describing belief value              */
+float           B_Weight;        /* Out - Line-source belief value                    */
+float           D_Weight;        /* Out - Line-source disbelief value                 */ 
+Window          winid;
+FL_Coord        xcoord, ycoord, width, height;
+FL_COLOR        lcolor[10] = { FL_BLACK, FL_RED, FL_GREEN, FL_BLUE, FL_DARKGOLD,
+                               FL_CYAN,  FL_TOMATO, FL_MAGENTA, FL_SLATEBLUE, FL_ORCHID };
+
+//
+//   Draw the network topology
+//
+   savwidth = fl_get_linewidth();
+   lwidth = 2;
+   lstyle = FL_SOLID;
+
+   int Hlev = 0;
+   k = DS_AlgoGetTreeDepth();
+   for (i=0; i<num_hyp[Hlev]; i++) {
+     fl_get_object_geometry(fd_dsbelief->hyp_title[i], &xcoord, &ycoord, &width, &height);
+     HypX[i] = xcoord; HypY[i] = ycoord; HypW[i] = width; HypH[i] = height;
+     for (j=0; j<num_sources; j++) {
+       DS_AlgoGetMatrix(j+1, k, i+1, k-1, In_String, Out_String,
+			B_String, D_String, B_Weight, D_Weight);
+       if (B_Weight > 0.0) {
+         fl_get_object_geometry(fd_dsbelief->src_title[j], &xcoord, &ycoord, &width, &height);
+         Box1X = xcoord; Box1Y = ycoord; Box1W = width; Box1H = height;
+         fl_linewidth(lwidth);
+         fl_linestyle(lstyle);
+         fl_line((int)Box1X+(int)(Box1W/2), (int)Box1Y+(int)Box1H,
+                 (int)(HypX[i]+(int)(HypW[i]/2)), (int)(HypY[i]), lcolor[j]);
+       }
+     }
+   }
+
+   if (hyp_levels > 1) {
+     k = k-1; Hlev ++;
+     for (i=0; i<num_hyp[Hlev]; i++) {
+       fl_get_object_geometry(fd_dsbelief->hyp1_title[i], &xcoord, &ycoord, &width, &height);
+       HypX[i] = xcoord; HypY[i] = ycoord; HypW[i] = width; HypH[i] = height;
+       for (j=0; j<num_hyp[Hlev-1]; j++) {
+         DS_AlgoGetMatrix(j+1, k, i+1, k-1, In_String, Out_String,
+			  B_String, D_String, B_Weight, D_Weight);
+         if (B_Weight > 0.0) {
+           fl_get_object_geometry(fd_dsbelief->hyp_title[j], &xcoord, &ycoord, &width, &height);
+           Box1X = xcoord; Box1Y = ycoord; Box1W = width; Box1H = height;
+           fl_linewidth(lwidth);
+           fl_linestyle(lstyle);
+           fl_line((int)Box1X+(int)(Box1W/2), (int)Box1Y+(int)Box1H,
+                   (int)(HypX[i]+(int)(HypW[i]/2)), (int)(HypY[i]), lcolor[j]);
+         }
+       }
+     }
+   }
+
+   if (hyp_levels > 2) {
+     k = k-1; Hlev++;
+     for (i=0; i<num_hyp[Hlev]; i++) {
+       fl_get_object_geometry(fd_dsbelief->hyp2_title[i], &xcoord, &ycoord, &width, &height);
+       HypX[i] = xcoord; HypY[i] = ycoord; HypW[i] = width; HypH[i] = height;
+       for (j=0; j<num_hyp[Hlev-1]; j++) {
+         DS_AlgoGetMatrix(j+1, k, i+1, k-1, In_String, Out_String,
+			  B_String, D_String, B_Weight, D_Weight);
+         if (B_Weight > 0.0) {
+           fl_get_object_geometry(fd_dsbelief->hyp1_title[j], &xcoord, &ycoord, &width, &height);
+           Box1X = xcoord; Box1Y = ycoord; Box1W = width; Box1H = height;
+           fl_linewidth(lwidth);
+           fl_linestyle(lstyle);
+           fl_line((int)Box1X+(int)(Box1W/2), (int)Box1Y+(int)Box1H,
+                   (int)(HypX[i]+(int)(HypW[i]/2)), (int)(HypY[i]), lcolor[j]);
+         }
+       }
+     }
+   }
+
+   if (hyp_levels > 3) {
+     k = k-1; Hlev++;
+     for (i=0; i<num_hyp[Hlev]; i++) {
+       fl_get_object_geometry(fd_dsbelief->hyp3_title[i], &xcoord, &ycoord, &width, &height);
+       HypX[i] = xcoord; HypY[i] = ycoord; HypW[i] = width; HypH[i] = height;
+       for (j=0; j<num_hyp[Hlev-1]; j++) {
+         DS_AlgoGetMatrix(j+1, k, i+1, k-1, In_String, Out_String,
+			  B_String, D_String, B_Weight, D_Weight);
+         if (B_Weight > 0.0) {
+           fl_get_object_geometry(fd_dsbelief->hyp2_title[j], &xcoord, &ycoord, &width, &height);
+           Box1X = xcoord; Box1Y = ycoord; Box1W = width; Box1H = height;
+           fl_linewidth(lwidth);
+           fl_linestyle(lstyle);
+           fl_line((int)Box1X+(int)(Box1W/2), (int)Box1Y+(int)Box1H,
+                   (int)(HypX[i]+(int)(HypW[i]/2)), (int)(HypY[i]), lcolor[j]);
+         }
+       }
+     }
+   }
+
+   k = k-1;
+   for (i=0; i<num_hyp[Hlev]; i++) {
+     for (j=0; j<num_assess; j++) {
+       DS_AlgoGetMatrix(i+1, k, j+1, k-1, In_String, Out_String,
+			B_String, D_String, B_Weight, D_Weight);
+       if (B_Weight > 0.0) {
+         fl_get_object_geometry(fd_dsbelief->con_title[j], &xcoord, &ycoord, &width, &height);
+         Box1X = xcoord; Box1Y = ycoord; Box1W = width; Box1H = height;
+         fl_linewidth(lwidth);
+         fl_linestyle(lstyle);
+         fl_line((int)Box1X+(int)(Box1W/2), (int)Box1Y,
+                 (int)(HypX[i]+(int)(HypW[i]/2)), (int)(HypY[i]+(int)HypH[i]), lcolor[j]);
+       }
+     }
+   }
+
+   fl_linewidth(savwidth);
+}
+
+void input_displayCB(FL_OBJECT *object, long item_no)
+{
+int             i, j, k, item = 0;
+Window          winid;
+float           nonbelief;
+FL_Coord        xcoord, ycoord, width, height;
+const char      *ifield;
+
+   switch (item_no)
+   {
+     case 0:
+       fl_winposition(DSBwinX, DSBwinY);
+       fl_initial_winsize(DSBwinW, DSBwinH);
+       winid = fl_prepare_form_window(fd_assess->assess,
+                                     FL_PLACE_POSITION,FL_NOBORDER, "Assess-Operator");
+       fl_winreparent(winid, DSBwinid);
+       fl_show_form_window(fd_assess->assess);
+       StoreActiveEntry("Assess-Operator");
+       break;
+
+     case 1:
+       fl_winposition(DSBwinX, DSBwinY);
+       fl_initial_winsize(DSBwinW, DSBwinH);
+       winid = fl_prepare_form_window(fd_network->network,
+                                     FL_PLACE_POSITION,FL_NOBORDER, "Assess-Network");
+       fl_winreparent(winid, DSBwinid);
+       fl_show_form_window(fd_network->network);
+       StoreActiveEntry("Assess-Network");
+       fl_set_object_posthandler(fd_network->src_box, buttonpressCB);
+       fl_set_object_posthandler(fd_network->hyp_box, buttonpressCB);
+       //
+       //   Draw the network topology
+       //
+       fl_get_object_geometry(fd_network->src_box, &xcoord, &ycoord, &width, &height);
+       Box1X = xcoord; Box1Y = ycoord; Box1W = width; Box1H = height;
+       fl_get_object_geometry(fd_network->hyp_box, &xcoord, &ycoord, &width, &height);
+       Box2X = xcoord; Box2Y = ycoord; Box2W = width; Box2H = height;
+       //draw_net();
+       break;
+
+     case 2:
+       fl_winposition(DSBwinX, DSBwinY);
+       fl_initial_winsize(DSBwinW, DSBwinH);
+       winid = fl_prepare_form_window(fd_dsbelief->dsbelief,
+                                     FL_PLACE_POSITION,FL_NOBORDER, "Assess-Network");
+       fl_winreparent(winid, DSBwinid);
+       fl_show_form_window(fd_dsbelief->dsbelief);
+       StoreActiveEntry("Assess-Network");
+       //netdrawCB(NULL, 0);
+       break;
+
+     case 3:
+       fl_winposition(DSBwinX, DSBwinY);
+       fl_initial_winsize(DSBwinW, DSBwinH);
+       winid = fl_prepare_form_window(fd_dsexplain->dsexplain,
+                                     FL_PLACE_POSITION,FL_NOBORDER, "Assess-Explain");
+       fl_winreparent(winid, DSBwinid);
+       fl_show_form_window(fd_dsexplain->dsexplain);
+       StoreActiveEntry("Assess-Explain");
+       break;
+
+     default:
+       break;
+   }
+}
+ 
+void exitCB(FL_OBJECT *object, long item_no)
+{
+int item = 0;
+
+   switch (item_no)
+   {
+     case 0:
+       fl_hide_form(fd_assess->assess);
+       EraseActiveEntry("Assess-Operator");
+       break;
+
+     case 1:
+       fl_hide_form(fd_network->network);
+       EraseActiveEntry("Assess-Network");
+       break;
+
+     case 2:
+       fl_hide_form(fd_dsbelief->dsbelief);
+       EraseActiveEntry("Assess-Network");
+       break;
+
+     case 3:
+       fl_hide_form(fd_dsexplain->dsexplain);
+       EraseActiveEntry("Assess-Explain");
+       break;
+
+     case 10:
+       fl_hide_form(fd_dshelpevid->dshelpevid);
+       break;
+
+     default:
+       break;
+   }
+}
+
+void input_modCB(FL_OBJECT *object, long item_no)
+{
+int             item = 0;
+int             browser_line;
+float           disbelief, confidence, Tin;
+
+   browser_line = fl_get_browser(fd_input->input_browser);
+
+   if (browser_line > 0) {
+       fl_show_form(fd_assessadd->assessadd, FL_PLACE_CENTER, FL_FULLBORDER,
+                    "Modify Evidence");
+       browser_mod = 1;
+
+       fl_set_input(fd_assessadd->add_source, evidences[browser_line-1].chsource);
+       fl_set_input(fd_assessadd->add_desc, evidences[browser_line-1].chdescript);
+
+       confidence = evidences[browser_line-1].confidence;
+       sprintf(dsline, "%f", confidence);
+       fl_set_input(fd_assessadd->add_confid, dsline);
+
+       disbelief = 1.0 - evidences[browser_line-1].plause;
+       sprintf(dsline, "%f", disbelief);
+       fl_set_input(fd_assessadd->add_plause, dsline);
+
+       Tin = evidences[browser_line-1].Tin;
+       sprintf(dsline, "%f", Tin);
+       fl_set_input(fd_assessadd->add_time, dsline);
+
+       Tin = evidences[browser_line-1].duration;
+       sprintf(dsline, "%f", Tin);
+       fl_set_input(fd_assessadd->add_duration, dsline);
+
+       fl_set_input(fd_assessadd->add_lat, evidences[browser_line-1].latitude);
+       fl_set_input(fd_assessadd->add_long, evidences[browser_line-1].longitude);
+       fl_set_input(fd_assessadd->add_alt, evidences[browser_line-1].altitude);
+   }
+}
+
+void input_addCB(FL_OBJECT *object, long item_no)
+{
+int item = 0;
+
+   fl_show_form(fd_assessadd->assessadd,FL_PLACE_CENTER,FL_FULLBORDER,
+                "Add Evidence");
+   browser_mod = 0;
+}
+
+void input_delCB(FL_OBJECT *object, long item_no)
+{
+int item = 0;
+
+   if (browser_line > 0)
+       fl_delete_browser_line(fd_input->input_browser, browser_line);
+}
+
+void input_execCB(FL_OBJECT *object, long item_no)
+{
+int item = 0;
+
+}
+
+void input_caseidCB(FL_OBJECT *object, long item_no)
+{
+int        item = 0;
+const char *chinput;
+
+   chinput = fl_get_input(fd_input->input_caseid);    
+
+   fl_set_object_label(fd_assess->case_id, chinput);
+   fl_set_object_label(fd_network->case_id, chinput);
+}
+
+void add_acceptCB(FL_OBJECT *object, long item_no)
+{
+int             item = 0, i;
+float           nonbelief;
+char            chtemp[128];
+ 
+   i = num_evid;
+
+   if (atof(fl_get_input(fd_assessadd->add_confid)) +
+       atof(fl_get_input(fd_assessadd->add_plause)) > 1.0) {
+     fl_show_messages("Belief + Disbelief must be less than or equal to 1.0");
+     return;
+   }
+
+   fl_hide_form(fd_assessadd->assessadd);
+
+   strcpy(evidences[i].chsource,   fl_get_input(fd_assessadd->add_source));
+   strcpy(evidences[i].chdescript, fl_get_input(fd_assessadd->add_desc));
+   strcpy(evidences[i].latitude,   fl_get_input(fd_assessadd->add_lat));
+   strcpy(evidences[i].longitude,  fl_get_input(fd_assessadd->add_long));
+   strcpy(evidences[i].altitude,   fl_get_input(fd_assessadd->add_alt));
+
+   evidences[i].source   = fl_get_choice(fd_assessadd->add_src_choice);
+
+   evidences[i].Tin      = atof(fl_get_input(fd_assessadd->add_time));
+   evidences[i].duration = atof(fl_get_input(fd_assessadd->add_duration));
+
+   evidences[i].confidence = atof(fl_get_input(fd_assessadd->add_confid));
+   if (evidences[i].confidence > 1.0)
+     evidences[i].confidence = evidences[i].confidence/100.0;
+   evidences[i].plause     = plause;
+   nonbelief = atof(fl_get_input(fd_assessadd->add_plause));
+   evidences[i].plause = 1.0 - nonbelief;
+   if (evidences[i].plause > 1.0)
+     evidences[i].plause = evidences[i].plause/100.0;
+
+   sprintf(dsbtemp, "%9s (%4.1f)  %9s (%4.1f)",
+           fl_get_choice_text(fd_assessadd->belief_by_name), evidences[i].confidence*100.0,
+           fl_get_choice_text(fd_assessadd->disbelief_by_name), evidences[i].disbelief*100.0);
+   sprintf(chtemp, "%-18s %-30s %10.2f %10.2f",
+           evidences[i].chsource, dsbtemp, evidences[i].Tin, evidences[i].duration);
+
+   if (!browser_mod) {
+       fl_addto_browser(fd_input->input_browser, chtemp);
+       num_evid = num_evid + 1;
+   } else {
+       fl_replace_browser_line(fd_input->input_browser,
+                               fl_get_browser(fd_input->input_browser), chtemp);
+   }
+}
+
+void addchoiceCB(FL_OBJECT *object, long item_no)
+{
+int             line, item = 0;
+
+   line = fl_get_browser(fd_input->input_browser);
+   strcpy(evidences[line-1].chsource, fl_get_choice_text(fd_assessadd->add_src_choice));
+   fl_set_input(fd_assessadd->add_source, evidences[line-1].chsource);
+}
+
+void assadd_cancelCB(FL_OBJECT *object, long item_no)
+{
+int item = 0;
+
+   fl_hide_form(fd_assessadd->assessadd);
+}
+
+/* callbacks for form assess */
+
+void assess_selectCB(FL_OBJECT *object, long item_no)
+{
+int             i, n, item = 0;
+float           Yb[50], Yp[50], Xt[50], Xover2[2], Yover2[2], Xover3[2], Yover3[2];
+char            chtemp[8];
+
+   curr_assess = item_no;
+
+   n = -1;
+   for (i=0; i<curr_evid; i++) {
+     //if (evidences[curr_evid-1].valid) {
+       n++;
+       Yb[n] = (Ybelief[curr_assess][i])*100.0;
+       Yp[n] = (Yplause[curr_assess][i]+0.01)*100.0;
+       Xt[n] = Xtime[curr_assess][i];
+       //}
+   }
+
+   graph = fd_assess->conf_plot;
+   //fl_set_xyplot_overlay_type(graph, 1, FL_CIRCLE_XYPLOT);
+   //fl_set_xyplot_overlay_type(graph, 2, FL_DASHED_XYPLOT);
+   //fl_set_xyplot_overlay_type(graph, 3, FL_DASHED_XYPLOT);
+   //fl_set_xyplot_xbounds(graph, 0, 175);
+   //fl_set_xyplot_ybounds(graph, 0, 1.4);
+   //fl_set_xyplot_interpolate(graph, 1, 2, 0.1);
+   //fl_set_xyplot_fixed_yaxis(graph, "ii", "ii");
+
+   fl_set_xyplot_data(graph, Xt, Yb, n+1, "Confidence of Assessment",
+                      "Time (min)","%");
+   fl_add_xyplot_overlay(graph, 1, Xt, Yp, n+1, FL_BLUE);
+
+   Xover2[0] = 0.0;
+   Yover2[0] = currentype.assessment[curr_assess].Bthreshold*100.0;
+   Xover2[1] = currentype.assessment[curr_assess].Tthreshold;
+   Yover2[1] = currentype.assessment[curr_assess].Bthreshold*100.0;
+   fl_add_xyplot_overlay(graph, 2, Xover2, Yover2, 2, FL_RED);
+
+   Xover3[0] = currentype.assessment[curr_assess].Tthreshold;
+   Yover3[0] = 0.0;
+   Xover3[1] = currentype.assessment[curr_assess].Tthreshold;
+   Yover3[1] = currentype.assessment[curr_assess].Bthreshold*100.0;
+   fl_add_xyplot_overlay(graph, 3, Xover3, Yover3, 2, FL_RED);
+
+   fl_delete_xyplot_text(graph,
+                      currentype.assessment[save_assess].chassess);
+   fl_add_xyplot_text(graph, 100.0, 120.0,
+                      currentype.assessment[curr_assess].chassess,
+                      FL_ALIGN_LEFT,
+                      currentype.assessment[curr_assess].piecolor);
+   save_assess = curr_assess; 
+}
+
+void assess_tunitCB(FL_OBJECT *object, long item_no)
+{
+int item = 0;
+
+   time_unit = item_no;
+}
+
+void assess_issueCB(FL_OBJECT *object, long item_no)
+{
+int item = 0;
+
+}
+
+void dsbynameCB(FL_OBJECT *object, long item_no)
+{
+int             i, item = 0;
+
+   switch (item_no)
+   {
+     case 0:
+       i = fl_get_choice(fd_assessadd->belief_by_name) - 1;
+       sprintf(dsbtemp, "%f", ByNameVals[i]);
+       fl_set_input(fd_assessadd->add_confid, dsbtemp);
+       break;
+
+     case 1:
+       i = fl_get_choice(fd_assessadd->disbelief_by_name) - 1;
+       sprintf(dsbtemp, "%f", ByNameVals[i]);
+       fl_set_input(fd_assessadd->add_plause, dsbtemp);
+       break;
+
+     default:
+       break;
+   }
+}
+
+void WxUpdate(int frameno, char* filename)
+{
+int             i, i1;
+char            *BITMAPDIR;
+char            pixname[128];
+FL_IMAGE        *image;
+FL_OBJECT       *ipipm;
+
+   for (i=0; i<3; i++) {
+     ipipm = fd_dsexplain->ds_frameno[i];
+     fl_show_object(ipipm);
+     fl_free_pixmap_pixmap(ipipm);
+     i1 = (int)((double)frameno/pow(10,i));
+     sprintf (pixname, "../BitMaps/%s", /*BITMAPDIR,*/ xpmfiles[i1]);
+     fl_set_pixmap_file(ipipm, pixname);
+   }
+
+   strcpy(WxFormat, "../Weather/WxPict-%03d.gif");
+
+   sprintf(dsbtemp, WxFormat, frameno);
+   image = flimage_load(dsbtemp); 
+   flimage_sdisplay(image, FL_ObjWin(fd_dsexplain->ds_image));
+   fl_update_display(0);
+}
+
+static void imerrorCB(FL_IMAGE *im, const char *s)
+{
+//FD_ibcanvas *fdui = im->app_data;
+ 
+  //if(!s) s = " ";
+  //fl_show_messages(s);
+}
+
+static int imstatusCB(FL_IMAGE *im, const char *s)
+{
+  /*
+     FD_ibcanvas *fdui = im->app_data;
+     char buf[512];
+ 
+     if(im->completed < 0)
+     {
+        strcpy(buf,s);
+     }
+     else if(im->completed >= 0 && im->completed < im->total)
+     {
+        sprintf(buf,"%s %3.0f%% (%4d of %4d)", s,
+                 (im->completed*100.0)/im->total,
+                 im->completed, im->h);
+     }
+     else
+        strcpy(buf,s);
+  */
+    fl_set_slider_value(fd_dsexplain->dsim_percent,
+		      ((double)im->completed/(double)im->total)*100.0); 
+    //fl_set_object_label(fdui->status, buf);
+    //fl_update_display(0);
+    return 0;
+}
+
+void assess_explainCB(FL_OBJECT *object, long item_no)
+{
+int             i, i1, item = 0;
+Window          winid;
+static int      ds_imenabled = FALSE;
+static FLIMAGE_SETUP   mysetup;
+
+   if (!ds_imenabled) {
+     flimage_enable_xpm();
+     flimage_enable_gif();
+     flimage_enable_bmp();
+     flimage_enable_sgi();
+     //memset(mysetup, 0, sizeof(mysetup));
+     mysetup.visual_cue = imstatusCB;
+     mysetup.error_message = imerrorCB;
+     mysetup.app_data = fd_dsexplain;
+     flimage_setup(&mysetup);  
+     ds_imenabled = TRUE;
+   }
+
+   fl_winposition(DSBwinX, DSBwinY);
+   fl_initial_winsize(DSBwinW, DSBwinH);
+   winid = fl_prepare_form_window(fd_dsexplain->dsexplain,
+                                  FL_PLACE_POSITION,FL_NOBORDER, "Assess-Explain");
+   fl_winreparent(winid, DSBwinid);
+   fl_show_form_window(fd_dsexplain->dsexplain);
+   StoreActiveEntry("Assess-Explain");
+
+   fl_set_object_helper(fd_dsexplain->dsex_rew,  "Rewind");
+   fl_set_object_helper(fd_dsexplain->dsex_rev,  "Reverse");
+   fl_set_object_helper(fd_dsexplain->dsex_back, "Backward");
+   fl_set_object_helper(fd_dsexplain->dsex_stop, "Stop");
+   fl_set_object_helper(fd_dsexplain->dsex_step, "Forward");
+   fl_set_object_helper(fd_dsexplain->dsex_play, "Play");
+   fl_set_object_helper(fd_dsexplain->dsex_end,  "End");
+
+   /*
+   if ((BITMAPDIR=getenv("BITMAPDIR")) == NULL) {
+        BITMAPDIR = "./BitMaps";
+   }
+   */
+
+   fl_load_browser(fd_dsexplain->ds_explain, "../Weather/WxExample.txt"); 
+
+   for (i=0; i<WxCount; i++) {
+     WxFrame++;
+     WxUpdate(WxFrame, NULL);
+     fl_msleep(WxDelay);
+   }
+}
+
+void dsimdelayCB(FL_OBJECT *object, long item_no)
+{
+int             item = 0;
+
+   WxDelay = (int)fl_get_dial_value(fd_dsexplain->dsim_delay);
+   sprintf(dsbtemp, "Delay is\n%d ms", WxDelay);
+   fl_set_object_label(fd_dsexplain->dsim_delay, dsbtemp);
+}
+
+void dscontrolCB(FL_OBJECT *object, long item_no)
+{
+int             i, item = 0;
+
+   switch (item_no)
+   {
+     case 0:
+       WxFrame = 1;
+       WxUpdate(WxFrame, NULL);
+       WxStop = TRUE;
+       break;
+
+     case 1:
+       WxFrame = WxCount+1;
+       for (i=0; i<WxCount; i++) {
+         WxFrame--;
+         WxUpdate(WxFrame, NULL);
+         fl_msleep(WxDelay);
+       }
+       break;
+
+     case 2:
+       if (WxFrame > 1) {
+         WxFrame--;
+         WxUpdate(WxFrame, NULL);
+       } else WxStop = TRUE;
+       break;
+
+     case 3:
+       WxStop = TRUE;
+       break;
+
+     case 4:
+       if (WxFrame < WxCount) {
+         WxFrame++;
+         WxUpdate(WxFrame, NULL);
+       } else WxStop = TRUE;
+       break;
+
+     case 5:
+       WxFrame = 0;
+       for (i=0; i<WxCount; i++) {
+         WxFrame++;
+         WxUpdate(WxFrame, NULL);
+         fl_msleep(WxDelay);
+       }
+       break;
+
+     case 6:
+       WxFrame = WxCount;
+       WxUpdate(WxFrame, NULL);
+       WxStop = TRUE;
+       break;
+
+     default:
+       break;
+   }
+}
+
+void dsimscrollCB(FL_OBJECT *object, long item_no)
+{
+int             item = 0;
+
+   switch (item_no)
+   {
+     case 0:
+
+       break;
+
+     case 1:
+
+       break;
+
+     default:
+       break;
+   }
+}
+
+void evidenceCB(FL_OBJECT *object, long item_no)
+{
+int item = 0;
+
+}
+
+/* callbacks for common forms */
+
+void UpdateNet(int item)
+{
+int             i, k;
+float           results[6];
+char            chline[32];
+
+   i = item;
+     //
+     //   Process the Assessment displays
+     //
+     for (i=0; i<num_assess; i++) {
+       DS_AlgoGetResult(i+1, 1, results);
+
+       fl_replace_chart_value(fd_network->con_chart[i], 3,
+                              (double)(results[1]+0.005), "B", FL_BLUE);
+       fl_replace_chart_value(fd_network->con_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+       fl_replace_chart_value(fd_network->con_chart[i], 1,
+                              (double)(results[3]+0.005), "U", FL_YELLOW);
+       fl_replace_chart_value(fd_dsbelief->con_chart[i], 3,
+                              (double)(results[1]+0.005), "B", FL_BLUE);
+       fl_replace_chart_value(fd_dsbelief->con_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+       fl_replace_chart_value(fd_dsbelief->con_chart[i], 1,
+                              (double)(results[3]+0.005), "U", FL_YELLOW);
+       /*
+       fl_set_slider_value(fd_orgbelief->bdu_con_belief[i],    (double)(results[1]+0.005));
+       fl_set_slider_value(fd_orgbelief->bdu_con_disbelief[i], (double)(results[2]+0.005));
+       fl_set_slider_value(fd_orgbelief->bdu_con_unknown[i],   (double)(results[3]+0.005));
+       */
+       k = i+1;
+       sprintf(chline, "%d%%", (int)(results[1]*100.0+0.5));
+       fl_set_object_label(fd_assess->assess_belief[k], chline);
+       fl_replace_chart_value(fd_assess->belief_pie, k, (double)results[1], "",
+                  currentype.assessment[i].piecolor);
+       sprintf(chline, "%d%%", (int)(results[2]*100.0+0.5));
+       fl_set_object_label(fd_assess->assess_disbelief[k], chline);
+       fl_replace_chart_value(fd_assess->disbelief_pie, k, (double)results[2], "",
+                  currentype.assessment[i].piecolor);
+
+       if (results[1] > 0.5) fl_set_object_label(fd_assess->ds_match[i], "+");
+       else if ((results[2]) > 0.5) fl_set_object_label(fd_assess->ds_match[i], "-");
+       else fl_set_object_label(fd_assess->ds_match[i], "?");
+     }
+     //fl_set_object_label(fd_assess->best_value, dsbtemp);
+     //
+     //   Process Hypothesis network displays
+     //
+     k = 0;
+     for (i=0; i<num_hyp[k]; i++) {
+        DS_AlgoGetResult(i+1, 2+k, results); 
+        fl_replace_chart_value(fd_network->hyp_chart[i], 1,
+                              (double)(results[1]+0.005), "B", FL_BLUE);
+        fl_replace_chart_value(fd_network->hyp_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+        fl_replace_chart_value(fd_network->hyp_chart[i], 3,
+                              (double)(results[3]+0.005), "U", FL_YELLOW);
+        fl_replace_chart_value(fd_dsbelief->hyp_chart[i], 1,
+                              (double)(results[1]+0.005), "B", FL_BLUE);
+        fl_replace_chart_value(fd_dsbelief->hyp_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+        fl_replace_chart_value(fd_dsbelief->hyp_chart[i], 3,
+                              (double)(results[3]+0.005), "U", FL_YELLOW);
+	/*
+        fl_set_slider_value(fd_orgbelief->bdu_hyp_belief[i],    (double)(results[1]+0.005));
+        fl_set_slider_value(fd_orgbelief->bdu_hyp_disbelief[i], (double)(results[2]+0.005));
+        fl_set_slider_value(fd_orgbelief->bdu_hyp_unknown[i],   (double)(results[3]+0.005));
+	*/
+     }
+     if (hyp_levels > 1) {
+       k = 1;
+       for (i=0; i<num_hyp[k]; i++) {
+         DS_AlgoGetResult(i+1, 2+k, results);
+         fl_replace_chart_value(fd_dsbelief->hyp1_chart[i], 1,
+                               (double)(results[1]+0.005), "B", FL_BLUE);
+         fl_replace_chart_value(fd_dsbelief->hyp1_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+         fl_replace_chart_value(fd_dsbelief->hyp1_chart[i], 3,
+                               (double)(results[3]+0.005), "U", FL_YELLOW); 
+       }
+     }
+     if (hyp_levels > 2) {
+       k = 2;
+       for (i=0; i<num_hyp[k]; i++) {
+         DS_AlgoGetResult(i+1, 2+k, results);
+         fl_replace_chart_value(fd_dsbelief->hyp2_chart[i], 1,
+                               (double)(results[1]+0.005), "B", FL_BLUE);
+         fl_replace_chart_value(fd_dsbelief->hyp2_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+         fl_replace_chart_value(fd_dsbelief->hyp2_chart[i], 3,
+                               (double)(results[3]+0.005), "U", FL_YELLOW); 
+       }
+     }
+     if (hyp_levels > 3) {
+       k = 3;
+       for (i=0; i<num_hyp[k]; i++) {
+         DS_AlgoGetResult(i+1, 2+k, results);
+         fl_replace_chart_value(fd_dsbelief->hyp3_chart[i], 1,
+                               (double)(results[1]+0.005), "B", FL_BLUE);
+         fl_replace_chart_value(fd_dsbelief->hyp3_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+         fl_replace_chart_value(fd_dsbelief->hyp3_chart[i], 3,
+                               (double)(results[3]+0.005), "U", FL_YELLOW); 
+       }
+     }
+     //
+     //   Process Source network displays
+     //
+     k = DS_AlgoGetTreeDepth();   //hyp_levels-1;
+     for (i=0; i<num_sources; i++) {
+        DS_AlgoGetResult(i+1, k, results);
+        fl_replace_chart_value(fd_network->src_chart[i], 1,
+                              (double)(results[1]+0.005), "B", FL_BLUE);
+        fl_replace_chart_value(fd_network->src_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+        fl_replace_chart_value(fd_network->src_chart[i], 3,
+                              (double)(results[3]+0.005), "U", FL_YELLOW);
+        fl_replace_chart_value(fd_dsbelief->src_chart[i], 1,
+                              (double)(results[1]+0.005), "B", FL_BLUE);
+        fl_replace_chart_value(fd_dsbelief->src_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+        fl_replace_chart_value(fd_dsbelief->src_chart[i], 3,
+                              (double)(results[3]+0.005), "U", FL_YELLOW);
+	/*
+        fl_set_slider_value(fd_orgbelief->bdu_src_belief[i],    (double)(results[1]+0.005));
+        fl_set_slider_value(fd_orgbelief->bdu_src_disbelief[i], (double)(results[2]+0.005));
+        fl_set_slider_value(fd_dsbelief->bdu_src_unknown[i],   (double)(results[3]+0.005));
+	*/
+     }
+}
+
+void populateCB(FL_OBJECT *object, long item_no)
+{
+int             item = 0, i, j, k;
+int             prop_grayed = FALSE;
+float           confidence, disbelief, Tin, Tdur, results[5];
+const char      *chtemp;
+char            chline[40];
+char            chdum1[16], chdum2[16];
+char            chsource[40];
+char            chhypoth[40];
+
+   curr_evid = curr_evid + 1;
+
+   if (curr_evid > num_evid) {
+      fprintf(stderr, "Warning, no more evidence to process. Request ignored\n");
+      fl_deactivate_object(fd_assess->propagate_button);
+      fl_deactivate_object(fd_network->propagate_button);
+      fl_deactivate_object(fd_dsbelief->prop_button);
+      fl_set_object_color(fd_assess->propagate_button, FL_INACTIVE_COL, FL_INACTIVE_COL);
+      fl_set_object_color(fd_network->propagate_button, FL_INACTIVE_COL, FL_INACTIVE_COL);
+      fl_set_object_color(fd_dsbelief->prop_button, FL_INACTIVE_COL, FL_INACTIVE_COL);
+      curr_evid = curr_evid - 1;
+      return;
+   }
+   /*
+   if (curr_evid == num_evid) {
+
+   }
+   */
+//
+//   Get the next piece of evidence from the database
+//
+   fl_select_browser_line(fd_input->input_browser, curr_evid);
+   strcpy(chsource, evidences[curr_evid-1].chsource);
+   confidence = evidences[curr_evid-1].confidence;
+   disbelief  = evidences[curr_evid-1].disbelief;
+   Tin        = evidences[curr_evid-1].Tin;
+   Tdur       = evidences[curr_evid-1].duration;
+   plause     = 1.0-disbelief;
+   item       = evidences[curr_evid-1].source;
+   //
+   //   If evidence available, process it.
+   //
+   if (item != -1 /*evidences[curr_evid-1].valid*/) {
+     j = curr_evid - 1;
+     DS_Algo(item, confidence, disbelief, Tin);
+
+     sprintf(dsline, "%-20s %7.1f %8s %8s %8s",
+             evidences[j].chdescript,
+	     evidences[j].Tin,
+             evidences[j].latitude,
+             evidences[j].longitude,
+             evidences[j].altitude);
+     fl_addto_browser(fd_assess->ass_browser, dsline);
+     //
+     //   Process the Assessment displays
+     //
+     sprintf(chline, "%f", evidences[j].Tin);
+     fl_set_object_label(fd_assess->cdate_text, chline);
+     fl_set_object_label(fd_network->cdate_text, chline);
+
+     strcpy(dsbtemp, " ");
+     for (i=0; i<num_assess; i++) {
+       DS_AlgoGetResult(i+1, 1, results);
+       Ybelief[i][j] = results[1];
+       Yplause[i][j] = 1.0 - results[2];
+       Xtime[i][j]   = Tin; //results[4];
+
+       fl_replace_chart_value(fd_network->con_chart[i], 3,
+                              (double)(results[1]+0.005), "B", FL_BLUE);
+       fl_replace_chart_value(fd_network->con_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+       fl_replace_chart_value(fd_network->con_chart[i], 1,
+                              (double)(results[3]+0.005), "U", FL_YELLOW);
+       fl_replace_chart_value(fd_dsbelief->con_chart[i], 3,
+                              (double)(results[1]+0.005), "B", FL_BLUE);
+       fl_replace_chart_value(fd_dsbelief->con_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+       fl_replace_chart_value(fd_dsbelief->con_chart[i], 1,
+                              (double)(results[3]+0.005), "U", FL_YELLOW);
+       /*
+       fl_set_slider_value(fd_orgbelief->bdu_con_belief[i],    (double)(results[1]+0.005));
+       fl_set_slider_value(fd_orgbelief->bdu_con_disbelief[i], (double)(results[2]+0.005));
+       fl_set_slider_value(fd_orgbelief->bdu_con_unknown[i],   (double)(results[3]+0.005));
+       */
+       k = i+1;
+       sprintf(chline, "%d%%", (int)(results[1]*100.0+0.5));
+       fl_set_object_label(fd_assess->assess_belief[k], chline);
+       fl_replace_chart_value(fd_assess->belief_pie, k, (double)results[1], "",
+                  currentype.assessment[i].piecolor);
+       sprintf(chline, "%d%%", (int)(results[2]*100.0+0.5));
+       fl_set_object_label(fd_assess->assess_disbelief[k], chline);
+       fl_replace_chart_value(fd_assess->disbelief_pie, k, (double)results[2], "",
+                  currentype.assessment[i].piecolor);
+
+       strcat(dsbtemp, fl_get_object_label(fd_assess->assm_text[i]));
+       if (results[1] > 0.5) strcat(dsbtemp, "+");
+       else if ((results[2]) > 0.5) strcat(dsbtemp, "-");
+       else strcat(dsbtemp, "?");
+       strcat(dsbtemp, " ");
+     }
+     fl_set_object_label(fd_assess->best_value, dsbtemp);
+
+     if (discrete) assess_selectCB(NULL, (long)curr_assess);
+     //
+     //   Process Hypothesis network displays
+     //
+     k = 0;
+     for (i=0; i<num_hyp[k]; i++) {
+        DS_AlgoGetResult(i+1, 2+k, results); 
+        fl_replace_chart_value(fd_network->hyp_chart[i], 1,
+                              (double)(results[1]+0.005), "B", FL_BLUE);
+        fl_replace_chart_value(fd_network->hyp_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+        fl_replace_chart_value(fd_network->hyp_chart[i], 3,
+                              (double)(results[3]+0.005), "U", FL_YELLOW);
+        fl_replace_chart_value(fd_dsbelief->hyp_chart[i], 1,
+                              (double)(results[1]+0.005), "B", FL_BLUE);
+        fl_replace_chart_value(fd_dsbelief->hyp_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+        fl_replace_chart_value(fd_dsbelief->hyp_chart[i], 3,
+                              (double)(results[3]+0.005), "U", FL_YELLOW);
+	/*
+        fl_set_slider_value(fd_orgbelief->bdu_hyp_belief[i],    (double)(results[1]+0.005));
+        fl_set_slider_value(fd_orgbelief->bdu_hyp_disbelief[i], (double)(results[2]+0.005));
+        fl_set_slider_value(fd_orgbelief->bdu_hyp_unknown[i],   (double)(results[3]+0.005));
+	*/
+     }
+     if (hyp_levels > 1) {
+       k = 1;
+       for (i=0; i<num_hyp[k]; i++) {
+         DS_AlgoGetResult(i+1, 2+k, results);
+         fl_replace_chart_value(fd_dsbelief->hyp1_chart[i], 1,
+                               (double)(results[1]+0.005), "B", FL_BLUE);
+         fl_replace_chart_value(fd_dsbelief->hyp1_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+         fl_replace_chart_value(fd_dsbelief->hyp1_chart[i], 3,
+                               (double)(results[3]+0.005), "U", FL_YELLOW); 
+       }
+     }
+     if (hyp_levels > 2) {
+       k = 2;
+       for (i=0; i<num_hyp[k]; i++) {
+         DS_AlgoGetResult(i+1, 2+k, results);
+         fl_replace_chart_value(fd_dsbelief->hyp2_chart[i], 1,
+                               (double)(results[1]+0.005), "B", FL_BLUE);
+         fl_replace_chart_value(fd_dsbelief->hyp2_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+         fl_replace_chart_value(fd_dsbelief->hyp2_chart[i], 3,
+                               (double)(results[3]+0.005), "U", FL_YELLOW); 
+       }
+     }
+     if (hyp_levels > 3) {
+       k = 3;
+       for (i=0; i<num_hyp[k]; i++) {
+         DS_AlgoGetResult(i+1, 2+k, results);
+         fl_replace_chart_value(fd_dsbelief->hyp3_chart[i], 1,
+                               (double)(results[1]+0.005), "B", FL_BLUE);
+         fl_replace_chart_value(fd_dsbelief->hyp3_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+         fl_replace_chart_value(fd_dsbelief->hyp3_chart[i], 3,
+                               (double)(results[3]+0.005), "U", FL_YELLOW); 
+       }
+     }
+     //
+     //   Process Source network displays
+     //
+     k = DS_AlgoGetTreeDepth();   //hyp_levels-1;
+     for (i=0; i<num_sources; i++) {
+        DS_AlgoGetResult(i+1, k, results);
+        fl_replace_chart_value(fd_network->src_chart[i], 1,
+                              (double)(results[1]+0.005), "B", FL_BLUE);
+        fl_replace_chart_value(fd_network->src_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+        fl_replace_chart_value(fd_network->src_chart[i], 3,
+                              (double)(results[3]+0.005), "U", FL_YELLOW);
+        fl_replace_chart_value(fd_dsbelief->src_chart[i], 1,
+                              (double)(results[1]+0.005), "B", FL_BLUE);
+        fl_replace_chart_value(fd_dsbelief->src_chart[i], 2,
+                              (double)(results[2]+0.005), "D", FL_RED);
+        fl_replace_chart_value(fd_dsbelief->src_chart[i], 3,
+                              (double)(results[3]+0.005), "U", FL_YELLOW);
+	/*
+        fl_set_slider_value(fd_orgbelief->bdu_src_belief[i],    (double)(results[1]+0.005));
+        fl_set_slider_value(fd_orgbelief->bdu_src_disbelief[i], (double)(results[2]+0.005));
+        fl_set_slider_value(fd_dsbelief->bdu_src_unknown[i],   (double)(results[3]+0.005));
+	*/ 
+     }
+   } else {
+     fprintf(stderr, "Evidence invalid. Request ignored.\n");
+     //curr_evid = curr_evid - 1;
+   }
+}
+
+void resetCB(FL_OBJECT *object, long item_no)
+{
+int item = 0;
+
+   curr_type   = 0;
+   curr_source = 0;
+   curr_hyp    = 0;
+   curr_assess = 0;
+   curr_evid   = 0;
+
+   fl_select_browser_line(fd_input->input_browser, curr_evid);
+   fl_clear_browser(fd_assess->ass_browser);
+   browser_line = 0;
+   browser_mod  = 0;            // 0=> 'add', 1=> 'modify'
+
+   fl_activate_object(fd_assess->propagate_button);
+   fl_activate_object(fd_network->propagate_button);
+   fl_activate_object(fd_dsbelief->prop_button);
+   fl_set_object_color(fd_assess->propagate_button, FL_COL1, FL_INACTIVE_COL);
+   fl_set_object_color(fd_network->propagate_button, FL_COL1, FL_INACTIVE_COL);
+   fl_set_object_color(fd_dsbelief->prop_button, FL_COL1, FL_INACTIVE_COL);
+
+   DS_AlgoInit(dsbtypes[fl_get_choice(fd_input->asstype_menu)-1].afilename, 0);
+}
+
+void executeCB(FL_OBJECT *object, long item_no)
+{
+int             i, j, n, item = 0;
+int             nsteps = 24*10;                   // 10 times per hour (= every 6 minutes)
+int             ievid;
+float           belief[50], disbelief[50], plause[50];
+float           Yb[240], Yp[240], Xt[240], Xover2[2], Yover2[2], Xover3[2], Yover3[2];
+char            chtemp[8];
+float           results[6]; Ybelief[6][240], Yplause[6][240], Xtime[6][240];
+float           Tend, Tnow, Tin, Tdur, degrade; 
+
+   if (discrete) {
+     for (item=0; item<num_evid; item++)
+        populateCB(NULL, item);
+   } else {
+     Tend = 24.0*60.0;
+     Tnow = -6.0;
+     //
+     //   Setup the graph
+     //
+     graph = fd_assess->conf_plot;
+     fl_set_xyplot_overlay_type(graph, 1, FL_NORMAL_XYPLOT);
+     fl_set_xyplot_overlay_type(graph, 2, FL_DASHED_XYPLOT);
+     fl_set_xyplot_xbounds(graph, 0.0, 24.0);
+     Xover2[0] = 0.0;
+     Yover2[0] = currentype.assessment[curr_assess].Bthreshold*100.0;
+     Xover2[1] = currentype.assessment[curr_assess].Tthreshold;
+     Yover2[1] = currentype.assessment[curr_assess].Bthreshold*100.0;
+     fl_add_xyplot_overlay(graph, 2, Xover2, Yover2, 2, FL_BLACK);
+     //
+     //   Display initial evidence
+     //
+     fl_clear_browser(fd_assess->ass_browser);
+     for (j=0; j<num_evid; j++) {
+       sprintf(dsline, "%-20s %7.1f %8s %8s %8s",
+             evidences[j].chdescript,
+	     evidences[j].Tin,
+             evidences[j].latitude,
+             evidences[j].longitude,
+             evidences[j].altitude);
+       fl_addto_browser(fd_assess->ass_browser, dsline);
+     }
+//
+//   Do a continuous evidence fuse over desired time interval
+//
+     n = -1;
+     for (j=0; j<nsteps; j++) {
+       Tnow = Tnow+6.0;
+       //fprintf(stderr, "--- Pass %d, time %f\n", j, Tnow);
+       for (i=0; i<num_evid; i++) {
+         if ((evidences[i].Tin+evidences[i].duration < Tnow) ||
+	     (evidences[i].Tin > Tend) ||
+	     (evidences[i].Tin > Tnow)) {
+           //
+           //   Ignore any evidence that's too old or too new
+           //
+           belief[i] = 0.0;
+           disbelief[i]  = 0.0;
+         } else {
+           //
+           //   Degrade belief and disbelief due to time
+           //
+           degrade = 1.0 - ((Tnow - evidences[i].Tin)/evidences[i].duration);
+           belief[i] = evidences[i].confidence * degrade;
+           disbelief[i] = evidences[i].disbelief * degrade;
+	 }
+	 /*
+	 fprintf(stderr, "     Degraded evidence is %f %f %f %f by %f\n",
+		 belief[i], disbelief[i],
+		 evidences[i].Tin, evidences[i].duration, degrade);
+	 */
+       }
+       //
+       //   Reset the accumulation matrix for this pass
+       //
+       curr_evid = 0;
+       DS_AlgoReset();
+       //
+       //   Fuse all the (degraded) evidence for current time
+       //
+       for (item=0; item<num_evid; item++) {
+	 //populateCB(NULL, item);
+	 //
+	 //   Get the next piece of evidence from the database
+	 //
+         fl_select_browser_line(fd_input->input_browser, item+1);
+	 ievid = evidences[item].source;
+	 DS_Algo(ievid, belief[item], disbelief[item], evidences[item].Tin);
+       }
+       //
+       //   Get and save the final answer for each assessment at this time
+       //
+       for (i=0; i<num_assess; i++) {
+         DS_AlgoGetResult(i+1, 1, results);
+         Ybelief[i][j] = results[1];
+         Yplause[i][j] = 1.0 - results[2];
+         Xtime[i][j]   = (Tnow/10.0)/6.0;
+	 //fprintf(stderr, "     Results are %f %f\n", Ybelief[i][j], Yplause[i][j]);
+       }
+       //
+       UpdateNet(i);
+       //
+       n++;
+       Yb[n] = (Ybelief[curr_assess][j])*100.0;
+       Yp[n] = (Yplause[curr_assess][j]+0.01)*100.0;
+       Xt[n] = Xtime[curr_assess][j];
+       //fprintf(stderr, "Plotting %f %f at %f\n", Yb[n], Yp[n], Xt[n]);
+       fl_set_xyplot_data(graph, Xt, Yb, n+1, "Confidence of Assessment",
+                          "Time (Hr)","%");
+       fl_add_xyplot_overlay(graph, 1, Xt, Yp, n+1, FL_RED);
+     }
+     /*
+     fl_delete_xyplot_text(graph,
+                             currentype.assessment[save_assess].chassess);
+     fl_add_xyplot_text(graph, 100.0, 120.0,
+                        currentype.assessment[curr_assess].chassess,
+                        FL_ALIGN_LEFT,
+                        currentype.assessment[curr_assess].piecolor);
+     save_assess = curr_assess;
+     */ 
+   }
+}
+
+int buttonpressCB(FL_OBJECT *ob, int event, FL_Coord mx, FL_Coord my, int key, void *raw)
+{
+FL_Coord        width, height;
+float           xpos, ypos, closest, d;
+float           slat, slon, salt, shead;
+float           results[5];
+float           Temp, Tmin;
+int             k, i, xval, yval;
+char            chline[16];
+char            chline1[32];
+char            chline4[32];
+ 
+   switch (event) {
+     case FL_PUSH:
+       Tmin = 99999.0;
+       //
+       //   Process user interactions in Box 1
+       //
+       if ((mx >= Box1X) && (mx <= Box1X+Box1W) && (my >= Box1Y) && (my <= Box1Y+Box1H)) { 
+	 sprintf(chline1, "%s", "For the Evidence that");
+	 sprintf(chline4, "%s", "impact on the Hypothesis that");
+         for (i=0; i<n_lines1; i++) {
+	   Temp = fabs(Slope1[i]*(float)mx + Intercept1[i] - (float)my);
+	   fprintf(stderr, "Temp = %f\n", Temp);
+	   if (Temp < Tmin) { Tmin = Temp; k = i; }
+         }
+	 fprintf(stderr, "Selected line is %d to %d\n", LHindex1[k], RHindex1[k]);
+         DS_AlgoGetResult(LHindex1[k], 1, results);
+       }
+       //
+       //   Process user interactions in Box 2
+       //
+       if ((mx >= Box2X) && (mx <= Box2X+Box2W) && (my >= Box2Y) && (my <= Box2Y+Box2H)) { 
+	 sprintf(chline1, "%s", "For the Hypothesis that");
+	 sprintf(chline4, "%s", "impact on the Conclusion to");
+         for (i=0; i<n_lines2; i++) {
+	   Temp = fabs(Slope2[i]*(float)mx + Intercept2[i] - (float)my);
+	   if (Temp < Tmin) { Tmin = Temp; k = i; }
+         }
+	 fprintf(stderr, "Selected line is %d to %d\n", LHindex2[k], RHindex2[k]);
+         DS_AlgoGetResult(LHindex2[k], 2, results);
+       }
+
+       sprintf(chline, "%d%%", (int)(results[1]*100.0+0.5));
+       fl_set_object_label(fd_dshelpevid->explain_belief, chline);
+       sprintf(chline, "%d%%", (int)(results[2]*100.0+0.5));
+       fl_set_object_label(fd_dshelpevid->explain_disbelief, chline);
+       sprintf(chline, "%d%%", (int)(results[3]*100.0+0.5));
+       fl_set_object_label(fd_dshelpevid->explain_unknown, chline);
+
+       fl_set_object_label(fd_dshelpevid->ds_help_line1, chline1);
+       fl_set_object_label(fd_dshelpevid->ds_help_line4, chline4);
+       fl_show_form(fd_dshelpevid->dshelpevid,FL_PLACE_CENTER,FL_FULLBORDER,
+                    "Weighting Explanation");
+       break;
+
+     case FL_DRAW:
+       draw_net();
+       break;
+
+     default:
+       break;
+   }
+}

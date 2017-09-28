@@ -1,0 +1,307 @@
+
+rotatez 180
+rotatex 90
+rotatey 90
+scale .0002 .0002 .0002
+translate 0.0 0.2 0.2
+color 220 220 220 100 200 100
+poly  4 Scoord Ehanger [][3] =  
+ vtx 0   0    0
+ vtx  0   0   17
+ vtx  0  -4    5
+ vtx  0  -4  -10
+color 220 220 220 100 200 100
+poly  4 Scoord EL1 [][3] =  
+vtx      -3  -3  -12
+vtx      -3  -9  -12
+vtx      -3  -9   -4
+vtx      -3  -3   -4
+color 220 220 220 100 200 100
+poly  4 Scoord EL2 [][3] =  
+vtx      -2  -4   -4
+vtx      -2  -8   -4
+vtx      -2  -8    4
+vtx      -2  -4    4
+color 220 220 220 100 200 100
+poly  3 Scoord EL3 [][3] =  
+ vtx     -1  -5    4
+  vtx     0  -6   10
+  vtx    -1  -7    4
+color 220 220 220 100 200 100
+poly  4 Scoord ER1 [][3] =  
+vtx       3  -3  -12
+ vtx      3  -9  -12
+vtx       3  -9   -4
+vtx       3  -3   -4
+color 220 220 220 100 200 100
+poly  4 Scoord ER2 [][3] =  
+vtx       2  -4   -4
+vtx       2  -8   -4
+vtx       2  -8    4
+vtx       2  -4    4
+color 220 220 220 100 200 100
+poly  3 Scoord ER3 [][3] =  
+vtx       1  -5    4
+vtx       0  -6   10
+vtx       1  -7    4
+color 220 220 220 100 200 100
+poly  4 Scoord EFRONT [][3] =  
+vtx      -3  -3  -11
+vtx      -3  -9  -11
+vtx       3  -9  -11
+vtx       3  -3  -11
+color 220 220 220 100 200 100
+poly  4 Scoord EFIRE  [][3] =  
+vtx      -2  -4  3
+vtx      -2  -8  3
+vtx       2  -8  3
+vtx       2  -4  3
+color 220 220 220 100 200 100
+poly  4 Scoord ET1 [][3] =  
+ vtx     -3  -3  -12
+ vtx      3  -3  -12
+ vtx      3  -3   -4
+ vtx     -3  -3   -4
+color 220 220 220 100 200 100
+poly  4 Scoord ET2 [][3] =  
+ vtx     -2  -4   -4
+ vtx      2  -4   -4
+ vtx      2  -4    4
+ vtx     -2  -4    4
+color 220 220 220 100 200 100
+poly  4 Scoord EB1 [][3] =  
+ vtx     -3  -9  -12
+ vtx      3  -9  -12
+ vtx      3  -9   -4
+ vtx     -3  -9   -4
+color 220 220 220 100 200 100
+poly  4 Scoord EB2 [][3] =  
+ vtx     -2  -8   -4
+ vtx      2  -8   -4
+ vtx      2  -8    4
+ vtx     -2  -8    4
+color 220 220 220 100 200 100
+poly  3 Scoord ET3 [][3] =  
+ vtx      1  -5    4
+ vtx      0  -6   10
+ vtx     -1  -5    4
+color 220 220 220 100 200 100
+poly  3 Scoord EB3 [][3] =  
+ vtx      1  -7    4
+ vtx      0  -6   10
+ vtx     -1  -7    4
+translate 0.0 0.0 0.0
+color 220 220 220 100 200 200
+poly  3 Scoord B1 [][3] =  
+ vtx      0  20  -100
+ vtx     -4  16   -98
+ vtx      4  16   -98
+color 220 220 220 100 200 200
+poly  4 Scoord B2 [][3] =  
+  vtx     4  16  -98
+  vtx    -4  16  -98
+  vtx   -10  10  -84
+  vtx    10  10  -84
+color 220 220 220 100 200 200
+poly  4 Scoord B3 [][3] =  
+  vtx    10  10  -84
+  vtx   -10  10  -84
+  vtx   -10  10   66
+  vtx    10  10   66
+color 220 220 220 100 200 200
+poly  5 Scoord B4 [][3] =  
+   vtx   10  10   66
+   vtx  -10  10   66
+   vtx  -10  17   99
+   vtx    0  24  132
+   vtx   10  17   99
+color 220 220 220 100 200 200
+poly  3 Scoord L1 [][3] =  
+   vtx    0  20 -100
+   vtx   -4  24  -98
+   vtx   -4  16  -98
+color 220 220 220 100 200 200
+poly  4 Scoord L2 [][3] =  
+   vtx   -4  16  -98
+   vtx   -4  24  -98
+   vtx  -10  30  -84
+   vtx  -10  10  -84
+color 220 220 220 100 200 200
+poly  5 Scoord L3 [][3] =  
+   vtx  -10  10  -84
+   vtx  -10  30  -84
+   vtx  -10  30   99
+   vtx  -10  17   99
+   vtx  -10  10   66
+color 220 220 220 100 200 200
+poly  4 Scoord L4 [][3] =  
+   vtx  -10  17   99
+   vtx  -10  30   99
+   vtx    0  30  132
+   vtx    0  24  132
+color 220 220 220 100 200 200
+poly  3 Scoord R1 [][3] =  
+   vtx    0  20 -100
+   vtx    4  24  -98
+   vtx    4  16  -98
+color 220 220 220 100 200 200
+poly  4 Scoord R2 [][3] =  
+   vtx    4  16  -98
+   vtx    4  24  -98
+   vtx   10  30  -84
+   vtx   10  10  -84
+color 220 220 220 100 200 200
+poly  5 Scoord R3 [][3] =  
+   vtx   10  10  -84
+   vtx   10  30  -84
+   vtx   10  30   99
+   vtx   10  17   99
+   vtx   10  10   66
+color 220 220 220 100 200 200
+poly  4 Scoord R4 [][3] =  
+   vtx   10  17   99
+   vtx   10  30   99
+   vtx    0  30  132
+   vtx    0  24  132
+color 220 220 220 100 200 200
+poly  3 Scoord T1 [][3] =  
+   vtx    0  20 -100
+   vtx   -4  24  -98
+   vtx    4  24  -98
+color 220 220 220 100 200 200
+poly  4 Scoord T2 [][3] =  
+   vtx    4  24  -98
+   vtx   -4  24  -98
+   vtx   -2  30  -90
+   vtx    2  30  -90
+color 220 220 220 100 200 200
+poly  4 Scoord T3 [][3] =  
+   vtx    4  24  -98
+   vtx    2  30  -90
+   vtx    8  30  -84
+   vtx   10  30  -84
+color 220 220 220 100 200 200
+poly  4 Scoord T4 [][3] =  
+   vtx   -4  24  -98
+   vtx   -2  30  -90
+   vtx   -8  30  -84
+   vtx  -10  30  -84
+color 220 220 220 100 200 200
+poly  4 Scoord T5 [][3] =  
+   vtx   10  30  -84
+   vtx    8  30  -84
+   vtx    6  32  -84
+   vtx    6  34  -84
+color 220 220 220 100 200 200
+poly  4 Scoord T6 [][3] =  
+   vtx  -10  30  -84
+   vtx   -8  30  -84
+   vtx   -6  32  -84
+   vtx   -6  34  -84
+color 220 220 220 100 200 200
+poly  4 Scoord T7 [][3] =  
+   vtx   -2  30  -90
+   vtx    2  30  -90
+   vtx    2  32  -88
+   vtx   -2  32  -88
+color 220 220 220 100 200 200
+poly  4 Scoord T8 [][3] =  
+   vtx    2  30  -90
+   vtx    2  32  -88
+   vtx    6  32  -84
+   vtx    8  30  -84
+color 220 220 220 100 200 200
+poly  4 Scoord T9 [][3] =  
+   vtx   -2  30  -90
+   vtx   -2  32  -88
+   vtx   -6  32  -84
+   vtx   -8  30  -84
+color 220 220 220 100 200 200
+poly  4 Scoord T10 [][3] =  
+   vtx    2  32  -88
+   vtx    6  34  -84
+   vtx   -6  34  -84
+   vtx   -2  32  -88
+color 220 220 220 100 200 200
+poly  4 Scoord T13 [][3] =  
+   vtx    6  34  -84
+   vtx    6  34  -68
+   vtx   -6  34  -68
+   vtx   -6  34  -84
+color 220 220 220 100 200 200
+poly  4 Scoord T14 [][3] =  
+   vtx    6  34  -84
+   vtx   10  30  -84
+   vtx   10  30  -52
+   vtx    6  34  -68
+color 220 220 220 100 200 200
+poly  4 Scoord T15 [][3] =  
+   vtx   -6  34  -84
+   vtx  -10  30  -84
+   vtx  -10  30  -52
+   vtx   -6  34  -68
+color 220 220 220 100 200 200
+poly  4 Scoord T16 [][3] =  
+   vtx    6  34  -68
+   vtx   10  30  -52
+   vtx  -10  30  -52
+   vtx   -6  34  -68
+color 220 220 220 100 200 200
+poly  5 Scoord T17 [][3] =  
+   vtx   10  30  -52
+   vtx   10  30   99
+   vtx    0  30  132
+   vtx  -10  30   99
+   vtx  -10  30  -52
+color 220 220 220 100 100 100
+poly  4 Scoord rudder[][3] =  
+   vtx    0  30  126
+   vtx    0  64  140
+   vtx    0  64  128
+   vtx    0  30   92
+color 220 220 220 100 100 100
+poly  4 Scoord rightelevator1[][3] =  
+   vtx    0  26  126
+   vtx   49  30  140
+   vtx   49  30  130
+   vtx   10  26   99
+color 220 220 220 100 100 100
+poly  4 Scoord rightelevator2[][3] =  
+   vtx   10  26   89
+   vtx   10  26   99
+   vtx   49  30  130
+   vtx   49  30  126
+color 220 220 220 100 100 100
+poly  4 Scoord leftelevator1[][3] =  
+   vtx   -0  26  126
+   vtx  -49  30  140
+   vtx  -49  30  130
+   vtx  -10  26   99
+color 220 220 220 100 100 100
+poly  4 Scoord leftelevator2[][3] =  
+   vtx  -10  26   89
+   vtx  -10  26   99
+   vtx  -49  30  130
+   vtx  -49  30  126
+color 220 220 220 100 100 100
+poly  4 Scoord rightwing1[][3] =  
+    vtx  10  16  -55+20
+    vtx  10  16  -15+20
+    vtx  98  24   31+20
+    vtx  98  24   13+20
+color 220 220 220 100 100 100
+poly  3 float rightwing2[][3] =  
+    vtx  10  16  -15+20
+    vtx  10  16   -7+20
+    vtx  38  18.5555  -3+20
+color 220 220 220 100 100 100
+poly  4 Scoord leftwing1[][3] =  
+vtx    -10  16  -55+20
+vtx   -10  16  -15+20
+vtx   -98  24   31+20
+vtx   -98  24   13+20
+color 220 220 220 100 100 100
+poly  3 float leftwing2[][3] =  
+vtx     -10  16  -15+20
+vtx   -10  16   -7+20
+vtx     -38  18.5555  -3+20

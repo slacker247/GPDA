@@ -1,0 +1,178 @@
+begin-ontology
+ontology-container
+
+    title "ATKIS-OK-1000 Ontology"
+    creator "Heiner Stuckenschmidt"
+    subject "Definition of the ATKIS-OK-1000 catalogue"
+    description "ATKIS-OK-1000 specific refinement of land-use classes"
+    description.release "1.0"
+    publisher "Bremen University Semantic Translation Project"
+    type ontology
+    format "OIL"
+    identifier "bla"
+    language "OIL"
+    language "en-uk"
+    relation area.oil
+
+ontology-definitions
+
+   class-def defined ATKIS-area
+       
+        subclass-of  area
+
+   class-def defined settlements
+        subclass-of  ATKIS-area
+        slot-constraint  coverage
+            has-value  (buildings or road-networks)
+        slot-constraint  vegetation
+            value-type  no-plants
+        slot-constraint  cultivation
+            value-type  no-plants
+        slot-constraint  ground
+            value-type  land
+
+   class-def defined traffic-area
+        subclass-of  ATKIS-area
+        slot-constraint  coverage
+            value-type  traffic-installation
+        slot-constraint  vegetation
+            value-type  no-plants
+        slot-constraint  cultivation
+            value-type  no-plants
+        slot-constraint  use-type
+            value-type  transportation
+
+   class-def defined vegetation-area
+        subclass-of  ATKIS-area
+
+   class-def defined waters
+        subclass-of  ATKIS-area
+        slot-constraint  cultivation
+            value-type  no-plants
+        slot-constraint  vegetation
+            value-type  no-plants
+
+    class-def defined residential-area
+        subclass-of  settlements
+        slot-constraint  use-type
+            has-value  living
+
+    class-def defined industrial-area
+        subclass-of  settlements
+        slot-constraint  use-type
+            has-value  production
+
+    class-def defined special-function-area
+        subclass-of  settlements
+        slot-constraint  use-type
+            has-value  administration
+
+    class-def defined mining-area
+        subclass-of  settlements
+        slot-constraint  use-type
+            has-value  extraction
+
+    class-def defined airport-area
+        subclass-of  traffic-area
+        slot-constraint  ground
+            value-type  plain-land
+        slot-constraint  coverage
+            value-type  airport-installation
+
+     class-def defined port-area
+        subclass-of  traffic-area
+        slot-constraint  ground
+            value-type  land
+        slot-constraint  coverage
+            value-type  port-installation
+
+    class-def defined dock-area
+        subclass-of  traffic-area
+        slot-constraint  ground
+            value-type  water
+        slot-constraint  covered-by
+            has-value  port-area
+
+    class-def defined railroad-station
+        subclass-of  traffic-area
+        slot-constraint  ground
+            value-type  land
+        slot-constraint  coverage
+            value-type  railroad-installation
+
+   class-def defined moor-area
+        subclass-of  vegetation-area
+        slot-constraint  ground
+            has-value (land or wetland)
+        slot-constraint  cultivation
+            has-value  no-plants
+        slot-constraint  vegetation
+            value-type  herbaceous-plants
+
+    class-def defined swamp-area
+        subclass-of vegetation-area
+        slot-constraint ground
+            has-value (wetland or fresh-water)
+        slot-constraint cultivation
+            has-value no-plants
+        slot-constraint vegetation
+            value-type herbaceous-plants
+
+    class-def defined forest-area
+        subclass-of vegetation-area
+        slot-constraint ground
+            value-type land
+        slot-constraint vegetation
+            has-value (trees or shrubs)
+
+    class-def defined cultivated-area
+        subclass-of vegetation-area
+        slot-constraint use-type
+            has-value cultivation
+
+    class-def defined wet-area
+        subclass-of (vegetation-area and (not swamp-area))
+        slot-constraint ground
+            has-value (wetland or fresh-water)
+        slot-constraint covered-by
+            min-cardinality 1 area
+
+    class-def defined barren-area
+        subclass-of vegetation-area
+        slot-constraint ground
+            value-type land
+        slot-constraint vegetation
+            value-type no-plants
+
+    class-def defined unclassified-area
+        subclass-of vegetation-area
+
+    class-def defined ocean
+        subclass-of waters
+        slot-constraint ground
+            has-value salt-water
+	slot-constraint ground
+            value-type salt-water
+
+    class-def defined lake
+        subclass-of waters
+        slot-constraint ground
+            value-type fresh-water
+        slot-constraint meets
+            value-type (not ocean)
+
+    class-def defined watts
+        subclass-of waters
+        slot-constraint ground
+            has-value (wetlands or salt-water)
+        slot-constraint covered-by
+            value-type ocean
+
+    class-def defined sandbank
+        subclass-of waters
+        slot-constraint ground
+            has-value (wetlands or water)
+        slot-constraint contained-in
+            has-value (ocean or river)
+
+end-ontology

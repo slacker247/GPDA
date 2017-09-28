@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS view source via translate header"; flags: A+; content: "Translate|3a| F"; nocase;reference:arachnids,305; classtype:web-application-activity; sid:1042; rev:2;)

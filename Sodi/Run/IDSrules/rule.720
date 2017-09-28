@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible NewApt.Worm - hog.exe"; content: "filename=\"HOG.EXE\""; nocase; reference:MCAFEE,10540; sid:763;  classtype:misc-activity; rev:3;)

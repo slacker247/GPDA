@@ -1,0 +1,346 @@
+begin-ontology
+ontology-container
+title "People and Jobs"
+creator "Sean Bechhofer"
+description "An ontology about people and the jobs that they do"
+description.release "1.0"
+type ontology
+identifier "id"
+language "OIL"
+
+
+ontology-definitions
+
+class-def defined animal_lover
+documentation "Someone who really likes animals"
+subclass-of 
+  person
+  slot-constraint has_pet min-cardinality 3 animal
+// person
+
+class-def tabloid
+subclass-of 
+  newspaper
+// newspaper
+// SUB: red_top
+
+class-def defined haulage_truck_driver
+subclass-of 
+  person
+  slot-constraint drives has-value truck
+  slot-constraint works_for has-value (slot-constraint part_of has-value haulage_company)
+// person
+
+class-def animal
+// SUB: cat
+// SUB: dog
+
+class-def colour
+
+class-def defined driver
+subclass-of 
+  person
+  slot-constraint drives has-value vehicle
+// person
+
+class-def defined van_driver
+subclass-of 
+  person
+  slot-constraint drives has-value van
+// person
+
+class-def publication
+// SUB: magazine
+// SUB: newspaper
+
+class-def person
+// SUB: animal_lover
+// SUB: haulage_truck_driver
+// SUB: driver
+// SUB: van_driver
+// SUB: dog_liker
+// SUB: dog_owner
+// SUB: boy
+// SUB: kid
+// SUB: man
+// SUB: girl
+// SUB: woman
+// SUB: lorry_driver
+// SUB: old_lady
+// SUB: grownup
+// SUB: bus_driver
+// SUB: cat_liker
+// SUB: cat_owner
+// SUB: pet_owner
+
+class-def defined white_van_man
+subclass-of 
+  man
+  slot-constraint drives has-value ((slot-constraint has_colour has-value (one-of white)) and van)
+// man
+
+class-def defined dog_liker
+subclass-of 
+  person
+  slot-constraint likes has-value dog
+// person
+
+class-def defined dog_owner
+subclass-of 
+  person
+  slot-constraint has_pet has-value dog
+// person
+
+class-def quality_broadsheet
+subclass-of 
+  broadsheet
+// broadsheet
+
+class-def bicycle
+documentation "A human propelled vehicle, with two wheels"
+subclass-of 
+  vehicle
+// vehicle
+
+class-def magazine
+subclass-of 
+  publication
+// publication
+
+class-def defined boy
+subclass-of 
+  person
+  slot-constraint sex has-value (one-of male)
+  slot-constraint age has-value (one-of young)
+// person
+
+class-def bus
+subclass-of 
+  vehicle
+// vehicle
+
+class-def car
+subclass-of 
+  vehicle
+// vehicle
+
+class-def cat
+subclass-of 
+  animal
+// animal
+
+class-def dog
+subclass-of 
+  animal
+// animal
+
+class-def defined kid
+subclass-of 
+  person
+  slot-constraint age has-value (one-of young)
+// person
+
+class-def defined man
+subclass-of 
+  person
+  slot-constraint sex has-value (one-of male)
+  slot-constraint age has-value (one-of adult)
+// person
+// SUB: white_van_man
+
+class-def van
+subclass-of 
+  vehicle
+// vehicle
+
+class-def defined girl
+subclass-of 
+  person
+  slot-constraint sex has-value (one-of female)
+  slot-constraint age has-value (one-of young)
+// person
+
+class-def bus_company
+subclass-of 
+  company
+// company
+
+class-def lorry
+subclass-of 
+  vehicle
+// vehicle
+
+class-def truck
+subclass-of 
+  vehicle
+// vehicle
+
+class-def defined woman
+subclass-of 
+  person
+  slot-constraint age has-value (one-of adult)
+  slot-constraint sex has-value (one-of female)
+// person
+
+class-def defined lorry_driver
+subclass-of 
+  person
+  slot-constraint drives has-value lorry
+// person
+
+class-def defined old_lady
+subclass-of 
+  person
+  slot-constraint age has-value (one-of elderly)
+  slot-constraint sex has-value (one-of female)
+// person
+
+class-def defined grownup
+subclass-of 
+  person
+  slot-constraint age has-value (one-of adult elderly)
+// person
+
+class-def newspaper
+subclass-of 
+  publication
+// publication
+// SUB: tabloid
+// SUB: broadsheet
+
+class-def vehicle
+// SUB: bicycle
+// SUB: bus
+// SUB: car
+// SUB: van
+// SUB: lorry
+// SUB: truck
+
+class-def defined haulage_worker
+  slot-constraint works_for has-value (haulage_company or (slot-constraint part_of has-value haulage_company))
+
+class-def company
+// SUB: bus_company
+// SUB: haulage_company
+
+class-def red_top
+subclass-of 
+  tabloid
+// tabloid
+
+class-def defined bus_driver
+subclass-of 
+  person
+  slot-constraint drives has-value bus
+// person
+
+class-def haulage_company
+subclass-of 
+  company
+// company
+
+class-def broadsheet
+subclass-of 
+  newspaper
+// newspaper
+// SUB: quality_broadsheet
+
+class-def defined cat_liker
+subclass-of 
+  person
+  slot-constraint likes has-value cat
+// person
+
+class-def defined cat_owner
+subclass-of 
+  person
+  slot-constraint has_pet has-value cat
+// person
+
+class-def defined pet_owner
+subclass-of 
+  person
+  slot-constraint has_pet has-value animal
+// person
+
+slot-def service_number
+  range (min 1)
+
+slot-def drives
+
+slot-def part_of
+
+slot-def age
+  range (one-of young adult elderly)
+
+slot-def sex
+  range (one-of male female)
+
+slot-def has_child
+
+slot-def likes
+
+slot-def reads
+  range publication
+
+slot-def has_part
+  domain company
+  range company
+
+slot-def has_pet
+
+slot-def is_part_of
+
+slot-def works_for
+  range (person or company)
+
+slot-def has_colour
+
+slot-def has_father
+  subslot-of has_parent
+  range man
+
+slot-def has_mother
+  subslot-of has_parent
+  range woman
+
+slot-def has_parent
+  domain person
+  range person
+
+instance-of TheSun tabloid
+
+instance-of elderly top
+
+instance-of female top
+
+instance-of red colour
+
+instance-of blue colour
+
+instance-of male top
+
+instance-of adult top
+
+instance-of white colour
+
+instance-of young top
+
+instance-of TheGuardian broadsheet
+
+instance-of TheMirror tabloid
+
+instance-of TheTimes broadsheet
+
+disjoint dog cat
+
+disjoint animal person
+
+covered white_van_man by (slot-constraint reads value-type tabloid)
+
+covered old_lady by ((slot-constraint has_pet value-type cat) and (slot-constraint has_pet has-value animal))
+
+disjoint-covered bus_driver by (not (slot-constraint likes has-value (person and (slot-constraint age has-value (one-of young))))) (slot-constraint reads value-type broadsheet)
+
+disjoint-covered newspaper by broadsheet tabloid
+end-ontology

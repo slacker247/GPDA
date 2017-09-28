@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN NMAP XMAS";flags:FPU; reference:arachnids,30; classtype:attempted-recon; sid:1228; rev:1;)

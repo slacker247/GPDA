@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 139 (msg:"NETBIOS SMB CD..";flags: A+; content:"\\..|2f 00 00 00|"; reference:arachnids,338; classtype:attempted-recon; sid:534; rev:1;)

@@ -1,0 +1,1 @@
+alert ip $EXTERNAL_NET any -> $HOME_NET any (msg:"MISC source route ssrr"; ipopts: ssrr ;reference:arachnids,422; classtype:bad-unknown; sid:502; rev:1;)

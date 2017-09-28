@@ -1,0 +1,1 @@
+alert ip $EXTERNAL_NET any -> $HOME_NET any (msg:"SHELLCODE digital unix NOOP"; content:"|47 ff 04 1f 47 ff 04 1f 47 ff 04 1f 47 ff 04 1f|"; reference:arachnids,352; classtype:shellcode-detect; sid:641; rev:2;)

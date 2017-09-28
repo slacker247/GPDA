@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 2766 (msg:"EXPLOIT nlps x86 solaris overflow";flags: A+; content:"|eb23 5e33 c088 46fa 8946 f589 36|"; classtype:attempted-admin; sid:300; rev:2; reference:bugtraq,2319;)

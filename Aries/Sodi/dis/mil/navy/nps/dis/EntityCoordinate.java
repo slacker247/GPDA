@@ -1,0 +1,198 @@
+/*
+ File:		EntityCoordinate.java
+ CVS Info:	$Id: EntityCoordinate.java,v 1.2 1998/01/27 18:44:06 mcgredo Exp $
+ Compiler:	jdk 1.3
+ */
+
+package mil.navy.nps.dis;
+
+import mil.navy.nps.util.*;         // General-purpose utilities
+import mil.navy.nps.disEnumerations.*;         // Enumerations for DIS
+
+import java.lang.*;
+import java.util.*;
+import java.io.*;
+
+/**
+ * Entity coordinate system.
+ *
+ *@version 1.0
+ *@author <a href="mailto:mcgredo@cs.nps.navy.mil"> Don McGregor</a> (<a href="http://www.npsnet.org/~mcgredo">http://www.npsnet.org/~mcgredo</a>)
+ *
+ *<dt><b>Location:</b>
+ *<dd>Web:  <a href="http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/EntityCoordinate.java">
+ *  http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/EntityCoordinate.java</a>
+ *
+ *<dd>or locally:  <a href="../../../../../../mil/navy/nps/dis/EntityCoordinate.java">
+ *  ~/mil/navy/nps/dis/EntityCoordinate.java</a>
+ *
+ *<dt><b>Hierarchy Diagram:</b>
+ *<dd><a href="../../../../../../dis-java-vrml/images/PduClassHierarchy.jpg"><IMG SRC="../../../../../../dis-java-vrml/images/PduClassHierarchyButton.jpg" ALIGN=ABSCENTER WIDTH=150 HEIGHT=21></a>
+ *
+ *<dt><b>Summary:</b>
+ *<dd>Location with respect to a particular entity shall be specified with respect to three orthogonal axes
+ *  whose origin shall be the center of the bounding volume of the entity excluding its articulated
+ *  and attached parts.
+ *
+ *<dt><b>Explanation:</b>
+ *<dd>The EntityCoordinate class describes a position in 32-bit x,y,z coordinates relative 
+ *  to the entity's own coordinate system. The other major position class is "WorldCoordinate",
+ *  which describes the position in 64-bit x, y, z "world" coords.<P>
+ *
+ *<dt><b>Note:</b>
+ *<dd>This is not really a record on its own for DIS, but simply a vector.
+ *
+ *<dt><b>History:</b>
+ *<dd>		16Dec96 /Don McGregor    	/New
+ *<dd>		10Mar97 /Don McGregor    	/Cleaned up for javadoc
+ *<dd>		16Apr97 /Don McGregor    	/PrintStream passed to printValues
+ *<dd>		12Aug97 /Don McGregor    	/elaborated printValues
+ *<dd>		8Dec97	/Ronan Fauglas		/changes for documentation templates + complements in documentation
+ *<dd>		11Dec97	/Ronan Fauglas		/changes access methods names from "variable()" to "getVariable()"
+ *<dd>		17Dec97	/Ronan Fauglas		/bug fixes: changed sizeOf from 24 to 12
+ *
+ *<dt><b>References:</b>
+ *<dd>		DIS Data Dictionary: <a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/1e.htm">Entity Coordinate Vector Record</a>
+ *<dd>		DIS specification : IEEE 1278.1, 5.3.33.1
+ *
+ *@see PduElement 
+ *@see SerializationInterface
+ *@see LinearAcceleration
+ *@see LinearVelocity
+ *@see WorldCoordinate
+ */
+public class EntityCoordinate extends PduElement
+{
+    /**
+     *First coordinate of the entity, along X axis
+     */
+    protected float  x;     // x-position
+
+    /**
+     *Second coordinate of the entity, along Y axis
+     */
+    protected float  y;     // y-position
+
+    /**
+     *Third coordinate of the entity, along Z axis
+     */
+    protected float  z;     // z-position
+
+    /**
+     *Constant value--size of a Entity Position Record; here :<code>sizeOf = 12 bytes</code>.
+     */
+    public final int sizeOf = 12;   // object is 12 bytes long 
+
+
+/**
+ *Constructs an new EntityCoordinate Object; the entity is at the origin.
+ */
+public EntityCoordinate()
+{
+    // default constructor
+
+    x = 0; 
+    y = 0;
+    z = 0;
+
+    return;
+}
+
+public EntityCoordinate(float pX, float pY, float pZ)
+{
+    x = pX;
+    y = pY;
+    z = pZ;
+
+    return;
+}
+
+public Object clone()
+{
+
+ EntityCoordinate newEntityCoordinate = new EntityCoordinate(x, y, z);
+
+ return newEntityCoordinate;
+}
+
+public void serialize(DataOutputStream outputStream)
+{
+    // write out the data to an output stream. Order is important here, since
+    // it needs to conform to the DIS standard.
+
+    //super.serialize(outputStream);        // No need to call super, since no ivars are in our direct superclass
+    
+    try
+     {
+        outputStream.writeFloat(x);
+        outputStream.writeFloat(y);
+        outputStream.writeFloat(z);
+     }
+    catch (IOException ioError)
+        {
+            throw new 
+                RuntimeException("Exception in EntityCoordinate. Error writing to wire.");
+        }
+}
+
+public void deSerialize(DataInputStream pInputStream)
+{
+    try
+     {
+        x = pInputStream.readFloat();
+        y = pInputStream.readFloat();
+        z = pInputStream.readFloat();
+     }
+     catch (IOException ioError)
+        {
+            throw new 
+                RuntimeException("Exception in EntityCoordinate. Error reading from wire.");
+        }
+
+}
+
+public int length()
+{
+    return sizeOf;          // EntityTypes are this long, always.
+}
+
+public void printValues(int indentLevel, PrintStream printStream)
+{
+    // print the values of the object out, with correct level of
+    // indentation on the page.
+
+    
+  StringBuffer indent = ProtocolDataUnit.getPaddingOfLength(indentLevel);
+  int          idx, superclassIndent = indentLevel;
+
+    printStream.println(indent + "EntityCoordinate x: "   + x);
+    printStream.println(indent + "EntityCoordinate y: "   + y);
+    printStream.println(indent + "EntityCoordinate z: "   + z);
+
+    return;
+}
+
+// Accessor methods
+
+public float getX()
+{   return x;
+}
+public void setX(float pX)
+{x = pX;
+}
+
+public float getY()
+{   return y;
+}
+public void setY(float pY)
+{y = pY;
+}
+
+public float getZ()
+{   return z;
+}
+public void setZ(float pZ)
+{z = pZ;
+}
+
+} // end of class EntityCoordinate

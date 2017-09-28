@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP serv-u directory transversal"; flags: A+; content: ".%20."; nocase; classtype:bad-unknown; sid:360; rev:1;)

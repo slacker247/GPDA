@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION expeval access";flags: A+; uricontent:"/cfdocs/expeval/"; nocase; reference:bugtraq,550; reference:cve,CAN-1999-0477; classtype:attempted-user; sid:918; rev:1;)

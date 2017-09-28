@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE evidence SYSTEM "file:////home/dre/Protege-2000/evidence.dtd">
+<evidence>
+	<SystemClasses id="STANDARD-CLASS">
+	</SystemClasses>
+	<SystemClasses id="THING">
+	</SystemClasses>
+	<SystemClasses id="PAL-CONSTRAINT">
+	</SystemClasses>
+	<STANDARD-CLASS id="Evidence" superclass_id="THING">
+		<NAME>Evidence</NAME>
+		<ROLE>Concrete</ROLE>
+		<TemplateSlot id="Arg-1"/>
+		<TemplateSlot id="Arg-2"/>
+		<TemplateSlot id="Arg-3"/>
+		<TemplateSlot id="Belief"/>
+		<TemplateSlot id="Description"/>
+		<TemplateSlot id="Disbelief"/>
+		<TemplateSlot id="Dur-Unit"/>
+		<TemplateSlot id="Duration"/>
+		<TemplateSlot id="External-Filename"/>
+		<TemplateSlot id="External_Level"/>
+		<TemplateSlot id="External_Node"/>
+		<TemplateSlot id="Level"/>
+		<TemplateSlot id="Mission-Domain"/>
+		<TemplateSlot id="Node"/>
+		<TemplateSlot id="Source"/>
+		<TemplateSlot id="Time"/>
+		<TemplateSlot id="Time-Unit"/>
+		<TemplateSlot id="Type"/>
+	</STANDARD-CLASS>
+	<SLOT id="Arg-1">
+		<SlotType>STRING</SlotType>
+		<SlotDocumentation>Argument 1</SlotDocumentation>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="Arg-2">
+		<SlotType>STRING</SlotType>
+		<SlotDocumentation>Argument 2</SlotDocumentation>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="Arg-3">
+		<SlotType>STRING</SlotType>
+		<SlotDocumentation>Argument 3</SlotDocumentation>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="Belief">
+		<SlotType>FLOAT</SlotType>
+		<SlotDocumentation>Percent Confidence</SlotDocumentation>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMaximum>1.0</SlotMaximum>
+		<SlotMinCard>0</SlotMinCard>
+		<SlotMinimum>0.0</SlotMinimum>
+	</SLOT>
+	<SLOT id="Description">
+		<SlotType>STRING</SlotType>
+		<SlotDocumentation>Source Description</SlotDocumentation>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="Disbelief">
+		<SlotType>FLOAT</SlotType>
+		<SlotDocumentation>Amount Disbelief</SlotDocumentation>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMaximum>1.0</SlotMaximum>
+		<SlotMinCard>0</SlotMinCard>
+		<SlotMinimum>0.0</SlotMinimum>
+	</SLOT>
+	<SLOT id="Dur-Unit">
+		<SlotType>STRING</SlotType>
+		<SlotDocumentation>Duration Time Unit</SlotDocumentation>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="Duration">
+		<SlotType>FLOAT</SlotType>
+		<SlotDocumentation>Evidence Duration</SlotDocumentation>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="External-Filename">
+		<SlotType>STRING</SlotType>
+		<SlotDefaultValue>None</SlotDefaultValue>
+		<SlotDocumentation>External file name</SlotDocumentation>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="External_Level">
+		<SlotType>INTEGER</SlotType>
+		<SlotDocumentation>External level number</SlotDocumentation>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="External_Node">
+		<SlotType>INTEGER</SlotType>
+		<SlotDocumentation>External node number</SlotDocumentation>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="Level">
+		<SlotType>INTEGER</SlotType>
+		<SlotDocumentation>Network Level</SlotDocumentation>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="Mission-Domain">
+		<SlotType>STRING</SlotType>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="Node">
+		<SlotType>INTEGER</SlotType>
+		<SlotDocumentation>Node number</SlotDocumentation>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="Source">
+		<SlotType>STRING</SlotType>
+		<SlotDocumentation>Evidence Source</SlotDocumentation>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="Time">
+		<SlotType>FLOAT</SlotType>
+		<SlotDocumentation>Evidence Time</SlotDocumentation>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="Time-Unit">
+		<SlotType>STRING</SlotType>
+		<SlotDocumentation>Evidence time units</SlotDocumentation>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<SLOT id="Type">
+		<SlotType>INTEGER</SlotType>
+		<SlotDocumentation>0=Source,1=Override,2=External</SlotDocumentation>
+		<SlotMaxCard>1</SlotMaxCard>
+		<SlotMinCard>0</SlotMinCard>
+	</SLOT>
+	<Evidence id="evidence_00018">
+		<Arg-1>18.465</Arg-1>
+		<Arg-2>26.285</Arg-2>
+		<Arg-3>Sat</Arg-3>
+		<Belief>0.6</Belief>
+		<Description>F117/Mig</Description>
+		<Disbelief>0.25</Disbelief>
+		<Dur-Unit>H</Dur-Unit>
+		<Duration>0.6</Duration>
+		<External-Filename>None</External-Filename>
+		<External-Filename>None</External-Filename>
+		<External_Level>0</External_Level>
+		<External_Node>0</External_Node>
+		<Level>1</Level>
+		<Mission-Domain>IW-DCI</Mission-Domain>
+		<Node>1</Node>
+		<Source>Site</Source>
+		<Time>26.3</Time>
+		<Time-Unit>M</Time-Unit>
+		<Type>0</Type>
+	</Evidence>
+</evidence>

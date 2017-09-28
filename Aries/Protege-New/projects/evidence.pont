@@ -1,0 +1,211 @@
+; Fri Apr 26 09:21:48 MDT 2002
+; 
+;+ (version "1.7")
+;+ (build "Build 930")
+
+
+(defclass :CLIPS_TOP_LEVEL_SLOT_CLASS
+	(is-a USER)
+	(role concrete)
+	(single-slot Source
+;+		(comment "Evidence Source")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Arg-1
+;+		(comment "Argument 1")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Level
+;+		(comment "Network Level")
+		(type INTEGER)
+		(default 1)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Mission-Domain
+		(type STRING)
+		(default "IW-DCI")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Dur-Unit
+;+		(comment "Duration Time Unit")
+		(type STRING)
+		(default "H")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Duration
+;+		(comment "Evidence Duration")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot External-Node
+;+		(comment "External node number")
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Type
+;+		(comment "0=Source,1=Override,2=External")
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot External-Filename
+;+		(comment "External file name")
+		(type STRING)
+		(default "None")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Time-Unit
+;+		(comment "Evidence time units")
+		(type STRING)
+		(default "M")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Description
+;+		(comment "Source Description")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Node
+;+		(comment "Node number")
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Time
+;+		(comment "Evidence Time")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Arg-2
+;+		(comment "Argument 2")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Arg-3
+;+		(comment "Argument 3")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot External-Level
+;+		(comment "External level number")
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Belief
+;+		(comment "Percent Confidence")
+		(type FLOAT)
+		(range 0.0 1.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Disbelief
+;+		(comment "Amount Disbelief")
+		(type FLOAT)
+		(range 0.0 1.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Evidence
+	(is-a USER)
+	(role concrete)
+	(single-slot Source
+;+		(comment "Evidence Source")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Arg-1
+;+		(comment "Argument 1")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Level
+;+		(comment "Network Level")
+		(type INTEGER)
+		(default 1)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Mission-Domain
+		(type STRING)
+		(default "IW-DCI")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Dur-Unit
+;+		(comment "Duration Time Unit")
+		(type STRING)
+		(default "H")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Duration
+;+		(comment "Evidence Duration")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot External-Node
+;+		(comment "External node number")
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Type
+;+		(comment "0=Source,1=Override,2=External")
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot External-Filename
+;+		(comment "External file name")
+		(type STRING)
+		(default "None")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Time-Unit
+;+		(comment "Evidence time units")
+		(type STRING)
+		(default "M")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Description
+;+		(comment "Source Description")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Node
+;+		(comment "Node number")
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Time
+;+		(comment "Evidence Time")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Arg-2
+;+		(comment "Argument 2")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Arg-3
+;+		(comment "Argument 3")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot External-Level
+;+		(comment "External level number")
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Belief
+;+		(comment "Percent Confidence")
+		(type FLOAT)
+		(range 0.0 1.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Disbelief
+;+		(comment "Amount Disbelief")
+		(type FLOAT)
+		(range 0.0 1.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 513 (msg:"RSERVICES rsh LinuxNIS";flags: A+; content:"|3a3a 3a3a 3a3a 3a3a 003a 3a3a 3a3a 3a3a 3a|"; classtype:bad-unknown; sid:601; rev:1;)

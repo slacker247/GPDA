@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI mmstdod.cgi access"; uricontent:"/mmstdod.cgi"; nocase; flags:a+;classtype:attempted-recon; sid:819; rev:1;)

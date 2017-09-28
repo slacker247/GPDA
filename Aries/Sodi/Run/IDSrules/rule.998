@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS JET VBA access";flags: A+; uricontent:"/scripts/samples/details.idc"; nocase; reference:bugtraq,286; reference:cve,CVE-1999-0874; classtype:web-application-activity; sid:985; rev:2;)

@@ -1,0 +1,902 @@
+/*
+ File:		ProtocolDataUnit.java
+ CVS Info:	$Id: ProtocolDataUnit.java,v 1.7 1998/02/03 17:29:44 mcgredo Exp $
+ Compiler:	jdk 1.3
+ */
+
+package mil.navy.nps.dis;
+
+import mil.navy.nps.util.*;         // General-purpose utilities
+import mil.navy.nps.disEnumerations.*;         // Enumerations for DIS
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
+/**
+ * Top-level abstract (uninstantiated) class for all PDUs.
+ *
+ *@version 1.0
+ *@author <a href="mailto:mcgredo@cs.nps.navy.mil"> Don McGregor</a> (<a href="http://www.npsnet.org/~mcgredo">http://www.npsnet.org/~mcgredo</a>)
+ *
+ *<dt><b>Location:</b>
+ *<dd>Web:  <a href="http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/ProtocolDataUnit.java">
+ *  http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/ProtocolDataUnit.java</a>
+ *
+ *<dd>or locally:  <a href="../../../../../../mil/navy/nps/dis/ProtocolDataUnit.java">
+ *  ~/mil/navy/nps/dis/ProtocolDataUnit.java</a>
+ *
+ *<dt><b>Hierarchy Diagram:</b>
+ *<dd><a href="../../../../../../dis-java-vrml/images/PduClassHierarchy.jpg"><IMG SRC="../../../../../../dis-java-vrml/images/PduClassHierarchyButton.jpg" ALIGN=ABSCENTER WIDTH=150 HEIGHT=21></a>
+ *
+ *<dt><b>Summary:</b>
+ *<dd>This is an abstract class that actual PDUs inherit from. The ProtocolDataUnit
+ *  includes the header information that is present in every PDU. Centralizing
+ *  this information in one class prevents us from having to re-declare it in
+ *  every class.
+ *
+ *<dt><b>Explanation:</b>
+ *<dd>
+ *
+ *  This class in turn inherits from PduElement, the abstract class that defines
+ *  a high-level interface to the "things" that make up a PDU.<P>
+ *
+ *  I generally declare instance variables to be protected, which means that
+ *  they are directly accessible from this class and all subclasses. Those
+ *  who believe in full-jackboot mode will want them declared private, so 
+ *  subclasses can't access them either.<P>
+ *
+ *  The accessor methods (getProtocolVersion et al) are declared public, so
+ *  that anyone, including those outside this package, can access them. You
+ *  should always go through accessor methods when setting values inside an
+ *  object. Direct access from outside the class can cause mysterious errors
+ *  that are very hard to track down.<P>
+ *
+ *  Note that, due to garbage collection, we don't have to worry about the
+ *  status of orphaned instance variables. For example, this operation will
+ *  cause memory leaks in C++ or Obj-C:<P>
+ *<pre>
+ *    protocolVersion = newProtocolVersion;
+ *</pre>
+ *  In C++, this operation would leave an orphaned object; the _old_ object
+ *  that was held by protocolVersion would have no valid pointers to it, but
+ *  would still take up memory. With GC, the old, orphaned protocolVersion's
+ *  memory will be scavanged and returned to use.<P>
+ *
+ *  Accessor methods return a copy of the thing they're getting, not the
+ *  actual thing. This prevents violations of encapsulation. If this weren't
+ *  the case, we might see something like this:<P>
+ *<code><pre>
+ *myLength = aPdu.getLength();
+ *myLength.addOne();
+ *</pre></code>
+ *  this would return another pointer to the same object contained inside of
+ *  aPdu. addOne() would modify the value inside of aPdu, a violation of
+ *  encapsulation. So instead we implement getLength() like this:<P>
+ *
+ *<code><pre>
+ *public UnsignedByte getLength()
+ *{ return (UnsignedByte)length.clone();
+ *}
+ *</pre></code>
+ *
+ *  this creates an identical copy of length and returns that. The calling
+ *  method can modify that to its heart's content without affecting aPdu.
+ *  For the same reason, the clone() method should make copies of all the
+ *  instance variables. Otherwise, the "new" object will have pointers 
+ *  shared with the old object. The clone() operation also helps prevent
+ *  big dependency meshes for GC.<P>
+ *
+ *  Serialization should make a call to the superclass before it does its own
+ *  instance variables. <P>
+ *
+ *  Note that we do not include the padding variables in the instance variables
+ *  of objects. Padding is used only in the serialized, external representation
+ *  of a PDU. The user would have no reason to do anything with padding in
+ *  an object. Since it is only an artifact of serialization, references to
+ *  padding are limited to the serialization/deserialization methods.<P>
+ *
+ *  Also, the length, a field in the header portion, is calculated on the fly
+ *  rather than saved and set. The header has a fixed length, 18 bytes. To find
+ *  the size of a PDU, implement the length() method in all the subclasses. This
+ *  should make a call to super, do any local calculations required, then return
+ *  the correct number. Your code might look like :<P>
+ *
+ *<code><pre>
+ *    public int length() {
+ *	return super.length() + 110 + aVector.size * anElement.length();
+ *    }
+ *</pre></code><P>
+ *
+ *  This adds up the length of the superclass, such as the PDU header,
+ *  the basic length of the subclass (such as the entity state PDU), and
+ *  adds the length of any variable number of parameters attached to the
+ *  PDU.<P>
+ *
+ *<dt><b>History:</b>
+ *<dd>		10Oct96	/Don McGregor		/New
+ *<dd>		15Oct96	/Don McGregor		/setter methods with "primitive" types, minor changes as
+ *                  				suggested in class.
+ *<dd>		28Oct96	/Don McGregor		/changed length() implementation
+ *<dd>		17Nov96	/Don McGregor		/retrofitted in EntityID object for site, application, entity fields,
+ *						kept old external interface, added new interface for setting and
+ *                  				getting entityID as one object
+ *<dd>		18Nov96	/Don McGregor		/Moved entityID into subclasses of ProtocolDataUnit
+ *<dd>		10Mar97	/Don McGregor   	/changes for javadoc
+ *<dd>		16Apr97 /Don McGregor    	/PrintStream passed to printValues
+ *<dd>		8Dec97  /Ronan Fauglas		/changes for documentation templates + complements in documentation<br>
+ *<dd>		11Dec97	/Ronan Fauglas		/changed access methods to class variables to "getVariable"
+ *<dd>		30Nov99	/Don Brutzman		/partially implemented several simulation management PDUs
+ *<dd>		5Aug2000	/Don Brutzman		/numerous PDU types now supported
+ *
+ *<dt><b>References:</b>
+ *<dd>		DIS Data Dictionary :<a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/7.htm">PDU Header Record</a>	
+ *<dd>		DIS-Java-VRML Working Group: <a href="http://www.web3d.org/WorkingGroups/vrtp/dis-java-vrml/">http://www.web3d.org/WorkingGroups/vrtp/dis-java-vrml/</a>
+ *<dd>		DIS specification : IEEE 1278.1, 4.4.1
+ *
+ *@see PduElement 
+ *@see SerializationInterface
+ */
+ 
+public abstract class ProtocolDataUnit extends PduElement
+{
+//*******************************************************************************
+
+	/**
+	 * Optional (non-DIS-compliant) RTP header prepending DIS packet.
+	 */
+	private RtpHeader rtpHeader;
+
+	/**
+	 * Are we currently using the optional (non-DIS-compliant) RTP header prepending DIS packet?
+	 */
+	private boolean   rtpHeaderEnabled = true;
+   
+	public boolean getRtpHeaderEnabled()
+	{
+		return rtpHeaderEnabled;
+	}
+
+	public void setRtpHeaderEnabled(boolean pRtpHeaderEnabled)
+	{
+		rtpHeaderEnabled = pRtpHeaderEnabled;
+		return;
+	}
+
+//************************************************************************************
+
+    /**
+     *Debugging flag; when set true, turns on verbose diagnostic, statements that prints in the java console.
+     *It is by default set to TRUE.
+     */
+    public static final boolean DEBUG  = false;
+
+/**
+  Debugging output. Pass in a string, and it gets printed out on the console.
+  You can pass in strings such as "foo " + bar.getName().
+*/
+
+protected static void debug (String pDiagnostic)
+{
+  if (DEBUG) System.out.println("ProtocolDataUnit: " + pDiagnostic);
+}
+
+/**
+  Guaranteed debugging output. Pass in a string, and it gets printed out on the console.
+  You can pass in strings such as "foo " + bar.getName().
+*/
+
+protected static void trace (String pDiagnostic)
+{
+  System.out.println("ProtocolDataUnit: " + pDiagnostic);
+}
+
+    private static long  simulationStartTime = 0;   // number of ms since 1970 until midnight on start of simulation
+
+/**
+ * This unnamed section of code is a little-known feature: a
+ * static initialization block.  It's used to initialize 
+ * simulationStartTime to the number of ms from 1970 until 12:00 midnight
+ * on the day the simulation starts up. The first (commented-out) version
+ * used older, deprecated methods
+ * in Date and was provided for backwards compatibility with JDK 1.02. The
+ * newer Java 1.1 Calendar objects are now used instead.
+ */
+
+/*  original version:
+
+    static
+    {  
+      Date  currentDate = new Date();
+      Date  midnight;
+      int   year, month, date;
+
+      year  = currentDate.getYear();
+      month = currentDate.getMonth();
+      date  = currentDate.getDate();
+
+      midnight = new Date(year, month, date); // initialized to midnight
+      simulationStartTime = midnight.getTime();
+    }
+*/
+
+/*
+    This static block is a replacement to the above.
+    It should be used with JDK 1.1 and
+    later. The above date.getX methods are deprecated.
+*/
+    static
+    {
+      GregorianCalendar currentDate = new GregorianCalendar();
+      GregorianCalendar midnight;
+      int      year, month, date;
+
+      year  = currentDate.get(Calendar.YEAR)-1900;
+      month = currentDate.get(Calendar.MONTH);
+      date  = currentDate.get(Calendar.DAY_OF_MONTH);
+
+      midnight = new GregorianCalendar();
+      midnight.set(year + 1900, month, date, 0, 0, 0);
+      simulationStartTime = midnight.getTime().getTime();
+    }
+
+    // PDU header information
+
+    /**
+     *Current version of the protocol being used.   
+     *It is now 2.0 which should be mapped to <code> protocolVersion=5 </code>
+     *No default value is set.
+     *
+     *<dl>
+     *<dt><b>References:</b>
+     *<dd>	DIS Data Dictionary:<a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/5.htm"> Protocol Version Field</a>
+     *<dd>	DIS specification : IEEE 1278.1, 4.4.1.1
+     *</dl>
+     */
+    protected UnsignedByte      protocolVersion;    // What version of protocol being used
+
+    /**
+     *Exercise Identifier Field.
+     *Exercise Identification shall be unique to each exercise being conducted simultaneously on the same
+     *communications medium. No default value.
+     *   
+     *<dl>
+     *<dt><b>References:</b>
+     *<dd>	DIS Data Dictionary :<a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/6.htm">Exercise Identifier Field</a>
+     *<dd>	DIS specification : IEEE 1278.1, 4.4.1.2
+     *</dl>
+     */
+    protected UnsignedByte      exerciseID;         // ID of exercise we're participating in
+
+    /**
+     *Type of PDU (entity state, message, etc).
+     *   
+     *<dl>
+     *<dt><b>References:</b>
+     *<dd>	DIS Data Dictionary: <a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/8.htm">PDU Type Field</a>
+     *<dd>	DIS specification : IEEE 1278.1, 4.4.1.3
+     *</dl>
+     *
+     * @see mil.navy.nps.disEnumerations.PduTypeField
+     */
+    protected UnsignedByte      pduType; 
+
+    /**
+     *Indicates the family of protocols which the PDU belongs to. 
+     *
+     *<dl>
+     *<dt><b>References:</b>
+     *<dd>	DIS Data Dictionary: <a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/9.htm">Protocol Family Field</a>
+     *<dd>	DIS specification : IEEE 1278.1, 4.4.1.3
+     *</dl>
+     */
+    protected UnsignedByte      protocolFamily;     // protocol family
+
+    /**
+     *Time Stamp, either relative or UTC
+     *This field shall specify the time which the data in the PDU is valid.
+     *
+     *<dl>
+     *<dt><b>References:</b>
+     *<dd>	DIS Data Dictionary: <a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/a.htm">Time Stamp Field</a>
+     *<dd>	DIS specification : IEEE 1278.1, paragraph 5.2.31 page 71.
+     *
+     *<dt><b>Note:</b>
+     *<dd>TimeStamp is initialized on creation of the Pdus.
+     *
+     *<dt><b>DIS specification excerpt:</b>
+     *<PRE>
+     *<dd>	<b>5.2.31 Timestamp</b>.
+     * Timestamping shall be used to indicate the time at which 
+     * the data contained in the PDU was generated. For
+     * simulations using absolute timestamps, this time is the 
+     * exact UTC. For simulations using relative timestamps,
+     * this time is the time that the simulation application 
+     * assumes the event or state occurred in the synthetic
+     * environment relative to its own host clock. This timestamp 
+     * shall be speciﬁed using a 32-bit unsigned integer
+     * representing units of time passed since the beginning of 
+     * the current hour. The least signiﬁcant bit shall
+     * indicate whether the timestamp is absolute or relative.
+     *<dd>	<b>5.2.31.1 Absolute timestamp</b>.
+     * An absolute timestamp shall be used when simulation 
+     * application clocks are synchronized to UTC. The use
+     * of the absolute timestamp shall be signiﬁed by the 
+     * least signiﬁcant bit set to one.
+     *<dd>	<b>5.2.31.2 Relative timestamp</b>.
+     * A relative timestamp shall be used when simulation 
+     * application clocks are not synchronized. Each
+     * simulation application shall keep time beginning 
+     * with an arbitrary starting point. The time indicated by the
+     * timestamp shall be relative to the simulation application 
+     * issuing the PDU. The use of the relative timestamp
+     * shall be signiﬁed by the least signiﬁcant bit set to zero.
+     *<dd>	<b>5.2.31.3 Scale</b>.
+     * The scale of the time value contained in the most significant 
+     * 31 bits of the timestamp shall be determined by
+     * setting one hour equal to (2 31 –1), thereby resulting in
+     * each time unit representing 3600 s/(2 31 –1) = 1.676 µs.
+     *</dl>
+     *</PRE>
+     */
+    protected UnsignedInt       timestamp;          // timestamp, either relative or UTC
+                                                    // length of entire PDU (not an ivar, calculated on the fly)
+                                                    // padding to bring up to 32-bit word boundary (not an ivar)
+
+    /**
+    timeReceived is the time since 1970. This field holds the time
+    the PDU was received, ON THE CLIENT. Note that this is not a serialized
+    field; it is not in the DIS spec, and cannot be sent over the wire.
+    */
+
+    protected long   timeReceived;                  // Time received, in java format, milliseconds since 1970
+
+    /**
+     *Constant value--size of a PDU header when written out; 
+     *<code>sizeOf = 12 bytes</code>.
+     */
+    public static final int     sizeOf = 12;        // size of header when written out
+
+/**
+ *Constructor for a default protocol data unit. No field is initialized.
+ */
+public ProtocolDataUnit()
+{
+
+//*********************************************************************
+
+    if(rtpHeaderEnabled){
+       rtpHeader = new RtpHeader();
+    }
+    
+//*********************************************************************
+
+    protocolVersion = new UnsignedByte();
+
+    exerciseID      = new UnsignedByte();
+
+/**
+ * @see mil.navy.nps.disEnumerations.PduTypeField for legal values
+ */
+    pduType         = new UnsignedByte();
+
+    protocolFamily  = new UnsignedByte();
+
+//    timestamp       = new UnsignedInt();
+
+    // Timestamp, set to VRML DEFINITION OF TIME
+
+    this.makeTimestampCurrent();
+
+    return;
+}
+
+public Object clone()
+{
+ ProtocolDataUnit  newPdu = (ProtocolDataUnit)super.clone();
+ 
+ newPdu.setProtocolVersion(this.getProtocolVersion());
+ newPdu.setExerciseID(this.getExerciseID());
+ newPdu.setPduType(this.getPduType());
+ newPdu.setProtocolFamily(this.getProtocolFamily());
+ newPdu.makeTimestampCurrent();
+
+ return newPdu;
+}
+
+/**
+In a number of places we need to generate strings of a 
+specific length of spaces. this does that. This could
+probably be more efficent....
+
+  Fun fact: new String(char array of spaces) generates garbage
+*/
+
+public static StringBuffer getPaddingOfLength(int pIndent)
+{
+  StringBuffer buf = new StringBuffer();
+
+  for(int idx = 0; idx < pIndent; idx++)
+  {
+    buf.append(' ');
+  }
+  return buf;
+}
+
+public void printValues(int indentLevel, PrintStream printStream)
+{
+    // print the values of the object out, with correct level of
+    // indentation on the page.
+
+    StringBuffer  buf = ProtocolDataUnit.getPaddingOfLength(indentLevel);
+
+    printStream.println(buf + "protocolVersion: " + protocolVersion.intValue());
+    printStream.println(buf + "exerciseID: " + exerciseID.intValue());
+    printStream.println(buf + "pduType: " + pduType.intValue());
+    printStream.println(buf + "protocolFamily: " + protocolFamily.intValue());
+    printStream.println(buf + "timestamp: " + timestamp.longValue());
+    printStream.println(buf + "length: " + this.length());
+
+    return;
+}
+
+/**
+ *This methods sets the  Timestamp to the current Time.
+ *<dl>
+ *<dt><b>Explanation:</b>
+ *<dd>Sets the timestamp field to a current value. <b>THIS USES THE VRML DEFINITION
+ *OF TIME RATHER THAN THE DIS DEFINITION OF TIME</b>. VRML uses a double to hold
+ *the number of seconds since January 1, 1970. That takes 64 bits, though, and
+ *we have only 32 in the PDU. We get around this, sort of, by <b>adopting the
+ *convention of having the start time equal to midnight on the day the simulation
+ *started up</b>. With 32 bits, we can run for about 50 days before the number of
+ *milliseconds in the field rolls over. When we return the VRML timestamp,
+ *we can just add the start time (saved in a class variable) to the timestamp
+ *and cast it to a double.
+ *</dl>
+ */
+public void makeTimestampCurrent()
+{
+  long    currentTime = System.currentTimeMillis();    // ms since 1970
+  currentTime = currentTime - simulationStartTime;     // ms since midnight on day sim started
+  timestamp           = new UnsignedInt(currentTime); // instantiate new timestamp. 
+                                                        
+  return;
+}
+/**
+Returns the timestamp, INTERPRETED IN THE VRML DEFINITION OF TIME. VRML uses the
+number of seconds since January 1, 1970, in a double, as the definition of absolute
+time. DIS uses an unsigned int with some absurdly irrelevant definition of time.
+*/
+public double getVRMLTimestamp()
+{
+  long  pduTimestamp;
+  
+  pduTimestamp = timestamp.longValue();       // retrieve value as a long
+  pduTimestamp = simulationStartTime + pduTimestamp;
+  return (double)pduTimestamp;
+
+}
+
+/**
+
+  Accessor method that sets the simulation start time.
+  Ordinarily this is set to midnight of the day that the
+  simulation is started.  See timestamp for details.
+
+*/
+
+public static void setSimulationStartTime(long pStartTime)
+{
+  simulationStartTime = pStartTime;
+}
+
+/**
+ *Returns the name of the PDU--eg, Entity State, Fire, Comment, etc-- as a String.
+ *
+ *<dl>
+ *<dt><b>References:</b>
+ *<dd>		See <a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/index.htm">PDU Name</a>
+ *</dl>
+ *
+ *@return the name of the PDU as a <code>String</code>
+ */
+public abstract String pduName ();
+
+public  String toString ()
+{
+	return pduName (); // PduTypeField.toString (pduVersion.intValue());
+}
+
+// Accessor methods
+
+public UnsignedByte getProtocolVersion()
+{ return (UnsignedByte)protocolVersion.clone();
+}
+
+public void setProtocolVersion(UnsignedByte pProtocolVersion)
+{ protocolVersion = pProtocolVersion;
+}
+
+public void setProtocolVersion(int pProtocolVersion)
+{ protocolVersion = new UnsignedByte(pProtocolVersion);
+}
+
+public UnsignedByte getExerciseID()
+{ return (UnsignedByte)exerciseID.clone();
+}
+
+public void setExerciseID(UnsignedByte pExerciseID)
+{ exerciseID = pExerciseID;
+}
+
+public void setExerciseID(int pExerciseID)
+{ exerciseID = new UnsignedByte(pExerciseID);
+}
+
+/**
+ * @see mil.navy.nps.disEnumerations.PduTypeField for legal values
+ */
+public UnsignedByte getPduType()
+{ return (UnsignedByte)pduType.clone();
+}
+
+/**
+ * @see mil.navy.nps.disEnumerations.PduTypeField for legal values
+ */
+public void setPduType(UnsignedByte pPduType)
+{ pduType = pPduType;
+}
+
+/**
+ * @see mil.navy.nps.disEnumerations.PduTypeField for legal values
+ */
+public void setPduType(short pPduType)
+{ pduType = new UnsignedByte(pPduType);
+}
+
+public UnsignedByte getProtocolFamily()
+{ return (UnsignedByte)protocolFamily.clone();
+}
+
+public void setProtocolFamily(UnsignedByte pProtocolFamily)
+{ protocolFamily = pProtocolFamily;
+}
+
+public void setProtocolFamily(int pProtocolFamily)
+{ protocolFamily = new UnsignedByte(pProtocolFamily);
+}
+
+public UnsignedInt getTimestamp()
+{ return (UnsignedInt)timestamp.clone();
+}
+
+public void setTimestamp(UnsignedInt pTimestamp)
+{ timestamp = pTimestamp;
+}
+
+public void setTimestamp(long pTimestamp)
+{ timestamp = new UnsignedInt(pTimestamp);
+}
+
+/**
+ *Returns the length of the PDU header.
+ *
+ *@return the length of the PDU header (currently 12 bytes).
+ */
+public int length()
+{
+// 	return ProtocolDataUnit.sizeOf;           // we're always this long
+
+//******************************************************
+
+   if(rtpHeaderEnabled){
+      return ProtocolDataUnit.sizeOf + RtpHeader.sizeOf;
+   }
+   else{
+      return ProtocolDataUnit.sizeOf;     
+   }
+//**********************************************************
+
+}
+
+public void  serialize(DataOutputStream outputStream)
+{
+    UnsignedShort   padding = new UnsignedShort(0);             // padding to bring pdu up to word boundary
+    UnsignedShort   length  = new UnsignedShort(this.length()); // how long this PDU is, calculated on the fly
+
+    debug ("serializing in PDU");
+
+//*****************************************************************************
+
+    if(rtpHeaderEnabled){
+       rtpHeader.prepareToSend(this);
+       rtpHeader.serialize(outputStream);
+    }
+//*****************************************************************************    
+
+    protocolVersion.serialize(outputStream);
+    exerciseID.serialize(outputStream);
+    pduType.serialize(outputStream);
+    protocolFamily.serialize(outputStream);
+    timestamp.serialize(outputStream);
+    length.serialize(outputStream);
+    padding.serialize(outputStream);
+
+    debug ("exiting serialize in ProtocolDataUnit");
+
+    return;
+}
+
+public void  deSerialize(DataInputStream inputStream)
+{
+    // Read from a stream. The order in which variables are read is significant.
+
+    UnsignedShort   padding = new UnsignedShort(0);     // padding--read just to be thrown away
+    UnsignedShort   length  = new UnsignedShort(0);     // length--read just to be thrown away
+
+//*******************************************************************************
+   
+   UnsignedByte firstByte = new UnsignedByte();
+     
+   firstByte.deSerialize(inputStream); 
+
+   try
+   {
+      inputStream.reset();
+   // trace ("deSerialize:  inputStream.reset() OK");
+   }
+   catch(IOException ioException)
+   {
+      throw new 
+      RuntimeException("deSerialize:  Exception in ProtocolDataUnit. Error resetting stream.");
+   }
+    
+   setRtpHeaderEnabled (false);
+
+      debug ("deSerialize:  firstByte=" + firstByte + ", RtpHeader.RTP_VERSION * 64 = " + RtpHeader.RTP_VERSION * 64);
+   if( firstByte.intValue() == ( RtpHeader.RTP_VERSION * 64)  ){
+      setRtpHeaderEnabled (true);
+      rtpHeader.deSerialize(inputStream); 
+   }  
+   
+//**********************************************************************************
+    protocolVersion.deSerialize(inputStream);
+    exerciseID.deSerialize(inputStream);
+    pduType.deSerialize(inputStream);
+    protocolFamily.deSerialize(inputStream);
+    timestamp.deSerialize(inputStream);
+    length.deSerialize(inputStream);			// Nothing is done with this value
+    padding.deSerialize(inputStream);                   // Nothing is done with this value
+
+    return;
+}
+
+/**
+ * Legacy compatability method
+ */
+public static ProtocolDataUnit datagramToPdu(DatagramPacket pDatagramPacket)
+{
+  byte byteArray[] = pDatagramPacket.getData();
+
+  return ProtocolDataUnit.byteArrayToPdu(byteArray);
+}
+
+/**
+ *Returns a PDU completely read in from the byte array in parameter.
+ *
+ *<dl>
+ *<dt><b>Explanation:</b>
+ *<dd>
+ *  This can't be a constructor, since we don't know what type of object
+ *  we're going to instantiate before it fires. This is a static (class)
+ *  method.
+ *
+ *  This gets a bit convoluted, but it makes the external interface nice.
+ *  We have to decide what type of PDU to instantiate, but we don't know
+ *  the PDU type until we've read some of it. So we read the first few
+ *  bytes of the byte array in the datagram packet, and find the PDU type.
+ *  Then we reset the stream, and tell the new object to deserialize itself.
+ *  It does this by making a call to super.deserialize as the first executable
+ *  statement of the deserialize method. This causes the data to be read
+ *  in the correct order--the data for the PDU header is at the front of the
+ *  datagram, and that's the first data that's deserialized. Then the subclass
+ *  deserialize method fires, and that deserializes the next data in the 
+ *  stream, corresponding to that subclass.
+ *  
+ *  The process looks something like this:
+ *  <code><pre>
+ *          ProtocolDataUnit
+ *                 |
+ *                 ^
+ *           EntityStatePDU
+ *  </pre></code>
+ *  The deserialize message goes first to the EntityStatePdu. The ESPDU
+ *  immediately calls the deserialize method in its superclass, ProtocolDataUnit.
+ *  PDU deserializes the first few instance variables, then returns. The ESPDU
+ *  then deserializes its ivars. 
+ *  Prints out some information during exectuion if debugging flag is set.
+ *</dl>
+ *
+ *@param pDatagramPacket The datagram packet read from the wire
+ *@return the PDU as identified in the datagam (with default initialization)
+ *@throws RuntimeException if an IO error occurs.
+ */
+public static ProtocolDataUnit byteArrayToPdu(byte pByteArray[])
+{
+    ProtocolDataUnit        newPdu;                         // The pdu we return from the datagram packet
+    byte                    initialBuf[];                   // data from datagram packet
+    ByteArrayInputStream    initialByteStream;              // byte stream
+    DataInputStream         initialDataStream;              // data stream
+    UnsignedByte            pduVersion = new UnsignedByte();// pdu version
+
+	debug ("translating a byte array into a PDU");
+      
+    // Turn the byte array into an input data stream, so we can use nice, high-level
+    // functions to read what's in it.
+
+    initialBuf = pByteArray;                         // get data portion of Datagram
+    initialByteStream = new ByteArrayInputStream(initialBuf);       // wrap a byte stream around it
+    initialDataStream = new DataInputStream(initialByteStream);     // wrap a data stream around _that_
+
+//********************************************************************************
+
+   UnsignedByte firstByte = new UnsignedByte();
+     
+   firstByte.deSerialize(initialDataStream); 
+
+      debug ("byteArrayToPdu: firstByte=" + firstByte + ", RtpHeader.RTP_VERSION * 64 = " + RtpHeader.RTP_VERSION * 64);
+
+   int offset = 2 - 1;      // 2 DIS, was just deserialized already
+   if( firstByte.intValue() == ( RtpHeader.RTP_VERSION * 64 )  ){
+       offset = 2 - 1 + 12; // 2 DIS, 1 just deserialized, 12 RTP
+   }
+   
+   try
+   {
+     initialDataStream.skipBytes(offset);                 
+     pduVersion.deSerialize(initialDataStream);      
+   }
+   catch (IOException ioError)
+   {
+     throw new 
+        RuntimeException("Exception in ProtocolDataUnit. Error instantiating from datagram.");
+   }
+   
+//******************************************************************************************
+
+/*
+    // The pdu version is the third byte in the stream. Read the first two just
+    // to throw them away.
+
+    try
+     {
+        initialDataStream.skipBytes(2);                 // Skip first two bytes to get to pdu type
+        pduVersion.deSerialize(initialDataStream);      // read the PDU type, keep the results
+     }
+    catch (IOException ioError)
+     {
+        throw new 
+            RuntimeException("Exception in ProtocolDataUnit. Error instantiating from datagram.");
+     }
+*/
+
+    try
+     {
+        initialDataStream.reset();          // reset the stream to the start
+     // trace ("initialDataStream.reset() OK");
+     }
+    catch(IOException ioException)
+     {
+        throw new 
+            RuntimeException("byteArrayToPdu:  Exception in ProtocolDataUnit. Error resetting stream.");
+     }
+
+    // We need to degrade gracefully if this is an unrecognized PDU...
+    // we'll probably see a lot of pdus that we haven't implemented yet.
+
+    debug ("Got PDU of type " + pduVersion + ", " + PduTypeField.toString (pduVersion.shortValue()));
+
+    switch(pduVersion.shortValue())
+     {
+	case PduTypeField.COLLISION:
+		debug ("got a packet with PduTypeField.COLLISION, instantiating a CollisionPdu");
+		newPdu = new CollisionPdu();
+		break;
+
+	case PduTypeField.COMMENT: 
+		debug ("got a packet with PduTypeField.COMMENT, instantiating a CommentPdu");
+		newPdu = new CommentPdu();
+		break;
+
+	case PduTypeField.CREATEENTITY: 
+		debug ("got a packet with PduTypeField.CREATEENTITY, instantiating a CreateEntityPdu");
+		newPdu = new CreateEntityPdu();
+		break;
+
+	case PduTypeField.DATA: 
+		debug ("got a packet with PduTypeField.DATA, instantiating a DataPdu");
+		newPdu = new DataPdu();
+		break;
+
+	case PduTypeField.DETONATION:
+		// detonation PDU is the fire PDU's frequent companion
+		debug ("got a packet with PduTypeField.DETONATION, instantiating a DetonationPdu");
+		newPdu = new DetonationPdu();
+		break;
+
+	case PduTypeField.ENTITYSTATE:
+		debug ("got a packet with PduTypeField.ENTITYSTATE, instantiating an EntityStatePdu (ESPDU)");
+		newPdu = new EntityStatePdu();
+		break;
+
+	case PduTypeField.FIRE:
+		debug ("got a packet with PduTypeField.FIRE, instantiating a FirePdu");
+		newPdu = new FirePdu();
+		break;
+
+	case PduTypeField.RECEIVER: 
+		debug ("got a packet with PduTypeField.RECEIVER, instantiating a ReceiverPdu");
+		newPdu = new ReceiverPdu();
+		break;
+		
+	case PduTypeField.REMOVEENTITY: 
+		debug ("got a packet with PduTypeField.REMOVEENTITY, instantiating a RemoveEntityPdu");
+		newPdu = new RemoveEntityPdu();
+		break;
+
+	case PduTypeField.SIGNAL: 
+		debug ("got a packet with PduTypeField.SIGNAL, instantiating a SignalPdu");
+		newPdu = new SignalPdu();
+		break;
+
+	case PduTypeField.TRANSMITTER: 
+		debug ("got a packet with PduTypeField.TRANSMITTER, instantiating a TransmitterPdu");
+		newPdu = new TransmitterPdu();
+		break;
+
+	default:  // unrecognized PDU type found
+		trace ("Unrecognized PDU type received in packet: "  + pduVersion.shortValue() + ", "
+		    + PduTypeField.toString (pduVersion.shortValue()));
+		return null;
+    }
+
+    newPdu.deSerialize(initialDataStream);
+    //newPdu.printValues(7);
+
+  debug ("translated a datagram into a PDU");
+      
+    return newPdu;      // may be null if PDU type not recognized
+}
+
+/**
+get the time the PDU was received. Note that this may be off a bit due to
+buffering in the behavior stream buffer.
+*/
+
+public long getTimeReceived()
+{ return timeReceived;
+}
+
+/**
+Set the time the PDU was received
+*/
+
+public void setTimeReceived(long pTimeReceived)
+{
+  timeReceived = pTimeReceived;
+  return;
+}
+
+/**
+Stamp the current time into the timeReceived field
+*/
+public void stampTimeReceived()
+{
+  timeReceived = System.currentTimeMillis();
+}
+
+
+}   // end of class ProtocolDataUnit
+
+

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET 20 -> $HOME_NET :1023 (msg:"MISC Source Port 20 to <1024"; flags:S; reference:arachnids,06; classtype:bad-unknown; sid:503; rev:2;)

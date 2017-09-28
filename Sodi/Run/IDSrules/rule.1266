@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 6000 (msg:"X11 xopen"; flags: A+; content: "|6c00 0b00 0000 0000 0000 0000|"; reference:arachnids,395; classtype:unknown; sid:1226; rev:1;)

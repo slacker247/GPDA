@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Reserved for Security (Type 19)"; itype: 19; icode: 0; sid:439;  classtype:misc-activity; rev:4;)

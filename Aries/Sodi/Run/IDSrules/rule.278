@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP piss scan";flags: A+; content:"pass -cklaus"; classtype:suspicious-login; sid:357; rev:2;)

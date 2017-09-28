@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS bin/python access attempt"; flags:A+; content:"bin/python";nocase; sid:1349; rev:1; classtype:web-application-attack;)

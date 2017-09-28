@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI uploader.exe access";flags: A+; uricontent:"/uploader.exe"; nocase;reference:cve,CVE-1999-0177;classtype:attempted-recon; sid:837; rev:1;)

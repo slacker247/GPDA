@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC shopping cart access access"; uricontent:"/quikstore.cfg"; nocase; flags: A+; classtype:attempted-recon; sid:1164; rev:1;)

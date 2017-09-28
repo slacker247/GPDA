@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 7161 -> $EXTERNAL_NET any (msg:"MISC Cisco Catalyst Remote Access"; flags:SA; reference:arachnids,129; reference:cve,CVE-1999-0430; classtype:bad-unknown; sid:513; rev:1;)

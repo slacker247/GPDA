@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE fpadmin.htm access";flags: A+; uricontent:"/admisapi/fpadmin.htm"; nocase; classtype:web-application-activity; sid:945; rev:2;)

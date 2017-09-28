@@ -1,0 +1,88 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Action1
+
+    {Token.string == "["}
+    {Token.string == "*"}
+    {Token.string == "*"}
+    {Token.string == "]"}
+    {SpaceToken.kind == space}
+(
+    {Token.kind == word}
+):Action
+    {SpaceToken.kind == space}
+    {Token.string == "["}
+    {Token.string == "*"}
+    {Token.string == "*"}
+    {Token.string == "]"}
+ -->
+:Action.Vulnerability = {kind = rule}
+
+Rule: Action2
+
+    {Token.string == "["}
+    {Token.string == "*"}
+    {Token.string == "*"}
+    {Token.string == "]"}
+    {SpaceToken.kind == space}
+(
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+):Action
+    {SpaceToken.kind == space}
+    {Token.string == "["}
+    {Token.string == "*"}
+    {Token.string == "*"}
+    {Token.string == "]"}
+ -->
+:Action.Vulnerability = {kind = rule}
+
+Rule: Action3
+
+    {Token.string == "["}
+    {Token.string == "*"}
+    {Token.string == "*"}
+    {Token.string == "]"}
+    {SpaceToken.kind == space}
+(
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+):Action
+    {SpaceToken.kind == space}
+    {Token.string == "["}
+    {Token.string == "*"}
+    {Token.string == "*"}
+    {Token.string == "]"}
+ -->
+:Action.Vulnerability = {kind = rule}
+
+Rule: Action4
+
+    {Token.string == "["}
+    {Token.string == "*"}
+    {Token.string == "*"}
+    {Token.string == "]"}
+    {SpaceToken.kind == space}
+(
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+):Action
+    {SpaceToken.kind == space}
+    {Token.string == "["}
+    {Token.string == "*"}
+    {Token.string == "*"}
+    {Token.string == "]"}
+ -->
+:Action.Vulnerability = {kind = rule}

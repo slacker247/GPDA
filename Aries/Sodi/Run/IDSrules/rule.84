@@ -1,0 +1,1 @@
+alert icmp 255.255.255.0/24 any -> $HOME_NET any (msg:"BACKDOOR SIGNATURE - Q ICMP"; itype: 0; dsize: >1; reference:arachnids,202; sid:183;  classtype:misc-activity; rev:3;)

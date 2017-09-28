@@ -1,0 +1,161 @@
+/*		%W%		%G%		*/
+/**************************************************************************
+
+ modifications made: in get and set visible flag functions added validation
+   test (if (this)....) on 7/29/93 by Tung;
+
+***************************************************************************/
+
+
+#ifndef GR_DSOBJ
+#define GR_DSOBJ
+
+#define INLINE inline
+
+#include 	"GR_Interface.H"
+#include	"GR_Window.H"
+
+class GR_Window;
+
+
+class GR_DispObj
+{
+ private:
+   GR_matrix		p_modelmatrix;
+   unsigned 		p_register_pick : 1;
+   unsigned		p_visible : 1;
+   unsigned                p_useXForm : 1;
+   
+ protected:
+   float                   p_x;
+   float                   p_y;
+   float                   p_z;
+   float                   p_lat;
+   float                   p_lon;
+   float                   p_alt;
+   float			p_heading;
+   
+   long                    p_type;
+   long                    p_gr_objid;
+   long			p_id;
+   
+   long                    p_highlight;
+   virtual void v_set_highlight (long tf);
+   virtual void objdraw ();
+   
+ public:
+   GR_DispObj ();
+   long get_type () { return p_type;}
+   void set_type (long type) { p_type = type;}
+   long get_id () { return p_id;}
+   long get_objid () { return p_gr_objid;}
+   void set_id (long id) { p_id = id;}
+   void set_xyz (float x, float y, float z);
+   void set_llah (float lat, float lon, float alt, float heading);
+   float get_x () {return p_x;}
+   float get_y () {return p_y;}
+   float get_z () {return p_z ;}
+   float get_lat () {return p_lat;}
+   float get_lon () {return p_lon;}
+   float get_alt () {return p_alt;}
+   float get_heading () {return p_heading;}
+   
+   void translate (float x, float y, float z = 0.0);
+   GR_Point position (GR_Point origin);
+   GR_Point position ();
+   void scale (float x, float y, float z = 1.0);
+   void rotate_x (float value);
+   void rotate_y (float value);
+   void rotate_z (float value);
+   void reset ();
+   void draw ();
+   void set_register_flag (long tf);
+   Boolean get_register_flag ();  // extra?...
+   
+   void set_visible_flag (long tf);
+   long get_visible_flag ();
+   void set_noXForm ();
+   virtual void pickEvent (GR_MouseEvent&, GR_Window*);
+   virtual void pickEvent (GR_MouseEvent&, GR_DispObj*, GR_Window*);
+   virtual void dragEvent (GR_MouseEvent&, GR_Window*);
+   virtual void rectEvent (short &x1, short &y1, short &x2, short &y2);
+   virtual void keyEvent (KeySym, GR_Window*);
+   virtual void set_highlight (long tf);
+};
+
+
+INLINE Boolean
+GR_DispObj::get_register_flag ()
+{
+   if (p_register_pick == 1)
+     return TRUE;
+   else
+     return FALSE;
+}
+
+INLINE void
+GR_DispObj::set_register_flag (long tf)
+{
+   if (tf)
+     p_register_pick = 1;
+   else
+     p_register_pick = 0;
+}
+
+INLINE void
+GR_DispObj::set_visible_flag (long tf)
+{
+  if (this)  // extra protection added 7/29/93 by Tung;
+  {
+    if (tf)
+      p_visible = 1;
+    else
+      p_visible = 0;
+  }
+}
+
+INLINE long
+GR_DispObj::get_visible_flag ()
+{
+  if (this)  // extra protection added 7/29/93 by Tung;
+    return p_visible;
+  else
+    return 0;
+}
+
+INLINE void 
+GR_DispObj::translate (float x, float y, float z)
+{
+   p_modelmatrix.translate (x, y, z);
+}
+
+INLINE void 
+GR_DispObj::scale (float x, float y, float z)
+{
+   p_modelmatrix.scale (x, y, z);
+}
+
+INLINE void 
+GR_DispObj::rotate_x (float value)
+{
+   p_modelmatrix.rotate_x (value);
+}
+
+INLINE void 
+GR_DispObj::rotate_y (float value)
+{
+   p_modelmatrix.rotate_y (value);
+}
+
+INLINE void 
+GR_DispObj::rotate_z (float value)
+{
+   p_modelmatrix.rotate_z (value);
+}
+
+INLINE void
+GR_DispObj::reset ()
+{
+   p_modelmatrix.identity ();
+}
+#endif

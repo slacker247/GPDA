@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 21 -> $EXTERNAL_NET any (msg:"FTP Bad login"; content:"530 Login "; nocase; flags:A+; classtype:bad-unknown; sid:491; rev:2;)

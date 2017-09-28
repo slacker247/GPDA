@@ -1,0 +1,36 @@
+
+#ifndef		GR_TRACKERR
+#define		GR_TRACKERR		"GR_Trackerrclass"
+
+#include  <stdio.h>
+#include  "GR_Interface.H"
+#include  "GR_DispObj.H"
+
+class GR_TrackErr: public GR_DispObj
+{
+ private:
+//   long   p_type;
+   double p_ulen;
+   double p_vlen;
+   double p_major;
+   double p_minor;
+   double p_angle;
+   double p_lat;
+   double p_lon;
+   double p_vert[3];
+   short  p_r;
+   short  p_g;
+   short  p_b;
+
+   void draw_cylinder(double x, double y, double z);
+
+ public:
+   GR_TrackErr(long impid, float latitude, float longitude,
+               float Radius, float Length, 
+			   float Px, float Py, float Pz);
+   void  set_rgb(short r, short g, short b);
+   void  objdraw ();
+};
+
+#endif
+

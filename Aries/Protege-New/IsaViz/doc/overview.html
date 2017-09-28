@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <title>IsaViz Overview</title>
+  <link href="isv.css" rel="stylesheet" type="text/css" />
+  <meta name="tidy:flags" content="-i -ascii -asxml" />
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+ 
+<a href="http://www.w3.org/"><img src="images/w3c_home.gif" alt="w3c_logo" border="0"/></a>
+<a href="http://www.w3.org/RDF/" title="RDF Resource Description Framework">
+<img border="0" src="http://www.w3.org/RDF/icons/rdf_developer_button.40" alt="RDF Resource Description Framework Developer Icon"/></a>
+<h1>IsaViz: A Visual Authoring Tool for RDF</h1>
+
+<h2>Introduction</h2>
+<p>IsaViz is a visual environment for browsing and authoring <a href="http://www.w3.org/RDF/">RDF</a> models represented as graphs. It features:</p>
+<ul>
+  <li>a 2.5D user interface allowing smooth zooming and navigation in the graph</li>
+  <li>creation and editing of graphs by drawing ellipses, boxes and arcs</li>
+  <li><a href="http://www.w3.org/TR/REC-rdf-syntax/">RDF/XML</a>, <a href="http://www.w3.org/2000/10/swap/Primer">Notation 3</a> and <a href="http://www.w3.org/TR/rdf-testcases/#ntriples">N-Triple</a> import</li>
+  <li>RDF/XML, Notation 3 and N-Triple export, but also <a href="http://www.w3.org/Graphics/SVG/">SVG</a> and <a href="http://www.w3.org/Graphics/PNG/">PNG</a> export</li>
+</ul>
+
+<h2>News</h2>
+
+<hr />
+
+<p><strong>IsaViz 2.0 alpha - preview release (2003-05-12)</strong></p>
+<p>IsaViz 2.0 alpha preview release 1 is now <a href="dist/isaviz-src-2_0_alpha_1.zip">available</a> as a full distribution. See <a href="changes.html">changes</a> for information on new features, and read the <a href="graphstylesheets/gssmanual.html">GSS User Manual</a> to learn how to create Graph Stylesheets.</p>
+
+<hr />
+
+<p><strong>IsaViz 2.0 alpha - preview release (2003-04-15)</strong></p>
+<p>The source code of IsaViz 2.0, with support for RDF datatypes and <a href="http://www.w3.org/2001/11/IsaViz/graphstylesheets/gssmanual.html">GSS (Graph Stylesheets)</a> is available for download through the <a href="http://dev.w3.org/cvsweb/java/classes/org/w3c/IsaViz/">W3C&apos;s public CVS repository</a>. This version represents a very early stage in the development cycle of IsaViz 2.0 : it is still missing many functionalities and only partially implements GSS. Moreover, there might be a significant number of bugs at this point. Note: IsaViz 2.0 alpha relies upon <a href="http://www.hpl.hp.com/semweb/jena2.htm">Jena 2 (preview 2)</a> and is not compatible with earlier versions of Jena.</p>
+
+<hr />
+
+<p><strong>Sesame Plug-In v0.1 for IsaViz released (2003-04-11)</strong></p>
+<p><a href="http://www.aidministrator.nl/">Aidministrator</a> released the first version of a <a href="http://sesame.aidministrator.nl/">Sesame</a> plug-in for IsaViz, which makes it possible to read/write RDF data directly from/to a Sesame server. The plug-in is very easy to install and to use, and can be downloaded from the <a href="http://sourceforge.net/projects/sesame/">Sesame Sourceforge Project page</a>.</p>
+
+<hr />
+
+<p class="important">Important Note (2003-03-07)</p>
+<p>Several people have encountered difficulties importing local RDF files in IsaViz 1.2 (this will also be true for version 2.0): the model is not loaded, and the following error message is generated:</p>
+<p class="code">RDFErrorHandler.error: com.hp.hpl.jena.rdf.arp.MalformedURIException: No scheme found in URI.</p>
+<p>The source of this error is a bad <strong>Defaut Base URI</strong> in your preferences (e.g. &quot;online&quot;). To correct this, select Edit/Preferences, and set the Default Base URI value to blank or to the well-formed URI of your choice.</p>
+
+<hr />
+
+<p><strong>IsaViz Version 1.2 released (2003-02-13)</strong></p>
+<p><em>This new relase supports the <a href="http://www.w3.org/2001/sw/RDFCore/#documents">Last Call Working Draft specifications</a> issued by the <a href="http://www.w3.org/2001/sw/RDFCore/">RDF Core Working Group</a>, except for datatypes which are ignored for the moment (this release of IsaViz is based on Jena 1.6.1). It also features new graphical capabilities such as enhanced zooming, a <em>back</em> button and a <a href="images/radar.png">radar view</a> for easier navigation in large graphs. It also offers <a href="images/i18n.png">better support for internationalization</a> and several bug fixes. See <a href="changes.html">changes</a> for a complete list of new features and improvements.</em></p>
+
+<hr />
+
+
+<h2>Screenshots</h2>
+<table>
+<tr>
+<td><a href="images/isv6.png"><img src="images/isv6_th.png" alt="screenshot6"/></a></td>
+
+<td><a href="images/isv7.png"><img src="images/isv7_th.png" alt="screenshot7"/></a></td>
+</tr>
+<tr><td colspan="2"><p>More <a href="screenshots.html">screenshots</a> are available.</p></td></tr>
+</table>
+
+<h2>Download</h2>
+
+<p><strong>Latest stable version:</strong> 1.2</p>
+<table border="1">
+<tr><td>Binary distribution (zip file, 5.4 Mb)</td><td><a href="dist/isaviz-bin-1_2.zip">isaviz-bin-1_2.zip</a></td></tr>
+<tr><td>Binary distribution (tarball, 5.4 Mb)</td><td><a href="dist/isaviz-bin-1_2.tar.gz">isaviz-bin-1_2.tar.gz</a></td></tr>
+<tr><td>Source distribution (tarball, 5.7 Mb)</td><td><a href="dist/isaviz-src-1_2.tar.gz">isaviz-src-1_2.tar.gz</a></td></tr>
+<tr><td colspan="2"><a href="dist/">Older versions</a></td></tr>
+</table>
+<p><strong>Development version:</strong> <a href="dist/isaviz-src-2_0_alpha_1.zip">2.0-alpha-1</a> (latest source code available through the <a href="http://dev.w3.org/cvsweb/java/classes/org/w3c/IsaViz/">W3C&apos;s public CVS repository</a>).</p>
+<p>You will also need to download <a href="http://www.research.att.com/sw/tools/graphviz/">graphviz/dot</a> for your specific platform (version 1.7.6 or later, but version 1.8.x or later strongly recommended and mandatory if you are installing IsaViz 2.0).</p>
+<p>Finally, as IsaViz is implemented in Java, it requires a JVM (Java Virtual Machine) 1.3.0 or later (1.4.0 or later strongly recommended - see <a href="#bugs">Known problems</a>) since the GUI makes extensive use of Java2D which featured poor performances in JVM 1.2.x. The latest JVM from Sun can be downloaded at <a href="http://java.sun.com/j2se/1.4/">http://java.sun.com/j2se/1.4/</a></p>
+
+<h3>Plug-Ins</h3>
+
+<p>The Sesame plug-in makes it possible to read/write RDF data directly from/to a <a href="http://sesame.aidministrator.nl/">Sesame</a> server. It can be downloaded freely from the <a href="http://sourceforge.net/projects/sesame/">Sesame Sourceforge Project page</a>.</p>
+
+<h2>Documentation</h2>
+
+<p><a href="install.html">Installation instructions</a> contain information on how to install and configure IsaViz, including requirements for additional software versions. <strong>You should read these as they contain important instructions regarding GraphViz/dot which is not included in the distribution.</strong></p>
+<p>A <a href="usermanual.html">User Manual</a> describing all features of IsaViz is also available, as well as a <a href="graphstylesheets/gssmanual.html">User Manual for Graph Stylesheets (GSS)</a>.</p>
+
+<h2>Mailing List</h2>
+<p>If you want to make comments, bug reports or simply ask a question, use the following mailing list: <a href="mailto:www-isaviz@w3.org">www-isaviz@w3.org</a>. To subscribe to the list, send an e-mail to <a href="mailto:www-isaviz-request@w3.org">www-isaviz-request@w3.org</a> with <strong>subscribe</strong> in the subject header. See <a href="http://www.w3.org/Mail/Request">http://www.w3.org/Mail/Request</a> for more details. An <a href="http://lists.w3.org/Archives/Public/www-isaviz/">archive</a> of messages sent to the list is available.</p>
+
+<h2>Known Problems</h2>
+<a name="bugs"/>
+<ul>
+<li>When using a JVM 1.3.x to run IsaViz, it may randomly freeze for no apparent reason. This problem seems to occur especially on slow systems (no matter the OS) and on all UNIX/Linux systems. It is somehow related to the Java2D <em>drawString</em> method when combined with affine transformations (used by the ZVTM to draw text in the zoomable window). It seems to have been fixed in JVM 1.4.0, so I suggest that people encountering this problem run IsaViz using a JVM 1.4.0 or later (it should completely disappear).</li>
+<li>Due to a bug in GraphViz's SVG output, IsaViz is not able to fully load RDF models containing ampersand characters ('&amp;') in literal values. The bug was reported against GraphViz version 1.7.6 and has been fixed in version 1.8.1 (it is still present in version 1.7.12). The corresponding error message looks like this: <em>The parsing might not be complete (The file is probably not well-formed XML). Some nodes and edges might be missing from the graph because of an error (check error log) in file C:\Temp\isv20013.svg</em>. You can get a more complete error report by reading the error log.</li>
+<li>The ZVTM uses a mouse cursor different from the system cursor, tightly coupled to ZVTM views and thus dependant on their refresh rate. It can therefore be difficult to control the mouse when browsing/editing big models. This difficult problem was addressed at the ZVTM level by implementing a specific XOR mode. This mode is available since version 0.8.0 of the library, which ships with IsaViz v1.1 and subsequent releases.</li>
+</ul>
+
+<h2>Acknowledgements</h2>
+<p>IsaViz is developed by <a href="http://www.w3.org/People/Emmanuel/">Emmanuel Pietriga</a>.</p>
+
+<p>The first version was developed in collaboration with <a href="http://www.xrce.xerox.com">Xerox Research Centre Europe</a> which also contributed <a href="http://www.xrce.xerox.com/competencies/contextual-computing/vtm/">XVTM</a>, the ancestor of <a href="http://zvtm.sourceforge.net">ZVTM (Zoomable Visual Transformation Machine)</a> upon which IsaViz is built. It also includes software developed by: </p>
+<ul>
+  <li><a href="http://www.hpl.hp.com/">HP Labs</a> (<a href="http://www.hpl.hp.com/semweb/index.html">Jena Semantic Web Toolkit</a>)</li>
+  <li><a href="http://www.apache.org">The Apache Software Foundation</a> (Xerces Java <a href="http://xml.apache.org/xerces-j/index.html">1</a> (for IsaViz 1.x) and <a href="http://xml.apache.org/xerces2-j/index.html">2</a> for IsaViz 2.0)</li>
+</ul>
+<p>and makes use of the <a href="http://www.research.att.com/sw/tools/graphviz/">GraphViz</a> library developed by <a href="http://www.research.att.com/">AT&amp;T Research</a>.</p>
+
+<p>The <a href="http://sourceforge.net/projects/sesame/">Sesame plug-in</a> is developed by <a href="http://www.aidministrator.nl/">Aidministrator</a>.</p>
+
+<hr/>
+<table>
+	<tr>
+	  <td><p><a href="http://validator.w3.org/check/referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0!" height="31" width="88" border="0"/></a></p></td>
+	  <td><p><em><small><a href="http://www.w3.org/People/Emmanuel/">Emmanuel Pietriga</a><br/>
+<!-- hhmts start -->
+Last modified: Mon May 12 13:34:50 Eastern Daylight Time 2003
+<!-- hhmts end -->
+</small></em></p></td>
+	</tr>
+</table>
+</body>
+</html>

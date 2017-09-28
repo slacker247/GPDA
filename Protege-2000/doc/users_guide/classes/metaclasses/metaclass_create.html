@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Creating a Metaclass</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="../images/serving_nerd.gif" width="48" height="48">  Creating a
+Metaclass<br>
+<img src="../images/header_line.gif" width="590" height="6"></h1>
+
+<p><font size="3">Despite the power of metaclasses, their basic interface is
+very simple. Creating a metaclass is almost identical to creating a class. You
+simply have to make sure the class is created subordinate to :CLASS. Every
+metaclass is subordinate to :CLASS. by default, every class subordinate to :CLASS is a
+metaclass, unless you change it. </font>Frequently, it is desirable to create a metaclass subordinate to
+:STANDARD-CLASS, so that the classes created using the metaclass will have the
+various properties defined by the :STANDARD-CLASS slots. Without these
+properties, you cannot name the class or add template slots.</p>
+
+<p><font size="3">To create a new class as a metaclass:</font></p>
+
+<ol>
+  <li>Click on the desired superclass in the Class Relationship pane. The
+    selected superclass must itself be a metaclass, as indicated by a green
+    class icon <img border="0" src="../images/Metaclass.gif" width="15" height="16">.
+    As mentioned above, this will be true only if the selected superclass
+    is subordinate to :CLASS.<br>
+    <img border="0" src="images/metacl5.gif" width="274" height="281"></li>
+  <li><font size="3">Click the <strong>C(reate) </strong></font><font size="3"><img border="0" src="../images/Create.gif" width="12" height="16"></font><font size="3">
+    button at the right of the Class Relationship Pane. The new class will be
+    added under the highlighted class. A green class </font> <img border="0" src="../images/Metaclass.gif" WIDTH="15" HEIGHT="16"><font size="3">
+    icon will indicate that it is a metaclass. It will inherit the properties of the selected
+    metaclass, including any template slots.<br>
+    <img border="0" src="images/metacl6.gif" width="274" height="281"></font></li>
+  <li><font size="3">Use the <a href="../class_form.html">Class Form</a> to name the class, create constraints, and create and edit
+    slots.&nbsp;</font></li>
+</ol>
+
+<hr>
+
+<p><font size="3">Next:&nbsp;<a href="create_class_use_meta.html">Creating a Class Using a Metaclass</a> </font></p>
+
+<p><a href="../index.html"><font size="3">Classes Table of Contents</font></a></p>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<html>
+
+<head>
+<title>Migration from Protege/Win to Protege-2000</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+</head>
+
+<body>
+
+<h1>Protégé Migration from Win to 2000</h1>
+
+<hr>
+
+<p>Last updated: June 30, 1999<br>
+Target version: Protégé-2000 0.911 (released on Jun 28, 1999)<br>
+Send comments and suggestions to <a href="mailto:tu@smi.stanford.edu">Samson Tu</a></p>
+
+<hr>
+
+<p>First, make sure that you really want to migrate to Protégé-2000. There is no going
+back. File formats for Protégé-2000 are different from those of Protégé/Win.
+Protégé/Win can still read pont files that do not use inclusion, but that's the extent
+of compatibility between the two systems.</p>
+
+<p>Follow the following simple steps to convert your Protégé/Win files into
+Protégé-2000 projects.</p>
+
+<p>A. Make sure that there are no class/slot name conflicts:</p>
+
+<blockquote>
+  <p><small>In Protégé-2000, slots and facets are global objects whose names must be
+  distinct from names of other global object, such as classes. Protégé-2000 handles name
+  conflicts by appending &quot;_&quot; to class names. Thus, make sure that such name
+  conflicts do not occur in your ontology and among the ontologies that you include.
+  Ultimately, when you are including ontologies from different sources, name conflict is
+  difficult to avoid.. A future version of Protégé will support distinct name spaces for
+  projects.</small></p>
+</blockquote>
+
+<p>B. If you use ontology inclusion in Protégé/Win, determine the inclusion relationship
+among your pont files. Protégé-2000 uses the notion of <em>projects</em>, which points
+to the pont and pins files and other included projects. You must convert pont and pins
+files included in other projects before converting the including projects.</p>
+
+<p>C. Launch Protégé-2000. Use &quot;<b>Import Project...</b>&quot;
+on the <b>Project</b> menu and select <i>Standard Text Files</i> in the Select
+Format dialog box to convert a pont and pins file into a Protégé-2000 project.
+(See <a href="projects/building_a_project.html">Importing a Project</a>
+ for more information.) You will have to
+re-custom-tailor the layout of your instance editor. (See Figure 1)</p>
+
+<blockquote>
+  <p><small>See Figure 1. You must have a pont file to use Import Project. If you have a pont file
+  but no pins file, then leave the pins file entry blank.. If you have converted files that
+  you want to include into their own Protégé-2000 projects, you can select them and put
+  them in the &quot;Included Projects&quot; window. Up to version 0.911, all pont, pins, and
+  project files that are related through inclusion must be located in the same directory.</small></p>
+  <p align="center"><img src="images/UpdateWinProject.gif" alt="wpe2.jpg (26085 bytes)" width="480" height="494"></p>
+  <p align="center">Figure 1 Building a set of Protégé/Win pont and pins into a
+  Protégé-2000 project.</p>
+</blockquote>
+
+<p>D. When you are ready to save the project, select <b>Save</b> from the <b>Project</b>
+menu. A dialog box
+allows you to type in or select the project name and names of the pont and pins file. All
+three files should be (and will be, if you just type in the project name) saved in the
+same directory.&nbsp;</p>
+
+<p>E. If you&nbsp; have a pins file based on ontologies defined in other projects, create
+a new project that includes the necessary ontology, save the project with empty pont and
+pins files, and then rename your pins file to be the pins file of the project.</p>
+
+<blockquote>
+  <p><small>When you save the empty pins file, make sure that your real pins file has a
+  different name; otherwise your pins file will be overwritten.</small></p>
+</blockquote>
+
+<p>F. How to reconstruct diagrams</p>
+
+<blockquote>
+  <p><small>diagrams are not supported yet</small></p>
+</blockquote>
+
+<p>G. How to reconstruct tables</p>
+
+<blockquote>
+  <p><small>tables are not supported yet</small></p>
+</blockquote>
+
+<hr>
+
+<p>Next: <a href="what_is_protege.html"><font size="3">What is Protégé-2000?</font></a></p>
+</body>
+</html>

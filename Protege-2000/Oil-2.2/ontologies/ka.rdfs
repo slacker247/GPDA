@@ -1,0 +1,388 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE rdf:RDF [
+	 <!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	 <!ENTITY a 'http://www.w3.org/2000/01/rdf-schema#'>
+]>
+<rdf:RDF xmlns:rdf="&rdf;"
+	 xmlns:a="&a;">
+<a:Class rdf:about="Abduction">
+	<a:subClassOf rdf:resource="KAThroughMachineLearning"/>
+</a:Class>
+<a:Class rdf:about="AcademicStaff">
+	<a:subClassOf rdf:resource="Employee"/>
+</a:Class>
+<a:Class rdf:about="Activity">
+	<a:subClassOf rdf:resource="Event"/>
+</a:Class>
+<a:Class rdf:about="AdministrativeStaff">
+	<a:subClassOf rdf:resource="Employee"/>
+</a:Class>
+<a:Class rdf:about="AnomalyDetection">
+	<a:subClassOf rdf:resource="Validation_And_Verification"/>
+</a:Class>
+<a:Class rdf:about="AnomalyRepairAndKnowledgeRevision">
+	<a:subClassOf rdf:resource="Validation_And_Verification"/>
+</a:Class>
+<a:Class rdf:about="Article">
+	<a:subClassOf rdf:resource="Publication"/>
+</a:Class>
+<a:Class rdf:about="ArticleInBook">
+	<a:subClassOf rdf:resource="Article"/>
+</a:Class>
+<a:Class rdf:about="AutomatedCodeGenerationFromSpecification">
+	<a:subClassOf rdf:resource="SpecificationLanguages"/>
+</a:Class>
+<a:Class rdf:about="AutomatedPSMGeneration">
+	<a:subClassOf rdf:resource="PSMs"/>
+</a:Class>
+<a:Class rdf:about="Book">
+	<a:subClassOf rdf:resource="Publication"/>
+</a:Class>
+<a:Class rdf:about="CaseBaseReasoning">
+	<a:subClassOf rdf:resource="KAThroughMachineLearning"/>
+</a:Class>
+<a:Class rdf:about="ComputerSupport">
+	<a:subClassOf rdf:resource="Product"/>
+</a:Class>
+<a:Class rdf:about="Conference">
+	<a:subClassOf rdf:resource="Event"/>
+</a:Class>
+<a:Class rdf:about="ConferencePaper">
+	<a:subClassOf rdf:resource="Article"/>
+</a:Class>
+<a:Class rdf:about="CooperativeKnowledgeAcquisition">
+	<a:subClassOf rdf:resource="KAThroughMachineLearning"/>
+</a:Class>
+<a:Class rdf:about="DataMining">
+	<a:subClassOf rdf:resource="KAThroughMachineLearning"/>
+</a:Class>
+<rdf:Property rdf:about="Date"/>
+<a:Class rdf:about="Department">
+	<a:subClassOf rdf:resource="Organization"/>
+</a:Class>
+<rdf:Property rdf:about="Description"/>
+<a:Class rdf:about="DevelopmentProject">
+	<a:subClassOf rdf:resource="Project"/>
+</a:Class>
+<a:Class rdf:about="Editor">
+	<a:subClassOf rdf:resource="ComputerSupport"/>
+</a:Class>
+<a:Class rdf:about="ElicitationTool">
+	<a:subClassOf rdf:resource="ComputerSupport"/>
+</a:Class>
+<a:Class rdf:about="Employee">
+	<a:subClassOf rdf:resource="Person"/>
+</a:Class>
+<a:Class rdf:about="Enterprise">
+	<a:subClassOf rdf:resource="Organization"/>
+</a:Class>
+<a:Class rdf:about="EvaluationOfKA">
+	<a:subClassOf rdf:resource="ResearchTopic"/>
+</a:Class>
+<a:Class rdf:about="Event">
+	<a:subClassOf rdf:resource="Object"/>
+</a:Class>
+<a:Class rdf:about="ExecutableSpecificationLanguages">
+	<a:subClassOf rdf:resource="SpecificationLanguages"/>
+</a:Class>
+<a:Class rdf:about="Formalisms">
+	<a:subClassOf rdf:resource="Validation_And_Verification"/>
+</a:Class>
+<a:Class rdf:about="Guideline">
+	<a:subClassOf rdf:resource="KAMethodology"/>
+</a:Class>
+<a:Class rdf:about="ImplementationEnvironment">
+	<a:subClassOf rdf:resource="ComputerSupport"/>
+</a:Class>
+<a:Class rdf:about="Institute">
+	<a:subClassOf rdf:resource="Organization"/>
+</a:Class>
+<a:Class rdf:about="InternetTool">
+	<a:subClassOf rdf:resource="ComputerSupport"/>
+</a:Class>
+<a:Class rdf:about="Journal">
+	<a:subClassOf rdf:resource="Publication"/>
+</a:Class>
+<a:Class rdf:about="JournalArticle">
+	<a:subClassOf rdf:resource="Article"/>
+</a:Class>
+<a:Class rdf:about="KAMethodologies">
+	<a:subClassOf rdf:resource="ResearchTopic"/>
+</a:Class>
+<a:Class rdf:about="KAMethodology">
+	<a:subClassOf rdf:resource="Product"/>
+</a:Class>
+<a:Class rdf:about="KAThroughMachineLearning">
+	<a:subClassOf rdf:resource="ResearchTopic"/>
+</a:Class>
+<a:Class rdf:about="KnowledgeBasedRefinement">
+	<a:subClassOf rdf:resource="KAThroughMachineLearning"/>
+</a:Class>
+<a:Class rdf:about="KnowledgeDiscoveryInDatasets">
+	<a:subClassOf rdf:resource="KAThroughMachineLearning"/>
+</a:Class>
+<a:Class rdf:about="KnowledgeElicitation">
+	<a:subClassOf rdf:resource="ResearchTopic"/>
+</a:Class>
+<a:Class rdf:about="KnowledgeManagement">
+	<a:subClassOf rdf:resource="ResearchTopic"/>
+</a:Class>
+<a:Class rdf:about="LearningApprenticeSystems">
+	<a:subClassOf rdf:resource="KAThroughMachineLearning"/>
+</a:Class>
+<a:Class rdf:about="Lecturer">
+	<a:subClassOf rdf:resource="AcademicStaff"/>
+</a:Class>
+<a:Class rdf:about="Meeting">
+	<a:subClassOf rdf:resource="Event"/>
+</a:Class>
+<a:Class rdf:about="Methodologies">
+	<a:subClassOf rdf:resource="Ontologies"/>
+</a:Class>
+<a:Class rdf:about="Methodology">
+	<a:subClassOf rdf:resource="Validation_And_Verification"/>
+</a:Class>
+<a:Class rdf:about="ModelingLanguage">
+	<a:subClassOf rdf:resource="KAMethodology"/>
+</a:Class>
+<a:Class rdf:about="NLParser">
+	<a:subClassOf rdf:resource="ComputerSupport"/>
+</a:Class>
+<rdf:Property rdf:about="Number"/>
+<a:Class rdf:about="Object"/>
+<a:Class rdf:about="OnlinePublication">
+	<a:subClassOf rdf:resource="Publication"/>
+</a:Class>
+<a:Class rdf:about="Ontologies">
+	<a:subClassOf rdf:resource="Reuse"/>
+</a:Class>
+<a:Class rdf:about="Ontology">
+	<a:subClassOf rdf:resource="KAMethodology"/>
+</a:Class>
+<a:Class rdf:about="OntologyLibrary">
+	<a:subClassOf rdf:resource="ComputerSupport"/>
+</a:Class>
+<a:Class rdf:about="Organization">
+	<a:subClassOf rdf:resource="Object"/>
+</a:Class>
+<a:Class rdf:about="PSM">
+	<a:subClassOf rdf:resource="KAMethodology"/>
+</a:Class>
+<a:Class rdf:about="PSMLibrary">
+	<a:subClassOf rdf:resource="ComputerSupport"/>
+</a:Class>
+<a:Class rdf:about="PSMevaluation">
+	<a:subClassOf rdf:resource="PSMs"/>
+</a:Class>
+<a:Class rdf:about="PSMlibraries">
+	<a:subClassOf rdf:resource="PSMs"/>
+</a:Class>
+<a:Class rdf:about="PSMnotations">
+	<a:subClassOf rdf:resource="PSMs"/>
+</a:Class>
+<a:Class rdf:about="PSMs">
+	<a:subClassOf rdf:resource="Reuse"/>
+</a:Class>
+<a:Class rdf:about="PaperLibrary">
+	<a:subClassOf rdf:resource="KAMethodology"/>
+</a:Class>
+<a:Class rdf:about="Person">
+	<a:subClassOf rdf:resource="Object"/>
+</a:Class>
+<a:Class rdf:about="PhDStudent">
+	<a:subClassOf rdf:resource="Researcher"/>
+	<a:subClassOf rdf:resource="Student"/>
+</a:Class>
+<a:Class rdf:about="Product">
+	<a:subClassOf rdf:resource="Object"/>
+</a:Class>
+<a:Class rdf:about="Project">
+	<a:subClassOf rdf:resource="Object"/>
+</a:Class>
+<a:Class rdf:about="Publication">
+	<a:subClassOf rdf:resource="Object"/>
+</a:Class>
+<rdf:Property rdf:about="Publisher"/>
+<a:Class rdf:about="ReinforcementLearning">
+	<a:subClassOf rdf:resource="KAThroughMachineLearning"/>
+</a:Class>
+<a:Class rdf:about="ResearchGroup">
+	<a:subClassOf rdf:resource="Organization"/>
+</a:Class>
+<a:Class rdf:about="ResearchProject">
+	<a:subClassOf rdf:resource="Project"/>
+</a:Class>
+<a:Class rdf:about="ResearchTopic">
+	<a:subClassOf rdf:resource="Object"/>
+</a:Class>
+<a:Class rdf:about="Researcher">
+	<a:subClassOf rdf:resource="AcademicStaff"/>
+</a:Class>
+<a:Class rdf:about="Reuse">
+	<a:subClassOf rdf:resource="ResearchTopic"/>
+</a:Class>
+<a:Class rdf:about="Secretary">
+	<a:subClassOf rdf:resource="AdministrativeStaff"/>
+</a:Class>
+<a:Class rdf:about="SoftwareApplications">
+	<a:subClassOf rdf:resource="Ontologies"/>
+</a:Class>
+<a:Class rdf:about="SoftwareProject">
+	<a:subClassOf rdf:resource="DevelopmentProject"/>
+</a:Class>
+<a:Class rdf:about="SoftwareReuse">
+	<a:subClassOf rdf:resource="Reuse"/>
+</a:Class>
+<a:Class rdf:about="SpecialIssueEvent">
+	<a:subClassOf rdf:resource="Event"/>
+</a:Class>
+<a:Class rdf:about="SpecialIssuePublication">
+	<a:subClassOf rdf:resource="Journal"/>
+</a:Class>
+<a:Class rdf:about="SpecificationLanguage">
+	<a:subClassOf rdf:resource="KAMethodology"/>
+</a:Class>
+<a:Class rdf:about="SpecificationLanguages">
+	<a:subClassOf rdf:resource="ResearchTopic"/>
+</a:Class>
+<a:Class rdf:about="SpecificationMethodology">
+	<a:subClassOf rdf:resource="SpecificationLanguages"/>
+</a:Class>
+<a:Class rdf:about="SpecificationOfControlKnowledge">
+	<a:subClassOf rdf:resource="SpecificationLanguages"/>
+</a:Class>
+<a:Class rdf:about="Student">
+	<a:subClassOf rdf:resource="Person"/>
+</a:Class>
+<a:Class rdf:about="SupportToolsForFormalMethods">
+	<a:subClassOf rdf:resource="SpecificationLanguages"/>
+</a:Class>
+<a:Class rdf:about="Sysiphus_III_Experiment">
+	<a:subClassOf rdf:resource="PSMs"/>
+</a:Class>
+<a:Class rdf:about="TechnicalReport">
+	<a:subClassOf rdf:resource="Article"/>
+</a:Class>
+<a:Class rdf:about="TechnicalStaff">
+	<a:subClassOf rdf:resource="AdministrativeStaff"/>
+</a:Class>
+<a:Class rdf:about="TheoreticalFoundations">
+	<a:subClassOf rdf:resource="Ontologies"/>
+</a:Class>
+<rdf:Property rdf:about="Title"/>
+<a:Class rdf:about="TransformationTool">
+	<a:subClassOf rdf:resource="ComputerSupport"/>
+</a:Class>
+<rdf:Property rdf:about="Type"/>
+<a:Class rdf:about="University">
+	<a:subClassOf rdf:resource="Organization"/>
+</a:Class>
+<a:Class rdf:about="V_And_V_Of_MAS">
+	<a:subClassOf rdf:resource="Validation_And_Verification"/>
+</a:Class>
+<a:Class rdf:about="Validation_And_Verification">
+	<a:subClassOf rdf:resource="ResearchTopic"/>
+</a:Class>
+<a:Class rdf:about="Validator">
+	<a:subClassOf rdf:resource="ComputerSupport"/>
+</a:Class>
+<a:Class rdf:about="Verifier">
+	<a:subClassOf rdf:resource="ComputerSupport"/>
+</a:Class>
+<a:Class rdf:about="WebMediatedPSMSelection">
+	<a:subClassOf rdf:resource="PSMs"/>
+</a:Class>
+<a:Class rdf:about="Workshop">
+	<a:subClassOf rdf:resource="Event"/>
+</a:Class>
+<a:Class rdf:about="WorkshopPaper">
+	<a:subClassOf rdf:resource="Article"/>
+</a:Class>
+<rdf:Property rdf:about="abstract"/>
+<rdf:Property rdf:about="address"/>
+<rdf:Property rdf:about="affiliation"/>
+<rdf:Property rdf:about="applicationAreas"/>
+<rdf:Property rdf:about="approaches"/>
+<rdf:Property rdf:about="atEvent"/>
+<rdf:Property rdf:about="author"/>
+<rdf:Property rdf:about="authorOfOntology"/>
+<rdf:Property rdf:about="bibliographies"/>
+<rdf:Property rdf:about="book"/>
+<rdf:Property rdf:about="carriedOutBy"/>
+<rdf:Property rdf:about="carriesOut"/>
+<rdf:Property rdf:about="conference"/>
+<rdf:Property rdf:about="containsArticle"/>
+<rdf:Property rdf:about="cooperatesWith"/>
+<rdf:Property rdf:about="dateOfLastModification"/>
+<rdf:Property rdf:about="describesProject"/>
+<rdf:Property rdf:about="developedBy"/>
+<rdf:Property rdf:about="develops"/>
+<rdf:Property rdf:about="editor"/>
+<rdf:Property rdf:about="email"/>
+<rdf:Property rdf:about="employs"/>
+<rdf:Property rdf:about="eventTile"/>
+<rdf:Property rdf:about="events"/>
+<rdf:Property rdf:about="fax"/>
+<rdf:Property rdf:about="financedBy"/>
+<rdf:Property rdf:about="finances"/>
+<rdf:Property rdf:about="firstName"/>
+<rdf:Property rdf:about="firstPage"/>
+<rdf:Property rdf:about="hasParts"/>
+<rdf:Property rdf:about="head"/>
+<rdf:Property rdf:about="headOf"/>
+<rdf:Property rdf:about="headOfGroup"/>
+<rdf:Property rdf:about="internationalFundingAgencies"/>
+<rdf:Property rdf:about="isAbout"/>
+<rdf:Property rdf:about="journal"/>
+<rdf:Property rdf:about="journals"/>
+<rdf:Property rdf:about="keyword"/>
+<rdf:Property rdf:about="lastName"/>
+<rdf:Property rdf:about="lastPage"/>
+<rdf:Property rdf:about="location"/>
+<rdf:Property rdf:about="mailingLists"/>
+<rdf:Property rdf:about="member"/>
+<rdf:Property rdf:about="memberOf"/>
+<rdf:Property rdf:about="memberOfPC"/>
+<rdf:Property rdf:about="middleInitial"/>
+<rdf:Property rdf:about="name"/>
+<rdf:Property rdf:about="nationalFundingAgencies"/>
+<rdf:Property rdf:about="number"/>
+<rdf:Property rdf:about="onlineVersion"/>
+<rdf:Property rdf:about="onlineVersionOf"/>
+<rdf:Property rdf:about="orgCommittee"/>
+<rdf:Property rdf:about="organization"/>
+<rdf:Property rdf:about="organizerOrChairOf"/>
+<rdf:Property rdf:about="participant"/>
+<rdf:Property rdf:about="phone"/>
+<rdf:Property rdf:about="photo"/>
+<rdf:Property rdf:about="proceedingsTitle"/>
+<rdf:Property rdf:about="product"/>
+<rdf:Property rdf:about="productFAQ"/>
+<rdf:Property rdf:about="productMailingList"/>
+<rdf:Property rdf:about="productName"/>
+<rdf:Property rdf:about="productPublication"/>
+<rdf:Property rdf:about="productedBy"/>
+<rdf:Property rdf:about="products"/>
+<rdf:Property rdf:about="programCommittee"/>
+<rdf:Property rdf:about="projectInfo"/>
+<rdf:Property rdf:about="projects"/>
+<rdf:Property rdf:about="publication"/>
+<rdf:Property rdf:about="publishes"/>
+<rdf:Property rdf:about="relatedTopics"/>
+<rdf:Property rdf:about="researchGroups"/>
+<rdf:Property rdf:about="researchInterest"/>
+<rdf:Property rdf:about="researchers"/>
+<rdf:Property rdf:about="secretaryOf"/>
+<rdf:Property rdf:about="series"/>
+<rdf:Property rdf:about="student"/>
+<rdf:Property rdf:about="studiesAt"/>
+<rdf:Property rdf:about="subTopics"/>
+<rdf:Property rdf:about="supervises"/>
+<rdf:Property rdf:about="supervisor"/>
+<rdf:Property rdf:about="technicalReport"/>
+<rdf:Property rdf:about="volume"/>
+<rdf:Property rdf:about="webpages"/>
+<rdf:Property rdf:about="worksAtProject"/>
+<rdf:Property rdf:about="workshop"/>
+<rdf:Property rdf:about="year"/>
+</rdf:RDF>

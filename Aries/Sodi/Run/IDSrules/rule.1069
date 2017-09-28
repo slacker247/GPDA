@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC iPlanet GETPROPERTIES attempt"; content:"GETPROPERTIES"; offset:0; depth:13; classtype:web-application-attack; sid:1050; rev:2;)

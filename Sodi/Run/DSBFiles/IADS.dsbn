@@ -1,0 +1,78 @@
+# Tree height, Name, DS_isContinuous, Start time, End time, Time unit
+5  IADS  0  0.0  0.0  M
+
+5     Evidence
+  GMT1                        JSTARS_has_detected_something           0.75  100.00
+  AMT1                        RC-135_has_detected_something           0.75  100.00
+  SIGINT                      Predator_has_detected_something         0.75  100.00
+  MASINT                      open_source_has_detected_something      0.75  100.00
+  HUMINT                      IMINT_has_detected_something            0.75  100.00
+
+4     Targets
+  MIG_Aircraft                the_target_is_an_MIG                    0.75  100.00
+  SA-6                        the_target_is_an_SA-6                   0.75  100.00
+  SA-3                        the_target_is_an_SA-3                   0.75  100.00
+  SA-2                        the_target_is_an_SA-2                   0.75  100.00
+
+2     Combat_Assessment
+  Mobile_Neutralized          you_should_prevent_a_ground_attack      0.75  100.00
+  Fixed_Neutralized           you_should_prevent_an_air_attack        0.75  100.00
+
+2     Tactical_Objectives
+  Destroy_Enemy_Air           you_should_maintain_the_infrastructure  0.75  100.00
+  Supress_IADS                you_should_protect_icons                0.75  100.00
+
+1     Operational_Objs
+  Gain_Air_Superiority        maintain_government                     0.75  100.00
+
+false   B and D matrices are listed separately
+# E0     E1     E2     E3     E4     H0_0   H0_1   H0_2   H0_3   H1_0   H1_1   H2_0   H2_1   H3_0   
+#----   ----   ----   ----   ----    ----   ----   ----   ----   ----   ----   ----   ----   ---- 
+ 0.00   0.00   0.00   0.00   0.00    0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00     #  E0
+
+ 0.00   0.00   0.00   0.00   0.00    0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00     #  E1
+
+ 0.00   0.00   0.00   0.00   0.00    0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00     #  E2
+
+ 0.00   0.00   0.00   0.00   0.00    0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00     #  E3
+
+ 0.00   0.00   0.00   0.00   0.00    0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00     #  E4
+
+
+ 1.00   1.00   0.00   0.00   0.00    0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00     #  H0_0
+
+ 1.00   1.00   1.00   1.00   0.70    0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00     #  H0_1
+
+ 1.00   1.00   1.00   1.00   0.70    0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00     #  H0_2
+
+ 1.00   1.00   1.00   1.00   0.70    0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00     #  H0_3
+
+
+ 0.00   0.00   0.00   0.00   0.00    1.00   1.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00     #  H1_0
+
+ 0.00   0.00   0.00   0.00   0.00    0.00   1.00   1.00   1.00   0.00   0.00   0.00   0.00   0.00     #  H1_1
+
+
+ 0.00   0.00   0.00   0.00   0.00    0.00   0.00   0.00   0.00   1.00   0.00   0.00   0.00   0.00     #  H2_0
+
+ 0.00   0.00   0.00   0.00   0.00    0.00   0.00   0.00   0.00   0.60   1.00   0.00   0.00   0.00     #  H2_1
+
+
+ 0.00   0.00   0.00   0.00   0.00    0.00   0.00   0.00   0.00   0.00   0.00   1.00   1.00   0.00     #  H3_0
+
+
+9  Possibilities
+0.00  0.00  impossible
+0.00  0.05  extremely_unlikely
+0.05  0.20  very_low_chance
+0.20  0.38  small_chance
+0.38  0.60  may
+0.60  0.79  meaningful_chance
+0.79  0.95  most_likely
+0.95  0.99  extremely_likely
+0.99  1.00  certain
+
+#  Evidence labels follow. Must be 3, each < 4 chars
+Lat      Lon      Alt
+#  Default time units follow. Must be: Sec, Min, Hour, or Days
+Min

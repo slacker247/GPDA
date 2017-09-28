@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC console.exe access"; flags:A+; uricontent:"/cgi-bin/console.exe"; nocase; reference:bugtraq,3375; classtype:attempted-recon; sid:1302; rev:1;)

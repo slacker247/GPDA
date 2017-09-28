@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 111 (msg:"RPC portmap request snmpXdmi"; rpc:100249,*,*; reference:bugtraq,2417; classtype:rpc-portmap-decode; sid:1279; rev:3;)

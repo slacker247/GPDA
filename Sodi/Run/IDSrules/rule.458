@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET 8888 -> $HOME_NET any (msg:"INFO napster upload request"; flags: A+; content: "|00 5f02|"; offset: 1; depth: 3; classtype:bad-unknown;  sid:552; rev:1;)

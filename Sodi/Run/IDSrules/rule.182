@@ -1,0 +1,1 @@
+alert udp any 19 <> $HOME_NET 7 (msg:"DOS UDP Bomb"; classtype:attempted-dos; sid:271; rev:1;)

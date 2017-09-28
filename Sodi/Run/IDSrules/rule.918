@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION cfappman access"; flags: A+; uricontent:"/cfappman/index.cfm"; nocase; reference:bugtraq,550; classtype:attempted-recon; sid:913; rev:2;)

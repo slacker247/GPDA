@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Mobile Registration Reply (Undefined Code!)"; itype: 36; sid:422;  classtype:misc-activity; rev:4;)

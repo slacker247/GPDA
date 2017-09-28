@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP PING Flowpoint2200 or Network Management Software"; itype:8; content:"|0102030405060708090a0b0c0d0e0f10|"; depth:32; reference:arachnids,156; sid:373;  classtype:misc-activity; rev:4;)

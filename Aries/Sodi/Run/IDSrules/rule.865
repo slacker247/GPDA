@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI zsh access";flags: A+; uricontent:"/zsh"; nocase; reference:cve,CAN-1999-0509; classtype:attempted-recon; sid:1309; rev:2;)

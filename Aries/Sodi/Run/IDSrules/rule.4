@@ -1,0 +1,1 @@
+alert tcp $HTTP_SERVERS 80 -> $EXTERNAL_NET any (msg:"ATTACK RESPONSES command error"; content:"Bad command or filename"; nocase; flags:A+; classtype:bad-unknown; sid:495; rev:2;)

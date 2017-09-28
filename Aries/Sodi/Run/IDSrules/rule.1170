@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC windmail access"; flags:A+; uricontent:"/windmail.exe"; nocase; content:"-n"; content:"mail"; nocase; reference:cve,CAN-2000-0242; reference:bugtraq,1073; reference:arachnids,465; classtype:attempted-recon; sid:1158; rev:2;)

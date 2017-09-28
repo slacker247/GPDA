@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS cross-site scripting attempt"; uricontent:"/Form_JScript.asp"; nocase; flags:A+; classtype:web-application-attack; sid:1007; rev:2;)

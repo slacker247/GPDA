@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Destination Unreachable (Source Host Isolated)"; itype: 3; icode: 8; sid:405;  classtype:misc-activity; rev:4;)

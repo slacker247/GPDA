@@ -1,0 +1,15 @@
+# (C) Copyright 2001, Martin Roesch, Brian Caswell, et al.  All rights reserved.
+# $Id: tftp.rules,v 1.2 2001/10/29 01:52:54 roesch Exp $
+#-----------
+# TFTP RULES
+#-----------
+#
+# These signatures are based on TFTP traffic.  These include malicious files
+# that are distrubted via TFTP and various TFTP commands that are generally
+# thought of as 'bad' 
+#
+
+alert udp any any -> any 69 (msg:"TFTP GET Admin.dll"; content: "|41 64 6D 69 6E 2E 64 6C 6C 00 6F 63 74 65 74|"; classtype:successful-admin; reference:url,www.cert.org/advisories/CA-2001-26.html; sid:1289; rev:1;)
+alert udp $EXTERNAL_NET any -> $HOME_NET 69 (msg:"TFTP Write"; content:"|00 02|"; depth:2; reference:cve,CVE-1999-0183; reference:arachnids,148; classtype:bad-unknown; sid:518; rev:2;)
+alert udp $EXTERNAL_NET any -> $HOME_NET 69 (msg:"TFTP parent directory"; content:".."; reference:arachnids,137; reference:cve,CVE-1999-0183; classtype:bad-unknown; sid:519; rev:1;)
+alert udp $EXTERNAL_NET any -> $HOME_NET 69 (msg:"TFTP root directory"; content:"|0001|/"; reference:arachnids,138; reference:cve,CVE-1999-0183; classtype:bad-unknown; sid:520; rev:2;)

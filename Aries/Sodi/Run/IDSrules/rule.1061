@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS msdac access"; flags:A+; uricontent:"/msdac/"; nocase; classtype:web-application-activity; sid:1285; rev:2;)

@@ -1,0 +1,197 @@
+
+rotatez 180
+rotatex 90
+rotatey 90
+translate 0.0 0.0 0.0
+scale .0003 .0003 .0003
+color 25 255 255 130 146 158 silver4
+poly 4  topback[][3] = vtx
+    vtx -5 5 -17
+    vtx 5 5 -17
+    vtx 5 5 16
+    vtx -5 5 16
+color 25 255 255 200 70 0 orange
+poly 6 rightfire[][3] = vtx 
+    vtx 1.0 2.5 16.0  
+    vtx 2 4 16.0  
+    vtx 3 4 16.0  
+    vtx 4.0 2.5 16.0  
+    vtx 3 1 16.0  
+    vtx 2 1 16.0  
+color 25 255 255 200 70 0 orange
+poly 6 leftfire[][3] = vtx 
+    vtx -1.0 2.5 16.0  
+    vtx -2 4 16.0  
+    vtx -3 4 16.0  
+    vtx -4.0 2.5 16.0  
+    vtx -3 1 16.0  
+    vtx -2 1 16.0  
+color 25 255 255 80 96 108 silver8
+poly 4  rightwing[][3] = vtx 
+    vtx 5 5 7  
+    vtx 5 5 -11  
+    vtx 21 5 2  
+    vtx 19 5 8  
+color 25 255 255 80 96 108 silver8
+poly 4  leftwing[][3] = vtx 
+    vtx -5 5 7  
+    vtx -5 5 -11  
+    vtx -21 5 2  
+    vtx -19 5 8  
+color 25 255 255 70 86 98 silver8
+poly 4  rightchine[][3] = vtx 
+    vtx 5 5 -9  
+    vtx 5 5 -17  
+    vtx 7 5 -12  
+    vtx 7 5 -9  
+color 25 255 255 70 86 98 silver8
+poly 4  leftchine[][3] = vtx 
+    vtx -5 5 -9  
+    vtx -5 5 -17  
+    vtx -7 5 -12  
+    vtx -7 5 -9  
+color 25 255 255 70 86 98 silver8
+poly 4  rightinlet[][3] = vtx 
+    vtx 2 5 -23  
+    vtx 2 5 -17  
+    vtx 5 5 -17  
+    vtx 5 5 -23  
+color 25 255 255 70 86 98 silver8
+poly  4 leftinlet[][3] = vtx 
+    vtx -2 5 -23  
+    vtx -2 5 -17  
+    vtx -5 5 -17  
+    vtx -5 5 -23  
+color 25 255 255 120 136 148 silver3
+poly 4  rightrudder[][3] = vtx 
+    vtx 4.5 5 7  
+    vtx 4.5 14 14  
+    vtx 4.5 14 17  
+    vtx 4.5 5 16  
+color 25 255 255 120 136 148 silver3
+poly  4 leftrudder[][3] = vtx 
+    vtx -4.5 5 7  
+    vtx -4.5 14 14  
+    vtx -4.5 14 17  
+    vtx -4.5 5 16  
+color 25 255 255 120 136 148 silver3
+poly 4  rightelevator[][3] = vtx 
+    vtx 5 2 10  
+    vtx 13 2 18  
+    vtx 12 2 22  
+    vtx 5 2 20  
+color 25 255 255 120 136 148 silver3
+poly 4  leftelevator[][3] = vtx 
+    vtx -5 2 10  
+    vtx -13 2 18  
+    vtx -12 2 22  
+    vtx -5 2 20  
+color 25 255 255 130 146 158 silver4
+poly 4
+    vtx 5 5 -23  
+    vtx 5 5 16  
+    vtx 5 0 16  
+    vtx 5 0 -17  
+color 25 255 255 130 146 158 silver4
+poly 4  leftback[][3] = vtx 
+    vtx -5 5 -23  
+    vtx -5 5 16  
+    vtx -5 0 16  
+    vtx -5 0 -17  
+color 25 255 255 80 96 88 silver9
+poly 4  bottomback[][3] = vtx 
+    vtx -5 0 -17  
+    vtx 5 0 -17  
+    vtx 5 0 16  
+    vtx -5 0 16  
+color 25 255 255 80 96 88 silver9
+poly 4  backback[][3] = vtx 
+    vtx -5 5 16  
+    vtx 5 5 16  
+    vtx 5 0 16  
+    vtx -5 0 16  
+color 25 255 255 96 80 64 brown 
+poly 4  frontback[][3] = vtx 
+    vtx -5 5 -17  
+    vtx 5 5 -17  
+    vtx 5 0 -17  
+    vtx -5 0 -17  
+color 25 255 255 80 96 88 silver9
+poly 4  bottomfront[][3] = vtx 
+    vtx 2 1 -34  
+    vtx 2 1 -17  
+    vtx -2 1 -17  
+    vtx -2 1 -34  
+color 25 255 255 130 146 138 silver5
+poly 4  rightfront[][3] = vtx 
+    vtx 2 1 -34  
+    vtx 2 1 -17  
+    vtx 2 7 -17  
+    vtx 2 4 -34  
+color 25 255 255 130 146 138 silver5
+poly 4  leftfront[][3] = vtx 
+    vtx -2 1 -34  
+    vtx -2 1 -17  
+    vtx -2 7 -17  
+    vtx -2 4 -34  
+color 25 255 255 120 136 128 silver6
+poly 3 rightnose[][3] = vtx 
+    vtx 0 2 -41  
+    vtx 2 1 -34  
+    vtx 2 4 -34  
+color 25 255 255 120 136 128 silver6
+poly 3 leftnose[][3] = vtx 
+    vtx 0 2 -41  
+    vtx -2 1 -34  
+    vtx -2 4 -34  
+color 25 255 255 140 156 148 silver4
+poly 3 topnose[][3] = vtx 
+    vtx 0 2 -41  
+    vtx 2 4 -34  
+    vtx -2 4 -34  
+color 25 255 255 80 96 88 silver9
+poly 3 botnose[][3] = vtx 
+    vtx 0 2 -41  
+    vtx 2 1 -34  
+    vtx -2 1 -34  
+color 25 255 255 110 126 118 silver3
+poly 4 frontbubble[][3] = vtx 
+    vtx -2 4 -34  
+    vtx -2 7 -17  
+    vtx 2 7 -17  
+    vtx 2 4 -34  
+color 25 255 255 90 106 98 silver1
+poly 3 topbubble[][3] = vtx 
+    vtx -2 7 -17  
+    vtx 0 5 0  
+    vtx 2 7 -17  
+color 25 255 255 150 166 158 silver1
+poly 3 rightbubble[][3] = vtx 
+    vtx 2 7 -17  
+    vtx 0 5 0  
+    vtx 2 5 -17  
+color 25 255 255 140 156 148 silver6
+poly 3 leftbubble[][3] = vtx 
+    vtx -2 7 -17  
+    vtx 0 5 0  
+    vtx -2 5 -17  
+color 25 255 255 90 106 98 silver1
+poly 3 pit1[][3] = vtx 
+    vtx 0 4.8825 -29  
+    vtx 1.8 5.7648 -24  
+    vtx 0 8 -24  
+color 25 255 255 90 106 98 silver1
+poly 3 pit2[][3] = vtx 
+    vtx 0 4.8825 -29  
+    vtx -1.8 5.7648 -24  
+    vtx 0 8 -24  
+color 25 255 255 90 106 98 silver1
+poly 3 pit3[][3] = vtx 
+    vtx 0 7 -17  
+    vtx 1.8 5.7648 -24  
+    vtx 0 8 -24  
+color 25 255 255 90 106 98 silver1
+poly 3 pit4[][3] = vtx 
+    vtx 0 7 -17  
+    vtx -1.8 5.7648 -24  
+    vtx 0 8 -24  

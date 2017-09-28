@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI w3-msql solaris x86  access"; flags: A+; uricontent: "/bin/shA-cA/usr/openwin"; nocase; reference:cve,CVE-1999-0276; reference:arachnids,211;classtype:attempted-recon; sid:874; rev:1;)

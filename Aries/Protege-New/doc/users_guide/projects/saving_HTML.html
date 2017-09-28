@@ -1,0 +1,74 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Saving an HTML View</title>
+</head>
+
+<body>
+
+<h1><img src="images/serving_nerd.gif" width="48" height="48"> Generating HTML
+From a Project<br>
+<img src="images/header_line.gif" width="590" height="6"></h1>
+<p>You can generate an HTML of a project. This allows you to view the class
+hierarchy and, optionally, all the instances. The output consists of an <b>index</b>
+page, which gives the class hierarchy for the project, including links to
+individual pages for each the class. Class pages include slot descriptions and
+optional instances. If instances are selected, they have individual pages, and
+appear in the index hierarchy and under each class.&nbsp;</p>
+<p>You can generate HTML pages for the entire project, or restrict the output to
+a subset of the project.</p>
+<p>To generate HTML for the entire project:</p>
+<ol>
+  <li>Select <b>Generate HTML...</b> from the <strong>Project</strong> menu.&nbsp;<br>
+    The <b>Generate HTML Options</b> dialog box is displayed.<br>
+    <img border="0" src="images/html1.gif" width="468" height="341"></li>
+  <li>If you want to save the project in a different location from the default,
+    type the new location in the Output Directory line or click the <img border="0" src="../classes/images/Add.gif" width="19" height="19"> 
+    button to navigate to the desired location.</li>
+  <li>If you want a page for each instance, make sure <b>Include Instances</b>
+    is selected.</li>
+  <li>Click OK.<br>
+    The HTML pages are generated in the selected directory.</li>
+</ol>
+<p>To restrict the output to a subset of the project:</p>
+<ol>
+  <li>Select <b>Generate HTML...</b> from the <strong>Project</strong> menu.&nbsp;<br>
+    The <b>Generate HTML Options</b> dialog box is displayed.</li>
+  <li>Choose the location where you want the project to be saved.</li>
+  <li>If you want a page for each instance, make sure <b>Include Instances</b>
+    is selected.</li>
+  <li>To restrict the classes that will appear, first remove the :THING class
+    from the <b>Root Classes</b> list by highlighting it and clicking the Remove <img border="0" src="../classes/images/Remove.gif" width="19" height="19">
+    button. Removing the :THING class allows you to restrict the classes you
+    want.</li>
+  <li>To choose a class as a root class, click the Add <img border="0" src="../classes/images/Add.gif" width="19" height="19"> 
+    button at the right of the <b>Root Classes</b> list.<br>
+    A Select Classes dialog box is displayed.<br>
+    <img border="0" src="images/select_class.gif" width="328" height="300"></li>
+  <li>Highlight one or more classes you want as root classes. Selecting a class
+    as a root class means that it and all its subordinate classes will be
+    displayed in the HTML hierarchy. You can select multiple classes by holding
+    down the Ctrl key.</li>
+  <li>Click OK.</li>
+  <li>The classes you selected are added to the <b>Root Classes</b> list. You
+    can select additional classes by repeating steps 5 though 8.</li>
+  <li>When you have the classes you want as root classes, click OK.<br>
+    The HTML pages are generated in the selected directory.</li>
+</ol>
+<p>The following shows examples of the index and class page output for the <b>newspaper</b>
+project, with <b>Layout_info</b> selected as the root class.</p>
+<p>Page for the index:</p>
+<p><img border="0" src="images/index_html.gif" width="734" height="319">:</p>
+<p>Page for the billing chart class:</p>
+<p><img border="0" src="images/billingchart_html.gif" width="730" height="460"></p>
+<hr>
+<p><font size="3">Next: <a href="cascading_open_forms.html">Cascading Open
+Windows</a></font></p>
+<p><a href="index.html"><font size="3">Project Table of Contents</font></a></p>
+
+</body>
+
+</html>

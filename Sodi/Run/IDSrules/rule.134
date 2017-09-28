@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 31335 (msg:"DDOS Trin00\:DaemontoMaster(PONGdetected)"; content:"PONG";reference:arachnids,187; classtype:attempted-recon; sid:223; rev:1;)

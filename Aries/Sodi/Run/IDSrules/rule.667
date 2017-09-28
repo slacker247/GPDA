@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any <- $HOME_NET 23 (msg:"TELNET bsd telnet exploit response"; flags: A+; content: "|0D0A|[Yes]|0D0A FFFE 08FF FD26|"; classtype: attempted-admin; sid: 1252; rev: 4; reference: bugtraq,3064; reference:cve,CAN-2001-0554;)

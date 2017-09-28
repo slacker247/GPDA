@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS search97.vts access";flags: A+; uricontent:"/search97.vts";reference:bugtraq,162; classtype:web-application-activity; sid:1030; rev:3;)

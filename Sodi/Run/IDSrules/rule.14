@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 12345 -> $EXTERNAL_NET any (msg:"BACKDOOR netbus active"; flags: A+; content: "NetBus";  reference:arachnids,401; sid:109;  classtype:misc-activity; rev:3;)

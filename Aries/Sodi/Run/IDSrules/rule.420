@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 80 (msg:"MISC PCCS mysql database admin tool"; flags: A+; content: "pccsmysqladm/incs/dbconnect.inc"; nocase; depth: 36;reference:arachnids,300; classtype:attempted-user; sid:509; rev:1;)

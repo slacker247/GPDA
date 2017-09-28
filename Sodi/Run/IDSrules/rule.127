@@ -1,0 +1,1 @@
+alert ip any any -> any any (msg:"BAD TRAFFIC same SRC/DST"; sameip; classtype:bad-unknown; sid:527; rev:2;)

@@ -1,0 +1,217 @@
+#
+# Makefile for JTAMP SPEEDES application
+#
+
+TARGET = jtamp
+ARCH   = IRIX
+ARCH   = Linux
+
+SPEEDESHOME = $(HOME)/speedes0.45
+
+SPSLIBPATH2 = $(SPEEDESHOME)/lib/ArchitectureDirs/$(ARCH)
+SPSLIBS = $(SPSLIBPATH2)/lib_speedes.a $(SPSLIBPATH2)/lib_shmem.a $(SPSLIBPATH2)/lib_utilities.a
+
+CC = g++
+##CC = insight
+CFLAGS = -g -DFUNCPROTO -I../include -I/usr/local/include \
+	-I$(SPEEDESHOME)/src/comm -I$(SPEEDESHOME)/src/utilities \
+	-I$(SPEEDESHOME)/src/speedes
+
+UFLAGS = -Dc_plusplus -c -D$(ARCH)
+CUFLAGS = $(CFLAGS) $(UFLAGS)
+
+LDFLAGS = -L/lib -L/usr/lib -lstdc++ -lm -lgcc -lc -lgcc
+
+#----------------------------------------------------------------
+# C++ language source files for SPEEDES application
+#----------------------------------------------------------------
+
+CORE_CC = event_types.C \
+	object_types.C \
+	track.C \
+	track1.C \
+	track2.C \
+	track3.C \
+	kalman1.C \
+	kalman2.C \
+	kalman3.C \
+	stereo_track.C \
+	mat_equ.C \
+	sensor_model.C \
+	ground_radar.C \
+	dsp_model.C \
+	eye_model.C \
+	missile.C \
+	scud.C \
+	ss09.C \
+	ss18.C \
+	ss24.C \
+	gbi.C \
+	intss18.C \
+	intgbi.C \
+	freeobjs.C \
+	locobj.C \
+	mover.C \
+	parsman.C \
+	missman.C \
+	missobj.C \
+	gbiman.C \
+	gbiobj.C \
+	gridman.C \
+	grid.C \
+	sensman.C \
+	sensobj.C \
+	dspman.C \
+	dspobj.C \
+	eyeman.C \
+	eyeobj.C \
+	ranman.C \
+	ranobj.C \
+	oagman.C \
+	oagobj.C \
+	eomanman.C \
+	eoman.C \
+	comman.C \
+	comobj.C \
+	centerman.C \
+	centobj.C \
+	graphman.C \
+	graphobj.C \
+	nostateman.C \
+	nostateobj.C \
+	next_script.C \
+	eoman_script.C \
+	change_script.C \
+	change_prox.C \
+	update_grid.C \
+	add_m2g.C \
+	del_mfg.C \
+	add_s2g.C \
+	del_sfg.C \
+	add_s2m.C \
+	del_sfm.C \
+	add_e2e.C \
+	add_s2e.C \
+	del_sfe.C \
+	add_m2s.C \
+	del_mfs.C \
+	fixed_coverage.C \
+	moving_coverage.C \
+	test_prox.C \
+	base_scan.C \
+	scan.C \
+	scan_gbi.C \
+	scan_eye.C \
+	track_out.C \
+	track_proc.C \
+	track_in.C \
+	send_message.C \
+	receive_message.C \
+	fuse_tracks.C \
+	add_det.C \
+	remove_tracks.C \
+	ext_lanl_bp.C \
+	ext_tracker.C \
+	ccc_plan.C \
+	shoot_gbi.C \
+	kill.C \
+	ext_graphics_gvt.C \
+	ext_graphics_script.C \
+	ext_graphics_define.C \
+	rsd_socket.C \
+	show_mem.C
+
+#----------------------------------------------------------------
+# C++ source files not dependent on SPEEDES
+#----------------------------------------------------------------
+
+ARCHIVE_CC = eom.C \
+	convert.C \
+	kepler.C \
+	stage.C \
+	bus.C \
+	spline6.C \
+	base_space.C \
+	base_stage.C \
+	int_stage.C \
+	int_bus.C \
+	greatcirc.C \
+	stop.C \
+	loiter.C \
+	sp_graphics.C \
+	sp_state.C \
+	sp_object.C \
+	link.C \
+	free_grevt.C \
+	freeoms.C \
+	gr_event.C \
+	gr_link.C \
+	gr_kill.C \
+	gr_add_eom.C \
+	gr_del_eom.C
+
+#----------------------------------------------------------------
+# C++ source files that are external modules
+#----------------------------------------------------------------
+
+EXTMOD_CC =
+
+#----------------------------------------------------------------
+# Object files:
+#----------------------------------------------------------------
+
+#EXTMOD_OBJS = $(EXTMOD_CC:%.C=$(SRC_DIR)/$(ARCHDIR)/src/%.o)
+CORE_OBJS = $(CORE_CC:%.C=%.o)
+ARCHIVE_OBJS = $(ARCHIVE_CC:%.C=%.o)
+
+#prox = $(SPEEDESHOME)/demos/prox
+#SRC_DIR=$(prox)
+#EXE=$(EXEDIR)/prox $(EXEDIR)/testrsd
+#CC_SOURCE = $(addprefix src/, $(EXTMOD_CC) $(CORE_CC) $(ARCHIVE_CC))
+
+OBJECTS = $(ARCHIVE_OBJS) $(CORE_OBJS) $(EXTMOD_OBJS)
+
+LIB = libjtamp.a
+#include $(SPEEDESHOME)/Admin/c_to_o_and_depend_and_link.mak
+#LIB=
+
+#									#
+#									#
+#-----------------------------------------------------------------------#
+# main targets								#
+#-----------------------------------------------------------------------#
+#									#
+#									#
+
+all: $(TARGET)
+	@echo "--------------- $(TARGET) All Done --------------"
+	@echo "---------- For architecture $(ARCH) -----------"
+
+$(TARGET): $(CORE_OBJS) $(LIB)
+	$(CC) -o $@ $(CORE_OBJS) $(LIB) $(SPSLIBS) $(LDFLAGS)
+
+$(LIB): $(ARCHIVE_OBJS)
+	@echo "---> MAKING LIBRARY $@ "
+	ar rv $@ $?
+
+$(CORE_OBJS): 
+	@echo "..... COMPILING $@ file ....."
+	$(CC) $(CUFLAGS) $(SPSFLAGS) -o $@ $*.C
+
+$(ARCHIVE_OBJS):
+	@echo "..... COMPILING $@ file ....."
+	$(CC) $(CUFLAGS) $(SPSFLAGS) -o $@ $*.C
+
+help :
+	make -s silent_help
+
+silent_help :
+	echo "default $(EXEDIR)/prox"
+	echo "$(EXEDIR)/proxpvm"
+	echo "$(SPEEDESLIBDIR)/lib_prox3d.a"
+	echo "archive"
+	echo "testrsd"
+	echo "shoot"
+	echo "tracker"
+	echo "lanl_bp"
+	echo "memsize"

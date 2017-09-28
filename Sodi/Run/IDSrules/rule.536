@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 111 (msg:"RPC portmap request yppasswdd"; rpc:100009,*,*; flags:A+; reference:bugtraq,2763; classtype:rpc-portmap-decode; sid:1297; rev:4;)

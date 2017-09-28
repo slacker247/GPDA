@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible Common Sense Worm"; content: "|6E 61 6D 65 20 3D 22 54 48 45 5F 46 4C 59 2E 43 48 4D 22|"; sid:790;  classtype:misc-activity; rev:3;)

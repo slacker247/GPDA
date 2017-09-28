@@ -1,0 +1,1384 @@
+; Thu May 02 02:57:02 BRT 2002
+; 
+;+ (version "1.7")
+;+ (build "Build 917")
+
+([AFRICA] of Continent
+	(name "AFRICA"))
+
+([ASIA] of Continent
+	(name "ASIA"))
+
+([CENTRAL^AMERICA] of Continent
+	(name "CENTRAL^AMERICA"))
+
+([EUROPA] of Continent
+	(name "EUROPA"))
+
+([Locations_00010] of Country
+	(is-Part-Of [AFRICA])
+	(name "Angola"))
+
+([Locations_00011] of Country
+	(is-Part-Of [AFRICA])
+	(name "Anguilla"))
+
+([Locations_00012] of Country
+	(is-Part-Of [OCEANIA])
+	(name "Antarctica"))
+
+([Locations_00013] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Antigua"))
+
+([Locations_00014] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Barbuda"))
+
+([Locations_00015] of Country
+	(is-Part-Of [SOUTH^AMERICA])
+	(name "Argentina"))
+
+([Locations_00016] of Country
+	(is-Part-Of [EUROPA])
+	(name "Albania"))
+
+([Locations_00017] of Country
+	(is-Part-Of [AFRICA])
+	(name "Algeria"))
+
+([Locations_00018] of Country
+	(is-Part-Of [OCEANIA])
+	(name "American Samoa"))
+
+([Locations_00019] of Country
+	(is-Part-Of [EUROPA])
+	(name "Andorra"))
+
+([Locations_00020] of Country
+	(is-Part-Of [ASIA])
+	(name "Armenia"))
+
+([Locations_00021] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Aruba"))
+
+([Locations_00022] of Country
+	(is-Part-Of [OCEANIA])
+	(name "Australia"))
+
+([Locations_00023] of Country
+	(is-Part-Of [EUROPA])
+	(name "Austria"))
+
+([Locations_00024] of Country
+	(is-Part-Of [ASIA])
+	(name "Azerbaijan"))
+
+([Locations_00025] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Bahamas"))
+
+([Locations_00026] of Country
+	(is-Part-Of [ASIA])
+	(name "Bahrain"))
+
+([Locations_00027] of Country
+	(is-Part-Of [ASIA])
+	(name "Bangladesh"))
+
+([Locations_00028] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Barbados"))
+
+([Locations_00029] of Country
+	(is-Part-Of [AFRICA])
+	(name "Belarus"))
+
+([Locations_00030] of Country
+	(is-Part-Of [EUROPA])
+	(name "Belgium"))
+
+([Locations_00031] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Belize"))
+
+([Locations_00032] of Country
+	(is-Part-Of [AFRICA])
+	(name "Benin"))
+
+([Locations_00033] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Bermuda"))
+
+([Locations_00034] of Country
+	(is-Part-Of [ASIA])
+	(name "Bhutan"))
+
+([Locations_00035] of Country
+	(is-Part-Of [SOUTH^AMERICA])
+	(name "Bolivia"))
+
+([Locations_00036] of Country
+	(Keywords "Bosnia")
+	(is-Part-Of [EUROPA])
+	(name "Bosnia and Herzegowina"))
+
+([Locations_00039] of Country
+	(is-Part-Of [AFRICA])
+	(name "Botswana"))
+
+([Locations_00040] of Country
+	(Keywords "Bouvet")
+	(is-Part-Of [OCEANIA])
+	(name "Bouvet Island"))
+
+([Locations_00041] of Country
+	(is-Part-Of [SOUTH^AMERICA])
+	(name "Brazil"))
+
+([Locations_00043] of Country
+	(Keywords "Brunei")
+	(is-Part-Of [ASIA])
+	(name "Brunei Darussalam"))
+
+([Locations_00045] of Country
+	(is-Part-Of [EUROPA])
+	(name "Bulgaria"))
+
+([Locations_00046] of Country
+	(Keywords
+		"Burkina"
+		"Faso")
+	(is-Part-Of [AFRICA])
+	(name "Burkina Faso"))
+
+([Locations_00047] of Country
+	(is-Part-Of [ASIA])
+	(name "Burma"))
+
+([Locations_00048] of Country
+	(is-Part-Of [AFRICA])
+	(name "Burundi"))
+
+([Locations_00049] of Country
+	(is-Part-Of [ASIA])
+	(name "Cambodia"))
+
+([Locations_00050] of Country
+	(is-Part-Of [AFRICA])
+	(name "Cameroon"))
+
+([Locations_00051] of Country
+	(is-Part-Of [NORTH^AMERICA])
+	(name "Canada"))
+
+([Locations_00052] of Country
+	(Keywords "Verde")
+	(is-Part-Of [AFRICA])
+	(name "Cape Verde"))
+
+([Locations_00053] of Country
+	(Keywords "Cayman")
+	(is-Part-Of [AFRICA])
+	(name "Cayman Islands"))
+
+([Locations_00055] of Country
+	(is-Part-Of [AFRICA])
+	(name "Central African Republic"))
+
+([Locations_00056] of Country
+	(is-Part-Of [AFRICA])
+	(name "Chad"))
+
+([Locations_00057] of Country
+	(is-Part-Of [SOUTH^AMERICA])
+	(name "Chile"))
+
+([Locations_00058] of Country
+	(is-Part-Of [ASIA])
+	(name "China"))
+
+([Locations_00059] of Country
+	(is-Part-Of [OCEANIA])
+	(name "Christmas Island"))
+
+([Locations_00060] of Country
+	(Keywords "Cocos")
+	(is-Part-Of [AFRICA])
+	(name "Cocos Islands"))
+
+([Locations_00061] of Country
+	(is-Part-Of [OCEANIA])
+	(name "Keeling Islands"))
+
+([Locations_00062] of Country
+	(is-Part-Of [SOUTH^AMERICA])
+	(name "Colombia"))
+
+([Locations_00063] of Country
+	(is-Part-Of [AFRICA])
+	(name "Comoros"))
+
+([Locations_00065] of Country
+	(Keywords "Congo")
+	(is-Part-Of [AFRICA])
+	(name "Democratic Republic of the Congo"))
+
+([Locations_00066] of Country
+	(Keywords "Cook")
+	(is-Part-Of [OCEANIA])
+	(name "Cook Islands"))
+
+([Locations_00067] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Costa Rica"))
+
+([Locations_00068] of Country
+	(Keywords "Cote d Ivoire")
+	(is-Part-Of [AFRICA])
+	(name "Ivory Coast"))
+
+([Locations_00069] of Country
+	(is-Part-Of [EUROPA])
+	(name "Croatia"))
+
+([Locations_00070] of Country
+	(is-Part-Of [EUROPA])
+	(name "Cyprus"))
+
+([Locations_00071] of Country
+	(Keywords "Czech")
+	(is-Part-Of [EUROPA])
+	(name "Czech Republic"))
+
+([Locations_00072] of Country
+	(is-Part-Of [EUROPA])
+	(name "Denmark"))
+
+([Locations_00073] of Country
+	(is-Part-Of [AFRICA])
+	(name "Djibouti"))
+
+([Locations_00074] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Dominica"))
+
+([Locations_00075] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Dominican Republic"))
+
+([Locations_00076] of Country
+	(Keywords "Timor")
+	(is-Part-Of [OCEANIA])
+	(name "East Timor"))
+
+([Locations_00077] of Country
+	(is-Part-Of [SOUTH^AMERICA])
+	(name "Ecuador"))
+
+([Locations_00078] of Country
+	(is-Part-Of [AFRICA])
+	(name "Egypt"))
+
+([Locations_00079] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "El Salvador"))
+
+([Locations_00080] of Country
+	(Keywords
+		"Great Britain"
+		"United Kingdom"
+		"UK")
+	(is-Part-Of [EUROPA])
+	(name "England"))
+
+([Locations_00081] of Country
+	(is-Part-Of [SOUTH^AMERICA])
+	(name "Equatorial Guinea"))
+
+([Locations_00082] of Country
+	(is-Part-Of [AFRICA])
+	(name "Eritrea"))
+
+([Locations_00083] of Country
+	(is-Part-Of [EUROPA])
+	(name "Espana"))
+
+([Locations_00084] of Country
+	(is-Part-Of [EUROPA])
+	(name "Estonia"))
+
+([Locations_00085] of Country
+	(is-Part-Of [AFRICA])
+	(name "Ethiopia"))
+
+([Locations_00086] of Country
+	(Keywords "Falkland")
+	(is-Part-Of [SOUTH^AMERICA])
+	(name "Falkland Islands"))
+
+([Locations_00088] of Country
+	(Keywords "Faroe")
+	(is-Part-Of [OCEANIA])
+	(name "Faroe Islands"))
+
+([Locations_00089] of Country
+	(is-Part-Of [OCEANIA])
+	(name "Fiji"))
+
+([Locations_00090] of Country
+	(is-Part-Of [EUROPA])
+	(name "Finland"))
+
+([Locations_00091] of Country
+	(is-Part-Of [EUROPA])
+	(name "France"))
+
+([Locations_00092] of Country
+	(is-Part-Of [SOUTH^AMERICA])
+	(name "French Guiana"))
+
+([Locations_00093] of Country
+	(is-Part-Of [OCEANIA])
+	(name "French Polynesia"))
+
+([Locations_00094] of Country
+	(is-Part-Of [OCEANIA])
+	(name "Polynesia"))
+
+([Locations_00095] of Country
+	(is-Part-Of [AFRICA])
+	(name "Gabon"))
+
+([Locations_00096] of Country
+	(is-Part-Of [AFRICA])
+	(name "Gambia"))
+
+([Locations_00097] of Country
+	(is-Part-Of [ASIA])
+	(name "Georgia"))
+
+([Locations_00098] of Country
+	(is-Part-Of [EUROPA])
+	(name "Germany"))
+
+([Locations_00099] of Country
+	(is-Part-Of [AFRICA])
+	(name "Ghana"))
+
+([Locations_00100] of Country
+	(is-Part-Of [AFRICA])
+	(name "Gibraltar"))
+
+([Locations_00102] of Country
+	(is-Part-Of [EUROPA])
+	(name "Greece"))
+
+([Locations_00103] of Country
+	(is-Part-Of [AFRICA])
+	(name "Greenland"))
+
+([Locations_00104] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Grenada"))
+
+([Locations_00105] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Guadeloupe"))
+
+([Locations_00106] of Country
+	(is-Part-Of [ASIA])
+	(name "Guam"))
+
+([Locations_00107] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Guatemala"))
+
+([Locations_00108] of Country
+	(is-Part-Of [AFRICA])
+	(name "Guinea"))
+
+([Locations_00109] of Country
+	(is-Part-Of [AFRICA])
+	(name "Guinea-Bissau"))
+
+([Locations_00110] of Country
+	(is-Part-Of [SOUTH^AMERICA])
+	(name "Guyana"))
+
+([Locations_00111] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Haiti"))
+
+([Locations_00114] of Country
+	(Keywords "Heard Islands")
+	(is-Part-Of [OCEANIA])
+	(name "Heard and Mc Donald Islands"))
+
+([Locations_00116] of Country
+	(Keywords "Vatican")
+	(is-Part-Of [EUROPA])
+	(name "Vatican City State"))
+
+([Locations_00118] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Honduras"))
+
+([Locations_00119] of Country
+	(is-Part-Of [ASIA])
+	(name "Hong Kong"))
+
+([Locations_00120] of Country
+	(is-Part-Of [EUROPA])
+	(name "Hungary"))
+
+([Locations_00121] of Country
+	(is-Part-Of [EUROPA])
+	(name "Iceland"))
+
+([Locations_00122] of Country
+	(is-Part-Of [ASIA])
+	(name "India"))
+
+([Locations_00123] of Country
+	(is-Part-Of [OCEANIA])
+	(name "Indonesia"))
+
+([Locations_00124] of Country
+	(is-Part-Of [EUROPA])
+	(name "Ireland"))
+
+([Locations_00125] of Country
+	(is-Part-Of [ASIA])
+	(name "Israel"))
+
+([Locations_00126] of Country
+	(is-Part-Of [EUROPA])
+	(name "Italy"))
+
+([Locations_00127] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Jamaica"))
+
+([Locations_00128] of Country
+	(is-Part-Of [ASIA])
+	(name "Japan"))
+
+([Locations_00129] of Country
+	(is-Part-Of [ASIA])
+	(name "Jordan"))
+
+([Locations_00130] of Country
+	(is-Part-Of [ASIA])
+	(name "Kazakhstan"))
+
+([Locations_00131] of Country
+	(is-Part-Of [AFRICA])
+	(name "Kenya"))
+
+([Locations_00132] of Country
+	(is-Part-Of [AFRICA])
+	(name "Kiribati"))
+
+([Locations_00134] of Country
+	(is-Part-Of [ASIA])
+	(name "Korea, Republic of"))
+
+([Locations_00135] of Country
+	(is-Part-Of [ASIA])
+	(name "North Korea"))
+
+([Locations_00136] of Country
+	(is-Part-Of [ASIA])
+	(name "Kuwait"))
+
+([Locations_00137] of Country
+	(is-Part-Of [ASIA])
+	(name "Kyrgyzstan"))
+
+([Locations_00139] of Country
+	(Keywords "Lao")
+	(is-Part-Of [ASIA])
+	(name "Lao People s Democratic Republic"))
+
+([Locations_00140] of Country
+	(is-Part-Of [ASIA])
+	(name "Latvia"))
+
+([Locations_00141] of Country
+	(is-Part-Of [ASIA])
+	(name "Lebanon"))
+
+([Locations_00142] of Country
+	(is-Part-Of [AFRICA])
+	(name "Lesotho"))
+
+([Locations_00143] of Country
+	(is-Part-Of [AFRICA])
+	(name "Liberia"))
+
+([Locations_00144] of Country
+	(is-Part-Of [EUROPA])
+	(name "Liechtenstein"))
+
+([Locations_00145] of Country
+	(is-Part-Of [ASIA])
+	(name "Lithuania"))
+
+([Locations_00146] of Country
+	(is-Part-Of [EUROPA])
+	(name "Luxembourg"))
+
+([Locations_00147] of Country
+	(is-Part-Of [ASIA])
+	(name "Macau"))
+
+([Locations_00148] of Country
+	(is-Part-Of [EUROPA])
+	(name "Macedonia"))
+
+([Locations_00149] of Country
+	(is-Part-Of [AFRICA])
+	(name "Madagascar"))
+
+([Locations_00150] of Country
+	(is-Part-Of [AFRICA])
+	(name "Malawi"))
+
+([Locations_00151] of Country
+	(is-Part-Of [AFRICA])
+	(name "Malaysia"))
+
+([Locations_00152] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Maldives"))
+
+([Locations_00153] of Country
+	(is-Part-Of [AFRICA])
+	(name "Mali"))
+
+([Locations_00154] of Country
+	(is-Part-Of [EUROPA])
+	(name "Malta"))
+
+([Locations_00155] of Country
+	(is-Part-Of [AFRICA])
+	(name "Marshall Islands"))
+
+([Locations_00156] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Martinique"))
+
+([Locations_00157] of Country
+	(is-Part-Of [AFRICA])
+	(name "Mauritania"))
+
+([Locations_00158] of Country
+	(is-Part-Of [AFRICA])
+	(name "Mauritius"))
+
+([Locations_00159] of Country
+	(is-Part-Of [AFRICA])
+	(name "Mayotte"))
+
+([Locations_00160] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Mexico"))
+
+([Locations_00163] of Country
+	(Keywords "Moldova")
+	(is-Part-Of [EUROPA])
+	(name "Moldova, Republic of"))
+
+([Locations_00165] of Country
+	(is-Part-Of [EUROPA])
+	(name "Monaco"))
+
+([Locations_00166] of Country
+	(is-Part-Of [ASIA])
+	(name "Mongolia"))
+
+([Locations_00167] of Country
+	(is-Part-Of [AFRICA])
+	(name "Montserrat"))
+
+([Locations_00168] of Country
+	(is-Part-Of [AFRICA])
+	(name "Morocco"))
+
+([Locations_00169] of Country
+	(is-Part-Of [AFRICA])
+	(name "Mozambique"))
+
+([Locations_00170] of Country
+	(is-Part-Of [AFRICA])
+	(name "Myanmar"))
+
+([Locations_00171] of Country
+	(is-Part-Of [AFRICA])
+	(name "Namibia"))
+
+([Locations_00172] of Country
+	(is-Part-Of [OCEANIA])
+	(name "Nauru"))
+
+([Locations_00173] of Country
+	(is-Part-Of [ASIA])
+	(name "Nepal"))
+
+([Locations_00174] of Country
+	(is-Part-Of [EUROPA])
+	(name "Netherlands"))
+
+([Locations_00175] of Country
+	(Keywords "Dutch Antilles")
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Netherlands Antilles"))
+
+([Locations_00176] of Country
+	(is-Part-Of [EUROPA])
+	(name "New Caledonia"))
+
+([Locations_00177] of Country
+	(is-Part-Of [OCEANIA])
+	(name "New Zealand"))
+
+([Locations_00178] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Nicaragua"))
+
+([Locations_00179] of Country
+	(is-Part-Of [AFRICA])
+	(name "Niger"))
+
+([Locations_00180] of Country
+	(is-Part-Of [AFRICA])
+	(name "Nigeria"))
+
+([Locations_00181] of Country
+	(is-Part-Of [AFRICA])
+	(name "Niue"))
+
+([Locations_00182] of Country
+	(is-Part-Of [OCEANIA])
+	(name "Norfolk Island"))
+
+([Locations_00183] of Country
+	(is-Part-Of [OCEANIA])
+	(name "Northern Ireland"))
+
+([Locations_00184] of Country
+	(Keywords "Mariana Islands")
+	(is-Part-Of [OCEANIA])
+	(name "Northern Mariana Islands"))
+
+([Locations_00185] of Country
+	(is-Part-Of [EUROPA])
+	(name "Norway"))
+
+([Locations_00186] of Country
+	(is-Part-Of [ASIA])
+	(name "Oman"))
+
+([Locations_00187] of Country
+	(is-Part-Of [ASIA])
+	(name "Pakistan"))
+
+([Locations_00188] of Country
+	(is-Part-Of [AFRICA])
+	(name "Palau"))
+
+([Locations_00189] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Panama"))
+
+([Locations_00192] of Country
+	(Keywords "Papua")
+	(is-Part-Of [OCEANIA])
+	(name "Papua New Guinea"))
+
+([Locations_00193] of Country
+	(is-Part-Of [SOUTH^AMERICA])
+	(name "Paraguay"))
+
+([Locations_00194] of Country
+	(is-Part-Of [SOUTH^AMERICA])
+	(name "Peru"))
+
+([Locations_00195] of Country
+	(is-Part-Of [OCEANIA])
+	(name "Philippines"))
+
+([Locations_00196] of Country
+	(is-Part-Of [AFRICA])
+	(name "Pitcairn"))
+
+([Locations_00197] of Country
+	(is-Part-Of [EUROPA])
+	(name "Poland"))
+
+([Locations_00198] of Country
+	(is-Part-Of [EUROPA])
+	(name "Portugal"))
+
+([Locations_00199] of Country
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Puerto Rico"))
+
+([Locations_00200] of Country
+	(is-Part-Of [ASIA])
+	(name "Qatar"))
+
+([Locations_00201] of Country
+	(is-Part-Of [AFRICA])
+	(name "Reunion"))
+
+([Locations_00202] of Country
+	(is-Part-Of [EUROPA])
+	(name "Romania"))
+
+([Locations_00203] of Country
+	(is-Part-Of [EUROPA])
+	(name "Russia"))
+
+([Locations_00204] of Country
+	(is-Part-Of [EUROPA])
+	(name "Russian Federation"))
+
+([Locations_00205] of Country
+	(is-Part-Of [AFRICA])
+	(name "Rwanda"))
+
+([Locations_00206] of Country
+	(Keywords "Saint Kitts")
+	(is-Part-Of [AFRICA])
+	(name "Saint Kitts and Nevis"))
+
+([Locations_00207] of Country
+	(is-Part-Of [AFRICA])
+	(name "Saint Lucia"))
+
+([Locations_00210] of Country
+	(Keywords "Saint Vincent")
+	(is-Part-Of [AFRICA])
+	(name "Saint Vincent and the Grenadines"))
+
+([Locations_00211] of Country
+	(is-Part-Of [OCEANIA])
+	(name "Samoa"))
+
+([Locations_00212] of Country
+	(Keywords "S. Marino")
+	(is-Part-Of [EUROPA])
+	(name "San Marino"))
+
+([Locations_00214] of Country
+	(Keywords "Sao Tome")
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Sao Tome and Principe"))
+
+([Locations_00215] of Country
+	(Keywords "Arabia")
+	(is-Part-Of [ASIA])
+	(name "Saudi Arabia"))
+
+([Locations_00216] of Country
+	(is-Part-Of [EUROPA])
+	(name "Scotland"))
+
+([Locations_00217] of Country
+	(is-Part-Of [AFRICA])
+	(name "Senegal"))
+
+([Locations_00218] of Country
+	(is-Part-Of [AFRICA])
+	(name "Seychelles"))
+
+([Locations_00219] of Country
+	(Keywords "Leone")
+	(is-Part-Of [AFRICA])
+	(name "Sierra Leone"))
+
+([Locations_00220] of Country
+	(is-Part-Of [ASIA])
+	(name "Singapore"))
+
+([Locations_00221] of Country
+	(is-Part-Of [EUROPA])
+	(name "Slovakia"))
+
+([Locations_00222] of Country
+	(is-Part-Of [EUROPA])
+	(name "Slovenia"))
+
+([Locations_00223] of Country
+	(is-Part-Of [AFRICA])
+	(name "Solomon Islands"))
+
+([Locations_00224] of Country
+	(is-Part-Of [AFRICA])
+	(name "Somalia"))
+
+([Locations_00225] of Country
+	(is-Part-Of [AFRICA])
+	(name "South Africa"))
+
+([Locations_00228] of Country
+	(Keywords "South Sandwich")
+	(is-Part-Of [OCEANIA])
+	(name "South Georgia and the South Sandwich Islands"))
+
+([Locations_00229] of Country
+	(is-Part-Of [ASIA])
+	(name "South Korea"))
+
+([Locations_00230] of Country
+	(is-Part-Of [EUROPA])
+	(name "Spain"))
+
+([Locations_00231] of Country
+	(is-Part-Of [ASIA])
+	(name "Sri Lanka"))
+
+([Locations_00232] of Country
+	(is-Part-Of [OCEANIA])
+	(name "Saint Helena"))
+
+([Locations_00234] of Country
+	(Keywords "Saint Pierre")
+	(is-Part-Of [OCEANIA])
+	(name "Saintt Pierre and Miquelon"))
+
+([Locations_00235] of Country
+	(is-Part-Of [SOUTH^AMERICA])
+	(name "Suriname"))
+
+([Locations_00238] of Country
+	(Keywords "Svalbard")
+	(is-Part-Of [OCEANIA])
+	(name "Svalbard and Jan Mayen Islands"))
+
+([Locations_00239] of Country
+	(is-Part-Of [AFRICA])
+	(name "Swaziland"))
+
+([Locations_00240] of Country
+	(is-Part-Of [EUROPA])
+	(name "Sweden"))
+
+([Locations_00241] of Country
+	(is-Part-Of [EUROPA])
+	(name "Switzerland"))
+
+([Locations_00242] of Country
+	(is-Part-Of [ASIA])
+	(name "Taiwan"))
+
+([Locations_00243] of Country
+	(is-Part-Of [ASIA])
+	(name "Tajikistan"))
+
+([Locations_00244] of Country
+	(is-Part-Of [AFRICA])
+	(name "Tanzania"))
+
+([Locations_00245] of Country
+	(is-Part-Of [ASIA])
+	(name "Thailand"))
+
+([Locations_00246] of Country
+	(is-Part-Of [AFRICA])
+	(name "Togo"))
+
+([Locations_00247] of Country
+	(is-Part-Of [AFRICA])
+	(name "Tokelau"))
+
+([Locations_00248] of Country
+	(is-Part-Of [OCEANIA])
+	(name "Tonga"))
+
+([Locations_00251] of Country
+	(Keywords "Trinidad")
+	(is-Part-Of [CENTRAL^AMERICA])
+	(name "Trinidad and Tobago"))
+
+([Locations_00252] of Country
+	(is-Part-Of [AFRICA])
+	(name "Tunisia"))
+
+([Locations_00253] of Country
+	(is-Part-Of [EUROPA])
+	(name "Turkey"))
+
+([Locations_00254] of Country
+	(is-Part-Of [ASIA])
+	(name "Turkmenistan"))
+
+([Locations_00257] of Country
+	(Keywords "Turks")
+	(is-Part-Of [AFRICA])
+	(name "Turks and Caicos Islands"))
+
+([Locations_00258] of Country
+	(is-Part-Of [AFRICA])
+	(name "Tuvalu"))
+
+([Locations_00260] of Country
+	(is-Part-Of [AFRICA])
+	(name "Uganda"))
+
+([Locations_00262] of Country
+	(is-Part-Of [ASIA])
+	(name "Ukraine"))
+
+([Locations_00263] of Country
+	(is-Part-Of [ASIA])
+	(name "United Arab Emirates"))
+
+([Locations_00267] of Country
+	(is-Part-Of [SOUTH^AMERICA])
+	(name "Uruguay"))
+
+([Locations_00268] of Country
+	(is-Part-Of [ASIA])
+	(name "Uzbekistan"))
+
+([Locations_00269] of Country
+	(is-Part-Of [AFRICA])
+	(name "Vanuatu"))
+
+([Locations_00270] of Country
+	(is-Part-Of [SOUTH^AMERICA])
+	(name "Venezuela"))
+
+([Locations_00271] of Country
+	(Keywords "Viet Nam")
+	(is-Part-Of [ASIA])
+	(name "Vietnam"))
+
+([Locations_00273] of Country
+	(is-Part-Of [OCEANIA])
+	(name "Virgin Islands (British)"))
+
+([Locations_00274] of Country
+	(is-Part-Of [OCEANIA])
+	(name "Virgin Islands (U.S.)"))
+
+([Locations_00275] of Country
+	(is-Part-Of [EUROPA])
+	(name "Wales"))
+
+([Locations_00278] of Country
+	(Keywords "Wallis")
+	(is-Part-Of [OCEANIA])
+	(name "Wallis and Futuna Islands"))
+
+([Locations_00279] of Country
+	(Keywords "Sahara")
+	(is-Part-Of [AFRICA])
+	(name "Western Sahara"))
+
+([Locations_00280] of Country
+	(is-Part-Of [AFRICA])
+	(name "Yemen"))
+
+([Locations_00281] of Country
+	(is-Part-Of [AFRICA])
+	(name "Zambia"))
+
+([Locations_00282] of Country
+	(is-Part-Of [AFRICA])
+	(name "Zimbabwe"))
+
+([Locations_00284] of State
+	(State-code "AL")
+	(is-Part-Of [USA])
+	(name "Alabama"))
+
+([Locations_00286] of State
+	(State-code "AL")
+	(is-Part-Of [USA])
+	(name "Alaska"))
+
+([Locations_00288] of State
+	(State-code "AB")
+	(is-Part-Of [USA])
+	(name "Alberta"))
+
+([Locations_00290] of State
+	(State-code "AS")
+	(is-Part-Of [USA])
+	(name "American Samoa"))
+
+([Locations_00292] of State
+	(State-code "AR")
+	(is-Part-Of [USA])
+	(name "Arizona"))
+
+([Locations_00294] of State
+	(State-code "AS")
+	(is-Part-Of [USA])
+	(name "Arkansas"))
+
+([Locations_00296] of State
+	(State-code "BC")
+	(is-Part-Of [USA])
+	(name "British Columbia"))
+
+([Locations_00298] of State
+	(State-code "CA")
+	(is-Part-Of [USA])
+	(name "California"))
+
+([Locations_00300] of State
+	(State-code "CO")
+	(is-Part-Of [USA])
+	(name "Colorado"))
+
+([Locations_00302] of State
+	(State-code "CT")
+	(is-Part-Of [USA])
+	(name "Connecticut"))
+
+([Locations_00304] of State
+	(State-code "DE")
+	(is-Part-Of [USA])
+	(name "Delaware"))
+
+([Locations_00306] of State
+	(State-code "DC")
+	(is-Part-Of [USA])
+	(name "District of Columbia"))
+
+([Locations_00308] of State
+	(State-code "FM")
+	(is-Part-Of [USA])
+	(name "Micronesia"))
+
+([Locations_00310] of State
+	(State-code "FL")
+	(is-Part-Of [USA])
+	(name "Florida"))
+
+([Locations_00312] of State
+	(State-code "GA")
+	(is-Part-Of [USA])
+	(name "Georgia"))
+
+([Locations_00314] of State
+	(State-code "GU")
+	(is-Part-Of [USA])
+	(name "Guam"))
+
+([Locations_00316] of State
+	(State-code "HI")
+	(is-Part-Of [USA])
+	(name "Hawaii"))
+
+([Locations_00318] of State
+	(State-code "ID")
+	(is-Part-Of [USA])
+	(name "Idaho"))
+
+([Locations_00320] of State
+	(State-code "IL")
+	(is-Part-Of [USA])
+	(name "Illinois"))
+
+([Locations_00322] of State
+	(State-code "IN")
+	(is-Part-Of [USA])
+	(name "Indiana"))
+
+([Locations_00324] of State
+	(State-code "IA")
+	(is-Part-Of [USA])
+	(name "Iowa"))
+
+([Locations_00326] of State
+	(State-code "KS")
+	(is-Part-Of [USA])
+	(name "Kansas"))
+
+([Locations_00328] of State
+	(State-code "KY")
+	(is-Part-Of [USA])
+	(name "Kentucky"))
+
+([Locations_00330] of State
+	(State-code "LA")
+	(is-Part-Of [USA])
+	(name "Louisiana"))
+
+([Locations_00331] of State
+	(is-Part-Of [USA])
+	(name "ME"))
+
+([Locations_00332] of State
+	(is-Part-Of [USA])
+	(name "Maine"))
+
+([Locations_00334] of State
+	(State-code "MB")
+	(is-Part-Of [USA])
+	(name "Manitoba"))
+
+([Locations_00335] of State
+	(is-Part-Of [USA])
+	(name "MH"))
+
+([Locations_00336] of State
+	(is-Part-Of [USA])
+	(name "Marshall Islands"))
+
+([Locations_00337] of State
+	(is-Part-Of [USA])
+	(name "MD"))
+
+([Locations_00338] of State
+	(is-Part-Of [USA])
+	(name "Maryland"))
+
+([Locations_00339] of State
+	(is-Part-Of [USA])
+	(name "MA"))
+
+([Locations_00340] of State
+	(is-Part-Of [USA])
+	(name "Massachusetts"))
+
+([Locations_00342] of State
+	(State-code "MI")
+	(is-Part-Of [USA])
+	(name "Michigan"))
+
+([Locations_00344] of State
+	(State-code "MN")
+	(is-Part-Of [USA])
+	(name "Minnesota"))
+
+([Locations_00346] of State
+	(State-code "MP")
+	(is-Part-Of [USA])
+	(name "Mississippi"))
+
+([Locations_00348] of State
+	(State-code "MS")
+	(is-Part-Of [USA])
+	(name "Missouri"))
+
+([Locations_00349] of State
+	(is-Part-Of [USA])
+	(name "MT"))
+
+([Locations_00350] of State
+	(State-code "MO")
+	(is-Part-Of [USA])
+	(name "Montana"))
+
+([Locations_00352] of State
+	(State-code "NB")
+	(is-Part-Of [USA])
+	(name "Nebraska"))
+
+([Locations_00353] of State
+	(is-Part-Of [USA])
+	(name "NV"))
+
+([Locations_00354] of State
+	(State-code "NE")
+	(is-Part-Of [USA])
+	(name "Nevada"))
+
+([Locations_00356] of State
+	(State-code "NB")
+	(is-Part-Of [USA])
+	(name "New Brunswick"))
+
+([Locations_00358] of State
+	(State-code "NH")
+	(is-Part-Of [USA])
+	(name "New Hampshire"))
+
+([Locations_00360] of State
+	(State-code "NJ")
+	(is-Part-Of [USA])
+	(name "New Jersey"))
+
+([Locations_00362] of State
+	(State-code "NM")
+	(is-Part-Of [USA])
+	(name "New Mexico"))
+
+([Locations_00364] of State
+	(State-code "NY")
+	(is-Part-Of [USA])
+	(name "New York"))
+
+([Locations_00366] of State
+	(State-code "NF")
+	(is-Part-Of [USA])
+	(name "Newfoundland"))
+
+([Locations_00368] of State
+	(State-code "NC")
+	(is-Part-Of [USA])
+	(name "North Carolina"))
+
+([Locations_00370] of State
+	(State-code "ND")
+	(is-Part-Of [USA])
+	(name "North Dakota"))
+
+([Locations_00372] of State
+	(is-Part-Of [USA])
+	(name "Northern Mariana Island"))
+
+([Locations_00374] of State
+	(State-code "NT")
+	(is-Part-Of [USA])
+	(name "Northwest Territories"))
+
+([Locations_00376] of State
+	(State-code "NS")
+	(is-Part-Of [USA])
+	(name "Nova Scotia"))
+
+([Locations_00378] of State
+	(State-code "OH")
+	(is-Part-Of [USA])
+	(name "Ohio"))
+
+([Locations_00380] of State
+	(State-code "OK")
+	(is-Part-Of [USA])
+	(name "Oklahoma"))
+
+([Locations_00392] of State
+	(State-code "ON")
+	(is-Part-Of [USA])
+	(name "Ontario"))
+
+([Locations_00394] of State
+	(State-code "OR")
+	(is-Part-Of [USA])
+	(name "Oregon"))
+
+([Locations_00396] of State
+	(State-code "PA")
+	(is-Part-Of [USA])
+	(name "Palau Island"))
+
+([Locations_00398] of State
+	(State-code "PE")
+	(is-Part-Of [USA])
+	(name "Pennsylvania"))
+
+([Locations_00401] of State
+	(State-code "PW")
+	(is-Part-Of [USA])
+	(name "Prince Edward Island"))
+
+([Locations_00403] of State
+	(State-code "PR")
+	(is-Part-Of [USA])
+	(name "Puerto Rico"))
+
+([Locations_00405] of State
+	(State-code "QC")
+	(is-Part-Of [USA])
+	(name "Quebec"))
+
+([Locations_00407] of State
+	(State-code "RI")
+	(is-Part-Of [USA])
+	(name "Rhode Island"))
+
+([Locations_00409] of State
+	(State-code "SK")
+	(is-Part-Of [USA])
+	(name "Saskatchewan"))
+
+([Locations_00411] of State
+	(State-code "SC")
+	(is-Part-Of [USA])
+	(name "South Carolina"))
+
+([Locations_00413] of State
+	(State-code "SD")
+	(is-Part-Of [USA])
+	(name "South Dakota"))
+
+([Locations_00415] of State
+	(State-code "TN")
+	(is-Part-Of [USA])
+	(name "Tennessee"))
+
+([Locations_00417] of State
+	(State-code "TX")
+	(is-Part-Of [USA])
+	(name "Texas"))
+
+([Locations_00419] of State
+	(State-code "UT")
+	(is-Part-Of [USA])
+	(name "Utah"))
+
+([Locations_00421] of State
+	(State-code "VT")
+	(is-Part-Of [USA])
+	(name "Vermont"))
+
+([Locations_00423] of State
+	(State-code "VI")
+	(is-Part-Of [USA])
+	(name "Virgin Islands"))
+
+([Locations_00425] of State
+	(State-code "VA")
+	(is-Part-Of [USA])
+	(name "Virginia"))
+
+([Locations_00427] of State
+	(State-code "WA")
+	(is-Part-Of [USA])
+	(name "Washington"))
+
+([Locations_00429] of State
+	(State-code "WV")
+	(is-Part-Of [USA])
+	(name "West Virginia"))
+
+([Locations_00431] of State
+	(State-code "WI")
+	(is-Part-Of [USA])
+	(name "Wisconsin"))
+
+([Locations_00433] of State
+	(State-code "WY")
+	(is-Part-Of [USA])
+	(name "Wyoming"))
+
+([Locations_00435] of State
+	(State-code "YT")
+	(is-Part-Of [USA])
+	(name "Yukon"))
+
+([NORTH^AMERICA] of Continent
+	(name "NORTH^AMERICA"))
+
+([OCEANIA] of Continent
+	(name "OCEANIA"))
+
+([SOUTH^AMERICA] of Continent
+	(name "SOUTH^AMERICA"))
+
+([USA] of Country
+	(Keywords
+		"USA"
+		"U.S."
+		"USA.")
+	(is-Part-Of [NORTH^AMERICA])
+	(name "United States of America"))

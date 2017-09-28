@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION fileexists.cfm access";flags: A+; uricontent:"/cfdocs/snippets/fileexists.cfm"; nocase; reference:bugtraq,550; classtype:attempted-recon; sid:910; rev:1;)

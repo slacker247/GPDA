@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS msadc/msadcs.dll access";flags: A+; uricontent:"/msadc/msadcs.dll"; nocase; reference:cve,CVE-1999-1011; reference:bugtraq,529; classtype:web-application-activity; sid:1023; rev:3;)

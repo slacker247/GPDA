@@ -1,0 +1,25 @@
+% Predefined substructures for graph Sample.g
+%
+% Substructure 1 marker
+s
+%
+% Vertices for substructure 1
+v 1 A
+v 2 C
+v 3 D
+%
+% Edges for substructure 1
+d 1 2 ac
+u 2 3 dc
+%
+% Substructure 2 marker
+s
+%
+% Vertices for substructure 2
+v 1 A
+v 2 B
+v 3 D
+% 
+% Edges for substructure 2
+d 1 2 ab
+u 2 3 bd

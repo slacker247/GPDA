@@ -1,0 +1,110 @@
+import java.io.*;
+import java.net.*;
+import java.awt.*;
+import java.util.*;
+
+public class Client extends Frame {
+   
+  private TextArea display;
+  boolean conn_open = true;
+  private MainWindow mainWindow;
+  private ReadFile gphfl;
+  private SubWindow subWindow;
+  
+  public Client() {
+
+    super("Client");
+    display = new TextArea("",0,0,TextArea.SCROLLBARS_VERTICAL_ONLY);
+    add(display,BorderLayout.CENTER);
+    setSize(300,150);
+    setVisible(true);
+  }
+
+  public void runClient()
+// Vector datain)
+  {
+      Socket client;
+      DataOutputStream output;
+      DataInputStream input;
+      char dattype;
+      int vert;
+      GsComm subs;
+      String lab;
+      String filename;
+
+      try {
+        client  = new Socket(InetAddress.getLocalHost(),5000);   // port no is hard coded 
+
+        display.append("Connected to " + client.getInetAddress().getHostName());
+        input = new DataInputStream(client.getInputStream());
+        output = new DataOutputStream(client.getOutputStream());
+        display.append("\nGot I/O Streams\n");
+        //output.writeInt(1);
+
+       while(true)
+       {    
+         /* Read the input graph filename over the socket from the server */
+      
+          filename = input.readUTF();
+          display.append("filename is "+filename);
+          if(filename == null)
+             break;
+          gphfl = new ReadFile(filename);
+          display.append(" opening windows \n");
+          mainWindow = new MainWindow(gphfl.curGraph);        
+          subWindow = new SubWindow(gphfl.curGraph);
+
+          subs = new GsComm();
+  
+/*
+      dattype = input.readChar();
+
+        if(dattype == '$')
+          conn_open = false;
+ 
+        else if(dattype == 'v')
+         {
+           subs.typ = 'v';
+           display.append("Server message: "+ dattype);
+           subs.vert1 = input.readInt();
+           display.append("Server message: "+ subs.vert1);
+           subs.label = input.readUTF();         
+           display.append("Server message: "+ subs.label);
+           datain.addElement(subs);
+         }
+         else if(dattype == 'e')
+         {
+           subs.typ = 'e';
+           display.append("Server message: "+ dattype);
+           subs.vert1 = input.readInt();
+           subs.vert2 = input.readInt();
+           subs.label = input.readUTF();         
+           datain.addElement(subs);
+         }
+        display.append("\n Sending Acknowledgement \n");
+        output.writeInt(1);
+*/
+        }
+
+        display.append("\nTransmission complete "+ "closing connection\n\n");
+        client.close();
+    }
+    
+    catch(IOException e) {
+       e.printStackTrace();
+    }
+  }
+
+
+  public static void main(String args[])
+  {
+    Client c = new Client();
+//    s.addWindowListener(new CloseWindowAndExit());
+    c.runClient();
+
+  }
+
+
+
+}
+

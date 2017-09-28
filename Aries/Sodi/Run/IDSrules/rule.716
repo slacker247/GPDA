@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible Word Macro - VALE"; content: "filename=\"DINHEIRO.DOC""; nocase; reference:MCAFEE,10502; sid:759;  classtype:misc-activity; rev:3;)

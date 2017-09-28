@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS EXPLOIT named";flags: A+; content:"|CD80 E8D7 FFFF FF|/bin/sh"; classtype:attempted-admin; sid:261; rev:1;)

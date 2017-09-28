@@ -1,0 +1,318 @@
+/*
+ File:		VariableDatum.java
+ CVS Info:	$Id: VariableDatum.java,v 1.2 1998/01/27 18:44:34 mcgredo Exp $
+ Compiler:	jdk 1.3 
+ */
+
+package PDUs;                       // package we belong to
+
+import mil.navy.nps.util.*;         // General-purpose utilities
+import mil.navy.nps.disEnumerations.*;         // Enumerations for DIS
+
+import java.io.*;                               // input/output library
+import java.util.*;                             // utilities
+
+
+/**
+ * Variable-length data.
+ *
+ *@version 1.0
+ *@author <a href="mailto:mcgredo@cs.nps.navy.mil"> Don McGregor</a> (<a href="http://www.npsnet.org/~mcgredo">http://www.npsnet.org/~mcgredo</a>)
+ *
+ *<dt><b>Location:</b>
+ *<dd>Web:  <a href="http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/VariableDatum.java">
+ *  http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/VariableDatum.java</a>
+ *
+ *<dd>or locally:  <a href="../../../../../../mil/navy/nps/dis/VariableDatum.java">
+ *  ~/mil/navy/nps/dis/VariableDatum.java</a>
+ *
+ *<dt><b>Hierarchy Diagram:</b>
+ *<dd><a href="../../../../../../dis-java-vrml/images/PduClassHierarchy.jpg"><IMG SRC="../../../../../../dis-java-vrml/images/PduClassHierarchyButton.jpg" ALIGN=ABSCENTER WIDTH=150 HEIGHT=21></a>
+ *
+ *<dt><b>Summary:</b>
+ *<dd>These fields shall specify the types of variable datum, their length, and their value.
+ *
+ *<dt><b>Explanation</b>
+ *<dd>VariableDatum contains (surprise! a variable amount of data). It
+ *  consists of a 32-bit enumeration that describes the datum, a 32-bit
+ *  field that descibes the lenght of the data (in bits) and a data
+ *  region long enough to contain the data. The data region is allocated
+ *  in chunks of 64 bits; for example, if the length field specifies
+ *  a data length of 48 bits, a full 64 bits will be allocated to hold
+ *  the data, and the remaining 16 bits would be unused padding. Per
+ *  the specification, padding must be set to zero.<p>
+ *
+ *  The VariableDatum is used in a variety of places, most notably
+ *  the DataPdu. <p>
+ *
+ *  This inherits from PduElement, which means that it must know how
+ *  to serialize, deSerialize, clone, print its values, and determine
+ *  its length when serialized.<p>
+ *
+ *<dt><b>History:</b>
+ *<dd>		21Nov96 /Don McGregor    	/New
+ *<dd>		10Mar97 /Don McGregor    	/changes for javadoc
+ *<dd>		16Apr97 /Don McGregor    	/PrintStream passed to printValues<BR>
+ *<dd>		06May97 /Don McGregor    	/Bug fixes: block count not beeing computed correctly; moved computation
+ *                  				to central place, made all computations of block size point there. Accessor
+ *                  				method variableDatumValue() was always returning null.
+ *                  				Bug reports submitted by Dmitry Azovtsev (azov@logos.cyber.mephi.ru).
+ *<dd>		8Dec97	/Ronan Fauglas		/changes for documentation templates + complements in documentation
+ *<dd>		11Dec97	/Ronan Fauglas		/changes access methods names from "variable()" to "getVariable()"
+ *
+ *<dt><b>References:</b>
+ *<dd>		DIS Data Dictionary: <a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/109.htm">
+ *			Variable Datum Record</a>
+ *<dd>		DIS specification : IEEE 1278.1, Section 5.3.32
+ *
+ *@see PduElement 
+ *@see SerializationInterface
+ *@see DataPdu
+ */
+public class VariableDatum extends PduElement
+{
+    /**
+     *The Variable Datum ID shall be represented by a 32-bit enumeration.
+     *
+     *<dl>
+     *<dt><b>Value:</b>
+     *<dd> Enumeration; see references below for values.     *<dt><b>References:</b>
+     *<dd>	DIS Data Dictionary :<a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/aa.htm">
+     *		Datum ID Field</a>
+     *<dd>	See section 7 in the EBV-DOC	
+     *</dl>
+     */
+    int     variableDatumID;                    // 32-bit enumeration that describes the type of datum
+
+    /**
+     *This field shall specify the length of the variable datum in bits.
+     *
+     *<dl>
+     *<dt><b>References:</b>
+     *<dd>	DIS Data Dictionary :<a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/107.htm">
+     *		Variable Datum Length Field</a>
+     *</dl>
+     */
+    int     variableDatumLength;                // 32-bit length, in # of bits used
+
+    /**
+     *These field(s) shall store the value of the variable datum defined by the Variable Datum ID 
+     *and Variable Datum length. 
+     *
+     *<dl>
+     *<dt><b>Explanation:</b>
+     *<dd>  The Variable Datum Value is stored in  an array of long integers so as to respect
+     * the convention to have a multiple of 64 length.
+     *<dt><b>References:</b>
+     *<dd>	DIS Data Dictionary:
+     *		<a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/108.htm">Variable Datum Value/Padding Field</a>
+     *</dl>
+     */
+    long[]  variableDatumValue;                 // array of BLOCK_LENGTH-bit ints
+
+    /**
+     *Constant value--size of an empty object WHEN WRITTEN TO THE WIRE; here :<code>sizeOf = 8 bytes</code>.
+     */
+    public static final int sizeOf = 8;         // size of an empty object WHEN WRITTEN TO THE WIRE, in bytes
+
+    private static final int BLOCK_LENGTH = 64; // size of blocks allocated, in bits
+
+/**
+ *Default constructor--fills with zeros for all values.
+ */
+public VariableDatum()                          // default constructor
+{
+    variableDatumID = 0;
+    variableDatumLength = 0;
+    variableDatumValue = null;                  // no value by default
+
+    return;
+}
+
+public Object clone()
+{
+    VariableDatum   newVariableDatum = new VariableDatum();
+
+    newVariableDatum.setVariableDatumID(variableDatumID);
+    newVariableDatum.setVariableDatumLength(variableDatumLength);
+    newVariableDatum.setVariableDatumValue(variableDatumValue);
+
+    return newVariableDatum;
+}
+
+/**
+ *@exception RuntimeException when IO error occurs.
+ */
+public void serialize(DataOutputStream outputStream)
+{
+    int     idx = 0;
+    int     blockCount = this.blockCount(variableDatumLength);  // number of 64-bit blocks we need
+
+    try
+     {
+        
+        outputStream.writeInt(variableDatumID);
+        outputStream.writeInt(variableDatumLength);
+
+        if((variableDatumValue != null) && (variableDatumLength > 0))
+        {
+            for(idx = 0; idx < blockCount; idx++)
+                outputStream.writeLong(variableDatumValue[idx]);
+        }
+
+     }
+    catch(IOException ioException)      // catch-all for all IO exceptions in the above code
+     {
+        throw new 
+            RuntimeException("Exception in VariableDatum. Error serializing unit.");
+     }
+
+    return;
+
+}
+
+
+/**
+ *@exception RuntimeException when IO error occurs.
+ */
+public void deSerialize(DataInputStream inputStream)
+{
+    int     idx = 0;
+    int     blockCount;                     // number of 64-bit blocks we need
+
+  // no need to call super, since there are no ivars in the superclass. The order we read & write
+  // here is important.
+
+  try
+    {
+        variableDatumID = inputStream.readInt();
+        variableDatumLength = inputStream.readInt();
+
+        if(variableDatumLength > 0)
+        {
+            blockCount = this.blockCount(variableDatumLength);  // # of 64 bit blocks to hold the data
+
+            variableDatumValue = new long[blockCount];          // get a new array to hold the data
+
+            for(idx = 0; idx < blockCount; idx++)               // read it all in
+            {
+                variableDatumValue[idx] = inputStream.readLong();
+            }
+        }
+        else
+            variableDatumValue = null;                          // set data to null if length = 0
+
+     }
+    catch(IOException ioException)      // catch-all for all IO exceptions in the above code
+     {
+        throw new 
+            RuntimeException("Exception in VariableDatum. Error deSerializing unit.");
+     }
+    
+    return;
+}   
+
+public int length()
+{
+    // have to be careful about potentially dereferencing null here, when 
+    // the size ivar is referenced.
+
+    if(variableDatumLength == 0)
+        return sizeOf;
+    else
+        return sizeOf + (8 * variableDatumValue.length);            
+}
+
+public void printValues(int indentLevel, PrintStream printStream)
+{
+    // print the values of the object out, with correct level of
+    // indentation on the page.
+
+      
+  StringBuffer indent = ProtocolDataUnit.getPaddingOfLength(indentLevel);
+  int          idx, superclassIndent = indentLevel;
+
+    printStream.println(indent + "variableDatumID: " + variableDatumID);
+    printStream.println(indent + "variableDatumLength: " + variableDatumLength);
+
+    for(idx = 0; idx < this.blockCount(variableDatumLength); idx++)
+            printStream.println("variableDatumValue " + idx + ": " + variableDatumValue[idx]);
+
+    return;
+}
+
+// utility method; just determines the number of 64-bit blocks required. This
+// computation is done in three or four places, so it seem better to put it in
+// one place, where it can be screwed up centrally.
+// INPUT: number of bits
+// RETURN: number of 64-bit blocks required 
+
+/**
+ *Returns the  number of 64-bit blocks required to store the variableDatumValue.
+ *
+ *<dt><b>Explanation</b>
+ *<dd>This computation is done in three or four places, so it seem better to put it in
+ *  one place, where it can be screwed up centrally.
+ *@param pBitCount number of bits
+ *@return number of 64-bit blocks required 
+ */
+private int blockCount(int pBitCount)
+{
+  if(pBitCount > 0)
+    return ((pBitCount - 1) / BLOCK_LENGTH) + 1;
+  else
+    return 0;
+}
+
+
+// accessor methods
+
+public int getVariableDatumID()
+{ return variableDatumID;
+}
+public void setVariableDatumID(int pVariableDatumID)
+{ variableDatumID = pVariableDatumID;
+}
+
+public int getVariableDatumLength()
+{ return variableDatumLength;
+}
+public void setVariableDatumLength(int pVariableDatumLength)
+{ variableDatumLength = pVariableDatumLength;
+}
+
+/**
+ *@exception RuntimeException if Index error occurs while copying array
+ *@exception RuntimeException if error occurs while copying array.
+ */
+public long[] getVariableDatumValue()
+{
+    long newVariableDatumValue[] = new long[variableDatumValue.length];   // return copy
+    
+  try
+   {
+     System.arraycopy( variableDatumValue, 0,       // source
+                       newVariableDatumValue,0,     // dest
+                       variableDatumValue.length);  // how much to copy (ie, all of it)
+   }
+
+  catch(ArrayIndexOutOfBoundsException aioobException)
+  { 
+     throw new 
+                RuntimeException("Exception in VariableDatum. Index error copying array.");
+  }
+  catch(ArrayStoreException asException)
+  {
+    throw new 
+                RuntimeException("Exception in VariableDatum. Error copying array");
+  }
+
+  return newVariableDatumValue;
+
+}
+
+public void setVariableDatumValue(long[] pVariableDatumValue)
+{ variableDatumValue = pVariableDatumValue;
+}
+
+} // end of class VariableDatum

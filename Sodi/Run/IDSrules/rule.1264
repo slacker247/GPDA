@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC sadmind worm access"; content:"GET x HTTP/1.0"; offset:0; depth:15; classtype:attempted-recon; reference:url,"www.cert.org/advisories/CA-2001-11.html"; sid:1375; rev:1;)

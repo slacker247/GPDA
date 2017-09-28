@@ -1,0 +1,921 @@
+; Fri Feb 15 14:01:36 MST 2002
+; 
+;+ (version "1.6.2")
+;+ (build "Build 850")
+
+
+(defclass :CLIPS_TOP_LEVEL_SLOT_CLASS
+	(is-a USER)
+	(role concrete)
+	(multislot HOW-INJURY
+		(type INTEGER)
+		(range 0 10000000)
+		(cardinality 0 100000000)
+		(create-accessor read-write))
+	(multislot HOW-CASUAL
+		(type INTEGER)
+		(range 0 10000000)
+		(cardinality 0 100000000)
+		(create-accessor read-write))
+	(single-slot WHEN-TFRAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HOW-ADJECT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHAT-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HOW-DESC3
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type FLOAT)
+		(range 0.0 1.0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot WHERE-LON
+		(type FLOAT)
+		(range -180.0 180.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot REPORT-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ALLY-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-REGION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-LOCALE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ENEMY-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHAT-ACTION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PREPARED
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PARTY-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type FLOAT)
+		(range 0.0 1.0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot WHEN-END
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHEN-DURATION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHY-TASK
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHY-TACTICAL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PREPDATE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ALLY-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot MISSION
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot SOURCE
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot HOW-DESC2
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-ALT
+		(type FLOAT)
+		(range 0.0 100000.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot INFO-ID
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot HOW-COST
+		(type INTEGER)
+		(range 0 100000000)
+		(cardinality 0 1000000000)
+		(create-accessor read-write))
+	(single-slot ENEMY-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHAT-OBJECT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ENEMY-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot REPORT-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PARTY-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHY-OPERATIONAL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HOW-DESC1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot REPORT-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PARTY-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ALLY-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PARTY-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot REPORT-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-STRUCT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ENEMY-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-LAT
+		(type FLOAT)
+		(range -90.0 90.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHEN-START
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ALLY-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-NATION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHY-STRATEGIC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HOW-ACTION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-CITY
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Site
+	(is-a :SYSTEM-CLASS)
+	(role concrete)
+	(multislot HOW-INJURY
+		(type INTEGER)
+		(range 0 10000000)
+		(cardinality 0 100000000)
+		(create-accessor read-write))
+	(multislot HOW-CASUAL
+		(type INTEGER)
+		(range 0 10000000)
+		(cardinality 0 100000000)
+		(create-accessor read-write))
+	(single-slot WHEN-TFRAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHAT-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HOW-ADJECT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HOW-DESC3
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-LON
+		(type FLOAT)
+		(range -180.0 180.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type FLOAT)
+		(range 0.0 1.0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot REPORT-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ALLY-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-REGION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-LOCALE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHAT-ACTION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ENEMY-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PREPARED
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PARTY-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type FLOAT)
+		(range 0.0 1.0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot WHEN-END
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHEN-DURATION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHY-TASK
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHY-TACTICAL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PREPDATE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ALLY-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot MISSION
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot SOURCE
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot HOW-DESC2
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-ALT
+		(type FLOAT)
+		(range 0.0 100000.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot INFO-ID
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot HOW-COST
+		(type INTEGER)
+		(range 0 100000000)
+		(cardinality 0 1000000000)
+		(create-accessor read-write))
+	(single-slot WHAT-OBJECT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ENEMY-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ENEMY-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot REPORT-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHY-OPERATIONAL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PARTY-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HOW-DESC1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot REPORT-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PARTY-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ALLY-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PARTY-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot REPORT-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-STRUCT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ENEMY-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-LAT
+		(type FLOAT)
+		(range -90.0 90.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHEN-START
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-NATION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ALLY-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHY-STRATEGIC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-CITY
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HOW-ACTION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Physical_Attack
+	(is-a Site)
+	(role concrete))
+
+(defclass Secure_Site
+	(is-a Physical_Attack)
+	(role concrete))
+
+(defclass System_Intrusion
+	(is-a Site)
+	(role concrete))
+
+(defclass Denial_of_Service
+	(is-a Site)
+	(role concrete))
+
+(defclass Protect_Networks
+	(is-a System_Intrusion Denial_of_Service)
+	(role concrete))
+
+(defclass Expert
+	(is-a :SYSTEM-CLASS)
+	(role concrete)
+	(multislot HOW-INJURY
+		(type INTEGER)
+		(range 0 10000000)
+		(cardinality 0 100000000)
+		(create-accessor read-write))
+	(multislot HOW-CASUAL
+		(type INTEGER)
+		(range 0 10000000)
+		(cardinality 0 100000000)
+		(create-accessor read-write))
+	(single-slot WHEN-TFRAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHAT-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HOW-ADJECT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HOW-DESC3
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-LON
+		(type FLOAT)
+		(range -180.0 180.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type FLOAT)
+		(range 0.0 1.0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot REPORT-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ALLY-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-REGION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-LOCALE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHAT-ACTION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ENEMY-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PREPARED
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PARTY-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type FLOAT)
+		(range 0.0 1.0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot WHEN-END
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHEN-DURATION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHY-TASK
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHY-TACTICAL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PREPDATE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ALLY-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot MISSION
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot SOURCE
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot HOW-DESC2
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-ALT
+		(type FLOAT)
+		(range 0.0 100000.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot INFO-ID
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot HOW-COST
+		(type INTEGER)
+		(range 0 100000000)
+		(cardinality 0 1000000000)
+		(create-accessor read-write))
+	(single-slot WHAT-OBJECT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ENEMY-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ENEMY-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot REPORT-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHY-OPERATIONAL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PARTY-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HOW-DESC1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot REPORT-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PARTY-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ALLY-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PARTY-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot REPORT-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-STRUCT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ENEMY-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-LAT
+		(type FLOAT)
+		(range -90.0 90.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHEN-START
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-NATION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ALLY-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHY-STRATEGIC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-CITY
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HOW-ACTION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Software_Bugs
+	(is-a Expert)
+	(role concrete))
+
+(defclass Protect_Software
+	(is-a Software_Bugs)
+	(role concrete))
+
+(defclass Deny_Access
+	(is-a Secure_Site Protect_Networks Protect_Software)
+	(role concrete))
+
+(defclass Inhibit_Intrusion
+	(is-a Deny_Access)
+	(role concrete))
+
+(defclass PSYOPS
+	(is-a :SYSTEM-CLASS)
+	(role concrete)
+	(multislot HOW-INJURY
+		(type INTEGER)
+		(range 0 10000000)
+		(cardinality 0 100000000)
+		(create-accessor read-write))
+	(multislot HOW-CASUAL
+		(type INTEGER)
+		(range 0 10000000)
+		(cardinality 0 100000000)
+		(create-accessor read-write))
+	(single-slot WHEN-TFRAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHAT-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HOW-ADJECT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HOW-DESC3
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-LON
+		(type FLOAT)
+		(range -180.0 180.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type FLOAT)
+		(range 0.0 1.0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot REPORT-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ALLY-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-REGION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-LOCALE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHAT-ACTION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ENEMY-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PREPARED
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PARTY-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type FLOAT)
+		(range 0.0 1.0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot WHEN-END
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHEN-DURATION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHY-TASK
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHY-TACTICAL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PREPDATE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ALLY-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot MISSION
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot SOURCE
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot HOW-DESC2
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-ALT
+		(type FLOAT)
+		(range 0.0 100000.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot INFO-ID
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot HOW-COST
+		(type INTEGER)
+		(range 0 100000000)
+		(cardinality 0 1000000000)
+		(create-accessor read-write))
+	(single-slot WHAT-OBJECT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ENEMY-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ENEMY-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot REPORT-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHY-OPERATIONAL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PARTY-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HOW-DESC1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot REPORT-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PARTY-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ALLY-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PARTY-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot REPORT-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-STRUCT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ENEMY-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-LAT
+		(type FLOAT)
+		(range -90.0 90.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHEN-START
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-NATION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ALLY-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHY-STRATEGIC
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot WHERE-CITY
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot HOW-ACTION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Psychological_Ops
+	(is-a PSYOPS)
+	(role concrete))
+
+(defclass Counter_PSYOPS
+	(is-a Psychological_Ops)
+	(role concrete))
+
+(defclass Disrupt_Attack
+	(is-a Counter_PSYOPS)
+	(role concrete))
+
+(defclass Deceive_Intruder
+	(is-a Counter_PSYOPS)
+	(role concrete))
+
+(defclass Delay_Effects
+	(is-a Deny_Access Disrupt_Attack Deceive_Intruder)
+	(role concrete))
+
+(defclass Exploit_Intercepts
+	(is-a Counter_PSYOPS)
+	(role concrete))
+
+(defclass Confuse_Enemy
+	(is-a Deceive_Intruder Exploit_Intercepts)
+	(role concrete))
+
+(defclass Exec_DCI_Mission
+	(is-a Inhibit_Intrusion Delay_Effects Confuse_Enemy)
+	(role concrete))

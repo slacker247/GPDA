@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible NewApt.Worm - fborfw.exe"; content: "filename=\"FBORFW.EXE\""; nocase; reference:MCAFEE,10540; sid:782;  classtype:misc-activity; rev:3;)

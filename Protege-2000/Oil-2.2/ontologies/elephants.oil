@@ -1,0 +1,214 @@
+begin-ontology
+ontology-container
+title "Beasts of the World"
+creator "Sean Bechhofer"
+description "An Ontology about animals, built with OilEd"
+description.release "1.0"
+type ontology
+identifier "id"
+language "OIL"
+
+
+ontology-definitions
+
+class-def defined big_veggie
+documentation "A large herbivore"
+subclass-of 
+  herbivore
+  large_animal
+// herbivore
+// large_animal
+
+class-def defined indian_elephant
+subclass-of 
+  elephant
+  slot-constraint comes_from has-value (one-of India)
+// elephant
+
+class-def animal
+// SUB: african_animal
+// SUB: elephant
+// SUB: lion
+// SUB: giraffe
+// SUB: carnivore
+// SUB: asian_animal
+// SUB: large_animal
+// SUB: herbivore
+
+class-def branch
+  slot-constraint is_part_of has-value tree
+
+class-def defined african_animal
+documentation "Animals from Africa."
+subclass-of 
+  animal
+  slot-constraint comes_from has-value ((one-of Africa) or (slot-constraint is_part_of has-value (one-of Africa)))
+// animal
+
+class-def defined adult_elephant
+documentation "Elephants over the age of 20"
+subclass-of 
+  elephant
+  slot-constraint age has-value (min 20)
+// elephant
+
+class-def continent
+
+class-def elephant
+documentation "Big grey animals with a trunk and large ears"
+subclass-of 
+  animal
+  slot-constraint eats value-type plant
+  slot-constraint colour has-value (equal "grey")
+// animal
+// SUB: indian_elephant
+// SUB: adult_elephant
+// SUB: african_elephant
+// SUB: kenyan_elephant
+
+class-def leaf
+  slot-constraint is_part_of has-value branch
+
+class-def lion
+subclass-of 
+  animal
+  slot-constraint eats value-type herbivore
+// animal
+// SUB: hungry_lion
+
+class-def tree
+subclass-of 
+  plant
+// plant
+
+class-def giraffe
+documentation "Funny looking things with long necks"
+subclass-of 
+  animal
+  slot-constraint eats value-type leaf
+// animal
+
+class-def defined carnivore
+documentation "An animal that only eats meat, i.e. other animals"
+subclass-of 
+  animal
+  slot-constraint eats value-type animal
+// animal
+
+class-def defined hungry_lion
+subclass-of 
+  lion
+  slot-constraint gnaws has-value giraffe
+// lion
+
+class-def plant
+// SUB: tree
+// SUB: tasty_plant
+
+class-def defined african_elephant
+documentation "Elephants from Africa."
+subclass-of 
+  elephant
+  slot-constraint comes_from has-value (one-of Africa)
+// elephant
+
+class-def defined asian_animal
+documentation "Animals from Asia"
+subclass-of 
+  animal
+  slot-constraint comes_from has-value ((one-of Asia) or (slot-constraint is_part_of has-value (one-of Asia)))
+// animal
+
+class-def kenyan_elephant
+subclass-of 
+  elephant
+// elephant
+
+class-def country
+
+class-def defined tasty_plant
+subclass-of 
+  plant
+  slot-constraint is_eaten_by has-value carnivore
+// plant
+
+class-def defined large_animal
+subclass-of 
+  animal
+  slot-constraint weight has-value (min 1000)
+// animal
+// SUB: big_veggie
+
+class-def defined herbivore
+documentation "Animals that only eat plants or parts of plants"
+subclass-of 
+  animal
+  slot-constraint eats value-type (plant or (slot-constraint is_part_of has-value plant))
+// animal
+// SUB: big_veggie
+
+slot-def comes_from
+
+slot-def is_eaten_by
+
+slot-def colour
+  range string
+  properties functional 
+
+slot-def weight
+  range (min 0)
+  properties functional 
+
+slot-def made_from
+
+slot-def age
+  range (min 0)
+  properties functional 
+
+slot-def eats
+  inverse is_eaten_by
+  domain animal
+
+slot-def gnaws
+  subslot-of eats
+
+slot-def has_part
+  inverse is_part_of
+  properties transitive 
+
+slot-def is_part_of
+
+instance-of Scotland country
+
+instance-of Asia continent
+
+instance-of England country
+
+instance-of India country
+related is_part_of India Asia
+
+instance-of Wales country
+
+instance-of Northern_Ireland country
+
+instance-of United_Kingdom country
+related has_part United_Kingdom England
+related has_part United_Kingdom Scotland
+related has_part United_Kingdom Wales
+related has_part United_Kingdom Northern_Ireland
+
+instance-of Pakistan country
+related is_part_of Pakistan Asia
+
+instance-of Africa continent
+
+disjoint animal plant
+
+disjoint carnivore herbivore
+
+covered adult_elephant by (slot-constraint weight has-value (range 5000 8000))
+
+covered elephant by african_elephant indian_elephant
+
+disjoint kenyan_elephant indian_elephant
+end-ontology

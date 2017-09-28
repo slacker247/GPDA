@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION addcontent.cfm access";flags: A+; uricontent:"/cfdocs/exampleapp/publish/admin/addcontent.cfm"; nocase; classtype:attempted-recon; sid:907; rev:1;)

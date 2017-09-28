@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS ASP contents view"; flags: A+; content:"%20&CiRestriction=none&CiHiliteType=Full"; reference:cve,CAN-2000-0302; reference:bugtraq,1084; classtype:web-application-attack; sid:978; rev:3;)

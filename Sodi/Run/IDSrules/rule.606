@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP exchange mime DOS"; flags: A+; content:"|63 68 61 72 73 65 74 20 3D 20 22 22|"; classtype:attempted-dos; sid:658; rev:1;)

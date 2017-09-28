@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS index server file sourcecode attempt"; flags: A+; content:"?CiWebHitsFile=/"; content:"&CiRestriction=none&CiHiliteType=Full"; classtype:web-application-attack; sid:1019; rev:2;)

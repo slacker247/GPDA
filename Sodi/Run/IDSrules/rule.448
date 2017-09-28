@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP STOR 1MB possible warez site"; flags: A+; content:"STOR 1MB"; nocase; depth: 8; classtype:bad-unknown; sid:543; rev:1;)

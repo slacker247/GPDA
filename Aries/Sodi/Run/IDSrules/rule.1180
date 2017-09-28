@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC mall log order access"; uricontent:"/mall_log_files/order.log"; nocase; flags: A+; classtype:attempted-recon; sid:1168; rev:1;)

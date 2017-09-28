@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Allaire Pro Web Shell attempt"; flags: A+; uricontent:"/authenticate.cgi?PASSWORD"; content:"config.ini"; classtype:web-application-attack; sid:1090; rev:2;)

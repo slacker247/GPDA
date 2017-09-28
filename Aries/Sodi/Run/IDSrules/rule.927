@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION displayfile access";flags: A+; uricontent:"/cfdocs/expeval/displayopenedfile.cfm"; nocase; reference:bugtraq,550; classtype:web-application-attack; sid:922; rev:2;)

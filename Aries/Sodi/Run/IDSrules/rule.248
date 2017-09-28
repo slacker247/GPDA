@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 79 (msg:"FINGER bomb attempt";flags: A+; content:"@@";reference:arachnids,382; classtype:attempted-dos; sid:328; rev:1;)

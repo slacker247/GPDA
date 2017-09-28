@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC cachemgr.cgi access"; flags:A+; uricontent:"/cachemgr.cgi"; classtype:attempted-recon; sid:1206; rev:1;)

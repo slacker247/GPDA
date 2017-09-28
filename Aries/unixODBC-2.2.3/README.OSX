@@ -1,0 +1,64 @@
++-------------------------------------------------------------+
+| unixODBC                                                    |
+| Mac OSX                                                     |
++-------------------------------------------------------------+
+
+README
+---------------------------------------------------------------
+
+Building With GNU Auto Tools (by Nick):
+
+	It looks as if Darwin (Mac OSX) doesn't support the normal
+	dlopen type process that unixODBC requires. However help is
+	at hand in the form of dlcompat-20010831.tar.gz. This file
+	contains wrappers to emulate the calls. I have put this in
+	
+	ftp://ftp.easysoft.com/pub/beta/unixODBC/dlcompat-20010831.tar.gz
+	
+	It should be downloaded, unpacked then run make install
+	
+	This should be done before configuring unixODBC
+	
+	This file was created by Christoph Pfisterer <cp@chrisp.de> and
+	the original copy can be found at 
+	
+	    http://fink.sourceforge.net
+	
+	If you get a "ld: multiple definitions of symbol " error, 
+	then you should edit the file libtool in the unixODBC base 
+	directory and find the line
+	
+	    whole_archive_flag_spec="-all_load \$convenience"
+	
+	and replace it with
+	
+	    whole_archive_flag_spec=
+	
+	As at the time of writing, QT is not available on OSX, its best to
+	disable the search for X libs that may fail, by configuring with
+	
+	    ./configure --enable-gui=no
+
+
+Building With Qt qmake (by Peter):
+
+	Qt is now availible for OSX but unixODBC may not detect your Qt
+	libs... worse yet you may not be able sort out the GNU auto-tools
+	required to build on OSX.
+	
+	If you want to build using qmake then read README.qmake.
+	
+
+Creating Install Packages:
+
+	unixODBC contains a number of directories and files to help create
+	OSX Packages. The process of doing so is not nearly as automated 
+	as creating RPM files using the GNU auto tools. Look for the
+	mac-install and mac-package directories.
+
++-------------------------------------------------------------+
+| Peter Harvey <pharvey@codebydesign.com>                     |
+| 14.DEC.01                                                   |
++-------------------------------------------------------------+
+		
+	

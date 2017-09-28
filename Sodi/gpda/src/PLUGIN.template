@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <memory.h>
+#include <math.h> 
+#include <time.h>
+#include <signal.h>
+#include <ctype.h>
+#include <string.h>
+#include <unistd.h>
+#include <stream.h>
+#include <sys/ioctl.h>
+#ifdef SC_THREADS
+#include "pthread.h"
+#endif
+
+#include "Globals.h"
+
+#include "forms.h"
+#include "XXXforms.h"
+
+int             XXXwinX, XXXwinY;
+int             XXXwinW, XXXwinH;
+char            XXXlabel[32];
+Window          XXXwinid;
+
+char            xxxtemp[128];
+
+FD_XXXtop      *fd_XXXtop;
+
+void XXXinit();
+void XXXshow(int xpos, int ypos, int width, int height, Window mainwinID);
+void XXXexitCB(FL_OBJECT *object, long item_no);
+int  XXXclose(FL_FORM *form, void *data);
+void XXXnoneCB(FL_OBJECT *ob, long data);
+
+extern int  EraseActiveEntry(char *text);
+extern int  StoreActiveEntry(char *text);
+extern int  FinishUp();
+
+/*                                                                       */
+/* --------------------------------------------------------------------- */
+/*              M A I N   P R O G R A M   S T A R T S   H E R E          */
+/* --------------------------------------------------------------------- */
+/*                                                                       */
+void XXXinit()
+{
+int             i;
+
+   fd_XXXtop = create_form_XXXtop();
+
+   strcpy(XXXlabel, "xxx-xxx");
+
+   return;
+}
+
+void XXXshow(int xpos, int ypos, int width, int height, Window mainwinID)
+{
+Window          winid;
+
+   if(!fl_form_is_visible(fd_XXXtop->XXXtop) ) {
+      fl_transient();
+      fl_winposition(xpos, ypos);
+      fl_initial_winsize(width, height);
+      winid = fl_prepare_form_window(fd_XXXtop->XXXtop,
+                                     FL_PLACE_POSITION,FL_TRANSIENT, XXXlabel);
+      fl_winreshape(winid, xpos, ypos, width, height);
+      fl_show_form_window(fd_XXXtop->XXXtop);
+      fl_set_form_atclose(fd_XXXtop->XXXtop, XXXclose, 0);
+      StoreActiveEntry(XXXlabel);
+   }
+
+   return;
+}
+void XXXexitCB(FL_OBJECT *object, long item_no)
+{
+int             item = item_no;
+
+   fl_hide_form(fd_XXXtop->XXXtop);
+   EraseActiveEntry(XXXlabel);
+
+   FinishUp();
+
+   return;
+}
+
+int XXXclose(FL_FORM *form, void *data)
+{
+long            item;
+
+   item = (long)data;
+   XXXexitCB(NULL, item);
+
+   return(0);
+}
+
+void XXXnoneCB(FL_OBJECT *ob, long data)
+{
+   return;
+}
+/*                                                                       */
+/* --------------------------------------------------------------------- */
+/*      C A L L B A C K    R O U T I N E S    S T A R T    H E R E       */
+/* --------------------------------------------------------------------- */
+/*                                                                       */
+

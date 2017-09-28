@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 617 (msg:"DOS arkiea backup"; flags: A+; dsize: >1445; reference:bugtraq,662; reference:cve,CVE-1999-0788; reference:arachnids,261; classtype:attempted-dos; sid:282; rev:3;)

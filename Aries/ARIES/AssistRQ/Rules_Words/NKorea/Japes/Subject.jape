@@ -1,0 +1,16 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Subject
+
+    {Token.string == "Subject"}
+    {Token.string == ":"}
+    ({SpaceToken})*
+(
+    ({Token.kind == word}
+	{SpaceToken})+
+):Subject
+ -->
+:Subject.Subject = {}

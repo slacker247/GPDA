@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS encoding access"; flags: A+; content: "|25 31 75|";  reference:arachnids,200; classtype:web-application-activity; sid:1010; rev:2;)

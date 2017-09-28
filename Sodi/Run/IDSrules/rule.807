@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS .htgroup access"; flags:A+; uricontent:".htgroup"; nocase; sid:1374; rev:1; classtype:web-application-activity;)

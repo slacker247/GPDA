@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS site server config access";flags: A+; uricontent:"/adsamples/config/site.csc"; nocase;reference:bugtraq,256; classtype:web-application-activity; sid:1038; rev:2;)

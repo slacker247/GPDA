@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="SupportIconPropertiesDialog.java">
+        <attr name="class_dependency_javax.swing.JButton" stringvalue="SupportIconPropertiesDialog.MyButton"/>
+    </fileobject>
+    <fileobject name="HMV.java">
+        <attr name="class_dependency_java.awt.LayoutManager" stringvalue="HMV.SlackerLayout"/>
+        <attr name="class_dependency_javax.swing.text.DefaultStyledDocument" stringvalue="HMV.DigitOnlyDocument;HMV.AMDocument"/>
+    </fileobject>
+    <fileobject name="HMVSelectTool.java">
+        <attr name="class_dependency_javax.swing.AbstractAction" stringvalue="HMVSelectTool.NodePropertiesAction;HMVSelectTool.DeleteAction;HMVSelectTool.SupportIconPropertiesAction;HMVSelectTool.SupportIconAddAction"/>
+    </fileobject>
+</attributes>

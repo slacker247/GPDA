@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC piranha passwd.php3 access"; flags: A+; uricontent: "/passwd.php3"; reference:bugtraq,1149; reference:cve,CVE-2000-0322; reference:arachnids,272; classtype:attempted-recon; sid:1161; rev:2;)

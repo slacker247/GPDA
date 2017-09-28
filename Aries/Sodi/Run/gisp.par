@@ -1,0 +1,21 @@
+parameters {
+  float step_time 20.0			// GVT update interval (for PLAYBACK mode)
+  int region 3
+
+  logical textured F			// Start with textured earth, else with Blue
+  logical gridline T			// Start with gridlines every 10 degrees
+  logical boundary T			// Start with political boundary lines
+  logical coverage F			// Start with sensor coverages displayed
+  logical debuging F
+  logical timing F
+  logical statistics F
+  logical tracks F
+  logical trails T
+
+  string tex_file jpl_earth.rgb
+
+  string input_source speedes		// Can be 'file' or 'socket' or 'speedes'
+
+  string hostid tisa3b
+  int portid 1029
+}

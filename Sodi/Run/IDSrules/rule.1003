@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS _vti_inf access";flags: A+; uricontent:"_vti_inf.html"; nocase; classtype:web-application-activity; sid:990; rev:2;)

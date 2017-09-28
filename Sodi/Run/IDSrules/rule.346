@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Parameter Problem (Missing a Requiered Option)"; itype: 12; icode: 1; sid:426;  classtype:misc-activity; rev:4;)

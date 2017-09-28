@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 177 (msg:"MISC xdmcp query"; content: "|00 01 00 03 00 01 00|";reference:arachnids,476; classtype:attempted-recon; sid:517; rev:1;)

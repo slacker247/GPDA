@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS asp-srch attempt";flags: A+; uricontent:"#filename=*.asp"; nocase; classtype:web-application-attack; sid:998; rev:2;)

@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 31335 (msg:"DDOS Trin00\:DaemontoMaster(messagedetected)"; content:"l44";reference:arachnids,186; classtype:attempted-dos; sid:231; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS ASP contents view"; flags: A+; uricontent:"/null.htw?CiWebHitsFile"; reference:bugtraq,1861; classtype:web-application-activity; sid:979; rev:2;)

@@ -1,0 +1,18 @@
+# (C) Copyright 2001, Martin Roesch, Brian Caswell, et al.  All rights reserved.
+# $Id: rservices.rules,v 1.6 2001/10/29 01:52:54 roesch Exp $
+#----------------
+# RSERVICES RULES
+#----------------
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET 513 (msg:"RSERVICES rsh LinuxNIS";flags: A+; content:"|3a3a 3a3a 3a3a 3a3a 003a 3a3a 3a3a 3a3a 3a|"; classtype:bad-unknown; sid:601; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 513 (msg:"RSERVICES rsh bin";flags: A+; content:"bin|00|bin|00|"; reference:arachnids,384; classtype:attempted-user; sid:602; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 513 (msg:"RSERVICES rsh echo++";flags: A+; content:"echo |22| + + |22|"; reference:arachnids,385; classtype:bad-unknown; sid:603; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 513 (msg:"RSERVICES rsh froot";flags: A+; content:"-froot|00|"; reference:arachnids,386; classtype:attempted-admin; sid:604; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 513 (msg:"RSERVICES rsh login failure";flags: A+; content:"login incorrect"; reference:arachnids,393; classtype:unsuccessful-user; sid:605; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 513 (msg:"RSERVICES rsh root";flags: A+; content:"root|00|root|00|"; reference:arachnids,389; classtype:attempted-admin; sid:606; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 514 (msg:"RSERVICES rlogin bin"; flags: A+; content: "bin|00|bin|00|"; reference:arachnids,390; classtype:attempted-user; sid:607; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 514 (msg:"RSERVICES rlogin echo++"; flags: A+; content: "echo |22|+ +|22|"; reference:arachnids,388; classtype:attempted-user; sid:608; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 514 (msg:"RSERVICES rlogin froot";flags: A+; content:"-froot|00|"; reference:arachnids,387; classtype:attempted-admin; sid:609; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 514 (msg:"RSERVICES rlogin root"; flags: A+; content: "root|00|root|00|";reference:arachnids,391; classtype:attempted-admin; sid:610; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"RSERVICES rsh login failure";flags: A+; content: "|01|rlogind|3a| Permission denied.";reference:arachnids,392; classtype:unsuccessful-user; sid:611; rev:1;)
+alert udp $EXTERNAL_NET any -> $HOME_NET 32770: (msg:"RPC rusers query"; content:"|0000000000000002000186A2|";offset:5; reference:cve,CVE-1999-0626; reference:arachnids,136; classtype:attempted-recon; sid:612; rev:1;)

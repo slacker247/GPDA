@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC SGI InfoSearch fname access"; flags: A+; uricontent:"/infosrch.cgi?"; content:"fname="; nocase;reference:bugtraq,1031; reference:arachnids,290; reference:cve,CVE-2000-0207; classtype:attempted-recon; sid:1196; rev:2;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP sendmail 5.5.8 overflow"; flags: A+; content: "|7c 73 65 64 20 2d 65 20 27 31 2c 2f 5e 24 2f 27|";  reference:arachnids,172; reference:cve,CVE-1999-0095; classtype:attempted-admin; sid:663; rev:1;)

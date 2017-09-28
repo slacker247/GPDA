@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS ..\.. access";flags: A+; content:"|2e2e5c2e2e|"; reference:bugtraq,2218; reference:cve,CAN-1999-0229; classtype:web-application-attack; sid:974; rev:3;)

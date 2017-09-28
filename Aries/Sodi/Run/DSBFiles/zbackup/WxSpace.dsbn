@@ -1,0 +1,74 @@
+# Tree height, Name, Discrete, Start time, End time, Time unit
+3  Space_Weather  0  0.0  0.0  M
+
+6     Evidence_Sources
+  CommOutage    there_is_a_communication_outage
+  HiErrRate     there_is_a_high_bit_error_rate
+  IonForecast   the_forecast_is_ionospheric
+  RFILocal      the_detectors_are_local_RFI
+  RFIWorld      the_detectors_are_worldwide_RFI
+  Threat        there_is_an_INTEL_threat_report
+
+4     Hypothesis
+  EquipDegrade   equipment_has_degraded
+  Environment    the_environment_is_natural
+  Hostile        something_is_hostile
+  UnintendedIF   interference_is_unintended
+
+3     Assessments
+  ChangeSystem   change_the_system           0.75  100.0
+  AltResource    use_alternative_resources   0.75  100.0
+  NoChange       make_no_changes             0.75  100.0
+
+true    B and D matrices are listed separately
+#B   E0      E1      E2      E3      E4      E5
+   1.000   0.200   0.000   0.000   0.000   0.700   -- H0
+
+   0.300   1.000   0.650   0.500   0.500   0.000   -- H1
+
+   0.900   0.850   0.000   0.400   0.600   1.000   -- H2
+
+   0.600   0.500   0.000   0.900   0.750   0.000   -- H3
+
+
+#D   E0      E1      E2      E3      E4      E5
+   0.000   0.000   0.000   0.000   0.000   0.000   -- H0
+
+   0.000   0.000   0.000   0.000   0.000   1.000   -- H1
+
+   0.000   0.000   1.000   0.000   0.000   0.000   -- H2
+
+   0.000   0.000   1.000   0.000   0.000   1.000   -- H3
+
+
+#B   H0      H1      H2      H3
+   0.900   0.800   0.750   0.600   -- A0
+
+   0.800   0.700   0.750   0.500   -- A1
+
+   0.300   0.700   0.200   0.500   -- A2
+
+
+#D   H0      H1      H2      H3
+   0.000   0.000   0.000   0.000   -- A0
+
+   0.000   0.000   0.000   0.500   -- A1
+
+   0.400   0.000   0.700   0.000   -- A2
+
+
+9  Possibilities
+0.00  0.00  impossible
+0.01  0.05  extremely_unlikely
+0.05  0.20  very_low_chance
+0.20  0.38  small_chance
+0.38  0.60  may
+0.60  0.79  meaningful_chance
+0.79  0.95  most_likely
+0.95  0.99  extremely_likely
+1.00  1.00  certain
+
+#  Evidence labels follow. Must be 3, each < 4 chars
+GHz      Dur      Area
+#  Default time units follow. Must be: Sec, Min, Hour, or Days
+Min

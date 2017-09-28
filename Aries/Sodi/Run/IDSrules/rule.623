@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 1433 (msg:"MS-SQL - xp_displayparamstmt possible buffer overflow"; content: "x|00|p|00|_|00|d|00|i|00|s|00|p|00|l|00|a|00|y|00|p|00|a|00|r|00|a|00|m|00|s|00|t|00|m|00|t"; nocase; flags: AP; offset: 8; classtype:attempted-user; sid:674; rev:1;)

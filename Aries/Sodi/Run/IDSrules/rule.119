@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (msg:"BACKDOOR MISC solaris 2.5 attempt";flags: A+; content:"friday"; classtype:attempted-user; sid:218; rev:1;)

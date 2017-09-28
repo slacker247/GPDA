@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 27444 (msg:"DDOS Trin00\:MastertoDaemon(defaultpassdetected!)"; content:"l44adsl"; reference:arachnids,197; classtype:attempted-dos; sid:237; rev:1;)

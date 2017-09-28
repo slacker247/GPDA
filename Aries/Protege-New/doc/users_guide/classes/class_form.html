@@ -1,0 +1,141 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The Class Form</title>
+</head>
+
+<body>
+
+<h1><img src="images/serving_nerd.gif" WIDTH="48" HEIGHT="48">  The Class Form<br>
+<img src="images/header_line.gif" width="590" height="6"></h1>
+
+<p>The Class form can be used to define and edit the attributes of the class&nbsp;
+selected in the <a href="class_relationship_pane.html">Class Relationship pane</a>. The
+Class Form can be viewed in several ways:
+
+<ul>
+  <li>In the <a href="classes_tab.html">Classes tab</a>, if a single class is selected, the
+    Class form is displayed at the right.&nbsp;</li>
+  <li>In the <a href="classes_tab.html">Classes tab</a>, the Class form can also be displayed
+    separately in a free-standing window by clicking on the View <img border="0" src="images/View.gif" WIDTH="15" HEIGHT="15"> icon in the <a href="class_relationship_pane.html">Class
+    Relationship pane</a>.&nbsp;</li>
+  <li>In the <font size="3"><a href="file:///C:/SMI/doc/users_guide/instances/instances_tab.html">Instances Tab</a></font>,
+    <font size="3">the Class form can be displayed by selecting a class</font> in the <a href="file:///C:/SMI/doc/users_guide/instances/class_pane_at_instances.html">Class pane</a>
+    <font size="3">and clicking the View </font><img border="0" src="images/View.gif" WIDTH="15" HEIGHT="15"> icon.</li>
+</ul>
+
+<p>Whenever you enter changes into the Class form, they take effect immediately. To make
+the changes permanent, select <b>Save</b> from the <b>Project</b> menu.</p>
+
+<p>There are six separate areas in the Class form:
+
+<ol>
+  <li>The <a href="#note">Note Icons</a> allow you to add and remove notes.</li>
+  <li>The <a href="class_form.html#name">Class Name field</a> allows you to name your class.</li>
+  <li>The <a href="class_form.html#role">Class Role menu</a> allows you to choose whether your
+    class is concrete or abstract. <font size="3">&nbsp; </font></li>
+  <li><font size="3">The <a href="class_form.html#constraints">Class Constraints pane</a>
+    allows you to create, edit, add, and delete constraints for your class.&nbsp;</font></li>
+  <li><font size="3">The <a href="class_form.html#documentation">Class Documentation pane</a>
+    allows you to add simple text notes explaining your class.</font></li>
+  <li><font size="3">The <a href="template_slot_pane.html">Template Slots pane</a> allows you
+    to view the slot information for your class.&nbsp;</font></li>
+</ol>
+
+<p>For more information on using these areas to create and view and edit classes, use the
+links in the list above, click on the desired area in the graphic below, or see <a href="creating_a_class.html">Creating a Class</a> and <a href="editing_a_class.html">Viewing
+a Class</a>.</p>
+
+<p align="center"><img border="0" src="images/class_form.gif" width="660" height="384"></p>
+
+<h2 align="left"><a name="note"></a>Note Icons</h2>
+
+<p align="left">The note icons, <img border="0" src="../projects/images/CreateYellow.gif" width="8" height="9">
+<img border="0" src="../projects/images/DeleteYellow.gif" width="10" height="10">, at the upper right
+of the form allow you to add and remove yellow sticky notes to your class. The
+note is always displayed along with the form. For information on how to add
+notes to any frame (class, instance, or slot), see <a href="../projects/yellow_stickies.html">Working with
+Notes</a>.</p>
+
+<h2 align="left"><a name="name"></a>The Class Name Field</h2>
+
+<p align="left">The Name field allows you to name your class. When a class is created, it
+is given a default name, such as&nbsp;<font size="3"> CLASS_00001. You can change the name
+of a new or existing class by highlighting the name and overwriting it. The following
+rules apply to class names: </font></p>
+
+<ul>
+  <li><p align="left"><font size="3">The name must be a unique class name in the knowledge
+    base.&nbsp; </font></p>
+  </li>
+  <li><p align="left"><font size="3">Class names are case sensitive.&nbsp; </font></p>
+  </li>
+</ul>
+
+<p align="left"><font size="3">A </font>recommended<font size="3"> convention is to make
+the first character of each word in a class name uppercase and the rest lowercase, and to
+separate words with an underscore.</font></p>
+
+<h2 align="left"><a name="role"></a>The Class Role Menu</h2>
+
+<p align="left">The Role menu allows you to choose the role of your class: concrete or
+abstract. Concrete classes may have direct instances, but do not have to; abstract classes
+cannot have direct instances.<font size="3"> Protégé-2000 sets the role to <b>Concrete</b>
+by default.</font></p>
+
+<p align="left"><font size="3">Protégé-2000 does not impose any restrictions on the role
+of your classes. One common modeling convention is to make all leaf (bottom-level) classes
+concrete, and all interior (higher-level, non-leaf) classes abstract.</font></p>
+
+<h2 align="left"><a name="constraints"></a>The Class Constraints Pane</h2>
+
+<p align="left">Class constraints are defined programatically. See <a href="../constraints.html">Constraints</a> for more information.</p>
+
+<h2 align="left"><a name="documentation"></a>The Class Documentation Pane</h2>
+
+<p align="left"><font size="3">The Class Documentation pane allows you to enter a text
+description of the class, as well as any special notes. Filling in this field is optional
+but is recommended to aid in the maintenance of the knowledge base.</font></p>
+
+<h2 align="left"><a name="template_slots"></a>The Template Slots Pane</h2>
+
+<p>The Template Slots pane displays the direct and inherited slots for the selected class.
+<font size="3">Slots, which represent properties of your class, are a crucial part of your
+knowledge base. </font>In the example, <strong>Editor </strong>has several slots which
+appear in the Template Slots pane. For a full description, see the separate <font size="3"><a href="template_slot_pane.html">Template Slots Pane</a> topic.</font></p>
+
+<h2 align="left"><a name="view_multiple_classes"></a>Viewing Several Classes</h2>
+
+<p align="left">To view the information for <font size="3">several classes</font> at once,
+select the classes and click the View <img border="0" src="images/View.gif" WIDTH="15" HEIGHT="15">&nbsp;<a href="class_buttons.html">class button</a> to open the Class Form for each class. To
+highlight multiple classes, hold down the Ctrl key while clicking each class. To highlight
+a range of classes, click the first class, then hold down the Shift key and click the last
+class in the range.&nbsp;</p>
+
+<p align="left"><font size="3">Opening a new class form does not close the previous form.
+This allows you to compare the attributes for two or more classes. Edits can be made
+directly in any open Class Form.</font></p>
+
+<p align="left"><font size="3">If you have multiple forms open, you can manage them as
+follows:</font></p>
+
+<ul>
+  <li><p align="left"><font size="3">Cascade multiple forms&nbsp; by clicking the Cascade <img border="0" src="images/Cascade.gif" WIDTH="16" HEIGHT="15"> button below the main menu bar, or by selecting <b>Cascade
+    Windows</b> from the <b>Windows</b> menu..&nbsp;</font></p>
+  </li>
+  <li><p align="left"><font size="3">Close all open forms by clicking the <b>CloseAllWindows</b>
+    <img border="0" src="images/CloseAllWindows.gif" WIDTH="16" HEIGHT="15"> button below the main menu bar, or by
+    selecting <b>Close All Windows</b> from the <b>Windows </b>menu.</font></p>
+  </li>
+</ul>
+
+<hr>
+
+<p><font size="3">Next: <a href="template_slot_pane.html">The Template Slots Pane</a></font></p>
+
+<p><a href="index.html"><font size="3">Classes Table of Contents</font></a></p>
+</body>
+</html>

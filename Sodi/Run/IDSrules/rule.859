@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI faxsurvey access"; flags: A+; uricontent:"/faxsurvey"; nocase; reference:cve,CVE-1999-0262; reference:bugtraq,2056; classtype:attempted-recon; sid:857; rev:2;)

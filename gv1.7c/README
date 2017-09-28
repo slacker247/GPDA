@@ -1,0 +1,135 @@
+Graphviz - Graph Drawing Programs from AT&T and Lucent Bell Labs
+ (1.7c release)
+
+		http://www.research.att.com/sw/tools/graphviz
+
+============
+INSTALLATION
+============
+
+Download the archive:
+
+  gviz17c.tgz                              - source release 
+       or 
+  gviz17c.<ARCH>.tgz                       - binary release
+
+where ARCH is one of the supported binary releases. Then unpack the
+archive using gunzip and tar, e.g.,
+
+  gunzip -c gviz17c.<ARCH>.tar.gz  | tar xf -
+
+This will create a root directory gv1.7c containing the distribution.
+
+NOTE: Some browsers will bring over the archive and remove the .gz suffix,
+but leave the archive in compressed format, so that tar will not
+work. If this occurs, you'll need to still include the gunzip pass.
+
+============
+USE
+============
+
+Roadmap of binary release. (For the source release, additional information
+can be found in README.src.)
+
+    bin/            executable programs
+    lib/            libraries and tcl packages
+	examples/		examples using the Tcldot package
+	graphs/			sample files of directed and undirected graphs
+	doc/			user documentation
+	man/			man pages
+    README          this file
+    license.html    binary code license
+
+=============
+
+Notes on 1.7:
+
+=============
+
+Added an SVG generator and compound edges.
+Flattened the source directory hierarchy.
+Various bug fixes.
+
+=============
+
+Notes on 1.5:
+
+=============
+
+Mostly simple bug fixes and enhancements, plus now available
+with an open source software agreement.
+Updated source file comment headers; bug fixes in Lefty scripts.
+
+=============
+
+Notes on 1.4:
+
+=============
+
+New stuff includes bug fixes (what else), the untested imap driver,
+the slightly tested drivers for VRML and VTX (Confluent Visual Thought),
+cleaned up webdot demo.
+
+Of particular note, we improved neato's layouts using new algorithms
+to prevent node-node and node-edge overlaps.  This feature is enabled
+by running neato -Gsplines=true -Goverlap=false
+
+To use the GIF generator with Unix, you need to install TrueType fonts.
+For copyright reasons, we don't bundle any fonts with graphviz.
+You may have a licensed copy on a nearby PC in C:\Windows\Fonts,
+or you can download them e.g. from 
+	http://www.microsoft.com/typography/fontpack/default.htm
+The built-in default for the TrueType font lookup path in dot currently is
+/windows/fonts:/dos/windows/fonts:/usr/lib/fonts:/usr/local/lib/fonts:/usr/local/lib/fonts/ttf:/usr/add-on/share/ttf:.
+so if it's convenient, you can install the .ttf files in one of these
+directories. Otherwise, include the directory of your choice in the
+environment variable DOTFONTPATH (you have to set this in your environment
+or create a wrapper script for dot).
+At a minimum you need to install files for:
+courier.ttf helvetica.ttf times.ttf symbol.ttf
+It's up to you if you'd like to substitute e.g. New Times Roman for times.ttf,
+Arial for helvetica.ttf, etc.
+
+If someone can find freely available fonts and could like to build them
+in (somehow) that would be great.  Many of the "free" fonts on the
+web seem to be copyrighted and forbid or at least restrict redistribution.
+
+==  lefty  ==
+
+It seems that if LEFTYPATH is not in the environment,
+lefty will look for scripts in the first place in the PATH
+that contains lefty, by trying ../lib/lefty/<file>.
+So as long as things are put in <root>/bin and <root>/lib/lefty,
+everything will work.
+
+==  dotty  ==
+
+dotty uses whatever your SHELL variable is set to to start a process.
+If this causes problems, a simple fix would be to insert a line such as
+
+SHELL=/bin/sh
+
+in the dotty script before it starts lefty
+
+==  tcldot  ==
+
+The tcldot package is installed in <gviz_root>/lib/Tcldot. If this is not
+in your system's tcl library directory, tcl may complain that it
+can't find the package. However, you can tell tcl where to look by
+setting and exporting TCLLIBPATH, e.g., using ksh/sh,
+
+export TCLLIBPATH=<gviz_root>/lib
+
+=============
+
+Notes on 1.3:
+
+Special thanks are due to John Ellson for the great new GIF driver
+(built with the Freetype renderer for TrueType files).
+Other major improvements were made by Vladimir Alexiev.  John Mocenigo
+has released a compatible graph viewer Grappa written in Java;
+visit www.research.att.com/sw/tools/graphviz for further information.
+Likewise, we will also have an add-on package of stream graph filters.
+
+=============
+

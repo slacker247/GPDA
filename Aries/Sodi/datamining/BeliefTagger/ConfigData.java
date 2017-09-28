@@ -1,0 +1,148 @@
+import java.io.*;
+
+/*
+	holds the information to access the database
+		i.e. the properties held in the config database dialog box
+*/
+
+public class ConfigData implements Serializable
+{
+	public final int USERNAME=0, PASSWORD=1, HOST=2, PORT=3, ADDRESS=4, DRIVER=5, MISSION=6;
+
+    private String username = null;                   ///access to db
+    private String password = null;               ///access to db
+    private String host = null;                   ///Location of testbed
+    private String port = null;                   ///Port on Testbed
+    private String dbURL = null;
+    private String dbDriver = null;
+	private String mission = null;
+
+    public ConfigData()
+    {
+		//maybe this should read in the config file first!
+		this(null,null,null,null,null,null,null);
+		try
+		{
+			readConfigFile();
+		}
+		catch (Exception e)
+		{
+			System.out.println("EEE - Error while trying to read the configuration file");
+			System.out.println("          Using null values in the configuration object");
+		}
+    }
+
+    public ConfigData(String User, String Password, String Host, String port, String DB_Url, String DB_Driver, String Mission)
+    {
+        setUsername(User);                   ///access to db
+        setPassword(Password);           ///access to db
+        setHost(Host);                   ///Location of testbed
+        setPort(port);              ///Port on Testbed
+        setDBURL(DB_Url);
+        setDBDriver(DB_Driver);
+        setMission(Mission);
+    }
+        
+    public void setUsername	(String User)			{ username = User; }
+    public void setPassword	(String Password)		{ password = Password; }
+    public void setHost		(String Host)			{ host = Host; }
+    public void setPort		(String port)			{ this.port = port; }
+    public void setDBURL	(String DB_Url)			{ dbURL = DB_Url; }
+    public void setDBDriver	(String DB_Driver)		{ dbDriver = DB_Driver; }
+    public void setMission	(String Mission)		{ mission = Mission; }
+
+	public String getUsername()						{ return username; }
+    public String getPassword()						{ return password; }
+    public String getHost()							{ return host; }
+    public String getPort()							{ return port; }
+    public String getDBURL()						{ return dbURL; }
+    public String getDBDriver()						{ return dbDriver; }
+    public String getMission()						{ return mission; }
+
+	public void updateValues(String user, String password, String host, String port, String address, String driver, String mission)  throws Exception {
+		setUsername(user); 
+		setPassword(password); 
+		setHost(host); 
+		setPort(port); 
+		setDBURL(address); 
+		setDBDriver(driver); 
+		setMission(mission);
+		writeConfigFile();
+	}
+
+	public String[] getValues() throws Exception {
+		readConfigFile();
+		String[] returnValues = { 
+			getUsername(), 
+			getPassword(), 
+			getHost(), 
+			getPort(), 
+			getDBURL(), 
+			getDBDriver(), 
+			getMission() };
+		return returnValues;
+	}
+
+	private void readConfigFile() throws Exception
+    {
+        FileInputStream iInStream = new FileInputStream("Config.dat");
+        BufferedReader br = new BufferedReader(
+                            new InputStreamReader(iInStream));
+        
+        setDBDriver(br.readLine());
+        setDBURL(br.readLine());
+        setHost(br.readLine());
+        setMission(br.readLine());
+            
+        String Pass = "";								//if this program doesn't work with your configuration file
+        char Temp[] = br.readLine().toCharArray();		// the reason is here.  I had to add a different value to the 
+        for(int i = 0; i < Temp.length; i++)			// password characters cause it was messing up in Windows.
+        {
+            Pass += (char)(Temp[i] - 6);
+        }
+        setPassword(Pass);
+        setPort(br.readLine());
+        setUsername(br.readLine());
+ 
+        iInStream.close();
+    }
+
+    private void writeConfigFile() throws IOException
+    {
+        FileWriter oOutStream = new FileWriter("Config.dat", false);
+        
+        oOutStream.write(getDBDriver() + "\n");
+        oOutStream.write(getDBURL() + "\n");
+        oOutStream.write(getHost() + "\n");
+        oOutStream.write(getMission() + "\n");
+            
+        String Pass = "";											//if this program doesn't work with your configuration file
+        for(int i = 0; i < getPassword().length(); i++)				// the reason is here.  I had to add a different value to the
+        {															// password characters cause it was messing up in Windows.
+            Pass += (char)((getPassword().toCharArray())[i] + 6);
+        }
+        oOutStream.write(Pass + "\n");
+        oOutStream.write(getPort() + "\n");
+        oOutStream.write(getUsername() + "\n");
+
+        oOutStream.flush();
+        oOutStream.close();
+    }
+
+	public void saveFile() {
+		try
+		{
+			writeConfigFile();
+		}
+		catch (IOException ioe)
+		{
+			System.out.println("EEE - Error occured while flushing config file to disk.");
+			ioe.printStackTrace();
+			System.out.println("EEE - -------------------------------------------------");
+		}
+	
+		return;
+	}
+        
+
+}

@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Destination Unreachable (Undefined Code!)"; itype: 3; sid:407;  classtype:misc-activity; rev:4;)

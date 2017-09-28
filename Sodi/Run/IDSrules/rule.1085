@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC net attempt";flags: A+; content:"net.exe"; nocase; classtype:web-application-activity; sid:1067; rev:2;)

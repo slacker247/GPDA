@@ -1,0 +1,19 @@
+echo N_agents 4
+Rsh -l $LOGNAME localhost voyager 7001 & 
+Rsh -l $LOGNAME localhost voyager 7002 &
+Rsh -l $LOGNAME localhost voyager 7003 &
+Rsh -l $LOGNAME localhost voyager 7004 &
+Rem -l $LOGNAME localhost voyager 7005 &
+Rem -l $LOGNAME localhost voyager 7006 &
+Rem -l $LOGNAME localhost voyager 7007 &
+Rem -l $LOGNAME localhost voyager 7008 &
+Rem -l $LOGNAME localhost voyager 7009 &
+Rem -l $LOGNAME localhost voyager 7010 &
+Rem -l $LOGNAME localhost voyager 7011 &
+Rem -l $LOGNAME localhost voyager 7012 &
+Rem -l $LOGNAME localhost voyager 7013 &
+Rem -l $LOGNAME localhost voyager 7014 &
+Rem -l $LOGNAME localhost voyager 7015 &
+Rem -l $LOGNAME localhost voyager 7016 &
+voyager 8001 &
+java Launch 

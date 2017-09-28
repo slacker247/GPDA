@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 111 (msg:"RPC portmap request amountd"; content:"|01 87 03 00 00|";offset:40;depth:8; reference:arachnids,19;classtype:rpc-portmap-decode; sid:576; rev:2;)

@@ -1,0 +1,65 @@
+<html>
+
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Jess, the Java Expert System Shell - Embedding Jess in a Java Application</title>
+<link title="style" href="stylesheet.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<h2>6.
+        Embedding Jess in a Java Application</h2>
+
+
+<a name="jess.Main">
+<h3>6.1. Using the class jess.Main</h3>
+</a>
+
+The class <tt>jess.Main</tt> provides not only the Jess command-line
+interface, but also the backbone of the example graphical interfaces
+(<tt>jess.Console</tt> and <tt>jess.ConsoleApplet</tt>) as well. You
+can reuse <tt>jess.Main</tt> from your own applications, or (if you
+have a source distribution) you can simply use it as an example of
+what an application embedding Jess can look like.
+
+<tt>jess.Main</tt> does a number of things that a reasonable Jess
+application might do:
+
+<ul>
+
+
+<li> It (optionally) reads an entire file of Jess code directly, using
+the <tt>jess.Jesp</tt> parser class.</li>
+
+
+<li> It reads and executes user input in a loop.</li>
+
+
+
+</ul>
+
+
+
+
+<a name="manipulating">
+<h3>6.2. Manipulating Jess in other ways</h3>
+</a>
+
+Note that each individual <tt>jess.Rete</tt> object represents an
+independent reasoning engine. A single program can then include
+several independent engines.
+<p align=""></p>
+Jess can be used in a multithreaded environment. The
+<tt>jess.Rete</tt> class internally synchronizes itself using several
+synchronization locks. The most important lock is a global lock on all
+rule LHSs: only one assert or retract may be processing in a given
+<tt>jess.Rete</tt> object at a time. This restriction is likely to be
+relaxed in the future. 
+
+
+<p>
+<i><a href="index.html">Back to index</a></i>
+</p>
+</body>
+
+</html>

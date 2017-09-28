@@ -1,0 +1,552 @@
+#VRML V2.0 utf8
+#Model of the Naval Postgraduate School Center for Autonomous 
+#  Underwater Vehicle (AUV) Research's "Phoenix" AUV.
+
+Viewpoint {
+	position 0 0 3
+	orientation 0 1 0 0
+	description "Stbd Beam"
+}
+
+Viewpoint {
+	position 3 0 3
+	orientation 0 1 0 .707
+	description "Stbd Bow"
+}
+
+Viewpoint {
+	position 3 0 0
+	orientation 0 1 0 1.4
+	description "Bow"
+}
+
+Viewpoint {
+	position 3 0 -3
+	orientation 0 1 0 2.3562 
+	description "Port Bow"
+}
+
+Viewpoint {
+	position 0 0 -3
+	orientation 0 1 0 3.14159267
+	description "Port Beam"
+}
+
+Viewpoint {
+	position -3 0 -3
+	orientation 0 1 0 3.9270 
+	description "Astern Port"
+}
+
+Viewpoint {
+	position -3 0 0
+	orientation 0 1 0 -1.4
+	description "Astern"
+}
+
+Viewpoint {
+	position -3 0 3
+	orientation 0 1 0 -.707 
+	description "Astern Stbd"
+}
+
+Viewpoint {
+	position 0 0 3
+	orientation 0 1 0 0
+	description "Stbd Beam"
+}
+
+NavigationInfo {
+  type [ "EXAMINE" "ALL" ]
+}
+
+Group { # DEF AUV 
+  children [
+
+	# Fwd Top Plane
+	Transform{
+	  translation .6223 .13335 0
+	  children[
+
+		#A Plane Shape
+		DEF A_Plane Shape{
+		  appearance Appearance{
+			material Material {diffuseColor  .3 .2 0}
+		  } #end Appearance
+		  geometry IndexedFaceSet {
+			coord Coordinate{
+			  point[ .0635,  0,	 -.0127,   #0
+					 .0381,  .1778, -.0127,   #1
+					-.0381,  .1778, -.0127,   #2
+					-.0889,  0,	 -.0127,   #3
+
+					 .0635,  0,	  .0127,   #4
+					 .0381,  .1778,  .0127,   #5
+					-.0381,  .1778,  .0127,   #6
+					-.0889,  0,	  .0127	#7
+			  ] #end Points
+			} #end Coordinates
+
+			coordIndex[ 0, 3, 2, 1, -1,
+						4, 5, 6, 7, -1,
+						0, 1, 5, 4, -1,
+						1, 2, 6, 5, -1,
+						2, 3, 7, 6, -1,
+						0, 3, 7, 4, -1
+			] #end coordIndex
+			creaseAngle 3.14159
+		  } #end IndexedFaceSet
+		} #end Shape
+	  ] #end Transform children
+	} #end Transform
+
+	# Aft Top Plane
+	Transform{
+	  translation -.7747 .13335 0
+	  children[
+		USE A_Plane
+	  ]# end Transform children
+	}#end Transform
+
+	#Fwd Bottom Plane
+	Transform{
+	  rotation 1 0 0 3.14159267
+	  translation .6223 -.13335 0
+	  children[
+		USE A_Plane
+	  ]#end Transform children
+	}#end Transform
+
+	#Aft Bottom Plane
+	Transform{
+	  rotation 1 0 0 3.14159267
+	  translation -.7747 -.13335 0
+	  children[
+		USE A_Plane
+	  ]#end Transform children
+	}#end Transform
+
+	#Stbd Fwd Plane
+	Transform{
+	  rotation 1 0 0 1.5708
+	  translation .6223 0 .20955
+	  children[
+		USE A_Plane
+	  ]#end Transform children
+	}#end Transform
+
+	#Stbd Aft Plane
+	Transform{
+	  rotation 1 0 0 1.5708
+	  translation -.7747 0 .20955
+	  children[
+		USE A_Plane
+	  ]#end Transform children
+	}#end Transform
+
+	#Port Fwd Plane
+	Transform{
+	  rotation 1 0 0 -1.5708
+	  translation .6223 0 -.20955
+	  children[
+		USE A_Plane
+	  ]#end Transform children
+	}#end Transform
+
+	#Port Aft Plane
+	Transform{
+	  rotation 1 0 0 -1.5708
+	  translation -.7747 0 -.20955
+	  children[
+		USE A_Plane
+	  ]#end Transform children
+	}#end Transform
+
+	#Fwd Vert Thruster
+	Transform{
+	  translation .3302 0 0
+	  children[
+		Shape{
+		  appearance Appearance{
+			material Material {diffuseColor .2 .2 .2}
+		  }
+		  geometry Cylinder {height .29 radius .0635} # {height .2737 radius .0635}
+		}#end Shape
+	  ]#end Children
+	}#end Transform
+
+	#Aft Vert Thruster
+	Transform{
+	  translation -.4953 0 0
+	  children[
+		Shape{
+		  appearance Appearance{
+			material Material {diffuseColor .2 .2 .2}
+		  }
+		  geometry Cylinder {height .29 radius .0635} # {height .2737 radius .0635}
+		}#end Shape
+	  ]#end Children
+	}#end Transform
+
+	#Fwd Horiz Thruster
+	Transform{
+	  rotation 1 0 0 1.5708
+	  translation .4699 0 0
+	  children[
+		Shape{
+		  appearance Appearance{
+			material Material {diffuseColor .2 .2 .2}
+		  }
+		  geometry Cylinder {height .44 radius .0635} # {height .4231 radius .0635}
+		}#end Shape
+	  ]#end Children
+	}#end Transform
+
+
+	#Aft Horiz Thruster
+	Transform{
+	  rotation 1 0 0 1.5708
+	  translation -.6223 0 0
+	  children[
+		Shape{
+		  appearance Appearance{
+			material Material {diffuseColor .2 .2 .2}
+		  }
+		  geometry Cylinder {height .44 radius .0635} # {height .4231 radius .0635}
+		} #end Shape
+	  ] #end Children
+	} #end Transform
+
+	#Hull
+	Group{
+	  children[
+
+		#Bow Cowling
+		Shape{
+		  appearance Appearance{
+			material Material {diffuseColor  0 0 .8}
+		  } #end Appearance
+
+		  geometry IndexedFaceSet {
+			coord Coordinate{
+			  point[ .6985,  .13335, -.20955,  #0 Start of Bow Cowling
+					 .6985,  .13335,  .20955,  #1
+					 .6985, -.13335,  .20955,  #2
+					 .6985, -.13335, -.20955,  #3
+
+					 1.05,  .085,   0,		 #4
+					 1.05,  0,	 .1143,	  #5
+					 1.05, -.085,   0,		 #6
+					 1.05,  0,	-.1143,	  #7
+
+					 1.05,  .04572,  -.098985,  #8
+					 1.05,  .079188, -.05715,   #9
+					 1.05,  .079188,  .05715,   #10
+					 1.05,  .04572,   .098985,  #11
+
+					 1.05, -.04572,   .098985,  #12
+					 1.05, -.079188,  .05715,   #13
+					 1.05, -.079188, -.05715,   #14
+					 1.05, -.04572,  -.098985,  #15
+
+					 1.1,   .04064,   .02032,   #16
+					 1.1,   .02032,   .06096,   #17
+					 1.1,  -.02032,   .06096,   #18
+					 1.1,  -.04064,   .02032,   #19
+					 1.1,  -.04064,  -.02032,   #20
+					 1.1,  -.02032,  -.06096,   #21
+					 1.1,   .02032,  -.06096,   #22
+					 1.1,   .04064,  -.02032,   #23
+
+					 1.11,  0,		0,		#24
+
+					 -.6985,  .13335,  .20955,  #25 Start of Stern Cowling 
+					 -.6985,  .13335, -.20955,  #26
+					 -.6985, -.13335, -.20955,  #27
+					 -.6985, -.13335,  .20955,  #28
+					 -1.1303,  0,	  .20955,  #29
+					 -1.1303,  0,	 -.20955,  #30
+
+					-.6985,   .13335,	.0635,  #31 Start of Rudder Post
+					-.8509,   .13335,	.0635,  #32
+					-.8509,   .13335,   -.0635,  #33
+					-.6985,   .13335,   -.0635,  #34
+					-.6985,  -.13335,	.0635,  #35
+					-.8509,  -.13335,	.0635,  #36
+					-.8509,  -.13335,   -.0635,  #37
+					-.6985,  -.13335,   -.0635,  #38
+ 
+			  ] #end Points
+			} #end Coordinates
+
+			coordIndex[ 0, 26, 34, 33, 32, 31, 25, 1, -1, #Hull
+						1, 25, 29, 28, 2,  -1,
+						2, 28, 35, 36, 37, 38, 27, 3, -1,
+						0, 3,  27, 30, 26, -1,
+
+						0, 4, 1, -1,   #Bow Cowling
+						0, 1, 4, -1,
+						1, 5, 2, -1,
+						1, 2, 5, -1,
+						2, 6, 3, -1,
+						2, 3, 6, -1,
+						3, 7, 0, -1,
+						3, 0, 7, -1,
+
+						7, 0, 8, -1,
+						7, 8, 0, -1,
+						8, 0, 9, -1,
+						8, 9, 0, -1,
+						9, 0, 4, -1,
+						9, 4, 0, -1,
+
+						4,  1, 10, -1,
+						4, 10,  1, -1,
+					   10,  1, 11, -1,
+					   10, 11,  1, -1,
+					   11,  1,  5, -1,
+					   11,  5,  1, -1,
+
+						5,  2, 12,  -1,
+						5, 12,  2,  -1,
+					   12,  2, 13, -1,
+					   12, 13,  2, -1,
+					   13,  2,  6,  -1,
+					   13,  6,  2,  -1,
+
+						6,  3, 14,  -1,
+						6, 14,  3,  -1,
+					   14,  3, 15,  -1,
+					   14, 15,  3,  -1,
+					   15,  3,  7,  -1
+					   15,  7,  3,  -1,
+
+					   4, 10, 16, -1,
+					   10, 11, 16, -1,
+					   11, 5, 17,  -1,
+					   5, 12, 18, -1,
+					   12, 13, 19, -1,
+					   13, 6, 19, -1,
+					   6, 14, 20, -1,
+					   14, 15, 20, -1,
+					   15, 7, 21, -1,
+					   7, 8, 22, -1,
+					   8, 9, 23, -1,
+					   9, 4, 23, -1,
+
+					   4, 16, 23, -1,
+					   11, 17, 16,  -1,
+					   5, 18, 17, -1,
+					   12, 19, 18,  -1,
+					   6, 20, 19, -1,
+					   20, 15, 21,  -1,
+					   21, 7, 22,  -1,
+					   22, 8, 23,  -1,
+
+					   23, 16, 24,  -1,
+					   16, 17, 24,  -1,
+					   17, 18, 24,  -1,
+					   18, 19, 24,  -1,
+					   19, 20, 24,  -1,
+					   20, 21, 24,  -1,
+					   21, 22, 24,  -1,
+					   22, 23, 24,  -1,
+
+					   26, 27, 30, -1,	 #Start of Stern Cowling
+					   25, 26, 30, 29, -1,
+					   25, 29, 28, -1,
+					   27, 28, 29, 30, -1,
+
+					   31, 32, 36, 35, -1, #Start of Rudder Post
+					   32, 33, 37, 36, -1,
+					   34, 38, 37, 33, -1,
+	
+			 ] #end coordIndex
+		  creaseAngle 3.14159
+
+		  } #end IndexedFaceSet
+		} #end Shape
+
+	  ] #end Hull Group Children
+	} #end Hull Group
+
+	#The Stbd screw
+	Transform{
+	  translation -1.1557 0 .09525
+	  children[
+		Group{ # DEF Stbd_Screw 
+		  children[
+
+	DEF Stbd_Blade Group{
+	children[
+	  Transform{
+		 rotation 0 1 0 -.39
+		 children[
+			Shape{
+			  appearance Appearance{
+				material Material {diffuseColor  .226 .197 0}
+			  } #end Appearance
+
+			  geometry IndexedFaceSet {
+				coord Coordinate{
+				  point[ 0,  0,	  -.00508,   #0
+						 0,  .02540,  -.02032,   #1
+						 0,  .04572,  -.01524,   #2
+						 0,  .05080,  -.00508,   #3
+						 0,  .05080,   .00508,   #4
+						 0,  .04572,   .01524,   #5
+						 0,  .02540,   .02032,   #6
+						 0,  0,	   .00508	#7
+				  ] #end Points
+				} #end Coordinates
+
+				coordIndex[ 0, 1, 2, 3, 4, 5, 6, 7, -1,
+							0, 7, 6, 5, 4, 3, 2, 1, -1
+				] #end coordIndex
+			  } #end IndexedFaceSet
+			} #end A_Blade Shape
+			]#end transform children
+		  } #end transform
+		 ] #end group children
+	   } #end A_Blade Group
+
+			Transform{
+			  rotation 1 0 0 1.5708
+			  children[ USE Stbd_Blade ]
+			} #end Transform
+
+			Transform{
+			 rotation 1 0 0 3.14159267
+			  children[ USE Stbd_Blade ]
+			} #end Transform
+
+			Transform{
+			  rotation 1 0 0 -1.5708
+			  children[ USE Stbd_Blade ]
+			} #end Transform
+
+			#The shaft
+			Transform{
+			  rotation 0 0 1 1.5708
+			  translation .0281 0 0
+			  children[
+				Shape {
+				  appearance Appearance{
+					material Material {diffuseColor  .226 .197 0}
+				  } #end Appearance
+				  geometry Cylinder {radius .008 height .0762}
+				} #end Shape
+			  ] #end children
+			} #end Transform
+
+			#The shaft end cap
+			Transform{
+			  rotation 0 0 1 1.5708
+			  translation -.015 0 0
+			  children[
+				Shape {
+				  appearance Appearance{
+					material Material {diffuseColor  .226 .197 0}
+				  } #end Appearance
+				  geometry Cone {bottomRadius .008 height .01}
+				} #end Shape
+			  ] #end children
+			} #end Transform
+		  ] #end Screw Group Children
+		} #end Screw Group
+	  ] #end Transform Children
+	} #end Transform
+
+   #The Port screw
+	Transform{
+	  translation -1.1557 0 -.09525
+	  children[
+		Group{ # DEF Port_Screw 
+		  children[
+
+	DEF Port_Blade Group{
+	children[
+	  Transform{
+		 rotation 0 1 0 .39
+		 children[
+			Shape{
+			  appearance Appearance{
+				material Material {diffuseColor  .226 .197 0}
+			  } #end Appearance
+
+			  geometry IndexedFaceSet {
+				coord Coordinate{
+				  point[ 0,  0,	  -.00508,   #0
+						 0,  .02540,  -.02032,   #1
+						 0,  .04572,  -.01524,   #2
+						 0,  .05080,  -.00508,   #3
+						 0,  .05080,   .00508,   #4
+						 0,  .04572,   .01524,   #5
+						 0,  .02540,   .02032,   #6
+						 0,  0,	   .00508	#7
+				  ] #end Points
+				} #end Coordinates
+
+				coordIndex[ 0, 1, 2, 3, 4, 5, 6, 7, -1,
+							0, 7, 6, 5, 4, 3, 2, 1, -1
+				] #end coordIndex
+			  } #end IndexedFaceSet
+			} #end A_Blade Shape
+			]#end transform children
+		  } #end transform
+		 ] #end group children
+	   } #end A_Blade Group
+
+			Transform{
+			  rotation 1 0 0 1.5708
+			  children[ USE Port_Blade ]
+			} #end Transform
+
+			Transform{
+			 rotation 1 0 0 3.14159267
+			  children[ USE Port_Blade ]
+			} #end Transform
+
+			Transform{
+			  rotation 1 0 0 -1.5708
+			  children[ USE Port_Blade ]
+			} #end Transform
+
+			#The shaft
+			Transform{
+			  rotation 0 0 1 1.5708
+			  translation .0281 0 0
+			  children[
+				Shape {
+				  appearance Appearance{
+					material Material {diffuseColor  .226 .197 0}
+				  } #end Appearance
+				  geometry Cylinder {radius .008 height .0762}
+				} #end Shape
+			  ] #end children
+			} #end Transform
+
+			#The shaft end cap
+			Transform{
+			  rotation 0 0 1 1.5708
+			  translation -.015 0 0
+			  children[
+				Shape {
+				  appearance Appearance{
+					material Material {diffuseColor  .226 .197 0}
+				  } #end Appearance
+				  geometry Cone {bottomRadius .008 height .01}
+				} #end Shape
+			  ] #end children
+			} #end Transform
+		  ] #end Screw Group Children
+		} #end Screw Group
+	  ] #end Transform Children
+	} #end Transform
+
+  ]#end AUV Group children
+
+} #end AUV Group
+
+#end auv.wrl
+

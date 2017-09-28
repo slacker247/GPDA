@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"RPC EXPLOIT statdx"; flags: A+; content: "/bin|c74604|/sh";reference:arachnids,442; classtype:attempted-admin; sid:600; rev:1;)

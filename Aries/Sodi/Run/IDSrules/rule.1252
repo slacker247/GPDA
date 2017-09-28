@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 80 (msg:"WEB-MISC sml3com access"; flags:A+; uricontent:"/graphics/sml3com"; classtype:attempted-dos; reference:bugtraq,2721; sid:1291; rev:1;)

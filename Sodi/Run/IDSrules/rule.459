@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"INFO FTP anonymous FTP"; content:"anonymous"; nocase; flags:A+; classtype:not-suspicious; sid:553; rev:1;)

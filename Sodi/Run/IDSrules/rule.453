@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP \"MKD . \" possible warez site"; flags: A+; content:"MKD ."; nocase; depth: 5; classtype:bad-unknown; sid:548; rev:1;)

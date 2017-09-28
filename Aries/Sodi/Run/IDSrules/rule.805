@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS /etc/shadow access"; flags:A+; content:"/etc/shadow";nocase; sid:1372; rev:1; classtype:web-application-activity;)

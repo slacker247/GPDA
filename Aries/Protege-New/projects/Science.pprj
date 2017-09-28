@@ -1,0 +1,785 @@
+; Fri May 09 11:59:53 MDT 2003
+; 
+;+ (version "1.8")
+;+ (build "Build 1074")
+
+([BROWSER_SLOT_NAMES] of Property_List)
+
+([CLSES_TAB] of Widget
+	(widget_class_name "edu.stanford.smi.protege.widget.ClsesTab")
+	(is_hidden FALSE)
+	(label "Classes")
+	(property_list [ProjectKB_1423_00015]))
+
+([FORMS_TAB] of Widget
+	(widget_class_name "edu.stanford.smi.protege.widget.FormsTab")
+	(is_hidden FALSE)
+	(label "Forms")
+	(property_list [ProjectKB_1423_00044]))
+
+([INSTANCES_TAB] of Widget
+	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab")
+	(is_hidden FALSE)
+	(label "Instances")
+	(property_list [ProjectKB_1423_00047]))
+
+([PROJECT] of Project
+	(tabs
+		[CLSES_TAB]
+		[SLOTS_TAB]
+		[FORMS_TAB]
+		[INSTANCES_TAB]
+		[QUERIES_TAB]
+		[ProjectKB_1423_00003]
+		[ProjectKB_1423_00009]
+		[ProjectKB_1423_00011]
+		[Science_ProjectKB_01608]
+		[Science_ProjectKB_01610]
+		[Science_ProjectKB_01614]
+		[Science_ProjectKB_01618]
+		[Science_ProjectKB_01336]
+		[Science_ProjectKB_01338]
+		[Science_ProjectKB_01340]
+		[Science_ProjectKB_01342])
+	(default_slot_metaclass ":STANDARD-SLOT")
+	(options [ProjectKB_1423_00016])
+	(default_cls_metaclass ":STANDARD-CLASS")
+	(property_map [Science_ProjectKB_00813])
+	(customized_instance_widgets
+		[Science_ProjectKB_00923]
+		[Science_ProjectKB_01358]
+		[Science_ProjectKB_01363]
+		[Science_ProjectKB_01469]
+		[Science_ProjectKB_01252])
+	(next_frame_number 1076)
+	(sources [SOURCES])
+	(browser_slot_names [BROWSER_SLOT_NAMES])
+	(default_facet_metaclass ":STANDARD-FACET")
+	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(included_projects
+		"time.pprj"
+		"Locations.pprj"
+		"Tourism.pprj"))
+
+([ProjectKB_1423_00000] of String
+	(name "factory_class_name")
+	(string_value "edu.stanford.smi.protege.storage.clips.ClipsKnowledgeBaseFactory"))
+
+([ProjectKB_1423_00003] of Widget
+	(widget_class_name "edu.stanford.smi.protege.widget.KAToolTab")
+	(is_hidden TRUE)
+	(label "Knowledge Acquisition")
+	(property_list [ProjectKB_1423_00004]))
+
+([ProjectKB_1423_00004] of Property_List)
+
+([ProjectKB_1423_00009] of Widget
+	(widget_class_name "dfki.protege.ontoviz_tab.OntovizTab")
+	(is_hidden FALSE)
+	(label "Ontoviz")
+	(property_list [ProjectKB_1423_00010]))
+
+([ProjectKB_1423_00010] of Property_List
+	(properties [Science_ProjectKB_00002]))
+
+([ProjectKB_1423_00011] of Widget
+	(widget_class_name "edu.stanford.smi.protege.widget.ClsesAndInstancesTab")
+	(is_hidden TRUE)
+	(label "Classes & Instances")
+	(property_list [ProjectKB_1423_00012]))
+
+([ProjectKB_1423_00012] of Property_List
+	(properties
+		[Science_ProjectKB_00518]
+		[Science_ProjectKB_00519]
+		[Science_ProjectKB_00520]))
+
+([ProjectKB_1423_00015] of Property_List
+	(properties
+		[Science_ProjectKB_00051]
+		[Science_ProjectKB_00052]))
+
+([ProjectKB_1423_00016] of Options
+	(display_multi_parent_class_icon TRUE)
+	(is_readonly FALSE)
+	(display_hidden_classes TRUE)
+	(update_modification_slots FALSE)
+	(display_abstract_class_icon TRUE)
+	(confirm_on_remove FALSE))
+
+([ProjectKB_1423_00032] of Property_List
+	(properties
+		[Science_ProjectKB_00053]
+		[Science_ProjectKB_00054]))
+
+([ProjectKB_1423_00044] of Property_List
+	(properties [Science_ProjectKB_00055]))
+
+([ProjectKB_1423_00047] of Property_List
+	(properties
+		[Science_ProjectKB_00056]
+		[Science_ProjectKB_00057]))
+
+([ProjectKB_1423_00048] of Property_List
+	(properties [Science_ProjectKB_00058]))
+
+([ProjectKB_1423_00049] of String
+	(name "classes_file_name")
+	(string_value "Science.pont"))
+
+([ProjectKB_1423_00050] of String
+	(name "instances_file_name")
+	(string_value "Science.pins"))
+
+([QUERIES_TAB] of Widget
+	(widget_class_name "edu.stanford.smi.protegex.queries_tab.QueriesTab")
+	(is_hidden TRUE)
+	(label "Queries")
+	(property_list [ProjectKB_1423_00048]))
+
+([Science_ProjectKB_00002] of Integer
+	(name "OntovizTab.left_right")
+	(integer_value 201))
+
+([Science_ProjectKB_00051] of Integer
+	(name "ClsesTab.left_right")
+	(integer_value 271))
+
+([Science_ProjectKB_00052] of Integer
+	(name "ClsesTab.left.top_bottom")
+	(integer_value 394))
+
+([Science_ProjectKB_00053] of Integer
+	(name "SlotsTab.left_right")
+	(integer_value 250))
+
+([Science_ProjectKB_00054] of Integer
+	(name "SlotTab.left.top_bottom")
+	(integer_value 369))
+
+([Science_ProjectKB_00055] of Integer
+	(name "FormsTab.left_right")
+	(integer_value 186))
+
+([Science_ProjectKB_00056] of Integer
+	(name "InstancesTab.left_right")
+	(integer_value 189))
+
+([Science_ProjectKB_00057] of Integer
+	(name "InstancesTab.right.left_right")
+	(integer_value 260))
+
+([Science_ProjectKB_00058] of String
+	(name "SearchTab_Query"))
+
+([Science_ProjectKB_00401] of Property_List
+	(name "class widget properties")
+	(properties
+		[Science_ProjectKB_00501]
+		[Science_ProjectKB_00603]
+		[Science_ProjectKB_00703]
+		[Science_ProjectKB_00704]
+		[Science_ProjectKB_00705]
+		[Science_ProjectKB_00706]
+		[Science_ProjectKB_00707]
+		[Science_ProjectKB_00708]
+		[Science_ProjectKB_00709]
+		[Science_ProjectKB_00710]))
+
+([Science_ProjectKB_00501] of Widget
+	(name ":SLOT-CONSTRAINTS")
+	(widget_class_name "edu.stanford.smi.protege.widget.ConstraintsWidget")
+	(x 400)
+	(width 200)
+	(height 120)
+	(label "Constraints")
+	(y 0)
+	(property_list [Science_ProjectKB_01344]))
+
+([Science_ProjectKB_00518] of Integer
+	(name "ClsesAndInstancesTab.left_right")
+	(integer_value 271))
+
+([Science_ProjectKB_00519] of Integer
+	(name "ClsesAndInstancesTab.left, top_bottom")
+	(integer_value 394))
+
+([Science_ProjectKB_00520] of Integer
+	(name "ClsesAndInstancesTab.right.left_right")
+	(integer_value 260))
+
+([Science_ProjectKB_00603] of Widget
+	(name ":DIRECT-INSTANCES"))
+
+([Science_ProjectKB_00703] of Widget
+	(name ":DIRECT-SUBCLASSES"))
+
+([Science_ProjectKB_00704] of Widget
+	(name ":DIRECT-SUPERCLASSES"))
+
+([Science_ProjectKB_00705] of Widget
+	(name ":DOCUMENTATION")
+	(widget_class_name "edu.stanford.smi.protege.widget.DocumentationWidget")
+	(x 200)
+	(width 200)
+	(height 120)
+	(label "Documentation")
+	(y 0))
+
+([Science_ProjectKB_00706] of Widget
+	(name ":NAME")
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceNameWidget")
+	(x 0)
+	(width 200)
+	(height 60)
+	(label "Name")
+	(y 0))
+
+([Science_ProjectKB_00707] of Widget
+	(name ":ROLE")
+	(widget_class_name "edu.stanford.smi.protege.widget.RoleWidget")
+	(x 0)
+	(width 200)
+	(height 60)
+	(label "Role")
+	(y 60))
+
+([Science_ProjectKB_00708] of Widget
+	(name ":DIRECT-TYPE"))
+
+([Science_ProjectKB_00709] of Widget
+	(name ":DIRECT-TEMPLATE-SLOTS")
+	(widget_class_name "edu.stanford.smi.protege.widget.TemplateSlotsWidget")
+	(x 0)
+	(width 600)
+	(height 150)
+	(label "Template Slots")
+	(y 120)
+	(property_list [Science_ProjectKB_01351]))
+
+([Science_ProjectKB_00710] of Property_List
+	(name "layout properties")
+	(properties [Science_ProjectKB_00711]))
+
+([Science_ProjectKB_00711] of String
+	(name "vertical_stretcher")
+	(string_value ":DIRECT-TEMPLATE-SLOTS"))
+
+([Science_ProjectKB_00712] of Property_List
+	(name "slot widget properties")
+	(properties
+		[Science_ProjectKB_00713]
+		[Science_ProjectKB_00714]
+		[Science_ProjectKB_00715]
+		[Science_ProjectKB_00716]
+		[Science_ProjectKB_00717]
+		[Science_ProjectKB_00718]
+		[Science_ProjectKB_00820]
+		[Science_ProjectKB_00920]
+		[Science_ProjectKB_00921]
+		[Science_ProjectKB_00922]
+		[Science_ProjectKB_00924]
+		[Science_ProjectKB_01024]
+		[Science_ProjectKB_01025]
+		[Science_ProjectKB_01026]
+		[Science_ProjectKB_01027]
+		[Science_ProjectKB_01570]))
+
+([Science_ProjectKB_00713] of Widget
+	(name ":SLOT-MINIMUM-CARDINALITY")
+	(widget_class_name "edu.stanford.smi.protege.widget.MinimumCardinalityWidget")
+	(x 200)
+	(width 200)
+	(height 60)
+	(label "Cardinality")
+	(y 120))
+
+([Science_ProjectKB_00714] of Widget
+	(name ":SLOT-MAXIMUM-CARDINALITY")
+	(widget_class_name "edu.stanford.smi.protege.widget.MaximumCardinalityWidget")
+	(x 200)
+	(width 200)
+	(height 35)
+	(y 175))
+
+([Science_ProjectKB_00715] of Widget
+	(name ":SLOT-CONSTRAINTS"))
+
+([Science_ProjectKB_00716] of Widget
+	(name ":DIRECT-TYPE"))
+
+([Science_ProjectKB_00717] of Widget
+	(name ":SLOT-VALUES")
+	(widget_class_name "edu.stanford.smi.protege.widget.SlotValuesWidget")
+	(x 400)
+	(width 200)
+	(height 120)
+	(label "Template Values")
+	(y 0)
+	(property_list [Science_ProjectKB_01460]))
+
+([Science_ProjectKB_00718] of Widget
+	(name ":DIRECT-SUPERSLOTS"))
+
+([Science_ProjectKB_00813] of Map)
+
+([Science_ProjectKB_00820] of Widget
+	(name ":DIRECT-SUBSLOTS"))
+
+([Science_ProjectKB_00920] of Widget
+	(name ":SLOT-DEFAULTS")
+	(widget_class_name "edu.stanford.smi.protege.widget.DefaultValuesWidget")
+	(x 400)
+	(width 200)
+	(height 150)
+	(label "Default")
+	(y 120)
+	(property_list [Science_ProjectKB_01465]))
+
+([Science_ProjectKB_00921] of Widget
+	(name ":DOCUMENTATION")
+	(widget_class_name "edu.stanford.smi.protege.widget.DocumentationWidget")
+	(x 200)
+	(width 200)
+	(height 120)
+	(label "Documentation")
+	(y 0))
+
+([Science_ProjectKB_00922] of Widget
+	(name ":SLOT-NUMERIC-MAXIMUM")
+	(widget_class_name "edu.stanford.smi.protege.widget.NumericMaximumWidget")
+	(x 100)
+	(width 100)
+	(height 60)
+	(label "Maximum")
+	(y 210))
+
+([Science_ProjectKB_00923] of Widget
+	(name ":STANDARD-CLASS")
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(property_list [Science_ProjectKB_00401]))
+
+([Science_ProjectKB_00924] of Widget
+	(name ":SLOT-NUMERIC-MINIMUM")
+	(widget_class_name "edu.stanford.smi.protege.widget.NumericMinimumWidget")
+	(x 0)
+	(width 100)
+	(height 60)
+	(label "Minimum")
+	(y 210))
+
+([Science_ProjectKB_01024] of Widget
+	(name ":ASSOCIATED-FACET"))
+
+([Science_ProjectKB_01025] of Widget
+	(name ":NAME")
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceNameWidget")
+	(x 0)
+	(width 200)
+	(height 60)
+	(label "Name")
+	(y 0))
+
+([Science_ProjectKB_01026] of Widget
+	(name ":SLOT-INVERSE")
+	(widget_class_name "edu.stanford.smi.protege.widget.InverseSlotWidget")
+	(x 200)
+	(width 200)
+	(height 60)
+	(label "Inverse Slot")
+	(y 210))
+
+([Science_ProjectKB_01027] of Widget
+	(name ":SLOT-VALUE-TYPE")
+	(widget_class_name "edu.stanford.smi.protege.widget.ValueTypeWidget")
+	(x 0)
+	(width 200)
+	(height 150)
+	(label "Value Type")
+	(y 60))
+
+([Science_ProjectKB_01028] of Property_List
+	(name "facet widget properties")
+	(properties
+		[Science_ProjectKB_01029]
+		[Science_ProjectKB_01030]
+		[Science_ProjectKB_01031]))
+
+([Science_ProjectKB_01029] of Widget
+	(name ":NAME")
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceNameWidget")
+	(x 0)
+	(width 200)
+	(height 60)
+	(label "Name")
+	(y 0))
+
+([Science_ProjectKB_01030] of Widget
+	(name ":DOCUMENTATION")
+	(widget_class_name "edu.stanford.smi.protege.widget.DocumentationWidget")
+	(x 200)
+	(width 200)
+	(height 120)
+	(label "Documentation")
+	(y 0))
+
+([Science_ProjectKB_01031] of Widget
+	(name ":ASSOCIATED-SLOT")
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
+	(x 0)
+	(width 200)
+	(height 60)
+	(label "Associated Slot")
+	(y 60))
+
+([Science_ProjectKB_01032] of Property_List
+	(properties
+		[Science_ProjectKB_01033]
+		[Science_ProjectKB_01034]
+		[Science_ProjectKB_01035]
+		[Science_ProjectKB_01036]))
+
+([Science_ProjectKB_01033] of Widget
+	(name ":ANNOTATED-INSTANCE"))
+
+([Science_ProjectKB_01034] of Widget
+	(name ":CREATOR"))
+
+([Science_ProjectKB_01035] of Widget
+	(name ":CREATION-TIMESTAMP"))
+
+([Science_ProjectKB_01036] of Widget
+	(name ":ANNOTATION-TEXT")
+	(widget_class_name "edu.stanford.smi.protege.widget.YellowStickyWidget")
+	(x 0)
+	(width 200)
+	(height 100)
+	(is_hidden FALSE)
+	(y 0))
+
+([Science_ProjectKB_01037] of Property_List
+	(properties
+		[Science_ProjectKB_01038]
+		[Science_ProjectKB_01039]
+		[Science_ProjectKB_01040]
+		[Science_ProjectKB_01041]))
+
+([Science_ProjectKB_01038] of Widget
+	(name ":PAL-NAME")
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(x 0)
+	(width 275)
+	(height 60)
+	(is_hidden FALSE)
+	(label "Name")
+	(y 0))
+
+([Science_ProjectKB_01039] of Widget
+	(name ":PAL-RANGE")
+	(widget_class_name "edu.stanford.smi.protegex.widget.pal.constraint.PalRangeWidget")
+	(x 275)
+	(width 250)
+	(height 180)
+	(is_hidden FALSE)
+	(label "Range")
+	(y 180))
+
+([Science_ProjectKB_01040] of Widget
+	(name ":PAL-DESCRIPTION")
+	(widget_class_name "edu.stanford.smi.protege.widget.TextAreaWidget")
+	(x 275)
+	(width 250)
+	(height 180)
+	(is_hidden FALSE)
+	(label "Description")
+	(y 0))
+
+([Science_ProjectKB_01041] of Widget
+	(name ":PAL-STATEMENT")
+	(widget_class_name "edu.stanford.smi.protegex.widget.pal.constraint.PalConstraintWidget")
+	(x 0)
+	(width 275)
+	(height 300)
+	(is_hidden FALSE)
+	(label "Statement")
+	(y 60))
+
+([Science_ProjectKB_01063] of String
+	(name "driver")
+	(string_value "com.inet.tds.TdsDriver"))
+
+([Science_ProjectKB_01064] of String
+	(name "url")
+	(string_value "jdbc:inetdae:localhost"))
+
+([Science_ProjectKB_01065] of String
+	(name "table")
+	(string_value "ProtegeTable"))
+
+([Science_ProjectKB_01066] of String
+	(name "username")
+	(string_value "sa"))
+
+([Science_ProjectKB_01067] of String
+	(name "password")
+	(string_value "sa"))
+
+([Science_ProjectKB_01252] of Widget
+	(name ":INSTANCE-ANNOTATION")
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(is_hidden FALSE)
+	(property_list [Science_ProjectKB_01032]))
+
+([Science_ProjectKB_01336] of Widget
+	(widget_class_name "edu.stanford.smi.RemoteKBTab.RemoteKBTab")
+	(is_hidden TRUE)
+	(property_list [Science_ProjectKB_01337]))
+
+([Science_ProjectKB_01337] of Property_List)
+
+([Science_ProjectKB_01338] of Widget
+	(widget_class_name "TGViztab.TGVizTab")
+	(is_hidden TRUE)
+	(property_list [Science_ProjectKB_01339]))
+
+([Science_ProjectKB_01339] of Property_List)
+
+([Science_ProjectKB_01340] of Widget
+	(widget_class_name "DataGenieTab.DataGenieTab")
+	(is_hidden TRUE)
+	(property_list [Science_ProjectKB_01341]))
+
+([Science_ProjectKB_01341] of Property_List)
+
+([Science_ProjectKB_01342] of Widget
+	(widget_class_name "dfki.protege.oil_tab.OilTab")
+	(is_hidden TRUE)
+	(property_list [Science_ProjectKB_01343]))
+
+([Science_ProjectKB_01343] of Property_List)
+
+([Science_ProjectKB_01344] of Property_List
+	(properties
+		[Science_ProjectKB_01345]
+		[Science_ProjectKB_01346]
+		[Science_ProjectKB_01347]
+		[Science_ProjectKB_01348]
+		[Science_ProjectKB_01349]
+		[Science_ProjectKB_01350]))
+
+([Science_ProjectKB_01345] of Boolean
+	(name "ButtonDisplayed-View Selected Instances")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01346] of Boolean
+	(name "ButtonDisplayed-Create Instance")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01347] of Boolean
+	(name "ButtonDisplayed-References")
+	(boolean_value FALSE))
+
+([Science_ProjectKB_01348] of Boolean
+	(name "ButtonDisplayed-Add")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01349] of Boolean
+	(name "ButtonDisplayed-Remove")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01350] of Boolean
+	(name "ButtonDisplayed-Delete Selected Instances")
+	(boolean_value FALSE))
+
+([Science_ProjectKB_01351] of Property_List
+	(properties
+		[Science_ProjectKB_01352]
+		[Science_ProjectKB_01353]
+		[Science_ProjectKB_01354]
+		[Science_ProjectKB_01355]
+		[Science_ProjectKB_01356]
+		[Science_ProjectKB_01357]
+		[Science_ProjectKB_01359]
+		[Science_ProjectKB_01459]))
+
+([Science_ProjectKB_01352] of Boolean
+	(name "ButtonDisplayed-View selected slots")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01353] of Boolean
+	(name "ButtonDisplayed-View selected slots at class")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01354] of Boolean
+	(name "ButtonDisplayed-Create slot and attach to class")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01355] of Boolean
+	(name "ButtonDisplayed-Remove overrides from selected slots")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01356] of Boolean
+	(name "ButtonDisplayed-Add")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01357] of Boolean
+	(name "ButtonDisplayed-Remove")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01358] of Widget
+	(name ":STANDARD-FACET")
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(is_hidden FALSE)
+	(property_list [Science_ProjectKB_01028]))
+
+([Science_ProjectKB_01359] of Boolean
+	(name "ButtonDisplayed-Move up")
+	(boolean_value FALSE))
+
+([Science_ProjectKB_01363] of Widget
+	(name ":PAL-CONSTRAINT")
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(x 0)
+	(width 603)
+	(height 476)
+	(is_hidden FALSE)
+	(y 0)
+	(property_list [Science_ProjectKB_01037]))
+
+([Science_ProjectKB_01459] of Boolean
+	(name "ButtonDisplayed-Move down")
+	(boolean_value FALSE))
+
+([Science_ProjectKB_01460] of Property_List
+	(properties
+		[Science_ProjectKB_01461]
+		[Science_ProjectKB_01462]
+		[Science_ProjectKB_01463]
+		[Science_ProjectKB_01464]))
+
+([Science_ProjectKB_01461] of Boolean
+	(name "ButtonDisplayed-View the selected value")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01462] of Boolean
+	(name "ButtonDisplayed-Create a new value")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01463] of Boolean
+	(name "ButtonDisplayed-Add")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01464] of Boolean
+	(name "ButtonDisplayed-Remove")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01465] of Property_List
+	(properties
+		[Science_ProjectKB_01466]
+		[Science_ProjectKB_01467]
+		[Science_ProjectKB_01468]
+		[Science_ProjectKB_01470]))
+
+([Science_ProjectKB_01466] of Boolean
+	(name "ButtonDisplayed-View the selected value")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01467] of Boolean
+	(name "ButtonDisplayed-Create a new value")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01468] of Boolean
+	(name "ButtonDisplayed-Add")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01469] of Widget
+	(name ":STANDARD-SLOT")
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
+	(property_list [Science_ProjectKB_00712]))
+
+([Science_ProjectKB_01470] of Boolean
+	(name "ButtonDisplayed-Remove")
+	(boolean_value TRUE))
+
+([Science_ProjectKB_01570] of Property_List
+	(name "layout properties"))
+
+([Science_ProjectKB_01606] of Widget
+	(widget_class_name "protegex.prologtab.gnuprolog.GNUPrologJavaTab")
+	(is_hidden TRUE)
+	(property_list [Science_ProjectKB_01607]))
+
+([Science_ProjectKB_01607] of Property_List)
+
+([Science_ProjectKB_01608] of Widget
+	(widget_class_name "edu.stanford.smi.protegex.xml.tab.XMLTab")
+	(is_hidden TRUE)
+	(property_list [Science_ProjectKB_01609]))
+
+([Science_ProjectKB_01609] of Property_List)
+
+([Science_ProjectKB_01610] of Widget
+	(widget_class_name "edu.stanford.smi.protegex.okbc.tab.OKBCTab")
+	(is_hidden TRUE)
+	(property_list [Science_ProjectKB_01611]))
+
+([Science_ProjectKB_01611] of Property_List)
+
+([Science_ProjectKB_01612] of Widget
+	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalQueriesTab")
+	(is_hidden TRUE)
+	(property_list [Science_ProjectKB_01613]))
+
+([Science_ProjectKB_01613] of Property_List)
+
+([Science_ProjectKB_01614] of Widget
+	(widget_class_name "edu.stanford.smi.protegex.prompt.PromptTab")
+	(is_hidden TRUE)
+	(property_list [Science_ProjectKB_01615]))
+
+([Science_ProjectKB_01615] of Property_List)
+
+([Science_ProjectKB_01616] of Widget
+	(widget_class_name "edu.stanford.smi.protegex.RelationsTab.RelationsTab")
+	(is_hidden TRUE)
+	(property_list [Science_ProjectKB_01617]))
+
+([Science_ProjectKB_01617] of Property_List)
+
+([Science_ProjectKB_01618] of Widget
+	(widget_class_name "edu.stanford.smi.RemoteKBTab.WordNetTab")
+	(is_hidden TRUE)
+	(property_list [Science_ProjectKB_01619]))
+
+([Science_ProjectKB_01619] of Property_List)
+
+([Science_ProjectKB_01620] of Widget
+	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalConstraintsTab")
+	(is_hidden TRUE)
+	(property_list [Science_ProjectKB_01621]))
+
+([Science_ProjectKB_01621] of Property_List)
+
+([Science_ProjectKB_01760] of Widget
+	(widget_class_name "ca.uvic.csr.shrimp.protegeTab.JambalayaTab")
+	(is_hidden TRUE)
+	(property_list [Science_ProjectKB_01761]))
+
+([Science_ProjectKB_01761] of Property_List)
+
+([SLOTS_TAB] of Widget
+	(widget_class_name "edu.stanford.smi.protege.widget.SlotsTab")
+	(is_hidden FALSE)
+	(label "Slots")
+	(property_list [ProjectKB_1423_00032]))
+
+([SOURCES] of Property_List
+	(properties
+		[ProjectKB_1423_00000]
+		[ProjectKB_1423_00049]
+		[ProjectKB_1423_00050]
+		[Science_ProjectKB_01063]
+		[Science_ProjectKB_01064]
+		[Science_ProjectKB_01065]
+		[Science_ProjectKB_01066]
+		[Science_ProjectKB_01067]))

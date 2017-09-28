@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS adctest.asp access";flags: A+; uricontent:"/msadc/samples/adctest.asp"; nocase; classtype:web-application-activity; sid:992; rev:2;)

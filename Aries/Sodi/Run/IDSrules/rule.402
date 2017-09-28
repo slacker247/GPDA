@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET 80 -> $HOME_NET any (msg:"INFO Connection Closed MSG from Port 80"; content:"Connection closed by foreign host"; nocase; flags:A+; classtype:unknown; sid:488; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC /etc/passwd";flags: A+; content:"/etc/passwd"; nocase; classtype:attempted-recon; sid:1122; rev:1;)

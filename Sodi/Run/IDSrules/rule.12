@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET 16959 -> $HOME_NET any (msg:"BACKDOOR subseven DEFCON8 2.1 access"; content: "PWD"; content:"acidphreak"; nocase; flags: A+; sid:107;  classtype:misc-activity; rev:4;)

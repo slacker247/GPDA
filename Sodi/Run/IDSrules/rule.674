@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 69 (msg:"TFTP Write"; content:"|00 02|"; depth:2; reference:cve,CVE-1999-0183; reference:arachnids,148; classtype:bad-unknown; sid:518; rev:2;)

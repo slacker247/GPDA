@@ -1,0 +1,49 @@
+#
+# System wide environment and startup programs for csh users
+#
+setenv XENVIRONMENT Xdefaults
+#
+setenv JDK_HOME /usr/local/Java
+#
+setenv DREHOME $HOME
+setenv SODIHOME $DREHOME/Sodi
+setenv XERCESCROOT $DREHOME/Xerces
+setenv PVM_ROOT $DREHOME/pvm3
+setenv LEFTYPATH $DREHOME/gv1.7c/lib/lefty
+setenv SPEEDES $DREHOME/Speedes
+setenv PROXDIR $SPEEDES/demos/prox
+setenv DATADIR $SODIHOME/RSD_Data
+setenv MODELDIR $SODIHOME/Models
+setenv BITMAPDIR $SODIHOME/BitMaps
+setenv PARMDIR $SODIHOME/Run
+setenv SNAPDIR /tmp/ScreenSnaps/
+#
+setenv SEARCH "Isearch -q -d JCSindexes/JCS_WO"
+setenv GPDADOMAIN aoc
+setenv SEARCHDIR JCSorders
+#
+#setenv SEARCH "Isearch -q -d IDSindexes/Snort"
+#setenv GPDADOMAIN iow
+#setenv SEARCHDIR IDSattack
+#
+setenv GPDACIC True
+setenv GPDAPORT 8127
+setenv GPDAHOST localhost
+setenv GPDALANL False
+#
+setenv PATH /usr/gnat/bin:.:$HOME/bin:$SODIHOME/Bin:/usr/bin:/usr/local/VNC:/usr/local/bin:$XERCESCROOT/bin:/bin:/usr/X11R6/bin:/usr/local/Java/bin:/usr/java/jdk1.3.1_02/bin:$HOME/Voyager/bin:/usr/lib/gcc-lib/i386-redhat-linux/2.96
+#
+setenv LD_LIBRARY_PATH .:$SODIHOME/Lib:$SODIHOME/Lib/X11:$HOME/Protege-2000/plugins:$XERCESCROOT/lib:$HOME/Protege-2000:/usr/local/lib
+#
+setenv CLASSPATH .:$HOME/Voyager/lib/voyager.jar:$HOME/Voyager/lib/jgl3.1.0.jar
+#
+setenv CXX g++
+setenv EXTRA_CC_OPTIONS "-w -fpermissive  -I/usr/include/g++"
+
+#setenv PLANREAL True
+setenv PLANTEST True
+
+alias ls       ls -F --color
+alias h        history
+alias vncstart 'vncserver :13 -dontdisconnect -alwaysshared'
+alias vncstop  'vncserver -kill :13'

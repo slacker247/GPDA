@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE register.htm access";flags: A+; uricontent:"/_private/register.htm"; nocase; classtype:web-application-activity; sid:968; rev:2;)

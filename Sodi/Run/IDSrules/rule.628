@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 139 (msg:"MS-SQL PIPES sp_adduser - database user creation"; content: "s|00|p|00|_|00|a|00|d|00|d|00|u|00|s|00|e|00|r|00|"; nocase; flags: AP; offset: 32; depth: 32; classtype:attempted-user; sid:679; rev:1;)

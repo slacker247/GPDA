@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS named authors attempt"; content:"|07|authors"; offset:12; content:"|04|bind"; nocase; offset: 12; reference:arachnids,480; classtype:attempted-recon; sid:256; rev:1;)

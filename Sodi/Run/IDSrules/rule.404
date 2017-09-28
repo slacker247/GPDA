@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"INFO battle-mail traffic"; content:"BattleMail"; flags:A+; classtype:unknown; sid:490; rev:2;)

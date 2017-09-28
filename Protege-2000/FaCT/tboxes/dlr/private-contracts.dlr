@@ -1,0 +1,70 @@
+;;; Telecom Italia Private Contracts Model (Source 3)
+
+;;; Relations
+
+(defprimrelationship customer-location_3 2)
+(defprimrelationship agreement_3 3)
+(defprimrelationship phone-call_3 2)
+(defprimrelationship order_3 2)
+
+(impliesrel customer-location_3 (and ($1 2 Customer_3) ($2 2 Location_3)))
+(impliesrel agreement_3 (and ($1 3 Customer_3) ($2 3 Contract_3) ($3 3 Service_3)))
+(impliesrel phone-call_3 (and ($1 2 Phone-line-service_3) ($2 2 Call_3)))
+(impliesrel order_3 (and ($1 2 Phone-line-service_3) ($2 2 Maintenance-task_3)))
+
+;;; Entities
+
+(defprimconcept Location_3)
+(defprimconcept Customer_3)
+(defprimconcept Contract_3)
+(defprimconcept Service_3)
+;;; Service partitioned into:-
+(defprimconcept Phone-line-service_3)
+(defprimconcept Special-service_3)
+
+(defprimconcept Call_3)
+(defprimconcept Maintenance-task_3)
+
+;;; Assert Service partition (disjoint covering)
+(implies Phone-line-service_3 Service_3)
+(implies Special-service_3 (and Service_3 (not Phone-line-service_3)))
+(implies Service_3 (or Phone-line-service_3 Special-service_3))
+
+;;; Assert cardinality constraints
+(implies Location_3 (and (atleast 1 $2 customer-location_3)
+			 (atmost 1 $2 customer-location_3)))
+(implies Customer_3 (and (atleast 1 $1 customer-location_3) 
+			 (atmost 1 $1 customer-location_3)))
+(implies Contract_3 (and (atleast 1 $2 agreement_3) (atmost 1 $2 agreement_3)))
+(implies Service_3 (and (atleast 1 $3 agreement_3) (atmost 1 $3 agreement_3)))
+(implies Call_3 (and (atleast 1 $2 phone-call_3) (atmost 1 $2 phone-call_3)))
+(implies Maintenance-task_3 (and (atleast 1 $2 order_3) (atmost 1 $2 order_3)))
+
+;;; Integrity constraints
+(impliesrel customer-location_3 located-in)
+(impliesrel agreement_3 agreement)
+(impliesrel phone-call_3 service-call)
+(impliesrel order_3 order)
+
+(implies Location_3 Location)
+(implies Customer_3 Person)
+(implies Contract_3 Contract)
+(implies Service_3 Service)
+(implies Phone-line-service_3 Phone)
+(implies Special-service_3 Other)
+(implies Call_3  Call)
+(implies Maintenance-task_3 Maintenance-task)
+
+;;; Additional constraint specified by Maurizio
+(implies Customer_3
+	 (and Person 
+	      (some $1 (and agreement 
+			    ($2 3 (and contract 
+				       (some $1 (and contract-company 
+						     ($2 2 Telecom-company)))))))))
+(implies (and Person 
+	      (some $1 (and agreement 
+			    ($2 3 (and contract 
+				       (some $1 (and contract-company 
+						     ($2 2 Telecom-company))))))))
+	 Customer_3)

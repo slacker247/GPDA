@@ -1,0 +1,22 @@
+--------------------------------------------------
+BUILD INSTRUCTIONS FOR ISAVIZ
+--------------------------------------------------
+
+To build IsaViz, rename one of {Makefile.cygwin,Makefile.unix} to Makefile
+
+Open Makefile and modify variables 
+
+1) ISV_DIR to point to your main IsaViz directory
+2) JDK to point to your Java Development Kit's main directory
+
+Then type 'make'
+
+Note: you must have a directory named 'classes' in your IsaViz main directory for this to work. The compiled classes will be put in this directory.
+
+You can also build a JAR archive for IsaViz. You first have to build the classes using 'make'. You can then type 'make isvjar'. This will create lib/isaviz.jar
+
+--------------------------------------------------
+WARNING
+--------------------------------------------------
+You need a JDK 1.4.0 or later in order to compile IsaViz.
+

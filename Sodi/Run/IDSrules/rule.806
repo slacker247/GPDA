@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS conf/httpd.conf attempt"; flags:A+; content:"conf/httpd.conf";nocase; sid:1373; rev:1; classtype:web-application-activity;)

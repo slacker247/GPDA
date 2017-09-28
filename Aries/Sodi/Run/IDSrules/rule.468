@@ -1,0 +1,1 @@
+alert tcp $HOME_NET any <> $EXTERNAL_NET 6666 (msg:"INFO Napster Client Data"; flags: A+; content:".mp3"; nocase; classtype:bad-unknown; sid:563; rev:1;)

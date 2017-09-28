@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Talentsoft Web+ internal IP Address access";flags: A+; uricontent:"/webplus.exe?about";reference:bugtraq,1720; classtype:web-application-activity; sid:1096; rev:2;)

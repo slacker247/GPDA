@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI nph-test-cgi access";flags: A+; uricontent:"/nph-test-cgi"; nocase; reference:arachnids,224; reference:cve,CVE-1999-0045; reference:bugtraq,686; classtype:attempted-recon; sid:829; rev:2;)

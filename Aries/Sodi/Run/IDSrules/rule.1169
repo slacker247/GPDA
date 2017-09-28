@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC netscape PublishingXpert 2 Exploit"; flags: A+; uricontent:"/PSUser/PSCOErrPage.htm?"; nocase; reference:cve,CAN-2000-1196; classtype:attempted-recon; sid:1157; rev:1;)

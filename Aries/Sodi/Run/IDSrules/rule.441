@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 139 (msg:"NETBIOS SMB IPC$access";flags: A+; content:"\\IPC$|00 41 3a 00|"; reference:arachnids,335; classtype:attempted-recon; sid:537; rev:1;)

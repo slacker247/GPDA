@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Datagram Conversion Error (Undefined Code!)"; itype: 31; sid:393;  classtype:misc-activity; rev:4;)

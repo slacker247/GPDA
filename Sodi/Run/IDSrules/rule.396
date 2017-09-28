@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP PING CyberKit 2.2 Windows"; content:"|aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa|";itype:8;depth:32; reference:arachnids,154; sid:483;  classtype:misc-activity; rev:2;)

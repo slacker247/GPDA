@@ -1,0 +1,59 @@
+%--------------------------------------------
+% tri-on-squ.g
+%
+% Sample graph from Figure 2 of JAIR article.
+%
+%
+%           /\
+%          /1 \               __
+%         +----+             /  \
+%         | 5  |            | 9  |
+%         +----+             \__/
+%       +--------------------------+
+%       |            10            |
+%       +--------------------------+
+%           /\       /\       /\
+%          /2 \     /3 \     /4 \
+%         +----+   +----+   +----+
+%         | 6  |   | 7  |   | 8  |
+%         +----+   +----+   +----+
+%
+v 1 object ((text "1" (200.0 150.0 ) (font Courier size 12) (color green fill no)  ) )
+v 2 object ((text "2" (200.0 450.0 ) ) ( text "triangle" (170.0 480.0) ) )
+v 3 object ((text "3" (500.0 450.0 ) (font Courier size 12) (color green fill no)) )
+v 4 object ((text "4" (800.0 450.0 ) (font Courier size 12) (color green fill no) ) )
+v 5 object ((text "Square" (200.0 250.0 ) (font Courier size 12) (color green fill no) ) )
+v 6 object ((text "6" (200.0 550.0 ) (font Courier size 12) (color green fill no) ) )
+v 7 object ((text "7" (500.0 550.0 ) (font Courier size 12) (color green fill no) ) )
+v 8 object ((text "8" (800.0 550.0 ) (font Courier size 12) (color green fill no)) )
+v 9 object ((text "9" (800.0 250.0 ) (font Courier size 12) (color green fill no)) )
+v 10 object ((text "10" (400.0 350.0 ) (font Courier size 12) (color green fill no)) )
+v 11 triangle ((polygon (  ( 150.0 200.0) ( 250.0 200.0) (200.0 100.0)) (color blue fill no)) )
+v 12 triangle ((polygon ((150.0 500.0 ) (250.0 500.0) (200.0 400.0)) (color blue fill no)) )
+v 13 triangle ((polygon ((450.0 500.0 ) (550.0 500.0 ) (500.0 400.0 )) (color blue fill no)) )
+v 14 triangle ((polygon ((750.0 500.0 ) (850.0 500.0 ) (800.0 400.0 )) (color blue fill no)) )
+v 15 square ((polygon ((150.0 300.0 ) (250.0 300.0 ) (250.0 200.0 ) (150.0 200.0 ) ) (color green fill no)) )
+v 16 square ((polygon ((150.0 600.0 ) (250.0 600.0 ) (250.0 500.0 ) (150.0 500.0 ) ) (color green fill no)) )
+v 17 square ((polygon ((450.0 600.0 ) (550.0 600.0 ) (550.0 500.0 ) (450.0 500.0 ) ) (color green fill no)) )
+v 18 square ((polygon ((750.0 600.0 ) (850.0 600.0 ) (850.0 500.0 ) (750.0 500.0 ) ) (color green fill no)) )
+v 19 circle ((circle (750.0 200.0 ) 100.0 (color green fill no)) )
+v 20 rectangle ((polygon ((100.0 400.0 ) (900.0 400.0 ) (900.0 300.0 ) (100.0 300.0 ) ) (color green fill no)) )
+e 1 11 shape
+e 2 12 shape
+e 3 13 shape
+e 4 14 shape
+e 5 15 shape
+e 6 16 shape
+e 7 17 shape
+e 8 18 shape
+e 9 19 shape
+e 10 20 shape
+e 1 5 on
+e 2 6 on
+e 3 7 on
+e 4 8 on
+e 5 10 on
+e 9 10 on
+e 10 2 on
+e 10 3 on
+e 10 4 on

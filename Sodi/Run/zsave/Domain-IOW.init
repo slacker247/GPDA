@@ -1,0 +1,68 @@
+IOW                                # Domain name
+Development                        # Testbed mode
+Information_Operations_Warfare     # Domain description
+#
+#   Menu items (must be 5 menus with 'n' items each)
+#
+    1   Assessments           0
+Situation_Assessment...       0
+    3   Determine_Strategy    0 
+Data_Mining...                0
+Clustering...                 0
+Data_Manager...               0
+    1   COA_Development       0
+Combined_Planning...          0
+    0   Detailed_Planning     0
+    1   Execution_Monitor     0
+Timeline_Enforcer             0
+#
+#   Tools
+#
+    7   Knowledge_Manager     0
+Ontology_Editor        1    Protege.sh
+Text_Extraction        1    Gate.sh
+Oil_Editor             1    OilEd.sh
+Weka_Data_Miner        1    Weka.sh
+CViz_Data_Miner        1    CViz.sh
+Word_Net               1    WordNet.sh
+Network_Status         1    NetStat.sh
+#
+#   Labels for the status area
+#
+STATUS
+  Alert_Lvl:                  5                  G
+  Firewall                    4                  G
+  DoS                         0                  G
+  Network:                    NIPRNET            G
+  Msn_Constraints             _                  G
+  IOW_Task_Order:             IOW-16Jul01        G
+  Current_OpPlan:             OpPlan-1411.8      G
+#
+#   Labels for the Mission Summary area
+#
+ATTACK_SUMMARY
+  Web_Defacements             5
+  DoS_Attacks                 12
+  Sys._Penetrations           0
+  Trojan_Horses               3
+  Ping_Saturations            1
+  Detected_Viruses            5
+  Intrusions                  4
+  DNS_Attacks                 5
+#
+#   Labels for the Assets Summary area
+#
+    2    Def._Summary
+Firewalls
+DoS
+    2    Off._Summary
+Firewalls
+DoS
+#
+#   Pixmap filename for Situation Awareness area on Top Level window
+#
+*None*
+#
+SitAware-AOC.xpm
+SitRisk-AOC.xpm
+IOWback.xpm

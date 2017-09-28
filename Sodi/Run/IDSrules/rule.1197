@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC netscape enterprise server directory view"; flags: A+; content:"?wp-start-ver";nocase;reference:bugtraq,1063; classtype:attempted-recon; sid:1188; rev:1;)

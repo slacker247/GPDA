@@ -1,0 +1,1 @@
+alert ip any any <> 127.0.0.0/8 any (msg:"BAD TRAFFIC loopback traffic"; classtype:bad-unknown; sid:528; rev:2;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC admin.php file upload attempt"; flags:A+; uricontent:"/admin.php"; nocase; content:"file_name="; reference:bugtraq,3361; classtype:attempted-admin; sid:1300; rev:1;)

@@ -1,0 +1,247 @@
+package com.appliedminds.hmv;
+
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.Cursor;
+import com.appliedminds.martini.*;
+import com.appliedminds.martinix.gapp.*;
+
+/**
+ * A GTool extended to include specific functionality for the HMV.
+ *
+ * @author daepark@apmindsf.com
+ */
+public abstract class HMVTool extends GToolAdapter implements ActionListener {
+
+  protected HMV _app;
+
+  public HMVTool(Cursor c, HMV app) {
+    super(c);
+    _app = app;
+  }
+
+  public void activate(Object[] args) {
+    _app.setMarqueePaneVisibility(false);
+  }
+
+  public void deactivate() {
+    _app.setMarqueePaneVisibility(false);
+  }
+
+  /**
+   * Mouse event on a slider knob.
+   *
+   * <p>Default impl returns false, override if you want this event.
+   */
+  public boolean handleSliderKnobMouseEvent(DrawableGraphMouseEvent e) {
+    return(false);
+  }
+
+
+  /**
+   * Mouse event on an edge bubble.
+   *
+   * <p>Default impl returns false, override if you want this event.
+   */
+  public boolean handleEdgeBubbleMouseEvent(DrawableGraphMouseEvent e) {
+    return(false);
+  }
+
+
+  /**
+   * Mouse event on a supporting icon badge
+   *
+   * <p>Default impl returns false, override if you want this event.
+   */
+  public boolean handleNodeIconMouseEvent(DrawableGraphMouseEvent e) {
+    return(false);
+  }
+
+
+  /**
+   * Mouse event on a node.
+   *
+   * <p>Default impl returns false, override if you want this event.
+   */
+  public boolean handleNodeMouseEvent(DrawableGraphMouseEvent e) {
+    return (false);
+  }
+
+
+  /**
+   * Mouse event on a node label.
+   *
+   * <p>Default impl returns false, override if you want this event.
+   */
+  public boolean handleNodeTextMouseEvent(DrawableGraphMouseEvent e) {
+    return (false);
+  }
+
+
+  /**
+   * Mouse event on an edge.
+   *
+   * <p>Default impl returns false, override if you want this event.
+   */
+  public boolean handleEdgeMouseEvent(DrawableGraphMouseEvent e) {
+    return (false);
+  }
+
+
+  /**
+   * Mouse event on a slider value label.
+   *
+   * <p>Default impl returns false, override if you want this event.
+   */
+  public boolean handleSliderValueMouseEvent(DrawableGraphMouseEvent e) {
+    return (false);
+  }
+
+
+  /**
+   * Mouse event on a toggle to show/hide node slider.
+   *
+   * <p>Default impl returns false, override if you want this event.
+   */
+  public boolean handleSliderToggleMouseEvent(DrawableGraphMouseEvent e) {
+    return (false);
+  }
+
+
+  /**
+   * Mouse event on white space.
+   *
+   * <p>Default impl returns false, override if you want this event.
+   */
+  public boolean handleHitTestMissedMouseEvent(DrawableGraphMouseEvent e) {
+    return (false);
+  }
+
+
+  /**
+   * Marquee select event.
+   */
+  public void handleMultipleHitTestSuccess(DrawableGraphMultipleSelectionEvent evt) { }
+
+
+  /**
+   * Marquee select event.
+   */
+  public void handleMultipleHitTestMissedGraph(Rectangle2D rectangle) { }
+
+
+  /**
+   * ActionListener implementation
+   */
+  public void actionPerformed(ActionEvent e) {}
+
+
+  /**
+   * Hook for low level awt event
+   */
+  public boolean mousePressedHook(MouseEvent e)
+  {
+    return (false);
+  }
+
+
+  /**
+   * @return the HMV app in which this tool is used in.
+   */
+  protected HMV getApp() {
+    return (_app);
+  }
+
+
+  /**
+   * @return the GraphPanel
+   */
+  protected GraphPanel getGraphPanel() {
+    return(_app.getGraphPanel());
+  }
+
+
+  /**
+   * @return the graphics object of the GraphPanel. <b>Callers must
+   * dispose of this graphics object in a try/finally block<b>.
+   */
+  protected Graphics2D getGraphics() {
+    return ((Graphics2D) _app.getGraphPanel().getGraphics());
+  }
+
+
+  /**
+   * @return true if mouse pressed.
+   */
+  protected static final boolean mousePressed(DrawableGraphMouseEvent e) {
+    return(isMousePressed(e));
+  }
+
+
+  /**
+   * @return true if mouse pressed.
+   */
+  protected static final boolean isMousePressed(DrawableGraphMouseEvent e) {
+    return(e.getMouseEvent().getID() == MouseEvent.MOUSE_PRESSED);
+  }
+
+
+  /**
+   * @return true if mouse released.
+   */
+  protected static final boolean mouseReleased(DrawableGraphMouseEvent e) {
+    return(isMouseReleased(e));
+  }
+
+
+  /**
+   * @return true if mouse released.
+   */
+  protected static final boolean isMouseReleased(DrawableGraphMouseEvent e) {
+    return(e.getMouseEvent().getID() == MouseEvent.MOUSE_RELEASED);
+  }
+
+
+  /**
+   * @return true if mouse clicked
+   */
+  protected static final boolean mouseClicked(DrawableGraphMouseEvent e) {
+    return(isMouseClicked(e));
+  }
+
+
+  /**
+   * @return true if mouse clicked
+   */
+  protected static final boolean isMouseClicked(DrawableGraphMouseEvent e) {
+    return(e.getMouseEvent().getID() == MouseEvent.MOUSE_CLICKED);
+  }
+
+
+  /**
+   * @return true if mouse entered event
+   */
+  protected static final boolean isMouseEntered(DrawableGraphMouseEvent e) {
+    return(e.getMouseEvent().getID() == MouseEvent.MOUSE_ENTERED);
+  }
+
+
+  /**
+   * @return true if mouse exited event
+   */
+  protected static final boolean isMouseExited(DrawableGraphMouseEvent e) {
+    return(e.getMouseEvent().getID() == MouseEvent.MOUSE_EXITED);
+  }
+
+
+  /**
+   * @return true if mouse dragged event
+   */
+  protected static final boolean isMouseDragged(DrawableGraphMouseEvent e) {
+    return(e.getMouseEvent().getID() == MouseEvent.MOUSE_DRAGGED);
+  }
+
+} // end class "HMVTool"

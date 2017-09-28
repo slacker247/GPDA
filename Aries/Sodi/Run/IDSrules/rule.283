@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP tar parameters"; flags:A+; content:"RETR --use-compress-program"; nocase; reference:bugtraq,2240; reference:arachnids,134; reference:cve,CVE-1999-0202; classtype:bad-unknown; sid:362; rev:4;)

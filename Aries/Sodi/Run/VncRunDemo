@@ -1,0 +1,21 @@
+#!/bin/sh
+
+vncserver :13 -dontdisconnect -alwaysshared
+vncserver :14 -dontdisconnect -alwaysshared
+vncserver :15 -dontdisconnect -alwaysshared
+vncserver :16 -dontdisconnect -alwaysshared
+vncserver :17 -dontdisconnect -alwaysshared
+vncserver :18 -dontdisconnect -alwaysshared
+vncserver :19 -dontdisconnect -alwaysshared
+vncserver :20 -dontdisconnect -alwaysshared
+
+#
+TGT -display :14 &
+DSB -display :16 &
+OPT -display :17 &
+BOX -display :18 &
+PUP -display :20 &
+#
+VncGate.sh &
+VncWeka.sh &
+VncProtege.sh &

@@ -1,0 +1,420 @@
+; Tue Feb 04 11:23:05 PST 2003
+; 
+;+ (version "1.8")
+;+ (build "Build 1028")
+
+([Article] of %3ASTANDARD-CLASS
+	(%3ASLOT-CONSTRAINTS
+		[newspaper_00001]
+		[newspaper_00002]))
+
+([Editor] of %3ASTANDARD-CLASS
+	(%3ASLOT-CONSTRAINTS [newspaper_00000]))
+
+([instance_00015] of Library
+	(the_organization [instance_00064])
+	(billing_charts
+		[instance_00059]
+		[instance_00075]
+		[instance_00076])
+	(prototypes
+		[instance_00058]
+		[instance_00070]
+		[instance_00072]
+		[instance_00073]
+		[instance_00074]
+		[instance_00077]
+		[instance_00078])
+	(advertisements
+		[instance_00090]
+		[instance_00091]
+		[instance_00092])
+	(articles
+		[instance_00016]
+		[instance_00022]
+		[instance_00035]
+		[instance_00037]
+		[instance_00038]
+		[instance_00044]
+		[instance_00084]
+		[instance_00085]
+		[instance_00086])
+	(issues
+		[instance_00057]
+		[instance_00069]
+		[instance_00079]
+		[instance_00080]
+		[instance_00081]
+		[instance_00083]))
+
+([instance_00016] of Article
+	(published_in [instance_00081])
+	(text "The Soviet Spacestation Mir, irreparably damaged by an asteroid last week, is currently headed for a crash landing in Northern Greenland. Jack Nicklaus, famous golfer and golf-course designer already has plans to buy the crash site. \"Think of the roughs,\" he said when asked to comment. \"It's got to be hard to chip over the lip of a crater.\"")
+	(keywords
+		"Space"
+		"science"
+		"Spacestation MIR")
+	(containing_section [instance_00047])
+	(Article_Type News)
+	(expiration_date "9/26/97")
+	(page_number 20)
+	(article_author [instance_00017])
+	(urgent TRUE)
+	(headline "Mir Doomed By Collision"))
+
+([instance_00017] of News_Service
+	(byname "CNN"))
+
+([instance_00019] of Section
+	(section_name "World News"))
+
+([instance_00022] of Article
+	(text "Jacques Cousteau used to swim with the fishes. Now, if the planned Viking memorial service goes off, he may be sleeping with them. ")
+	(keywords
+		"Marine Biology"
+		"Jacques Cousteau")
+	(Article_Type News)
+	(expiration_date "10/25/97")
+	(page_number 3)
+	(article_author [instance_00045])
+	(urgent TRUE)
+	(headline "Cousteau Heads for Drydock"))
+
+([instance_00024] of Section
+	(section_name "Local News"))
+
+([instance_00032] of Section
+	(section_name "Automotive"))
+
+([instance_00034] of Section
+	(section_name "Lifestyle"))
+
+([instance_00035] of Article
+	(text "DALLAS (AP) -- Ninety-year-old Ramon Rodriguez thought a stubborn \"No!\" and a stern look might discourage construction of a bank where his modest little house stands. So much for the little man standing in the way of progress. The bank decided to go ahead with the project anyway, without the old man's land, and simply wrap the building, horseshoe-style, around the house Rodriguez shares with his scruffy dog, Baby.")
+	(keywords "banks")
+	(containing_section [instance_00034])
+	(Article_Type News)
+	(expiration_date "7/01/97")
+	(page_number 5)
+	(article_author [instance_00036])
+	(urgent FALSE)
+	(headline "Bank Outflanks Stubborn 90 Year Old Man"))
+
+([instance_00036] of News_Service
+	(byname "AP"))
+
+([instance_00037] of Article
+	(published_in [instance_00057])
+	(text "THE HAGUE, Netherlands (AP) -- Protesters demanding reparations from Japan for its World War II aggression threatened to overshadow Wednesday's visit by Prime Minister Ryutaro Hashimoto.  As Hashimoto met with European Union leaders on trade issues and Europe's planned single currency, money of a different sort was on the minds of former Dutch prisoners of war and women forced into wartime sex slavery for Japanese soldiers. \"We've waited more than 50 years for compensation,\" said Sjoerd  Albert Lapre, president of the 80,000-member Foundation of  Japanese Honorary Debts in The Hague, where demonstrations were planned for later Wednesday.")
+	(keywords
+		"Japan"
+		"European Union"
+		"International trade")
+	(containing_section [instance_00019])
+	(Article_Type News)
+	(page_number 6)
+	(article_author [instance_00017])
+	(urgent TRUE)
+	(headline "Japan, Europe Hold Trade, Currency Talks"))
+
+([instance_00038] of Article
+	(published_in [instance_00057])
+	(text " The rain finally let up long enough for Monica Seles to win her first-round match Wednesday at Wimbledon.  After waiting four hours for the match to start and then stopping for another 40 minutes when she was within two points of victory, Seles completed a 6-0, 6-2 victory over Rachel McQuillan. ")
+	(keywords
+		"tennis"
+		"Monica Seles"
+		"Wimbledon")
+	(containing_section [instance_00040])
+	(page_number 22)
+	(reading_level Elementary)
+	(article_author [instance_00039])
+	(urgent FALSE)
+	(headline "Seles endures rain delays to beat McQuillen"))
+
+([instance_00039] of Reporter
+	(byname "our")
+	(name "Larry Tennis-nut")
+	(salary 80000.0))
+
+([instance_00040] of Section
+	(section_name "Sports"))
+
+([instance_00042] of Personals_Ad
+	(ad_name "M137")
+	(expiration_date "7/01/97")
+	(page_number 10)
+	(urgent TRUE)
+	(published_in [instance_00069])
+	(text "SEPARATED FEMALE TALL FAT BLUE BROWN PART_TIME SERVICE RICH 4 PACKS_PER_DAY FILTERED DRINK_OCCASIONALLY \nMANY \nRANDOM_BIVALVE \nPLAYING_GO DONE_HARD_TIME DRUID UNDER_TEN PER_WEEK MARRIAGE SEEKING DIVORCED MALE SHORT THIN BLUE BLACK PART_TIME EXECUTIVE RICH NON_SMOKING DRINK_OFTEN TWO SNAKE PLAYING_GO NONE DRUID TEN_TO_TWENTY PER_YEAR MARRIAGE")
+	(ad_salesperson [instance_00043]))
+
+([instance_00043] of Salesperson
+	(name "Fred Schmit")
+	(phone_number "498-4255"))
+
+([instance_00044] of Article
+	(published_in [instance_00081])
+	(text "Sojourner, named for Sojourner Truth, will soon come down on the barren surface of Mars. It will open up like an egg, releasing a remote control probe to conduct a geological survey of the red planet. The mission marks the first landing on Mars in 20 years. And along with the orbiting Mars Global Surveyor, which arrives two months later, it ushers in a bold new era of Mars exploration.  In Destination Mars, CNN Interactive provides a multimedia rich sneak preview of the decade of discovery ahead. ")
+	(keywords
+		"space"
+		"science"
+		"Mars rover")
+	(containing_section [instance_00047])
+	(page_number 2)
+	(article_author [instance_00045])
+	(urgent FALSE)
+	(headline "Destination Mars"))
+
+([instance_00045] of Reporter
+	(name "Joe Schmo")
+	(salary 120000.0))
+
+([instance_00046] of Section
+	(section_name "Magazine"))
+
+([instance_00047] of Section
+	(section_name "Science"))
+
+([instance_00048] of Section
+	(section_name "Business"))
+
+([instance_00051] of Editor
+	(name "Mr. Science")
+	(salary 60000.0))
+
+([instance_00055] of Editor
+	(name "Chief Honcho")
+	(salary 150000.0))
+
+([instance_00057] of Newspaper
+	(Date "06/25/97")
+	(number_of_pages 12)
+	(Contents
+		[instance_00037]
+		[instance_00038])
+	(Prototype [instance_00058]))
+
+([instance_00058] of Prototype_Newspaper
+	(prototype_billing_chart [instance_00059])
+	(weekday Thursday)
+	(sections
+		[instance_00048]
+		[instance_00019]
+		[instance_00047]
+		[instance_00024]
+		[instance_00040]))
+
+([instance_00059] of Billing_Chart
+	(cost_chart 12.0 24.0 46.0 70.0 90.0)
+	(name "Weekday Ads"))
+
+([instance_00064] of Organization
+	(name "San Jose Mercury News"))
+
+([instance_00067] of Editor
+	(name "Sports Nut")
+	(salary 100000.0))
+
+([instance_00068] of Editor
+	(name "Ms Gardiner")
+	(salary 45000.0))
+
+([instance_00069] of Newspaper
+	(Date "08/19/97")
+	(number_of_pages 64)
+	(Contents [instance_00042])
+	(Prototype [instance_00070]))
+
+([instance_00070] of Prototype_Newspaper
+	(prototype_billing_chart [instance_00059])
+	(weekday Tuesday)
+	(sections
+		[instance_00032]
+		[instance_00048]
+		[instance_00034]
+		[instance_00024]
+		[instance_00046]
+		[instance_00047]))
+
+([instance_00072] of Prototype_Newspaper
+	(prototype_billing_chart [instance_00059])
+	(weekday Friday)
+	(sections
+		[instance_00034]
+		[instance_00024]
+		[instance_00046]
+		[instance_00047]
+		[instance_00040]
+		[instance_00019]))
+
+([instance_00073] of Prototype_Newspaper
+	(prototype_billing_chart [instance_00059])
+	(weekday Wednesday)
+	(sections
+		[instance_00032]
+		[instance_00048]
+		[instance_00034]
+		[instance_00024]
+		[instance_00040]
+		[instance_00019]))
+
+([instance_00074] of Prototype_Newspaper
+	(prototype_billing_chart [instance_00059])
+	(weekday Monday)
+	(sections
+		[instance_00032]
+		[instance_00024]
+		[instance_00046]
+		[instance_00019]))
+
+([instance_00075] of Billing_Chart
+	(cost_chart 15.0 30.0 55.0 100.0 120.0)
+	(name "Saturday Ads"))
+
+([instance_00076] of Billing_Chart
+	(cost_chart 30.0 60.0 120.0 160.0 250.0)
+	(name "Sunday Ads"))
+
+([instance_00077] of Prototype_Newspaper
+	(prototype_billing_chart [instance_00075])
+	(weekday Saturday)
+	(sections
+		[instance_00032]
+		[instance_00019]))
+
+([instance_00078] of Prototype_Newspaper
+	(prototype_billing_chart [instance_00076])
+	(weekday Sunday)
+	(sections
+		[instance_00032]
+		[instance_00048]
+		[instance_00034]
+		[instance_00024]
+		[instance_00046]
+		[instance_00047]
+		[instance_00040]
+		[instance_00019]))
+
+([instance_00079] of Newspaper
+	(Date "08/20/97")
+	(number_of_pages 80)
+	(Contents
+		[instance_00084]
+		[instance_00086])
+	(Prototype [instance_00073]))
+
+([instance_00080] of Newspaper
+	(Date "08/21/97")
+	(number_of_pages 54)
+	(Contents [instance_00085])
+	(Prototype [instance_00058]))
+
+([instance_00081] of Newspaper
+	(Date "08/22/97")
+	(number_of_pages 54)
+	(Contents
+		[instance_00016]
+		[instance_00044])
+	(Prototype [instance_00072]))
+
+([instance_00083] of Newspaper
+	(Date "08/23/97")
+	(number_of_pages 148)
+	(Contents
+		[instance_00035]
+		[instance_00022]
+		[instance_00044]
+		[instance_00037]
+		[instance_00042]
+		[instance_00016]
+		[instance_00038]
+		[instance_00084]
+		[instance_00085]
+		[instance_00086])
+	(Prototype [instance_00078]))
+
+([instance_00084] of Article
+	(published_in [instance_00079])
+	(text "LONDON (AP) -- Sixty dancers for next month's \"Swan Lake\" performance were banned from sunbathing by the English National Ballet on Monday because they were no longer pale enough to play swans. \"Some of the dancers have been away on holiday and look more like lobsters than swans,\" said ballet spokesman Jim Fletcher.  The dancers have six weeks to lose their tans before the company's first winter-season performance. Fletcher said makeup can be used, but added that some of the dancers were \"scarlet\" and difficult to disguise.  \"I'm just a little worried that the lighting effects for this 'Swan Lake' will wreak havoc with sunburned dancers, making them look purple and puce,\" said artistic director Derek Deane.  \"The last time we had a heat wave like this we ended up with a scarlet Wilis in 'Giselle.' We simply can't give roasted swans to the public this season,\" Deane said. ")
+	(keywords "ballet")
+	(containing_section [instance_00034])
+	(expiration_date "10/01/97")
+	(page_number 99)
+	(reading_level High_school)
+	(article_author [instance_00036])
+	(urgent FALSE)
+	(headline "Sunburned Swans Sing Sad Song"))
+
+([instance_00085] of Article
+	(published_in [instance_00080])
+	(text "(Stanford University) The Section on Medical Informatics held one of its two annual week-long courses this past week, starting on Monday August 18.  Larry Fagan, the genial scientist who manages the course was quite pleased with both the attendance (60 people, from over 20 organizations, attended) and the content. \"It's amazing-- we covered a lot of ground for a lot of people. At first I wondered if we were being a little bit ambitious,\" he said. \"But, in retrospect, the program was a stunning success. If any of your readers want to attend one of next year's courses, tell them they can contact me via e-mail at fagan@smi.stanford.edu\".")
+	(keywords "SMI")
+	(containing_section [instance_00024])
+	(expiration_date "10/01/97")
+	(page_number 8)
+	(reading_level College)
+	(urgent FALSE)
+	(headline "SMI Short Course a Smash"))
+
+([instance_00086] of Article
+	(published_in [instance_00079])
+	(text "(Stanford University) Recently, DARPA, the DOD research and funding agency, has formed the High-Performance Knowledge-Base initiative (the HPKB program) to support military needs for intelligent software in a wide variety of different situations. The needs range from logistics and planning through battlefield awareness and on to crisis management. It's clear-- The information explosion has hit the DOD with a vengeance and there's really only one solution: use cutting edge AI techniques to cope with the overload and make better decisions faster. \"We're very excited about the new HPKB program,\" said faculty member Mark Musen. \"We've been developing all these great new technologies-- knowledge acquisition tools, problem-solving methods, networked information transport mechanisms-- and now it's all coming together. This is a large scale test of the things we've been working towards and we're thrilled to be on board.\"")
+	(keywords
+		"SMI"
+		"HPKB"
+		"Darpa")
+	(containing_section [instance_00024])
+	(Article_Type News)
+	(expiration_date "10/01/97")
+	(page_number 56)
+	(reading_level High_school)
+	(article_author [instance_00045])
+	(urgent FALSE)
+	(headline "SMI has big role in DARPA HPKB Project"))
+
+([instance_00089] of Personals_Ad
+	(ad_name "Strange")
+	(page_number 12)
+	(urgent FALSE)
+	(text "DIVORCED FEMALE TALL FAT BLUE BLONDE NON_SMOKING NON_DRINKING ONE GOLDFISH NONE SEEKING SINGLE MALE TALL FAT HAZEL RED_HEAD NON_SMOKING DRINK_AT_PARTIES TWO LIZARD NONE"))
+
+([instance_00090] of Personals_Ad
+	(ad_name "unhealthy-seeker")
+	(page_number 15)
+	(urgent FALSE)
+	(text "DIVORCED FEMALE NON_SMOKING NON_DRINKING SEEKING DIVORCED MALE 1 PACKS_PER_DAY UNFILTERED DRINKS_OFTEN"))
+
+([instance_00091] of Personals_Ad
+	(ad_name "Silly")
+	(page_number 9)
+	(urgent FALSE)
+	(text "MARRIED MALE VIOLET_EYES RED_HEAD NON_SMOKING DRINKS_AT_PARTIES CLEAN_RECORD MOSLEM WANT_TO_HAVE_FUN SEEKING DIVORCED MALE TALL NON_SMOKING DRINKS_OCCASIONALLY MANY_KIDS SHARK GOLF GAMBLING"))
+
+([instance_00092] of Standard_Ad
+	(ad_name "Tire sales")
+	(containing_section [instance_00040])
+	(page_number 43)
+	(urgent FALSE)
+	(published_in [instance_00069]))
+
+([instance_00093] of Reporter
+	(name "Anne BasketballHead")
+	(salary 50000.0)
+	(current_job_title "sports reporter"))
+
+([newspaper_00000] of %3APAL-CONSTRAINT
+	(%3APAL-STATEMENT "(forall ?editor (forall ?employee\n                      (=> (and \n                               (responsible_for ?editor ?employee)\n                               (own-slot-not-null salary ?editor) \n                               (own-slot-not-null salary ?employee)) \n                          (> (salary ?editor) (salary ?employee)))))")
+	(%3APAL-NAME "editor-employees-salary-constraint")
+	(%3APAL-RANGE "(defrange ?editor :FRAME Editor)\n(defrange ?employee :FRAME Employee responsible_for)")
+	(%3APAL-DESCRIPTION "The salary of an editor should be greater than the salary of any employee which the editor is responsible for.\n\nNote that the range definition for ?editor could be omitted because this constraint is attached to the Editor class."))
+
+([newspaper_00001] of %3APAL-CONSTRAINT
+	(%3APAL-STATEMENT "(forall ?article\n        (=> (instance-of (article_author ?article) Person) \n            (exists ?editor \n                    (and (or (article_author ?article ?editor) \n                             (responsible_for ?editor (article_author ?article))) \n                         (sections ?editor (containing_section ?article))))))")
+	(%3APAL-NAME "article-section-constrained-by-author")
+	(%3APAL-RANGE "(defrange ?article :FRAME Article)\n(defrange ?editor :FRAME Editor)")
+	(%3APAL-DESCRIPTION "If the author of an article is a person, then there exists an editor, who is either this author or the editor responsible for this author. The section that contains this article is one of the sections managed by this editor.\n\nNote that the range definition for ?article could be omitted because this constraint is attached to the Article class."))
+
+([newspaper_00002] of %3APAL-CONSTRAINT
+	(%3APAL-STATEMENT "(forall ?article \n        (> (number-of-slot-values keywords ?article) 2))")
+	(%3APAL-NAME "articles-more-than-2-keywords")
+	(%3APAL-DESCRIPTION "All articles should be indexed with more than two keywords (equivalent to minimum cardinality facet on slot attachment)\n\nBecause this constraint is attached to the Article class, the variable ?article implicitly ranges over all instances of the Article class.\n"))

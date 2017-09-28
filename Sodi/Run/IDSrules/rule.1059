@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS outlook web dos"; flags:A+; uricontent:"/exchange/LogonFrm.asp?"; nocase; content:"mailbox="; nocase; content:"|25 25 25|"; classtype:web-application-attack; reference:bugtraq,3223; sid:1283; rev:4;)

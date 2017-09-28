@@ -1,0 +1,37 @@
+; Wed May 08 13:35:56 PDT 2002
+; 
+;+ (version "1.8")
+;+ (build "Build 937")
+
+
+(defclass :CLIPS_TOP_LEVEL_SLOT_CLASS
+	(is-a USER)
+	(role concrete)
+	(multislot :PROLOG-DEPENDENTS
+		(type INSTANCE)
+;+		(allowed-classes :PROLOG-MODULE)
+		(create-accessor read-write))
+	(single-slot :PROLOG-CODE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :PROLOG-MODULE-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass :PROLOG-MODULE
+	(is-a :SYSTEM-CLASS)
+	(role concrete)
+	(multislot :PROLOG-DEPENDENTS
+		(type INSTANCE)
+;+		(allowed-classes :PROLOG-MODULE)
+		(create-accessor read-write))
+	(single-slot :PROLOG-CODE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot :PROLOG-MODULE-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

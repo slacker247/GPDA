@@ -1,0 +1,26 @@
+   5  Terrorist_Cell      # Levels, CaseID
+   0    5 Information_Sources      Level #, Nodes this level, Hypothesis
+     0    0.159567 0.159567 26.299999   Space_Sensor
+     1    0.000000 0.000000 -999999.000000   Air_Sensor
+     2    0.151333 0.189167 35.700001   Open_Source
+     3    0.450000 0.100000 147.600006   UAV_Drone
+     4    0.000000 0.000000 -999999.000000   Pilot
+   1    4 Events      Level #, Nodes this level, Hypothesis
+     0    0.498727 0.216303 147.600006   Detect_Explosions
+     1    0.000000 0.000000 -999999.000000   Detect_Deployments
+     2    0.075667 0.094583 35.700001   Detect_Comm_Disruptions
+     3    0.225000 0.050000 147.600006   Prevent_Fin._Transaction
+   2    2 Activities      Level #, Nodes this level, Hypothesis
+     0    0.126057 0.070021 147.600006   Prevent_Ground_Attack
+     1    0.299236 0.129782 147.600006   Prevent_Air_Attack
+   3    6 Tactical_Objectives      Level #, Nodes this level, Hypothesis
+     0    0.179542 0.077869 147.600006   Maintain_Infrastructure
+     1    0.075634 0.042012 147.600006   Protect_Icons
+     2    0.179542 0.077869 147.600006   Protect_Populace
+     3    0.075634 0.042012 147.600006   Defend_the_Town
+     4    0.179542 0.077869 147.600006   Save_the_Forests
+     5    0.075634 0.042012 147.600006   Keep_the_Peace
+   4    3 Operational_Objs      Level #, Nodes this level, Hypothesis
+     0    0.269800 0.119795 147.600006   Maintain_Government
+     1    0.217733 0.096843 147.600006   Instill_Patriotism
+     2    0.143633 0.062295 147.600006   Maintain_Press_Freedom

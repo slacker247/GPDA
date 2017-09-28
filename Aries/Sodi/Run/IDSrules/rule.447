@@ -1,0 +1,1 @@
+alert tcp $HOME_NET any -> $EXTERNAL_NET 6666:7000 (msg:"INFO Possible IRC Access"; flags: A+; content: "NICK "; classtype:not-suspicious; sid:542; rev:2;)

@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 80 -> $EXTERNAL_NET any (msg:"BACKDOOR BackOrifice access"; flags: A+; content: "server|3a| BO|2f|"; reference:arachnids,400; sid:112;  classtype:misc-activity; rev:3;)

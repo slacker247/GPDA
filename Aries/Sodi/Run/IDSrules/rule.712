@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible IROK Worm"; content:"filename=\"irok.exe\""; nocase; reference:MCAFEE,98552; sid:755;  classtype:misc-activity; rev:3;)

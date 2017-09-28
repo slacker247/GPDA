@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"EXPLOIT NextFTP client overflow";flags: A+; content:"|b420 b421 8bcc 83e9 048b 1933 c966 b910|"; reference:bugtraq,572; reference:cve,CVE-1999-0671; classtype:attempted-user; sid:308; rev:3;)

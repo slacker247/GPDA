@@ -1,0 +1,75 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Overriding Slot Properties at a Class</title>
+</head>
+
+<body>
+
+<h1><img src="../classes/images/serving_nerd.gif" width="48" height="48">  Overriding Slot Properties
+at a Class<br>
+<img src="../classes/images/header_line.gif" width="590" height="6"></h1>
+
+You can override slot properties by editing the slot at the class level <i>only</i>.
+This creates overrides
+    that appear at the selected class and its subclasses. The slot remains unchanged at
+    the <font size="3"><a href="slots_tab.html">Slots Tab</a>, any
+superclasses,
+    and any unrelated classes. A slot with overrides is shown with an <img border="0" src="../classes/images/OverriddenSlot.gif" width="11" height="16">
+    override icon in the </font><a href="../classes/template_slot_pane.html">Template Slots pane</a>.
+<p>Overriding a slot at the class level allows you to be more restrictive about
+the slot facets relative to that class. For example, the slot <b>employee_list</b>
+is a slot of type Instance that takes the value <b>Employee</b> at the top
+level. By default, whenever you attach this slot to a class, it will range over
+the instances of <b>Employee</b>. Suppose, however, that for this class, you
+want to restrict the possible employees to salespeople. By overriding the slot,
+you can restrict the value range to the <b>Salesperson</b> subclass of <b>Employee</b>
+for the current class and its subclasses, without affecting the slot value range
+for any other class.</p>
+<p>Similarly, suppose you had a class of articles which appeared only on work
+days, not Saturday or Sunday. You override the slot <b>weekday</b> at that class
+to remove Saturday and Sunday from the Symbol list for that class only,
+restricting the possibilities to working days. Once again, the top-level slot
+and its range at other classes will remain unchanged.</p>
+<p>When you override a slot at a class, you can edit slot facets in the same way
+as you can at the top level. However, you <i>cannot</i> change the name of a
+slot with overrides. It must still inherit the name of the top-level slot.&nbsp;</p>
+<p><b>Note: </b>Currently, when you override a slot, Protégé does not enforce
+the restrictive property. That is, you could theoretically expand or change the
+facets of a slot, rather than restricting them. However, it is <i>not</i>
+recommended that you do this, both because it is not good practice and because
+Protégé may enforce restriction in the future.</p>
+
+<p> To edit the slot properties for a specific class:</p>
+
+<ol>
+  <li>Select a class in the <a href="../classes/class_relationship_pane.html">Class
+    Relationship pane</a> in the <a href="../classes/classes_tab.html">Classes tab</a>.</li>
+  <li>Select the slot you wish to edit in the <a href="../classes/template_slot_pane.html">Template Slots pane</a>.</li>
+  <li>Click the <font size="3">View Slot at Class </font><img border="0" src="../classes/images/ViewSlotAtClass.gif" width="15" height="15"> 
+    <a href="../classes/template_slot_buttons.html">Slot
+    button</a> at the upper right of the <a href="../classes/template_slot_pane.html">Template Slots pane</a><i>
+    or </i>double-click the slot and make sure View slot at class is selected in
+    the Select Slot View dialog box, then click OK. This opens the <a href="slot_form.html">Slot Form</a>
+    for the selected slot. See <a href="editing_slot_properties.html">Editing Slot Properties</a>
+    for more information.&nbsp;</li>
+</ol>
+<p>A slot that has been edited at a class is shown with an override <img border="0" src="../classes/images/OverriddenSlot.gif" width="11" height="16">
+icon in the <a href="../classes/template_slot_pane.html">Template Slots pane</a>.</p>
+
+<p>Of course, you can also edit the properties of a slot directly, instead of
+just overriding them at a class. See <a href="edit_top_level.htm">Editing a Top-Level Slot</a>
+for more information.</p>
+
+<hr>
+
+<p><font size="3">Next: <a href="removing_a_slot.html">Removing a Slot From a Class</a></font></p>
+
+<p><a href="index.html"><font size="3">Slots Table of Contents</font></a></p>
+
+</body>
+
+</html>

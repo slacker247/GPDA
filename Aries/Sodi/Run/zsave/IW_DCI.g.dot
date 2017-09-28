@@ -1,0 +1,17 @@
+digraph G {
+	node [style=filled];
+IW_DCI_G;
+ 	IW_DCI_G [color=white, label="IW_DCI_G"];
+	IW_DCI_G -> Sub_1;
+ 	Sub_1 [color=green1, label="Sub_1 [6]\nIW_DCI PSYOPS: Radio_Broadcast\nRadio_Broadcast Psychol_Ops: Propaganda\nTelnet Protect_Networks: Firewall\nTrojan_Horse Protect_Software: Implement_DAC\nPropaganda Counter_PSYOPS: Jamming\nLock_Down Deny_Access: Passwords\nFirewall Deny_Access: Passwords\nImplement_DAC Deny_Access: Passwords\nJamming Disrupt_Attack: Net_Clone\nJamming Deceive_Intruder: Name_Cloaking\nJamming Exploit_Intercepts: Mail_Bomb_ID\nPasswords Inhibit_Intrusion: Hide_Network\nPasswords Delay_Effects: Log_Intrusions\nNet_Clone Delay_Effects: Log_Intrusions\nName_Cloaking Delay_Effects: Log_Intrusions\nName_Cloaking Confuse_Enemy: Misinformation\nMail_Bomb_ID Confuse_Enemy: Misinformation\n"];
+	Sub_1 -> Sub_2;
+ 	Sub_2 [color=ivory2, label="Sub_2 [4]\nSub_1f Exe_DCI_Mission: Protect_Networks\nSub_1f Exe_DCI_Mission: Protect_Networks\nSub_1f Exe_DCI_Mission: Protect_Networks\nBomb Secure_Sites: Sub_1f\nPing_Sat Protect_Networks: Sub_1f\n"];
+	Sub_2 -> Sub_4;
+ 	Sub_4 [color=orange1, label="Sub_4 [2]\nSub_2f Sites: Site-1\nSub_2f Expert: Expert-1\nSite-1 System_Intrusion: Sub_2f\nSite-1 Physical_Attack: Sub_2f\nSite-1 System_Overload: Sub_2f\nExpert-1 Software_Bugs: Sub_2f\n"];
+	Sub_2 -> Sub_5;
+ 	Sub_5 [color=orange1, label="Sub_5 [2]\nSub_2f Sites: Site-2\nSub_2f Expert: Expert-2\nSite-2 System_Intrusion: Sub_2f\nSite-2 Physical_Attack: Sub_2f\nSite-2 System_Overload: Sub_2f\nExpert-2 Software_Bugs: Sub_2f\n"];
+	Sub_1 -> Sub_3;
+ 	Sub_3 [color=ivory2, label="Sub_3 [2]\nSub_1f Sites: Site-2\nSub_1f Expert: Expert-1\nSite-2 Physical_Attack: Attack\nSite-2 System_Overload: DNS_Sat\nDNS_Sat Protect_Networks: Sub_1f\n"];
+	Sub_3 -> Sub_6;
+ 	Sub_6 [color=orange1, label="Sub_6 [2]\nSub_3e System_Intrusion: Sub_3e\nSub_3e Software_Bugs: Sub_3e\nSub_3e Secure_Sites: Sub_3e\n"];
+}

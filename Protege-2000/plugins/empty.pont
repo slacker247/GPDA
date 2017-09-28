@@ -1,0 +1,242 @@
+; Tue Jan 30 13:28:31 PST 2001
+; 
+;+ (version "1.5")
+;+ (build "Build 671")
+
+
+(defclass :CLIPS_TOP_LEVEL_SLOT_CLASS
+	(is-a USER)
+	(role concrete)
+	(multislot oil:properties
+		(type SYMBOL)
+		(allowed-values functional transitive symmetric)
+		(create-accessor read-write))
+	(single-slot oil:onProperty
+		(type INSTANCE)
+;+		(allowed-classes oil:Property)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot oil:hasOperand
+		(type INSTANCE)
+;+		(allowed-classes oil:Expression)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot oil:range
+		(type INSTANCE)
+;+		(allowed-classes oil:Expression)
+		(create-accessor read-write))
+	(multislot oil:hasObject
+		(type INSTANCE)
+;+		(allowed-classes oil:ClassExpression)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot oil:number
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot oil:domain
+		(type INSTANCE)
+;+		(allowed-classes oil:ClassExpression)
+		(create-accessor read-write))
+	(single-slot oil:hasSubject
+		(type INSTANCE)
+;+		(allowed-classes oil:ClassExpression)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot oil:type
+		(type SYMBOL)
+		(allowed-values primitive defined)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot oil:hasPropertyRestriction
+		(type INSTANCE)
+;+		(allowed-classes oil:PropertyRestriction)
+		(create-accessor read-write))
+	(multislot oil:toClass
+		(type INSTANCE)
+;+		(allowed-classes oil:ClassExpression)
+		(create-accessor read-write))
+	(multislot oil:subClassOf
+		(type INSTANCE)
+;+		(allowed-classes oil:ClassExpression)
+		(create-accessor read-write)))
+
+(defclass oil:Property
+	(is-a :STANDARD-SLOT)
+	(role concrete)
+	(multislot oil:properties
+		(type SYMBOL)
+		(allowed-values functional transitive symmetric)
+		(create-accessor read-write))
+	(multislot oil:range
+		(type INSTANCE)
+;+		(allowed-classes oil:Expression)
+		(create-accessor read-write))
+	(multislot oil:domain
+		(type INSTANCE)
+;+		(allowed-classes oil:ClassExpression)
+		(create-accessor read-write)))
+
+(defclass oil:Expression
+	(is-a USER)
+	(role concrete))
+
+(defclass oil:ClassExpression
+	(is-a oil:Expression)
+	(role concrete))
+
+(defclass oil:BooleanExpression
+	(is-a oil:ClassExpression)
+	(role concrete)
+	(multislot oil:hasOperand
+		(type INSTANCE)
+;+		(allowed-classes oil:Expression)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass oil:And
+	(is-a oil:BooleanExpression)
+	(role concrete))
+
+(defclass oil:Or
+	(is-a oil:BooleanExpression)
+	(role concrete))
+
+(defclass oil:Not
+	(is-a oil:BooleanExpression)
+	(role concrete)
+	(single-slot oil:hasOperand
+		(type INSTANCE)
+;+		(allowed-classes oil:Expression)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass oil:Class
+	(is-a oil:ClassExpression :STANDARD-CLASS)
+	(role concrete)
+	(multislot oil:subClassOf
+		(type INSTANCE)
+;+		(allowed-classes oil:ClassExpression)
+		(create-accessor read-write))
+	(single-slot oil:type
+		(type SYMBOL)
+		(allowed-values primitive defined)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot oil:hasPropertyRestriction
+		(type INSTANCE)
+;+		(allowed-classes oil:PropertyRestriction)
+		(create-accessor read-write)))
+
+(defclass oil:PropertyRestriction
+	(is-a oil:ClassExpression)
+	(role concrete)
+	(single-slot oil:onProperty
+		(type INSTANCE)
+;+		(allowed-classes oil:Property)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot oil:toClass
+		(type INSTANCE)
+;+		(allowed-classes oil:ClassExpression)
+		(create-accessor read-write)))
+
+(defclass oil:CardinalityRestriction
+	(is-a oil:PropertyRestriction)
+	(role concrete)
+	(single-slot oil:number
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot oil:toClass
+		(type INSTANCE)
+;+		(allowed-classes oil:ClassExpression)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass oil:Cardinality
+	(is-a oil:CardinalityRestriction)
+	(role concrete)
+	(single-slot oil:toClass
+		(type INSTANCE)
+;+		(allowed-classes oil:ClassExpression)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass oil:MinCardinality
+	(is-a oil:CardinalityRestriction)
+	(role concrete)
+	(single-slot oil:toClass
+		(type INSTANCE)
+;+		(allowed-classes oil:ClassExpression)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass oil:MaxCardinality
+	(is-a oil:CardinalityRestriction)
+	(role concrete)
+	(single-slot oil:toClass
+		(type INSTANCE)
+;+		(allowed-classes oil:ClassExpression)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass oil:HasValue
+	(is-a oil:PropertyRestriction)
+	(role concrete)
+	(multislot oil:toClass
+		(type INSTANCE)
+;+		(allowed-classes oil:ClassExpression)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass oil:ValueType
+	(is-a oil:PropertyRestriction)
+	(role concrete)
+	(multislot oil:toClass
+		(type INSTANCE)
+;+		(allowed-classes oil:ClassExpression)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass oil:Top
+	(is-a USER)
+	(role concrete))
+
+(defclass oil:Bottom
+	(is-a oil:Top)
+	(role concrete))
+
+(defclass oil:Axiom
+	(is-a USER)
+	(role concrete)
+	(multislot oil:hasObject
+		(type INSTANCE)
+;+		(allowed-classes oil:ClassExpression)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass oil:Covering
+	(is-a oil:Axiom)
+	(role concrete)
+	(single-slot oil:hasSubject
+		(type INSTANCE)
+;+		(allowed-classes oil:ClassExpression)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass oil:Cover
+	(is-a oil:Covering)
+	(role concrete))
+
+(defclass oil:DisjointCover
+	(is-a oil:Covering)
+	(role concrete))
+
+(defclass oil:Disjoint
+	(is-a oil:Axiom)
+	(role concrete))
+
+(defclass oil:Equivalence
+	(is-a oil:Axiom)
+	(role concrete))

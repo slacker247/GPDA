@@ -1,0 +1,95 @@
+# Tree height, Name, Discrete, Start time, End time, Time unit
+6  IW-DCI  1  0.0  0.0  H
+
+3     Assessment_Sources
+  Sites    Sites_has_detected_something
+  Expert   Expert_has_detected_something
+  PSYOPS   PSYOPS_has_detected_something
+
+5     Threats
+  Physical_Attack     the_target_is_an_Physical_Attack
+  System_Intrusion    the_target_is_an_System_Intrusion
+  Denial_of_Service   the_target_is_a_Denial_of_Service
+  Software_Bugs       the_target_is_a_Software_Bugs
+  Psychologic_Ops     the_target_is_a_Psychological_Operations
+
+4     Task
+  Secure_Sites       you_should_secure_sites
+  Protect_Networks   you_should_protect_networks
+  Protect_Software   you_should_protect_software
+  Counter_PSYOPS     you_should_counter_PSYOPS
+
+4     Tactical_Objectives
+  Deny_Access          you_should_deny_access
+  Disrupt_Attack       you_should_disrupt_attack
+  Deceive_Intruder     you_should_deceive_intruder
+  Exploit_Intercepts   you_should_exploit_intercepts
+
+3     Operational_Objectives
+  Inhibit_Intrusion   you_should_inhibit_intrusion
+  Delay_Effects       you_should_delay_effects
+  Confuse_Enemy       you_should_confuse_enemy
+
+1     Strategic_Objectives
+  Execute_DCI_Mission  Execute_defensive_counter-information_mission  0.75 100.0
+
+false   B and D matrices are listed separately
+#    E0      E1      E2
+   0.400   0.000   0.000   -- H0_0
+
+   0.300   0.000   0.000   -- H0_1
+
+   0.300   0.000   0.000   -- H0_2
+
+   0.000   1.000   0.000   -- H0_3
+
+   0.000   0.000   1.000   -- H0_4
+
+
+#   H0_0    H0_1    H0_2    H0_3    H0_4
+   1.000   0.000   0.000   0.000   0.000   -- H1_0
+
+   0.000   0.500   0.400   0.000   0.000   -- H1_1
+
+   0.000   0.000   0.000   1.000   0.000   -- H1_2
+
+   0.000   0.000   0.000   0.000   1.000   -- H1_3
+
+
+#   H1_0    H1_1    H1_2    H1_3
+   0.300   0.300   0.300   0.000   -- H2_0
+
+   0.000   0.000   0.000   1.000   -- H2_1
+
+   0.000   0.000   0.000   1.000   -- H2_2
+
+   0.000   0.000   0.000   1.000   -- H2_3
+
+
+#   H2_0    H2_1    H2_2    H2_3
+   1.000   0.000   0.000   0.000   -- H3_0
+
+   1.000   0.400   0.600   0.000   -- H3_1
+
+   0.000   0.000   0.400   0.600   -- H3_2
+
+
+#   H3_0    H3_1    H3_2
+   0.300   0.300   0.300   -- A0
+
+
+9  Possibilities
+0.00  0.00  impossible
+0.01  0.05  extremely_unlikely
+0.05  0.20  very_low_chance
+0.20  0.38  small_chance
+0.38  0.60  may
+0.60  0.79  meaningful_chance
+0.79  0.95  most_likely
+0.95  0.99  extremely_likely
+1.00  1.00  certain
+
+#  Evidence labels follow. Must be 3, each < 4 chars
+  Site     Cnt   Rate
+#  Default time units follow. Must be: Sec, Min, Hour, or Days
+  Min

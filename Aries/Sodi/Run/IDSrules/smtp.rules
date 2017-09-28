@@ -1,0 +1,25 @@
+# (C) Copyright 2001, Martin Roesch, Brian Caswell, et al.  All rights reserved.
+# $Id: smtp.rules,v 1.10 2001/10/29 01:52:54 roesch Exp $
+#-----------
+# SMTP RULES
+#-----------
+
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP RCPT TO overflow"; flags:A+; content:"rcpt to|3a|"; dsize:>800; reference:cve,CAN-2001-0260; reference:bugtraq,2283; classtype:attempted-admin; sid:654; rev:1;)
+alert tcp $EXTERNAL_NET 113 -> $SMTP 25 (msg:"SMTP sendmail 8.6.9 exploit";flags: A+; content:"|0a|D/"; reference:arachnids,140; reference:cve,CVE-1999-0204; classtype:attempted-admin; sid:655; rev:1;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP EXPLOIT x86 windows CSMMail overflow";flags: A+; content:"|eb53 eb20 5bfc 33c9 b182 8bf3 802b|"; reference:bugtraq,895; reference:cve,CVE-2000-0042; classtype:attempted-admin; sid:656; rev:2;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP chameleon overflow"; content: "HELP "; nocase; flags: A+; dsize: >500; depth: 5; reference:bugtraq,2387; reference:arachnids,266; reference:cve,CAN-1999-0261; classtype:attempted-admin; sid:657; rev:2;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP exchange mime DOS"; flags: A+; content:"|63 68 61 72 73 65 74 20 3D 20 22 22|"; classtype:attempted-dos; sid:658; rev:1;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP expn decode";flags: A+; content:"expn decode"; nocase; reference:arachnids,32; classtype:attempted-recon; sid:659; rev:1;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP expn root";flags: A+; content:"expn root"; nocase; reference:arachnids,31; classtype:attempted-recon; sid:660; rev:2;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP majordomo ifs";flags: A+; content:"eply-to|3a| a~.`/bin/"; reference:cve,CVE-1999-0208; reference:arachnids,143; classtype:attempted-admin; sid:661; rev:1;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP sendmail 5.5.5 exploit";flags: A+; content:"mail from|3a20227c|"; nocase; reference:arachnids,119; classtype:attempted-admin; sid:662; rev:1;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP sendmail 5.5.8 overflow"; flags: A+; content: "|7c 73 65 64 20 2d 65 20 27 31 2c 2f 5e 24 2f 27|";  reference:arachnids,172; reference:cve,CVE-1999-0095; classtype:attempted-admin; sid:663; rev:1;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP sendmail 5.6.4 exploit";flags: A+; content:"rcpt to|3a| decode"; nocase; reference:arachnids,121; classtype:attempted-admin; sid:664; rev:2;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP sendmail 5.6.5 exploit";flags: A+; content:"MAIL FROM|3a207c|/usr/ucb/tail"; nocase; reference:arachnids,122; classtype:attempted-user; sid:665; rev:1;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP sendmail 8.4.1 exploit";flags: A+; content:"rcpt to|3a207c| sed '1,/^$/d'|7c|"; nocase;reference:arachnids,120; classtype:attempted-user; sid:666; rev:1;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP sendmail 8.6.10 exploit"; flags: A+; content:"Croot|0d0a|Mprog, P=/bin/"; reference:arachnids,123; classtype:attempted-user; sid:667; rev:1;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP sendmail 8.6.10 exploit";flags: A+; content:"Croot|09090909090909|Mprog,P=/bin"; reference:arachnids,124; classtype:attempted-user; sid:668; rev:1;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP sendmail 8.6.9 exploit";flags: A+; content:"|0a|Croot|0a|Mprog";reference:arachnids,142; reference:cve,CVE-1999-0204; classtype:attempted-user; sid:669; rev:1;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP sendmail 8.6.9 exploit";flags: A+; content:"|0a|C|3a|daemon|0a|R"; reference:cve,CVE-1999-0204; reference:arachnids,139; classtype:attempted-user; sid:670; rev:1;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP sendmail 8.6.9c exploit";flags: A+; content:"|0a|Croot|0d0a|Mprog"; reference:arachnids,141; reference:cve,CVE-1999-0204; classtype:attempted-user; sid:671; rev:1;)
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP vrfy decode";flags: A+; content:"vrfy decode"; nocase; reference:arachnids,373; classtype:attempted-recon; sid:672; rev:1;)

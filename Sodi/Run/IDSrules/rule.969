@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE services.cnf access";flags: A+; uricontent:"/_vti_pvt/services.cnf"; nocase; classtype:web-application-activity; sid:961; rev:2;)

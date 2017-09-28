@@ -1,0 +1,12 @@
+----------------------------------------------------------------------
+                           Simple Java Bean
+----------------------------------------------------------------------
+
+Simple is a really trivial Java Bean that can be matched on Jess rule
+LHSs because it supports PropertyChangeListeners. This is a good
+example you can start from to build your own matchable classes.
+
+Simple has properties named 'name' (a String), 'serial' (an int),
+'fraction' (a float) and 'truth' (a boolean).
+
+Read the top-leve README to learn about using Java Beans with Jess.

@@ -1,0 +1,11 @@
+ext_graphics_gvt.C:  ext_graphics_gvt_mess->time_tag = TIME_TAG;
+ext_graphics_gvt.C:  ext_graphics_gvt_mess->evtype = EXT_GRAPHICS_GVT;
+ext_graphics_gvt.C:  ext_graphics_gvt_mess->objid = -1;
+ext_graphics_gvt.C:  ext_graphics_gvt_mess->obtype = OBJECT_TYPE;
+ext_graphics_gvt.C:  ext_graphics_gvt_mess->ext = 0;
+ext_graphics_gvt.C:  ext_graphics_gvt_mess->data_bytes =
+ext_graphics_gvt.C:  ext_graphics_gvt_mess->EM_interaction = EM_MODULE;
+ext_graphics_gvt.C:  ext_graphics_gvt_mess->EM_socket = item->get_id();
+ext_graphics_gvt.C:  ext_graphics_gvt_mess->EM_done_time = item->get_time_tag();
+ext_graphics_gvt.C:  ext_graphics_gvt_mess->EM_flag = GRAPHICS_GVT;
+ext_graphics_gvt.C:    ext_graphics_gvt_mess->init(buff,sizeof(StatsMessage)*n_nodes+8); 

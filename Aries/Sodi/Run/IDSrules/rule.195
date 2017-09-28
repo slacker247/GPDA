@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 139 (msg: "DOS Winnuke attack"; flags: U+; reference: bugtraq,2010; reference:cve,CVE-1999-0153; classtype: attempted-dos; sid: 1257; rev:2;)

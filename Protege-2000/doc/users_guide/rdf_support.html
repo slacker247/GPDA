@@ -1,0 +1,127 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; SunOS 5.6 sun4u) [Netscape]">
+   <meta name="Author" content="Michael Sintek">
+   <title>RDF(S) Support</title>
+</head>
+<body>
+
+<center>
+<h1>
+RDF Schema Support in Prot&eacute;g&eacute;-2000</h1></center>
+For version 1.5 of Prot&eacute;g&eacute;-2000, we have re-implemented our
+<a href="http://www.w3.org/RDF/">RDF
+(Schema)</a> support in order to make it more stable and to make it easier
+to implement other RDFS-based backends such as <a href="http://www.ontoknowledge.org/oil/">OIL</a>
+and <a href="http://www.daml.org/">DAML</a>. Furthermore, several features
+were added, such as
+<ul>
+<li>
+in addition to a round-trip version, you can export as simple RDF(S) (i.e.,&nbsp;
+Prot&eacute;g&eacute; specific facets are not encoded in additional triples);</li>
+
+<li>
+support for namespace abbreviations (frame names are never prefixed with
+complete URIs, only with abbreviations);</li>
+
+<li>
+when exporting a project that has included projects, you can put the included
+projects into different namespaces (see the section "Renaming the (default)
+namespaces of included projects" below).</li>
+</ul>
+<a href="http://smi-web.stanford.edu/projects/protege/protege-rdf/protege-rdf.html">Here</a>
+you will find a comparison of the RDF(S) and Prot&eacute;g&eacute;-2000
+models.
+<h2>
+Importing, creating, and saving RDF(S) files</h2>
+
+<ul>
+<li>
+<font size=+0>To import your existing RDF(S) files into Prot&eacute;g&eacute;-2000
+select the <b>Project | Import</b> menu item and select <i>RDF Schema</i>
+from the storage format dialog.&nbsp; Enter the name of the file containing
+your RDF schema and the name of the file containing your RDF instance data
+in the appropriate fields.</font></li>
+
+<li>
+To create a new RDF project, which will include the schema and the instance
+data, select the <b>Project | New</b> menu item and select <i>RDF Schema</i>
+from the storage format dialog.</li>
+
+<li>
+An existing Prot&eacute;g&eacute;-2000 project can be saved as an RDF(S)
+project by selecting the <b>Project | Save In Format </b>menu item and
+selecting <i>RDF Schema</i>&nbsp; from the storage format dialog. If you
+check <b>plain RDFS</b>, no Prot&eacute;g&eacute; specific facets are exported.</li>
+
+<li>
+You can use <b>Project | Save in Format...</b> to export a project using
+the old backend into a project using the new one (don't use <font size=+0><b>Project
+| Import </b>for this since the new backend uses different encodings for
+</font>Prot&eacute;g&eacute;
+specific facets).</li>
+</ul>
+
+<h2>
+Renaming the (default) namespaces of included projects</h2>
+This feature can be used to transform an existing (Standard Text File/CLIPS)
+project into an RDF(S) one where frames from included projects reside in
+<i>different</i>
+namespaces (you can also achieve the reverse effect, i.e. forcing all (or
+some) projects to share a namespace or have the same namespace as the main
+project). Here is how it works:
+<ol>
+<li>
+Transform the project into an RDF(S) one where <i>all</i> projects (main
+and included ones) have the <i>same</i> default namespace. You need to
+do this "bottom up", i.e., for the included projects first, and finally
+for the main one. Make sure you save all files with new file names (or
+in a new directory), or the main file does not load any more (since it
+will already try to load the new included projects)!</li>
+
+<li>
+Load the new main project and click <b>Project | Save as ...</b>. If you
+have included projects that were loaded with the RDF(S) backend, you will
+see an <b>Advanced ...</b> button. Change some or all of the namespaces
+and save (the console window will show a remark if namespaces of included
+projects are renamed). Close the project.</li>
+
+<li>
+For each of the included projects for which you have renamed the default
+namespace, load and change the namespace (via <b>Project | Save as ...</b>).</li>
+
+<li>
+You can now load the main project.</li>
+</ol>
+
+<h2>
+Example</h2>
+A simple example is in the <i>Protege-2000/examples/rdf</i> directory.
+<h2>
+Known bugs and problems</h2>
+
+<ul>
+<li>
+only the RDF Schema namespace http://www.w3.org/TR/1999/PR-rdf-schema-19990303#
+is supported when saving (on import, the new namespace is also recognized)</li>
+
+<li>
+rdfs:seeAlso, rdfs:isDefinedBy, rdfs:label, container, and reified statements
+are not supported</li>
+
+<li>
+multiple types for a single resource are not supported</li>
+
+<li>
+you cannot make changes to the standard meta classes (i.e., rdf:Resource,
+rdf:Property, rdfs:Class, etc.)</li>
+
+<li>
+XML Schema data types are not recognized as rdfs:Literal (but it is unclear
+if they should)</li>
+</ul>
+
+</body>
+</html>

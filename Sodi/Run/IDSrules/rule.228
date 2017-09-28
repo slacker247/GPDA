@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 123 (msg:"EXPLOIT ntpdx overflow attempt"; dsize: >128; reference:arachnids,492; classtype:attempted-admin; sid:312; rev:1;)

@@ -1,0 +1,211 @@
+/*
+ File:		CreateEntityPdu.java
+ CVS Info:	$Id: CreateEntityPdu.java,v 1.3 1998/01/28 08:28:16 mcgredo Exp $
+ Compiler:	jdk 1.3
+ */
+
+package PDUs;                                       // package to which we belong
+
+import mil.navy.nps.util.*;         // General-purpose utilities
+import disEnumerations.*;         // Enumerations for DIS
+
+import java.util.*;                                             // utility stuff we need
+import java.io.*;                                               // input/output for serialization
+
+/**
+ * Simulation management PDU to create a new entity.
+ *
+ *@version 1.0
+ *@author Antonio Alexandre Rua (<A HREF="http://www.garfield.fe.up.pt/~alexrua">http://www.garfield.fe.up.pt/~alexrua</A>)
+ *
+ *<dt><b>Location:</b>
+ *<dd>Web:  <a href="http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/CreateEntityPdu.java">
+ *  http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/CreateEntityPdu.java</a>
+ *
+ *<dd>or locally:  <a href="../../../../../../mil/navy/nps/dis/CreateEntityPdu.java">
+ *  ~/mil/navy/nps/dis/CreateEntityPdu.java</a>
+ *
+ *<dt><b>Hierarchy Diagram:</b>
+ *<dd><a href="../../../../../../dis-java-vrml/images/PduClassHierarchy.jpg"><IMG SRC="../../../../../../dis-java-vrml/images/PduClassHierarchyButton.jpg" ALIGN=ABSCENTER WIDTH=150 HEIGHT=21></a>
+ *
+ *<dt><b>Summary:</b>
+ *<dd> The creation of a new entity shall be communicated using a Create Entity PDU.
+ *
+ *<dt><b>Note:</b>
+ *<dd>  
+ *
+ *<dt><b>History:</b>
+ *<dd>		16Sep97	/Antonio Alexandre Rua	/New
+ *<dd>		8Dec97	/Ronan Fauglas		/changes for documentation templates + complements in documentation
+ *<dd>		11Dec97	/Ronan Fauglas		/changed access methods: thisVariable() --> getThisVariable()
+ *<dd>		5jan98	/Ronan Fauglas		/changed "private requestId" to "protected"
+ *
+ *<dt><b>References:</b>
+ *<dd>		DIS-Java-VRML Working Group: <a href="http://www.web3d.org/WorkingGroups/vrtp/dis-java-vrml/"> 
+ *		http://www.web3d.org/WorkingGroups/vrtp/dis-java-vrml/</a>
+ *<dd>		DIS Data Dictionary :<a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/98.htm">Create Entity PDU</a>	
+ *<dd>		DIS specification : IEEE 1278.1, Section 5.4.6.1, 4.4.5.5.1
+ *
+ *@see ProtocolDataUnit
+ *@see PduElement 
+ *@see SerializationInterface
+ *@see CreateEntityPdu
+ *@see RemoveEntityPdu
+ *@see StartResumePdu
+ *@see StopFreezePdu
+ *@see AcknowledgePdu
+ *@see ActionRequestPdu
+ *@see ActionResponsePdu
+ *@see DataQueryPdu
+ *@see SetDataPdu
+ *@see DataPdu
+ *@see EventReportPdu
+ *@see CommentPdu
+ */
+public class CreateEntityPdu extends SimulationManagementFamily 
+{
+    /**
+     *Request ID - This field shall identify the entity creation request being made by the simulation manager.
+     *
+     *<dl>
+     *<dt><b>Value:</b>
+     *<dd>A 32-bit monotonically increasing integer identifier inserted by the Simulation Manager
+     *  into all Simulation Manager PDUs. 
+     *<dt><b>References:</b>
+     *<dd>	DIS Data Dictionary: <a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/99.htm">Request ID Field</a>
+     *</dl>
+     */
+    protected UnsignedInt requestID;        //identifies entity creation request by SM
+      
+    /**
+     *Constant value--total size of an Action Request PDU including header
+     *<code>sizeOf = 28 bytes</code>
+     */
+    public static final int sizeOf = 28; // The total size of PDU is know
+
+    /**
+     *An "exemplar" object, which is filled out to the state that is needed most of the time.
+     *
+     *<dl>
+     *<dt><b>Explanation</b>
+     *<dd>A brand new object has to have most of its values set,
+     *  such as the forceID, protocol version, and so on. This lets the user fill
+     *  out most of the values, save it in the class, then retrieve a copy of it
+     *  as needed. 
+     *</dl>
+     */
+    static protected CreateEntityPdu exemplar;
+
+/**
+ *Default constructor--fills with zeros for all values.
+ */
+public CreateEntityPdu()                                             // default constructor
+{
+  setPduType(PduTypeField.CREATEENTITY);
+  requestID = new UnsignedInt();
+
+  return;
+}
+
+public void  serialize(DataOutputStream outputStream)
+{
+ /**
+    Serialize our data out to the stream. We first call the superclass,
+    so that all the data there is written out to the buffer first.
+    Then we serialize each of our ivars to the stream, being careful
+    about the order.
+*/
+
+  // takes care of all the header variables in the two consecutive superclasses
+  super.serialize(outputStream);          
+  // write out ivars
+  requestID.serialize(outputStream);
+
+  return;
+}
+
+public void  deSerialize(DataInputStream inputStream)
+{
+ /**
+    deserialize our data from the stream. We first call the superclass,
+    so that all the data there is read into the buffer first.
+    Then we deserialize each of our ivars to the stream, being careful
+    about the order.
+ */
+
+  super.deSerialize(inputStream);
+  // Do our ivars
+  requestID.deSerialize(inputStream);
+
+  return;
+}
+
+public Object clone()
+{
+ /**
+    Clone the CreateEntityPdu, being careful to not share any pointers
+    between the new object and the old object.
+  */
+
+  CreateEntityPdu newPdu = (CreateEntityPdu)super.clone();     // new Create Entity Pdu pdu
+
+  newPdu.setRequestID(this.getRequestID());
+
+  return newPdu;
+}
+
+public int length()
+{
+  return sizeOf;
+}
+
+public String pduName()
+{
+  return new String("Create Entity PDU");
+}
+
+public void printValues(int indentLevel, PrintStream printStream)
+{
+  // print the values of the object out, with correct level of
+  // indentation on the page.
+  
+    StringBuffer indent = ProtocolDataUnit.getPaddingOfLength(indentLevel);
+    int idx, superclassIndent = indentLevel;
+
+  printStream.println();
+  printStream.println("Create Entity PDU");
+
+  // ugly wart: get the superclass over to the left a couple pixels, if we have any to spare,
+  // so the header info will be indented a bit less.
+  if(superclassIndent > 0)
+    superclassIndent -= 1;
+  super.printValues(superclassIndent, printStream);
+  
+  printStream.println(indent + "Request ID: "+requestID.longValue());
+
+  return;
+}
+
+public CreateEntityPdu   getExemplar()
+{
+    return (CreateEntityPdu)exemplar.clone();
+}
+public void setExemplar(CreateEntityPdu newExemplar)
+{
+    exemplar = newExemplar;
+}
+
+
+// Accessor methods
+
+public UnsignedInt getRequestID()
+{ return (UnsignedInt)requestID.clone();
+}
+public void setRequestID(UnsignedInt pRequestID)
+{ requestID = pRequestID;
+}
+public void setRequestID(long pRequestID)
+{ requestID = new UnsignedInt(pRequestID);
+}
+
+}   // end of class CreateEntityPdu

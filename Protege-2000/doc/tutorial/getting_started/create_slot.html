@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Creating and Naming Slots</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img border="0" src="../../users_guide/classes/images/serving_nerd.gif" width="48" height="48">
+ Creating and Naming Slots<br>
+<img border="0" src="../../users_guide/classes/images/header_line.gif" width="536" height="5"></h1>
+
+<p>You now have several classes in your project. You can assign attributes to
+these classes by creating slots. In this section you will:</p>
+
+<ol>
+  <li><a href="#author">Create a basic slot for the <b>Author</b> class</a>.</li>
+  <li><a href="#personstring">Create a basic slot for the <b>Person</b> class</a>.</li>
+  <li><a href="#personfloat">Create a Float slot for the <b>Person</b> class</a>.</li>
+  <li><a href="#inheritance">View how a class with multiple superclasses
+    inherits from both of them</a>.</li>
+</ol>
+
+<p><a name="author"></a>To create a slot for the class <b>Author</b>:</p>
+<ol>
+  <li>Select <b> Author</b> in the Class Relationship pane.<br>
+    <img border="0" src="images/slot_highlight_Auth.gif" width="259" height="226"></li>
+  <li>Click the Create <font size="3"><img border="0" src="../../users_guide/classes/images/Create.gif" width="12" height="16">
+    </font> button at the far right of the Template Slots pane.<br>
+    <img border="0" src="images/slot_buttons.gif" width="621" height="109"></li>
+  <li>The Slot Form is displayed.<br>
+    <img border="0" src="images/slot_form_generic.gif" width="611" height="316"></li>
+  <li>To name the slot, highlight the generic name in the Name field. Type the
+    name for the slot, <b>byname</b>. A recommended convention to make slot
+    names <font size="3">lowercase, with words separated with an underscore.
+    Making slots names lowercase, while making classes start with an uppercase
+    letter, helps you distinguish them in your ontology.</font><br>
+    <img border="0" src="images/slot_form_byname.gif" width="611" height="316"></li>
+  <li>This slot will be a string slot, that is, a slot that takes values that
+    are any string of alphanumeric characters, possibly including
+    spaces. For this simple slot, we will not change any of the other fields in
+    the Slot Form. Simply close the form and return to the main window. Notice
+    that your slot now appears in the Template Slots pane when <b> Author</b> is
+    highlighted.<br>
+    <img border="0" src="images/slot_see_byname.gif" width="653" height="456"></li>
+</ol>
+
+<p>The blue slot icon indicates that the slot is &quot;direct&quot;,
+        that is, it was created directly on the selected class. You can edit a
+direct slot by double-clicking on it to open the slot form.</p>
+
+<p><a name="personstring"></a>We will now create two slots for the <b>Person</b> class. To create a string
+slot for <b>Person</b>:</p>
+
+<ol>
+  <li>Click on <b>Person</b> in the Class Relationship Pane.</li>
+  <li>Click the Create <font size="3"><img border="0" src="../../users_guide/classes/images/Create.gif" width="12" height="16">
+    </font> button at the far right of the Template Slots pane.</li>
+  <li>Change the slot name to <b>name</b> in the Slot Form.</li>
+  <li>Exit the Slot Form.</li>
+</ol>
+<p><a name="personfloat"></a>To create the next slot, which will be of Type Float:</p>
+<ol>
+  <li>Make sure <b>Person</b> is still selected in the Class Relationship Pane.</li>
+  <li>Click the Create <font size="3"><img border="0" src="../../users_guide/classes/images/Create.gif" width="12" height="16">
+    </font> button at the far right of the Template Slots pane.</li>
+  <li>Change the slot name to <b>salary</b> in the Slot Form.</li>
+  <li>Select <b>Float</b> from the <b>Value Type</b> menu.<br>
+    <img border="0" src="images/select_float.gif" width="611" height="316"><br>
+    A Float is a floating point integer. Values that are entered for this slot
+    must be valid floating point numbers.</li>
+  <li>Exit the slot form. You now see two direct slots for <b>Person</b>.<br>
+    <img border="0" src="images/slot_inherit.gif" width="924" height="464"></li>
+</ol>
+<h2><a name="inheritance"></a>Slots and Inheritance</h2>
+<p>The slots you create at a class are inherited by all their classes. To see
+this, click on <b>Salesperson</b>. You will see the slots you created for <b>Person</b>.
+Notice that the slot icons are now white, to indicate that these slots are
+inherited.</p>
+<p><img border="0" src="images/slot_inherit_multiple.gif" width="924" height="464"></p>
+<p><br>
+Now, click on <b>Columnist</b>. You see that <b>Columnist</b> inherits slots
+from both <b>Person</b> (via <b>Employee</b>) and <b>Author</b>. This multiple
+inheritance is an essential part of Protégé.</p>
+<p>You have now created some simple slots. This is all you need to enter some
+instances and begin creating your knowledge base.</p>
+
+<hr>
+
+<p>Next: <a href="enter_instance.html"> Entering Instances</a></p>
+
+<p><a href="index.html">Getting Started With Protégé</a></p>
+
+</body>
+</html>

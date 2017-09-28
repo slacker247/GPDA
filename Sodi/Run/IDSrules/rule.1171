@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC webplus access"; content:"webplus?script"; nocase; flags:A+; classtype:attempted-recon; sid:1159; rev:1;)

@@ -1,0 +1,20 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <body>
+
+This package supports animation in the Martini toolkit. When creating most animations three decisions need to be made
+
+<ol>
+
+<li> What object should this animation apply to? This determines the AnimationTarget. The animation target is usually comprised of a drawable object (something that is rendered to the screen) and its associated drawing property. For example, one animation target may be a shape and its fill color.
+
+<li>What property on the target do I want to change? This will determine the Animation subclass that use use, and its source and destination values. For example, if the property you want to animate is gradually changing the color white to the color black, you could use the ColorAnimation.
+
+<li>How should this property be set over time? This will determine the parameters used to set up the animation Alpha value. If you want the color to go from white to black and then back to white, you would use some sort of an increasing and decreasing Alpha value.
+
+</ol>
+
+Classes are provided to animate the different drawable objects and their properties you might encounter when rendering a graph element on screen and to schedule and pace those animations. Animation and its subclasses provide the central programming interface to the package. Most will use the GraphAnimation to animate graph elements displayed in the Martini GraphPanel.
+
+  </body>
+</html>

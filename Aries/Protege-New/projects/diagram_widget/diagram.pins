@@ -1,0 +1,125 @@
+; Wed Apr 12 13:41:28 PDT 2000
+
+([Connector] of Connector_Metaclass)
+
+([DiagramsExample_INSTANCE_00002] of Point
+	(y 259)
+	(x 130))
+
+([DiagramsExample_INSTANCE_00003] of Point
+	(y 331)
+	(x 178))
+
+([DiagramsExample_INSTANCE_00004] of Rectangle
+	(upper_left_corner [DiagramsExample_INSTANCE_00002])
+	(lower_right_corner [DiagramsExample_INSTANCE_00003]))
+
+([DiagramsExample_INSTANCE_00005] of ObjectLocation
+	(location [DiagramsExample_INSTANCE_00004]))
+
+([DiagramsExample_INSTANCE_00007] of Point
+	(y 42)
+	(x 358))
+
+([DiagramsExample_INSTANCE_00008] of Point
+	(y 199)
+	(x 347))
+
+([DiagramsExample_INSTANCE_00009] of Rectangle
+	(upper_left_corner [DiagramsExample_INSTANCE_00007])
+	(lower_right_corner [DiagramsExample_INSTANCE_00008]))
+
+([DiagramsExample_INSTANCE_00010] of ObjectLocation
+	(location [DiagramsExample_INSTANCE_00009]))
+
+([DiagramsExample_INSTANCE_00012] of Point
+	(y 176)
+	(x 108))
+
+([DiagramsExample_INSTANCE_00013] of Point
+	(y 56)
+	(x 198))
+
+([DiagramsExample_INSTANCE_00014] of Rectangle
+	(upper_left_corner [DiagramsExample_INSTANCE_00012])
+	(lower_right_corner [DiagramsExample_INSTANCE_00013]))
+
+([DiagramsExample_INSTANCE_00015] of ObjectLocation
+	(location [DiagramsExample_INSTANCE_00014]))
+
+([INSTANCE_00012] of Point
+	(y 251)
+	(x 406))
+
+([INSTANCE_00013] of Point
+	(y 295)
+	(x 154))
+
+([INSTANCE_00014] of Rectangle
+	(upper_left_corner [INSTANCE_00012])
+	(lower_right_corner [INSTANCE_00013]))
+
+([INSTANCE_00016] of Point
+	(y 32)
+	(x 172))
+
+([INSTANCE_00018] of Point
+	(y 80)
+	(x 220))
+
+([INSTANCE_00019] of Rectangle
+	(upper_left_corner [INSTANCE_00016])
+	(lower_right_corner [INSTANCE_00018]))
+
+([INSTANCE_00020] of ObjectLocation
+	(location [INSTANCE_00019]))
+
+([INSTANCE_00023] of ObjectLocation
+	(location [INSTANCE_00014]))
+
+([INSTANCE_00025] of Point
+	(y 176)
+	(x 124))
+
+([INSTANCE_00026] of Point
+	(y 224)
+	(x 172))
+
+([INSTANCE_00027] of Rectangle
+	(upper_left_corner [INSTANCE_00025])
+	(lower_right_corner [INSTANCE_00026]))
+
+([INSTANCE_00028] of ObjectLocation
+	(location [INSTANCE_00027]))
+
+([INSTANCE_00030] of Point
+	(y 208)
+	(x 359))
+
+([INSTANCE_00031] of Point
+	(y 295)
+	(x 454))
+
+([INSTANCE_00032] of Rectangle
+	(upper_left_corner [INSTANCE_00030])
+	(lower_right_corner [INSTANCE_00031]))
+
+([INSTANCE_00033] of ObjectLocation
+	(location [INSTANCE_00032]))
+
+([INSTANCE_00035] of Point
+	(y 152)
+	(x 84))
+
+([INSTANCE_00036] of Point
+	(y 200)
+	(x 132))
+
+([INSTANCE_00037] of Rectangle
+	(upper_left_corner [INSTANCE_00035])
+	(lower_right_corner [INSTANCE_00036]))
+
+([INSTANCE_00038] of ObjectLocation
+	(location [INSTANCE_00037]))
+
+([Network] of Network_Metaclass)

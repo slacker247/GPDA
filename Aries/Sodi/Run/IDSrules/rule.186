@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any <> $HOME_NET any (msg:"DOS NAPTHA"; flags:S; seq: 6060842; id: 413; reference:url,razor.bindview.com/publish/advisories/adv_NAPTHA.html; classtype:attempted-dos; sid:275; rev:2;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP CWD ~root"; content: "cwd ~root"; nocase; flags: A+;reference:arachnids,318; classtype:bad-unknown; sid:336; rev:1;)

@@ -1,0 +1,88 @@
+NMD                                # Domain name
+Development                        # Testbed mode
+Offense/Defense_Intgration         # Domain description
+#
+#   Menu items (must be 5 menus with 'n' items each)
+#
+    5   Assessments           0
+Situation_Assessment...       0
+Readiness_Assessment...       0
+Attack_Assessment...          1
+Force_Management...           1
+Force_Survival...             1
+#Drawdown_Curves...           1
+    3   Determine_Strategy    0
+Data_Mining...                0
+Clustering...                 0
+Data_Manager...               0
+    1   COA_Development       0
+Combined_Planning...          0
+    3   Detailed_Planning     0
+Target_Assessment...          0
+Plan_Optimization...          0
+Engagement_Planner...         0
+   11   Execution_Monitor     0
+Decision_Timeline...          0
+NMD_Situation_Awareness...    0
+Engagement_Summary...         0
+Tracks...                     0
+Defense_Options...            1
+Management_By_Exception...    1
+Missile_Order_of_Battle...    1
+Defend_Task_Plan...           1
+Survey_Task_Plan...           1
+Threat_Characteristics...     1
+Threatened_Assets...          1
+#
+#   Tools
+#
+    6   Tools                 0
+Protege     1    Protege.sh
+OilEd       1    OilEd.sh
+Weka        1    Weka.sh
+CViz        1    CViz.sh
+WordNet     1    WordNet.sh
+NetStat     0    NetStat.sh
+#
+#   Labels for the status area
+#
+STATUS
+  DEFCON                      5         G
+  RP                          2         G
+  DEA                         Hold      G
+  ROE                         N-America G
+  Msn_Constraints             _         G
+  Mission_Obj                 Primary   G
+  Execution_Plan              Assured   G
+#
+#   Labels for the Mission Summary area
+#
+MISSION_SUMMARY  
+  Tot_Exp_Threats             25
+  Tot_Exp_Targets             25
+  Tot_Targets_Killed          12
+  Cur_Exp_Targets             13
+  No._of_Leakers              0
+  Targets_in_Track            5
+  Targets_Engaged             4
+  Not_Engaged                 1
+#
+#   Labels for the Assets Summary area
+#
+    1    Def._Summary
+GBI
+    6    Off._Summary
+ICBM
+SLBM
+Bomber
+Recce
+C&C
+Tanker
+#
+#   Pixmap filename for Situation Awareness area on Top Level window
+#
+NMDaware.xpm
+#
+SitAware-NMD.xpm
+SitRisk-NMD.xpm
+NMDback.xpm

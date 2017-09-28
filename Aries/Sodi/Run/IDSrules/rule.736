@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible NewApt.Worm - gadget.exe"; content: "filename=\"GADGET.EXE\""; nocase; reference:MCAFEE,10540; sid:779;  classtype:misc-activity; rev:3;)

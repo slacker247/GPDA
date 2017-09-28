@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Understanding Inverse Slots</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="../classes/images/serving_nerd.gif" WIDTH="48" HEIGHT="48"> 
+ Understanding Inverse Slots<br>
+<img src="../classes/images/header_line.gif" width="590" height="6"></h1>
+
+<p>The <b>Inverse Slot</b> widget in the <a href="slot_form.html">The Slot Form</a>
+allows you to create a reciprocal relationships between two slots, so that as
+one slot is filled in at one instance, its inverse slot is automatically filled
+in at another instance, according to the relationship you specified.</p>
+<p>This section gives an overview of how to analyze a project and design inverse
+slots. For information on how to use the user interface, see&nbsp;<a href="make_inverse_slot.html">Creating an Inverse Slot Relationship</a>.</p>
+<p>For example, suppose you want to keep track of which editor(s) edit which
+section(s). There is already a slot <b>sections </b>at the class <b>Editor</b>
+which takes as values instances in the class <b>Section</b>. You could create an
+inverse slot <b>editor</b> at the class <b>Section</b> which takes as values
+instances in the class <b>Editor</b>. Now, at the instance <b>Mr. Science</b>
+you assign the value <b>Science</b> to the slot <b>sections</b>. Then, at the
+instance <b>Science</b>, <b>Mr. Science</b> automatically appears as a value for
+the slot <b>editor</b>.</p>
+<p>This section considers the most common relationship, an inverse slot
+relationship between two instances.&nbsp;</p>
+<p>To design and create inverse slots:</p>
+<ol>
+  <li>First identify the inverse relationship.&nbsp;&nbsp;</li>
+  <li>Second, analyze the Protégé components of the relationship.</li>
+  <li>Finally create or assign the slots to the appropriate classes and create
+    the inverse slot relationship between them.</li>
+</ol>
+<h2>Identify the Relationship</h2>
+<p>This is a reciprocal relationship that always occurs: for example, if Mr.
+Science edits the Science section, the Science section is edited by Mr. Science.
+Different types of inverse relationships are possible. Take the following
+criteria into consideration:&nbsp;</p>
+<ol>
+  <li>You can restrict the relationship to a one-to-one correspondence <i>OR</i>
+    you can allow one or both of the slots to have multiple values. For example,
+    Chief Honcho edits a number of sections.&nbsp;</li>
+  <li>The relationship can be between instances in different classes <i>OR</i>
+    instances in the same class. For example, <i>likes</i> and <i>is_liked_by</i>
+    would be a relationship where the slot and its inverse slot are both
+    attached to <b>Person</b>.</li>
+  <li>A slot can be its own inverse. <i>shares_ an_ office_ with </i>would be a
+    candidate for an inverse relationship where the inverse slot was identical
+    with the original slot. This is a stronger tie than simply having instances
+    in the same class.</li>
+  <li>The relationship must be reciprocal.&nbsp;</li>
+</ol>
+<h2>Analyze the Relationship in Protégé</h2>
+<p>Once you have identified the relationship in your ontology, you need to
+analyze it in terms of your Protégé project. For an inverse slot relationship
+between Instance slots, determine the following:</p>
+<ul>
+  <li>What Protégé class(es) do you want for the first set of instances? Make
+    sure to choose a class or classes that are appropriate for the project. It
+    is most important to choose a class list that is not too small; that is, you
+    need to select a list of classes such that every possible instance is in one
+    of those classes. At the same time, for simplicity you want the class list
+    to be focused on the instances and not be too broad.&nbsp;<br>
+    For example, in the <b>newspaper</b> project, one of the reporters, Larry
+    Tennis-Nut, is an eager beaver and sometimes edits the Sports section. It
+    would make sense to expand the list of classes to <b>Editor</b> and <b>Reporter</b>.
+    However, no salesmen or columnists are allowed to edit a section. Therefore,
+    while it would be possible to simply use the class <b>Employee</b>, it is
+    cleaner not to.<br>
+    Call this first list of classes <b>Class_List_A</b>. It may well be a single
+    class.</li>
+  <li>If the second set of instances is different from the first, perform the
+    same analysis for the second set of instances. Here, we will restrict
+    ourselves to instances in the class <b>Section</b>.<br>
+    Call this second list of classes <b>Class_List_B</b>. It may well be a
+    single class. It might also be identical to <b>Class_List_A.</b></li>
+</ul>
+<p>Based on this information, here is what you need to do in your Protégé
+project:</p>
+<ol>
+  <li>Create a slot of type Instance which takes values in <b>Class_List_A</b>.
+    We'll call this <i>original_slot</i>.</li>
+  <li>Create another slot of type Instance which takes values in <b>Class_List_B</b>.
+    We'll call this <i>inverse_slot</i>.<br>
+    If the information is important in your ontology, it is likely that one or
+    both of these slots already exist in the project.</li>
+  <li>Assign your Protégé slots to the appropriate classes. First, assign <i>original_slot</i>
+    to every class in <b>Class_List_B</b>.&nbsp;<br>
+    Recall that the target values of <i>original_slot</i> are in <b>Class_List_A</b>.
+    Assigning the slot to <b>Class_List_B</b> is what creates the
+    cross-connection between the classes.</li>
+  <li>Similarly, assign <i>inverse_slot</i> to every class in <b>Class_List_A</b>.</li>
+  <li>Make <i>inverse_slot</i> the inverse of <i>original_slot</i>. You can
+    actually do this as soon as both slots are created.</li>
+</ol>
+<p>Note that if you create an inverse slot relationship after some instances
+have been created, existing instances will not display the inverse slot
+information.</p>
+<h2>Create
+    the Inverse Slot Relationship</h2>
+<p>For information on how to use&nbsp;the Protégé interface to make an inverse
+slot, see <a href="make_inverse_slot.html">Creating an Inverse Slot Relationship</a>.</p>
+
+<hr>
+
+<p>Next: <a href="make_inverse_slot.html">Creating an Inverse Slot Relationship</a></p>
+
+<p><a href="index.html"> Slots Table of Contents</a></p>
+</body>
+</html>

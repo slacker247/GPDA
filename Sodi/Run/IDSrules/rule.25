@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 146 -> $EXTERNAL_NET 1000:1300 (msg:"BACKDOOR Infector 1.6 Server to Client"; content:"|57 48 41 54 49 53 49 54|"; flags:A+; sid:120;  classtype:misc-activity; rev:3;)

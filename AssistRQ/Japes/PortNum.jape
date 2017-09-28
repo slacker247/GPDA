@@ -1,0 +1,23 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: PortNum
+    {Token.string == "Port"}
+    {SpaceToken.kind == space}
+(
+    {Token.kind == number}
+):PortNum -->
+:PortNum.Port = {}
+
+
+
+
+Rule: PortNumLower
+    {Token.string == "port"}
+    {SpaceToken.kind == space}
+(
+    {Token.kind == number}
+):PortNumLower -->
+:PortNumLower.Port = {}

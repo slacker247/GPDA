@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP PING Microsoft Windows"; content:"|303132333435363738396162636465666768696a6b6c6d6e6f70|"; itype:8; depth:32; reference:arachnids,159; sid:376;  classtype:misc-activity; rev:4;)

@@ -1,0 +1,1 @@
+alert tcp $HTTP_SERVERS 80 -> $EXTERNAL_NET any (msg:"ATTACK RESPONSES directory listing"; content:"Directory Listing of"; nocase; flags:A+; classtype:unknown; sid:496; rev:2;)

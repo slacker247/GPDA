@@ -1,0 +1,194 @@
+; Mon Nov 12 16:14:55 CET 2001
+; 
+;+ (version "1.6.2")
+;+ (build "Build 842")
+
+
+(defclass :CLIPS_TOP_LEVEL_SLOT_CLASS
+	(is-a USER)
+	(role concrete)
+	(multislot contexts
+;+		(comment "Associated Contexts")
+		(type INSTANCE)
+;+		(allowed-classes Context)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot metadata
+;+		(comment "Additional metadata for the context.")
+		(type INSTANCE)
+;+		(allowed-classes Metadata)
+		(create-accessor read-write))
+	(multislot conceptRefs
+;+		(comment "Associated ConceptRefs.")
+		(type INSTANCE)
+;+		(allowed-classes ConceptRef)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot rules
+;+		(comment "Mapping contains translation rules.")
+		(type INSTANCE)
+;+		(allowed-classes Rule)
+		(create-accessor read-write))
+	(multislot sets
+		(type INSTANCE)
+;+		(allowed-classes ContextSet)
+		(cardinality 2 2)
+		(create-accessor read-write))
+	(single-slot ref
+;+		(comment "A URN.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot lang
+;+		(comment "3-letter ISO language identifier.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot body
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot ontologies
+;+		(comment "Mapping refers to exactly two ontologies.")
+		(type INSTANCE)
+;+		(allowed-classes OntologyRef)
+		(cardinality 2 2)
+		(create-accessor read-write))
+	(multislot formula
+;+		(comment "Formulae applicable to the ContextSets.")
+		(type INSTANCE)
+;+		(allowed-classes Formula)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot concepts
+		(type INSTANCE)
+;+		(allowed-classes Concept)
+		(create-accessor read-write)))
+
+(defclass STElement "Elements of the semantic translation mappings.\nPart of the work of the ECIMF project (http://www.ecimf.org). Created by Andrzej Bialecki <abial@webgiro.com>"
+	(is-a USER)
+	(role abstract)
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Rule "A rule defines how to translate between the concepts in a ContextSet from one Ontology, to the corresponding concepts in a ContextSet from the other ontology. A Rule consists of exactly two ContextSets, each one referring respectively to one of the Ontologies, and a set of Formulas, which define the valid transformations on these ContextSets."
+	(is-a STElement)
+	(role concrete)
+	(multislot sets
+		(type INSTANCE)
+;+		(allowed-classes ContextSet)
+		(cardinality 2 2)
+		(create-accessor read-write))
+	(multislot formula
+;+		(comment "Formulae applicable to the ContextSets.")
+		(type INSTANCE)
+;+		(allowed-classes Formula)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Mapping "A top-level container for the semantic mapping rules, applicable to a pair of ontologies, as specified by the OntologyRefs."
+	(is-a STElement)
+	(role concrete)
+	(multislot ontologies
+;+		(comment "Mapping refers to exactly two ontologies.")
+		(type INSTANCE)
+;+		(allowed-classes OntologyRef)
+		(cardinality 2 2)
+		(create-accessor read-write))
+	(multislot rules
+;+		(comment "Mapping contains translation rules.")
+		(type INSTANCE)
+;+		(allowed-classes Rule)
+		(create-accessor read-write)))
+
+(defclass Formula "A formal expression defining how translation is perfomed between concepts from one ContextSet to those in the other ContextSet."
+	(is-a STElement)
+	(role concrete)
+	(single-slot body
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass ContextSet "A group of one or more Contexts, referring to the same Ontology."
+	(is-a STElement)
+	(role concrete)
+	(multislot contexts
+;+		(comment "Associated Contexts")
+		(type INSTANCE)
+;+		(allowed-classes Context)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Context "Context is built on the basis of the original Ontology. It consists of related concepts represented by ConceptRefs, which are considered relevant to the given transformation rule (the exact and full relationship of the Concepts is defined in the original ontology - Context captures just the fact that they are related for the purpose of mapping)."
+	(is-a STElement)
+	(role concrete)
+	(multislot conceptRefs
+;+		(comment "Associated ConceptRefs.")
+		(type INSTANCE)
+;+		(allowed-classes ConceptRef)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot metadata
+;+		(comment "Additional metadata for the context.")
+		(type INSTANCE)
+;+		(allowed-classes Metadata)
+		(create-accessor read-write)))
+
+(defclass Metadata
+	(is-a STElement)
+	(role concrete)
+	(single-slot body
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot lang
+;+		(comment "3-letter ISO language identifier.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass ContextualTopology
+	(is-a STElement)
+	(role concrete)
+	(multislot contexts
+;+		(comment "Associated Contexts")
+		(type INSTANCE)
+;+		(allowed-classes Context)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass ConceptRef "A namespaced reference to individual Concepts defined in the original Ontology. A URN, which possibly allows to access remotely the concept definition in the original ontology."
+	(is-a STElement)
+	(role concrete)
+	(single-slot ref
+;+		(comment "A URN.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass OntologyRef "A URN uniquely identifying the referred ontology\n(possibly allowing to access it remotely)."
+	(is-a STElement)
+	(role concrete)
+	(single-slot ref
+;+		(comment "A URN.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Concept "Concepts defined in the original Ontology (external to the project)"
+	(is-a STElement)
+	(role abstract))
+
+(defclass Ontology "The original full domain ontology (external to the project)"
+	(is-a STElement)
+	(role abstract)
+	(multislot concepts
+		(type INSTANCE)
+;+		(allowed-classes Concept)
+		(create-accessor read-write)))

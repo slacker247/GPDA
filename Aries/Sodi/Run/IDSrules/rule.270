@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT x86 linux overflow";flags: A+; content:"MKD AAAAAA";reference:bugtraq,113; reference:cve,CVE-1999-0368; classtype:attempted-admin; sid:349; rev:1;)

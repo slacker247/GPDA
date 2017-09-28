@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC iPlanet ../../ DOS attempt"; content:"GET "; offset:0; depth:4; uricontent:"/../../../../../../../../../../../"; flags:A+; classtype:web-application-attack; sid:1049; rev:2;)

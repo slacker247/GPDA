@@ -1,0 +1,419 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Graph Widget</title>
+<style type="text/css">
+<!--
+A:link {color: blue;}
+A:visited {color: purple;}
+.general {font-family: verdana,arial,helvetica,sans-serif; font-size: 14px; margin: 1%;}
+.sectionTitle {font-family: verdana,arial,helvetica,sans-serif; font-size: 20px; color: #026633;}
+.green {font-family: verdana,arial,helvetica,sans-serif; font-size: 14px; color: #026633;}
+-->
+</style>
+</head>
+
+<!--#include virtual="../../../header.html"-->
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+	<td align="center" bgcolor="#026633" colspan="2" height="50" valign="middle">
+	<span class="greenBannerText">Graph Widget</span>
+	</td>
+</tr>
+</table>
+
+<div class="general">
+The Graph Widget is the new version of the Diagram Widget.  We're using a new name because it's necessary for both
+versions of the widget to coexist in Prot&eacute;g&eacute; while users convert existing ontologies to use the new version.<br><br>
+
+<span class="sectionTitle">What's New?</span>
+	<ul>
+		<li><a href="#differences">Big Differences</a></li>
+		<li><a href="#newFeatures">New Features</a></li>
+		<li><a href="#enhancements">Enhancements</a></li>
+	</ul>
+
+<span class="sectionTitle">Documentation</span>
+	<ul>	
+		<li><a href="#whatis">What is the Graph Widget ?</a></li><br><br>
+		<li><a href="#example">Getting Started</a></li>
+			<ul>
+				<li><a href="#downloadProject">Download GraphWidgetExample project</a></li>
+				<li><a href="#configureOrganization">Configure <code>Organization</code> class</a></li>
+				<li><a href="#configureOrgChartSlot">Configure <code>organization_chart</code> slot to use Graph Widget</a></li>
+				<li><a href="#configureNodes">Configure node appearance</a></li>
+				<li><a href="#configureSimple">Configure a simple connector</a></li>
+				<li><a href="#populateSimple">Populate an instance of the Graph Widget using nodes and simple connectors</a></li>
+				<li><a href="#configureRelations">Configure a reified relation</a></li>
+				<li><a href="#populateRelations">Populate an instance of the Graph Widget using nodes and reified relations</a></li>
+			</ul><br><br>
+		<li>Advanced Topics</li>
+			<ul>
+				<li><a href="#convertToGraph">Converting from the Diagram Widget to the Graph Widget</a></li>
+			</ul><br><br>
+		<li><a href="#bugs">Known Bugs</a></li>
+		<li><a href="#wantedFeatures">Known Feature Requests</a></li>
+	</ul><br>
+	
+<hr>
+
+<span class="sectionTitle">What's New?</span><br><br>
+
+<strong><a name="differences">Big Differences</a></strong><br><br>
+
+To follow are some significant differences between the Diagram and Graph Widgets that will be particularly 
+noticeable to current users:
+
+	<ul>
+	<li>We no longer store diagram specific information such as node size and position in the onotology.  This eliminates the
+	step of having to include the "diagram.pprj" project in your ontology.</li><br><br>
+	<li>The Graph Widget offers two different types of connectors:<br><br>
+		<ul>
+			<li><strong>Reified Relation</strong> - A connector between two nodes that has an underlying instance.</li>
+			<li><strong>Simple Connector</strong> - A connector between two nodes that has no underlying instance.</li>
+		</ul><br>
+	Examples of how to create the different connectors types are available in the Getting Started tutorial.</li><br><br>
+	<li>Rather than reinvent the wheel (write our own graphics library), we used a third party graphics library 
+	called <a href="http://www.nwoods.com/go/jgo.htm" target="_blank">JGo</a> from Northwoods Software.  JGo has no runtime 
+	fees but if you'd like to extend the GraphWidget and you need access to the JGo library, contact them to purchase a license.</li><br><br>
+	<li>Rather than connecting nodes by dragging and dropping connectors from a palette, each node has a port
+	in the center.  You click on the port and start dragging which causes a line to appear.  Drag your mouse over the node's
+	port that you want to connect to, and the line will snap into place.  If there is more than one type of valid connector
+	between two nodes, a dialog box will appear that allows you to choose which type of connector to create.</li>
+	</ul>
+	
+<strong><a name="newFeatures">New Features</a></strong><br><br>
+
+	<ul>
+	<li>Labeled connectors.</li>
+	<li>Right clicking on a connector displays a menu that allows you to insert or remove any number of points in the line.</li>
+	<li>In-place text editing of node and connector labels for classes that have a designated browser key.</li>
+	</ul>
+
+<strong><a name="enhancements">Enhancements</a></strong><br><br>
+
+	<ul>
+	<li>Greatly improved selection appearance for nodes and connectors.  Primary selections are green and secondary selections
+	are blue green as shown below:
+	<br><br> 
+	<img src="selectionColorExample.gif" alt="Selection Colors for Graph Widget" width="281" height="261" border="1"></li><br><br>
+	<li>Resize handles make it much easier to resize nodes.  Each time you click on a node, eight resize handles appear along 
+	the bounding rectangle of the node.  You can grab any of these handles with your mouse to resize nodes.  You can also use 
+	the resize handles to drag and reposition connector points.  Examples of both are shown below:
+	<br><br>
+	<img src="resizeHandleExample.gif" alt="Resize Handles for Graph Widget" width="321" height="293" border="1">
+	</li>
+	</ul>
+
+<hr>
+	
+<a name="gettingstarted" class="sectionTitle">Documentation</a><br><br><br>
+
+<strong><a name="whatis">What is the Graph Widget ?</a></strong><br><br>
+
+The Graph Widget is an alternative to <a href="http://protege.stanford.edu/doc/users_guide/forms/index.html">forms</a> 
+for creating and populating instances of classes in Prot&eacute;g&eacute;.  It is also particularly useful for visualizing 
+networks of instances and relationships between instances.  To gain a better understanding of this definition, follow the
+Getting Started tutorial offered below.<br><br><br>
+
+<strong><a name="example">Getting Started</a></strong><br><br>
+
+This tutorial assumes a basic working knowledge of Prot&eacute;g&eacute;.  For more information about how to use 
+Prot&eacute;g&eacute;, see our <a href="http://protege.stanford.edu/doc/users_guide/index.html">User's Guide</a> or 
+<a href="http://protege.stanford.edu/doc/tutorial/get_started/index.html">Getting Started with Protege</a>.<br><br>
+
+<!-- Step 1 -->
+<strong><a name="downloadProject">Step 1: Download GraphWidgetExample project</a></strong><br><br>
+For those of you who are familiar with Prot&eacute;g&eacute;, you'll recognize this project as a slightly modified version of the 
+Newspaper example.  We'll step through the creation of an organization chart for a group of Newspaper employees.<br><br>
+
+<a href="GraphWidgetExample.zip">Download Project</a><br><br><br>
+
+<!-- Step 2 -->
+<strong><a name="configureOrganization">Step 2: Configure Organization class</a></strong><br><br>
+	<ul>
+	<li>Open Prot&eacute;g&eacute; and load the GraphWidgetExample project from step 1.</li>
+	<li>Choose the <code>Organization</code> class in the Relationship pane on the Classes tab.</li>
+	<li>Create a new slot called <code>organization_chart</code> and attach it to the <code>Organization</code> class.  The slot 
+	should be of type Instance, cardinality multiple, and have the <code>Employee</code> class as the allowed class type.  We 
+	chose <code>Employee</code> as the allowed class type because an organization chart typically displays relationships between 
+	employees working within an organization.</li>
+	</ul>
+
+Screenshot of Prot&eacute;g&eacute; after completion of step 2:<br><br>
+<img src="gettingstarted_step2.gif" alt="step 2 -> configure organization class" width="913" height="682" border="0"><br><br><br>
+
+<!-- Step 3 -->
+<strong><a name="configureOrgChartSlot">Step 3: Configure <code>organization_chart</code> slot to use Graph Widget</a></strong><br><br>
+	<ul>
+	<li>Navigate to the Forms tab and choose <code>Organization</code> from the Forms list.</li>
+	<li>Select the <code>organization_chart</code> slot and choose GraphWidget from the Selected Widget Type
+	combo box.</li>
+	</ul>
+	
+Screenshot of Prot&eacute;g&eacute; after completion of step 3:<br><br>
+<img src="gettingstarted_step3.gif" alt="step 3 -> configure organization_slot to use graph widget" width="913" height="682" border="0"><br><br><br>
+
+<!-- Step 4 -->
+<strong><a name="configureNodes">Step 4: Configure node appearance</a></strong><br><br>
+Nodes are the objects that appear in the palette on the left-hand side of the Graph Widget.  Each node represents a concrete allowed class
+for the <code>organization_chart</code> slot (or whatever slot is configured to use the Graph Widget).  By default, the Graph Widget 
+assigns all nodes the same shape and color.  To change the node shape and color or the text properties of the node's labels:
+
+	<ul>
+	<li>Double-click on the <code>organization_chart</code> slot to bring up the Graph Widget configuration dialog.</li>
+	<li>Select the Nodes tab.</li>
+	</ul>
+	
+Screenshot of the Graph Widget configuration dialog:<br><br>
+
+<img src="gettingstarted_WidgetConfigurationDlg.gif" alt="step 4 -> configure node appearance" width="546" height="585" border="0"><br><br>
+	
+The table in the top portion of the Nodes tab contains a list of all the concret allowed classes for the <code>organization_chart</code> slot.  
+Note that the <code>Employee</code> class does not appear here because it's an abstract class.  Rather, all the the concrete subclasses 
+of <code>Employee</code> are displayed.  Try selecting various nodes from the table and changing their shape and color using the Shape 
+and Shape Color combo boxes.  You can also change the text properties of the node's labels using the Text Color combo box and the Bold 
+and Italic check boxes.<br><br>
+
+You can ignore the Optional Connector Slot area as we will deal with this in a later step.  To follow is a example of what the configuration
+dialog might look like after configuring node appearance:<br><br>
+
+<img src="gettingstarted_WidgetConfigurationDlg2.gif" alt="step 4 -> configure node appearance" width="546" height="585" border="0"><br><br>
+
+Click OK to save your changes.  <em>(Note that it is not a necessary step in this tutorial to select the same shapes and colors displayed in 
+the screenshot above)</em>.<br><br><br>
+
+<!-- Step 5 -->
+<strong><a name="configureSimple">Step 5: Configure a simple connector</a></strong><br><br>
+There are two types of connectors in the new version of the Graph Widget.  First we will look at the simple connector type which is a connector
+between two nodes that doesn't have an underlying instance.  The allowed class type for the <code>organization_slot</code> is <code>Employee</code>.  Let's 
+assume that we are interested in focusing on the <code>Editor</code> subclass of <code>Employee</code> and seeing a graphical representation of the relationship between 
+editors and other employees in the newspaper organization.  There are two steps to complete for configuring a simple connector:
+
+	<ol type="a">
+		<li>Choose the <code>Editor</code> class in the Relationship pane on the Classes tab and create and attach a slot called 
+		<code>responsible_for</code>.  The slot should be of type Instance, cardinality multiple, and have the <code>Employee</code> 
+		class as the allowed class type.<br><br>
+		Screenshot of Prot&eacute;g&eacute; after completion of step 5a:<br><br>
+		<img src="gettingstarted_step5a.gif" alt="step 5a -> configure simple connector" width="908" height="640" border="0"></li><br><br>
+		<li>On the Forms tab, bring up the widget configuration dialog again and select the <code>Editor</code> class on the Nodes
+		tab.  Choose <code>responsible_for</code> from the Connector Slot combo box.  By making this selection, we are indicating to
+		the Graph Widget that we want to be able to draw connectors between <code>Editor</code> nodes and other nodes of type <code>Employee</code>.  
+		In other words, for each allowed class displayed in the table on the upper portion of the Nodes tab, the Connector Slot combo box 
+		will display a list of type Instance, cardinality multiple slots for that class.  You can choose one of these slots from the combo box to 
+		indicate what other class types you can draw connectors to.  Click OK to save your changes.<br><br>
+		Screenshot of widget configuration dialog after completion of step 5b:<br><br>
+		<img src="gettingstarted_step5b.gif" alt="step 5b -> configure simple connector" width="546" height="585" border="0"></li>
+	</ol><br>
+
+<!-- Step 6 -->
+<strong><a name="populateSimple">Step 6: Populate an instance of the Graph Widget using nodes and simple connectors</a></strong><br><br>
+In this step, we'll look at an instance of the <code>Organization</code> class and learn how to populate the Graph Widget with nodes and
+simple connectors.<br><br>  
+
+Choose the <code>Organization</code> class in the Classes pane on the Instances tab.  Select San Jose Mercury News from the 
+Direct Instances pane.  To create an instance of the <code>Editor</code> class, select the <code>Editor</code> node in the palette and drag and drop it onto 
+the view.  Repeat this step again so that you have two nodes in the Graph Widget view.  To draw a simple connector between the two <code>Editor</code> nodes, click 
+on one of the node's ports (small dot in the center of the node) and drag your mouse to the other port.  When you release your mouse, a connector 
+appears between the two nodes, showing the <code>responsible_for</code> relationship.<br><br>
+
+<span style="margin:1%; font-style:italic; font-weight:bold;">Tips:</span>
+	<ul>
+		<li>Click and drag nodes to reposition them in the view.</li>
+		<li>When a node is selected, grab any of the eight resize handles to resize the node.</li>
+		<li>Since the Editor class has a browser key (the <code>name</code> slot), you can single click on the node's labels and use in-place 
+		text editing to change the node's text.</li>
+		<li>Double click on nodes to bring up Instance Forms.</li>
+		<li>Use the &acute;C&acute; button on the Graph Widget toolbar to create nodes in the view as an alternative to dragging and dropping 
+		from the palette.</li>
+		<li>Select multiple nodes and click the &acute;V&acute; button to bring up multiple Instance Forms.</li>
+		<li>Right click on connectors to insert extra points via the Insert Point right-mouse menu item.</li>
+		<li>Right click on connectors to remove segments via the Remove Segment right-mouse menu item.</li>
+	</ul>
+
+Screenshot of San Jose Mercury News Instance Form after completion of step 6:<br><br>
+
+<img src="gettingstarted_step6a.gif" alt="step 6 -> populate an instance of the graph widget" width="514" height="567" border="0"><br><br>
+
+Continue adding nodes of various types to the Graph Widget.  Notice also that the widget will only allow you to draw valid simple connectors 
+between nodes.  Since we only specified one connector slot for the <code>Editor</code> class, we can only draw simple connectors <em>from</em> 
+<code>Editor</code> nodes <em>to</em> other nodes, but not the other way around.  For example, try drawing a simple connector from a <code>Columnist</code> 
+or <code>Reporter</code> node to another node.  The Graph Widget won't allow such a connection.<br><br>
+
+Additional screenshot of SJ Mercury News Instance Form after adding more nodes and connectors:<br><br>
+
+<img src="gettingstarted_step6b.gif" alt="step 6 -> populate an instance of the graph widget" width="720" height="711" border="0"><br><br>
+
+<span style="margin:1%; font-style:italic; font-weight:bold;">Tip:</span>
+	<ul><li>Use the Perform automatic layout button to automatically lay out nodes and connectors in the Graph Widget.</li></ul><br>
+
+
+<!-- Step 7 -->
+<strong><a name="configureRelations">Step 7: Configure a reified relation</a></strong><br><br>
+In this step we will work with the other connector type provided by the Graph Widget called a reified relation.  A reified relation is a connector 
+between nodes that has an underlying instance.  You use this type of connector when you need to store additional information about the relationship 
+between two nodes.  There are three steps to configure a reified relation:
+
+	<ol type="a">
+		<li>Subclass the :DIRECTED-BINARY-RELATION system class.<br><br>
+			<ul>
+				<li>Choose the :DIRECTED-BINARY-RELATION system class in the Relationship pane on the Classes tab.</li>
+				<li>Create a subclass called <code>Manager Supervision Relation</code>.</li>
+				<li>Change the allowed class type of the :FROM slot to <code>Manager</code>.</li>
+				<li>Change the allowed class type of the :TO slot to <code>Employee</code>.</li>
+			</ul><br>
+		What we have just defined is a class that represents a reified relation between <code>Manager</code> and 
+		<code>Employee</code> nodes.  Note that you can add additional slots to this class to keep track of other 
+		information about the relationship.  The screenshot below has examples of what sort of &quot;other information&quot; 
+		you might want to add.  Note that it's not a necessary step in this tutorial to add additonal 
+		slots to the <code>Manager Supervision Relation</code> class.<br><br>
+		
+		Screenshot of Prot&eacute;g&eacute; after completion of step 7a:<br><br>
+		
+		<img src="gettingstarted_step7a.gif" alt="step 7a -> configure a reified relation" width="998" height="695" border="0"><br><br>
+		</li>
+		<li>Create a slot to hold reified relations.<br><br>
+		If you want to use reified relations for a particular class, you need to add a slot to the class that designates
+		what the valid relations are for that class.  For our example, add a slot to the <code>Organization</code> class called 
+		<code>employee_relationships</code>.  The slot should be of type Instance, cardinality multiple, and have the 
+		<code>Manager Supervision Relation</code> class as the allowed class type.<br><br>
+		
+		Screenshot of Prot&eacute;g&eacute; after completion of step 7b:<br><br>
+
+		<img src="gettingstarted_step7b.gif" alt="step 7b -> configure a reified relation" width="998" height="695" border="0"><br><br>
+		</li>
+		<li>Tell the Graph Widget which slot on your class holds reified relations.<br><br>
+		
+		The last step is to let the Graph Widget know which slot on your class has been created to hold reified relations.  This
+		is done in the widget configuration dialog:<br><br>
+			<ul>
+				<li>Return to the Forms tab and bring up the widget configuration dialog.</li>
+				<li>Click on the Reified Relations tab.</li>
+				<li>Choose <code>employee_relationships</code> from the Relation Slots combo box.<br><br>
+				
+				Screenshot of widget configuration dialog after completion of step 7c:<br><br>
+				
+				<img src="gettingstarted_step7c.gif" alt="step 7c -> configure a reified relation" width="546" height="585" border="0"><br><br>
+
+				<span style="font-style:italic; font-weight:bold;">Tips:</span><br><br>
+				** Use the Line Color, Line Type, and Arrowhead Type combo boxes to change the appearance of the 
+				reified relation connector.<br><br>
+				** Uncheck the Show Browser Text check box if you don't want your reified relation connectors to have 
+				labels on them.<br><br>
+				</li>
+				<li>Click OK to save your changes.</li>
+			</ul>
+		</li>
+	</ol>
+
+<!-- Step 8 -->
+<strong><a name="populateRelations">Step 8: Populate an instance of the Graph Widget using nodes and reified relations</a></strong><br><br>
+In this step, we'll look at an instance of the <code>Organization</code> class and learn how to populate the Graph Widget with nodes 
+and reified relations.<br><br>  
+
+Choose the <code>Organization</code> class in the Classes pane on the Instances tab.  Create a new instance of the 
+<code>Organization</code> class called <code>San Francisco Examiner</code>.  Using the Graph Widget, create two instances
+of the <code>Manager</code> class by dragging and dropping the <code>Manager</code> node from the palette onto the view.  To draw 
+a reified relation between the two nodes, click on one of the node's ports (small dot in the center of the node) and drag your mouse 
+to the other port.  When you release your mouse, a reified relation appears between the two nodes, showing a managerial relationship.<br><br>
+
+Screenshot of Prot&eacute;g&eacute; after completion of step 8:<br><br>
+
+<img src="gettingstarted_step8a.gif" alt="step 8 -> populate an instance of the graph widget" width="1005" height="788" border="0"><br><br>
+
+<span style="margin:1%; font-style:italic; font-weight:bold;">Tips:</span>
+	<ul>
+		<li>Double click on the reified relation connector to bring up the Instance Form for the <code>Manager Supervision Relation</code> class.</li>
+		<li>Designate a <a href="http://protege.stanford.edu/doc/users_guide/forms/browser_key.html" target="_blank">browser key</a> for the <code>Manager Supervision Relation</code> class to enable in-place editing of the 
+		reified relation connector's label.  (One possibility would be to attach the <code>name</code> slot).</li>
+		<li>On the Forms tab, set the Selected Widget Type for the <code>employee_relationships</code> slot to &lt;none&gt; to expand 
+		the amount of display for the Graph Widget.</li>
+	</ul>
+
+Continue adding nodes and experimenting with reified relations.  To follow is a screenshot of the San Francisco Examiner Instance Form 
+after adding more nodes, reified relations, a simple connector, and completing the tips specified above:<br><br>
+
+<img src="gettingstarted_step8b.gif" alt="step 8 -> populate an instance of the graph widget" width="653" height="883" border="0"><br><br><br>
+
+<strong><a name="convertToGraph">Converting from the Diagram Widget to the Graph Widget</a></strong><br><br>
+To follow are some notes (courtesy of <a href="mailto:tu@smi.stanford.edu">Samson Tu</a>) on how to convert existing instances of the Diagram Widget to the Graph Widget.<br><br>
+
+Assumptions:
+<ul>
+	<li>You've installed Prot&eacute;g&eacute; version 1.8, build 1032 or later.</li>
+	<li>You're interested in saving existing diagrams.</li>
+	<li>You're using a file system back-end.</li>
+</ul>
+
+<em><span class="green">1st Scenario:</span></em><br><br>
+
+You have a project that includes the diagram ontology, that has a number of diagram instances, and you do not need to use the 
+existing location information of nodes and connectors.
+
+<ol>
+	<li>Make the <code>:DIRECTED-BINARY-RELATION</code> class the parent class of your classes that inherit from the diagram 
+	widget <code>Connector</code> class.  Your existing subclasses of the <code>Connector</code> class will then inherit 
+	the <code>:FROM</code> and <code>:TO</code> slots from the <code>:DIRECTED-BINARY-RELATION</code> class.</li>
+	<li>In your existing subclasses of the Network class, add a multi-valued slot (you can choose your own name), whose allowed 
+	classes include the allowed classes of the existing <code>connectors</code> slot.  This slot will be used to hold arc 
+	information in the new Graph Widget.</li>
+	<li>Save the project.</li>
+	<li>Open the pins file in a text editor.</li>
+	<li>Globally replace <code>first_object</code> with <code>:FROM</code> and <code>second_object</code> with 
+	<code>:TO</code> (assuming that you are not using the <code>first_object</code> or <code>second_object</code> slots for 
+	anything else).</li>
+	<li>Rename the slot <code>connectors</code> in your instances that hold the diagram to the new slot you've defined in 
+	step 2.</li>
+	<li>Save the pins file.</li>
+	<li>Reload the project.</li>
+	<li>Change the metaclasses of your old <code>Connector</code> and <code>Network</code> classes to <code>:STANDARD_CLASS</code> 
+	(or any metaclass your want).</li>
+	<li>Drop <code>Connector</code> and <code>Network</code> classes as parents of your classes.</li>
+	<li>Delete instances of <code>ObjectLocation</code>, <code>Rectangle</code>, and <code>Point</code>.</li>
+	<li>In the Forms tab, configure appropriate classes and slots in your project (that used to be shown as diagrams) to use the 
+	new Graph Widget.</li>
+</ol>
+
+Do not &quot;uninclude&quot; the diagram project from your own project until you have converted all projects that include 
+the project where you specify the classes that make use of the diagram ontology.<br><br>
+
+<em>2nd Scenario:</em><br><br>
+
+You have a project (Project A) that includes another project (Project B) where diagrams are configured and you do not need to use 
+the existing location information of nodes and connectors.
+
+<ol>
+	<li>Convert Project B where you specify the classes that make use of the diagram ontology (see 1st scenario above).</li>
+	<li>In a text editor, open the pins file for Project A.  Globally replace <code>first_object</code> with <code>:FROM</code> and 
+	<code>second_object</code> with <code>:TO</code> (assuming that you are not using the <code>first_object</code> or 
+	<code>second_object</code> slots for anything else).</li>
+	<li>Rename the slot <code>connectors</code> in your instances that hold the diagram to the new slot name you've defined.</li>
+	<li>Save the pins file.</li>
+	<li>You may have to reconfigure the classes of Project A in the Forms tab so that the Graph Widget gets used appropriately.  
+	Alternatively, you can &quot;import&quot; the pont and pins files to rebuild the pprj file.  When a new pprj file is built, 
+	Prot&eacute;g&eacute; will copy the widget configuration information from included projects.</li>
+</ol><br>
+
+<strong><a name="bugs">Known Bugs</a></strong><br><br>
+	<ul>
+	<li>There are some cases where the positioning information is lost for nodes and connectors the first time you click away from 
+	a new instance of the graph widget.  The workaround for this bug is to click away from new instances of the graph widget and come 
+	back to them before beginning to populate them with new nodes and connectors.</li>
+	</ul>
+
+<strong><a name="wantedFeatures">Known Feature Requests</a></strong><br><br>
+	<ul>
+	<li>An additional arrowhead type of circle</li>
+	<li>The ability to designate arrowhead type for source arrowhead (can only specify destination arrowhead now)</li>
+	<li>The ability to control the color of nodes based on the value of a specified slot</li>
+	<li>Copy and paste for nodes within an instance of the graph widget</li>
+	<li>Copy and paste for nodes between different instances of the graph widget</li>
+	<li>Color chooser dialog to allow for a greater selection of node and connector colors in the widget configuration dialog</li>
+	</ul>
+
+</div>
+
+<!--#include virtual="../../../footer.html"--><br><br>
+</body>
+</html>

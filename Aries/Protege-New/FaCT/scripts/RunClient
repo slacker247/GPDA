@@ -1,0 +1,11 @@
+#!/bin/sh
+
+. `dirname $0`/environment
+
+echo Running demo client \(nameserver $NSHOST:$NSPORT\)
+
+if [ -n "$DEBUG" ]; then
+    echo "${JAVA} -Dimg.fact.xml.dtd=${DTD} $@ img.fact.client.LittleClient -nsHost $NSHOST -nsPort $NSPORT"
+else
+    eval exec ${JAVA} -Dimg.fact.xml.dtd=${DTD} $@ img.fact.client.LittleClient -nsHost $NSHOST -nsPort $NSPORT
+fi

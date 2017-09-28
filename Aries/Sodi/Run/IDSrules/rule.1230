@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC ROADS attempt"; flags:A+; uricontent:"/ROADS/cgi-bin/search.pl"; content:"form="; nocase; reference:cve,CAN-2001-0215; reference:bugtraq,2371; classtype:attempted-recon; sid:1224; rev:1;)

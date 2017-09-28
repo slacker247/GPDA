@@ -1,0 +1,15 @@
+# settings for GAlib applications
+minimaxi                -1 
+number_of_generations	100
+convergence_percentage  0.95
+generations_to_convergence 1
+crossover_probability	1.0
+population_size	    	30
+number_of_populations   1
+mutation_probability	0.05
+replacement_percentage  0.90
+score_frequency		    1
+flush_frequency		    0
+record_diversity        1
+score_filename		    bog.dat
+select_scores		    31	# 1=mean, 2=max, 4=min, 8=dev, 16=div

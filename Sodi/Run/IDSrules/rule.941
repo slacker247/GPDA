@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION gettempdirectory.cfm access ";flags: A+; uricontent:"/cfdocs/snippets/gettempdirectory.cfm"; nocase; reference:bugtraq,550; classtype:attempted-recon; sid:936; rev:1;)

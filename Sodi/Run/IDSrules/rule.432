@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 139 (msg:"NETBIOS nimda RICHED20.DLL"; content:"R|00|I|00|C|00|H|00|E|00|D|00|2|00|0"; flags:A+; classtype:bad-unknown; reference:url,www.datafellows.com/v-descs/nimda.shtml; sid:1295; rev:2;)

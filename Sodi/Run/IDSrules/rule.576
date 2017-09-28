@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN synscan portscan"; id: 39426; flags: SF;reference:arachnids,441; classtype:attempted-recon; sid:630; rev:1;)

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registry install_date="2003-05-09 13:41:23" version="1.1" last_modified="2003-05-09 13:41:32">
+	<products>
+		<product name="Jambalaya" id="9a7896e1-1ec2-11b2-b8eb-bfb9dff51a83" version="1.0.6.0" copyright="2001-2003" info_url="http://www.shrimpviews.com/jambalaya/jambalaya_intro.shtml" support_url="http://www.shrimpviews.com/contact.htm" location="/home/dre/Protege-New" last_modified="2003-05-09 13:41:28">
+		<![CDATA[Jambalaya is a project designed to integrate SHriMP with the Protege tool.  You can view Protege projects directly inside of SHriMP, or alternatively, use SHriMP as an additional view (tab) within Protege.  The latter is preferred, and the former is only included to demonstrate that we can integrate other components within SHriMP.]]>
+			<vendor name="CHISEL / University of Victoria" id="9a789ec8-1ec2-11b2-b8eb-bfb9dff51a83" home_page="http://chisel.cs.uvic.ca/" email="support@shrimpviews.com"/>
+			<feature name="Application" last_modified="2003-05-09 13:41:28">
+			<![CDATA[This installs the application feature.]]>
+				<component ref_id="9a75f5d8-1ec2-11b2-b8de-bfb9dff51a83" version="1.0.0.0" location="/home/dre/Protege-New/JambalayaUninstallerData/Uninstall_Jambalaya"/>
+			</feature>
+		</product>
+	</products>
+	<components>
+		<component id="9a75f5d8-1ec2-11b2-b8de-bfb9dff51a83" version="1.0.0.0" name="Common" location="/home/dre/Protege-New/JambalayaUninstallerData/Uninstall_Jambalaya" vendor="CHISEL / University of Victoria">
+			<resource keyfile="false" name="Jambalaya_1.6_InstallLog.log" location="/home/dre/Protege-New/Jambalaya_1.6_InstallLog.log" type="file" uninstall="true"/>
+			<resource keyfile="false" name="plugins" location="/home/dre/Protege-New/plugins" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="Jambalaya.jar" location="/home/dre/Protege-New/plugins/Jambalaya.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="batik.jar" location="/home/dre/Protege-New/plugins/batik.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="gnu-regexp.jar" location="/home/dre/Protege-New/plugins/gnu-regexp.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="jazz.jar" location="/home/dre/Protege-New/plugins/jazz.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="piccolo.jar" location="/home/dre/Protege-New/plugins/piccolo.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="treemap.jar" location="/home/dre/Protege-New/plugins/treemap.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="xerces.jar" location="/home/dre/Protege-New/plugins/xerces.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Jambalaya" location="/home/dre/Protege-New/Jambalaya" type="directory" uninstall="true">
+			<![CDATA[true]]>
+			</resource>
+			<resource keyfile="false" name="readme.txt" location="/home/dre/Protege-New/Jambalaya/readme.txt" type="file" uninstall="true"/>
+			<resource keyfile="false" name="license.txt" location="/home/dre/Protege-New/Jambalaya/license.txt" type="file" uninstall="true"/>
+			<resource keyfile="false" name="JambalayaUninstallerData" location="/home/dre/Protege-New/JambalayaUninstallerData" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="uninstaller.jar" location="/home/dre/Protege-New/JambalayaUninstallerData/uninstaller.jar" type="file" uninstall="true"/>
+			<resource keyfile="true" name="Uninstall_Jambalaya" location="/home/dre/Protege-New/JambalayaUninstallerData/Uninstall_Jambalaya" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="Uninstall_Jambalaya.lax" location="/home/dre/Protege-New/JambalayaUninstallerData/Uninstall_Jambalaya.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Jambalaya.properties" location="/home/dre/Protege-New/Jambalaya.properties" type="file" uninstall="true"/>
+			<resource keyfile="false" name=".com.zerog.registry.xml" location="/home/dre/Protege-New/JambalayaUninstallerData/.com.zerog.registry.xml" type="file" uninstall="true"/>
+		</component>
+	</components>
+</registry>

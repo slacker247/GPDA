@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC .wwwacl access";flags: A+; uricontent:".www_acl"; nocase; classtype:attempted-recon; sid:1131; rev:1;)

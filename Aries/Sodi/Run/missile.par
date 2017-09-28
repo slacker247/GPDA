@@ -1,0 +1,604 @@
+no_missiles {
+}
+
+missiles {
+  type 2201
+  type 2202
+  type 1201
+  type 1202
+}
+
+2101 {
+  string missile_type SS18
+  string init_position Chunggang-up
+  string final_position Seattle
+  float launch_time 40540.0
+  float apogee 0.0
+  float est_tof 2000.0
+  float random_distance 1.0
+}
+
+1101 {
+  string missile_type SS18
+  string init_position gbi_farm
+  string final_position Chunggang-up
+  float launch_time 41000.0
+  float apogee 0.0
+  float est_tof 2000.0
+  float random_distance 1.0
+}
+
+2102 {
+  string missile_type SS18
+  string init_position Yongo_dong
+  string final_position Portland
+  float launch_time 40560.0
+  float apogee 0.0
+  float est_tof 2000.0
+  float random_distance 1.0
+}
+
+1102 {
+  string missile_type SS18
+  string init_position gbi_farm
+  string final_position Yongo_dong
+  float launch_time 41020.0
+  float apogee 0.0
+  float est_tof 2000.0
+  float random_distance 1.0
+}
+
+2103 {
+  string missile_type SS18
+  string init_position Toksong-gun
+  string final_position San_Francisco
+  float launch_time 40580.0
+  float apogee 0.0
+  float est_tof 2000.0
+  float random_distance 1.0
+}
+
+1103 {
+  string missile_type SS18
+  string init_position gbi_farm
+  string final_position Toksong-gun
+  float launch_time 41040.0
+  float apogee 0.0
+  float est_tof 2000.0
+  float random_distance 1.0
+}
+
+2201 {
+  string missile_type SS18
+  string init_position Chunggang-up
+  string final_position Seattle
+  float launch_time 41140.0
+  float apogee 0.0
+  float est_tof 2000.0
+  float random_distance 1.0
+}
+
+1201 {
+  string missile_type SS18
+  string init_position gbi_farm
+  string final_position Chunggang-up
+  float launch_time 41600.0
+  float apogee 0.0
+  float est_tof 2000.0
+  float random_distance 1.0
+}
+
+2202 {
+  string missile_type SS18
+  string init_position Yongo_dong
+  string final_position Portland
+  float launch_time 41160.0
+  float apogee 0.0
+  float est_tof 2000.0
+  float random_distance 1.0
+}
+
+1202 {
+  string missile_type SS18
+  string init_position gbi_farm
+  string final_position Yongo_dong
+  float launch_time 41620.0
+  float apogee 0.0
+  float est_tof 2000.0
+  float random_distance 1.0
+}
+
+1001 {
+  string missile_type SS18
+  string init_position sub1
+  string final_position Chunggang-up
+  float launch_time 40800.0
+  float apogee 0.0
+  float est_tof 2000.0
+  float random_distance 1.0
+}
+
+sub1 {
+  logical north T
+  logical east T
+  float lat_deg 20.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 125.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+gbi_farm {
+  logical north T
+  logical east F
+  float lat_deg 58.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 155.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Yongo_dong {
+  logical north T
+  logical east T
+  float lat_deg 42.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 129.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Chunggang-up {
+  logical north T
+  logical east T
+  float lat_deg 41.0
+  float lat_min 46.0
+  float lat_sec 0
+  float lon_deg 126.0
+  float lon_min 53.0
+  float lon_sec 0
+}
+
+P-Chunggang-up {
+  logical north T
+  logical east T
+  float lat_deg 41.0
+  float lat_min 46.0
+  float lat_sec 0
+  float lon_deg 113.0
+  float lon_min 53.0
+  float lon_sec 0
+}
+
+Toksong-gun {
+  logical north T
+  logical east T
+  float lat_deg 40.0
+  float lat_min 25.0
+  float lat_sec 0
+  float lon_deg 128.0
+  float lon_min 10.0
+  float lon_sec 0
+}
+
+No-dong {
+  logical north T
+  logical east T
+  float lat_deg 40.0
+  float lat_min 50.0
+  float lat_sec 0
+  float lon_deg 129.0
+  float lon_min 40.0
+  float lon_sec 0
+}
+
+Krutogorova {
+  logical north T
+  logical east T
+  float lat_deg 55.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 156.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Washington_DC {
+  logical north T
+  logical east F
+  float lat_deg 38.5
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 77.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+Cheyenne_Mountain {
+  logical north T
+  logical east F
+  float lat_deg 38.55
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 104.5
+  float lon_min 0
+  float lon_sec 0
+}
+
+Huntsville {
+  logical north T
+  logical east F
+  float lat_deg 34.44
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 86.36
+  float lon_min 0
+  float lon_sec 0
+}
+
+New_York {
+  logical north T
+  logical east F
+  float lat_deg 40.4
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 73.58
+  float lon_min 0
+  float lon_sec 0
+}
+
+Portland {
+  logical north T
+  logical east F
+  float lat_deg 45.31
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 122.41
+  float lon_min 0
+  float lon_sec 0
+}
+
+Jacksonville {
+  logical north T
+  logical east F
+  float lat_deg 30.2
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 81.4
+  float lon_min 0
+  float lon_sec 0
+}
+
+Los_Angeles {
+  logical north T
+  logical east F
+  float lat_deg 34.03
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 118.14
+  float lon_min 0
+  float lon_sec 0
+}
+
+Santa_Fe {
+  logical north T
+  logical east F
+  float lat_deg 35.4
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 106.0
+  float lon_min 0
+  float lon_sec 0
+}
+
+San_Francisco {
+  logical north T
+  logical east F
+  float lat_deg 37.45
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 122.26
+  float lon_min 0
+  float lon_sec 0
+}
+
+Chicago {
+  logical north T
+  logical east F
+  float lat_deg 41
+  float lat_min 53
+  float lat_sec 0
+  float lon_deg 87
+  float lon_min 40
+  float lon_sec 0
+}
+
+Colorado_Springs {
+  logical north T
+  logical east F
+  float lat_deg 38
+  float lat_min 55
+  float lat_sec 0
+  float lon_deg 104
+  float lon_min 50
+  float lon_sec 0
+}
+
+Atlanta {
+  logical north T
+  logical east F
+  float lat_deg 33
+  float lat_min 50
+  float lat_sec 0
+  float lon_deg 84
+  float lon_min 24
+  float lon_sec 0
+}
+
+St_Louis {
+  logical north T
+  logical east F
+  float lat_deg 38
+  float lat_min 40
+  float lat_sec 0
+  float lon_deg 90
+  float lon_min 12
+  float lon_sec 0
+}
+
+Boston {
+  logical north T
+  logical east F
+  float lat_deg 42
+  float lat_min 20
+  float lat_sec 0
+  float lon_deg 71
+  float lon_min 0
+  float lon_sec 0
+}
+
+Seattle {
+  logical north T
+  logical east F
+  float lat_deg 47
+  float lat_min 41
+  float lat_sec 0
+  float lon_deg 122
+  float lon_min 15
+  float lon_sec 0
+}
+
+Detroit {
+  logical north T
+  logical east F
+  float lat_deg 42
+  float lat_min 23
+  float lat_sec 0
+  float lon_deg 83
+  float lon_min 5
+  float lon_sec 0
+}
+
+Denver {
+  logical north T
+  logical east F
+  float lat_deg 39
+  float lat_min 45
+  float lat_sec 0
+  float lon_deg 105
+  float lon_min 0
+  float lon_sec 0
+}
+
+Philadelphia {
+  logical north T
+  logical east F
+  float lat_deg 40
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 75
+  float lon_min 10
+  float lon_sec 0
+}
+
+Houston {
+  logical north T
+  logical east F
+  float lat_deg 29
+  float lat_min 50
+  float lat_sec 0
+  float lon_deg 95
+  float lon_min 20
+  float lon_sec 0
+}
+
+Tel_Aviv {
+  logical north T
+  logical east T
+  float lat_deg 32.03
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 34.46
+  float lon_min 0
+  float lon_sec 0
+}
+
+Jerusalem {
+  logical north T
+  logical east T
+  float lat_deg 31.46
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 35.14
+  float lon_min 0
+  float lon_sec 0
+}
+
+Baghdad {
+  logical north T
+  logical east T
+  float lat_deg 33
+  float lat_min 20
+  float lat_sec 0
+  float lon_deg 44
+  float lon_min 30
+  float lon_sec 0
+}
+
+Peta_Tiqwa {
+  logical north T
+  logical east T
+  float lat_deg 32
+  float lat_min 6
+  float lat_sec 0
+  float lon_deg 34
+  float lon_min 53
+  float lon_sec 0
+}
+
+Kirkuk {
+  logical north T
+  logical east T
+  float lat_deg 35
+  float lat_min 30
+  float lat_sec 0
+  float lon_deg 44
+  float lon_min 21
+  float lon_sec 0
+}
+
+Al_Basra {
+  logical north T
+  logical east T
+  float lat_deg 30
+  float lat_min 30
+  float lat_sec 0
+  float lon_deg 47
+  float lon_min 50
+  float lon_sec 0
+}
+
+Ar_Rutbah {
+  logical north T
+  logical east T
+  float lat_deg 33
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 40
+  float lon_min 15
+  float lon_sec 0
+}
+
+Al_Jawf {
+  logical north T
+  logical east T
+  float lat_deg 29
+  float lat_min 55
+  float lat_sec 0
+  float lon_deg 39
+  float lon_min 40
+  float lon_sec 0
+}
+
+Pyongyang {
+  logical north T
+  logical east T
+  float lat_deg 39
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 125
+  float lon_min 30
+  float lon_sec 0
+}
+
+Hakodate {
+  logical north T
+  logical east T
+  float lat_deg 41
+  float lat_min 45
+  float lat_sec 0
+  float lon_deg 140
+  float lon_min 44
+  float lon_sec 0
+}
+
+Tokyo {
+  logical north T
+  logical east T
+  float lat_deg 35
+  float lat_min 45
+  float lat_sec 0
+  float lon_deg 139
+  float lon_min 45
+  float lon_sec 0
+}
+
+Kyoto {
+  logical north T
+  logical east T
+  float lat_deg 35
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 135
+  float lon_min 45
+  float lon_sec 0
+}
+
+Osaka {
+  logical north T
+  logical east T
+  float lat_deg 34
+  float lat_min 40
+  float lat_sec 0
+  float lon_deg 135
+  float lon_min 30
+  float lon_sec 0
+}
+
+Yokohama {
+  logical north T
+  logical east T
+  float lat_deg 35
+  float lat_min 27
+  float lat_sec 0
+  float lon_deg 139
+  float lon_min 28
+  float lon_sec 0
+}
+
+Hitachi {
+  logical north T
+  logical east T
+  float lat_deg 36
+  float lat_min 36
+  float lat_sec 0
+  float lon_deg 140
+  float lon_min 39
+  float lon_sec 0
+}
+
+Nagasaki {
+  logical north T
+  logical east T
+  float lat_deg 32
+  float lat_min 47
+  float lat_sec 0
+  float lon_deg 129
+  float lon_min 50
+  float lon_sec 0
+}
+
+Hiroshima {
+  logical north T
+  logical east T
+  float lat_deg 34
+  float lat_min 24
+  float lat_sec 0
+  float lon_deg 132
+  float lon_min 30
+  float lon_sec 0
+}
+

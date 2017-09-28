@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 10080:10081 (msg:"SCAN Amanda client version"; content:"Amanda"; nocase; classtype:attempted-recon; sid:634; rev:1;)

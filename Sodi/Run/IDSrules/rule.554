@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 514 (msg:"RSERVICES rlogin froot";flags: A+; content:"-froot|00|"; reference:arachnids,387; classtype:attempted-admin; sid:609; rev:1;)

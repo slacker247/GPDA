@@ -1,0 +1,1033 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <memory.h>
+#include <math.h> 
+#include <time.h>
+#include <signal.h>
+#include <sys/ioctl.h>
+/*
+ *   Include the network/socket stuff
+*/
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <string.h>
+#include <unistd.h>
+#include <stream.h>
+#include <rpc/xdr.h>
+#define SIGCHILD SIGCLD 
+
+#include "GL/gl.h"
+#include "GL/glu.h"
+#include "GL/glx.h"
+#include "GL/gltk.h"
+#include "glfont.h"
+#include "gl.C"
+
+//#include "def.H"
+#include "DataParser.H"         // 'speedes.par' file parser
+#include "GR_Interface.H"
+#include "convert.H"
+
+#include "forms.h"
+#include "PATforms.h"
+
+/* -------------------------------------------------------------------------------- */
+
+#define v3f           glVertex3f
+
+#define PAT_DEM       0
+#define PAT_ROAD      1
+#define PAT_RAIL      2
+#define PAT_PIPE      3
+#define PAT_LAND      4
+#define PAT_BNDR      5
+#define PAT_HYDR      6
+#define PAT_LUSE      7
+ 
+#define FRIEND        0
+#define HOSTILE       1
+#define UNKNOWN       2
+
+#define DEGRAD        57.29577951308232
+#define RADDEG        0.0174532925199432958
+#define RE            6237.0
+
+#define DEBUG         FALSE
+
+#define MAXSTNS       20
+#define MAXRTNS       100  
+
+/* -------------------------------------------------------------------------------- */
+
+typedef struct {
+FL_FORM         *form;
+FL_OBJECT       *canvas;
+FL_OBJECT       *done;
+FL_OBJECT       *menu;
+FL_OBJECT       *butgrp;
+void            *vdata;
+long            ldata;
+} FD_form;
+
+typedef struct {
+int             listid;
+float           Xpos;
+float           Ypos;
+float           Zpos;
+float           Speed;
+} Air;
+
+typedef struct {
+int             plottype;                      // See above
+int             globeview;                     // Tangential or normal
+ 
+float           eye[3];                        // Eye point
+float           eyeBias,eyeDist,eyeAz,eyeEl;   // More Eye point info
+float           look[3];                       // Point being looked at
+float           up[3];                         // Up vector
+float           scale[3];                      // Scale factor
+float           rotate[3];                     // Rotation factor
+float           translate[3];                  // Translation factor
+float           lookBias;                      // Amount to change viewpoint by
+float           z_bias, z_scale;               // Z axis offset and exaggeration
+float           near, far;                     // Near and far clipping planes
+float           aspect;                        // Aspect ratio (for perspective)
+float           fov;                           // Field of View (for globe)
+float           azimuth;                       // Azimuth of look angle (for globe)
+float           elevation;                     // Elevation of angle of look
+} VIEWING;
+
+typedef struct {
+  int              id;                  // Track ID
+  int              stn;                 // Reporting asset
+  int              istn;                // Intercepting asset
+  int              icon;                // Model # to display
+  int              type;                //
+  int              dropped;             // Number of 'drop track' msg this track has received
+  int              labeled;             // This track has been labelled
+  float            X[3];                // Track location in meters from center of earth
+  float            V[3];                // Track velocity in Km/sec
+  float            latitude;            // Track location in degrees latitude
+  float            longitude;           // Track location in degrees longitude
+  float            altitude;            // Track location in meters altitude
+  float            speed;               // Track speed in Km/sec
+  float            heading;             // Track heading in degrees from North
+  float            impact_tim;          // Estimated time of impact
+  float            impact_lat;          // Estimated impact latitude
+  float            impact_lon;          // Estimated impact longitude
+  float            impact_spd;          // Estimated speed on impact
+  float            impact_err;
+  float            iltime;              // Intercept launch time
+  float            itime;               // Time at intercept
+  float            old_x;
+  float            old_y;
+  float            old_z;
+  int              red;                 // Red component of trail RGB color
+  int              green;               // Green component of trail RGB color
+  int              blue;                // Blue component of trail RGB color
+  char             chmsg[8];            // Message type when RTN 1st encountered
+  char             weapon[8];           // Targeting Weapon System
+  char             engage[8];           // Targeting Weapon Engagement Status
+  char             chmarking[16];       // Marking when RTN 1st encountered
+  char             chstatus[16];        // Current RTN status (In-Flight or Dropped)
+  char             chcolor[16];         // X color name of trail color
+} TRACK;       
+
+typedef struct {
+   short           r;
+   short           g;
+   short           b;
+   int             icon;
+} TRAIL;
+
+/* -------------------------------------------------------------------------------- */
+
+static int      prim = GL_POLYGON ;
+
+VIEWING         current_view;
+//
+//   Run-time parameter stuff
+//
+FILE            *infile;
+FILE            *trakfile;
+const char      filename[48] = { "8.xpm" };
+unsigned        xpmwidth, xpmheight;
+int             xpmhotx=0, xpmhoty=0;
+char            *xpmpixmap;
+int             timeoutid, airtimeoutid;
+int             plotlast;
+int             showaircraft = 0;
+char            settext[24];
+int             inventory[8] = { 8, 12, 14, 5, 16, 2, 9, 3 };
+int             PATrun = FALSE;
+int             n_rtns     = 0;
+int             trkindex   = -1;
+int             n_gispobjs = 0;
+int             n_dispobjs = 0;
+int             n_records  = 0;
+int             SOCKOUT;
+char            *INPUTSRC;
+char            *BITMAPDIR;
+TRACK           trackobj[100];
+TRAIL           rtninfo[MAXRTNS]; 
+
+Boolean         LABELTRACK;                  // Label tracks if TRUE
+
+char            xpmfiles[10][8] = { "0.xpm", "1.xpm", "2.xpm", "3.xpm", "4.xpm",
+                                    "5.xpm", "6.xpm", "7.xpm", "8.xpm", "9.xpm" };
+char            chfile[128];
+
+float           XMinX, XMaxX, YMinY, YMaxY;
+float           XLEFT, XRITE, YBOT, YTOP;
+float           XMIN,  XMAX,  YMIN, YMAX; 
+int             LT;
+int             terrainid, featureid;
+int             plotid = 0;
+int             aircount;
+GLint           tfogmode;
+GLuint          airlist, backlist;
+GLfloat         tfogColor[4] = { 0.3, 0.4, 0.5, 1.0 };
+//
+//   Network socket stuff
+//
+int             msgsock;
+int             sock;
+int             portid;
+char            *hostid;
+//char            hostid[16];
+struct sockaddr_in server, client;
+socklen_t       server_len, client_len;
+//
+//   Run-time forms stuff
+//
+FD_PATcontrol   *fd_PATcontrol;
+FD_ECStatus     *fd_ECStatus;
+Window          ogl_win;
+FL_OBJECT       *ipipm;
+Pixmap          LCDigit[10];
+Pixmap          xpmmask;
+FL_COLOR        tran;
+
+/* switch single/dblbuffer */
+static int sbuf[]= {GLX_RGBA,GLX_DEPTH_SIZE,1,
+                     GLX_RED_SIZE,1,GLX_GREEN_SIZE,1,GLX_BLUE_SIZE,1,None};
+
+static int dbuf[]= {GLX_RGBA,GLX_DEPTH_SIZE,1,
+                    GLX_RED_SIZE,1,GLX_GREEN_SIZE,1,GLX_BLUE_SIZE,1,
+                    /*GLX_DOUBLEBUFFER,*/ None};
+
+C_CONVERT       conversion;
+
+/* -------------------------------------------------------------------------------- */
+
+int  exposeCB(FL_OBJECT *ob, Window win, int w, int h, XEvent *xev, void *ud);
+int  buttonpress_cb(FL_OBJECT *ob, Window win, int w, int h, XEvent *xev, void *ud);
+void redraw();
+void switch_primitive(FL_OBJECT *ob, long data);
+void buffer_cb(FL_OBJECT *ob, long data);
+void todCB(int i0, void *data);
+
+void IdleCB(int tid, void *stuff);
+int  IdleWP(XEvent *ev, void *data); 
+
+//callback events for opengl canvas
+int exposeCB(FL_OBJECT *ob, Window win, int w, int h, XEvent *xev, void *ud);
+int buttonpressCB(FL_OBJECT *ob, Window win, int w, int h, XEvent *xev, void *ud);
+ 
+//draw to opengl canvas
+void draw();
+
+extern "C" void gropen_();
+extern "C" void grclos_();
+extern "C" void getset_(float *XLEFT, float *XRITE, float *YBOT, float *YTOP,
+                        float *XMIN,  float *XMAX,  float *YMIN, float *YMAX, int *LT);
+extern "C" void demplot_(char *fname, int *flag);
+extern "C" void dlgplot_(char *fname, int *flag);
+/*
+extern void load_model(char *f, long type, int list);
+extern void drawfrac(int *terrainid, float *MinX, float *MaxX, float *MinY, float *MaxY);
+*/
+void Net_init(int port, char *host);
+void Net_write(char *buf, int bytes);
+int  Net_read(char *buf, int bufsize);
+void Net_close();
+
+/* ------------------------------------------------------------------------------- */
+
+int main(int argc, char *argv[])
+{
+int             i;
+
+   fl_initialize(&argc, argv, "Patriot", 0, 0);
+   fd_PATcontrol = create_form_PATcontrol();
+   fd_ECStatus = create_form_ECStatus();
+
+   //fl_set_form_icon(fd_ECStatus->ECStatus, LCDigit[8], xpmmask);
+
+   fl_add_canvas_handler(fd_PATcontrol->canvas, Expose,      exposeCB, 0);
+   fl_add_canvas_handler(fd_PATcontrol->canvas, ButtonPress, buttonpressCB, 0);
+/*
+ *    Process the track color scheme file
+ *    -----------------------------------
+*/
+   n_rtns = 0;
+   if ((trakfile = fopen("scheme.dat", "r+")) != NULL) {
+      fscanf(trakfile, "%d\n", &n_rtns);
+      if (n_rtns > MAXRTNS) {
+    fprintf(stderr, " Warning: Number of RTNs must be < %d\n", MAXRTNS+1);
+        n_rtns = MAXRTNS;
+      }
+      for (i=0; i<n_rtns; i++) {
+         fscanf(trakfile, "%d %hd %hd %hd\n", &rtninfo[i].icon,
+                &rtninfo[i].r, &rtninfo[i].g, &rtninfo[i].b);
+      }
+      fclose(trakfile);
+   } else fprintf(stderr, " Warning: No Color Scheme file loaded!!!\n");
+/*
+ *    Open the input data stream
+ *    --------------------------
+*/
+   if ((infile = fopen("korea.jdn", "r+")) == NULL) {
+      perror(filename);
+   }
+   /*
+   DATA_PARSER gispparser("graphics.par");
+                gispparser.GoTo("display", NULL);
+   INPUTSRC   = gispparser.GetString("input_source");
+   LABELTRACK = gispparser.GetLogical("label_track");
+
+   SOCKOUT = FALSE;
+   if (strcmp(INPUTSRC, "Socket") == 0) SOCKOUT = TRUE;
+   if (SOCKOUT) {
+                  gispparser.GoTo("input", NULL);
+      portid    = gispparser.GetInt("portid");
+      hostid    = gispparser.GetString("hostid");
+      Net_init(portid, hostid);                 // Initialize the socket connections
+   }
+   */
+   if ((BITMAPDIR=getenv("BITMAPDIR")) == NULL) {
+        BITMAPDIR = "./BitMaps";
+   }
+ 
+   fl_show_form(fd_PATcontrol->PATcontrol,FL_PLACE_CENTER,FL_FULLBORDER,"Patriot");
+
+   fl_set_idle_callback(IdleWP, 0);
+
+   fl_do_forms();
+
+   return 0;
+}
+
+int IdleWP(XEvent *ev, void *data)
+{
+short           rgb[3];
+int             i, icontype, id, irandom, indx; 
+int             hold1, hold2;
+int             imsg, tgtid;
+int             drop, stn, incolor;
+int             trkid_S, trkid_A, trkid_E;
+int             id_found   = FALSE;
+int             xdrsize;
+int             xferbytes;  
+float           orient, major, minor;
+float           Xlat, Xlon, Xalt;
+float           tadilj_time;
+double          lat, lon;
+double          X[3], V[3];
+double          sloc[3], tloc[3]; 
+char            buffer[180];
+char            outbuf[8];
+char            chline[80];
+char            chmsgno[8];
+char            chmark[40];
+char            chmsgtyp;
+char            chident[40];
+char            idtext[8];
+char            chsrc[8], chdst[8];
+char            xdrbuf[180];
+char            buf[180];
+
+
+   if (!PATrun) return(0);
+
+   //incount = Net_read(xdrbuf, 2000, &client, &Lclient); // Wait for a message from BP
+
+   //if (incount > 0) {
+   fgets(buffer, sizeof(buffer), infile);
+   if (feof(infile)) {
+      fprintf(stderr, "  --- End of data encountered reading input file. ---\n");
+      rewind(infile);
+      fclose(infile);
+      if (SOCKOUT) {
+         sprintf(xdrbuf, "%c", "\0");
+         Net_write(xdrbuf, 1);
+         Net_close();
+      }
+      PATrun = FALSE;
+      return TRUE;
+   }
+   //
+   // The data we are waiting for has arrived
+   //
+   sscanf(buffer, "%f %c %s %d %d %d %o %f %f %f %s %d %f %f %f",
+         &tadilj_time, &chmsgtyp, chmsgno,
+         &trkid_S, &trkid_A, &trkid_E, &stn, &Xlat, &Xlon, &Xalt,
+         chmark, &incolor, &orient, &major, &minor);
+   n_records = n_records+1;
+
+   if (DEBUG)
+      fprintf(stderr, "[%d] %f %c %s %d %d %d %o %f %f %f %s %d %f %f %f\n",
+              n_records, tadilj_time, chmsgtyp, chmsgno,
+              trkid_S, trkid_A, trkid_E, stn, Xlat, Xlon, Xalt,
+              chmark, incolor, orient, major, minor);
+
+   if (SOCKOUT) {
+      sprintf(xdrbuf, "%8s %8s %d %d %s\n", "Patriot ", "JTAMV   ", 0, 0, buffer);
+      //fprintf(stderr, "Buffer count is %d\n", strlen(xdrbuf) );
+      //fprintf(stderr, "%s\n", xdrbuf); 
+      xdrsize = strlen(xdrbuf);
+      //fprintf(stderr, "Send request. Byte count is %d\n", xdrsize);
+      Net_write(xdrbuf, xdrsize);
+      //xferbytes = Net_read((char *)buf, 200);
+   }
+
+   if (fabs(Xlat) <= 90.0) {          // Input is lat/lon/alt
+      lat = Xlat*M_PI/180.0;             // Convert input degrees latitude to radians
+      lon = Xlon*M_PI/180.0;             // Convert input degrees longitude to radians
+      Xalt = Xalt/1000.0;                // Convert input meters altitude to kilometers
+      conversion.lla_to_xyz(lat, lon, Xalt, X);     // Get the (X,Y,Z) values
+   } else {                           // Input is (X, Y, Z)
+      X[0] = (Xlat/1000.0);              // Convert input meters X to kilometers
+      X[1] = (Xlon/1000.0);              // Convert input meters Y to kilometers
+      X[2] = (Xalt/1000.0);              // Convert input meters Z to kilometers
+      conversion.xyz_to_latlon(X, lat, lon);          // Get the lat/lon values
+      Xlat = lat*180.0/M_PI;
+      Xlon = lon*180.0/M_PI;
+      Xalt = sqrt(X[0]*X[0]+X[1]*X[1]+X[2]*X[2])-RE;  // Get the alt value
+   }
+//
+//   When we get here, we have: lat/lon/alt in degrees/degrees/kilometers above sealevel
+//                              X, Y and Z in kilometers from center of earth
+//
+   V[0] = 0.0;
+   V[1] = 0.0;
+   V[2] = 0.0;
+//
+//   Find the track index, if it exists in the table
+//
+   id = trkid_E;
+   id_found = FALSE;
+   for (i=0; i<n_gispobjs; i++) {
+      if (id == trackobj[i].id) {
+         id_found = TRUE;
+         trkindex = i;
+         break;
+      }
+   } 
+//
+//   Track id not in table, put it in
+//
+   if (!id_found) {
+     trkindex = n_gispobjs;
+     fprintf(stderr, "TRACKS:  Putting track %d at index %d\n", id, trkindex);
+     trackobj[trkindex].id = id;
+     trackobj[trkindex].icon = rtninfo[incolor].icon;
+     trackobj[trkindex].dropped = 0;
+     trackobj[trkindex].labeled = LABELTRACK;
+     trackobj[trkindex].iltime = 0.0;
+     strncpy(trackobj[trkindex].weapon, "Unknown", 8);
+     strncpy(trackobj[trkindex].engage, "Unknown", 8);
+     strncpy(trackobj[trkindex].chmsg, chmsgno, 8);
+     strncpy(trackobj[trkindex].chmarking, chmark, 15);
+     strncpy(trackobj[trkindex].chstatus, "In-Flight", 15);
+
+     if (LABELTRACK) {
+        glPushMatrix();
+        glColor3f(1.0, 1.0, 1.0);
+	glTranslatef(lon, lat, 0.0);
+        sprintf(buf, "%d", id);
+        glRasterPos2f(lon, lat);
+        glScalef(0.01, 0.01, 0.01);
+        glfontPrint(buf);
+        glPopMatrix();
+     } 
+ 
+     n_gispobjs = n_gispobjs + 1;
+   }
+//
+//   Initialize some variables
+//
+   trackobj[trkindex].stn = stn;                        // Set tracking STN
+   trackobj[trkindex].speed = orient;                   // Set Speed of track object
+   trackobj[trkindex].X[0] = X[0];
+   trackobj[trkindex].X[1] = X[1];
+   trackobj[trkindex].X[2] = X[2];
+   trackobj[trkindex].V[0] = V[0];
+   trackobj[trkindex].V[1] = V[1];
+   trackobj[trkindex].V[2] = V[2];
+   trackobj[trkindex].latitude  = Xlat;
+   trackobj[trkindex].longitude = Xlon;
+   trackobj[trkindex].altitude  = Xalt;
+
+   if (trackobj[trkindex].old_x != 0.0) {
+      sloc[0] = trackobj[trkindex].old_y/RE;
+      sloc[1] = trackobj[trkindex].old_z/RE;
+      sloc[2] = trackobj[trkindex].old_x/RE;
+      tloc[0] = X[1]/RE;
+      tloc[1] = X[2]/RE;
+      tloc[2] = X[0]/RE;
+      rgb[0] = rtninfo[incolor].r;
+      rgb[1] = rtninfo[incolor].g;
+      rgb[2] = rtninfo[incolor].b;
+
+      glColor3f((float)rgb[0]/255.0, (float)rgb[1]/255.0, (float)rgb[2]/255.0);
+      glBegin(GL_LINES);
+        glVertex2f(trackobj[trkindex].old_x, trackobj[trkindex].old_y);
+        glVertex2f(lon, lat);
+      glEnd();
+      glFlush();
+      glXSwapBuffers(fl_display, fl_get_canvas_id(fd_PATcontrol->canvas));
+   }
+   //
+   //   Save the current location for old time sake
+   //
+   trackobj[trkindex].old_x = lon; //X[0];
+   trackobj[trkindex].old_y = lat; //X[1];
+   trackobj[trkindex].old_z = X[2];
+   //}
+   if (SOCKOUT) {
+      xferbytes = Net_read((char *)buf, 200);
+   }
+ 
+   return (0);
+} 
+
+char *
+strnfill(char *dest, char *src, int n)
+{
+int             i;
+
+   for (i=0; i<n; i++) dest[i] = ' ';
+
+   for (i=0; i<strlen(src); i++) dest[i] = src[i];
+
+   return(dest);
+}
+
+void draw()
+{
+char            *fileName = 0;
+char            *DATADIR;
+char            mapfile[128];
+float           point[3], scale;
+int             vpwindW, vpwindH;
+int             viewport[4];
+int             i, iflag;
+char            filename[80];
+float           assetlat, assetlon, assetalt, assethead;
+static int      PATglInit = FALSE;
+
+   if(!fd_PATcontrol->PATcontrol->visible  || !fd_PATcontrol->canvas->visible)
+      return;
+
+   glXMakeCurrent(fl_display, fl_get_canvas_id(fd_PATcontrol->canvas),
+                  fl_get_glcanvas_context(fd_PATcontrol->canvas)); 
+   fl_get_winsize(fl_get_canvas_id(fd_PATcontrol->canvas), &vpwindW, &vpwindH);
+   glViewport(0, 0, vpwindW, vpwindH);
+
+   if (!PATglInit) {
+      glMatrixMode(GL_PROJECTION);
+      glLoadIdentity();
+      gluOrtho2D(0.0, vpwindW, 0.0, vpwindH);
+      glMatrixMode(GL_MODELVIEW);
+      glLoadIdentity();
+      glfontMake(GL_ALLFONTS);        // Build the fonts
+      glfontSet(GL_STROKE);
+      backlist = glGenLists(1);       // Setup the background map display list
+      airlist = glGenLists(400);      // Save 400 Display Lists for the models
+      aircount = 0;
+
+      glClearColor(1.0, 0.0, 0.0, 0.0);
+      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+      glNewList(backlist, GL_COMPILE_AND_EXECUTE);
+
+        gropen_();
+
+        iflag = 1;
+        if ((DATADIR = getenv("DATADIR")) == NULL) {
+           DATADIR = "../RSD_Data";
+        }
+
+        strnfill(filename, "./DEM/platte.dem", 64);
+        demplot_(filename, &iflag);
+        strnfill(filename, "./DLG/platroad.dlg", 64);
+        dlgplot_(filename, &iflag);
+        strnfill(filename, "./DLG/platrail.dlg", 64);
+        dlgplot_(filename, &iflag);
+        strnfill(filename, "./DLG/platpipe.dlg", 64);
+        dlgplot_(filename, &iflag);
+        strnfill(filename, "./DLG/platland.dlg", 64);
+        dlgplot_(filename, &iflag);
+        strnfill(filename, "./DLG/platbndr.dlg", 64);
+        dlgplot_(filename, &iflag);
+        strnfill(filename, "./DLG/plathydr.dlg", 64);
+        dlgplot_(filename, &iflag);
+
+        getset_(&XLEFT, &XRITE, &YBOT, &YTOP,
+		&XMIN,  &XMAX,  &YMIN, &YMAX, &LT);
+        //grclos_();
+      glEndList();
+
+      PATglInit = TRUE;               // We've been through this code once already
+   }
+  
+/*
+*   Tell the world we are busy for a while
+*/
+   fl_set_cursor(ogl_win, XC_watch);
+   //
+   glClearColor(1.0, 0.0, 0.0, 0.0);
+   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+   //
+   //   Draw the background
+   //  
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+   gluOrtho2D((GLdouble)XMIN, (GLdouble)XMAX, (GLdouble)YMIN, (GLdouble)YMAX);
+   glMatrixMode(GL_MODELVIEW);
+   glLoadIdentity();
+   glCallList(backlist);
+   //
+   //   Draw the aircraft
+   //
+
+   //
+   //   Draw the missile tracks
+   //
+   //glLineWidth(2);
+   //
+   //   Finish up
+   //
+   glFlush();
+   glXSwapBuffers(fl_display, fl_get_canvas_id(fd_PATcontrol->canvas));
+
+   fl_reset_cursor(ogl_win);
+}
+
+void globe3dCB(FL_OBJECT *object, long item_no)
+{
+int             item = 0;
+int             pid;
+
+   if (fl_mouse_button() == FL_RIGHTMOUSE) {
+     switch (pid = fork()) {
+     case 0:
+       execlp("jtamved", "jtamved", NULL);
+       perror("jtamved");
+       exit (255);
+       break;
+     case -1:
+       printf("Child process startup failed. PID = %d\n", pid);
+       break;
+     }
+   } else {
+     switch (pid = fork()) {
+     case 0:
+       execlp("jtamv", "jtamv", NULL);
+       perror("jtamv");
+       exit (255);
+       break;
+     case -1:
+       printf("Child process startup failed. PID = %d\n", pid);
+       break;
+     }
+   }
+
+   return;
+}
+
+int
+exposeCB(FL_OBJECT *ob, Window win, int w, int h, XEvent *xev, void *ud)
+{
+static int entered = FALSE;
+
+    if(!fd_PATcontrol->PATcontrol->visible  || !fd_PATcontrol->canvas->visible)
+      return 0;
+
+    ogl_win = win;
+    fl_activate_glcanvas(fd_PATcontrol->canvas);
+
+    draw();
+
+    return 0;
+}
+
+int
+buttonpressCB(FL_OBJECT *ob, Window win, int w, int h, XEvent *xev, void *ud)
+{
+static int suspended;
+
+   suspended = (suspended + 1) % 2;
+   //fl_set_idle_callback(suspended ? 0:idle_cb,0);
+   return 0;
+}
+
+void
+switch_primitive(FL_OBJECT *ob, long data)
+{
+static int primitive[] = { GL_POLYGON, GL_LINE_LOOP};
+static int i;
+
+    prim = primitive[++i%2];
+}
+
+void
+buffer_cb(FL_OBJECT *ob, long data)
+{
+static int is_double = 1;
+
+    is_double = !is_double;
+    fl_set_object_label(ob,is_double ? "Single":"Double");
+    fl_set_glcanvas_attributes(fd_PATcontrol->canvas, is_double ?dbuf:sbuf);
+}
+
+/* -------------------------------------------------------------------------------- */
+
+void
+Net_init(int portid, char *host)
+{
+   struct hostent *hp = gethostbyname(host);
+   if (hp == NULL) {
+      fprintf(stderr, "%s: unknown host", host); exit(2);
+   }
+     
+   server.sin_family = AF_INET;
+   server.sin_port = htons(portid);
+   memmove(&server.sin_addr, hp->h_addr, hp->h_length);
+
+   sock = socket(AF_INET, SOCK_DGRAM, 0);           /* Create socket */
+   if (sock < 0) {
+      perror("opening stream socket"); exit(1);
+   }
+   client.sin_family = AF_INET;
+   client.sin_addr.s_addr = htonl(INADDR_ANY);
+   client.sin_port = htons(0);
+
+   if (bind(sock, (struct sockaddr *)&client, sizeof(client)) < 0) {
+      perror("Client bind "); exit(4);
+   }
+}
+
+void
+Net_write(char *buf, int bytes)
+{    
+   server_len = sizeof(server);
+   if (sendto(sock, buf, bytes, 0, (struct sockaddr *)&server, server_len) < 0) {
+      perror("writing on stream socket"); close(sock); exit(1);
+   }
+}
+
+int
+Net_read(char *buf, int bufsize)
+{
+int  rval;
+
+   memset(buf, 0, bufsize);
+   rval = recvfrom(sock, buf, bufsize, 0, (struct sockaddr *)&server, &server_len); 
+   if (rval < 0) {
+	perror("reading stream message"); close(sock); exit(1);
+   }
+   if (rval == 0) {
+	fprintf(stderr, "SimCmdr has exited.\n");
+   }
+   return (rval);
+}
+
+void
+Net_close()
+{
+   close(sock);
+}
+
+/* -------------------------------------------------------------------------------- */
+
+void consoleCB(FL_OBJECT *ob, long data)
+{
+  /* fill-in code for callback */
+}
+
+void tabCB(FL_OBJECT *ob, long data)
+{
+  /* fill-in code for callback */
+}
+
+void situationCB(FL_OBJECT *ob, long data)
+{
+int      item, iflag;
+
+   item = (int)data;
+   switch (item) {
+      case 0:
+        //maptypeCB(ob, 1);
+        break;
+
+      case 3:
+        //maptypeCB(ob, 2);
+        break;
+
+      case 9:
+        break;
+
+      case 11:
+        break;
+
+      case 21:
+        LABELTRACK = TRUE;
+        break;
+
+      case 22:
+        PATrun = TRUE;
+        break;
+
+      case 24:
+        draw();
+        break;
+
+      default:
+        break;
+   }
+}
+
+void acknowCB(FL_OBJECT *ob, long data)
+{
+  /* fill-in code for callback */
+}
+
+void trackCB(FL_OBJECT *ob, long data)
+{
+
+}
+
+void systemCB(FL_OBJECT *ob, long data)
+{
+  /* fill-in code for callback */
+}
+
+void engageCB(FL_OBJECT *ob, long data)
+{
+  /* fill-in code for callback */
+}
+
+void powerCB(FL_OBJECT *ob, long data)
+{
+  /* fill-in code for callback */
+}
+
+void radiateCB(FL_OBJECT *ob, long data)
+{
+  /* fill-in code for callback */
+}
+
+void weaponsCB(FL_OBJECT *ob, long data)
+{
+
+}
+
+void canvasCB(FL_OBJECT *ob, long data)
+{
+  /* fill-in code for callback */
+}
+
+void todCB(int i0, void *data)
+{
+int             i, i1, i2;
+time_t          clock;
+struct tm       *loctime;
+char            *str;
+
+   time(&clock);
+   loctime = localtime(&clock);
+   str = asctime(loctime);
+/*
+   LCDigit[8] = fl_read_pixmapfile(fl_winget(), filename,
+                      &xpmwidth, &xpmheight, &xpmmask, &xpmhotx, &xpmhoty, 0);
+   fprintf(stderr, "Pixmap read: %d %d %d\n", xpmwidth, xpmheight, LCDigit[8]);
+*/
+   ipipm = fd_ECStatus->tod[0];
+   fl_show_object(ipipm);
+   fl_free_pixmap_pixmap(ipipm);
+   i1 = loctime->tm_hour/10;
+   sprintf (chfile, "%s/%s", BITMAPDIR, xpmfiles[i1]);
+   fl_set_pixmap_file(ipipm, chfile);
+
+   ipipm = fd_ECStatus->tod[1];
+   fl_show_object(ipipm);
+   fl_free_pixmap_pixmap(ipipm);
+   i2 = loctime->tm_hour%10;
+   sprintf (chfile, "%s/%s", BITMAPDIR, xpmfiles[i2]);
+   fl_set_pixmap_file(ipipm, chfile);
+
+   ipipm = fd_ECStatus->tod[2];
+   fl_show_object(ipipm);
+   fl_free_pixmap_pixmap(ipipm);
+   i1 = loctime->tm_min/10;
+   sprintf (chfile, "%s/%s", BITMAPDIR, xpmfiles[i1]);
+   fl_set_pixmap_file(ipipm, chfile);
+
+   ipipm = fd_ECStatus->tod[3];
+   fl_show_object(ipipm);
+   fl_free_pixmap_pixmap(ipipm);
+   i2 = loctime->tm_min%10;
+   sprintf (chfile, "%s/%s", BITMAPDIR, xpmfiles[i2]);   
+   fl_set_pixmap_file(ipipm, chfile);
+
+   ipipm = fd_ECStatus->tod[4];
+   fl_show_object(ipipm);
+   fl_free_pixmap_pixmap(ipipm);
+   i1 = loctime->tm_sec/10;
+   sprintf (chfile, "%s/%s", BITMAPDIR, xpmfiles[i1]);
+   fl_set_pixmap_file(ipipm, chfile);
+
+   ipipm = fd_ECStatus->tod[5];
+   fl_show_object(ipipm);
+   fl_free_pixmap_pixmap(ipipm);
+   i2 = loctime->tm_sec%10;
+   sprintf (chfile, "%s/%s", BITMAPDIR, xpmfiles[i2]);
+   fl_set_pixmap_file(ipipm, chfile);
+
+   timeoutid = fl_add_timeout(1000, todCB, 0);
+}
+
+void statusCB(FL_OBJECT *ob, long data)
+{
+int    i, it, i1, i2, i3;
+
+   todCB(0, 0);
+
+   ipipm = fd_ECStatus->defcon;
+   fl_show_object(ipipm);
+   fl_free_pixmap_pixmap(ipipm);
+   i1 = 5;
+   sprintf (chfile, "%s/%s", BITMAPDIR, xpmfiles[i1]);
+   fl_set_pixmap_file(ipipm, chfile);
+
+   ipipm = fd_ECStatus->alert;
+   fl_show_object(ipipm);
+   fl_free_pixmap_pixmap(ipipm);
+   sprintf (chfile, "%s/%s", BITMAPDIR, "8.xpm");
+   fl_set_pixmap_file(ipipm, chfile);
+
+   it = 0;
+   for (i=0; i<8; i++) {
+      ipipm = fd_ECStatus->LS_inventory0[i];
+      fl_show_object(ipipm);
+      fl_free_pixmap_pixmap(ipipm);
+      i1 = inventory[i]/10;
+      sprintf (chfile, "%s/%s", BITMAPDIR, xpmfiles[i1]);
+      fl_set_pixmap_file(ipipm, chfile);
+      ipipm = fd_ECStatus->LS_inventory1[i];
+      fl_show_object(ipipm);
+      fl_free_pixmap_pixmap(ipipm);
+      i2 = inventory[i]%10;
+      sprintf (chfile, "%s/%s", BITMAPDIR, xpmfiles[i2]);
+      fl_set_pixmap_file(ipipm, chfile);
+      it = it + inventory[i];
+   }
+
+   ipipm = fd_ECStatus->ECS_count[0];
+   fl_show_object(ipipm);
+   fl_free_pixmap_pixmap(ipipm);
+   i1 = 0;
+   sprintf (chfile, "%s/%s", BITMAPDIR, xpmfiles[i1]);
+   fl_set_pixmap_file(ipipm, chfile);
+
+   ipipm = fd_ECStatus->ECS_count[1];
+   fl_show_object(ipipm);
+   fl_free_pixmap_pixmap(ipipm);
+   i1 = it/10;
+   sprintf (chfile, "%s/%s", BITMAPDIR, xpmfiles[i1]);
+   fl_set_pixmap_file(ipipm, chfile);
+
+   ipipm = fd_ECStatus->ECS_count[2];
+   fl_show_object(ipipm);
+   fl_free_pixmap_pixmap(ipipm);
+   i1 = it%10;
+   sprintf (chfile, "%s/%s", BITMAPDIR, xpmfiles[i1]);
+   fl_set_pixmap_file(ipipm, chfile);
+
+   fl_show_form(fd_ECStatus->ECStatus,FL_PLACE_CENTER,FL_FULLBORDER,"ECS Status");
+   timeoutid = fl_add_timeout(1000, todCB, 0);
+}
+
+void exitCB(FL_OBJECT *ob, long data)
+{
+   exit(0);
+}
+
+/* -------------------------------------------------------------------------------- */
+
+/* callbacks for form ECStatus */
+void ECS_dismissCB(FL_OBJECT *ob, long data)
+{
+   fl_remove_timeout(timeoutid);
+   fl_hide_form(fd_ECStatus->ECStatus);   
+}
+
+void ECS_todCB(FL_OBJECT *ob, long data)
+{
+  /* fill-in code for callback */
+}
+
+void countCB(FL_OBJECT *ob, long data)
+{
+  /* fill-in code for callback */
+}
+
+void LS_inventoryCB(FL_OBJECT *ob, long data)
+{
+  /* fill-in code for callback */
+}
+
+void voidCB(FL_OBJECT *ob, long data)
+{
+  /* fill-in code for callback */
+}
+
+void standbyCB(FL_OBJECT *ob, long data)
+{
+  /* fill-in code for callback */
+}
+
+void ddlCB(FL_OBJECT *ob, long data)
+{
+  /* fill-in code for callback */
+}
+
+void fuelCB(FL_OBJECT *ob, long data)
+{
+  /* fill-in code for callback */
+}
+
+void operCB(FL_OBJECT *ob, long data)
+{
+  /* fill-in code for callback */
+}
+
+void brightCB(FL_OBJECT *ob, long data)
+{
+  /* fill-in code for callback */
+}
+
+/* -------------------------------------------------------------------------------- */
+
+void airCB(int i0, void *data)
+{
+   if (showaircraft) {
+     //UpdateAir();
+      airtimeoutid = fl_add_timeout(3000, airCB, 0);
+   }
+}
+

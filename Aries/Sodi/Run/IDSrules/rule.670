@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (msg:"TELNET EZsetup account attempt";flags: A+; content:"OutOfBox"; classtype:suspicious-login; sid:710; rev:2;)

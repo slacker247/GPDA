@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible Fix2001 Worm"; content:"filename=\"Fix2001.exe\""; nocase; reference:MCAFEE,10355; sid:756;  classtype:misc-activity; rev:3;)

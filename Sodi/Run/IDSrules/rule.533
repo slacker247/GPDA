@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 111 (msg:"RPC portmap request espd"; rpc:391029,*,*; reference:cve,CAN-2001-0331; classtype:rpc-portmap-decode; sid:594; rev:3;)

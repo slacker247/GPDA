@@ -1,0 +1,173 @@
+# Tree height, Name, Discrete, Start time, End time, Time unit
+6  Terrorist  0  0.0  0.0  M
+
+6     Information_Sources
+  Space_Sensor             JSTARS_has_detected_something
+  Air_Sensor               Predator_has_detected_something
+  Open_Source              SAR_has_detected_something
+  UAV_Drone                open_source_has_detected_something
+  Electronic_SIGINT        RC-135_has_detected_something
+  Financial_Institutions   PAC-3_has_detected_something
+
+6     Events
+  Detect_Explosions               the_target_is_an_SA-13
+  Detect_Deployments              the_target_is_an_SU-24MP
+  Detect_Comm_Disruptions         the_target_is_a_Scud-B
+  Prevent_Hijacking               the_target_is_a_chemical_plant
+  Counteract_Training             the_target_is_a_C2_site
+  Prevent_Fin._Transaction        the_target_is_a_Taepo_Dong
+
+5     Activities
+  Prevent_Ground_Attack    you_should_prevent_a_ground_attack
+  Prevent_Air_Attack       you_should_prevent_an_air_attack
+  Prevent_Comm_Attack      you_should_prevent_an_attack_on_communications
+  Discredit_Propaganda     you_should_discredit_propoganda
+  Prevent_Funds_Transfer   you_should_prevent_a_funds_transfer
+
+6     Tactical_Objectives
+  Maintain_Infrastructure   you_should_maintain_the_infrastructure
+  Protect_Icons             you_should_protect_icons
+  Protect_Populace          you_should_protect_the_populace
+  Defend_Homeland           you_should_gain_air_superiority
+  Destroy_WMD               you_should_destroy_WDM_delivery_means
+  Maintain_Order            eject_enemy_forces
+
+4     Operational_Objs
+  Maintain_Government             maintain_government
+  Instill_Patriotism              instill_patriotism
+  Maintain_Press_Freedom          maintain_press_freedom
+  Maintain_Healthy_Corps          maintain_healthy_corporations
+
+2     Strategic_Objectives
+  Defeat_Terrorism   defeat_terrorism   0.75  100.0
+  Maintain_Freedom   maintain_freedom   0.75  100.0
+
+true    B and D matrices are listed separately
+#B   E0      E1      E2      E3      E4      E5
+   0.400   0.600   0.000   0.000   0.000   0.000   -- H0_0
+
+   0.000   1.000   0.000   0.000   0.000   0.000   -- H0_1
+
+   0.000   0.000   1.000   0.000   0.000   0.000   -- H0_2
+
+   0.000   0.000   0.900   0.100   0.000   0.000   -- H0_3
+
+   0.000   0.000   0.000   0.200   0.800   0.000   -- H0_4
+
+   0.000   0.000   0.000   0.000   0.000   1.000   -- H0_5
+
+
+#D   E0      E1      E2      E3      E4      E5
+   0.400   0.600   0.000   0.000   0.000   0.000   -- H0_0
+
+   0.000   1.000   0.000   0.000   0.000   0.000   -- H0_1
+
+   0.000   0.000   1.000   0.000   0.000   0.000   -- H0_2
+
+   0.000   0.000   0.900   0.100   0.000   0.000   -- H0_3
+
+   0.000   0.000   0.000   0.200   0.800   0.000   -- H0_4
+
+   0.000   0.000   0.000   0.000   0.000   1.000   -- H0_5
+
+
+#B  H0_0    H0_1    H0_2    H0_3    H0_4    H0_5
+   1.000   0.000   0.000   0.000   0.000   0.000   -- H1_0
+
+   0.000   1.000   0.000   0.000   0.000   0.000   -- H1_1
+
+   0.000   0.000   1.000   0.000   0.000   0.000   -- H1_2
+
+   0.000   0.000   0.000   1.000   0.000   0.000   -- H1_3
+
+   0.000   0.000   0.000   0.000   0.300   0.700   -- H1_4
+
+
+#D  H0_0    H0_1    H0_2    H0_3    H0_4    H0_5
+   1.000   0.000   0.000   0.000   0.000   0.000   -- H1_0
+
+   0.000   1.000   0.000   0.000   0.000   0.000   -- H1_1
+
+   0.000   0.000   1.000   0.000   0.000   0.000   -- H1_2
+
+   0.000   0.000   0.000   1.000   0.000   0.000   -- H1_3
+
+   0.000   0.000   0.000   0.000   0.300   0.700   -- H1_4
+
+
+#B  H1_0    H1_1    H1_2    H1_3    H1_4
+   0.500   0.500   0.300   0.000   0.300   -- H2_0
+
+   0.800   1.000   0.000   0.000   0.000   -- H2_1
+
+   0.800   0.800   0.000   0.000   0.000   -- H2_2
+
+   0.200   0.200   0.000   0.000   0.000   -- H2_3
+
+   0.000   0.500   0.000   0.000   0.000   -- H2_4
+
+   0.000   0.000   0.000   0.600   0.000   -- H2_5
+
+
+#D  H1_0    H1_1    H1_2    H1_3    H1_4
+   0.500   0.500   0.300   0.000   0.000   -- H2_0
+
+   0.800   1.000   0.000   0.000   0.000   -- H2_1
+
+   0.800   0.800   1.000   0.000   0.000   -- H2_2
+
+   0.200   0.200   0.000   0.000   0.000   -- H2_3
+
+   0.000   0.200   0.200   0.000   0.000   -- H2_4
+
+   0.000   0.000   0.000   0.600   0.000   -- H2_5
+
+
+#B  H2_0    H2_1    H2_2    H2_3    H2_4    H2_5
+   1.000   0.000   0.000   0.600   0.200   0.800   -- H3_0
+
+   0.000   0.400   0.600   0.000   0.400   0.600   -- H3_1
+
+   0.800   0.000   0.000   0.000   0.000   0.000   -- H3_2
+
+   0.800   0.000   0.200   0.000   0.000   0.000   -- H3_3
+
+
+#D  H2_0    H2_1    H2_2    H2_3    H2_4    H2_5
+   1.000   0.000   0.000   0.000   0.200   0.800   -- H3_0
+
+   0.000   0.000   0.000   0.000   0.000   0.600   -- H3_1
+
+   0.800   0.000   0.000   0.000   0.000   0.000   -- H3_2
+
+   0.800   0.000   0.000   0.000   0.000   0.000   -- H3_3
+
+
+#B  H3_0    H3_1    H3_2    H3_3
+   1.000   0.000   0.000   0.500   -- A0
+
+   0.000   0.300   1.000   0.000   -- A1
+
+
+#D  H3_0    H3_1    H3_2    H3_3
+   1.000   0.000   0.000   0.500   -- A0
+
+   0.000   0.300   1.000   0.000   -- A1
+
+
+9  Possibilities
+0.00  0.00  impossible
+0.00  0.05  extremely_unlikely
+0.05  0.20  very_low_chance
+0.20  0.38  small_chance
+0.38  0.60  may
+0.60  0.79  meaningful_chance
+0.79  0.95  most_likely
+0.95  0.99  extremely_likely
+0.99  1.00  certain
+
+#  Evidence labels follow. Must be 3, each < 4 chars
+  Lat      Lon     Alt
+#  Default time units follow. Must be: Sec, Min, Hour, or Days
+  Min
+<EOF>

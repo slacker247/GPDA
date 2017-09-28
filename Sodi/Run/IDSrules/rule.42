@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET 60000 -> $HOME_NET 3150 (msg:"BACKDOOR DeepThroat 3.1 Server Rehash Client Request"; content:"shutd0wnM0therF***eR"; reference:arachnids,106; sid:138;  classtype:misc-activity; rev:3;)

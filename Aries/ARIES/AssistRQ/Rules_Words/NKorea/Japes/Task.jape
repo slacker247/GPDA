@@ -1,0 +1,15 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Task
+
+    {Token.string == "Targeted"}
+    {Token.string == ":"}
+    {SpaceToken.kind == space}
+(
+    {Token.kind == word}
+):Task
+ -->
+:Task.Task = {}

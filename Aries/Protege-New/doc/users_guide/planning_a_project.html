@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Planning a Protégé-2000 Project</title>
+<base target="frmain">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="images/nerd.gif" WIDTH="48" HEIGHT="48"> Planning a Protégé-2000 Project<br>
+<img src="images/header_line.gif" width="590" height="6"></h1>
+
+<p>The development of a successful knowledge-based system built with Protégé-2000 is
+more of an art than a science. Nonetheless, we can suggest a standard pattern of use that
+new users should follow to avoid some possible problems of systems development.
+Protégé-2000 is designed to support <em>iterative development</em>, where there are
+cycles of revision to the ontologies and other components of the knowledge-based system.
+Therefore developers should not expect to &quot;complete&quot; ontology development
+without considering other aspects of the process.</p>
+
+<p>For the development of a successful Protégé-2000 project, we would recommend the
+following steps: 
+
+<ol>
+  <li>Plan for the application and expected uses of the knowledge base. This usually means
+    working with domain experts that have a set of problems that could be solved with
+    knowledge-base technology.</li>
+  <li>Build an initial small ontology of classes and slots, as explained in the <font size="3"><a href="classes/index.html" target="main">Classes
+    and Slots</a></font> strand.</li>
+  <li>When you have built this ontology (and later when you have extended it or opened it from
+    file), you can directly view forms for entering&nbsp; instance knowledge into the
+    ontology, because Protégé-2000 generates initial forms &quot;on the fly&quot;, in its
+    role as a KA-tool generator.</li>
+  <li>You use these forms for acquiring slot values of your test instances, as explained in
+    the<font size="3">  <a href="instances/index.html" target="main">Instances</a></font>
+    strand. At this point, it is usually appropriate to show the
+    ontology and the filled-out instance forms to the domain experts or your expected users.
+    This inevitably leads to a set of revisions, both to the ontology (2.) and to the forms
+    (5.). Note that ontology modifications can be expensive, since some sorts of change could
+    force rebuilding some or all of the knowledge base.</li>
+  <li>Customize the forms to a refined knowledge-acquisition tool, as explained in the
+    <a href="forms/understanding_forms.html" target="main">Forms</a> strand.
+    While constructing this customized version of the KA-subtool, further design problems in
+    the original ontology may become apparent. If necessary revise the ontology and repeat at
+    4.</li>
+  <li>With your domain experts, build a somewhat larger knowledge-base that can be tested with
+    your application or problem-solving method.</li>
+  <li>Test the full application with your end-users. This step can lead to further revisions
+    to the ontology and the KA-subtool.</li>
+</ol>
+
+<p>The picture below shows this typical pattern of use for the Protégé-2000 subsystems.
+The black arrows indicate the forward progression through the process, while the blue
+dotted arrows show places where revisions are usually necessary (either to the ontology or
+the knowledge-acquisition tool).&nbsp;&nbsp;</p>
+
+<p align="center"><img border="0" src="images/process.gif" width="602" height="448"></p>
+
+<p align="center">&nbsp;</p>
+
+<p>At the heart of a successful Protégé-2000 project is the design of the
+class and slot structure of the ontology. In
+particular, the model you use in building your ontology must balance the needs of the
+domain expert when building a knowledge base (at knowledge-acquisition time) against the
+requirements of your problem-solving method or application (at run-time). Hopefully, these
+are not too contradictory! Ontology developers should therefore both: 
+
+<ul>
+  <li>Model the domain with a set of problems and a problem-solving method in mind.</li>
+  <li>Design the ontology so that it can be used to generate and customize an appropriate
+    KA-tool for a specific set of users.</li>
+</ul>
+
+<p>As a simple example from the <a href="newspaper_example.html">Newspaper Example</a>, a
+problem to be solved could be finding all advertisements that are more expensive than some
+threshold. For this problem, one should build into the ontology a class for advertisements
+that includes price and date published. If this information were spread out over all
+publication issues, then it would be more difficult for the problem-solver to access all
+instances of advertisements and their prices.</p>
+
+<hr>
+
+<p>Next: <a href="newspaper_example.html" target="main">A Newspaper Example</a></p>
+</body>
+</html>

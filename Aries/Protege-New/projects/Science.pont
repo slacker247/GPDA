@@ -1,0 +1,1374 @@
+; Fri May 09 11:59:53 MDT 2003
+; 
+;+ (version "1.8")
+;+ (build "Build 1074")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS
+	(is-a USER)
+	(role concrete)
+	(single-slot %3ADEFINITION-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3AKB-SAVE
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot describes-Project
+		(type INSTANCE)
+;+		(allowed-classes Project)
+;+		(inverse-slot Project-Publication)
+		(create-accessor read-write))
+	(multislot Organizing-Committee
+		(type INSTANCE)
+;+		(allowed-classes Person)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot Project-Head
+		(type INSTANCE)
+;+		(allowed-classes Academic-Staff)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot takes-Place-at
+		(type INSTANCE)
+;+		(allowed-classes City)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Carried-Out-By
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot carries-Out)
+		(create-accessor read-write))
+	(multislot finances
+		(type INSTANCE)
+;+		(allowed-classes Project)
+;+		(inverse-slot is-Financed-By)
+		(create-accessor read-write))
+	(multislot Tutorials
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot Edition
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot employs
+		(type INSTANCE)
+;+		(allowed-classes Employee)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot First-page
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Paper-Presented
+		(type INSTANCE)
+;+		(allowed-classes Conference-Paper Workshop-Paper)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Type-of-Sub-Dept
+		(type SYMBOL)
+		(allowed-values LABORATORY NUCLEUS INSTITUTE)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Publication-Year
+		(type INSTANCE)
+;+		(allowed-classes Year)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Last-Name
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has-Publications
+		(type INSTANCE)
+;+		(allowed-classes Scientific-Document)
+;+		(inverse-slot Authors)
+		(create-accessor read-write))
+	(multislot Middle-Names
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot Location-Place
+		(type INSTANCE)
+;+		(allowed-classes Country State City)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Topics
+		(type INSTANCE)
+;+		(allowed-classes Research-Topic)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot Publication-Number
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Code
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot e-mail
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot First-Name
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Nickname
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot Initial-Date
+		(type INSTANCE)
+;+		(allowed-classes Date)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Home-Page
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Publication-Title
+;+		(comment "has to be differentiated from person's title (dr., Msc....)")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Head
+		(type INSTANCE)
+;+		(allowed-classes Person)
+;+		(cardinality 1 1)
+;+		(inverse-slot Head-Of)
+		(create-accessor read-write))
+	(single-slot Last-page
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Publication-Month
+		(type INSTANCE)
+;+		(allowed-classes Months)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot Registration-Fees
+		(type INSTANCE)
+;+		(allowed-classes Fee)
+		(create-accessor read-write))
+	(single-slot Series
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot Teachers
+		(type INSTANCE)
+;+		(allowed-classes Person)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot Dealt-With-In
+		(type INSTANCE)
+;+		(allowed-classes Project)
+		(create-accessor read-write))
+	(multislot produces
+		(type INSTANCE)
+;+		(allowed-classes Product)
+;+		(inverse-slot Under-Project)
+		(create-accessor read-write))
+	(multislot supervises
+		(type INSTANCE)
+;+		(allowed-classes Graduate)
+;+		(inverse-slot is-Supervised-by)
+		(create-accessor read-write))
+	(multislot Group-Head
+		(type INSTANCE)
+;+		(allowed-classes)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot URL-of-Publication
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot Accomodation-Places
+		(type INSTANCE)
+;+		(allowed-classes Accomodation)
+		(create-accessor read-write))
+	(multislot Scientific-Chair
+		(type INSTANCE)
+;+		(allowed-classes Person)
+		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot chair-of-Event)
+		(create-accessor read-write))
+	(multislot chair-of-Event
+		(type INSTANCE)
+;+		(allowed-classes Event)
+;+		(inverse-slot Scientific-Chair)
+		(create-accessor read-write))
+	(single-slot Price
+		(type INSTANCE)
+;+		(allowed-classes Fee)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Is-Worked-On-By
+		(type INSTANCE)
+;+		(allowed-classes Researcher)
+		(create-accessor read-write))
+	(multislot Program-Committee
+		(type INSTANCE)
+;+		(allowed-classes Person)
+		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot member-Of-Program-Committee)
+		(create-accessor read-write))
+	(multislot Head-Of
+		(type INSTANCE)
+;+		(allowed-classes Organization Project)
+;+		(inverse-slot Head)
+		(create-accessor read-write))
+	(multislot is-Financed-By
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+;+		(inverse-slot finances)
+		(create-accessor read-write))
+	(single-slot Final-Date
+		(type INSTANCE)
+;+		(allowed-classes Date)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Acceptance-Date
+		(type INSTANCE)
+;+		(allowed-classes Date)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Final-Paper-Due
+		(type INSTANCE)
+;+		(allowed-classes Date)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot develops
+;+		(comment "this must be filled in the lowest possible level (e.g. sub-dept) ")
+		(type INSTANCE)
+;+		(allowed-classes Product)
+;+		(inverse-slot Developed-By)
+		(create-accessor read-write))
+	(multislot is-Supervised-by
+		(type INSTANCE)
+;+		(allowed-classes Academic-Staff)
+;+		(inverse-slot supervises)
+		(create-accessor read-write))
+	(single-slot Deadline
+		(type INSTANCE)
+;+		(allowed-classes Date)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Event-Number
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot Developed-By
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot develops)
+		(create-accessor read-write))
+	(multislot Organizing-Chair
+		(type INSTANCE)
+;+		(allowed-classes Person)
+		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot organizes-Event)
+		(create-accessor read-write))
+	(single-slot Event-Publication
+		(type INSTANCE)
+;+		(allowed-classes Scientific-Document)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Editor
+;+		(comment "Editor has to be a researcher.")
+		(type INSTANCE)
+;+		(allowed-classes Researcher)
+;+		(cardinality 0 1)
+;+		(inverse-slot edit-Publication)
+		(create-accessor read-write))
+	(multislot Program
+		(type INSTANCE)
+;+		(allowed-classes Presentation)
+		(create-accessor read-write))
+	(multislot edit-Publication
+		(type INSTANCE)
+;+		(allowed-classes Scientific-Document)
+;+		(inverse-slot Editor)
+		(create-accessor read-write))
+	(single-slot Subject-Areas
+		(type INSTANCE)
+;+		(allowed-classes Research-Topic)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot of-Event
+		(type INSTANCE)
+;+		(allowed-classes Scientific-Event)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ISBN
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3ASTARTUP-FILE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot Members
+		(type INSTANCE)
+;+		(allowed-classes Employee)
+		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot works-At-Project)
+		(create-accessor read-write))
+	(multislot Project-Publication
+		(type INSTANCE)
+;+		(allowed-classes Scientific-Document)
+;+		(inverse-slot describes-Project)
+		(create-accessor read-write))
+	(single-slot Travel-Information
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot publishes
+		(type INSTANCE)
+;+		(allowed-classes Scientific-Document)
+		(create-accessor read-write))
+	(single-slot is-Part-of
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot in-University
+		(type INSTANCE)
+;+		(allowed-classes University)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Volume
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Schedule
+		(type INSTANCE)
+;+		(allowed-classes Date)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Affiliation
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+		(create-accessor read-write))
+	(multislot works-At-Project
+		(type INSTANCE)
+;+		(allowed-classes Project)
+;+		(inverse-slot Members)
+		(create-accessor read-write))
+	(multislot member-Of-Program-Committee
+		(type INSTANCE)
+;+		(allowed-classes Event)
+;+		(inverse-slot Program-Committee)
+		(create-accessor read-write))
+	(multislot has-Students
+		(type INSTANCE)
+;+		(allowed-classes Student)
+		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot studies-At)
+		(create-accessor read-write))
+	(single-slot Abstract
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot works-At
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Under-Project
+		(type INSTANCE)
+;+		(allowed-classes Project)
+;+		(cardinality 0 1)
+;+		(inverse-slot produces)
+		(create-accessor read-write))
+	(multislot organizes-Event
+		(type INSTANCE)
+;+		(allowed-classes Event)
+;+		(inverse-slot Organizing-Chair)
+		(create-accessor read-write))
+	(multislot Sponsors
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+		(create-accessor read-write))
+	(single-slot Social-Program
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot carries-Out
+		(type INSTANCE)
+;+		(allowed-classes Project)
+;+		(inverse-slot Carried-Out-By)
+		(create-accessor read-write))
+	(multislot Publisher
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot Authors
+;+		(comment "It is the inverse slot of Person's 'has-Publication'")
+		(type INSTANCE)
+;+		(allowed-classes Person)
+		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot has-Publications)
+		(create-accessor read-write))
+	(single-slot studies-At
+		(type INSTANCE)
+;+		(allowed-classes University)
+;+		(cardinality 0 1)
+;+		(inverse-slot has-Students)
+		(create-accessor read-write))
+	(single-slot %3ASTARTUP-EXPRESSION
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Of-Organization
+;+		(comment "Refers only to the lowest level of the organization who made this work")
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Scientific-Document "Subclasses within this class relate to any scientific document published in a conference or by a research institution department. It is based on the KA2 project's ontology publication. The major extensions are the subclasses dividable publication (e.g. books, proceedings, etc) and part publication (articles, chapters, etc), and the multiple inheritance for magazine and journal, which are scientific documents but also events. The ontology includes very simple ontologies for time and  location, that can be substituted in the future by more compolete ones.   "
+	(is-a USER)
+	(role abstract)
+	(single-slot URL-of-Publication
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Abstract
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Publication-Title
+;+		(comment "has to be differentiated from person's title (dr., Msc....)")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Topics
+		(type INSTANCE)
+;+		(allowed-classes Research-Topic)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot describes-Project
+		(type INSTANCE)
+;+		(allowed-classes Project)
+		(create-accessor read-write))
+	(single-slot Publication-Month
+		(type INSTANCE)
+;+		(allowed-classes Months)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot Authors
+;+		(comment "It is the inverse slot of Person's 'has-Publication'")
+		(type INSTANCE)
+;+		(allowed-classes Person)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot Keywords
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot Publication-Year
+		(type INSTANCE)
+;+		(allowed-classes Year)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Dividable-Publication "This ontology is based on the KA2 project's ontology publication. The major extensions are the subclasses dividable publication (e.g. books, proceedings, etc) and part publication (articles, chapters, etc)."
+	(is-a Scientific-Document)
+	(role abstract)
+	(multislot Publisher
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes Part-Publication)
+		(create-accessor read-write))
+	(single-slot Editor
+;+		(comment "Editor has to be a researcher.")
+		(type INSTANCE)
+;+		(allowed-classes Researcher)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Book "Note that 'has-Parts' slot has to be filled only with Book-Chapter and Article-in-Book instances."
+	(is-a Dividable-Publication)
+	(role concrete)
+	(single-slot ISBN
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Volume
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Edition
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Series
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes Book-Chapter Article-in-Book)
+		(create-accessor read-write))
+	(multislot Authors
+;+		(comment "It is the inverse slot of Person's 'has-Publication'.")
+		(type INSTANCE)
+;+		(allowed-classes Person)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Proceedings "Now 'has-Parts' is filled with Conference-Paper and Workshop-Paper instances."
+	(is-a Dividable-Publication)
+	(role concrete)
+	(single-slot of-Event
+		(type INSTANCE)
+;+		(allowed-classes Scientific-Event)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Publication-Number
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Volume
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Series
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes Conference-Paper Workshop-Paper)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Part-Publication "The filling stuff or Dividable-Publication; it has a 'is-Part-Of' slot for Dividable-Publications, and number of initial and final pages of them. "
+	(is-a Scientific-Document)
+	(role abstract)
+	(single-slot Last-page
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot First-page
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is-Part-of
+		(type INSTANCE)
+;+		(allowed-classes Dividable-Publication)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Book-Chapter
+	(is-a Part-Publication)
+	(role concrete)
+	(single-slot is-Part-of
+;+		(comment "Only book instances")
+		(type INSTANCE)
+;+		(allowed-classes Book)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Article-in-Book
+	(is-a Part-Publication)
+	(role concrete)
+	(single-slot is-Part-of
+		(type INSTANCE)
+;+		(allowed-classes Book)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Journal-Article
+	(is-a Part-Publication)
+	(role concrete)
+	(single-slot is-Part-of
+;+		(comment "Only for Journal instances.")
+		(type INSTANCE)
+;+		(allowed-classes Journal)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Conference-Paper
+	(is-a Part-Publication)
+	(role concrete)
+	(single-slot is-Part-of
+		(type INSTANCE)
+;+		(allowed-classes Proceedings)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Workshop-Paper
+	(is-a Part-Publication)
+	(role concrete)
+	(single-slot is-Part-of
+		(type INSTANCE)
+;+		(allowed-classes Proceedings)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Magazine-Article
+	(is-a Part-Publication)
+	(role concrete)
+	(single-slot is-Part-of
+		(type INSTANCE)
+;+		(allowed-classes Magazine)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Generic-Part-Publication
+	(is-a Part-Publication)
+	(role concrete))
+
+(defclass Technical-Report
+	(is-a Scientific-Document)
+	(role concrete)
+	(single-slot Publication-Number
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Of-Organization
+;+		(comment "Refers only to the lowest level of the organization who made this work")
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Thesis "Authors have to be graduated."
+	(is-a Scientific-Document)
+	(role abstract)
+	(single-slot Authors
+;+		(comment "It is the inverse slot of Person's 'has-Publication'")
+		(type INSTANCE)
+;+		(allowed-classes Graduate)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Master-Thesis
+	(is-a Thesis)
+	(role concrete)
+	(single-slot Authors
+;+		(comment "It is the inverse slot of Person's 'has-Publication' and it has to be a MSc.")
+		(type INSTANCE)
+;+		(allowed-classes Master-of-Science-Student)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass PhD-Thesis
+	(is-a Thesis)
+	(role concrete)
+	(single-slot Authors
+;+		(comment "It is the inverse slot of Person's 'has-Publication' and it has to be a PhD.")
+		(type INSTANCE)
+;+		(allowed-classes PhD-Student)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Project-Report
+	(is-a Scientific-Document)
+	(role concrete)
+	(multislot describes-Project
+		(type INSTANCE)
+;+		(allowed-classes Project)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Project
+	(is-a USER)
+	(role concrete)
+	(multislot Carried-Out-By
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot Topics
+		(type INSTANCE)
+;+		(allowed-classes Research-Topic)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot Members
+		(type INSTANCE)
+;+		(allowed-classes Employee)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot Project-Publication
+		(type INSTANCE)
+;+		(allowed-classes Scientific-Document)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Project-Head
+		(type INSTANCE)
+;+		(allowed-classes Academic-Staff)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot produces
+		(type INSTANCE)
+;+		(allowed-classes Product)
+		(create-accessor read-write))
+	(multislot is-Financed-By
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+		(create-accessor read-write)))
+
+(defclass Research-Project
+	(is-a Project)
+	(role concrete))
+
+(defclass Development-Project
+	(is-a Project)
+	(role concrete))
+
+(defclass Software-Project
+	(is-a Development-Project)
+	(role concrete))
+
+(defclass Event "Here there is also one significative change from KA2 ontology, the existence of scientific events and educational events.  "
+	(is-a USER)
+	(role abstract)
+	(single-slot Final-Date
+		(type INSTANCE)
+;+		(allowed-classes Date)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Event-Publication
+		(type INSTANCE)
+;+		(allowed-classes Scientific-Document)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Initial-Date
+		(type INSTANCE)
+;+		(allowed-classes Date)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Home-Page
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Scientific-Event
+	(is-a Event)
+	(role abstract)
+	(single-slot Subject-Areas
+		(type INSTANCE)
+;+		(allowed-classes Research-Topic)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Scientific-Chair
+		(type INSTANCE)
+;+		(allowed-classes Person)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot Code
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot Organizing-Committee
+		(type INSTANCE)
+;+		(allowed-classes Person)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot Program-Committee
+		(type INSTANCE)
+;+		(allowed-classes Person)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot Acceptance-Date
+		(type INSTANCE)
+;+		(allowed-classes Date)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Final-Paper-Due
+		(type INSTANCE)
+;+		(allowed-classes Date)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Deadline
+		(type INSTANCE)
+;+		(allowed-classes Date)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot Organizing-Chair
+		(type INSTANCE)
+;+		(allowed-classes Person)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Live-Scientific-Event
+	(is-a Scientific-Event)
+	(role abstract)
+	(multislot Accomodation-Places
+		(type INSTANCE)
+;+		(allowed-classes Accomodation)
+		(create-accessor read-write))
+	(single-slot Travel-Information
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot takes-Place-at
+		(type INSTANCE)
+;+		(allowed-classes City)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Tutorials
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot Social-Program
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot Registration-Fees
+		(type INSTANCE)
+;+		(allowed-classes Fee)
+		(create-accessor read-write))
+	(multislot Sponsors
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+		(create-accessor read-write))
+	(single-slot Event-Publication
+		(type INSTANCE)
+;+		(allowed-classes Proceedings)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot Program
+		(type INSTANCE)
+;+		(allowed-classes Presentation)
+		(create-accessor read-write)))
+
+(defclass Workshop
+	(is-a Live-Scientific-Event)
+	(role concrete)
+	(single-slot is-Part-Of
+		(type INSTANCE)
+;+		(allowed-classes Conference)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Event-Number
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot Event-Publication
+		(type INSTANCE)
+;+		(allowed-classes Proceedings)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Series
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Conference "A conference can encompass Workshops, activities, meetings and school events"
+	(is-a Live-Scientific-Event)
+	(role concrete)
+	(single-slot Event-Number
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Event-Publication
+		(type INSTANCE)
+;+		(allowed-classes Proceedings)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes Workshop)
+		(create-accessor read-write))
+	(single-slot Series
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass School-Event
+	(is-a Live-Scientific-Event)
+	(role concrete)
+	(single-slot Event-Publication
+		(type INSTANCE)
+;+		(allowed-classes Proceedings)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Educational-Event
+	(is-a Live-Scientific-Event)
+	(role abstract)
+	(multislot Teachers
+		(type INSTANCE)
+;+		(allowed-classes Person)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot Event-Publication
+		(type INSTANCE)
+;+		(allowed-classes Proceedings)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Lecture
+	(is-a Educational-Event)
+	(role concrete)
+	(single-slot Event-Publication
+		(type INSTANCE)
+;+		(allowed-classes Proceedings)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Generic-Live-Scientific-Event
+	(is-a Live-Scientific-Event)
+	(role concrete)
+	(single-slot Event-Publication
+		(type INSTANCE)
+;+		(allowed-classes Proceedings)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Scientific-Publication-Event
+	(is-a Scientific-Event Dividable-Publication)
+	(role abstract)
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes Part-Publication)
+		(create-accessor read-write)))
+
+(defclass Magazine "Note the multiple inheritance for magazine and journal, which are scientific documents but also events. "
+	(is-a Scientific-Publication-Event)
+	(role concrete)
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes Part-Publication)
+		(create-accessor read-write)))
+
+(defclass Special-Issue-Magazine
+	(is-a Magazine)
+	(role concrete)
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes Part-Publication)
+		(create-accessor read-write)))
+
+(defclass Journal "Note the multiple inheritance for magazine and journal, which are scientific documents but also events. Note also that 'has-Parts only accepts Journal-Article instances."
+	(is-a Scientific-Publication-Event)
+	(role concrete)
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes Journal-Article)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot Publication-Number
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Volume
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Special-Issue-Journal
+	(is-a Journal)
+	(role concrete)
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes Journal-Article)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Generic-Scientific-Publication-Event
+	(is-a Scientific-Publication-Event)
+	(role concrete)
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes Part-Publication)
+		(create-accessor read-write)))
+
+(defclass Research-Topic "Subject areas. With Has-Part-Of and Is-Part-Of slots, an hierarchy can be created."
+	(is-a USER)
+	(role concrete)
+	(multislot is-Part-Of
+		(type INSTANCE)
+;+		(allowed-classes Research-Topic)
+		(create-accessor read-write))
+	(multislot Is-Worked-On-By
+		(type INSTANCE)
+;+		(allowed-classes Researcher)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes Research-Topic)
+		(create-accessor read-write))
+	(multislot Dealt-With-In
+		(type INSTANCE)
+;+		(allowed-classes Project)
+		(create-accessor read-write)))
+
+(defclass Person
+	(is-a USER)
+	(role concrete)
+	(multislot Middle-Names
+		(type STRING)
+		(create-accessor read-write))
+	(multislot e-mail
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot First-Name
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Nickname
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot Last-Name
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot works-At-Project
+		(type INSTANCE)
+;+		(allowed-classes Project)
+		(create-accessor read-write))
+	(multislot Affiliation
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+		(create-accessor read-write))
+	(single-slot Home-Page
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Employee "There are also changes from KA2. Academic Staff inherits from researcher and employee."
+	(is-a Person)
+	(role concrete)
+	(single-slot works-At
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Affiliation
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Administrative-Staff
+	(is-a Employee)
+	(role concrete))
+
+(defclass Technical-Staff
+	(is-a Employee)
+	(role concrete))
+
+(defclass Student "There are also changes from KA2. Graduate inherits from researcher and student. "
+	(is-a Person)
+	(role concrete)
+	(single-slot studies-At
+		(type INSTANCE)
+;+		(allowed-classes University)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot Affiliation
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Undergraduate
+	(is-a Student)
+	(role concrete))
+
+(defclass Researcher "There are also changes from KA2. Academic Staff inherits from researcher and employee and Graduate from researcher and student. "
+	(is-a Person)
+	(role concrete)
+	(single-slot works-At
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Affiliation
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot member-Of-Program-Committee
+		(type INSTANCE)
+;+		(allowed-classes Event)
+		(create-accessor read-write))
+	(multislot has-Publications
+		(type INSTANCE)
+;+		(allowed-classes Scientific-Document)
+		(create-accessor read-write)))
+
+(defclass Academic-Staff
+	(is-a Researcher Employee)
+	(role concrete)
+	(multislot chair-of-Event
+		(type INSTANCE)
+;+		(allowed-classes Event)
+		(create-accessor read-write))
+	(multislot Head-Of
+		(type INSTANCE)
+;+		(allowed-classes Organization Project)
+		(create-accessor read-write))
+	(multislot organizes-Event
+		(type INSTANCE)
+;+		(allowed-classes Event)
+		(create-accessor read-write))
+	(multislot edit-Publication
+		(type INSTANCE)
+;+		(allowed-classes Scientific-Document)
+		(create-accessor read-write))
+	(multislot supervises
+		(type INSTANCE)
+;+		(allowed-classes Graduate)
+		(create-accessor read-write)))
+
+(defclass Graduate "There are also changes from KA2. Graduate inherits from researcher and student. "
+	(is-a Student Researcher)
+	(role concrete)
+	(multislot is-Supervised-by
+		(type INSTANCE)
+;+		(allowed-classes Academic-Staff)
+		(create-accessor read-write)))
+
+(defclass PhD-Student
+	(is-a Graduate)
+	(role concrete))
+
+(defclass Master-of-Science-Student
+	(is-a Graduate)
+	(role concrete))
+
+(defclass Product
+	(is-a USER)
+	(role concrete)
+	(single-slot Under-Project
+		(type INSTANCE)
+;+		(allowed-classes Project)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot Developed-By
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Software-Component
+	(is-a Product)
+	(role concrete))
+
+(defclass Organization
+	(is-a USER)
+	(role concrete)
+	(multislot finances
+		(type INSTANCE)
+;+		(allowed-classes Project)
+		(create-accessor read-write))
+	(single-slot Location-Place
+		(type INSTANCE)
+;+		(allowed-classes Country State City)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Head
+		(type INSTANCE)
+;+		(allowed-classes Person)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot develops
+;+		(comment "this must be filled in the lowest possible level (e.g. sub-dept) ")
+		(type INSTANCE)
+;+		(allowed-classes Product)
+		(create-accessor read-write))
+	(multislot employs
+		(type INSTANCE)
+;+		(allowed-classes Employee)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot carries-Out
+		(type INSTANCE)
+;+		(allowed-classes Project)
+		(create-accessor read-write))
+	(multislot publishes
+		(type INSTANCE)
+;+		(allowed-classes Scientific-Document)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Home-Page
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass University
+	(is-a Organization)
+	(role concrete)
+	(multislot has-Students
+		(type INSTANCE)
+;+		(allowed-classes Student)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot Head
+		(type INSTANCE)
+;+		(allowed-classes Person Academic-Staff)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes Department)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Enterprise
+	(is-a Organization)
+	(role concrete)
+	(single-slot Head
+		(type INSTANCE)
+;+		(allowed-classes Person Employee)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes Department)
+		(create-accessor read-write)))
+
+(defclass Department "Part of a university or an enterprise. "
+	(is-a Organization)
+	(role concrete)
+	(single-slot Head
+		(type INSTANCE)
+;+		(allowed-classes Person Academic-Staff)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes Sub-Department)
+		(create-accessor read-write))
+	(single-slot is-Part-of
+		(type INSTANCE)
+;+		(allowed-classes University Enterprise)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Research-Institute
+	(is-a Organization)
+	(role concrete)
+	(single-slot Head
+		(type INSTANCE)
+;+		(allowed-classes Person Employee)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has-Parts
+		(type INSTANCE)
+;+		(allowed-classes Department Research-Group)
+		(create-accessor read-write)))
+
+(defclass Research-Group "Identifying a research group which is sometimes formal, but in fact outlines a cooperation among the members."
+	(is-a Organization)
+	(role concrete)
+	(multislot Group-Head
+		(type INSTANCE)
+;+		(allowed-classes)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot Head
+		(type INSTANCE)
+;+		(allowed-classes Person Academic-Staff)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Members
+		(type INSTANCE)
+;+		(allowed-classes Employee)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Sub-Department
+	(is-a Organization)
+	(role concrete)
+	(single-slot Head
+		(type INSTANCE)
+;+		(allowed-classes Person Academic-Staff)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot is-Part-of
+		(type INSTANCE)
+;+		(allowed-classes Department)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Type-of-Sub-Dept
+		(type SYMBOL)
+		(allowed-values LABORATORY NUCLEUS INSTITUTE)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Sponsor-Agency
+	(is-a Organization)
+	(role concrete)
+	(multislot finances
+		(type INSTANCE)
+;+		(allowed-classes Project)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Presentation
+	(is-a USER)
+	(role concrete)
+	(single-slot Paper-Presented
+		(type INSTANCE)
+;+		(allowed-classes Conference-Paper Workshop-Paper)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Schedule
+		(type INSTANCE)
+;+		(allowed-classes Date)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass %3AUNDEFINED
+	(is-a USER)
+	(role concrete))
+
+(defclass Fee
+	(is-a %3AUNDEFINED)
+	(role concrete))
+
+(defclass Accomodation
+	(is-a %3AUNDEFINED)
+	(role concrete))

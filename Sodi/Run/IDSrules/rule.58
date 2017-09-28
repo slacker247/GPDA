@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 30100:30102 -> $EXTERNAL_NET any (msg:"BACKDOOR NetSphere 1.31.337 access"; flags: A+; content:"NetSphere";  reference:arachnids,76; sid:155;  classtype:misc-activity; rev:3;)

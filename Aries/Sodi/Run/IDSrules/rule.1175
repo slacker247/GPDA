@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC webdist.cgi access"; uricontent:"/webdist.cgi"; nocase; flags: A+; reference:bugtraq,374; reference:cve,CVE-1999-0039; classtype:attempted-recon; sid:1163; rev:2;)

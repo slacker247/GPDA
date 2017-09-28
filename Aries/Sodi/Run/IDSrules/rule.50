@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 6969 -> $EXTERNAL_NET any (msg:"BACKDOOR GateCrasher"; flags: A+; content:"GateCrasher";reference:arachnids,99; sid:147;  classtype:misc-activity; rev:3;)

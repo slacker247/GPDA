@@ -1,0 +1,192 @@
+   77
+#
+# Country: Iran
+#
+# (MB)     Missile Complex
+# (AB)     Air Base
+# (SB)     Sub Base
+# (NW)     Nuclear Weapons
+# (CW)     Chemical Weapons
+# (BW)     Biological Weapons
+# (CC)     Command and Control
+# (PC)     Population Centers
+# (TC)     Time Critical Target
+# (OT)     Other (ie, Grain Storage Facilities)
+# (IM)     Imagery (0=>None, 1=>Map, 2=>Sat)
+# (Hard)   Hardness 0.0 - 1.0
+# (Mobile) 0=>Fixed  1=>Mobile
+# (Value)  4=>Low  3=>Medium  2=>High  1=>Critical
+# (Stat)   0=Green, 1=Yellow, 2=Red
+#
+# Locale             Lat      Long    MB  AB  SB  NW  CW  BW  CC  PC  TC  OT  IM
+# Target Name        Lat      Long    Hard  Mobile Value Stat IM  filename
+#
+Abadan               30 21   48 17    1   0   0   0   0   0   0   0   0   0   0    0.00  0  1  0
+  Abadan-MB1         30 21   48 17  0.00  0  1  0
+Abu-Musa-Island      25 52   55 01    1   0   0   0   0   0   0   0   0   0   1    0.04  0  1  0 DSBFiles/Explain/Iran-AbuIsland.gif
+  Abu-Musa-Island-MB1 25 52   55 01  0.04  0  1  0
+Aliabad              34 47   51 05    1   0   0   0   0   0   0   0   0   0   0    0.36  0  1  0
+  Aliabad-MB1        34 47   51 05  0.36  0  1  0
+Arak                 34 05   49 41    1   0   0   0   0   0   0   0   0   0   0    0.09  0  2  0
+  Arak-MB1           34 05   49 41  0.09  0  2  0
+Bandar-Abbas         27 11   56 16    1   0   1   0   0   0   0   0   0   0   1    0.53  0  2  0 DSBFiles/Explain/Iran-Bandar.gif
+  Bandar-Abbas-MB1   27 11   56 16  0.53  0  2  0
+  Bandar-Abbas-SB1   27 11   56 16  0.24  0  2  0
+Bonab                38 25   45 54    0   0   0   1   0   0   0   0   0   0   0    0.23  0  3  0
+  Bonab-NW1          38 25   45 54  0.23  0  3  0
+Bushehr              28 51   50 53    0   0   0   1   0   0   0   0   0   0   0    0.93  0  2  0
+  Bushehr-NW1        28 51   50 53  0.93  0  2  0
+Chalus               36 40   51 25    0   0   0   1   0   0   0   0   0   0   0    0.56  0  1  0
+  Chalus-NW1         36 40   51 25  0.56  0  1  0
+Damghan              36 10   54 20    0   0   0   0   1   1   0   0   0   0   0    0.77  0  1  0
+  Damghan-CW1        36 10   54 20  0.77  0  1  0
+  Damghan-BW1        36 10   54 20  0.77  0  1  0
+Darkhovin            30 45   48 24    0   0   0   1   0   0   0   0   0   0   0    0.25  0  1  0
+  Darkhovin-NW1      30 45   48 24  0.25  0  1  0
+Dorud                36 00   51 29    1   0   0   0   0   0   0   0   0   0   0    0.88  0  2  0
+  Dorud-MB1          36 00   51 29  0.88  0  2  0
+Esfahan              32 40   51 40    1   0   0   1   1   0   0   0   0   0   0    0.92  0  2  0
+  Esfahan-MB1        32 40   51 40  0.92  0  2  0
+  Esfahan-NW1        32 40   51 40  0.92  0  2  0
+  Esfahan-CW1        32 40   51 40  0.92  0  2  0
+Fasa                 28 56   53 38    0   0   0   1   0   0   0   0   0   0   0    0.81  0  1  0  DSBFiles/Explain/HazMat.gif
+  Fasa-NW1           28 56   53 38  0.81  0  1  0
+Gamsar               35 40   51 45    1   0   0   0   0   0   0   0   0   0   0    0.89  0  2  0
+  Gamsar-MB1         35 40   51 45  0.89  0  2  0
+Gostaresh            35 28   48 53    1   0   0   0   0   0   0   0   0   0   0    0.08  0  3  0
+  Gostaresh-MB1      35 28   48 53  0.08  0  3  0
+Hama                 00 00   00 00    1   0   0   0   0   0   0   0   0   0   0    0.98  0  1  0
+  Hama-MB1           00 00   00 00  0.98  0  1  0
+Islaker              00 00   00 00    1   0   0   0   0   0   0   0   0   0   0    0.89  0  3  0
+  Islaker-MB1        00 00   00 00  0.89  0  3  0
+Karaj                35 50   51 00    1   0   0   1   0   0   0   0   0   0   0    0.10  0  1  0
+  Karaj-MB1          35 50   51 00  0.10  0  1  0
+  Karaj-NW1          35 50   51 00  0.10  0  1  0
+Khorramabad          33 28   48 21    1   0   0   0   0   0   0   0   0   0   0    0.02  0  2  0
+  Khorramabad-MB1    33 28   48 21  0.02  0  2  0
+Kukh-e-Barjamali     35 39   51 39    1   0   0   0   0   0   0   0   0   0   0    0.68  0  3  0
+  Kukh-e-Barjamali-MB1 35 39   51 39  0.68  0  3  0
+Lavizan              35 46   51 29    1   0   0   1   0   0   0   0   0   0   0    0.75  0  1  0
+  Lavizan-MB1        35 46   51 29  0.75  0  1  0
+  Lavizan-NW1        35 46   51 29  0.75  0  1  0
+Maghdad              00 00   00 00    1   0   0   0   0   0   0   0   0   0   0    0.62  0  1  0
+  Maghdad-MB1        00 00   00 00  0.62  0  1  0
+Manzariyeh           35 49   51 28    1   0   0   0   0   0   0   0   0   0   0    0.62  0  3  0
+  Manzariyeh-MB1     35 49   51 28  0.62  0  3  0
+Mashhad              36 18   59 35    1   0   0   0   0   0   0   0   0   0   0    0.19  0  2  0
+  Mashhad-MB1        36 18   59 35  0.19  0  2  0
+Mo'allem-Kalaych     36 26   50 29    0   0   0   1   0   0   0   0   0   0   0    0.70  0  2  0
+  Mo'allem-Kalaych-NW1 36 26   50 29  0.70  0  2  0
+Neka                 36 39   53 17    0   0   0   1   0   0   0   0   0   0   0    0.88  0  2  0
+  Neka-NW1           36 39   53 17  0.88  0  2  0
+Okaraman             00 00   00 00    1   0   0   0   0   0   0   0   0   0   0    0.53  0  2  0
+  Okaraman-MB1       00 00   00 00  0.53  0  2  0
+Pairzan              00 00   00 00    1   0   0   0   0   0   0   0   0   0   0    0.54  0  3  0
+  Pairzan-MB1        00 00   00 00  0.54  0  3  0
+Parchin              35 31   51 46    1   0   0   0   1   0   0   0   0   0   0    0.17  0  3  0
+  Parchin-MB1        35 31   51 46  0.17  0  3  0
+  Parchin-CW1        35 31   51 46  0.17  0  3  0
+Qazvin               36 15   50 01    0   0   0   0   1   0   0   0   0   0   0    0.86  0  3  0
+  Qazvin-CW1         36 15   50 01  0.86  0  3  0
+Qeshm-Island         26 57   56 16    1   0   0   0   0   0   0   0   0   0   0    0.05  0  3  0
+  Qeshm-Island-MB1   26 57   56 16  0.05  0  3  0
+Saghand              32 32   55 15    0   0   0   1   0   0   0   0   0   0   0    0.33  0  1  0
+  Saghand-NW1        32 32   55 15  0.33  0  1  0
+Saidabad             29 27   55 40    1   0   0   0   0   0   0   0   0   0   0    0.27  0  1  0
+  Saidabad-MB1       29 27   55 40  0.27  0  1  0
+Sultanatabad         35 47   51 28    1   0   0   0   0   0   0   0   0   0   0    0.68  0  3  0
+  Sultanatabad-MB1   35 47   51 28  0.68  0  3  0
+Sarji                32 46   59 35    1   0   0   0   0   0   0   0   0   0   0    0.46  0  2  0
+  Sarji-MB1          32 46   59 35  0.46  0  2  0
+Semnan               35 34   53 23    1   0   0   0   0   0   0   0   0   0   0    0.51  0  2  0
+  Semnan-MB1         35 34   53 23  0.51  0  2  0
+Shahriyar            35 39   51 03    1   0   0   0   0   0   0   0   0   0   0    0.74  0  3  0
+  Shahriyar-MB1      35 39   51 03  0.74  0  3  0
+Shiraz               29 36   52 32    1   0   0   0   0   0   0   0   0   0   0    0.58  0  3  0
+  Shiraz-MB1         29 36   52 32  0.58  0  3  0
+Seman                35 07   47 05    1   0   0   0   0   0   0   0   0   0   0    0.33  0  2  0
+  Seman-MB1          35 07   47 05  0.33  0  2  0
+Shahroud             36 25   55 00    1   0   0   0   0   0   0   0   0   0   0    0.18  0  1  0
+  Shahroud-MB1       36 25   55 00  0.18  0  1  0
+Shargfabad           36 25   55 00    1   0   0   0   0   0   0   0   0   0   0    0.85  0  3  0
+  Shargfabad-MB1     36 25   55 00  0.85  0  3  0
+Sirri-Island         25 54   54 31    1   0   0   0   0   0   0   0   0   0   0    0.95  0  3  0
+  Sirri-Island-MB1   25 54   54 31  0.95  0  3  0
+Sirjan               29 27   55 40    1   0   0   0   0   0   0   0   0   0   0    0.14  0  3  0
+  Sirjan-MB1         29 27   55 40  0.14  0  3  0
+Taba                 00 00   00 00    1   0   0   0   0   0   0   0   0   0   0    0.13  0  1  0
+  Taba-MB1           00 00   00 00  0.13  0  1  0
+Tabas                32 48   60 13    0   0   0   1   0   0   0   0   0   0   0    0.00  0  1  0
+  Tabas-NW1          32 48   60 13  0.00  0  1  0
+Tabriz               38 05   46 15    1   0   0   1   0   0   0   0   0   0   0    0.59  0  2  0
+  Tabriz-MB1         38 05   46 15  0.59  0  2  0
+  Tabriz-NW1         38 05   46 15  0.59  0  2  0
+Tehran               35 40   51 25    1   0   0   1   0   0   0   1   0   0   1    0.03  0  2  0 DSBFiles/Explain/Iran-Tehran.gif
+  Tehran-MB1         35 40   51 25  0.03  0  2  0
+  Tehran-NW1         35 40   51 25  0.03  0  2  0
+  Tehran-PC1         35 40   51 25  0.03  0  2  0  2  DSBFiles/Explain/Iran-Tehran-Image.desc
+Uranium-Mines        00 00   00 00    0   0   0   1   0   0   0   0   0   0   0    0.79  0  2  0
+  Uranium-Mines-NW1  00 00   00 00  0.79  0  2  0
+Yazd                 31 55   54 20    0   0   0   1   0   0   0   0   0   0   0    0.29  0  3  0
+  Yazd-NW1           31 55   54 20  0.29  0  3  0
+Vahdati-AFB          32 26   48 23    0   1   0   0   0   0   0   0   0   0   0    0.00  0  1  0
+  Vahdati-AFB-AB1    32 26   48 23  0.00  0  1  0
+Paygah-e             35 12   48 42    0   1   0   0   0   0   0   0   0   0   0    0.04  0  1  0
+  Paygah-e-AB1       35 12   48 42  0.04  0  1  0
+Estahbanat           29 07   54 04    0   1   0   0   0   0   0   0   0   0   0    0.36  0  1  0
+  Estahbanat-AB1     29 07   54 04  0.36  0  1  0
+Gach                 29 07   54 04    0   1   0   0   0   0   0   0   0   0   0    0.09  0  2  0
+  Gach-AB1           29 07   54 04  0.09  0  2  0
+Saran                30 20   50 49    0   1   0   0   0   0   0   0   0   0   0    0.53  0  2  0
+  Saran-AB1          30 20   50 49  0.53  0  2  0
+Behbahan             30 35   50 14    0   1   0   0   0   0   0   0   0   0   0    0.23  0  3  0
+  Behbahan-AB1       30 35   50 14  0.23  0  3  0
+Agha                 30 35   50 14    0   1   0   0   0   0   0   0   0   0   0    0.93  0  2  0
+  Agha-AB1           30 35   50 14  0.93  0  2  0
+Jari                 30 44   49 40    0   1   0   0   0   0   0   0   0   0   0    0.56  0  1  0
+  Jari-AB1           30 44   49 40  0.56  0  1  0
+Deh                  30 44   49 40    0   1   0   0   0   0   0   0   0   0   0    0.77  0  1  0
+  Deh-AB1            30 44   49 40  0.77  0  1  0
+Dasht                30 48   50 34    0   1   0   0   0   0   0   0   0   0   0    0.25  0  1  0
+  Dasht-AB1          30 48   50 34  0.25  0  1  0
+Yazd                 31 51   54 20    0   1   0   0   0   0   0   0   0   0   0    0.88  0  2  0
+  Yazd-AB1           31 51   54 20  0.88  0  2  0
+Vahdat               32 26   48 24    0   1   0   0   0   0   0   0   0   0   0    0.92  0  2  0
+  Vahdat-AB1         32 26   48 24  0.92  0  2  0
+Esfahan              32 37   51 42    0   1   0   0   0   0   0   0   0   0   0    0.81  0  1  0
+  Esfahan-AB1        32 37   51 42  0.81  0  1  0
+Khatami-Ab           32 45   51 52    0   1   0   0   0   0   0   0   0   0   0    0.89  0  2  0
+  Khatami-Ab-AB1     32 45   51 52  0.89  0  2  0
+Nain                 32 52   53 04    0   1   0   0   0   0   0   0   0   0   0    0.08  0  3  0
+  Nain-AB1           32 52   53 04  0.08  0  3  0
+Abyazan              33 21   51 57    0   1   0   0   0   0   0   0   0   0   0    0.98  0  1  0
+  Abyazan-AB1        33 21   51 57  0.98  0  1  0
+Jalnabad             34 29   51 20    0   1   0   0   0   0   0   0   0   0   0    0.89  0  3  0
+  Jalnabad-AB1       34 29   51 20  0.89  0  3  0
+Qom                  34 42   50 50    0   1   0   0   0   0   0   0   0   0   0    0.10  0  1  0
+  Qom-AB1            34 42   50 50  0.10  0  1  0
+Hamadan              34 52   48 33    0   1   0   0   0   0   0   0   0   0   0    0.02  0  2  0
+  Hamadan-AB1        34 52   48 33  0.02  0  2  0
+Manzariyeh           34 59   50 48    0   1   0   0   0   0   0   0   0   0   0    0.68  0  3  0
+  Manzariyeh-AB1     34 59   50 48  0.68  0  3  0
+Kushk-e-Nosrat       35 02   50 49    0   1   0   0   0   0   0   0   0   0   0    0.75  0  1  0
+  Kushk-e-Nosrat-AB1 35 02   50 49  0.75  0  1  0
+Shahrokh             35 13   48 39    0   1   0   0   0   0   0   0   0   0   0    0.62  0  1  0
+  Shahrokh-AB1       35 13   48 39  0.62  0  1  0
+Shahroki-AFB         35 13   48 39    0   1   0   0   0   0   0   0   0   0   0    0.62  0  3  0
+  Shahroki-AFB-AB1   35 13   48 39  0.62  0  3  0
+Kahrizak             35 27   51 19    0   1   0   0   0   0   0   0   0   0   0    0.19  0  2  0
+  Kahrizak-AB1       35 27   51 19  0.19  0  2  0
+Vayqan               38 03   45 44    0   1   0   0   0   0   0   0   0   0   0    0.51  0  1  0
+  Vayqan-AB1         38 03   45 44  0.51  0  1  0
+Tabriz               38 08   46 14    0   1   0   0   0   0   0   0   0   0   0    0.70  0  2  0
+  Tabriz-AB1         38 08   46 14  0.70  0  2  0
+Qezel-Qeshl          39 06   45 20    0   1   0   0   0   0   0   0   0   0   0    0.88  0  2  0
+  Qezel-Qeshl-AB1    39 06   45 20  0.88  0  2  0
+Parsabad             39 36   47 52    0   1   0   0   0   0   0   0   0   0   0    0.53  0  2  0
+  Parsabad-AB1       39 36   47 52  0.53  0  2  0
+#
+# Sources and Resources
+#
+# Federation of American Scientists Web Site (WMD pages)
+#

@@ -1,0 +1,21 @@
+   11	1   08:00:00				# No. of entries, Autoaccept, Clock Adjustment
+# 1) Time of event
+# 2) Units of time (S=sec, M=min, H=hour, D=day, W=week, N=month, Y=year
+# 3) Event priority
+# 4) Type of event
+# 5) Event Action
+# 6) Action value
+# 7) Event description
+# 8) Associated filename (if any)
+#
+-10.0     M 3  WAKEUP    BRIEFING           0     Situation_Briefing.         *
+0.0       M 3  WAKEUP    BRIEFING           0     Shift_Change_Briefing.      *
+7.0       M 2  ALARM     JCSWARN          IDS     IDS_Alert.                  IDS-Attack-1234.5
+8.0       M 4  WAKEUP    ASSESS             0     Snort_Vulnerability.        *
+9.0       M 4  UPDATE    DEFCON             3     AFCERT_Alert.               *
+10.0      M 3  WAKEUP    ASSESS             0     Text_Extraction.            *
+11.0      M 3  WAKEUP    ASSESS             0     DDoS_Pattern_Detected.      *
+12.0      M 3  ALARM     INTEL              0     Evidence_Report.            NewEvid.lock
+13.0      M 3  WAKEUP    ASSESS         CONUS     New_Evidence_Fused.         *
+15.0      M 3  WAKEUP    ASSESS           GEN     Plan_Updated.               filename
+16.0      M 4  WAKEUP    ASSESS          Free     Send_Tasking_Message.       *

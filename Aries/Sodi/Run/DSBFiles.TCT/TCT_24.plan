@@ -1,0 +1,56 @@
+  JSTARS			3  0.67  0.75  0.12  0
+	Task_Collection				Operator  Task_JSTARS
+	Expand_Collection			Operator  Expand_Collection
+	Redirect_Collection			Operator  Redirect_Collection
+  Global_Hawk			3  0.67  0.75  0.12  0
+	Task_Predator				Operator  Task_Predator
+	Expand_Collection			Operator  Expand_Collection
+	Redirect_Collection			Operator  Redirect_Collection
+  U-2				3  0.67  0.75  0.12  0
+	Task_U-2				Operator  Task_U-2
+	Expand_Collection			Operator  Expand_Collection
+	Redirect_Collection			Operator  Redirect_Collection
+  MC2A  			3  0.67  0.75  0.12  0
+	Do_Datamining				Operator  Do_Datamining
+	Update_From_MIDB			Script    Update_From_MIDB
+	Add_More_Rules				Operator  Add_More_Rules
+  Fighter			3  0.67  0.75  0.12  0
+	Task_F-16				Operator  Task_F-16
+	Expand_Collection			Operator  Expand_Collection
+	Redirect_Collection			Operator  Redirect_Collection
+  Space				3  0.67  0.75  0.12  0
+	Increase_Surveillance			Operator  Increase_Surveillance
+	Resolve_Differences			Operator  Resolve_Differences
+	Issue_Warnings				Operator  Issue_Warnings
+  Find				4  0.67  0.75  0.12  0
+	Disable_SrcAddr_Authentication		Operator  Disable_SrcAddr_Authentication
+	Enable_Encrypted_Authentication		Operator  Enable_Encrypted_Authentication
+	Enable_Router_Encryption		Operator  Enable_Router_Encryption
+	Reject_Local_Address_Packets		Operator  Reject_Local_Address_Packets  
+  Fix				1  0.67  0.75  0.12  0
+	Disable_Remote_Services			Operator  Disable_Remote_Services
+  Track				1  0.67  0.75  0.12  0
+	Prevent_Scans				Operator  Prevent_Scans
+  Target			3  0.67  0.75  0.12  0
+	Perform_Link_Analysis			Operator  Perform_Link_Analysis
+	Analyze_Links				Operator  Analyze_Links
+	Close_Source_IPs			Operator  Close_Source_IPs
+  Execute			3  0.67  0.75  0.12  0
+	Perform_Link_Analysis			Operator  Perform_Link_Analysis
+	Analyze_Links				Operator  Analyze_Links
+	Close_Source_IPs			Operator  Close_Source_IPs
+  Assess			3  0.67  0.75  0.12  0
+	Perform_Link_Analysis			Operator  Perform_Link_Analysis
+	Analyze_Links				Operator  Analyze_Links
+	Close_Source_IPs			Operator  Close_Source_IPs
+  Emerging_Target		2  0.67  0.75  0.12  0
+	Task_Sensor				Operator  Task_Sensor
+	Analyze_IMGINT				Operator  Analyze_IMGINT
+  Engageable_Target		3  0.67  0.75  0.12  0
+	Examine_IMGING				Operator  Examine_IMGINT
+	Task_Asset				Operator  Task_Asset
+	Redirect_Asset				Operator  Redirect_Asset
+  Neutralized_Target		2  0.67  0.75  0.12  0
+	Task_Collection				Operator  Task_Collection
+	Analyze_IMGINT				Operator  Analyze_IMGINT
+

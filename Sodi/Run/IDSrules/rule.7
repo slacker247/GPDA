@@ -1,0 +1,1 @@
+alert tcp $HTTP_SERVERS 80 -> $EXTERNAL_NET any (msg:"ATTACK RESPONSES file copied ok"; content:"1 file(s) copied"; nocase; flags:A+; classtype:bad-unknown; sid:497; rev:2;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC store.cgi attempt"; flags:A+; uricontent:"/store.cgi"; nocase; content:"product="; content:"../.."; classtype:attempted-admin; sid:1306; rev:1;)

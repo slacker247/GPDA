@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS anot.htr access";flags: A+; uricontent:"/iisadmpwd/anot"; nocase; reference:bugtraq,2110; reference:cve,CAN-1999-0407; classtype:web-application-activity; sid:996; rev:2;)

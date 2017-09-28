@@ -1,0 +1,15 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Analyst
+
+    {Token.string == "Analyst"}
+    {Token.string == ":"}
+    {SpaceToken.kind == space}
+(
+    {Person.rule1 == PersonFull}
+):Analyst
+ -->
+:Analyst.Analyst = {}

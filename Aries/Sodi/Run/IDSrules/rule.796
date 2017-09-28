@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS X application to remote host attempt"; flags:A+; content:"%20-display%20";nocase; sid:1363; rev:1; classtype:web-application-attack;)

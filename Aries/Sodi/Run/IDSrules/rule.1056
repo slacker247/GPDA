@@ -1,0 +1,1 @@
+alert tcp $HTTP_SERVERS 80 -> $EXTERNAL_NET any (msg:"WEB-IIS Unauthorized IP Access Attempt"; flags: A+; content:"403"; content:"Forbidden\:"; classtype:web-application-attack; sid:1045; rev:2;)

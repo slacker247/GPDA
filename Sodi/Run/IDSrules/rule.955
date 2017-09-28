@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE orders.txt access";flags: A+; uricontent:"/_private/orders.txt"; nocase; classtype:web-application-activity; sid:947; rev:2;)

@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Time-To-Live Exceeded in Transit"; itype: 11; icode: 0; sid:449;  classtype:misc-activity; rev:4;)

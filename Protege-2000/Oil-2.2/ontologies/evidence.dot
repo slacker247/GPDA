@@ -1,0 +1,150 @@
+digraph generated {
+  ratio=fill;
+  ranksep=1.5;
+  node [style=filled];
+  top[color=yellow];
+
+  "Structure"[color=yellow,fontcolor=black];
+  "Where"-> {  "Structure"; };
+
+  "Nation"[color=yellow,fontcolor=black];
+  "Where"-> {  "Nation"; };
+
+  "Duration"[color=yellow,fontcolor=black];
+  "When"-> {  "Duration"; };
+
+  "animal_lover"[color=coral,fontcolor=black];
+  "Who"-> {  "animal_lover"; };
+
+  "Person"[color=yellow,fontcolor=black];
+  "What"-> {  "Person"; };
+
+  "Region"[color=yellow,fontcolor=black];
+  "Where"-> {  "Region"; };
+
+  "Sensor"[color=yellow,fontcolor=black];
+  "Tactical"-> {  "Sensor"; };
+
+  "Threat"[color=yellow,fontcolor=black];
+  "InfoSource"-> {  "Threat"; };
+
+  "tabloid"[color=yellow,fontcolor=black];
+  "Expertise"-> {  "tabloid"; };
+
+  "Confidence"[color=yellow,fontcolor=black];
+  "HowSevere"-> {  "Confidence"; };
+
+  "Object-Who"[color=yellow,fontcolor=black];
+  "What"-> {  "Object-Who"; };
+
+  "PrimaryMeans"[color=yellow,fontcolor=black];
+  "How"-> {  "PrimaryMeans"; };
+
+  "Tactical"[color=yellow,fontcolor=black];
+  "Operational"-> {  "Tactical"; };
+
+  "TertiaryMeans"[color=yellow,fontcolor=black];
+  "How"-> {  "TertiaryMeans"; };
+
+  "white_van_man"[color=yellow,fontcolor=black];
+  "man"-> {  "white_van_man"; };
+
+  "HowSevere"[color=yellow,fontcolor=black];
+  "van"-> {  "HowSevere"; };
+
+  "quality_broadsheet"[color=yellow,fontcolor=black];
+  "broadsheet"-> {  "quality_broadsheet"; };
+
+  "End"[color=yellow,fontcolor=black];
+  "When"-> {  "End"; };
+
+  "How"[color=yellow,fontcolor=black];
+  {top} ->"How";
+
+  "Who"[color=yellow,fontcolor=black];
+  {top} ->"Who";
+
+  "Why"[color=coral,fontcolor=black];
+  {top} ->"Why";
+
+  "man"[color=coral,fontcolor=black];
+  "Who"-> {  "man"; };
+
+  "van"[color=yellow,fontcolor=black];
+  "HowSevere"-> {  "van"; };
+
+  "City"[color=yellow,fontcolor=black];
+  "Where"-> {  "City"; };
+
+  "Cost"[color=yellow,fontcolor=black];
+  "HowSevere"-> {  "Cost"; };
+
+  "What"[color=yellow,fontcolor=black];
+  {top} ->"What";
+
+  "When"[color=yellow,fontcolor=black];
+  {top} ->"When";
+
+  "Event"[color=yellow,fontcolor=black];
+  "What"-> {  "Event"; };
+
+  "Start"[color=yellow,fontcolor=black];
+  "When"-> {  "Start"; };
+
+  "Where"[color=yellow,fontcolor=black];
+  {top} ->"Where";
+
+  "woman"[color=coral,fontcolor=black];
+  "Who"-> {  "woman"; };
+
+  "old_lady"[color=coral,fontcolor=black];
+  "Who"-> {  "old_lady"; };
+
+  "FriendlyForces"[color=yellow,fontcolor=black];
+  "Who"-> {  "FriendlyForces"; };
+
+  "Object-What"[color=yellow,fontcolor=black];
+  "What"-> {  "Object-What"; };
+
+  "Injuries"[color=yellow,fontcolor=black];
+  "Casualities"-> {  "Injuries"; };
+
+  "SecMeans"[color=yellow,fontcolor=black];
+  "How"-> {  "SecMeans"; };
+
+  "red_top"[color=yellow,fontcolor=black];
+  "tabloid"-> {  "red_top"; };
+
+  "bus_driver"[color=coral,fontcolor=black];
+  "Who"-> {  "bus_driver"; };
+
+  "InfoSource"[color=yellow,fontcolor=black];
+  "Who"-> {  "InfoSource"; };
+
+  "Descriptor"[color=yellow,fontcolor=black];
+  "HowSevere"-> {  "Descriptor"; };
+
+  "broadsheet"[color=yellow,fontcolor=black];
+  "Expertise"-> {  "broadsheet"; };
+
+  "Strategic"[color=yellow,fontcolor=black];
+  "Why"-> {  "Strategic"; };
+
+  "Casualities"[color=yellow,fontcolor=black];
+  "HowSevere"-> {  "Casualities"; };
+
+  "Operational"[color=yellow,fontcolor=black];
+  "Strategic"-> {  "Operational"; };
+
+  "Action"[color=yellow,fontcolor=black];
+  "What"-> {  "Action"; };
+
+  "Loccale"[color=yellow,fontcolor=black];
+  "Where"-> {  "Loccale"; };
+
+  "Future"[color=yellow,fontcolor=black];
+  "When"-> {  "Future"; };
+
+  "Expertise"[color=yellow,fontcolor=black];
+  "How"-> {  "Expertise"; };
+}

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI php access";flags: A+; uricontent:"/php.cgi"; nocase; reference:bugtraq,2250; reference:arachnids,232; classtype:attempted-recon; sid:824; rev:2;)

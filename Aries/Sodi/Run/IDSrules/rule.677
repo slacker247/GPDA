@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 69 (msg:"TFTP root directory"; content:"|0001|/"; reference:arachnids,138; reference:cve,CVE-1999-0183; classtype:bad-unknown; sid:520; rev:2;)

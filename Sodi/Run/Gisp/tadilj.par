@@ -1,0 +1,13 @@
+parameters {
+
+  logical tadilj_input T
+  string tadilj_file tadilj.both
+  logical label_track F
+  logical drop_track F
+  logical show_r2 T
+  logical keep_links T
+  string pdu_scheme TRACKID
+  string jdn_scheme TRACKID
+  int delay_sec 5
+}
+

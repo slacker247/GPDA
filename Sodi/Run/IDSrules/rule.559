@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET 10101 -> $HOME_NET any (msg:"SCAN myscan"; ttl: >220; ack: 0; flags: S;reference:arachnids,439; classtype:attempted-recon; sid:613; rev:1;)

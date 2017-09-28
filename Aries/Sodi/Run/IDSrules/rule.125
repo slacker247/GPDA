@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"BAD TRAFFIC data in TCP SYN packet"; flags:S; dsize:>6;  sid:526;  classtype:misc-activity; rev:3;)

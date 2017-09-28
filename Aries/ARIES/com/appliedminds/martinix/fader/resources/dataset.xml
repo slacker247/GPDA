@@ -1,0 +1,37 @@
+<vge-dataset id="hmv">
+
+ <icon-base>resource:com/appliedminds/martinix/fader/resources</icon-base>
+
+ <type-map>
+   <type>
+     <value>Document</value>
+     <icon>prop_docs_on.png</icon>
+   </type>
+   <type>
+     <value>Graph</value>
+     <icon>prop_zoom_on.png</icon>
+   </type>
+
+
+   <!-- the following are not real node types, just using the dataset framework to load the images -->
+   <type>
+     <value>positive</value>
+     <icon>positive.png</icon>
+   </type>
+   <type>
+     <value>positive_down</value>
+     <icon>positive_down.png</icon>
+   </type>
+   <type>
+     <value>negative</value>
+     <icon>negative.png</icon>
+   </type>
+   <type>
+     <value>negative_down</value>
+     <icon>negative_down.png</icon>
+   </type>
+   
+ </type-map>
+
+</vge-dataset>
+

@@ -1,0 +1,1125 @@
+parameters {
+  logical on_off T
+  logical coverage T
+}
+
+asset_names {
+  logical label T
+
+  int max_id 20
+
+  type BlueSub
+  type AWACS
+  type THAAD
+  type Aegis-L
+  type Aegis-E
+  type Patriot
+}
+
+gbi_sites {
+  float pkill 1.0
+  logical label T
+
+  type SEOUL
+  type ARMY5
+}
+
+dsp_names {
+  type DSP0
+  type DSP1
+  type DSP2
+  type DSP3
+  type DSP4
+  type DSP5
+}
+
+sbirs_names {
+  int icon 44
+  int n_rings 3
+  int n_per_ring 13
+  float altitude 1600.0
+  float inclination 65.0
+  float time 0.0
+  float turn_on_time 39000.0
+  logical on_off T
+  logical stagger T
+}
+
+SEOUL {
+  int asset_id 18
+  logical north T
+  logical east T
+  float lat_deg 37.0
+  float lat_min 0.0
+  float lat_sec 0
+  float lon_deg 128.0
+  float lon_min 0
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 152
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type THAAD_SENSOR
+  float elevation 25.0
+  float azimuth 330.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons T
+  int gbi_id 1
+  int n_gbi 35
+  int n_hold 5
+  float pkill 1.0
+  string gbi_type THAAD
+
+  logical area_defense F
+  type AREA_1
+  type AREA_2
+
+  logical unit F
+}
+
+TAEGU {
+  int asset_id 19
+  logical north T
+  logical east T
+  float lat_deg 37.5
+  float lat_min 0.0
+  float lat_sec 0
+  float lon_deg 128.0
+  float lon_min 0
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 152
+  float scale 0.5
+
+  logical sensor T
+  string sensor_type PATRIOT_SENSOR
+  float elevation 25.0
+  float azimuth 127.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons T
+  int gbi_id 2
+  int n_gbi 35
+  int n_hold 5
+  float pkill 1.0
+  string gbi_type PATRIOT
+
+  logical area_defense F
+  type AREA_2
+
+  logical unit F
+}
+
+ ALASKA {
+  int asset_id 13
+  logical north T
+  logical east F
+  float lat_deg 55.0
+  float lat_min 0.0
+  float lat_sec 0
+  float lon_deg 170.0
+  float lon_min 0
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 152
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type GBR_SENSOR
+  float elevation 25.0
+  float azimuth 330.0
+  logical coverage F
+  int r 255
+  int g 255
+  int b 255
+
+  logical weapons F
+
+  logical area_defense F
+
+  logical unit F
+}
+
+ AWACS {
+  int asset_id 14
+  logical north T
+  logical east T
+  float lat_deg 36.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 126.0
+  float lon_min 0
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 127
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type AWACS_SENSOR
+  float elevation -5.0
+  float azimuth 27.0
+  logical coverage T
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons F
+  logical area_defense F
+  logical unit F
+}
+
+BlueSub {
+  int asset_id 2
+  logical north T
+  logical east T
+  float lat_deg 37.5
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 132.0
+  float lon_min 0
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 127
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type AWACS_SENSOR
+  float elevation 25.0
+  float azimuth 127.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons F
+  logical area_defense F
+  logical unit F
+}
+
+CRC-SIM {
+  int asset_id 17
+  logical north T
+  logical east F
+  float lat_deg 32.0
+  float lat_min 45.0
+  float lat_sec 0
+  float lon_deg 117.0
+  float lon_min 0
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 127
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type GBR_SENSOR
+  float elevation 25.0
+  float azimuth 127.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons F
+
+  logical area_defense F
+
+  logical unit F
+}
+
+CRC-MCE {
+  int asset_id 2
+  logical north T
+  logical east F
+  float lat_deg 38.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 122.0
+  float lon_min 0
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 127
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type GBR_SENSOR
+  float elevation 25.0
+  float azimuth 127.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons F
+
+  logical area_defense F
+
+  logical unit F
+}
+
+USMC {
+  int asset_id 3
+  logical north T
+  logical east F
+  float lat_deg 48.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 122.0
+  float lon_min 0
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 127
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type HAWK_SENSOR
+  float elevation 25.0
+  float azimuth 127.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons T
+  int gbi_id 3
+  int n_gbi 35
+  int n_hold 5
+  float pkill 1.0
+  string gbi_type INTGBI
+
+  logical area_defense F
+
+  logical unit F
+}
+
+THAAD {
+  int asset_id 9
+  logical north T
+  logical east T
+  float lat_deg 35.5
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 128.5
+  float lon_min 0
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 127
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type THAAD_SENSOR
+  float elevation 25.0
+  float azimuth 127.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons T
+  int gbi_id 4
+  int n_gbi 35
+  int n_hold 5
+  float pkill 1.0
+  string gbi_type INTGBI
+
+  logical area_defense F
+  type AREA_1
+
+  logical unit F
+}
+
+Aegis-L {
+  int asset_id 5
+  logical north T
+  logical east T
+  float lat_deg 36.5
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 130.5
+  float lon_min 0
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 127
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type AEGIS_SENSOR
+  float elevation 25.0
+  float azimuth -25.0
+  logical coverage T
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons T
+  int gbi_id 5
+  int n_gbi 35
+  int n_hold 5
+  float pkill 1.0
+  string gbi_type INTGBI
+
+  logical area_defense F
+
+  logical unit F
+}
+
+Aegis-E {
+  int asset_id 6
+  logical north T
+  logical east T
+  float lat_deg 36.5
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 125.5
+  float lon_min 0
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 127
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type AEGIS_SENSOR
+  float elevation 25.0
+  float azimuth 90.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons T
+  int gbi_id 6
+  int n_gbi 35
+  int n_hold 5
+  float pkill 1.0
+  string gbi_type INTGBI
+
+  logical area_defense F
+
+  logical unit F
+}
+
+CRC-COOR {
+  int asset_id 7
+  logical north T
+  logical east F
+  float lat_deg 45.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 68.0
+  float lon_min 0
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 127
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type GBR_SENSOR
+  float elevation 25.0
+  float azimuth 127.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons F
+
+  logical area_defense F
+
+  logical unit F
+}
+
+JTAGS {
+  int asset_id 8
+  logical north T
+  logical east F
+  float lat_deg 68.5
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 105.2
+  float lon_min 0
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 127
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type GBR_SENSOR
+  float elevation 25.0
+  float azimuth 127.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons F
+
+  logical area_defense F
+
+  logical unit F
+}
+
+Patriot {
+  int asset_id 4
+  logical north T
+  logical east T
+  float lat_deg 36.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 127.0
+  float lon_min 30.0
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 127
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type PATRIOT_SENSOR
+  float elevation 25.0
+  float azimuth 20.0
+  logical coverage T
+  int r 0
+  int g 255 
+  int b 255 
+
+  logical weapons T
+  int gbi_id 9
+  int n_gbi 35
+  int n_hold 5
+  float pkill 1.0
+  string gbi_type INTGBI
+
+  logical area_defense T
+  type AREA_1
+
+  logical unit F
+}
+
+PATRIOT-2 {
+  int asset_id 10
+  logical north T
+  logical east F
+  float lat_deg 26.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 81.0
+  float lon_min 0
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 127
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type PATRIOT_SENSOR
+  float elevation 25.0
+  float azimuth 127.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons T
+  int gbi_id 10
+  int n_gbi 35
+  int n_hold 5
+  float pkill 1.0
+  string gbi_type INTGBI
+
+  logical area_defense F
+
+  logical unit F
+}
+
+FT-BLISS {
+  int asset_id 11
+  logical north T
+  logical east F
+  float lat_deg 39.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 105.0
+  float lon_min 0
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 127
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type THAAD_SENSOR
+  float elevation 25.0
+  float azimuth 127.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons T
+  int gbi_id 11
+  int n_gbi 35
+  int n_hold 5
+  float pkill 1.0
+  string gbi_type INTGBI
+
+  logical area_defense F
+
+  logical unit F
+}
+
+THAAD-BLISS {
+  int asset_id 12
+  logical north T
+  logical east F
+  float lat_deg 39.0
+  float lat_min 0
+  float lat_sec 0
+  float lon_deg 105.0
+  float lon_min 0
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 127
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type THAAD_SENSOR
+  float elevation 25.0
+  float azimuth 127.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons T
+  int gbi_id 11
+  int n_gbi 35
+  int n_hold 5
+  float pkill 1.0
+  string gbi_type INTGBI
+
+  logical area_defense F
+
+  logical unit F
+}
+
+AL_JAWF {
+  int asset_id 31
+  logical north T
+  logical east T
+  float lat_deg 29
+  float lat_min 55
+  float lat_sec 0
+  float lon_deg 39
+  float lon_min 40
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 127
+  float scale 0.05
+
+  logical sensor F
+
+  logical weapons T
+  int gbi_id 12
+  int n_gbi 3
+  int n_hold 1
+  float pkill 1.0
+  string gbi_type INTGBI
+
+  logical area_defense F
+
+  logical unit F
+}
+
+TEL_AVIV {
+  int asset_id 32
+  logical north T
+  logical east T
+  float lat_deg 32
+  float lat_min 4
+  float lat_sec 0
+  float lon_deg 34
+  float lon_min 48
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 127
+  float scale 0.05
+
+  logical sensor F
+
+  logical weapons T
+  int gbi_id 13
+  int n_gbi 3
+  int n_hold 1
+  float pkill 1.0
+  string gbi_type INTGBI
+
+  logical area_defense F
+
+  logical unit F
+}
+
+HAKODATE {
+  int asset_id 33
+  logical north T
+  logical east T
+  float lat_deg 41
+  float lat_min 45
+  float lat_sec 0
+  float lon_deg 140
+  float lon_min 44
+  float lon_sec 0
+  float altitude 0.0
+  string status G
+  int icon 127
+  float scale 0.05
+
+  logical sensor F
+
+  logical weapons T
+  int gbi_id 14
+  int n_gbi 3
+  int n_hold 1
+  float pkill 1.0
+  string gbi_type INTGBI
+
+  logical area_defense F
+
+  logical unit F
+}
+
+DSP0 {
+  int asset_id 40
+  logical north T
+  logical east T
+  float lat_deg 0.0
+  float lat_min 0.0
+  float lat_sec 0.0
+  float lon_deg 0.0
+  float lon_min 0.0
+  float lon_sec 0.0
+  float altitude 0.0
+  string status G
+  int icon 45
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type DSP_SENSOR
+  float elevation 25.0
+  float azimuth 127.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons F
+
+  logical area_defense F
+
+  logical unit F
+}
+
+DSP1 {
+  int asset_id 41
+  logical north T
+  logical east T
+  float lat_deg 0.0
+  float lat_min 0.0
+  float lat_sec 0.0
+  float lon_deg 60.0
+  float lon_min 0.0
+  float lon_sec 0.0
+  float altitude 0.0
+  int icon 45
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type DSP_SENSOR
+  float elevation 25.0
+  float azimuth 127.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons F
+
+  logical area_defense F
+
+  logical unit F
+}
+
+DSP2 {
+  int asset_id 42
+  logical north T
+  logical east T
+  float lat_deg 0.0
+  float lat_min 0.0
+  float lat_sec 0.0
+  float lon_deg 120.0
+  float lon_min 0.0
+  float lon_sec 0.0
+  float altitude 0.0
+  int icon 45
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type DSP_SENSOR
+  float elevation 25.0
+  float azimuth 127.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons F
+
+  logical area_defense F
+
+  logical unit F
+}
+
+DSP3 {
+  int asset_id 43
+  logical north T
+  logical east T
+  float lat_deg 0.0
+  float lat_min 0.0
+  float lat_sec 0.0
+  float lon_deg 180.0
+  float lon_min 0.0
+  float lon_sec 0.0
+  float altitude 0.0
+  int icon 45
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type DSP_SENSOR
+  float elevation 25.0
+  float azimuth 127.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons F
+
+  logical area_defense F
+
+  logical unit F
+}
+
+DSP4 {
+  int asset_id 44
+  logical north T
+  logical east T
+  float lat_deg 0.0
+  float lat_min 0.0
+  float lat_sec 0.0
+  float lon_deg 240.0
+  float lon_min 0.0
+  float lon_sec 0.0
+  float altitude 0.0
+  int icon 45
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type DSP_SENSOR
+  float elevation 25.0
+  float azimuth 127.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons F
+
+  logical area_defense F
+
+  logical unit F
+}
+
+DSP5 {
+  int asset_id 45
+  logical north T
+  logical east T
+  float lat_deg 0.0
+  float lat_min 0.0
+  float lat_sec 0.0
+  float lon_deg 300.0
+  float lon_min 0.0
+  float lon_sec 0.0
+  float altitude 0.0
+  int icon 45
+  float scale 0.05
+
+  logical sensor T
+  string sensor_type DSP_SENSOR
+  float elevation 25.0
+  float azimuth 127.0
+  logical coverage F
+  int r 255
+  int g 0
+  int b 0
+
+  logical weapons F
+
+  logical area_defense F
+
+  logical unit F
+}
+
+ARMY5 {
+  int asset_id 16
+  logical north T
+  logical east F
+  float lat_deg 30.55
+  float lat_min 0.0
+  float lat_sec 0.0
+  float lon_deg 114.5
+  float lon_min 0.0
+  float lon_sec 0.0
+  float altitude 0.0
+  int icon 76
+  float scale 0.05
+
+  logical sensor F
+
+  logical weapons F
+
+  logical area_defense F
+
+  logical unit T
+  string unit_type Army
+  string unit_name 5th_Battalion
+  int type 4
+  float size 156
+}
+
+GBR_SENSOR {
+  int sensor_type 1
+  float scan_time 10.0
+  float rmin 0.0
+  float rmax 1500.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  float rmax_low 129.64
+  float fov_high 65.0
+  float fov_low  25.0
+  logical fixed T
+  logical los T
+  float error 2.0
+  int icon 152
+  float scale 1.0
+}
+
+GBI_SENSOR {
+  int sensor_type 0
+  float scan_time 1.0
+  float rmin 0.0
+  float rmax 6000.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  float rmax_low 129.64
+  float fov_high 65.0
+  float fov_low  25.0
+  logical fixed F
+  logical los T
+  float error 2.0
+  int icon 151
+  float scale 1.0
+}
+
+AEGIS_SENSOR {
+  int sensor_type 0
+  float scan_time 5.0
+  float rmin 0.100
+  float rmax 600.0
+  float rmax_low 129.64
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  float fov_high 35.0
+  float fov_low  25.0
+  logical fixed T
+  logical los T
+  float error 0.100
+  int icon 199
+  float scale 1.0
+}
+
+PATRIOT_SENSOR {
+  int sensor_type 0
+  float scan_time 5.0
+  float rmin 0.100
+  float rmax 600.0
+  float rmax_low 129.64
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  float fov_high 30.0
+  float fov_low  25.0
+  logical fixed T
+  logical los T
+  float error 0.100
+  int icon 199
+  float scale 1.0
+}
+
+THAAD_SENSOR {
+  int sensor_type 0
+  float scan_time 5.0
+  float rmin 0.100
+  float rmax 500.0
+  float rmax_low 300.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  float fov_high 60.0
+  float fov_low  25.0
+  logical fixed T
+  logical los T
+  float error 0.100
+  int icon 199
+  float scale 1.0
+}
+
+HAWK_SENSOR {
+  int sensor_type 0
+  float scan_time 5.0
+  float rmin 0.100
+  float rmax 500.0
+  float rmax_low 300.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  float fov_high 60.0
+  float fov_low  25.0
+  logical fixed T
+  logical los T
+  float error 0.100
+  int icon 199
+  float scale 1.0
+}
+
+DSP_SENSOR {
+  int sensor_type 0
+  float scan_time 10.0
+  float rmin 0.0
+  float rmax 6000.0
+  float rmax_low 300.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  float fov_high 60.0
+  float fov_low  25.0
+  logical fixed T
+  logical los T
+  float error 2.0
+  int icon 45
+  float scale 1.0
+}
+
+SBIRS_SENSOR {
+  int sensor_type 0
+  float scan_time 10.0
+  float rmin 0.0
+  float rmax 6000.0
+  float rmax_low 300.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  float fov_high 60.0
+  float fov_low  25.0
+  logical fixed F
+  logical los T
+  float error 2.0
+  int icon 44
+  float scale 1.0
+}
+
+AWACS_SENSOR {
+  int sensor_type 0
+  float scan_time 1.0
+  float rmin 10.0
+  float rmax 326.0
+  float rmax_low 226.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  float fov_high 20.0
+  float fov_low  15.0
+  logical fixed F
+  logical los T
+  float error 2.0
+  int icon -1
+  float scale 1.0
+}  
+
+NONE {
+}
+
+AREA_1 {
+  logical area_label T
+  logical area_north T
+  logical area_east T
+  float area_lat_deg 36.0
+  float area_lat_min 20.0
+  float area_lat_sec 0
+  float area_lon_deg 127.0
+  float area_lon_min 28.0
+  float area_lon_sec 0
+  string area_type CIRCLE
+  float area_major 20.0
+  float area_minor 10.0
+  float area_orient 0.0
+  string area_file NULL
+  int r 255
+  int g 255
+  int b 0
+}
+
+AREA_2 {
+  logical area_label T
+  logical area_north T
+  logical area_east F
+  float area_lat_deg 35.0
+  float area_lat_min 0
+  float area_lat_sec 0
+  float area_lon_deg 114.5
+  float area_lon_min 0
+  float area_lon_sec 0
+  string area_type BOX
+  float area_major 156.0
+  float area_minor 100.0
+  float area_orient 0.0
+  string area_file NULL
+  int r 0
+  int g 0
+  int b 255
+}
+

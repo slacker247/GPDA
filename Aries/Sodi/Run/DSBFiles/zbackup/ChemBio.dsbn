@@ -1,0 +1,58 @@
+# Tree height, Name, Discrete, Start time, End time, Time unit
+3  HazMat_Alert  0  0.0  0.0  M
+
+5  Evidence
+  M-UAV     JSTARS_MTI_evidence_has_been_received
+  HazMat    Predator_video_evidence_has_been_received
+  OSINT     U-2_infrared_evidence_has_been_received
+  LA_EOC    AOC_TCT_cell_evidence_has_been_received
+  FEMA_DB   F-16_pilot_evidence_has_been_received    
+
+5  Indicators
+  Imagery_Changes    the_target_has_been_found
+  Crowed_Hospitals   the_target_is_fixed
+  Chem/Bio_Fallout   the_target_is_being_tracked
+  Physical_Attack    target_is_complete
+  Seismic_Activity   execution_is_complete
+
+3  Outcomes
+  Accident            the_HazMat_is_a_result_of_an_accident          0.75  3.0
+  Hostile_Event       the_HazMat_is_a_result_of_a_terrorist_act      0.75  3.0
+  Natural_Phenomena   the_HazMat_is_a_result_of_a_natural_phenomena  0.75  3.0
+
+false   B and D matrices are listed separately
+#    E0      E1      E2      E3      E4
+   0.800   0.000   0.000   0.000   0.000  -- H0
+
+   0.000   0.000   0.700   0.000   0.000  -- H1
+
+   0.200   1.000   0.000   0.500   1.000  -- H2
+
+   0.000   0.000   0.000   0.500   0.000  -- H3
+
+   0.000   0.000   0.300   0.000   0.000  -- H4
+
+
+#    H0      H1      H2      H3      H4
+   1.000   0.100   0.100   0.000   0.000  -- A0
+
+   0.000   0.300   0.900   1.000   0.000  -- A1
+
+   0.000   0.600   0.000   0.000   1.000  -- A2
+
+
+9  Possibilities
+0.00  0.00  impossible
+0.01  0.05  extremely_unlikely
+0.05  0.20  very_low_chance
+0.20  0.38  small_chance
+0.38  0.60  may
+0.60  0.79  meaningful_chance
+0.79  0.95  most_likely
+0.95  0.99  extremely_likely
+1.00  1.00  certain
+
+#  Evidence labels follow. Must be 3, each < 5 chars
+Lat      Lon      Alt
+#  Default time units follow. Must be: Sec, Min, Hour, or Days
+Min

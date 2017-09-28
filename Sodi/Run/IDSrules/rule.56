@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 23476 -> $EXTERNAL_NET any (msg:"BACKDOOR DonaldDick 1.53 Traffic"; flags: A+; content:"pINg"; sid:153;  classtype:misc-activity; rev:3;)

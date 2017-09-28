@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- ANT Build Script for compiling and building IsaViz
+
+You will need Apache ANT to execute this script, please get
+your copy of ANT at jakarta.apache.org/ant
+-->
+
+<project name="isaviz" default="isvjar" basedir=".">
+
+	<!-- Global Declaration of all relevant Paths, i.e. CLASSPATH Definition -->
+
+	<path id="project.class.path">
+		<pathelement location="${basedir}/lib/xercesImpl.jar"/>
+		<pathelement location="${basedir}/lib/zvtm.jar"/>
+		<pathelement location="${basedir}/lib/xmlParserAPIs.jar"/>
+		<pathelement location="${basedir}/lib/xerces.jar"/>
+		<pathelement location="${basedir}/lib/jena.jar"/>
+		<pathelement location="${basedir}/lib/icu4j.jar"/>
+		<pathelement location="${basedir}/lib/antlr.debug.jar"/>
+	</path>
+
+	<target name="init">
+		<!-- Set Properties -->
+		<property name="apidocs.dir" value="${basedir}/apidocs"/>
+		<property name="classes.dir" value="${basedir}/classes"/>
+		<property name="export.dir" value="${basedir}/export"/>
+		<property name="img.dir" value="${basedir}/images"/>
+		<property name="lib.dir" value="${basedir}/lib"/>
+		<property name="plugins.dir" value="${basedir}/plugins"/>
+		<property name="projects.dir" value="${basedir}/projects"/>
+		<property name="src.dir" value="${basedir}/src"/>
+		<property name="tmp.dir" value="${basedir}/tmp"/>
+
+		<!-- Create Directories -->
+		<mkdir dir="${apidocs.dir}"/>
+		<mkdir dir="${classes.dir}"/>
+		<mkdir dir="${export.dir}"/>
+		<mkdir dir="${lib.dir}"/>
+		<mkdir dir="${plugins.dir}"/>
+		<mkdir dir="${projects.dir}"/>
+		<mkdir dir="${tmp.dir}"/>
+	</target>
+
+	<target name="isvjar" depends="init">
+		<javac srcdir="${src.dir}" destdir="${classes.dir}"
+				debug="on" deprecation="on" optimize="on"
+				includes="**/*java">
+			<classpath refid="project.class.path"/>
+		</javac>
+
+		<jar destfile="${lib.dir}/isaviz.jar">
+			<zipfileset dir="${classes.dir}"/>
+			<zipfileset dir="${img.dir}" prefix="images"/>
+		</jar>
+	</target>
+
+	<target name="doc" depends="init">
+		<javadoc packagenames="org.w3c.IsaViz.*"
+				sourcepath="${src.dir}" destdir="${apidocs.dir}"
+				defaultexcludes="yes" author="true" version="true" use="true"
+				windowtitle="IsaViz API documentation">
+			<classpath refid="project.class.path"/>
+			<doctitle><![CDATA[<h1>IsaViz API documentation</h1>]]></doctitle>
+			<bottom><![CDATA[<i>Copyright &#169; 2003 blablabla. Licence blablabla applies.</i>]]></bottom>
+		</javadoc>
+	</target>
+
+	<target name="clean" depends="init">
+		<!-- removes all emacs autosaves -->
+		<delete>
+			<fileset dir="${basedir}">
+				<include name="**/*~"/>
+				<include name="**/#*#"/>
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="realclean" depends="clean">
+		<delete dir="${classes.dir}"/>
+		<delete dir="${apidocs.dir}"/>
+	</target>
+
+</project>

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS ism.dll attempt"; flags: A+; content:"%20%20%20%20%20.htr"; nocase; reference:cve,CAN-2000-0457; reference:bugtraq,1193; classtype:web-application-attack; sid:1021; rev:3;)

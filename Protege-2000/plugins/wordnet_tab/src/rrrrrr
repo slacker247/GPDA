@@ -1,0 +1,12 @@
+cd /home/dre/Protege-2000/plugins/wordnet_tab/src/edu/stanford/smi/RemoteKBTab/toolbox
+javac -d /home/dre/Protege-2000/plugins/  *.java
+cd /home/dre/Protege-2000/plugins/wordnet_tab/src/edu/stanford/smi/RemoteKBTab
+javac -d /home/dre/Protege-2000/plugins/  *.java
+cd /home/dre/Protege-2000/plugins/wordnet_tab/src
+cp META-INF/MANIFEST.MF.remoteKB.sav /home/dre/Protege-2000/plugins/meta-inf/manifest.mf
+cd /home/dre/Protege-2000/plugins/edu/stanford/smi/RemoteKBTab
+rm W*.class
+cd /home/dre/Protege-2000/plugins
+jar cmf meta-inf/manifest.mf remoteKBTab.jar edu/stanford/smi/RemoteKBTab/toolbox/*.class edu/stanford/smi/RemoteKBTab/*.class
+
+# jar cmf /home/dre/Protege-2000/plugins/meta-inf/manifest.mf /home/dre/Protege-2000/plugins/remoteKBTab.jar edu/stanford/smi/RemoteKBTab/toolbox/*.class edu/stanford/smi/RemoteKBTab/*.class

@@ -1,0 +1,21 @@
+
+  Up to date snort rules are available at http://www.snort.org
+ 
+  The snort web site has documentation about how to write your own 
+  custom snort rules.
+ 
+  The rules included with this distribution generate alerts based on
+  suspicious activity. Depending on your network environment, your
+  security policies, and what you consider to be suspicious, some of
+  these rules may either generate false positives or may be detecting
+  activity you consider to be acceptable; therefore, you are
+  encouraged to comment out rules that are not applicable in your
+  environment.
+ 
+  Note that using all of the rules at the same time may lead to
+  serious packet loss on slower machines - use with caution and
+  the standard disclaimers apply.
+ 
+  shellcode, policy, info, backdoor, and virus rulesets are disabled
+  by default since these require tuning and maintainence.  
+

@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Photuris (Valid Security Parameters, But Decryption Failed)"; itype: 40; icode: 3; sid:432;  classtype:misc-activity; rev:4;)

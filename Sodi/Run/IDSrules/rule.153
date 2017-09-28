@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 6838 (msg:"DDOS mstream agent to handler"; content: "newserver";  classtype:attempted-dos; sid:243; rev:1;)

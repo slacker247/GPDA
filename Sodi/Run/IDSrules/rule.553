@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 514 (msg:"RSERVICES rlogin echo++"; flags: A+; content: "echo |22|+ +|22|"; reference:arachnids,388; classtype:attempted-user; sid:608; rev:1;)

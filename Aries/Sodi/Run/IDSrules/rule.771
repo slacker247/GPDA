@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS chown command attempt"; flags:A+; content:"/usr/sbin/chown";nocase; sid:1338; rev:1; classtype:web-application-attack;)

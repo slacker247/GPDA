@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 139 (msg:"NETBIOS Samba clientaccess";flags: A+; content:"|00|Unix|00|Samba"; reference:arachnids,341; classtype:not-suspicious; sid:539; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (msg:"TELNET livingston DOS";flags: A+; content:"|fff3 fff3 fff3 fff3 fff3|"; reference:arachnids,370; classtype:attempted-dos; sid:713; rev:1;)

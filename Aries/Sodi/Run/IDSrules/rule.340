@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Mobile Host Redirect (Undefined Code!)"; itype: 32; sid:420;  classtype:misc-activity; rev:4;)

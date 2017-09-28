@@ -1,0 +1,167 @@
+/*
+ File:		EventTypeField.java
+ CVS Info:      $Id$
+ Compiler:	jdk 1.2.2
+ */
+
+package disEnumerations;
+
+import mil.navy.nps.dis.*;
+import mil.navy.nps.util.*;
+
+/**
+ * Event Type Field -- This field shall specify the type of event that caused the issue of an Event PDU. This field shall be represented by a 32-bit enumeration (see Section 7 in EBV-DOC).
+ *@version 1.1
+ *@author Ronan Fauglas
+ *@author <a href="mailto:brutzman@nps.navy.mil?subject=dis-java-vrml: disEnumerations.EventTypeField feedback ">Don Brutzman</a>
+ *
+ *<dt><b>References:</b>
+ *<dd>		DIS Data Dictionary: <A href="../../../../../../mil/navy/nps/disEnumerations/JdbeHtmlFiles/pdu/b4.htm">Event Type Field</A> (local)
+ *				     <A href="http://SISO.sc.ist.ucf.edu/dis/dis-dd/pdu/b4.htm">Event Type Field</A> (SISO)
+ *<dd>          JDBE:<a href="http://208.145.129.4/jdbe/proj/dis_cd/dis-dd/">DIS Data Dictionary Version 1.0a (DIS-DD)</A>
+ *<dd>		Perl script (converting html enumerations to java enumerations)
+ *		<A href="../../../../../../mil/navy/nps/disEnumerations/convertJdbeDisEnumerationsToJava.pl"><i>convertJdbeDisEnumerationsToJava.pl</i></A> (local) or
+ *		<A href="http://web.3D.org/WorkingGroups/vrtp/mil/navy/nps/disEnumerations/convertJdbeDisEnumerationsToJava.pl">
+ *	 	      <i>http://web.3D.org/WorkingGroups/vrtp/mil/navy/nps/disEnumerations/convertJdbeDisEnumerationsToJava.pl</i></A>
+ *<dd>		"Named Constants," <i>The Java Programming Language</i>, Gosling & Arnold.
+ *
+ *<dt><b>Explanation:</b>
+ *<dd>This file has been automatically generated from a local copy of the
+ *  <A href="../../../../../../mil/navy/nps/disEnumerations/JdbeHtmlFiles/dis-dd.html">DIS Data Dictionary</A> at
+ *  <A href="http://SISO.sc.ist.ucf.edu/dis/dis-dd/">http://SISO.sc.ist.ucf.edu/dis/dis-dd/</A>
+ *  html source file by
+ *  <A href="../../../../../../mil/navy/nps/disEnumerations/convertJdbeDisEnumerationsToJava.pl">convertJdbeDisEnumerationsToJava.pl</a> (local) or
+ *  <A href="http://www.web3D.org/WorkingGroups/vrtp/mil/navy/nps/disEnumerations/convertJdbeDisEnumerationsToJava.pl">http://www.web3D.org/WorkingGroups/vrtp/mil/navy/nps/disEnumerations/convertJdbeDisEnumerationsToJava.pl</a>.
+ *  <P>
+ *  This is effectively a C-style enumeration. Java doesn't do enumerations
+ *  like C, so you have to wrap a class around it. It's a bit more typing,
+ *  but pretty simple-minded. 
+ *  Note that the variables are declared public. The default for access 
+ *  is package-wide, but these variables might need to be accessed from
+ *  outside the package. Since all the variables are final (i.e. constant), nobody can
+ *  change anything anyway, so this is no biggie.<p>
+ *  To use these enumerations in your Java code, import the package first:
+ *         <b><PRE>import mil.navy.nps.disEnumerations.*;</PRE></b>
+ *  You access this via something like <b><code>EventTypeField.REQUESTFORINDIRECTFIREORCASMISSION</code></b>, i.e. combine
+ *  the class name, a period, and a class variable (enumeration) name.<P>
+ *
+ *<dt><b>History:</b>
+ *<dd>		21jan98   /Ronan Fauglas   	/New
+ *<dd>		30mar99   /Don Brutzman   	/Revised Javadoc, many more enumeration classes
+ *
+ *<dt><b>Location:</b>
+ *<dd><a href="../../../../../../mil/navy/nps/disEnumerations/EventTypeField.java"><i>EventTypeField.java</i></A> (local)
+ *<dd><a href="http://www.web3D.org/WorkingGroups/vrtp/mil/navy/nps/disEnumerations/EventTypeField.java">
+ *          <i>http://www.web3D.org/WorkingGroups/vrtp/mil/navy/nps/disEnumerations/EventTypeField.java</i></a>
+ *
+ */
+public class EventTypeField extends Object
+{
+/**
+ *(0) Other
+ */
+public static final int OTHER = 0;
+
+/**
+ *(1) unused
+ */
+public static final int UNUSED = 1;
+
+/**
+ *(10) Indirect fire or CAS fire
+ */
+public static final int INDIRECTFIREORCASFIRE = 10;
+
+/**
+ *(11) Minefield entry
+ */
+public static final int MINEFIELDENTRY = 11;
+
+/**
+ *(12) Minefield detonation
+ */
+public static final int MINEFIELDDETONATION = 12;
+
+/**
+ *(13) Vehicle master power on
+ */
+public static final int VEHICLEMASTERPOWERON = 13;
+
+/**
+ *(14) Vehicle master power off
+ */
+public static final int VEHICLEMASTERPOWEROFF = 14;
+
+/**
+ *(15) Aggregate state change requested
+ */
+public static final int AGGREGATESTATECHANGEREQUESTED = 15;
+
+/**
+ *(2) Ran out of ammunition
+ */
+public static final int RANOUTOFAMMUNITION = 2;
+
+/**
+ *(3) Killed in action
+ */
+public static final int KILLEDINACTION = 3;
+
+/**
+ *(4) Damage
+ */
+public static final int DAMAGE = 4;
+
+/**
+ *(5) Mobility disabled
+ */
+public static final int MOBILITYDISABLED = 5;
+
+/**
+ *(6) Fire disabled
+ */
+public static final int FIREDISABLED = 6;
+
+/**
+ *(7) Ran out of fuel
+ */
+public static final int RANOUTOFFUEL = 7;
+
+/**
+ *(8) Entity initialization
+ */
+public static final int ENTITYINITIALIZATION = 8;
+
+/**
+ *(9) Request for indirect fire or CAS mission
+ */
+public static final int REQUESTFORINDIRECTFIREORCASMISSION = 9;
+
+/**
+ * Returns a string containing the enumeration name which corresponds to an enumeration value,
+ * as in <b><code>EventTypeField.toString (0)</code></b> returns the string "<b><code>OTHER</code></b>"
+ */
+
+public static String toString(int idNumber) 
+{
+	switch (idNumber) {
+		case 0: return "Other"; 
+		case 1: return "unused"; 
+		case 10: return "Indirect fire or CAS fire"; 
+		case 11: return "Minefield entry"; 
+		case 12: return "Minefield detonation"; 
+		case 13: return "Vehicle master power on"; 
+		case 14: return "Vehicle master power off"; 
+		case 15: return "Aggregate state change requested"; 
+		case 2: return "Ran out of ammunition"; 
+		case 3: return "Killed in action"; 
+		case 4: return "Damage"; 
+		case 5: return "Mobility disabled"; 
+		case 6: return "Fire disabled"; 
+		case 7: return "Ran out of fuel"; 
+		case 8: return "Entity initialization"; 
+		case 9: return "Request for indirect fire or CAS mission"; 
+		default : return "";
+	}
+}//end of toString
+}//End of class 

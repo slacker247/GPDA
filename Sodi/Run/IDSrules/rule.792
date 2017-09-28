@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS ping command attempt"; flags:A+; content:"/bin/ping";nocase; sid:1359; rev:1; classtype:web-application-attack;)

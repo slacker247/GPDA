@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible ExploreZip.B Worm"; content: "|6E 61 6D 65 20 3D 22 46 69 6C 65 5F 7A 69 70 70 61 74 69 2E 65 78 65 22|"; reference:MCAFEE,10471; sid:749;  classtype:misc-activity; rev:3;)

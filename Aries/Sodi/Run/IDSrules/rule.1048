@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS showcode.asp access";flags: A+; uricontent:"/selector/showcode.asp"; nocase; reference:cve,CAN-1999-0736; classtype:web-application-activity; sid:1037; rev:2;)

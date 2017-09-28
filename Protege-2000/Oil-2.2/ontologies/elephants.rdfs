@@ -1,0 +1,318 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE rdf:RDF [
+	 <!ENTITY a 'http://img.cs.man.ac.uk/oil/oiled#'>
+	 <!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	 <!ENTITY b 'http://purl.org/dc/elements/1.1/'>
+	 <!ENTITY c 'file:F:/Projects/OIL/OilEd/ontologies/elephants.rdfs#'>
+	 <!ENTITY d 'http://www.ontoknowledge.org/oil/rdf-schema/2000/11/10-oil-standard#'>
+	 <!ENTITY e 'http://www.w3.org/2000/01/rdf-schema#'>
+]>
+<rdf:RDF xmlns:rdf="&rdf;"
+	 xmlns:a="&a;"
+	 xmlns:b="&b;"
+	 xmlns:c="&c;"
+	 xmlns:d="&d;"
+	 xmlns:e="&e;">
+<rdf:Description rdf:about=""
+	 b:creator="Sean Bechhofer"
+	 b:description="An Ontology about animals, built with OilEd"
+	 b:description.release='"1.0"'
+	 b:identifier='"id"'
+	 b:language='"OIL"'
+	 b:title="Animals"
+	 b:type="ontology"/>
+<d:Min rdf:about="_anon0"
+	 d:integerValue="0"/>
+<d:Min rdf:about="_anon1"
+	 d:integerValue="0"/>
+<d:HasValue rdf:about="_anon10">
+	<d:toClass rdf:resource="_anon11"/>
+	<d:onProperty rdf:resource="&c;age"/>
+</d:HasValue>
+<d:GreaterThan rdf:about="_anon11"
+	 d:integerValue="20"/>
+<d:ValueType rdf:about="_anon12">
+	<d:onProperty rdf:resource="&c;eats"/>
+	<d:toClass rdf:resource="&c;plant"/>
+</d:ValueType>
+<d:HasValue rdf:about="_anon13">
+	<d:toClass rdf:resource="_anon14"/>
+	<d:onProperty rdf:resource="&c;colour"/>
+</d:HasValue>
+<d:Equal rdf:about="_anon14"
+	 d:stringValue='"grey"'/>
+<d:HasValue rdf:about="_anon15">
+	<d:toClass rdf:resource="&c;branch"/>
+	<d:onProperty rdf:resource="&c;is_part_of"/>
+</d:HasValue>
+<d:ValueType rdf:about="_anon16">
+	<d:onProperty rdf:resource="&c;eats"/>
+	<d:toClass rdf:resource="&c;herbivore"/>
+</d:ValueType>
+<d:ValueType rdf:about="_anon17">
+	<d:onProperty rdf:resource="&c;eats"/>
+	<d:toClass rdf:resource="&c;leaf"/>
+</d:ValueType>
+<d:ValueType rdf:about="_anon18">
+	<d:toClass rdf:resource="&c;animal"/>
+	<d:onProperty rdf:resource="&c;eats"/>
+</d:ValueType>
+<d:HasValue rdf:about="_anon19">
+	<d:toClass rdf:resource="&c;giraffe"/>
+	<d:onProperty rdf:resource="&c;gnaws"/>
+</d:HasValue>
+<d:HasValue rdf:about="_anon2">
+	<d:toClass rdf:resource="_anon3"/>
+	<d:onProperty rdf:resource="&c;comes_from"/>
+</d:HasValue>
+<d:HasValue rdf:about="_anon20">
+	<d:toClass rdf:resource="_anon21"/>
+	<d:onProperty rdf:resource="&c;comes_from"/>
+</d:HasValue>
+<d:OneOf rdf:about="_anon21">
+	<d:individual rdf:resource="&c;Africa"/>
+</d:OneOf>
+<d:HasValue rdf:about="_anon22">
+	<d:toClass rdf:resource="_anon23"/>
+	<d:onProperty rdf:resource="&c;comes_from"/>
+</d:HasValue>
+<d:Or rdf:about="_anon23">
+	<d:hasOperand rdf:resource="_anon24"/>
+	<d:hasOperand rdf:resource="_anon25"/>
+</d:Or>
+<d:OneOf rdf:about="_anon24">
+	<d:individual rdf:resource="&c;Asia"/>
+</d:OneOf>
+<d:HasValue rdf:about="_anon25">
+	<d:toClass rdf:resource="_anon26"/>
+	<d:onProperty rdf:resource="&c;is_part_of"/>
+</d:HasValue>
+<d:OneOf rdf:about="_anon26">
+	<d:individual rdf:resource="&c;Asia"/>
+</d:OneOf>
+<d:HasValue rdf:about="_anon27">
+	<d:toClass rdf:resource="&c;carnivore"/>
+	<d:onProperty rdf:resource="&c;is_eaten_by"/>
+</d:HasValue>
+<d:HasValue rdf:about="_anon28">
+	<d:toClass rdf:resource="_anon29"/>
+	<d:onProperty rdf:resource="&c;weight"/>
+</d:HasValue>
+<d:Min rdf:about="_anon29"
+	 d:integerValue="1000"/>
+<d:OneOf rdf:about="_anon3">
+	<d:individual rdf:resource="&c;India"/>
+</d:OneOf>
+<d:ValueType rdf:about="_anon30">
+	<d:toClass rdf:resource="_anon31"/>
+	<d:onProperty rdf:resource="&c;eats"/>
+</d:ValueType>
+<d:Or rdf:about="_anon31">
+	<d:hasOperand rdf:resource="_anon32"/>
+	<d:hasOperand rdf:resource="&c;plant"/>
+</d:Or>
+<d:HasValue rdf:about="_anon32">
+	<d:onProperty rdf:resource="&c;is_part_of"/>
+	<d:toClass rdf:resource="&c;plant"/>
+</d:HasValue>
+<d:Disjoint rdf:about="_anon33">
+	<d:hasSubject rdf:resource="&c;carnivore"/>
+	<d:hasSubject rdf:resource="&c;herbivore"/>
+</d:Disjoint>
+<d:Disjoint rdf:about="_anon34">
+	<d:hasSubject rdf:resource="&c;indian_elephant"/>
+	<d:hasSubject rdf:resource="&c;kenyan_elephant"/>
+</d:Disjoint>
+<d:Disjoint rdf:about="_anon35">
+	<d:hasSubject rdf:resource="&c;animal"/>
+	<d:hasSubject rdf:resource="&c;plant"/>
+</d:Disjoint>
+<d:Cover rdf:about="_anon36">
+	<d:hasSubject rdf:resource="&c;elephant"/>
+	<d:isCoveredBy rdf:resource="&c;african_elephant"/>
+	<d:isCoveredBy rdf:resource="&c;indian_elephant"/>
+</d:Cover>
+<d:Cover rdf:about="_anon37">
+	<d:isCoveredBy rdf:resource="_anon38"/>
+	<d:hasSubject rdf:resource="&c;adult_elephant"/>
+</d:Cover>
+<d:HasValue rdf:about="_anon38">
+	<d:toClass rdf:resource="_anon39"/>
+	<d:onProperty rdf:resource="&c;weight"/>
+</d:HasValue>
+<d:Range rdf:about="_anon39">
+	<d:integerValue>5000</d:integerValue>
+	<d:integerValue>8000</d:integerValue>
+</d:Range>
+<d:HasValue rdf:about="_anon4">
+	<d:onProperty rdf:resource="&c;is_part_of"/>
+	<d:toClass rdf:resource="&c;tree"/>
+</d:HasValue>
+<d:HasValue rdf:about="_anon5">
+	<d:toClass rdf:resource="_anon6"/>
+	<d:onProperty rdf:resource="&c;comes_from"/>
+</d:HasValue>
+<d:Or rdf:about="_anon6">
+	<d:hasOperand rdf:resource="_anon7"/>
+	<d:hasOperand rdf:resource="_anon9"/>
+</d:Or>
+<d:HasValue rdf:about="_anon7">
+	<d:toClass rdf:resource="_anon8"/>
+	<d:onProperty rdf:resource="&c;is_part_of"/>
+</d:HasValue>
+<d:OneOf rdf:about="_anon8">
+	<d:individual rdf:resource="&c;Africa"/>
+</d:OneOf>
+<d:OneOf rdf:about="_anon9">
+	<d:individual rdf:resource="&c;Africa"/>
+</d:OneOf>
+<e:Class rdf:about="&c;elephant"
+	 a:creationDate="16:02:29 27.06.2001">
+	<e:comment>Big grey animals with a trunk and large ears. Belonging to the family of pachyderms, elephants can be subdivided into the class of Indian elephants, i.e. those coming from India, and African elephants, those coming from Africa. One of them has bigger ears than the other, but I can never remember which one it is.</e:comment>
+	<d:hasPropertyRestriction rdf:resource="_anon12"/>
+	<d:hasPropertyRestriction rdf:resource="_anon13"/>
+	<e:subClassOf rdf:resource="&c;animal"/>
+</e:Class>
+<c:continent rdf:about="&c;Africa"/>
+<c:continent rdf:about="&c;Asia"/>
+<c:country rdf:about="&c;England"/>
+<c:country rdf:about="&c;India">
+	<c:is_part_of rdf:resource="&c;Asia"/>
+</c:country>
+<c:country rdf:about="&c;Northern_Ireland"/>
+<c:country rdf:about="&c;Pakistan">
+	<c:is_part_of rdf:resource="&c;Asia"/>
+</c:country>
+<c:country rdf:about="&c;Scotland"/>
+<c:country rdf:about="&c;United_Kingdom">
+	<c:has_part rdf:resource="&c;England"/>
+	<c:has_part rdf:resource="&c;Northern_Ireland"/>
+	<c:has_part rdf:resource="&c;Scotland"/>
+	<c:has_part rdf:resource="&c;Wales"/>
+</c:country>
+<c:country rdf:about="&c;Wales"/>
+<d:DefinedClass rdf:about="&c;adult_elephant"
+	 a:creationDate="16:02:29 27.06.2001"
+	 e:comment="Elephants over the age of 20">
+	<d:hasPropertyRestriction rdf:resource="_anon10"/>
+	<e:subClassOf rdf:resource="&c;elephant"/>
+</d:DefinedClass>
+<d:DefinedClass rdf:about="&c;african_animal"
+	 a:creationDate="16:02:29 27.06.2001"
+	 e:comment="Animals from Africa.">
+	<d:hasPropertyRestriction rdf:resource="_anon5"/>
+	<e:subClassOf rdf:resource="&c;animal"/>
+</d:DefinedClass>
+<d:DefinedClass rdf:about="&c;african_elephant"
+	 a:creationDate="16:02:29 27.06.2001"
+	 e:comment="Elephants from Africa.">
+	<d:hasPropertyRestriction rdf:resource="_anon20"/>
+	<e:subClassOf rdf:resource="&c;elephant"/>
+</d:DefinedClass>
+<rdf:Property rdf:about="&c;age">
+	<e:range rdf:resource="_anon1"/>
+</rdf:Property>
+<e:Class rdf:about="&c;animal"
+	 a:creationDate="16:02:29 27.06.2001"
+	 e:comment="A living organism characterised by voluntary movement."/>
+<d:DefinedClass rdf:about="&c;asian_animal"
+	 a:creationDate="16:02:29 27.06.2001"
+	 e:comment="Animals from Asia">
+	<d:hasPropertyRestriction rdf:resource="_anon22"/>
+	<e:subClassOf rdf:resource="&c;animal"/>
+</d:DefinedClass>
+<d:DefinedClass rdf:about="&c;big_veggie"
+	 a:creationDate="16:02:29 27.06.2001"
+	 e:comment="A large herbivore">
+	<e:subClassOf rdf:resource="&c;herbivore"/>
+	<e:subClassOf rdf:resource="&c;large_animal"/>
+</d:DefinedClass>
+<e:Class rdf:about="&c;branch"
+	 a:creationDate="16:02:29 27.06.2001">
+	<d:hasPropertyRestriction rdf:resource="_anon4"/>
+</e:Class>
+<d:DefinedClass rdf:about="&c;carnivore"
+	 a:creationDate="16:02:29 27.06.2001"
+	 e:comment="An animal that only eats meat, i.e. other animals">
+	<d:hasPropertyRestriction rdf:resource="_anon18"/>
+	<e:subClassOf rdf:resource="&c;animal"/>
+</d:DefinedClass>
+<rdf:Property rdf:about="&c;colour">
+	<e:range rdf:resource="&d;String"/>
+</rdf:Property>
+<rdf:Property rdf:about="&c;comes_from"/>
+<e:Class rdf:about="&c;continent"
+	 a:creationDate="16:02:29 27.06.2001"/>
+<e:Class rdf:about="&c;country"
+	 a:creationDate="16:02:29 27.06.2001"/>
+<rdf:Property rdf:about="&c;eats">
+	<e:domain rdf:resource="&c;animal"/>
+	<d:inverseRelationOf rdf:resource="&c;is_eaten_by"/>
+</rdf:Property>
+<e:Class rdf:about="&c;giraffe"
+	 a:creationDate="16:02:29 27.06.2001"
+	 e:comment="Funny looking things with long necks">
+	<d:hasPropertyRestriction rdf:resource="_anon17"/>
+	<e:subClassOf rdf:resource="&c;animal"/>
+</e:Class>
+<rdf:Property rdf:about="&c;gnaws">
+	<e:subPropertyOf rdf:resource="&c;eats"/>
+</rdf:Property>
+<rdf:Property rdf:about="&c;has_part">
+	<d:inverseRelationOf rdf:resource="&c;is_part_of"/>
+</rdf:Property>
+<d:DefinedClass rdf:about="&c;herbivore"
+	 a:creationDate="16:02:29 27.06.2001"
+	 e:comment="Animals that only eat plants or parts of plants">
+	<d:hasPropertyRestriction rdf:resource="_anon30"/>
+	<e:subClassOf rdf:resource="&c;animal"/>
+</d:DefinedClass>
+<d:DefinedClass rdf:about="&c;hungry_lion"
+	 a:creationDate="16:02:29 27.06.2001"
+	 e:comment="A lion that hasn't had any dinner.">
+	<d:hasPropertyRestriction rdf:resource="_anon19"/>
+	<e:subClassOf rdf:resource="&c;lion"/>
+</d:DefinedClass>
+<d:DefinedClass rdf:about="&c;indian_elephant"
+	 a:creationDate="16:02:29 27.06.2001">
+	<d:hasPropertyRestriction rdf:resource="_anon2"/>
+	<e:subClassOf rdf:resource="&c;elephant"/>
+</d:DefinedClass>
+<rdf:Property rdf:about="&c;is_eaten_by"/>
+<rdf:Property rdf:about="&c;is_part_of"/>
+<e:Class rdf:about="&c;kenyan_elephant"
+	 a:creationDate="16:02:29 27.06.2001">
+	<e:subClassOf rdf:resource="&c;elephant"/>
+</e:Class>
+<d:DefinedClass rdf:about="&c;large_animal"
+	 a:creationDate="16:02:29 27.06.2001">
+	<d:hasPropertyRestriction rdf:resource="_anon28"/>
+	<e:subClassOf rdf:resource="&c;animal"/>
+</d:DefinedClass>
+<e:Class rdf:about="&c;leaf"
+	 a:creationDate="16:02:29 27.06.2001">
+	<d:hasPropertyRestriction rdf:resource="_anon15"/>
+</e:Class>
+<e:Class rdf:about="&c;lion"
+	 a:creationDate="16:02:29 27.06.2001"
+	 e:comment="Big cats.">
+	<d:hasPropertyRestriction rdf:resource="_anon16"/>
+	<e:subClassOf rdf:resource="&c;animal"/>
+</e:Class>
+<rdf:Property rdf:about="&c;made_from"/>
+<e:Class rdf:about="&c;plant"
+	 a:creationDate="16:02:29 27.06.2001"
+	 e:comment="A living organism lacking the power of locomotion."/>
+<d:DefinedClass rdf:about="&c;tasty_plant"
+	 a:creationDate="16:02:29 27.06.2001">
+	<d:hasPropertyRestriction rdf:resource="_anon27"/>
+	<e:subClassOf rdf:resource="&c;plant"/>
+</d:DefinedClass>
+<e:Class rdf:about="&c;tree"
+	 a:creationDate="16:02:29 27.06.2001">
+	<e:subClassOf rdf:resource="&c;plant"/>
+</e:Class>
+<rdf:Property rdf:about="&c;weight">
+	<e:range rdf:resource="_anon0"/>
+</rdf:Property>
+</rdf:RDF>

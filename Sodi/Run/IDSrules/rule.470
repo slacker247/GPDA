@@ -1,0 +1,1 @@
+alert tcp $HOME_NET any <> $EXTERNAL_NET 8875 (msg:"INFO Napster Server Login"; flags: A+; content:"anon@napster.com"; classtype:bad-unknown; sid:565; rev:1;)

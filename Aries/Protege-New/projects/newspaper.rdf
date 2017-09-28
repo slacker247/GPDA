@@ -1,0 +1,566 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE rdf:RDF [
+	 <!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	 <!ENTITY a 'http://protege.stanford.edu/system#'>
+	 <!ENTITY newspaper 'http://protege.stanford.edu/newspaper#'>
+	 <!ENTITY rdfs 'http://www.w3.org/TR/1999/PR-rdf-schema-19990303#'>
+]>
+<rdf:RDF xmlns:rdf="&rdf;"
+	 xmlns:a="&a;"
+	 xmlns:newspaper="&newspaper;"
+	 xmlns:rdfs="&rdfs;">
+<newspaper:Library rdf:about="&newspaper;instance_00015"
+	 rdfs:label="San Jose Mercury News">
+	<newspaper:articles rdf:resource="&newspaper;instance_00016"/>
+	<newspaper:articles rdf:resource="&newspaper;instance_00022"/>
+	<newspaper:articles rdf:resource="&newspaper;instance_00035"/>
+	<newspaper:articles rdf:resource="&newspaper;instance_00037"/>
+	<newspaper:articles rdf:resource="&newspaper;instance_00038"/>
+	<newspaper:advertisements rdf:resource="&newspaper;instance_00042"/>
+	<newspaper:articles rdf:resource="&newspaper;instance_00044"/>
+	<newspaper:issues rdf:resource="&newspaper;instance_00057"/>
+	<newspaper:prototypes rdf:resource="&newspaper;instance_00058"/>
+	<newspaper:billing_charts rdf:resource="&newspaper;instance_00059"/>
+	<newspaper:organization rdf:resource="&newspaper;instance_00064"/>
+	<newspaper:issues rdf:resource="&newspaper;instance_00069"/>
+	<newspaper:prototypes rdf:resource="&newspaper;instance_00070"/>
+	<newspaper:prototypes rdf:resource="&newspaper;instance_00072"/>
+	<newspaper:prototypes rdf:resource="&newspaper;instance_00073"/>
+	<newspaper:prototypes rdf:resource="&newspaper;instance_00074"/>
+	<newspaper:billing_charts rdf:resource="&newspaper;instance_00075"/>
+	<newspaper:billing_charts rdf:resource="&newspaper;instance_00076"/>
+	<newspaper:prototypes rdf:resource="&newspaper;instance_00077"/>
+	<newspaper:prototypes rdf:resource="&newspaper;instance_00078"/>
+	<newspaper:issues rdf:resource="&newspaper;instance_00079"/>
+	<newspaper:issues rdf:resource="&newspaper;instance_00080"/>
+	<newspaper:issues rdf:resource="&newspaper;instance_00081"/>
+	<newspaper:issues rdf:resource="&newspaper;instance_00083"/>
+	<newspaper:articles rdf:resource="&newspaper;instance_00084"/>
+	<newspaper:articles rdf:resource="&newspaper;instance_00085"/>
+	<newspaper:articles rdf:resource="&newspaper;instance_00086"/>
+	<newspaper:advertisements rdf:resource="&newspaper;instance_00089"/>
+	<newspaper:advertisements rdf:resource="&newspaper;instance_00090"/>
+	<newspaper:advertisements rdf:resource="&newspaper;instance_00091"/>
+	<newspaper:advertisements rdf:resource="&newspaper;instance_00092"/>
+</newspaper:Library>
+<newspaper:Article rdf:about="&newspaper;instance_00016"
+	 newspaper:article_type="News"
+	 newspaper:expiration_date="9/26/97"
+	 newspaper:headline="Mir Doomed By Collision"
+	 newspaper:keywords="science"
+	 newspaper:page_number="20"
+	 newspaper:urgent="true"
+	 rdfs:label="Mir Doomed By Collision">
+	<newspaper:text xml:space='preserve'><![CDATA[The Soviet Spacestation Mir, irreparably damaged by an asteroid last week, is currently headed for a crash landing in Northern Greenland. Jack Nicklaus, famous golfer and golf-course designer already has plans to buy the crash site. "Think of the roughs," he said when asked to comment. "It's got to be hard to chip over the lip of a crater."]]></newspaper:text>
+	<newspaper:author rdf:resource="&newspaper;instance_00017"/>
+	<newspaper:containing_section rdf:resource="&newspaper;instance_00047"/>
+	<newspaper:published_in rdf:resource="&newspaper;instance_00081"/>
+	<newspaper:keywords>Space</newspaper:keywords>
+	<newspaper:keywords>Spacestation MIR</newspaper:keywords>
+</newspaper:Article>
+<newspaper:News_Service rdf:about="&newspaper;instance_00017"
+	 newspaper:name="CNN"
+	 rdfs:label="instance_00017"/>
+<newspaper:Section rdf:about="&newspaper;instance_00019"
+	 newspaper:name="World News"
+	 rdfs:label="World News"/>
+<newspaper:Article rdf:about="&newspaper;instance_00022"
+	 newspaper:article_type="News"
+	 newspaper:expiration_date="10/25/97"
+	 newspaper:headline="Cousteau Heads for Drydock"
+	 newspaper:page_number="3"
+	 newspaper:urgent="true"
+	 rdfs:label="Cousteau Heads for Drydock">
+	<newspaper:text>Jacques Cousteau used to swim with the fishes. Now, if the planned Viking memorial service goes off, he may be sleeping with them. </newspaper:text>
+	<newspaper:author rdf:resource="&newspaper;instance_00045"/>
+	<newspaper:keywords>Jacques Cousteau</newspaper:keywords>
+	<newspaper:keywords>Marine Biology</newspaper:keywords>
+</newspaper:Article>
+<newspaper:Section rdf:about="&newspaper;instance_00024"
+	 newspaper:name="Local News"
+	 rdfs:label="Local News"/>
+<newspaper:Section rdf:about="&newspaper;instance_00032"
+	 newspaper:name="Automotive"
+	 rdfs:label="Automotive"/>
+<newspaper:Section rdf:about="&newspaper;instance_00034"
+	 newspaper:name="Lifestyle"
+	 rdfs:label="Lifestyle"/>
+<newspaper:Article rdf:about="&newspaper;instance_00035"
+	 newspaper:article_type="News"
+	 newspaper:expiration_date="7/01/97"
+	 newspaper:headline="Bank Outflanks Stubborn 90 Year Old Man"
+	 newspaper:keywords="banks"
+	 newspaper:page_number="5"
+	 newspaper:urgent="false"
+	 rdfs:label="Bank Outflanks Stubborn 90 Year Old Man">
+	<newspaper:text xml:space='preserve'><![CDATA[DALLAS (AP) -- Ninety-year-old Ramon Rodriguez thought a stubborn "No!" and a stern look might discourage construction of a bank where his modest little house stands. So much for the little man standing in the way of progress. The bank decided to go ahead with the project anyway, without the old man's land, and simply wrap the building, horseshoe-style, around the house Rodriguez shares with his scruffy dog, Baby.]]></newspaper:text>
+	<newspaper:containing_section rdf:resource="&newspaper;instance_00034"/>
+	<newspaper:author rdf:resource="&newspaper;instance_00036"/>
+</newspaper:Article>
+<newspaper:News_Service rdf:about="&newspaper;instance_00036"
+	 newspaper:name="AP"
+	 rdfs:label="instance_00036"/>
+<newspaper:Article rdf:about="&newspaper;instance_00037"
+	 newspaper:article_type="News"
+	 newspaper:headline="Japan, Europe Hold Trade, Currency Talks"
+	 newspaper:keywords="Japan"
+	 newspaper:page_number="6"
+	 newspaper:urgent="true"
+	 rdfs:label="Japan, Europe Hold Trade, Currency Talks">
+	<newspaper:text xml:space='preserve'><![CDATA[THE HAGUE, Netherlands (AP) -- Protesters demanding reparations from Japan for its World War II aggression threatened to overshadow Wednesday's visit by Prime Minister Ryutaro Hashimoto.  As Hashimoto met with European Union leaders on trade issues and Europe's planned single currency, money of a different sort was on the minds of former Dutch prisoners of war and women forced into wartime sex slavery for Japanese soldiers. "We've waited more than 50 years for compensation," said Sjoerd  Albert Lapre, president of the 80,000-member Foundation of  Japanese Honorary Debts in The Hague, where demonstrations were planned for later Wednesday.]]></newspaper:text>
+	<newspaper:author rdf:resource="&newspaper;instance_00017"/>
+	<newspaper:containing_section rdf:resource="&newspaper;instance_00019"/>
+	<newspaper:published_in rdf:resource="&newspaper;instance_00057"/>
+	<newspaper:keywords>European Union</newspaper:keywords>
+	<newspaper:keywords>International trade</newspaper:keywords>
+</newspaper:Article>
+<newspaper:Article rdf:about="&newspaper;instance_00038"
+	 newspaper:headline="Seles endures rain delays to beat McQuillen"
+	 newspaper:keywords="tennis"
+	 newspaper:page_number="22"
+	 newspaper:reading_level="Elementary"
+	 newspaper:urgent="false"
+	 rdfs:label="Seles endures rain delays to beat McQuillen">
+	<newspaper:text> The rain finally let up long enough for Monica Seles to win her first-round match Wednesday at Wimbledon.  After waiting four hours for the match to start and then stopping for another 40 minutes when she was within two points of victory, Seles completed a 6-0, 6-2 victory over Rachel McQuillan. </newspaper:text>
+	<newspaper:author rdf:resource="&newspaper;instance_00039"/>
+	<newspaper:containing_section rdf:resource="&newspaper;instance_00040"/>
+	<newspaper:published_in rdf:resource="&newspaper;instance_00057"/>
+	<newspaper:keywords>Monica Seles</newspaper:keywords>
+	<newspaper:keywords>Wimbledon</newspaper:keywords>
+</newspaper:Article>
+<newspaper:Reporter rdf:about="&newspaper;instance_00039"
+	 newspaper:name="Larry Tennis-nut"
+	 newspaper:salary="80000.0"
+	 rdfs:label="Larry Tennis-nut"/>
+<newspaper:Section rdf:about="&newspaper;instance_00040"
+	 newspaper:name="Sports"
+	 rdfs:label="Sports"/>
+<newspaper:Personals_Ad rdf:about="&newspaper;instance_00042"
+	 newspaper:expiration_date="7/01/97"
+	 newspaper:name="M137"
+	 newspaper:page_number="10"
+	 newspaper:urgent="true"
+	 rdfs:label="M137">
+	<newspaper:text>SEPARATED FEMALE TALL FAT BLUE BROWN PART_TIME SERVICE RICH 4 PACKS_PER_DAY FILTERED DRINK_OCCASIONALLY 
+MANY 
+RANDOM_BIVALVE 
+PLAYING_GO DONE_HARD_TIME DRUID UNDER_TEN PER_WEEK MARRIAGE SEEKING DIVORCED MALE SHORT THIN BLUE BLACK PART_TIME EXECUTIVE RICH NON_SMOKING DRINK_OFTEN TWO SNAKE PLAYING_GO NONE DRUID TEN_TO_TWENTY PER_YEAR MARRIAGE</newspaper:text>
+	<newspaper:salesperson rdf:resource="&newspaper;instance_00043"/>
+	<newspaper:published_in rdf:resource="&newspaper;instance_00069"/>
+</newspaper:Personals_Ad>
+<newspaper:Salesperson rdf:about="&newspaper;instance_00043"
+	 newspaper:name="Fred Schmit"
+	 newspaper:phone_number="498-4255"
+	 rdfs:label="Fred Schmit"/>
+<newspaper:Article rdf:about="&newspaper;instance_00044"
+	 newspaper:headline="Destination Mars"
+	 newspaper:keywords="space"
+	 newspaper:page_number="2"
+	 newspaper:urgent="false"
+	 rdfs:label="Destination Mars">
+	<newspaper:text>Sojourner, named for Sojourner Truth, will soon come down on the barren surface of Mars. It will open up like an egg, releasing a remote control probe to conduct a geological survey of the red planet. The mission marks the first landing on Mars in 20 years. And along with the orbiting Mars Global Surveyor, which arrives two months later, it ushers in a bold new era of Mars exploration.  In Destination Mars, CNN Interactive provides a multimedia rich sneak preview of the decade of discovery ahead. </newspaper:text>
+	<newspaper:author rdf:resource="&newspaper;instance_00045"/>
+	<newspaper:containing_section rdf:resource="&newspaper;instance_00047"/>
+	<newspaper:published_in rdf:resource="&newspaper;instance_00081"/>
+	<newspaper:keywords>Mars rover</newspaper:keywords>
+	<newspaper:keywords>science</newspaper:keywords>
+</newspaper:Article>
+<newspaper:Reporter rdf:about="&newspaper;instance_00045"
+	 newspaper:name="Joe Schmo"
+	 newspaper:salary="120000.0"
+	 rdfs:label="Joe Schmo"/>
+<newspaper:Section rdf:about="&newspaper;instance_00046"
+	 newspaper:name="Magazine"
+	 rdfs:label="Magazine"/>
+<newspaper:Section rdf:about="&newspaper;instance_00047"
+	 newspaper:name="Science"
+	 rdfs:label="Science"/>
+<newspaper:Section rdf:about="&newspaper;instance_00048"
+	 newspaper:name="Business"
+	 rdfs:label="Business"/>
+<newspaper:Editor rdf:about="&newspaper;instance_00051"
+	 newspaper:name="Mr. Science"
+	 newspaper:salary="60000.0"
+	 rdfs:label="Mr. Science">
+	<newspaper:responsible_for rdf:resource="&newspaper;instance_00045"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00047"/>
+</newspaper:Editor>
+<newspaper:Editor rdf:about="&newspaper;instance_00055"
+	 newspaper:name="Chief Honcho"
+	 newspaper:salary="150000.0"
+	 rdfs:label="Chief Honcho">
+	<newspaper:sections rdf:resource="&newspaper;instance_00019"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00024"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00032"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00046"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00048"/>
+	<newspaper:responsible_for rdf:resource="&newspaper;instance_00067"/>
+	<newspaper:responsible_for rdf:resource="&newspaper;instance_00068"/>
+</newspaper:Editor>
+<newspaper:Newspaper rdf:about="&newspaper;instance_00057"
+	 newspaper:date="06/25/97"
+	 newspaper:number_of_pages="12"
+	 rdfs:label="06/25/97">
+	<newspaper:contents rdf:resource="&newspaper;instance_00037"/>
+	<newspaper:contents rdf:resource="&newspaper;instance_00038"/>
+	<newspaper:prototype rdf:resource="&newspaper;instance_00058"/>
+</newspaper:Newspaper>
+<newspaper:Prototype_Newspaper rdf:about="&newspaper;instance_00058"
+	 newspaper:weekday="Thursday"
+	 rdfs:label="Thursday">
+	<newspaper:sections rdf:resource="&newspaper;instance_00019"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00024"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00040"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00047"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00048"/>
+	<newspaper:prototype_billing_chart rdf:resource="&newspaper;instance_00059"/>
+</newspaper:Prototype_Newspaper>
+<newspaper:Billing_Chart rdf:about="&newspaper;instance_00059"
+	 newspaper:cost_chart="90.0"
+	 newspaper:name="Weekday Ads"
+	 rdfs:label="Weekday Ads">
+	<newspaper:cost_chart>12.0</newspaper:cost_chart>
+	<newspaper:cost_chart>24.0</newspaper:cost_chart>
+	<newspaper:cost_chart>46.0</newspaper:cost_chart>
+	<newspaper:cost_chart>70.0</newspaper:cost_chart>
+</newspaper:Billing_Chart>
+<newspaper:Organization rdf:about="&newspaper;instance_00064"
+	 newspaper:name="San Jose Mercury News"
+	 rdfs:label="San Jose Mercury News">
+	<newspaper:employees rdf:resource="&newspaper;instance_00039"/>
+	<newspaper:employees rdf:resource="&newspaper;instance_00043"/>
+	<newspaper:employees rdf:resource="&newspaper;instance_00045"/>
+	<newspaper:employees rdf:resource="&newspaper;instance_00051"/>
+	<newspaper:employees rdf:resource="&newspaper;instance_00055"/>
+	<newspaper:employees rdf:resource="&newspaper;instance_00067"/>
+	<newspaper:employees rdf:resource="&newspaper;instance_00068"/>
+	<newspaper:employees rdf:resource="&newspaper;instance_00093"/>
+	<newspaper:employees rdf:resource="&newspaper;newspaper_00010"/>
+	<newspaper:employees rdf:resource="&newspaper;newspaper_00011"/>
+	<newspaper:employees rdf:resource="&newspaper;newspaper_00012"/>
+	<newspaper:employees rdf:resource="&newspaper;newspaper_00013"/>
+	<newspaper:employee_relationships rdf:resource="&newspaper;newspaper_00014"/>
+	<newspaper:employee_relationships rdf:resource="&newspaper;newspaper_00015"/>
+	<newspaper:employee_relationships rdf:resource="&newspaper;newspaper_00017"/>
+	<newspaper:employee_relationships rdf:resource="&newspaper;newspaper_00018"/>
+	<newspaper:employee_relationships rdf:resource="&newspaper;newspaper_00019"/>
+	<newspaper:employees rdf:resource="&newspaper;newspaper_00020"/>
+	<newspaper:employees rdf:resource="&newspaper;newspaper_00021"/>
+	<newspaper:employee_relationships rdf:resource="&newspaper;newspaper_00022"/>
+	<newspaper:employee_relationships rdf:resource="&newspaper;newspaper_00023"/>
+</newspaper:Organization>
+<newspaper:Editor rdf:about="&newspaper;instance_00067"
+	 newspaper:name="Sports Nut"
+	 newspaper:salary="100000.0"
+	 rdfs:label="Sports Nut">
+	<newspaper:responsible_for rdf:resource="&newspaper;instance_00039"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00040"/>
+	<newspaper:responsible_for rdf:resource="&newspaper;instance_00093"/>
+</newspaper:Editor>
+<newspaper:Editor rdf:about="&newspaper;instance_00068"
+	 newspaper:name="Ms Gardiner"
+	 newspaper:salary="45000.0"
+	 rdfs:label="Ms Gardiner">
+	<newspaper:sections rdf:resource="&newspaper;instance_00034"/>
+	<newspaper:responsible_for rdf:resource="&newspaper;instance_00043"/>
+</newspaper:Editor>
+<newspaper:Newspaper rdf:about="&newspaper;instance_00069"
+	 newspaper:date="08/19/97"
+	 newspaper:number_of_pages="64"
+	 rdfs:label="08/19/97">
+	<newspaper:contents rdf:resource="&newspaper;instance_00042"/>
+	<newspaper:prototype rdf:resource="&newspaper;instance_00070"/>
+</newspaper:Newspaper>
+<newspaper:Prototype_Newspaper rdf:about="&newspaper;instance_00070"
+	 newspaper:weekday="Tuesday"
+	 rdfs:label="Tuesday">
+	<newspaper:sections rdf:resource="&newspaper;instance_00024"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00032"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00034"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00046"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00047"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00048"/>
+	<newspaper:prototype_billing_chart rdf:resource="&newspaper;instance_00059"/>
+</newspaper:Prototype_Newspaper>
+<newspaper:Prototype_Newspaper rdf:about="&newspaper;instance_00072"
+	 newspaper:weekday="Friday"
+	 rdfs:label="Friday">
+	<newspaper:sections rdf:resource="&newspaper;instance_00019"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00024"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00034"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00040"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00046"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00047"/>
+	<newspaper:prototype_billing_chart rdf:resource="&newspaper;instance_00059"/>
+</newspaper:Prototype_Newspaper>
+<newspaper:Prototype_Newspaper rdf:about="&newspaper;instance_00073"
+	 newspaper:weekday="Wednesday"
+	 rdfs:label="Wednesday">
+	<newspaper:sections rdf:resource="&newspaper;instance_00019"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00024"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00032"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00034"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00040"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00048"/>
+	<newspaper:prototype_billing_chart rdf:resource="&newspaper;instance_00059"/>
+</newspaper:Prototype_Newspaper>
+<newspaper:Prototype_Newspaper rdf:about="&newspaper;instance_00074"
+	 newspaper:weekday="Monday"
+	 rdfs:label="Monday">
+	<newspaper:sections rdf:resource="&newspaper;instance_00019"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00024"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00032"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00046"/>
+	<newspaper:prototype_billing_chart rdf:resource="&newspaper;instance_00059"/>
+</newspaper:Prototype_Newspaper>
+<newspaper:Billing_Chart rdf:about="&newspaper;instance_00075"
+	 newspaper:cost_chart="55.0"
+	 newspaper:name="Saturday Ads"
+	 rdfs:label="Saturday Ads">
+	<newspaper:cost_chart>100.0</newspaper:cost_chart>
+	<newspaper:cost_chart>120.0</newspaper:cost_chart>
+	<newspaper:cost_chart>15.0</newspaper:cost_chart>
+	<newspaper:cost_chart>30.0</newspaper:cost_chart>
+</newspaper:Billing_Chart>
+<newspaper:Billing_Chart rdf:about="&newspaper;instance_00076"
+	 newspaper:cost_chart="60.0"
+	 newspaper:name="Sunday Ads"
+	 rdfs:label="Sunday Ads">
+	<newspaper:cost_chart>120.0</newspaper:cost_chart>
+	<newspaper:cost_chart>160.0</newspaper:cost_chart>
+	<newspaper:cost_chart>250.0</newspaper:cost_chart>
+	<newspaper:cost_chart>30.0</newspaper:cost_chart>
+</newspaper:Billing_Chart>
+<newspaper:Prototype_Newspaper rdf:about="&newspaper;instance_00077"
+	 newspaper:weekday="Saturday"
+	 rdfs:label="Saturday">
+	<newspaper:sections rdf:resource="&newspaper;instance_00019"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00032"/>
+	<newspaper:prototype_billing_chart rdf:resource="&newspaper;instance_00075"/>
+</newspaper:Prototype_Newspaper>
+<newspaper:Prototype_Newspaper rdf:about="&newspaper;instance_00078"
+	 newspaper:weekday="Sunday"
+	 rdfs:label="Sunday">
+	<newspaper:sections rdf:resource="&newspaper;instance_00019"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00024"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00032"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00034"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00040"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00046"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00047"/>
+	<newspaper:sections rdf:resource="&newspaper;instance_00048"/>
+	<newspaper:prototype_billing_chart rdf:resource="&newspaper;instance_00076"/>
+</newspaper:Prototype_Newspaper>
+<newspaper:Newspaper rdf:about="&newspaper;instance_00079"
+	 newspaper:date="08/20/97"
+	 newspaper:number_of_pages="80"
+	 rdfs:label="08/20/97">
+	<newspaper:prototype rdf:resource="&newspaper;instance_00073"/>
+	<newspaper:contents rdf:resource="&newspaper;instance_00084"/>
+	<newspaper:contents rdf:resource="&newspaper;instance_00086"/>
+</newspaper:Newspaper>
+<newspaper:Newspaper rdf:about="&newspaper;instance_00080"
+	 newspaper:date="08/21/97"
+	 newspaper:number_of_pages="54"
+	 rdfs:label="08/21/97">
+	<newspaper:prototype rdf:resource="&newspaper;instance_00058"/>
+	<newspaper:contents rdf:resource="&newspaper;instance_00085"/>
+</newspaper:Newspaper>
+<newspaper:Newspaper rdf:about="&newspaper;instance_00081"
+	 newspaper:date="08/22/97"
+	 newspaper:number_of_pages="54"
+	 rdfs:label="08/22/97">
+	<newspaper:contents rdf:resource="&newspaper;instance_00016"/>
+	<newspaper:contents rdf:resource="&newspaper;instance_00044"/>
+	<newspaper:prototype rdf:resource="&newspaper;instance_00072"/>
+</newspaper:Newspaper>
+<newspaper:Newspaper rdf:about="&newspaper;instance_00083"
+	 newspaper:date="08/23/97"
+	 newspaper:number_of_pages="148"
+	 rdfs:label="08/23/97">
+	<newspaper:contents rdf:resource="&newspaper;instance_00035"/>
+	<newspaper:prototype rdf:resource="&newspaper;instance_00078"/>
+</newspaper:Newspaper>
+<newspaper:Article rdf:about="&newspaper;instance_00084"
+	 newspaper:expiration_date="10/01/97"
+	 newspaper:headline="Sunburned Swans Sing Sad Song"
+	 newspaper:keywords="ballet"
+	 newspaper:page_number="99"
+	 newspaper:reading_level="High_school"
+	 newspaper:urgent="false"
+	 rdfs:label="Sunburned Swans Sing Sad Song">
+	<newspaper:text xml:space='preserve'><![CDATA[LONDON (AP) -- Sixty dancers for next month's "Swan Lake" performance were banned from sunbathing by the English National Ballet on Monday because they were no longer pale enough to play swans. "Some of the dancers have been away on holiday and look more like lobsters than swans," said ballet spokesman Jim Fletcher.  The dancers have six weeks to lose their tans before the company's first winter-season performance. Fletcher said makeup can be used, but added that some of the dancers were "scarlet" and difficult to disguise.  "I'm just a little worried that the lighting effects for this 'Swan Lake' will wreak havoc with sunburned dancers, making them look purple and puce," said artistic director Derek Deane.  "The last time we had a heat wave like this we ended up with a scarlet Wilis in 'Giselle.' We simply can't give roasted swans to the public this season," Deane said. ]]></newspaper:text>
+	<newspaper:containing_section rdf:resource="&newspaper;instance_00034"/>
+	<newspaper:author rdf:resource="&newspaper;instance_00036"/>
+	<newspaper:published_in rdf:resource="&newspaper;instance_00079"/>
+</newspaper:Article>
+<newspaper:Article rdf:about="&newspaper;instance_00085"
+	 newspaper:expiration_date="10/01/97"
+	 newspaper:headline="SMI Short Course a Smash"
+	 newspaper:keywords="SMI"
+	 newspaper:page_number="8"
+	 newspaper:reading_level="College"
+	 newspaper:urgent="false"
+	 rdfs:label="SMI Short Course a Smash">
+	<newspaper:text xml:space='preserve'><![CDATA[(Stanford University) The Section on Medical Informatics held one of its two annual week-long courses this past week, starting on Monday August 18.  Larry Fagan, the genial scientist who manages the course was quite pleased with both the attendance (60 people, from over 20 organizations, attended) and the content. "It's amazing-- we covered a lot of ground for a lot of people. At first I wondered if we were being a little bit ambitious," he said. "But, in retrospect, the program was a stunning success. If any of your readers want to attend one of next year's courses, tell them they can contact me via e-mail at fagan@smi.stanford.edu".]]></newspaper:text>
+	<newspaper:containing_section rdf:resource="&newspaper;instance_00024"/>
+	<newspaper:published_in rdf:resource="&newspaper;instance_00080"/>
+</newspaper:Article>
+<newspaper:Article rdf:about="&newspaper;instance_00086"
+	 newspaper:article_type="News"
+	 newspaper:expiration_date="10/01/97"
+	 newspaper:headline="SMI has big role in DARPA HPKB Project"
+	 newspaper:keywords="SMI"
+	 newspaper:page_number="56"
+	 newspaper:reading_level="High_school"
+	 newspaper:urgent="false"
+	 rdfs:label="SMI has big role in DARPA HPKB Project">
+	<newspaper:text xml:space='preserve'><![CDATA[(Stanford University) Recently, DARPA, the DOD research and funding agency, has formed the High-Performance Knowledge-Base initiative (the HPKB program) to support military needs for intelligent software in a wide variety of different situations. The needs range from logistics and planning through battlefield awareness and on to crisis management. It's clear-- The information explosion has hit the DOD with a vengeance and there's really only one solution: use cutting edge AI techniques to cope with the overload and make better decisions faster. "We're very excited about the new HPKB program," said faculty member Mark Musen. "We've been developing all these great new technologies-- knowledge acquisition tools, problem-solving methods, networked information transport mechanisms-- and now it's all coming together. This is a large scale test of the things we've been working towards and we're thrilled to be on board."]]></newspaper:text>
+	<newspaper:containing_section rdf:resource="&newspaper;instance_00024"/>
+	<newspaper:author rdf:resource="&newspaper;instance_00045"/>
+	<newspaper:published_in rdf:resource="&newspaper;instance_00079"/>
+	<newspaper:keywords>Darpa</newspaper:keywords>
+	<newspaper:keywords>HPKB</newspaper:keywords>
+</newspaper:Article>
+<newspaper:Personals_Ad rdf:about="&newspaper;instance_00089"
+	 newspaper:name="Strange"
+	 newspaper:page_number="12"
+	 newspaper:urgent="false"
+	 rdfs:label="Strange">
+	<newspaper:text>DIVORCED FEMALE TALL FAT BLUE BLONDE NON_SMOKING NON_DRINKING ONE GOLDFISH NONE SEEKING SINGLE MALE TALL FAT HAZEL RED_HEAD NON_SMOKING DRINK_AT_PARTIES TWO LIZARD NONE</newspaper:text>
+</newspaper:Personals_Ad>
+<newspaper:Personals_Ad rdf:about="&newspaper;instance_00090"
+	 newspaper:name="unhealthy-seeker"
+	 newspaper:page_number="15"
+	 newspaper:urgent="false"
+	 rdfs:label="unhealthy-seeker">
+	<newspaper:text>DIVORCED FEMALE NON_SMOKING NON_DRINKING SEEKING DIVORCED MALE 1 PACKS_PER_DAY UNFILTERED DRINKS_OFTEN</newspaper:text>
+</newspaper:Personals_Ad>
+<newspaper:Personals_Ad rdf:about="&newspaper;instance_00091"
+	 newspaper:name="Silly"
+	 newspaper:page_number="9"
+	 newspaper:urgent="false"
+	 rdfs:label="Silly">
+	<newspaper:text>MARRIED MALE VIOLET_EYES RED_HEAD NON_SMOKING DRINKS_AT_PARTIES CLEAN_RECORD MOSLEM WANT_TO_HAVE_FUN SEEKING DIVORCED MALE TALL NON_SMOKING DRINKS_OCCASIONALLY MANY_KIDS SHARK GOLF GAMBLING</newspaper:text>
+</newspaper:Personals_Ad>
+<newspaper:Standard_Ad rdf:about="&newspaper;instance_00092"
+	 newspaper:name="Tire sales"
+	 newspaper:page_number="43"
+	 newspaper:urgent="false"
+	 rdfs:label="Tire sales">
+	<newspaper:containing_section rdf:resource="&newspaper;instance_00040"/>
+	<newspaper:published_in rdf:resource="&newspaper;instance_00069"/>
+</newspaper:Standard_Ad>
+<newspaper:Reporter rdf:about="&newspaper;instance_00093"
+	 newspaper:current_job_title="sports reporter"
+	 newspaper:name="Anne BasketballHead"
+	 newspaper:salary="50000.0"
+	 rdfs:label="Anne BasketballHead"/>
+<a:_pal_constraint rdf:about="&newspaper;newspaper_00000"
+	 a:_pal_name="editor-employees-salary-constraint"
+	 rdfs:label="editor-employees-salary-constraint">
+	<a:_pal_description>The salary of an editor should be greater than the salary of any employee which the editor is responsible for.
+
+Note that the range definition for ?editor could be omitted because this constraint is attached to the Editor class.</a:_pal_description>
+	<a:_pal_range>(defrange ?editor :FRAME Editor)
+(defrange ?employee :FRAME Employee responsible_for)</a:_pal_range>
+	<a:_pal_statement>(forall ?editor (forall ?employee
+                      (=> (and 
+                               (responsible_for ?editor ?employee)
+                               (own-slot-not-null salary ?editor) 
+                               (own-slot-not-null salary ?employee)) 
+                          (> (salary ?editor) (salary ?employee)))))</a:_pal_statement>
+</a:_pal_constraint>
+<a:_pal_constraint rdf:about="&newspaper;newspaper_00001"
+	 a:_pal_name="article-section-constrained-by-author"
+	 rdfs:label="article-section-constrained-by-author">
+	<a:_pal_description>If the author of an article is a person, then there exists an editor, who is either this author or the editor responsible for this author. The section that contains this article is one of the sections managed by this editor.
+
+Note that the range definition for ?article could be omitted because this constraint is attached to the Article class.</a:_pal_description>
+	<a:_pal_range>(defrange ?article :FRAME Article)
+(defrange ?editor :FRAME Editor)</a:_pal_range>
+	<a:_pal_statement>(forall ?article
+        (=> (instance-of (article_author ?article) Person) 
+            (exists ?editor 
+                    (and (or (article_author ?article ?editor) 
+                             (responsible_for ?editor (article_author ?article))) 
+                         (sections ?editor (containing_section ?article))))))</a:_pal_statement>
+</a:_pal_constraint>
+<a:_pal_constraint rdf:about="&newspaper;newspaper_00002"
+	 a:_pal_name="articles-more-than-2-keywords"
+	 rdfs:label="articles-more-than-2-keywords">
+	<a:_pal_description>All articles should be indexed with more than two keywords (equivalent to minimum cardinality facet on slot attachment)
+
+Because this constraint is attached to the Article class, the variable ?article implicitly ranges over all instances of the Article class.
+</a:_pal_description>
+	<a:_pal_statement>(forall ?article 
+        (> (number-of-slot-values keywords ?article) 2))</a:_pal_statement>
+</a:_pal_constraint>
+<newspaper:Director rdf:about="&newspaper;newspaper_00010"
+	 newspaper:name="Tim"
+	 rdfs:label="Tim"/>
+<newspaper:Manager rdf:about="&newspaper;newspaper_00011"
+	 newspaper:name="Joe"
+	 rdfs:label="Joe"/>
+<newspaper:Manager rdf:about="&newspaper;newspaper_00012"
+	 newspaper:name="Jane"
+	 rdfs:label="Jane"/>
+<newspaper:Manager rdf:about="&newspaper;newspaper_00013"
+	 newspaper:name="Mary"
+	 rdfs:label="Mary"/>
+<rdf:Description rdf:about="&newspaper;newspaper_00014"
+	 newspaper:name="directs"
+	 newspaper:quality="ok"
+	 newspaper:supervision_type="administrative"
+	 rdfs:label="directs">
+	<rdf:type rdf:resource="&newspaper;Director Supervision Relation"/>
+</rdf:Description>
+<rdf:Description rdf:about="&newspaper;newspaper_00015"
+	 newspaper:name="directs"
+	 newspaper:quality="good"
+	 newspaper:supervision_type="administrative"
+	 rdfs:label="directs">
+	<rdf:type rdf:resource="&newspaper;Director Supervision Relation"/>
+</rdf:Description>
+<rdf:Description rdf:about="&newspaper;newspaper_00017"
+	 newspaper:name="manages"
+	 newspaper:quality="good"
+	 newspaper:supervision_type="editorial"
+	 rdfs:label="manages">
+	<rdf:type rdf:resource="&newspaper;Manager Supervision Relation"/>
+</rdf:Description>
+<rdf:Description rdf:about="&newspaper;newspaper_00018"
+	 newspaper:name="manages"
+	 newspaper:quality="ok"
+	 newspaper:supervision_type="editorial"
+	 rdfs:label="manages">
+	<rdf:type rdf:resource="&newspaper;Manager Supervision Relation"/>
+</rdf:Description>
+<rdf:Description rdf:about="&newspaper;newspaper_00019"
+	 newspaper:name="directs"
+	 newspaper:quality="good"
+	 newspaper:supervision_type="administrative"
+	 rdfs:label="directs">
+	<rdf:type rdf:resource="&newspaper;Director Supervision Relation"/>
+</rdf:Description>
+<newspaper:Columnist rdf:about="&newspaper;newspaper_00020"
+	 newspaper:name="Kelly"
+	 rdfs:label="Kelly"/>
+<newspaper:Columnist rdf:about="&newspaper;newspaper_00021"
+	 newspaper:name="Kim"
+	 rdfs:label="Kim"/>
+<rdf:Description rdf:about="&newspaper;newspaper_00022"
+	 newspaper:name="manages"
+	 newspaper:quality="good"
+	 newspaper:supervision_type="administrative"
+	 rdfs:label="manages">
+	<rdf:type rdf:resource="&newspaper;Manager Supervision Relation"/>
+</rdf:Description>
+<rdf:Description rdf:about="&newspaper;newspaper_00023"
+	 newspaper:name="manages"
+	 newspaper:quality="poor"
+	 newspaper:supervision_type="administrative"
+	 rdfs:label="manages">
+	<rdf:type rdf:resource="&newspaper;Manager Supervision Relation"/>
+</rdf:Description>
+</rdf:RDF>

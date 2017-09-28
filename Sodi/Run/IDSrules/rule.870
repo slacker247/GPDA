@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI visadmin.exe access";flags: A+; uricontent:"/visadmin.exe"; nocase; reference:bugtraq,1808; reference:cve,CAN-1999-1970;classtype:attempted-recon; sid:867; rev:1;)

@@ -1,0 +1,612 @@
+Magic: 13000
+
+Internal Form Definition File
+    (do not change)
+
+Number of forms: 1
+Unit of measure: FL_COORD_PIXEL
+
+=============== FORM ===============
+Name: ODI
+Width: 940
+Height: 660
+Number of Objects: 33
+
+--------------------
+class: FL_BOX
+type: UP_BOX
+box: 0 0 940 660
+boxtype: FL_UP_BOX
+colors: FL_COL1 FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_NORMAL_STYLE
+size: FL_DEFAULT_SIZE
+lcol: FL_BLACK
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: 
+argument: 
+
+--------------------
+class: FL_PIXMAP
+type: NORMAL_PIXMAP
+box: 115 45 710 560
+boxtype: FL_NO_BOX
+colors: FL_COL1 FL_COL1
+alignment: FL_ALIGN_BOTTOM
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_LARGE_SIZE
+lcol: FL_YELLOW
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: background
+callback: ODInoneCB
+argument: 0
+	file: ../BitMaps/Splash2.xpm
+	fullpath: 1
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 395 610 150 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_DARKTOMATO FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_LARGE_SIZE
+lcol: FL_WHEAT
+label: Quit
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: quit_button
+callback: ODIexitCB
+argument: 0
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 830 45 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_WHITE
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: rhs_button[1]
+callback: RHSideCB
+argument: 1
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 830 85 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_WHITE
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: rhs_button[2]
+callback: RHSideCB
+argument: 2
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 830 125 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_WHITE
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: rhs_button[3]
+callback: RHSideCB
+argument: 3
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 830 165 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_WHITE
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: rhs_button[4]
+callback: RHSideCB
+argument: 4
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 830 205 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_WHITE
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: rhs_button[5]
+callback: RHSideCB
+argument: 5
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 830 245 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_WHITE
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: rhs_button[6]
+callback: RHSideCB
+argument: 6
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 830 285 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_WHITE
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: rhs_button[7]
+callback: RHSideCB
+argument: 7
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 830 325 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_WHITE
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: rhs_button[8]
+callback: RHSideCB
+argument: 8
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 830 365 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_WHITE
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: rhs_button[9]
+callback: RHSideCB
+argument: 9
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 830 405 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_WHITE
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: rhs_button[10]
+callback: RHSideCB
+argument: 10
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 830 445 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_WHITE
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: rhs_button[11]
+callback: RHSideCB
+argument: 11
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 830 485 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_WHITE
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: rhs_button[12]
+callback: RHSideCB
+argument: 12
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 830 525 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_WHITE
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: rhs_button[13]
+callback: RHSideCB
+argument: 13
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 830 565 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_WHITE
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: rhs_button[14]
+callback: RHSideCB
+argument: 14
+
+--------------------
+class: FL_BEGIN_GROUP
+type: 0
+box: 0 10 10 0
+boxtype: FL_NO_BOX
+colors: FL_COL1 FL_MCOL
+alignment: FL_ALIGN_CENTER
+style: FL_NORMAL_STYLE
+size: FL_DEFAULT_SIZE
+lcol: FL_BLACK
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: RHSRadio
+callback: 
+argument: 
+
+--------------------
+class: FL_BUTTON
+type: RADIO_BUTTON
+box: 10 127 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_DODGERBLUE
+label: Blue Force
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: battleCB
+argument: 3
+
+--------------------
+class: FL_BUTTON
+type: RADIO_BUTTON
+box: 10 245 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_DARKCYAN
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_WHITE
+label: PBA
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: battleCB
+argument: 6
+
+--------------------
+class: FL_BUTTON
+type: RADIO_BUTTON
+box: 10 325 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_DARKCYAN
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_WHITE
+label: BDA
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: battleCB
+argument: 8
+
+--------------------
+class: FL_BUTTON
+type: RADIO_BUTTON
+box: 10 45 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_CYAN
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_DODGERBLUE
+label: ATO
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: battleCB
+argument: 1
+
+--------------------
+class: FL_BUTTON
+type: RADIO_BUTTON
+box: 10 85 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_DODGERBLUE
+label: Geo
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: battleCB
+argument: 2
+
+--------------------
+class: FL_BUTTON
+type: RADIO_BUTTON
+box: 10 165 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_DODGERBLUE
+label: Red Force
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: battleCB
+argument: 4
+
+--------------------
+class: FL_BUTTON
+type: RADIO_BUTTON
+box: 10 205 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_DODGERBLUE
+label: ISR
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: battleCB
+argument: 5
+
+--------------------
+class: FL_BUTTON
+type: NORMAL_BUTTON
+box: 10 285 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_DODGERBLUE
+label: WTP
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: battleCB
+argument: 7
+
+--------------------
+class: FL_BUTTON
+type: RADIO_BUTTON
+box: 10 365 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_DODGERBLUE
+label: BM
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: battleCB
+argument: 9
+
+--------------------
+class: FL_BUTTON
+type: RADIO_BUTTON
+box: 10 405 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_DODGERBLUE
+label: COMM
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: battleCB
+argument: 10
+
+--------------------
+class: FL_BUTTON
+type: RADIO_BUTTON
+box: 10 445 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_DODGERBLUE
+label: Chat Room
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: battleCB
+argument: 11
+
+--------------------
+class: FL_BUTTON
+type: RADIO_BUTTON
+box: 10 485 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_DODGERBLUE
+label: Elec. Mea.
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: battleCB
+argument: 12
+
+--------------------
+class: FL_BUTTON
+type: RADIO_BUTTON
+box: 10 525 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_DODGERBLUE
+label: Schedule
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: battleCB
+argument: 13
+
+--------------------
+class: FL_BUTTON
+type: RADIO_BUTTON
+box: 10 565 100 40
+boxtype: FL_EMBOSSED_BOX
+colors: FL_BLUE FL_COL1
+alignment: FL_ALIGN_CENTER
+style: FL_BOLD_STYLE+FL_ENGRAVED_STYLE
+size: FL_MEDIUM_SIZE
+lcol: FL_DODGERBLUE
+label: Predict
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: battleCB
+argument: 14
+
+--------------------
+class: FL_END_GROUP
+type: 0
+box: 0 0 0 0
+boxtype: FL_NO_BOX
+colors: FL_COL1 FL_MCOL
+alignment: FL_ALIGN_CENTER
+style: FL_NORMAL_STYLE
+size: FL_DEFAULT_SIZE
+lcol: FL_BLACK
+label: 
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: 
+callback: 
+argument: 
+
+==============================
+create_the_forms

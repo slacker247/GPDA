@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET 161 (msg:"DOS Bay/Nortel Nautica Marlin"; dsize:0; reference:bugtraq,1009; reference:cve,CVE-2000-0221; classtype:attempted-dos; sid:279; rev:2;)

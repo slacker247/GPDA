@@ -1,0 +1,40 @@
+ODI_TestCase_Sep07
+    1    3    3    1		 JCSWO?, # JCSWOs, # Cmdr Estimate COAs, JCSEO?
+JCS-Order-1437.5
+###
+JCS-Order-1014.4							99.599998
+    3
+Theater_Defend:C_Deny:V						98.599998
+Theater_Defend:C_Preempt:C_Retaliate:N		96.400002
+Theater_Preempt:C							92.800003
+###
+JCS-Order-1258.2							98.199997
+    3
+Strategic_Defend:C_Preempt:C				97.500000
+Strategic_Preempt:C							94.699997
+Theater_Defend:C_Strategic_Preempt:C		90.599998
+###
+JCS-Order-1411.8							96.699997
+    3
+Theater_Defend:C_Destroy:C					92.800003
+Theater_Defend:C_Retaliate:N				88.599998
+Theater_Defend:C_Strategic_Preempt:C		79.500000
+### Commander's Estimate
+JCS-Order-1411.8                            96.699997
+Theater_Defend:C_Preempt:C_Retaliate:N      96.400002
+Theater_Defend:C_Retaliate:N                88.599998
+Theater_Defend:C_Strategic_Preempt:C        79.500000
+### Execute Order
+JCS-Order-1437.5
+C2SIM-00-Responses                          88.599998
+###
+Using new header
+Dennis Ellis
+Wed Sep  6 21:58:36 2000 
+Wed Sep  6 21:58:36 2000 
+0
+17
+0.200000
+0.500000
+0.800000
+<EOF>

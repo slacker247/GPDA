@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible Passion Worm"; content: "filename=\"ICQ_GREETINGS.EXE\""; nocase; reference:MCAFEE,10467; sid:760;  classtype:misc-activity; rev:3;)

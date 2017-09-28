@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible NAIL Worm"; content: "|6E 61 6D 65 20 3D 22 57 57 49 49 49 21|"; reference:MCAFEE,10109; sid:742;  classtype:misc-activity; rev:3;)

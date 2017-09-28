@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI anaconda directory transversal attempt"; flags: A+; uricontent:"/apexec.pl"; content:"template=../"; nocase; reference:cve,CVE-2000-0975; reference:bugtraq,2388; classtype:web-application-attack; sid:820; rev:2;)

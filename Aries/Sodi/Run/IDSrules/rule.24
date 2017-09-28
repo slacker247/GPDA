@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 6789 -> $EXTERNAL_NET any (msg:"BACKDOOR Doly 2.0 access"; content: "|57 74 7a 75 70 20 55 73 65|"; flags: A+; depth: 32;  reference:arachnids,312; sid:119;  classtype:misc-activity; rev:3;)

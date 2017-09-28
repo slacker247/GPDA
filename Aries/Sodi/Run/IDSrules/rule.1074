@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC tomcat directory traversal attempt"; flags:A+; uricontent:"%00.jsp"; reference:bugtraq,2518;  classtype:web-application-attack; sid:1055; rev:2;)

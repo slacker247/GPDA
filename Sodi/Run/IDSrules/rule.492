@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 634:1400 (msg:"RPC AMD Overflow"; flags: A+; content: "|80 00 04 2C 4C 15 75 5B 00 00 00 00 00 00 00 02|";depth: 32; reference:arachnids,217; classtype:attempted-admin; sid:573; rev:1;)

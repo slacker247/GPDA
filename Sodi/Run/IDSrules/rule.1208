@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 2301 (msg:"WEB-MISC compaq nsight directory traversal"; content: "../"; reference:bugtraq,282; reference:arachnids,244; reference:cve,CVE-1999-0771; classtype:attempted-recon; sid:1199; rev:2;)

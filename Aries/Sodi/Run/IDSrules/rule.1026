@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS getdrvs.exe access";flags: A+; uricontent:"/scripts/tools/getdrvs.exe"; nocase; classtype:web-application-activity; sid:1015; rev:2;)

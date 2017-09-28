@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS codebrowser SDK access";flags: A+; uricontent:"/iissamples/sdk/asp/docs/codebrws.asp"; nocase;reference:bugtraq,167; classtype:web-application-activity; sid:1005; rev:2;)

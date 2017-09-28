@@ -1,0 +1,1 @@
+alert tcp any any -> any 110 (msg:"Virus - Possible Pikachu Pokemon Virus"; flags:PA; content:"Pikachu Pokemon"; reference:MCAFEE,98696; sid:738;  classtype:misc-activity; rev:3;)

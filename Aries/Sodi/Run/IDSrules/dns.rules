@@ -1,0 +1,21 @@
+# (C) Copyright 2001, Martin Roesch, Brian Caswell, et al.  All rights reserved.
+# $Id: dns.rules,v 1.16 2001/10/29 01:52:54 roesch Exp $
+#----------
+# DNS RULES
+#----------
+
+alert udp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS named iquery attempt"; content: "|0980 0000 0001 0000 0000|"; offset: 2; depth: 16; reference:arachnids,277; reference:cve,CVE-1999-0009; reference:bugtraq,134; classtype:attempted-recon; sid:252; rev:2;)
+alert udp $EXTERNAL_NET 53 -> $HOME_NET any (msg:"DNS SPOOF query response PTR with TTL\: 1 min. and no authority"; content:"|85800001000100000000|"; content:"|c00c000c00010000003c000f|"; classtype:bad-unknown; sid:253; rev:2;)
+alert udp $EXTERNAL_NET 53 -> $HOME_NET any (msg:"DNS SPOOF query response with ttl\: 1 min. and no authority"; content:"|81 80 00 01 00 01 00 00 00 00|"; content:"|c0 0c 00 01 00 01 00 00 00 3c 00 04|"; classtype:bad-unknown; sid:254; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS zone transfer"; content: "|00 00 FC|"; flags: A+; offset: 13; reference:arachnids,212; classtype:attempted-recon; sid:255; rev:2;)
+alert udp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS named authors attempt"; content:"|07|authors"; offset:12; content:"|04|bind"; nocase; offset: 12; reference:arachnids,480; classtype:attempted-recon; sid:256; rev:1;)
+alert udp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS named version attempt"; content:"|07|version"; offset:12; content:"|04|bind"; nocase; offset: 12; reference:arachnids,278; classtype:attempted-recon; sid:257; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS EXPLOIT named 8.2->8.2.1";flags: A+; content:"../../../../../../../../../"; reference:cve,CVE-1999-0833; classtype:attempted-admin; sid:258; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS EXPLOIT named overflow";flags: A+; content:"thisissometempspaceforthesockinaddrinyeahyeahiknowthisislamebutanywaywhocareshorizongotitworkingsoalliscool"; reference:cve,CVE-1999-0833; classtype:attempted-admin; sid:259; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS EXPLOIT named"; flags: A+; content:"ADMROCKS"; reference:cve,CVE-1999-0833; classtype:attempted-admin; sid:260; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS EXPLOIT named";flags: A+; content:"|CD80 E8D7 FFFF FF|/bin/sh"; classtype:attempted-admin; sid:261; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS EXPLOIT x86 linux";flags: A+; content:"|31c0 b03f 31db b3ff 31c9 cd80 31c0|"; classtype:attempted-admin; sid:262; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS EXPLOIT x86 linux";flags: A+; content:"|31 c0 b0 02 cd 80 85 c0 75 4c eb 4c 5e b0|"; classtype:attempted-admin; sid:264; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS EXPLOIT x86 linux ADMv2";flags: A+; content:"|89f7 29c7 89f3 89f9 89f2 ac3c fe|"; classtype:attempted-admin; sid:265; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS EXPLOIT x86 freebsd";flags: A+; content:"|eb6e 5ec6 069a 31c9 894e 01c6 4605|"; classtype:attempted-admin; sid:266; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS EXPLOIT sparc";flags: A+; content:"|90 1a c0 0f  90 02 20 08 92 02 20 0f d0 23 bf f8|"; classtype:attempted-admin; sid:267; rev:1;)

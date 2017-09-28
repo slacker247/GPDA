@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC ROXEN directory list attempt"; flags: A+; content:"|2F 25 30 30 2F|"; nocase;reference:bugtraq,1510; reference:cve,CVE-2000-0671; classtype:attempted-recon; sid:1109; rev:1;)

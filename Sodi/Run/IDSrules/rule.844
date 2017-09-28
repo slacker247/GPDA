@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI aglimpse access";flags: A+; uricontent:"/aglimpse"; nocase; reference:cve,CVE-1999-0147; reference:bugtraq,2026; classtype:attempted-recon; sid:842; rev:1;)

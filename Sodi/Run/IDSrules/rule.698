@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible Tune.vbs"; content: "filename=\"tune.vbs""; nocase; reference:MCAFEE,10497; sid:740;  classtype:misc-activity; rev:3;)

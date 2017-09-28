@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible NewApt.Worm - panther.exe"; content: "filename=\"PANTHER.EXE\""; nocase; reference:MCAFEE,10540; sid:787;  classtype:misc-activity; rev:3;)

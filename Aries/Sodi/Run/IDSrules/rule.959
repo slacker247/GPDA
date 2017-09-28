@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE authors.pwd access";flags: A+; uricontent:"/authors.pwd"; nocase; classtype:web-application-activity; sid:951; rev:2;)

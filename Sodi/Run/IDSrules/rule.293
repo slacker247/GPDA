@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP PING Delphi-Piette Windows"; content:"|50696e67696e672066726f6d2044656c|"; itype:8; depth:32; reference:arachnids,155; sid:372;  classtype:misc-activity; rev:4;)

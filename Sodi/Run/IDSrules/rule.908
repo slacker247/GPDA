@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION cfcache.map access";flags: A+; uricontent:"/cfcache.map"; nocase; reference:bugtraq,917; reference:cve,CVE-2000-0057; classtype:attempted-recon; sid:903; rev:2;)

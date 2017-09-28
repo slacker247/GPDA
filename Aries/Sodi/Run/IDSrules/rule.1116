@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC L3retriever HTTP Probe"; content: "User-Agent|3a| Java1.2.1|0d0a|"; flags: A+;reference:arachnids,310; classtype:web-application-activity; sid:1100; rev:2;)

@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Traceroute (Undefined Code!)"; itype: 30; sid:457;  classtype:misc-activity; rev:4;)

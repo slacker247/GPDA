@@ -1,0 +1,23 @@
+#
+#	Compile Java-based timer routines
+#
+echo Compiling Java-based timer routine
+javac UnixTimers.java
+#
+#	Generate include and stub files
+#
+echo Generating include and stub files
+javah -o UnixTimers.h UnixTimers
+javah -stubs UnixTimers
+gcc -c -I/usr/local/lib/java/include -I/usr/local/lib/java/include/genunix UnixTimers.c
+#
+#	Compile C-based timer interface routine
+#
+echo Compiling C-based timer interface routine
+gcc -c -I/usr/local/lib/java/include -I/usr/local/lib/java/include/genunix SysTimers.c
+#
+#	Generate dynamic library
+#
+echo Generating dynamic library
+gcc -shared SysTimers.o UnixTimers.o -o libtimers.so
+#

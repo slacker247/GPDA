@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP PING (Undefined Code!)"; itype: 8; sid:365;  classtype:misc-activity; rev:4;)

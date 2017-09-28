@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 111 (msg:"RPC portmap request tooltalk"; flags:A+; rpc:100083,*,*; reference:cve,CAN-2001-0717; classtype:rpc-portmap-decode; sid:1298; rev:2;)

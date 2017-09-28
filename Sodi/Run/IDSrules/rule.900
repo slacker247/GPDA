@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI pals-cgi access"; uricontent:"/pals-cgi"; nocase; flags:A+; reference:cve,CAN-2001-0216; reference:cve,CAN-2001-0217; reference:bugtraq,2372; classtype:attempted-recon; sid:897; rev:2;)

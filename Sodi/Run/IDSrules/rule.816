@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI whoisraw access"; flags: A+; uricontent: "/whois_raw.cgi"; reference:arachnids,466;classtype:attempted-recon; sid:810; rev:1;)

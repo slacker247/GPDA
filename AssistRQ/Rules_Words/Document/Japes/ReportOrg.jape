@@ -1,0 +1,12 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Report
+
+(
+    {Token.kind == word, Token.orth == allCaps}
+):Report
+ -->
+:Report.ReportOrg = {}

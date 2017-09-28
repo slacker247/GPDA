@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:"EXPLOIT imap overflow";flags: A+; content:"|E8 C0FF FFFF|/bin/sh"; classtype:attempted-admin; sid:293; rev:1;)

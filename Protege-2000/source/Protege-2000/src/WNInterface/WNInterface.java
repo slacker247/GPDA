@@ -1,0 +1,863 @@
+/*
+ * The contents of this file are subject to the Mozilla Public License
+ * Version 1.1 (the "License");  you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
+ * the specific language governing rights and limitations under the License.
+ *
+ * The Original Code is Protege-2000.
+ *
+ * The Initial Developer of the Original Code is Stanford University. Portions
+ * created by Stanford University are Copyright (C) 2001.  All Rights Reserved.
+ *
+ * Protege-2000 was developed by Stanford Medical Informatics
+ * (http://www.smi.stanford.edu) at the Stanford University School of Medicine
+ * with support from the National Library of Medicine, the National Science
+ * Foundation, and the Defense Advanced Research Projects Agency.  Current
+ * information about Protege can be obtained at http://protege.stanford.edu
+ *
+ * Contributor(s):
+ */
+
+
+
+package WNInterface;
+
+import java.util.*;
+import java.io.*;
+import javax.swing.tree.*;
+
+public class WNInterface {
+
+       /* from WNCONSTS.H */
+
+   /* Generic names for part of speech */
+   public static final int NOUN	 =	1;
+   public static final int VERB	=	2;
+   public static final int ADJ	 =	3;
+   public static final int ADV	 =	4;
+   public static final int SATELLITE =	5;	/* not really a part of speech */
+   public static final int ADJSAT	=	SATELLITE;
+
+   public static final String[] POS_STRINGS = {"NOUN", "VERB", "ADJ", "ADV", "ADJSAT"};
+
+	 public static final int ALLSENSES =	0;	/* pass to findtheinfo() if want all senses */
+   public static final int MAXID		=15;	/* maximum id number in lexicographer file */
+   public static final int MAXDEPTH	=20;	/* maximum tree depth - used to find cycles */
+   public static final int MAXSENSE =	75;	/* maximum number of senses in database */
+   public static final int MAX_FORMS=	5	;/* max # of different 'forms' word can have */
+   public static final int MAXFNUM	 =	44;	/* maximum number of lexicographer files */
+
+   /* Pointer type and search type counts */
+   public static final int MAXPTR	=	19;
+   public static final int MAXSEARCH   =    29 ;
+
+   /* Pointers */
+   public static final int ANTPTR       =    1;	/* ! */
+   public static final int HYPERPTR     =    2;	/* @ */
+   public static final int HYPOPTR      =    3 ;	/* ~ */
+   public static final int ENTAILPTR     =   4 ;	/* * */
+   public static final int SIMPTR        =   5 ;	/* & */
+
+   public static final int ISMEMBERPTR    =  6;	/* #m */
+   public static final int ISSTUFFPTR     =  7;	/* #s */
+   public static final int ISPARTPTR     =   8 ;	/* #p */
+
+   public static final int HASMEMBERPTR   =  9 ;	/* %m */
+   public static final int HASSTUFFPTR    = 10;	/* %s */
+   public static final int HASPARTPTR  =    11;	/* %p */
+
+   public static final int MERONYM      =   12;	/* % (not valid in lexicographer file) */
+   public static final int HOLONYM    =     13;	/* # (not valid in lexicographer file) */
+   public static final int CAUSETO    =     14;	/* > */
+   public static final int PPLPTR	   =     15;	/* < */
+   public static final int SEEALSOPTR =	16 ;	/* ^ */
+   public static final int PERTPTR	 =	17 ;	/* \ */
+   public static final int ATTRIBUTE	=18 ;	/* = */
+   public static final int VERBGROUP	=19 ;	/* $ */
+
+   public static final int SYNS      =      (MAXPTR + 1);
+   public static final int FREQ      =      (MAXPTR + 2);
+   public static final int FRAMES    =      (MAXPTR + 3) ;
+   public static final int COORDS    =      (MAXPTR + 4) ;
+   public static final int RELATIVES	=(MAXPTR + 5)    ;
+   public static final int HMERONYM  =      (MAXPTR + 6) ;
+   public static final int HHOLONYM =	(MAXPTR + 7)    ;
+	 public static final int WNESCORT =	(MAXPTR + 8)  ;
+   public static final int WNGREP	 =	(MAXPTR + 9)  ;
+   public static final int OVERVIEW =	(MAXPTR + 10)  ;
+
+   /* WordNet part of speech stuff */
+   public static final int NUMPARTS = 4;	/* number of parts of speech */
+   public static final int NUMFRAMES = 35;	/* number of verb frames */
+
+
+
+	static{
+		System.loadLibrary("tttWordNet");
+		}
+
+  //called by the WNInterface constructor
+  //returns 0 if there is a problem, 1 otherwise
+	public native int ttt_wninit();
+	public native int wninitFoo();
+
+	/* vanilla function to find information given a string to lookup, part of speech
+   * type of lookup (1-29 above), and which sense of the word.
+   * For most searches whichsense should be ALLSENSES
+   */
+  public native String findtheinfo(String searchStr, int pos, int ptrtyp, int whichsense);
+
+  /* better version of above, checks all of the morphed forms of the word
+   */
+	public native String findAllTheInfo(String searchStr, int pos, int ptrtyp, int whichsense);
+
+  /* returns the definitions for the searchStr and its morphed versions
+   */
+	public native String[] getDefinitions(String searchStr, int pos, int ptrtyp, int whichsense);
+
+  /* helper function that only returns the direct synonyms of the searchStr and
+   * versions of the searchStr
+   */
+	public native String[] getJustWords(String searchStr, int pos, int ptrtyp, int whichsense);
+
+  /* Rturns morphologically base form of the word for the pos specified, not
+   * including the word originally passed in to the function, so
+   * it may return null.
+   * These morph forms are what are used in most of the other functions
+   * to give more complete searches.
+   * See getAllMorphForms which cycles through all parts of speech.
+   */
+	public native String[] getMorphForms(String orig, int pos);
+
+  //private native DefaultMutableTreeNode getRecursiveParents(String searchStr, int pos, int ptr, int sense);
+
+  /*
+  getantonyms only for adjectives and adverbs
+
+  hasparts  MERONYM
+  ispartof HOLONYM
+  entails ENTAILPTR
+  */
+
+	public WNInterface() {
+System.out.println("TTT -- IN WNInterface Calling ttt_wninit()...");
+System.out.flush();
+		 if (ttt_wninit() == 0){
+			print("problem calling 0()");
+			pause();
+		 }
+  }
+
+  /* finds synonyms*/
+  public String[] getSimilarVerbs(String verb){
+    return getSimilarWords(verb, VERB);
+  }
+
+  public String[] getSimilarNouns(String noun){
+    return getSimilarWords(noun, NOUN);
+  }
+
+  //adjs have (a) appended on the end of each String
+  public String[] getSimilarAdjs(String adj){
+    return getSimilarWords(adj, ADJ);
+  }
+
+  public String[] getSimilarAdvs(String adv){
+    return getSimilarWords(adv, ADV);
+  }
+
+  /* looks for synonyms of the word (and its morphological variations) for
+   * specified part of speech, RELATIVES is one search type for synonyms
+   */
+	public String[] getSimilarWords(String word, int pos){
+    return getJustWords(word, pos, getTypeForSimilar(pos), ALLSENSES);
+  }
+
+	public String[] getSimilarWords(String word, int pos, int sense){
+		return getJustWords(word, pos, getTypeForSimilar(pos), sense);
+	}
+
+  public static final int NUM_SIM_WORD_TYPES = 4;
+
+  /* looks up the word as a noun, verb, adjective, and adverb
+   */
+  public String[] getSimilarWords(String search){
+   String[][] pos = new String[NUM_SIM_WORD_TYPES][];
+
+   for(int i = NOUN; i <= ADV; i++){
+      pos[i - NOUN] = getSimilarWords(search, i);
+   }
+
+   ArrayList wordList = new ArrayList();
+   for (int i = 0; i < NUM_SIM_WORD_TYPES; i++){
+       if (pos[i] != null){
+          for (int j = 0; j < pos[i].length; j++){
+           if (!containsString(pos[i][j], wordList)) wordList.add(removeLeadingSpaces(pos[i][j]));    //only add unique words
+          }
+       }
+   }
+
+   return listToStringArray(wordList);
+  }
+
+  /* returns true if the first and second are synonyms.
+   * Synonym is not a symmetric relationship, so this method
+   * searches to see if the first is a synonym of the second
+   * or the reverse.
+   * Returns false if either string is null;
+   */
+  public boolean isSynonym(String first, String second){
+    if (first == null || second == null) return false;
+
+    String[] firstSims = getSimilarWords(first);
+    if(containsString(second, firstSims)) return true;
+
+    String[] secondSims = getSimilarWords(second);
+    if (containsString(first, secondSims)) return true;
+
+    return false;
+  }
+
+
+  /* assumes ALLSENSES
+   */
+  public String[] getDefinitions(String word, int pos, int searchType){
+   return getDefinitions(word, pos, searchType, ALLSENSES);
+  }
+
+	/* searches for definitions for the given word
+	 * and part of speech.  Finds teh correct searchtype search type and ALLSENSES.
+   */
+	public String[] getDefinitions(String word, int pos){
+   return getDefinitions(word, pos, getTypeForSimilar(pos), ALLSENSES);
+  }
+
+  /* searches for noun definitions of the given word using
+   * RELATIVES as the search type
+   */
+  public String[] getNounDefinitions(String word){
+   return getDefinitions(word, NOUN);
+  }
+
+  public String[] getVerbDefinitions(String word){
+   return getDefinitions(word, VERB);
+  }
+
+  public String[] getAdjDefinitions(String word){
+   return getDefinitions(word, ADJ);
+  }
+
+  public String[] getAdvDefinitions(String word){
+   return getDefinitions(word, ADV);
+  }
+
+  /* each string in the array is composed of the word and its
+   * synonyms for that sense and a definition.
+   * Searches for all parts of speech.
+   * word1, word2,.. : definition for this sense
+   */
+	public String[] getWordsAndDefinitions(String word){
+    String pos;
+    Vector def = new Vector();;
+    StringTokenizer st;
+
+    for(int i = NOUN; i <= ADV; i++){
+      pos = findAllTheInfo(word, i, getTypeForSimilar(i), ALLSENSES);
+      st = new StringTokenizer(pos, "\n");
+			while(st.hasMoreTokens()){
+        String temp = st.nextToken();
+        if (temp.startsWith("Sense")){
+           temp = st.nextToken();
+           def.addElement(similarWordsSubstring(temp) +  ": " + definitionSubstring(temp));
+         }
+      }
+    }
+
+    return listToStringArray(def);
+  }
+
+  /* similar to above function, but adds on the part of speech between the
+   * words and definitions
+   * word1, word2,.. POS : definition for this sense
+   */
+  public String[] getWordsPOSAndDefinitions(String word){
+    String pos;
+    Vector def = new Vector();;
+    StringTokenizer st;
+
+    for(int i = NOUN; i <= ADV; i++){
+      pos = findAllTheInfo(word, i, getTypeForSimilar(i), ALLSENSES);
+			st = new StringTokenizer(pos, "\n");
+			while(st.hasMoreTokens()){
+				String sense = st.nextToken();
+				if (sense.startsWith("Sense")){
+					 String temp = st.nextToken();
+					 String revise = new String(similarWordsSubstring(temp) +  ": " + partOfSpeechToString(i) + "-- " + definitionSubstring(temp));
+					 def.addElement(revise);
+				 }
+			}
+		}
+
+		return listToStringArray(def);
+	}
+
+
+  /* For use in accessing the array returned below.
+   * To access the definition of the second value returned for "train":
+   * String[][] trainInfo = wordNet.getSimilarsAndInfo("train");
+   * String definition = trainInfo[2][DEF];
+   */
+	public static final int SIM = 0;
+  public static final int PARENT = SIM;
+	public static final int POS = 1;
+	public static final int DEF = 2;
+	public static final int EXAMPLE = 3;
+	public static final int SENSE_NUMBER = 4;
+
+  /*
+   * Returns a two dimensional array consisting of all senses of the word,
+   * and for each sense, the array has the similar words, part of speech,
+   * definition for that sense, and possible example sentence.
+   * The example sentence may be null
+   */
+	public String[][] getSimilarsAndInfo(String word){
+    String pos;
+    Vector allInfo = new Vector();
+    StringTokenizer st;
+
+    for(int i = NOUN; i <= ADV; i++){
+      pos = findAllTheInfo(word, i, getTypeForSimilar(i), ALLSENSES);
+			st = new StringTokenizer(pos, "\n");
+			while(st.hasMoreTokens()){
+				String sense = st.nextToken();
+				if (sense.startsWith("Sense")){
+					 String temp = st.nextToken();
+					 String[] wordInfo = new String[5];
+					 wordInfo[SIM ] = similarWordsSubstring(temp);
+					 wordInfo[POS] = partOfSpeechToString(i);
+					 wordInfo[DEF] = definitionSubstring(temp);
+					 wordInfo[EXAMPLE] = exampleSubstring(temp);
+					 wordInfo[SENSE_NUMBER] = sense.substring(sense.indexOf(" "));
+					 allInfo.add(wordInfo);
+				 }
+      }
+    }
+
+		return  listToStringArrayArray(allInfo);
+  }
+
+
+  public static String partOfSpeechSubstring(String wnPhrase){
+    for(int i = NOUN; i <= ADV; i++){
+      String pos = partOfSpeechToString(i);
+      if (wnPhrase.indexOf(pos) > - 1) return pos;
+    }
+    return null;
+  }
+
+  /* after the "--"
+   */
+  public static String definitionSubstring(String wnPhrase){
+    try{
+    int place = wnPhrase.indexOf("--");
+    if(place > -1 ){
+		 int end, semi, colon;
+		 semi = wnPhrase.indexOf(";");          //semi colon breaks a definition from a single example
+		 if (wnPhrase.indexOf("\"") != (semi + 2)) semi = -1;  //in some cases semicolons separate part of a definition
+		 						//this checks that the semicolon is followed closely by a quote, signifying an example
+
+		 colon = wnPhrase.indexOf(":");         //colon breaks a definition from a list of examples
+     int larger = (semi > -1 && colon > -1 ? least(semi, colon): max(semi, colon));
+     if (larger > -1){
+      end = larger;
+		 }
+     else end = wnPhrase.length() -1;
+     return removeLeadingSpaces(wnPhrase.substring(place + 4, end));
+    }
+    else return null;
+    }catch(Exception e){return null;}
+  }
+
+  /* The example strings are enclosed in parenthesis.
+   */
+  public static String exampleSubstring(String wnPhrase){
+   try{
+    int place = wnPhrase.indexOf("\"");
+    if(place > -1){
+     return removeLeadingSpaces(wnPhrase.substring(place, wnPhrase.length() - 1));
+    }
+    else return null;
+   }catch(Exception e){return null;}
+  }
+
+  /* up to the "--"
+   * this version only works on strings received from findtheinfo
+   * or findAllTheInfo, not from more indirect functions;
+   */
+  public static String similarWordsSubstring(String wnPhrase){
+    try{
+    int place = wnPhrase.indexOf("--");
+    if(place > -1) return removeLeadingSpaces(wnPhrase.substring(0, place - 1));
+    return null;
+		}catch(Exception e){return null;}
+  }
+
+  /* strips off the similar words from the beginning of the phrase
+   * and adds each word (comma separated) into a Vector
+   */
+  public static Vector similarWords(String wnPhrase){
+   Vector list = new Vector();
+   try{
+    StringTokenizer st = new StringTokenizer(similarWordsSubstring(wnPhrase), ",");
+    while(st.hasMoreTokens()){
+     String word = st.nextToken();
+     list.add(removeLeadingSpaces(word));
+    }
+    return list;
+   }catch(Exception e){return null;}
+  }
+
+
+  /* returns an array of all morphologically similar words,
+   * in all parts of speech, including the original, so the
+   * array will always have at least the original search
+   * string.  A null search string will cause a null return
+   * value.
+   */
+	public String[] getAllMorphForms(String orig){
+     if (orig == null) return null;
+     Vector morphs = new Vector();
+     morphs.add(orig);
+		 String[] posMorphs;
+		 for(int i = NOUN; i <= ADV; i++){
+				posMorphs = getMorphForms(orig, i);
+				if (posMorphs != null){
+				 for (int j = 0; j < posMorphs.length; j++){
+          if (!containsString(posMorphs[j], morphs))morphs.add(removeLeadingSpaces(posMorphs[j]));
+         }
+        }
+     }
+     return listToStringArray(morphs);
+  }
+
+  /*
+   * Returns a two dimensional array consisting of all senses of the word,
+   * and for each sense, the array has the first parent(one or more words),
+   * part of speech, definition for that sense, and possible example sentence.
+   * The example sentence may be null.  Only tries NOUN and VERB parts of speech.
+   * To access the parent of the second value returned for "train":
+   * String[][] trainInfo = wordNet.getParent("train");
+   * String definition = trainInfo[2][PARENT];
+   */
+  public String[][] getParent(String search){
+    String[][][] pos = new String[VERB - NOUN + 1][][];
+    int len = 0;
+		for(int i = NOUN; i <= VERB; i++){
+     pos[i - NOUN] = getParent(search, i);  // a two dimensional array of results per part of speech
+     len +=pos[i-NOUN].length;
+    }
+    String[][] merged = new String[len][5];    // merge the three dimensional array into a two dimensional array
+    int next = 0;
+    for(int curArray = 0; curArray < pos.length; curArray++){
+      for(int first = 0; first < pos[curArray].length; first++){
+        for(int second = 0; second < pos[curArray][first].length; second++){
+         merged[next][second] = pos[curArray][first][second];
+        }
+        next++;
+      }
+		}
+    return merged;
+  }
+
+
+
+  /*
+   * Returns a two dimensional array consisting of all senses of the word for
+   * the given part of speech,
+   * and for each sense, the array has the first parent(one or more words),
+   * part of speech,
+   * definition for that sense, and possible example sentence.
+   * The example sentence may be null. getParent is only defined for NOUN and VERB
+   * To access the definition of the second value returned for "train":
+   * String[][] trainInfo = wordNet.getParent("train");
+   * String definition = trainInfo[2][DEF];
+   */
+  public String[][] getParent(String search, int pos){
+    String pS;
+    Vector allInfo = new Vector();
+    StringTokenizer st;
+    pS = findAllTheInfo(search, pos, HYPERPTR, ALLSENSES);
+		st = new StringTokenizer(pS, "\n=>");
+		while(st.hasMoreTokens()){
+			 String sense = st.nextToken();
+			 if (sense.startsWith("Sense")){
+					String currentWord = st.nextToken();
+          st.nextToken(); //clear space characters
+					String firstParent = st.nextToken();
+					String[] wordInfo = new String[5];
+					wordInfo[SIM] = similarWordsSubstring(firstParent);
+					wordInfo[POS] = partOfSpeechToString(pos);
+					wordInfo[DEF] = definitionSubstring(firstParent);
+					wordInfo[EXAMPLE] = exampleSubstring(firstParent);
+					wordInfo[SENSE_NUMBER] = sense.substring(sense.indexOf(" "));
+					allInfo.add(wordInfo);
+				}
+			 }
+		return  listToStringArrayArray(allInfo);
+	}
+
+	/* getRecursiveParents looks up the search string as a NOUN and
+	 * VERB with -HYPERPTR search type for all senses of the word.
+	 * The array returned consists of DefaultMutableTreeNode's which
+	 * are structures with one parent and any number of children.
+	 * These were used since WordNet allows mutliple inheritance.
+	 * The root of each tree is the search string, and its superclasses are
+	 * the parents of that node (a little confusing, mixing the meaning of
+	 * parent and child).  Use a preorderEnumeration to traverse the tree
+	 * correctly.
+	 */
+  public DefaultMutableTreeNode[] getRecursiveParents(String search){
+  Vector all = new Vector();
+  for(int pos = NOUN; pos <=VERB; pos++){
+    String results = findAllTheInfo(search, pos, -HYPERPTR, ALLSENSES);
+    StringTokenizer st = new StringTokenizer(results, "\n", true); //need to count
+                                   //newlines to determine when the sense has ended
+    while(st.hasMoreTokens()){     //before seeing the next sense
+     String sense = st.nextToken();
+     if (sense.startsWith("Sense")){
+       String newLine = st.nextToken();  //clear new line
+       String first = st.nextToken();
+       DefaultMutableTreeNode root =  new DefaultMutableTreeNode(removeLeadingSpaces(first));
+       addParents(root, st);
+       all.add(root);
+     }
+    }
+  }
+  return  listToTreeNodeArray(all);
+  }
+
+	/* assumes the "Sense" string has already be removed from the string tokenizer.
+   * reads line by line, and calculates if the next line is the parent of the
+   * previous by counting the number of spaces preceeding the words.
+   * If the next string has fewer spaces, it backs up the tree until
+   * the right level of inheritance has been reached.
+   */
+  private void addParents(DefaultMutableTreeNode root, StringTokenizer st){
+   if (root == null || st == null || !st.hasMoreTokens()) return;
+   int current, last;
+   int newLines = 0;
+   last = 6; //first parent is spaced over 7
+   String next;
+   DefaultMutableTreeNode child;
+   DefaultMutableTreeNode parent = root;
+   while(st.hasMoreTokens()){
+      next = st.nextToken();
+      if (next.equals("\n")){
+       newLines++;
+       if(newLines == 2) return;
+       continue;
+      }
+      newLines = 0;
+      current = countSpaces(next);
+      if (current > last){  //normal parent of the previous string
+        child =  new DefaultMutableTreeNode(next.substring(current + 3));
+        parent.add(child);
+        parent = child;
+      }
+      else{  // parent of a different string
+       for(int i = 0; i < current; i+=4){   //offset for each line is 4
+         parent = (DefaultMutableTreeNode)parent.getParent();
+       }
+       child = new DefaultMutableTreeNode(next.substring(current + 3));
+       parent.add(child);
+       parent = child;
+      }
+      last = current;
+   }
+  }
+
+  /* counts the number of spaces at the beginning of the line
+   * returns -1 if the line is null
+   */
+	private int countSpaces(String line){
+		if (line == null) return -1;
+		int spaces = 0;
+		 while(line.startsWith(" ")){
+			line = line.substring(1);
+			spaces++;
+		}
+		return spaces;
+	}
+
+	 /* Returns a string consisting of the original word in all the senses specified
+	 * and direct children of the word for each sense.  Only NOUN and VERB
+	 * are legitimate parts of speech to pass in.  See getChildren(String)
+	 * for a more user friendly version.
+	 */
+	public String getDirectChildren(String orig, int pos, int whichsense){
+		return findAllTheInfo(orig, pos, HYPOPTR, whichsense);
+	}
+
+	/* returns an array consisting of all children of the original string
+	 * for all senses of the word in NOUN and VERB forms.  Each string is
+	 * composed of the child word followed by definition and possibly an
+	 * example sentence.  Use similarWordsSubstring to return just the
+	 * children without definitions.  See getDirectChildren(String) for
+	 * a version that automatically strips each word out of the list and
+	 * checks that it is unique to the list being built up.
+	 */
+	public String[] getDirectChildrenByGroup(String orig){
+		Vector all = new Vector();
+		for(int type = NOUN; type <=VERB; type++){
+			String results = getDirectChildren(orig, type, ALLSENSES);
+			StringTokenizer st = new StringTokenizer(results, "\n"); //need to count
+																	 //newlines to determine when the sense has ended
+			while(st.hasMoreTokens()){     //before seeing the next sense
+				String child= st.nextToken();
+				if (child.indexOf("=>") > -1){
+				 int count = countSpaces(child) + 3;
+				 all.add(child.substring(count));
+				}
+			}
+		}
+	 return listToStringArray(all);
+	}
+
+	/* similar to above but strips each word out of the wordnet phrase
+	 * and builds up a list of all unique words to be returned.  Searches
+	 * over NOUN and VERB for ALLSENSES
+	 */
+	public String[] getDirectChildren(String orig){
+	try{
+		String[] childrenPhrases = getDirectChildrenByGroup(orig);
+		Vector allChildren = new Vector();
+			 for(int i = 0; i < childrenPhrases.length; i++){
+				 Vector synonyms =  similarWords(childrenPhrases[i]);
+				 Enumeration e = synonyms.elements();
+				 while(e.hasMoreElements()){
+					String word = (String)e.nextElement();
+					if (!containsString(word, allChildren)) allChildren.add(word);
+				 }
+			 }
+		return listToStringArray(allChildren);
+	 }catch(Exception ex){return null;}
+	}
+
+
+	/* returns an array of strings that have the search string as a
+	 * substring
+	 */
+	public String[] searchBySubstring(String orig, int pos){
+		if (orig == null) return null;
+		String all = findAllTheInfo(orig, pos, WNGREP, ALLSENSES);
+		StringTokenizer st = new StringTokenizer(all, "\n");
+		Vector list = new Vector();
+		while(st.hasMoreTokens()){
+				String superString = st.nextToken();
+				String shortStr = removeLeadingSpaces(superString);
+				if (shortStr.length() > 0) list.add(shortStr);
+			}
+		return listToStringArray(list);
+	}
+
+	/* returns an arry of strings that have the search string as a
+	 * substring for all parts of speech.  The first dimension has the
+	 * the string, the second dimension has the part of speech for that string.
+	 */
+	public String[][] searchBySubstring(String orig){
+		String[] superStrings;
+		String[][] data;
+		int length = 0;
+		Vector list = new Vector();
+		for(int i = NOUN; i <= ADV; i++){
+			superStrings = searchBySubstring(orig, i);
+			if (superStrings == null || superStrings.length <= 0) continue;
+			data = new String[superStrings.length][2];
+			for(int j = 0; j < superStrings.length;j++){
+				data[j][0] = superStrings[j];
+				data[j][1] = partOfSpeechToString(i);
+			}
+			length += superStrings.length;
+			list.add(data);
+		}
+
+		String[][] formed = new String[length][2];
+		Enumeration e = list.elements();
+		int position = 0;
+		while(e.hasMoreElements()){
+			String[][] pos = (String[][])e.nextElement();
+			for(int i =0; i < pos.length; i++){
+				formed[position][0] = pos[i][0];
+				formed[position][1] = pos[i][1];
+				position++;
+			}
+		}
+
+		return formed;
+	}
+
+
+
+	public static void main(String args[]){
+		WNInterface wn = new WNInterface();
+		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+		 String message = "ADD CODE to Search: Enter a string to search on. (exit to quit)";
+		String userInput;
+
+		try{
+		print(message);
+		while(!(userInput = bf.readLine()).equals("exit")){
+			print("The results are:");
+			print("");
+
+			print("");
+      print(message);
+    }
+    }catch(Exception e){e.printStackTrace(); pause();}
+
+ }
+
+
+
+/****************************************************************
+ **                                                            **
+ **                  UTILITY FUNCTIONS                         **
+ ****************************************************************/
+
+ /*iterates through the array printing each element*/
+	public static void print(Object obj[])
+  {
+   if (obj == null) return;
+   for(int i = 0; i < obj.length; i++){
+    print(obj[i]);
+   }
+  }
+
+  /* short hand for System.out.println*/
+  public static void print(Object obj){
+         if (obj != null) System.out.println(obj);
+  }
+
+	public static void print(int num){
+    print(new Integer(num));
+  }
+
+  /* does a pre-order traversal of the tree
+   */
+	public static void print(DefaultMutableTreeNode root){
+    Enumeration list = root.preorderEnumeration();
+    while(list.hasMoreElements()){
+      DefaultMutableTreeNode next = (DefaultMutableTreeNode)list.nextElement();
+      print((String)next.getUserObject());
+    }
+
+  }
+
+  /* checks if the word is in the List using String comparisons
+   */
+  public static boolean containsString(String word, List list){
+   if (word == null || list == null) return false;
+   for (int i = 0; i < list.size(); i++){
+       if (word.equals(list.get(i))) return true;
+   }
+   return false;
+  }
+
+  /* checks if the word is in the array of Strings */
+  public static boolean containsString(String word, String[] list){
+   if (word == null || list == null) return false;
+   for(int i = 0; i < list.length; i++) if (word.equals(list[i])) return true;
+   return false;
+  }
+
+  /*   Converts from a List that contains Strings to an array of Strings
+   */
+  public static String[] listToStringArray(List list){
+   if (list == null) return null;
+   String[] result = new String[list.size()];
+   ListIterator iterator = list.listIterator();
+   int i = 0;
+   while(iterator.hasNext()){
+    result[i] = (String)iterator.next();
+    i++;
+   }
+   return result;
+  }
+
+  /* Converts from a List that contains String arrays to an array of String arrays
+   */
+	public static String[][] listToStringArrayArray(List list){
+   if (list == null) return null;
+   String[][] result = new String[list.size()][];
+   ListIterator iterator = list.listIterator();
+   int i = 0;
+   while(iterator.hasNext()){
+    result[i] = (String[])iterator.next();
+    i++;
+   }
+   return result;
+  }
+
+  public static DefaultMutableTreeNode[] listToTreeNodeArray(List list){
+   if (list == null) return null;
+   DefaultMutableTreeNode[] result = new DefaultMutableTreeNode[list.size()];
+   ListIterator iterator = list.listIterator();
+   int i = 0;
+    while(iterator.hasNext()){
+    result[i] = (DefaultMutableTreeNode)iterator.next();
+    i++;
+   }
+   return result;
+  }
+
+  /* converts from integer part of speech to a string
+   * form.  returns null if the pos is out of range.
+   * Legal values for pos are in the range NOUN to ADJSAT
+   */
+  public static String partOfSpeechToString(int pos){
+    if (pos < NOUN || pos > ADJSAT) return null;
+    return POS_STRINGS[pos - 1];
+  }
+
+  /* returns the max of two values */
+	public static int max(int left, int right){
+    return (left > right ? left: right);
+  }
+
+  public static int least(int left, int right){
+    return (left < right ? left: right);
+  }
+
+  /* returns a good search type for the give part of speech
+   * from experiment it seems that for nouns and verbs
+   * RELATIVES is effective, whereas HYPERPTR is effective
+   * for adjectives and adverbs
+	 */
+	public static int getTypeForSimilar(int pos){
+    if (pos == ADJ || pos == ADV)return HYPERPTR;
+		else return RELATIVES;
+
+  }
+
+	public static String removeLeadingSpaces(String arg){
+    if (arg == null) return null;
+    while(arg.startsWith(" ")){
+      arg = arg.substring(1);
+    }
+    return arg;
+  }
+
+  public static void pause(){
+    BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+    String message = "Press return to continue.";
+    print(message);
+    try{
+     bf.readLine();
+    }catch(Exception e){}
+  }
+
+}//end WNInterface

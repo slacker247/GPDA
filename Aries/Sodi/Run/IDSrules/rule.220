@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 6373 (msg:"EXPLOIT sco calserver overflow";flags: A+; content:"|eb7f 5d55 fe4d 98fe 4d9b|"; reference:bugtraq,2353; classtype:attempted-admin; sid:304; rev:2;)

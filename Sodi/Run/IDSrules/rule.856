@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI classifieds.cgi access";flags: A+; uricontent:"/classifieds.cgi"; nocase; reference:bugtraq,2020; reference:cve,CVE-1999-0934;classtype:attempted-recon; sid:854; rev:2;)

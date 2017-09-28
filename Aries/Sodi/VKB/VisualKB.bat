@@ -1,0 +1,1 @@
+java -cp "./;VisualKB/;../VisBNE/src/;../VisBNE/lib/am_core.jar;../VisBNE/lib/jdom.jar;../VisBNE/lib/junit.jar;../VisBNE/lib/royere.jar" VisualKB.VKB_MainUI

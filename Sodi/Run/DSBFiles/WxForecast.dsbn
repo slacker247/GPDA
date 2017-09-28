@@ -1,0 +1,67 @@
+# Tree height, Name, DS_isContinuous, Start time, End time, Time unit
+3  Terrestrial_Weather  1  0.0  24.0  H
+
+6     Evidence_Sources
+  Good_Visibility    the_visibility_is_good        0.75  100.00
+  No_Winds           the_wind_is_calm              0.75  100.00
+  No_Precip          rain_is_not_a_problem         0.75  100.00
+  No_Thermal_Xover   lightening_is_not_a_problem   0.75  100.00
+  Illumination_OK    no_disaster                   0.75  100.00
+  No_Clouds          clouds_are_not_a_problem      0.75  100.00
+
+4     Hypothesis
+  Optical_Sensor          Vis/IR_sensors_are_operative       0.75  100.00
+  Target_Viable           enemy_targets_are_engageable       0.75  100.00
+  Optical_Weapon          weapon_systems_are_capable         0.75  100.00
+  Constraints_Satisfied   flight_constraints_are_satisfied   0.75  100.00
+
+3     Assessments
+  Mission_"Go"           you_should_deploy_a_mission                   0.75  100.00
+  Aircraft_Route_OK      you_should_delay_the_mission_thirty_minutes   0.75  100.00
+  Satisfactory_Optical   you_should_scrub_the_mission                  0.75  100.00
+
+false   B and D matrices are listed separately
+# E0     E1     E2     E3     E4     E5     H0     H1     H2     H3     A0     A1     A2   
+#----   ----   ----   ----   ----   ----   ----   ----   ----   ----   ----   ----   ----   
+ 0.00   0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  E0
+#                                        |                           |                    |
+ 0.00   0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  E1
+#                                        |                           |                    |
+ 0.00   0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  E2
+#                                        |                           |                    |
+ 0.00   0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  E3
+#                                        |                           |                    |
+ 0.00   0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  E4
+#                                        |                           |                    |
+ 0.00   0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  E5
+#----------------------------------------|---------------------------|--------------------|
+ 0.80   0.50   0.80   0.90   0.90   0.60 | 0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  H0
+#                                        |                           |                    |
+ 0.60   0.50   0.55   0.55   0.90   0.50 | 0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  H1
+#                                        |                           |                    |
+ 0.60   0.80   0.60   0.60   0.90   0.60 | 0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  H2
+#                                        |                           |                    |
+ 0.70   0.65   0.70   0.70   0.95   0.70 | 0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  H3
+#----------------------------------------|---------------------------|--------------------|
+ 0.00   0.00   0.00   0.00   0.00   0.00 | 0.15   0.15   0.15   0.15 | 0.00   0.00   0.00 |#  A0
+#                                        |                           |                    |
+ 0.00   0.00   0.00   0.00   0.00   0.00 | 0.50   0.50   0.50   0.50 | 0.00   0.00   0.00 |#  A1
+#                                        |                           |                    |
+ 0.00   0.00   0.00   0.00   0.00   0.00 | 0.70   0.70   0.70   0.70 | 0.00   0.00   0.00 |#  A2
+#----------------------------------------|---------------------------|--------------------|
+
+9  Possibilities
+0.00  0.00  impossible
+0.01  0.05  extremely_unlikely
+0.05  0.20  very_low_chance
+0.20  0.38  small_chance
+0.38  0.60  may
+0.60  0.79  meaningful_chance
+0.79  0.95  most_likely
+0.95  0.99  extremely_likely
+1.00  1.00  certain
+
+#  Evidence labels follow. Must be 3, each < 4 chars
+Lat      Lon      Source
+#  Default time units follow. Must be: Sec, Min, Hour, or Days
+Min

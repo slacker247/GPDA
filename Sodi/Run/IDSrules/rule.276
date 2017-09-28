@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP pass wh00t"; content: "pass wh00t"; nocase; flags: A+; reference:arachnids,324; classtype:suspicious-login; sid:355; rev:2;)

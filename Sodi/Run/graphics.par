@@ -1,0 +1,48 @@
+display {
+  string class Unclassified
+  string input_source File	
+  int region 3			
+  logical autorun T		
+  logical noexit F		
+  logical autoexit F		
+  logical textured T		
+  logical gridline F		
+  logical boundary F		
+  logical assets T		
+  logical tracks T		
+  logical trails T		
+  logical impacts T		
+  logical trkerror F		
+  logical label_track T
+  logical drop_track T
+  logical show_r2 T
+  logical keep_links F
+  logical debuging F		
+  logical timing F		
+  logical logging F		
+  logical statistics F
+  string tex_file earth-hires.rgb
+  float step_time 20.000000	
+}
+
+input {
+  string data_file AOC_Blue2.jdn
+  int delay_secs 0
+  string hostid localhost
+  int portid 1129
+}
+
+parameters {
+  string name GRAPHICS000
+  float start_time 60000.000000
+  float first_time 160000.000000
+  float cycle_time 60.000000
+  float tend 65000.000000
+  int cpu_time 0
+  logical readall F
+  logical input_file F
+  logical output_file F
+  logical test_rollback F
+  string input_file_name TestGBI.in
+  string output_file_name TESTxx
+}

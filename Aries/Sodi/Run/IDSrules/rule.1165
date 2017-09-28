@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Domino log.nsf access";flags: A+; uricontent:"/log.nsf"; nocase; classtype:attempted-recon; sid:1153; rev:1;)

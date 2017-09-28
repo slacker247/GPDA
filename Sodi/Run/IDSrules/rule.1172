@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC netscape dir index wp"; flags: A+; content: "?wp-"; nocase; reference:bugtraq,1063; reference:cve,CVE-2000-0236; reference:arachnids,270; classtype:attempted-recon; sid:1160; rev:3;)

@@ -1,0 +1,1 @@
+alert tcp $SMTP 25 -> $EXTERNAL_NET any (msg:"SMTP relaying denied"; flags: A+; content: "550 5.7.1"; depth:70;  reference:arachnids,249; classtype:bad-unknown; sid:567; rev:4;)

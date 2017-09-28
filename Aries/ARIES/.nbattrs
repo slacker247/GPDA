@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<attributes version="1.0">
+   <fileobject name="build.xml">
+      <attr name="org.apache.tools.ant.module.loader.AntProjectDataLoader.KNOWN_ANT_FILE" boolvalue="true"/>
+   </fileobject>
+   <fileobject name="BNE_View.java">
+      <attr name="class_dependency_java.awt.LayoutManager" stringvalue="BNE_View.SlackerLayout"/>
+      <attr name="class_dependency_com.appliedminds.martinix.gapp.GAppFrame" stringvalue="BNE_View"/>
+   </fileobject>
+</attributes>

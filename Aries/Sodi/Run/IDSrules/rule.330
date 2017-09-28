@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Fragment Reassembly Time Exceeded"; itype: 11; icode: 1; sid:410;  classtype:misc-activity; rev:4;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI bnbform.cgi access";flags: A+; uricontent:"/bnbform.cgi"; nocase; reference:cve,CVE-1999-0937; reference:bugtraq,1469; classtype:attempted-recon; sid:846; rev:2;)

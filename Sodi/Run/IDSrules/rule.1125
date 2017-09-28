@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC apache source.asp file access"; flags: A+; uricontent:"/site/eg/source.asp"; nocase;reference:bugtraq,1457; reference:cve, CVE-2000-0628; classtype:attempted-recon; sid:1110; rev:1;)

@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET 60000 -> $HOME_NET 2140 (msg:"BACKDOOR DeepThroat 3.1 Enable/Disable CTRL-ALT-DEL Client Request"; content:"110";  reference:arachnids,106; sid:170;  classtype:misc-activity; rev:3;)

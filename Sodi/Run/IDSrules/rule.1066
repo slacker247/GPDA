@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Netscape Enterprise DOS"; content:"REVLOG / "; offset:0; depth:7; flags:A+; reference:cve,CAN-2001-0251; reference:bugtraq,2294; classtype:web-application-attack; sid:1047; rev:2;)

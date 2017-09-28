@@ -1,0 +1,1 @@
+alert ip $EXTERNAL_NET any -> $HOME_NET any (msg:"SHELLCODE linux shellcode"; content:"|90 90 90 e8 c0 ff ff ff|/bin/sh";  reference:arachnids,343; classtype:shellcode-detect; sid:652; rev:4;)

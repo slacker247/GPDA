@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="Connection.java">
+        <attr name="class_dependency_com.mysql.jdbc.Connection" stringvalue="Connection"/>
+        <attr name="class_dependency_java.sql.Connection" stringvalue="Connection"/>
+    </fileobject>
+    <fileobject name="ResultSetMetaData.java">
+        <attr name="class_dependency_java.sql.ResultSetMetaData" stringvalue="ResultSetMetaData"/>
+        <attr name="class_dependency_com.mysql.jdbc.ResultSetMetaData" stringvalue="ResultSetMetaData"/>
+    </fileobject>
+    <fileobject name="Statement.java">
+        <attr name="class_dependency_java.sql.Statement" stringvalue="Statement"/>
+        <attr name="class_dependency_com.mysql.jdbc.Statement" stringvalue="Statement"/>
+        <attr name="SourceSync" bytevalue="0"/>
+    </fileobject>
+    <fileobject name="DatabaseMetaData.java">
+        <attr name="class_dependency_com.mysql.jdbc.DatabaseMetaData" stringvalue="DatabaseMetaData"/>
+        <attr name="class_dependency_java.sql.DatabaseMetaData" stringvalue="DatabaseMetaData"/>
+    </fileobject>
+    <fileobject name="PreparedStatement.java">
+        <attr name="class_dependency_com.mysql.jdbc.PreparedStatement" stringvalue="PreparedStatement"/>
+        <attr name="class_dependency_java.sql.PreparedStatement" stringvalue="PreparedStatement"/>
+    </fileobject>
+    <fileobject name="ResultSet.java">
+        <attr name="class_dependency_java.sql.ResultSet" stringvalue="ResultSet"/>
+        <attr name="class_dependency_com.mysql.jdbc.ResultSet" stringvalue="ResultSet"/>
+    </fileobject>
+</attributes>

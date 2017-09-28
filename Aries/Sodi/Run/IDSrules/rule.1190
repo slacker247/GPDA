@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Annex Terminal DOS attempt"; flags: A+;dsize:>1446; uricontent:"/ping?query"; reference:arachnids,260; classtype:attempted-dos; sid:1181; rev:2;)

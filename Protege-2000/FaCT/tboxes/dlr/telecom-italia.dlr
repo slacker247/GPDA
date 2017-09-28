@@ -1,0 +1,352 @@
+;;; Complete Telecom Italia Model
+
+;;; Telecom Italia Enterprise Model
+
+;;; Relations
+
+(defprimrelationship billing 2)
+(defprimrelationship located-in 2)
+(defprimrelationship contract-location 2)
+(defprimrelationship of-category 2)
+(defprimrelationship agreement 3)
+(defprimrelationship category-marketing 2)
+(defprimrelationship charged-with 2)
+(defprimrelationship contract-company 2)
+(defprimrelationship charge-of-type 2)
+(defprimrelationship service-call 2)
+(defprimrelationship order 2)
+(defprimrelationship service-of-type 2)
+(defprimrelationship includes 2)
+
+(impliesrel billing (and ($1 2 Customer) ($2 2 Location)))
+(impliesrel located-in (and ($1 2 Customer) ($2 2 Location)))
+(impliesrel contract-location (and ($1 2 Contract) ($2 2 Location)))
+(impliesrel of-category (and ($1 2 Customer) ($2 2 User-Category)))
+(impliesrel agreement (and ($1 3 Customer) ($2 3 Contract) ($3 3 Service)))
+(impliesrel category-marketing (and ($1 2 User-Category) ($2 2 Marketing-action)))
+(impliesrel charged-with (and ($1 2 Contract) ($2 2 Charge)))
+(impliesrel contract-company (and ($1 2 Contract) ($2 2 Telecom-company)))
+(impliesrel charge-of-type (and ($1 2 Charge) ($2 2 Charge-type)))
+(impliesrel service-call (and ($1 2 Service) ($2 2 Call)))
+(impliesrel order (and ($1 2 Phone) ($2 2 Maintenance-task)))
+(impliesrel service-of-type (and ($1 2 Service) ($2 2 Service-type)))
+(impliesrel includes (and ($1 2 Service-type) ($2 2 Charge-type)))
+
+;;; Entities
+
+(defprimconcept Location)
+(defprimconcept User-Category)
+(defprimconcept Customer)
+;;; Customer partitioned into:-
+(defprimconcept Person)
+(defprimconcept Company)
+
+(defprimconcept Contract)
+(defprimconcept Marketing-action)
+(defprimconcept Telecom-company)
+(defprimconcept Service)
+;;; Service partitioned into:-
+(defprimconcept Data-transmission)
+(defprimconcept ISDN)
+(defprimconcept Phone)
+(defprimconcept Mobile-phone)
+(defprimconcept Other)
+
+(defprimconcept Charge)
+(defprimconcept Charge-type)
+(defprimconcept Call)
+(defprimconcept Maintenance-task)
+(defprimconcept Service-type)
+
+;;; Assert Customer partition (disjoint covering)
+(implies Person Customer)
+(implies Company (and Customer (not Person)))
+(implies Customer (or Person Company))
+
+(implies Telecom-company Company)
+
+;;; Assert Service partition (disjoint covering)
+(implies Data-transmission Service)
+(implies ISDN (and Service (not Data-transmission)))
+(implies Phone (and Service (not Data-transmission) (not ISDN)))
+(implies Mobile-phone (and Service (not Data-transmission) (not ISDN)
+		      (not Phone)))
+(implies Other (and Service (not Data-transmission) (not ISDN)
+	       (not Phone) (not Mobile-phone)))
+(implies Service (or Data-transmission ISDN Phone Mobile-phone Other))
+
+;;; Assert cardinality constraints
+(implies Location (atmost 1 $2 located-in))
+(implies User-Category (atleast 1 $1 category-marketing))
+(implies Customer (and (atleast 1 $1 of-category) (atmost 1 $1 of-category)
+		       (atleast 1 $1 billing) (atmost 1 $1 billing)))
+(implies Contract (and (atmost 1 $1 contract-location)
+		       (atleast 1 $2 agreement) (atmost 1 $2 agreement)
+		       (atleast 1 $1 charged-with)
+		       (atleast 1 $1 contract-company)
+		       (atmost 1 $1 contract-company)))
+(implies Marketing-action (atleast 1 $2 category-marketing))
+(implies Telecom-company (atleast 1 $2 contract-company))
+(implies Service (and (atmost 1 $3 agreement)
+		      (atleast 1 $1 service-of-type) (atmost 1 $1 service-of-type)))
+(implies Charge (and (atleast 1 $2 charged-with) (atmost 1 $2 charged-with)
+		     (atleast 1 $1 charge-of-type) (atmost 1 $1 charge-of-type)))
+(implies Charge-type (atleast 1 $2 includes))
+(implies Call (and (atleast 1 $2 service-call) (atmost 1 $2 service-call)))
+(implies Maintenance-task (and (atleast 1 $2 order) (atmost 1 $2 order)))
+(implies Service-type (atleast 1 $1 includes))
+
+;;; Telecom Italia Contracts Model (Source 1)
+
+;;; Relations
+
+(defprimrelationship located-in_1 2)
+(defprimrelationship contract-location_1 2)
+(defprimrelationship agreement_1 3)
+(defprimrelationship charged-with_1 2)
+(defprimrelationship charge-of-type_1 2)
+(defprimrelationship service-of-type_1 2)
+(defprimrelationship includes_1 2)
+
+(impliesrel located-in_1 (and ($1 2 Customer_1) ($2 2 Location_1)))
+(impliesrel contract-location_1 (and ($1 2 Contract_1) ($2 2 Location_1)))
+(impliesrel agreement_1 (and ($1 3 Customer_1) ($2 3 Contract_1) ($3 3 Service_1)))
+(impliesrel charged-with_1 (and ($1 2 Contract_1) ($2 2 Charge_1)))
+(impliesrel charge-of-type_1 (and ($1 2 Charge_1) ($2 2 Charge-type_1)))
+(impliesrel service-of-type_1 (and ($1 2 Service_1) ($2 2 Service-type_1)))
+(impliesrel includes_1 (and ($1 2 Service-type_1) ($2 2 Charge-type_1)))
+
+;;; Entities
+
+(defprimconcept Location_1)
+(defprimconcept Customer_1)
+(defprimconcept Contract_1)
+(defprimconcept Service_1)
+;;; Service partitioned into:-
+(defprimconcept Data-transmission_1)
+(defprimconcept ISDN_1)
+(defprimconcept Phone_1)
+(defprimconcept Mobile-phone_1)
+(defprimconcept Other_1)
+
+(defprimconcept Charge_1)
+(defprimconcept Charge-type_1)
+(defprimconcept Service-type_1)
+
+;;; Assert Service partition (disjoint covering)
+(implies Data-transmission_1 Service_1)
+(implies ISDN_1 (and Service_1 (not Data-transmission_1)))
+(implies Phone_1 (and Service_1 (not Data-transmission_1) (not ISDN_1)))
+(implies Mobile-phone_1 (and Service_1 (not Data-transmission_1) (not ISDN_1)
+			     (not Phone_1)))
+(implies Other_1 (and Service_1 (not Data-transmission_1) (not ISDN_1)
+		      (not Phone_1) (not Mobile-phone_1)))
+(implies Service_1 (or Data-transmission_1 ISDN_1 Phone_1 Mobile-phone_1 Other_1))
+
+;;; Assert cardinality constraints
+(implies Location_1 (and (atleast 1 $2 located-in_1) (atmost 1 $2 located-in_1)))
+(implies Contract_1 (and (atmost 1 $1 contract-location_1)
+			 (atleast 1 $2 agreement_1) (atmost 1 $2 agreement_1)
+			 (atleast 1 $1 charged-with_1)))
+(implies Service_1 (and (atmost 1 $3 agreement_1)
+			(atleast 1 $1 service-of-type_1)
+			(atmost 1 $1 service-of-type_1)))
+(implies Charge_1 (and (atleast 1 $2 charged-with_1) (atmost 1 $2 charged-with_1)
+		       (atleast 1 $1 charge-of-type_1)
+		       (atmost 1 $1 charge-of-type_1)))
+(implies Charge-type_1 (atleast 1 $2 includes_1))
+(implies Service-type_1 (atleast 1 $1 includes_1))
+
+;;; Integrity constraints
+(impliesrel located-in_1 located-in)
+(impliesrel contract-location_1 contract-location)
+(impliesrel agreement_1 agreement)
+(impliesrel charged-with_1 charged-with)
+(impliesrel charge-of-type_1 charge-of-type)
+(impliesrel service-of-type_1 service-of-type)
+(impliesrel includes_1 includes)
+
+(implies Location_1 Location)
+(implies Customer_1 Customer)
+(implies Contract_1 Contract)
+(implies Service_1 Service)
+(implies Data-transmission_1 Data-transmission)
+(implies ISDN_1 ISDN)
+(implies Phone_1 Phone)
+(implies Mobile-phone_1 Mobile-phone)
+(implies Other_1 Other)
+(implies Charge_1 Charge)
+(implies Charge-type_1 Charge-type)
+(implies Service-type_1 Service-type)
+
+;;; Telecom Italia Business Contracts Model (Source 2)
+
+;;; Relations
+
+(defprimrelationship has-location_2 2)
+(defprimrelationship contract-customer-service_2 3)
+(defprimrelationship service-call_2 2)
+
+(impliesrel has-location_2 (and ($1 2 Customer_2) ($2 2 Location_2)))
+(impliesrel contract-customer-service_2 (and ($1 3 Customer_2) ($2 3 Contract_2) 
+					     ($3 3 Service_2)))
+(impliesrel service-call_2 (and ($1 2 Service_2) ($2 2 Call_2)))
+
+;;; Entities
+
+(defprimconcept Location_2)
+(defprimconcept Customer_2)
+(defprimconcept Contract_2)
+(defprimconcept Service_2)
+(defprimconcept Call_2)
+
+;;; Assert cardinality constraints
+(implies Location_2 (and (atleast 1 $2 has-location_2) 
+			 (atmost 1 $2 has-location_2)))
+(implies Customer_2 (and (atleast 1 $1 has-location_2)
+			 (atleast 1 $1 contract-customer-service_2)))
+(implies Contract_2 (and (atleast 1 $2 contract-customer-service_2) 
+			 (atmost 1 $2 contract-customer-service_2)))
+(implies Call_2 (and (atleast 1 $2 service-call_2) (atmost 1 $2 service-call_2)))
+
+;;; Integrity constraints
+(impliesrel has-location_2 located-in)
+(impliesrel contract-customer-service_2 agreement)
+(impliesrel service-call_2 service-call)
+
+(implies Location_2 Location)
+(implies Customer_2 Company)
+(implies Contract_2 Contract)
+(implies Service_2 Service)
+(implies Call_2 Call)
+
+;;; Additional constraint specified by Maurizio
+(implies Customer_2
+	 (and Company
+	      (some $1 (and agreement 
+			    ($2 3 (and contract 
+				       (some $1 (and contract-company 
+						     ($2 2 Telecom-company)))))))))
+(implies (and Company
+	      (some $1 (and agreement 
+			    ($2 3 (and contract 
+				       (some $1 (and contract-company 
+						     ($2 2 Telecom-company))))))))
+	 Customer_2)
+
+;;; Telecom Italia Private Contracts Model (Source 3)
+
+;;; Relations
+
+(defprimrelationship customer-location_3 2)
+(defprimrelationship agreement_3 3)
+(defprimrelationship phone-call_3 2)
+(defprimrelationship order_3 2)
+
+(impliesrel customer-location_3 (and ($1 2 Customer_3) ($2 2 Location_3)))
+(impliesrel agreement_3 (and ($1 3 Customer_3) ($2 3 Contract_3) ($3 3 Service_3)))
+(impliesrel phone-call_3 (and ($1 2 Phone-line-service_3) ($2 2 Call_3)))
+(impliesrel order_3 (and ($1 2 Phone-line-service_3) ($2 2 Maintenance-task_3)))
+
+;;; Entities
+
+(defprimconcept Location_3)
+(defprimconcept Customer_3)
+(defprimconcept Contract_3)
+(defprimconcept Service_3)
+;;; Service partitioned into:-
+(defprimconcept Phone-line-service_3)
+(defprimconcept Special-service_3)
+
+(defprimconcept Call_3)
+(defprimconcept Maintenance-task_3)
+
+;;; Assert Service partition (disjoint covering)
+(implies Phone-line-service_3 Service_3)
+(implies Special-service_3 (and Service_3 (not Phone-line-service_3)))
+(implies Service_3 (or Phone-line-service_3 Special-service_3))
+
+;;; Assert cardinality constraints
+(implies Location_3 (and (atleast 1 $2 customer-location_3)
+			 (atmost 1 $2 customer-location_3)))
+(implies Customer_3 (and (atleast 1 $1 customer-location_3) 
+			 (atmost 1 $1 customer-location_3)))
+(implies Contract_3 (and (atleast 1 $2 agreement_3) (atmost 1 $2 agreement_3)))
+(implies Service_3 (and (atleast 1 $3 agreement_3) (atmost 1 $3 agreement_3)))
+(implies Call_3 (and (atleast 1 $2 phone-call_3) (atmost 1 $2 phone-call_3)))
+(implies Maintenance-task_3 (and (atleast 1 $2 order_3) (atmost 1 $2 order_3)))
+
+;;; Integrity constraints
+(impliesrel customer-location_3 located-in)
+(impliesrel agreement_3 agreement)
+(impliesrel phone-call_3 service-call)
+(impliesrel order_3 order)
+
+(implies Location_3 Location)
+(implies Customer_3 Person)
+(implies Contract_3 Contract)
+(implies Service_3 Service)
+(implies Phone-line-service_3 Phone)
+(implies Special-service_3 Other)
+(implies Call_3  Call)
+(implies Maintenance-task_3 Maintenance-task)
+
+;;; Additional constraint specified by Maurizio
+(implies Customer_3
+	 (and Person 
+	      (some $1 (and agreement 
+			    ($2 3 (and contract 
+				       (some $1 (and contract-company 
+						     ($2 2 Telecom-company)))))))))
+(implies (and Person 
+	      (some $1 (and agreement 
+			    ($2 3 (and contract 
+				       (some $1 (and contract-company 
+						     ($2 2 Telecom-company))))))))
+	 Customer_3)
+
+;;; Telecom Italia French Calls Model (Source 4)
+
+;;; Relations
+
+(defprimrelationship service-call_4 2)
+
+(impliesrel service-call_4 (and ($1 2 Service_4) ($2 2 Call_4)))
+
+;;; Entities
+
+(defprimconcept Service_4)
+(defprimconcept Call_4)
+
+;;; Assert cardinality constraints
+(implies Service_4 (atleast 1 $1 service-call_4))
+(implies Call_4 (and (atleast 1 $2 service-call_4) (atmost 1 $2 service-call_4)))
+
+;;; Integrity constraints
+(impliesrel service-call_4 service-call)
+
+(implies Service_4 Service)
+(implies Call_4 Call)
+
+;;; Telecom Italia German Calls Model (Source 5)
+
+;;; Relations
+
+(defprimrelationship service-call_5 2)
+
+(impliesrel service-call_5 (and ($1 2 Service_5) ($2 2 Call_5)))
+
+;;; Entities
+
+(defprimconcept Service_5)
+(defprimconcept Call_5)
+
+;;; Assert cardinality constraints
+(implies Service_5 (atleast 1 $1 service-call_5))
+(implies Call_5 (and (atleast 1 $2 service-call_5) (atmost 1 $2 service-call_5)))
+
+;;; Integrity constraints
+(impliesrel service-call_5 service-call)
+
+(implies Service_5 Service)
+(implies Call_5 Call)

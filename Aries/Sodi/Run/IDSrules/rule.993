@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS CGImail.exe access";flags: A+; uricontent:"/scripts/CGImail.exe"; nocase; reference:cve,CAN-2000-0726; reference:bugtraq,1623; classtype:web-application-activity; sid:980; rev:2;)

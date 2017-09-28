@@ -1,0 +1,32 @@
+----------------------------------------------------------------------
+                  Pumps and Tanks Java Beans Example
+----------------------------------------------------------------------
+
+This is a simple example of matching Java Bean objects on the LHS of Jess
+rules. Both Tank and Pump objects can be matched in this way. The
+script pumps.clp shows how you might use these classes. This is a
+real-time control problem; Jess is perfactly capable of monitoring and
+adjusting the tanks and pumps to keep them from exploding. 
+
+There are two ways to run this problem. To run the version in which
+all the objects are created from Jess 
+
+        java jess.Main jess/examples/pumps/pumps.clp
+
+from the JessXX/ directory (after compiling these source files; please
+read the notes about compiling Java source.) The rules in pumps.clp
+use a sort of "damped" control algorithm that does a decent job of
+keeping up with the pumps and tanks. There is a crude GUI, too, so you
+can watch what's going on.
+
+Besides this script, I'm also supplying an example main() program
+which creates a Pump and a Tank from Java, tells Jess about them, and
+then batches the rules in "pumps-fromjava.clp". This rulebase includes
+a cruder algorithm for controlling the pump; it fails fairly quickly
+and the tank will burst. To run this problem this way, type
+
+        java jess.examples.pumps.MainInJava
+
+again, from the JessXX/ directory.
+
+

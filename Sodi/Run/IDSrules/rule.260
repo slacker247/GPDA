@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT openbsd ftpd"; flags: A+; content: " |90 31 C0 99 52 52 B017 CD80 68 CC 73 68|";reference:arachnids,446; classtype:attempted-user; sid:339; rev:1;)

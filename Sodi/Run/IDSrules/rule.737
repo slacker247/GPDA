@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible NewApt.Worm - irnglant.exe"; content: "filename=\"IRNGLANT.EXE\""; nocase; reference:MCAFEE,10540; sid:780;  classtype:misc-activity; rev:3;)

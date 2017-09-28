@@ -1,0 +1,75 @@
+<vge-dataset id="imdb">
+
+  <icon-base>resource:com/appliedminds/martinix/greenpill/resources/</icon-base>
+
+  <servlets>
+    <protocol>http</protocol>
+    <host>localhost</host>
+    <s-gml>/metaweb/servlet/vmw/querytopicgraphgml</s-gml>
+    <s-gml-protocol>vge</s-gml-protocol>
+    <s-topic>/metaweb/servlet/vmw/topicSearch</s-topic>
+    <s-task>/metaweb/servlet/vmw/task</s-task>
+  </servlets>
+
+
+ <type-map>
+   <type>
+     <value>Director</value>
+     <icon>director.png</icon>
+   </type>
+   <type>
+     <value>AcToR</value>
+     <icon>actor.png</icon>
+   </type>
+   <type>
+     <value>Producer</value>
+     <icon>producer.png</icon>
+   </type>
+   <type>
+     <value>Writer</value>
+     <icon>writer.png</icon>
+   </type>
+   <type>
+     <value>action</value>
+     <icon>action.png</icon>
+   </type>
+   <type>
+     <value>Adult</value>
+     <icon>adult.png</icon>
+   </type>
+   <type>
+     <value>animated</value>
+     <icon>animation.png</icon>
+   </type>
+   <type>
+     <value>horror</value>
+     <icon>horror.png</icon>
+   </type>
+   <type>
+     <value>musical</value>
+     <icon>musical.png</icon>
+   </type>
+   <type>
+     <value>mystery</value>
+     <icon>mystery.png</icon>
+   </type>
+   <type>
+     <value>sci-fi</value>
+     <icon>sci_fi.png</icon>
+   </type>
+   <type>
+     <value>short</value>
+     <icon>short_film.png</icon>
+   </type>
+   <type>
+     <value>western</value>
+     <icon>western.png</icon>
+   </type>
+   <type>
+     <value>*</value>
+     <icon>unknown.png</icon>
+   </type>
+ </type-map>
+
+</vge-dataset>
+

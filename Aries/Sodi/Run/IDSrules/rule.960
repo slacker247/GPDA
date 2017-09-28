@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE author.exe access";flags: A+; uricontent:"/_vti_bin/_vti_aut/author.exe"; nocase; classtype:web-application-activity; sid:952; rev:2;)

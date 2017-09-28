@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP adm scan"; flags: A+; content:"PASS ddd@|0a|"; reference:arachnids,332; classtype:suspicious-login; sid:353; rev:2;)

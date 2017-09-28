@@ -1,0 +1,7 @@
+digraph G {
+	node [style=filled];
+SAMPLE2_G;
+ 	SAMPLE2_G [color=white, label="SAMPLE2_G"];
+	SAMPLE2_G -> Sub_1;
+ 	Sub_1 [color=green1, label="Sub_1 [2]\nA ac: C\nA ab: 0.300000\nC 1.200000: D\n0.300000 bd: D\n"];
+}

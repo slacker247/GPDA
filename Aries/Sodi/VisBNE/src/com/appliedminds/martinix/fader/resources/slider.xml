@@ -1,0 +1,28 @@
+<slider-resource id="LinuxDotCom">
+  <icon-base>resource:com/appliedminds/martinix/fader/resources</icon-base>
+
+  <!--- REQUIRED: "vertical" slider -->
+  <slider orientation="vertical">
+
+    <!--- REQURIED: the slider knob" -->
+    <knob image="slider_vert_knob.png" />
+
+    <!-- REQUIRED: the slider track images -->
+    <tracks value="1">
+      <track value="1"  image="slider_vert.png" />
+    </tracks>
+  </slider>
+
+  <!--- REQUIRED: "horizontal" slider -->
+  <slider orientation="horizontal">
+
+    <!--- REQURIED: the slider knob" -->
+    <knob image="slider_horiz_knob.png" />
+
+    <!-- REQUIRED: the slider track images -->
+    <tracks value="1">
+      <track value="1"  image="slider_horiz.png" />
+    </tracks>
+  </slider>
+
+</slider-resource>

@@ -1,0 +1,79 @@
+AOC                                # Domain name
+Development                        # Testbed mode
+Air_Operations_Center              # Domain description
+#
+#   Menu items (must be 5 menus with 'n' items each)
+#
+    2   Assessments           0
+Situation_Assessment...       0
+Readiness_Assessment...       0
+    3   Determine_Strategy    0
+Data_Mining...                0
+Clustering...                 0
+Data_Manager...               0
+    1   COA_Development       0
+Combined_Planning...          0
+    3   Detailed_Planning     0
+Target_Assessment...          0
+Plan_Optimization...          0
+Engagement_Planner...         0
+    2   Execution_Monitor     0
+Decision_Timeline...          0
+Situation_Awareness...        0
+#
+#   Tools
+#
+    9   Tools                 0
+Protege           1   Protege.sh
+OilEd             1   OilEd.sh
+Weka              1   Weka.sh
+CViz              1   CViz.sh
+WordNet           1   WordNet.sh
+NetStat           0   NetStat.sh
+Terrain_Reasoner  1   reasoner
+PAC3_Firing_Unit  1   patriot
+UAV_Simulator     1   skyfly
+#
+#   Labels for the status area
+#
+STATUS
+  DEFCON:                     5                  G
+  JAOP                        _                  G
+  GAT                         _                  G
+  Area:                       DPRK               G
+  Msn_Constraints             _                  G
+  Air_Task_Order:             ATO-16Jul01        G
+  Current_MAAP:               MAAP-1411.8        G
+#
+#   Labels for the Mission Summary area
+#
+MISSION_SUMMARY
+  Tot_Exp_Threats             25
+  Tot_Exp_Targets             25
+  Tot_Targets_Killed          12
+  Cur_Exp_Targets             13
+  No._of_Leakers              0
+  Targets_in_Track            5
+  Targets_Engaged             4
+  Not_Engaged                 1
+#
+#   Labels for the Assets Summary area
+#
+    4    Def._Summary
+Fighter
+PAC3
+Aegis
+Thaad
+    4    Off._Summary
+Fighter
+Bomber
+Aegis
+SLBM
+#
+#   Pixmap filename for Situation Awareness area on Top Level window
+#
+AOCaware.xpm
+#
+SitAware-AOC.xpm
+SitRisk-AOC.xpm
+AOCback.xpm

@@ -1,0 +1,315 @@
+/*
+ File:		EventID.java
+ CVS Info:	$Id: EventID.java,v 1.2 1998/01/27 18:44:13 mcgredo Exp $
+ Compiler:	jdk 1.3
+ */
+
+package PDUs;       // our package
+
+import mil.navy.nps.util.*;         // General-purpose utilities
+import disEnumerations.*;         // Enumerations for DIS
+
+import java.io.*;               // input/output library
+import java.util.*;             // utilities
+
+/**
+ * Record for event identification.
+ *
+ *@version 1.0
+ *@author <a href="mailto:mcgredo@cs.nps.navy.mil"> Don McGregor</a> (<a href="http://www.npsnet.org/~mcgredo">http://www.npsnet.org/~mcgredo</a>)
+ *
+ *<dt><b>Location:</b>
+ *<dd>Web:  <a href="http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/EventID.java">
+ *  http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/EventID.java</a>
+ *
+ *<dd>or locally:  <a href="../../../../../../mil/navy/nps/dis/EventID.java">
+ *  ~/mil/navy/nps/dis/EventID.java</a>
+ *
+ *<dt><b>Hierarchy Diagram:</b>
+ *<dd><a href="../../../../../../dis-java-vrml/images/PduClassHierarchy.jpg"><IMG SRC="../../../../../../dis-java-vrml/images/PduClassHierarchyButton.jpg" ALIGN=ABSCENTER WIDTH=150 HEIGHT=21></a>
+ *
+ *<dt><b>Summary:</b>
+ *<dd>The event identification shall be specified by the Event Identifier Record.
+ *
+ *<dt><b>Explanation:</b>
+ *<dd>The record shall consist of a Simulation Address Record and an Event Number. The latter
+ *  is uniquely assigned within the host by the simulation application that initiates 
+ *  the sequence of events. The Event Identifier Record shall be set to one for each exercise and
+ *  incremented by one for each fire event or collision event. 
+ *  In the case where all possible values are exhausted, the numbers may be reused, beginning at one.<p>
+ *  
+ *  Note that I've flattened the object, such that
+ *  the site and application ID are in this object, rather than in an object/class
+ *  of their own. This is a questionable move.<p>
+ *
+ *  It inherits from PduElement, the abstract class that all non-PDUs inherit
+ *  from. As usual, it knows how to serialize and deserialize itself, clone
+ *  itself, etc.<p>
+ *
+ *  The event ID is used to keep events straight. It is employed in the fire and
+ *  detonation PDUs, for example.<p>
+ *
+ *  This is extremely similar to the EventID class. It includes a hash function for
+ *  the object, in case we want to use this as a key in a hash table.<p>
+ *
+ *<dt><b>History:</b>
+ *<dd>		12Dec96	/Don McGregor		/New
+ *<dd>		10Mar97	/Don McGregor		/Cleaned up for javadoc
+ *<dd>		16Apr97	/Don McGregor		/PrintStream passed to printValues
+ *<dd>		12Aug97	/Don McGregor		/elaborated printValues
+ *<dd>		8Dec97	/Ronan Fauglas		/changes for documentation templates + complements in documentation
+ *<dd>		11Dec97	/Ronan Fauglas		/changed access methods: thisVariable() --> getThisVariable()
+ *<dd>		11Dec97	/Ronan Fauglas		/changed instance variable from "" to protected 
+ *<dd>		11Dec97	/Ronan Fauglas		/changed entity 2 event in event accessor method...
+ *
+ *<dt><b>References:</b>
+ *<dd>		DIS Data Dictionary :<a href="http://SISO.sc.ist.ucf.edu/dis-dd/pdu/79.htm">Event Identifier Record</a>	
+ *<dd>		DIS-Java-VRML Working Group: <a href="http://www.web3d.org/WorkingGroups/vrtp/dis-java-vrml/"> 
+ *		http://www.web3d.org/WorkingGroups/vrtp/dis-java-vrml/</a>
+
+ *<dd>		DIS specification : IEEE 1278.1, Section 5.3.18
+ *
+ *@see PduElement 
+ *@see SerializationInterface
+ *@see EntityStatePdu
+ */
+public class EventID extends PduElement
+{
+    /**
+     *Site Identifier Field - Each DIS site shall be assigned a unique Site Identifier.
+     */
+    protected UnsignedShort   siteID;               // site event came from
+
+    /**
+     *Application Identifier Field - Each simulation application at a DIS site 
+     *shall be assigned an application identifier unique within that site.
+     */
+    protected UnsignedShort   applicationID;        // application at that site this came from
+
+    /**
+     *Event Indentifier Field - A general purpose Identifier used to uniquely identify up to 65535 items.
+     *
+     *<dl>
+     *<dt><b>Value:</b>
+     *<dd>The event number field of shall be set to one for each exercise and incremented by one for each fire
+     *event, collision event or electromagnetic mission event. In the case where all values are exhausted, 
+     *the numbers may be reused, beginning again at one.
+     *</dl>
+     */
+    protected UnsignedShort   eventID;              // event ID within that application
+
+    /**
+     *Constant value--size of an EventID as written out to the wire. Here:
+     *<code>sizeOf = 6 bytes</code>
+     */
+    protected static final int sizeOf = 6;// size of an EventID, as written to wire.
+
+
+/**
+ *Default constructor--fills with zeros for all values.
+ */
+public EventID()                        // constructor
+{
+    siteID        = new UnsignedShort(0);
+    applicationID = new UnsignedShort(0);
+    eventID       = new UnsignedShort(0);
+
+    return;
+}
+
+public EventID(short pSiteID, short pApplicationID, short pEventID)
+{
+    siteID        = new UnsignedShort(pSiteID);
+    applicationID = new UnsignedShort(pApplicationID);
+    eventID       = new UnsignedShort(pEventID);
+
+    return;
+}
+
+public Object clone()
+{
+    // make a copy of the object. This requires a deep copy, so we don't have two
+    // objects sharing pointers to the same data.
+
+ EventID    newEventID = new EventID();
+
+ newEventID.setSiteID(this.getSiteID());
+ newEventID.setApplicationID(this.getApplicationID());
+ newEventID.setEventID(this.getEventID());
+
+ return newEventID;
+}
+
+public void serialize(DataOutputStream outputStream)
+{
+    //super.serialize(outputStream);        // No need to call super, since no ivars are in our direct superclass
+    
+    siteID.serialize(outputStream);
+    applicationID.serialize(outputStream);
+    eventID.serialize(outputStream);
+    
+    return;
+}   
+    
+public void deSerialize(DataInputStream inputStream)
+{
+  // no need to call super, since there are no ivars in the superclass.
+
+    siteID.deSerialize(inputStream);
+    applicationID.deSerialize(inputStream);
+    eventID.deSerialize(inputStream);
+
+    return;
+}
+
+public int length()
+{
+    return sizeOf;          // event IDs are this long, always.
+}
+
+public void printValues(int indentLevel, PrintStream printStream)
+{
+    // print the values of the object out, with correct level of
+    // indentation on the page.
+
+   
+  StringBuffer indent = ProtocolDataUnit.getPaddingOfLength(indentLevel);
+  int          idx, superclassIndent = indentLevel;
+
+    printStream.println(indent + "EventID siteID: " + siteID.intValue());
+    printStream.println(indent + "EventID applicationID: " + applicationID.intValue());
+    printStream.println(indent + "EventID eventID: " + eventID.intValue());
+
+    return;
+}
+
+/*
+ *Returns a hashcode of the object.
+ *
+ *<dl>
+ *<dt><b>Explanation:</b>
+ *<dd>This provides a hash code for the object, since this is a handy way to
+ *uniquely identify entities. There's a problem, since there are 48 bits
+ *of information in the object, but the hash code has only 32 bits to 
+ *put things in. The solution right now is to ignore the application ID
+ *when generating the hash code. Furthermore, the event ID is in the upper
+ *16 bits, while the site ID is in the lower 16 bits. The idea is that this
+ *will help spread out the hash code a bit more, since there are probably
+ *many more entities than sites, and putting the part with more information
+ *in the MSB helps spread things out.
+ *</dl>
+ *
+ *@return a hashcode value of this object.
+ */
+
+/** 
+ *This provides a hash code for the object.
+ *A Hash code is a handy way to uniquely identify entities.
+ *
+ *<dl>
+ *<ul><li>The problem:<br>
+ *There's a problem with the core API, since there are 48 bits of information in the object, 
+ *but the hash code has only 32 bits to put things in. Hence we must make sure that
+ *our entities won't interfere between each others.
+ *<li>The solution:<br>
+ *The solution right now is to ignore the application ID when generating the hash code. 
+ *Furthermore, the entity ID is in the upper 16 bits, while the site ID is in the lower 16 bits. 
+ *The idea is that this will help spread out the hash code a bit more, since there are probably
+ *many more entities than sites, and putting the part with more information
+ *in the MSB helps spread things out.
+ *</ul>
+ *</dl>
+ *
+ *@return a hash code value for this object
+ *
+ *@see EntityID#hashCode
+ */
+public int hashCode()
+{
+    int hashCode = 0;
+    int site = siteID.intValue();
+    int event = eventID.intValue();
+
+    hashCode = event << 16;       // shift 16 bits to the left, zero-fill on right.
+    hashCode = hashCode & site;   // stick the site ID bits in the lower half of the int
+                                    // (bit mask is faster)
+
+    return hashCode;
+}
+
+/** 
+ *Makes a "numeric equality" test. 
+ *
+ *@param obj the object want to be compared with this object.
+ *@return yes if the object in parameter is of the same type and 
+ * if the numerical values of both objects are equal.
+ */
+public boolean equals(Object obj) 
+{
+ 
+    int         site, application, event;         // my internal values
+    int         objSiteID, objApplicationID, objEventID;    // internal values of the other guy
+    EventID compareObj;
+
+    if(obj == null)
+        return false;
+
+    // if the object we're being compared to isn't an EventID, we bloody well
+    // better not be equal.
+
+    if(this.getClass() != obj.getClass())
+        return false;
+
+    // now that we're sure, cast to an object of this type
+    compareObj = (EventID)obj;
+    
+    // grumble...oughta be a more elegant way to do this.
+
+    site        = siteID.intValue();
+    application = applicationID.intValue();
+    event      = eventID.intValue();
+
+    objSiteID        = compareObj.getSiteID().intValue();
+    objApplicationID = compareObj.getApplicationID().intValue();
+    objEventID      = compareObj.getEventID().intValue();
+
+    if((site == objSiteID) && (application == objApplicationID) && (event == objEventID))
+        return true;
+
+    return false;
+}
+
+    // accessor methods. The get() methods return a copy of the instance variable, rather than
+    // the instance variable itself.
+
+public UnsignedShort getSiteID()
+{   return (UnsignedShort)siteID.clone();
+}
+public void setSiteID(UnsignedShort pSiteID)
+{siteID = pSiteID;
+}
+public void setSiteID(int pSiteID)
+{ siteID = new UnsignedShort(pSiteID);
+}
+
+public UnsignedShort getApplicationID()
+{   return (UnsignedShort)applicationID.clone();
+}
+public void setApplicationID(UnsignedShort pApplicationID)
+{applicationID = pApplicationID;
+}
+public void setApplicationID(int pApplicationID)
+{ applicationID = new UnsignedShort(pApplicationID);
+}
+
+public UnsignedShort getEventID()
+{   return (UnsignedShort)eventID.clone();
+}
+public void setEventID(UnsignedShort pEventID)
+{eventID = pEventID;
+}
+public void setEventID(int pEventID)
+{ eventID = new UnsignedShort(pEventID);
+}
+
+} // End of class EventID

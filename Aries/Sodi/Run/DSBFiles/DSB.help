@@ -1,0 +1,221 @@
+
+Getting Started
+-----------
+
+To start, choose a Mission Domain by depressing and holding the 'Mission'
+menu button in the upper left of the application screen and scrolling to
+the desired Mission Domain. Once the domain is selected, if there is only
+one story for that domain, the application retrieves the evidence for that
+domain, evaluates the network, and updates the Network Analysis screen that
+presents a graphical representation of the Belief Network to the user. If
+more than one story exists for the selected domain, the user selects the 
+desired story from the list of stories presented by clicking on the 'Story'
+button. This screen provides the user with access to all the analysis and
+operations available for the belief network.
+
+The 'File' menu allows the user to 'Load' a network from a ".dsbn" file, 
+'Save' the network to a ".dsbn" file, evaluate the network ('Execute'),
+single-step through a network evaluation (deferred implementation), modify
+the network (deferred implementation), edit the evidence used for the
+evaluation ('Edit Evidence'), take a 'Snapshot' of the network (necessary
+for comparing two networks and performing the Union and Intersection of two
+networks), and 'Exit' from the program.
+
+The 'Mission' menu allows the user to select the desired belief network.
+
+The 'Options' menu provides the user with buttons to select various
+processing options.
+
+  - Secure I/F: If this option is set, only limited information regarding
+network settings and results are saved for later use by other networks.
+
+  - Differential BP: If this option is set, all nodes will be included in
+the 'Sensitivity Analysis' display, even those that require back-propagation
+to evaluate.
+
+  - Auto Deltas ; If this option is set, the 'Network' display will be
+colored-coded according to the change in beliefs every time the network is
+evaluated.
+
+  - Log Overrides: If this option is set, all operator overrides will be
+logged in the evidence display window.
+
+  - Auto Update: Not currently used.
+
+  - Fog-of-War: If this option is set, degradation of evidence due to
+fog-of-war conditions will be included in the network during evaluations.
+
+The 'Tab Displays' menu provides tabular displays for the user. The 'B&D
+Table' selection displays the current and previous belief and disbelief
+values for each node in the network, along with the change in the values.
+The 'BP Statistics' selection displays the values of the parameters used
+while doing the immediately proceeding back propagation. The 'Story Info'
+selection displays the story metrics for the current network.
+
+The 'Operations' menu allows the user to perform dyadic operations on
+networks. The user first selects and executes one of the desired networks
+using the procedures described above. Second the user takes a snapshot of
+the results using the 'Snapshot' selection under the 'File' menu. Then the
+user may compare the effectiveness ('Effectiveness') of the first network
+against the second, perform a union ('Union') of the two networks, or take
+the intersection ('Intersection') of the two networks. In all cases, the
+resulting network will replace the currently displayed network.
+
+The 'Analysis' menu allows the user to perform a visual analysis of some
+aspect of the network. The 'Delta Change' selection will color-code the
+network nodes to indicate to what extent the beliefs have changed during
+the last evaluation. The 'Path Analysis' selection will show the path with
+the best belief (blue lights), the least belief (red lights), and the most
+unknown (yellow lights). The 'Sensitivity' selection will produce a 3D
+histogram showing the effect on all the following nodes of a slight change
+in each node.
+
+
+Node Operations
+------------
+
+Left clicking on any node will produce a drop-down menu that allows the
+user to see a graphical display of the belief and disbelief for that node,
+edit the node values or the link values for that node, and perform various
+operations on that node.
+
+The 'Assessment' selection causes a dialog box to pop-up that graphically
+displays the current belief associated with the selected node, the lack of
+confidence (1-Belief) associated with the selected node, a means to view an
+explanation of the results for the node, and a means of issuing the
+assessment to an external process (deferred implementation).
+
+The 'Stories' selection causes a display to appear that graphically shows
+the belief, disbelief, and unknown values for the selected node for each
+story comprising the mission domain.
+
+The 'New Evidence' selection causes the Evidence Editing dialog box to
+appear, allowing the user the ability to introduce new evidence into the
+node. It is fused with the evidence currently associated with the node,
+producing new belief and disbelief values for the node.
+
+The 'Node Override' selection causes a dialog box to appear, allowing the
+user the ability to override the belief and disbelief values at the selected
+node and force the network to be reconciled to account for the overridden
+values using a back-propagation algorithm similar to that used in neural 
+networks.
+
+The 'Node Copy' selection causes the belief and disbelief values of the
+selected node to be saved for future "pasting" into a node, causing the
+node's values to be overridden.
+
+The 'Node Paste' selection causes the belief and disbelief values previously
+saved with the 'Node Copy' selection to be "pasted" into the selected node,
+causing the node's values to be overridden.
+
+The 'Link Edit' selection causes a dialog box to appear, allowing the user
+the ability to modify the input and output link weights of the selected node.
+
+
+Evidence Processing
+---------------
+
+The 'Edit Evidence' selection on the 'File' menu results in the display of
+the Evidence Editing Template that allows processing and editing of the
+evidence used by the network. The window on the left lists all the evidence
+currently available for processing by the selected mission area. To the right
+of this window are control buttons that allow the user to evaluate ('Execute')
+the network (fuse the evidence to get the results) and edit the evidence.
+
+The Evidence Editing Template window displays existing evidence sorted by
+evidence occurrence time. The window displays the evidence source, the
+assigned belief value in word and in numerical format, the assigned disbelief
+in word and numerical format, the time of occurrence, the total duration of
+the evidence, the workstation ID the evidence originated from, the network
+the evidence originated from, and the user of the system when the evidence
+occurs. Use the bars at the right and bottom of the evidence window to 
+navigate the evidence.
+
+
+Evidence Editing
+------------
+
+The buttons to the right of the Evidence Editing Template window allow the
+user to evaluate ('Execute') the network (fuse the evidence to get the
+results) and edit the evidence. These consist of the following buttons:
+
+  - Load: Loads the evidence for the currently selected mission from the
+associated '.evid' file.
+
+  - Execute: Evaluates the belief network by processing the evidence in
+time sequence. 
+
+  - Step: Steps through the evidence one piece at a time (deferred
+implementation). 
+
+  - Reset: Resets internal parameters to allow user to 'Execute' the
+network. 
+
+  - Save: Saves current evidence in a '.evid' file for the currently
+selected mission. 
+
+  - Add: Adds a new piece of evidence using the 'Edit Evidence'template.
+Input fields are 'evidence source', evidence level (where the evidence
+feeds the belief network), 'belief' which gauges the belief that the
+evidence is TRUE, and 'disbelief' which gauges the belief that the 
+evidence is NOT TRUE. Textual selection choices are 'Impossible', 'very
+unlikely', 'low chance', 'small chance', 'may', 'some chance', 'good
+chance', 'very likely', 'certain'. The user may also enter a numerical
+belief ranging from 0 to 1 with 0 meaning no belief and 1 meaning 
+certain belief. Note: The sum of the numerical values of 'belief' and
+'disbelief' must be less than or equal to 1. The difference between the
+sum and 1 is the "uncertainty" assigned to the piece of evidence. (This
+ability to reason with uncertainty is the unique differentiatory of
+Dempster-Shafer belief networks over other systems such as Bayesian-based
+systems. The user must also input the time of occurrence of the event and
+duration of the evidence in minutes.) Depress the 'apply' button to inject
+the data into the dataset. Depress the 'Cancel' button to quit the process
+and not inject the data into the dataset.
+
+  - Modify: Allows the user to modify the selected piece of evidence using
+the 'Edit Evidence' template (see Figure 1-4) to modify any of the
+descriptive details of the piece of evidence - such as 'evidence source'
+or 'time'. Depress 'Apply' to replace the selected piece of evidence with 
+the modified data. Depress 'Cancel' to quit the process without changes.
+Once data is modified or added, the user must 'Execute' the network again
+to process the new evidence.
+
+  - Delete: Removes a line of evidence from the processing scheme, but
+does not delete it from the evidence window. It does not seem possible to
+re-activate that piece of evidence once deleted unless you depress 'load'
+to reload the dataset into the belief network.
+
+
+Results Display
+-----------
+
+The 'Assessment' selection on the drop-down menu that is available from
+left-clicking on a node results in the display of the graphical view of
+the results of evaluating the network using the evidence shown. The
+"Confidence of Assessment" graph enables translation of the output beliefs
+and disbeliefs in the network. The X-axis represents time. The Y-axis
+represents percent confidence in a network node (hypothesis). The blue
+line shows the "belief" in the selected node. The red line shows the
+"disbelief" in the selected node and is read from top (0%) to bottom (100%).
+The difference between the blue line and red line designates uncertainty where
+there is not sufficient evidence to calculate confidence in a particular network
+node. A horizontal brown line represents a pre-programmed decision threshold
+confidence level. A vertical brown line represents a pre-programmed re-plan
+time.
+
+
+Story Telling
+-----------
+
+We can use the belief network to tell a story which is constructed by
+associating characteristics with each hypothesis (node) in the network.
+The stories are then compared and ranked based on the overall belief,
+disbelief, or unknown metric of each story. Selecting the 'Story' menu
+results in the "Stories" screen being displayed. This screen allows the
+user to access the story telling capabilities of the system.
+
+The same evidence (shown at the bottom of the screen) is input to all
+stories and its effect will be reflected in the ranking of the story.
+Thus, one can have multiple stories leading to the same conclusion and
+determine, over time, which story best represents the evidence supplied.
+

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI scriptalias access"; flags: A+; uricontent: "///"; reference:cve,CVE-1999-0236; reference:bugtraq,2300; reference:arachnids,227; classtype:attempted-recon; sid:873; rev:2;)

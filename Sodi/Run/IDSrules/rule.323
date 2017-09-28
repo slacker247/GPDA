@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Destination Unreachable (Precedence Cutoff in effect)"; itype: 3; icode: 15; sid:403;  classtype:misc-activity; rev:4;)

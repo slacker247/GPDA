@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Creating Classes</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img border="0" src="../../users_guide/classes/images/serving_nerd.gif" width="48" height="48">
+Creating and Naming Classes<br>
+<img border="0" src="../../users_guide/classes/images/header_line.gif" width="536" height="5"></h1>
+
+<p>Once you have created the project, the first thing you need to do to start
+constructing your ontology is to add some classes and subclasses.&nbsp;In this
+section, you will:</p>
+
+<ul>
+  <li><a href="#author">Create a class, Author</a></li>
+  <li><a href="#authorsub">Create subclasses of the Author class</a></li>
+  <li><a href="#person">Create the Person class and some subclasses</a></li>
+  <li><a href="#addsuper">Add a new superclass to an existing class</a></li>
+</ul>
+
+<h2><a name="author"></a>Creating the Author Class</h2>
+
+<p>First we will create a new class called Author. An Author is any possible
+source of an article, such as a news service or columnist. To create the Author
+class:</p>
+
+<ol>
+  <li>First, if you have clicked on any buttons, or explored the Protégé
+    window, make sure the Classes tab is selected.&nbsp;</li>
+  <li>Locate the Class Relationship Pane at the left of the Protégé window.
+    This pane shows the hierarchy of classes, with the current class
+    highlighted. Make sure that class :THING is highlighted.<br>
+    <img border="0" src="images/NewProjectScreen.gif" width="472" height="253"><br>
+    Almost all the classes you create will be created subordinate to :THING.
+    SYSTEM_CLASS is used by Protégé for defining the structure of various Protégé
+    forms.</li>
+  <li>Click on the Create <font size="3"><img border="0" src="../../users_guide/classes/images/Create.gif" width="12" height="16">
+    button at the top right of the Class Relationship Pane.<br>
+    A class is created with a generic name based on the name of the project, such as
+    tutorial_00000. You can see the
+    name in the Class Relationship Pane. The class is highlighted to show it is
+    selected.&nbsp;<br>
+    <img border="0" src="images/create19.gif" width="471" height="208"></font></li>
+  <li><font size="3">Type Author.&nbsp;A </font>recommended<font size="3">  </font> Protégé
+    <font size="3"> convention is to make
+the first character of each word in a class name uppercase and the rest lowercase, and to
+separate words with an underscore.<br>
+    <img border="0" src="images/create20.gif" width="472" height="199"></font></li>
+  <li><font size="3">Click again on the highlighted class to display your
+    change.&nbsp;<br>
+    <img border="0" src="images/create21.gif" width="466" height="118"></font></li>
+</ol>
+<blockquote>
+  <p><font size="3">If you have trouble renaming the class, look at the Class
+  Form at the right of the </font> Protégé window. The <font size="3">generic
+  name of the class you just created should be displayed in the Name field and
+  highlighted. If the correct generic name is displayed, but not highlighted,
+  simply click in the Name field to edit the name. If the incorrect name is
+  displayed, then the wrong class is selected in the Class Relationship Pane.
+  Click on the class you want to rename.&nbsp;&nbsp;</font></p>
+</blockquote>
+
+<h2><a name="authorsub"></a>Creating Subclasses of Author</h2>
+
+<p><font size="3">Now we want to create some subclasses of Author:</font></p>
+<ol>
+  <li><font size="3">Make sure Author is selected in the Class Relationship
+    Pane.</font></li>
+  <li>Click the Create <font size="3"><img border="0" src="../../users_guide/classes/images/Create.gif" width="12" height="16">
+    button.&nbsp;</font></li>
+  <li><font size="3">Rename the class to Columnist.&nbsp;<br>
+    <img border="0" src="images/create22.gif" width="274" height="183"></font></li>
+</ol>
+<p>Notice that when you create the first subclass of a class, a <img border="0" src="../../users_guide/classes/images/Hierarchy_closed.gif" width="16" height="12">&nbsp;
+or <img border="0" src="../../users_guide/classes/images/Hierarchy_open.gif" width="12" height="17">
+icon appears to its left. You can use this icon to display or hide the
+subclasses of a class.&nbsp;</p>
+<p>To create another subclass of Author:</p>
+<ol>
+  <li>Select Author in the Class Relationship Pane. If you do not remember to
+    select Author, you will create a subclass of Columnist.</li>
+  <li>Click the Create <font size="3"><img border="0" src="../../users_guide/classes/images/Create.gif" width="12" height="16">
+    button.&nbsp;</font></li>
+  <li><font size="3">Rename the class to Editor.&nbsp;<br>
+    <img border="0" src="images/create23.gif" width="268" height="177"></font></li>
+</ol>
+
+<h2><a name="person"></a>Creating the Person Class</h2>
+
+<p>Now we want to create another class, called Person. A Person is any
+individual, whether or not they are an Author<font size="3">.</font></p>
+<ol>
+  <li><font size="3">Select :THING in the Class Relationship Pane. This ensures
+    that the new class will be at the right level in the class hierarchy.<br>
+    <img border="0" src="images/create24.gif" width="263" height="121"></font></li>
+  <li>Click the Create <font size="3"><img border="0" src="../../users_guide/classes/images/Create.gif" width="12" height="16">
+    button.&nbsp;</font></li>
+  <li><font size="3">Rename the class to Person.&nbsp;<br>
+    <img border="0" src="images/create25.gif" width="268" height="189"></font></li>
+</ol>
+
+<h3><a name="personsub"></a>Creating a Subclass of Person</h3>
+
+<p><font size="3">Now create a subclass of Person, Employee:</font></p>
+<ol>
+  <li>Select Person in the Class Relationship Pane.</li>
+  <li>Click the Create <font size="3"><img border="0" src="../../users_guide/classes/images/Create.gif" width="12" height="16">
+    button.&nbsp;</font></li>
+  <li><font size="3">Rename the new class to Employee.&nbsp;<br>
+    <img border="0" src="images/create26.gif" width="269" height="184"></font></li>
+</ol>
+
+<h3>Creating a Subclass of a Subclass</h3>
+
+<p><font size="3">We are now ready to create some subclasses of Employee. First,
+let us create an employee type who is not an Author:</font></p>
+<ol>
+  <li>Select Employee in the Class Relationship Pane.<br>
+    <img border="0" src="images/create27.gif" width="265" height="207"></li>
+  <li>Click the Create <font size="3"><img border="0" src="../../users_guide/classes/images/Create.gif" width="12" height="16">
+    button.&nbsp;</font></li>
+  <li><font size="3">Rename the class to Salesperson.&nbsp;<br>
+    <img border="0" src="images/create28.gif" width="270" height="189"></font></li>
+</ol>
+
+<h2><a name="addsuper"></a>Adding an Additional Superclass to an Existing Class</h2>
+
+<p><font size="3">We also want a Columnist to be an Employee. Since we have
+already created the Columnist class, we do not create it again. Instead, make
+the existing Columnist class a subclass of Employee as follows:</font></p>
+<ol>
+  <li>Select Columnist in the Class Relationship Pane. The current superclass of <b>Columnist</b>, <b>Author</b>, is displayed in
+    the Superclasses pane just below the Class Relationship Pane.<br>
+    <img border="0" src="images/create29.gif" width="270" height="354"></li>
+  <li><font size="3">Click the Add </font><img border="0" src="../../users_guide/classes/images/add.gif" width="19" height="19"> <font size="3">
+    button in the Superclasses pane.&nbsp;<br>
+    A Select Classes dialog box displays the class hierarchy you have developed
+    so far.<br>
+    <img border="0" src="images/create30.gif" width="326" height="211"></font></li>
+  <li><font size="3">Click the </font><img border="0" src="../../users_guide/classes/images/Hierarchy_closed.gif" width="16" height="12"><font size="3">
+    icon next to <b>Person</b> to display the subclasses of <b>Person</b>.</font></li>
+  <li><font size="3">Highlight <b>Employee</b>.</font></li>
+  <li><font size="3">Click OK.<br>
+    <b>Columnist</b> now appears in two places in the Class Window: once under <b>Author</b>
+    and again under <b>Employee</b>. These superclasses are listed in the
+    Superclasses pane. In addition, an </font><img border="0" src="../../users_guide/classes/images/multiple.gif" width="12" height="16"> 
+    icon appears after each instantiation of <b>Columnist</b>, to show that it
+    has multiple parents.<br>
+    <img border="0" src="images/create31.gif" width="268" height="316"></li>
+</ol>
+<p>You can also add a superclass using drag and drop:</p>
+<ol>
+  <li>Select Editor in the Class Relationship Pane.</li>
+  <li>Hold down the mouse button and
+drag the <b>Editor</b> class over <b>Employee</b>.&nbsp;<b>Employee</b> is
+    outlined.<br>
+    <img border="0" src="images/create32.gif" width="268" height="214"></li>
+  <li> Hold down the <strong>Ctrl</strong> key and release the mouse button to
+    drop the subclass.&nbsp;<br>
+    <img border="0" src="images/create33.gif" width="270" height="230"></li>
+  <li> If <b>Editor</b> appears under <b>Person</b>, you did not hold down the <b>Ctrl</b>
+    key long enough while dropping. Delete the superclass by clicking on the <b>Remove</b> <img border="0" src="../../users_guide/classes/images/remove.gif" width="19" height="19">
+    button in the Superclasses Pane while Person is highlighted, then try again.</li>
+</ol>
+
+<p><font size="3">You have now created several classes and given two classes
+multiple superclasses. You are now ready to assign some attributes to the
+classes you have created, by creating slots. This is covered in the next
+section.</font></p>
+
+<hr>
+
+<p>Next: <a href="create_slot.html"> Creating and Naming Slots</a></p>
+
+<p><a href="index.html">Getting Started With Protégé</a></p>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Strategic
+	{Report_Name.kind == name}
+	{Token.string == "@"}
+(
+    {Token.kind == word, Token.orth == allCaps}
+):Strategic
+ -->
+:Strategic.Strategic = {}

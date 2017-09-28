@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible PrettyPark Trojan"; content:"\\CoolProgs\\";offset:300;depth:750; reference:MCAFEE,10175; sid:772;  classtype:misc-activity; rev:3;)

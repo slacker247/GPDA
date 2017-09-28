@@ -1,0 +1,276 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>DIS Data Dictionary: Designator PDU</TITLE>
+
+
+
+</HEAD>
+
+<BODY>
+
+<h1> DIS Data Dictionary - PDU Data</h1><i>Created by <a
+
+href="http://huachuca-jdbe.army.mil/">JDBE</a> at Ft. Huachuca,
+
+Arizona</i><br clear=all><p><dl><dd>
+
+<p>
+
+<b>Current standard:  IEEE 1278.1</b>
+
+<p><BR><H4>Designator PDU</H4>
+
+<B>Size: </B>704<BR>
+
+<B>Description: </B>Designating operations shall be communicated by issuing a Designator PDU. The Designator PDU shall contain the following fields:<BR>
+
+<BR>
+
+a) PDU Header - This field shall contain data common to all DIS PDUs. The PDU Header shall be represented by the PDU Header Record (see 5.3.24).<BR>
+
+b) Designating Entity ID - This field shall identify the entity that is positioning the designator. This field shall be represented by an Entitiy Identifier Record (see 5.3.14).<BR>
+
+c) Code Name - This field shall identify the code name for the designator system. This field shall be represented by a 16-bit enumeration (see Section 9 in EBV-DOC).<BR>
+
+d) Designated Entity ID - This field shall identify the entity that is currently being designated. This field shall contain D-SPOT_NO_ENTITY if the designator spot is not on an entity. This field shall be represented by an Entity Identifier Record (see 5.3.14).<BR>
+
+e) Designator Code - This field shall identify the designator code being used by the designating entity. This field shall be represented by a 16-bit enumeration (see Section 8 in EBV-DOC).<BR>
+
+f) Designator Power - This field shall identify the designator output power in watts. This field shall be represented by a 32-bit floating point number.<BR>
+
+g) Designator Wavelength - This field shall identify the designator wavelength in units of microns. This field shall be represented by a 32-bit floating point number.<BR>
+
+h) Designator Spot with respect to Designated Entity - This field shall specify the location of the designator spot with respect to the designated entity's coordinate system when the spot is on an entity. If the Designated Entity is D-SPOT_NO_ENTITY, then this field shall contain the location [0.0, 0.0]. This field shall be represented by an Entity Coordinate Vector Record (see 5.3.33.1).<BR>
+
+i) Designator Spot Location - This field shall identify the location of the designator spot with respect to the world coordinate system. This field shall be represented by a World Coordinates Record (see 5.3.34).<BR>
+
+j) Dead Reckoning Parameters - This field will be used to provide parameters for dead reckoning the position of the designator spot. Dead Reckoning algorithm in use, and Entity Acceleration shall be included as part of the dead reckoning parameters.<BR>
+
+<BR>
+
+      1) Dead Reckoning Algorithm - This field shall specify the dead <BR>
+
+          reckoning algorithm in use by the issuing entity. This field shall<BR>
+
+          be represented by an 8-bit enumeration. Values for this <BR>
+
+          enumerations are defined in Section 4 of EBV-DOC.<BR>
+
+<BR>
+
+      2) Entity Linear Acceleration - This field shall specify the designator<BR>
+
+          spot's linear acceleration. This field shall be represented by a <BR>
+
+          Linear Acceleration Vector Record (see 5.3.33.2).<BR>
+
+<BR>
+
+The Designator PDU is represented in Table 55.<BR>
+
+<P>
+
+<H3>PDU Components:</H3>
+
+<TABLE BORDER> <TR><TH ALIGN=CENTER>Item Name</TH>
+
+<TH ALIGN=CENTER>Bit Length</TH>
+
+<TH ALIGN=CENTER>Opt</TH>
+
+<TH ALIGN=CENTER>Opt Ctl</TH>
+
+<TH ALIGN=CENTER>Rpt</TH>
+
+<TH ALIGN=CENTER>Rpt Ctl</TH>
+
+</TR>
+
+<TR><TD><A HREF="7.htm" >PDU Header Record</A></TD>
+
+<TD>96</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="2c.htm" >Designating Entity ID Record</A></TD>
+
+<TD>48</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="d4.htm" >Code Name Field</A></TD>
+
+<TD>16</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="2c.htm" >Designated Entity ID Record</A></TD>
+
+<TD>48</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="d6.htm" >Designator Code Field</A></TD>
+
+<TD>16</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="d7.htm" >Designator Power Field</A></TD>
+
+<TD>32</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="d8.htm" >Designator Wavelength field</A></TD>
+
+<TD>32</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="1e.htm" >Designator Spot with Respect to Designated Entity Record</A></TD>
+
+<TD>96</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="19.htm" >Designator Spot Location Record</A></TD>
+
+<TD>192</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="38.htm" >Dead Reckoning Algorithm Field</A></TD>
+
+<TD>8</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="91.htm" >Padding - 24bit Field</A></TD>
+
+<TD>24</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+<TR><TD><A HREF="33.htm" >Entity Linear Acceleration Record</A></TD>
+
+<TD>96</TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+<TD></TD>
+
+</TR>
+
+ </TABLE>
+
+<HR><i>For questions regarding the content of the DIS Data
+
+Dictionary, <br>please contact Jeff Wicks, <a href="mailto:jwicks@ist.ucf.edu">jwicks@ist.ucf.edu</a></i><p><i>Other problems may be reported to the WebMaster,<a
+
+href="mailto:www@sc.ist.ucf.edu">www@sc.ist.ucf.edu</a></i><br>
+
+<hr>
+
+Generated by the DIS Data Dictionary
+
+
+
+</BODY>
+
+</HTML>
+

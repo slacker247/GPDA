@@ -1,0 +1,451 @@
+/*
+ *  Hedger.java
+ *
+ *
+ * Copyright (c) 2000-2001, The University of Sheffield.
+ *
+ * This file is part of GATE (see http://gate.ac.uk/), and is free
+ * software, licenced under the GNU Library General Public License,
+ * Version 2, June1991.
+ *
+ * A copy of this licence is included in the distribution in the file
+ * licence.html, and is also available at http://gate.ac.uk/gate/licence.html.
+ *
+ *  jeffmac, 26/8/2002
+ *
+ *  $Id: Hedger.jav,v 1.2 2001/11/14 17:15:43 oana Exp $
+ */
+//package Modules.Hedger;
+
+import java.util.*;
+import java.io.*;
+import java.net.*;
+
+import gate.*;
+import gate.creole.*;
+import gate.util.*;
+
+
+/**
+ * This class is the implementation of the resource HEDGER.
+ */
+public class Hedger  extends AbstractLanguageAnalyser
+  implements ProcessingResource {
+
+   public static final String
+      TEMP_DOCUMENT_PARAMETER_NAME = "document";
+
+   public String Input_File = "hedges.rank";
+   public String WORKING_DIR = "/home/jeffmac/AssistRQ/";
+   public URL workingdirOut = null;
+   public Boolean DEBUG = new Boolean(false);
+   protected static ArrayList m_Al_Hedges = new ArrayList();
+   public String Output_File = "temp.txt";
+
+   public void setWorkingdir(URL workingdir)
+   {
+      workingdirOut = workingdir;
+      WORKING_DIR = workingdir.getPath();
+   }
+   public void setOutputname(String outputname)
+   {
+       Output_File = outputname;
+   }
+   public URL getWorkingdir()
+   {
+      return workingdirOut;
+   }
+   public String getOutputname()
+   {
+       return Output_File;
+   }
+   //Runs the function FileInput to bring in the hedges.rank
+   //Is the first function called when loaded
+   public Resource init() throws ResourceInstantiationException
+   {
+   	fireStatusChanged("Loading " + Input_File + " file...");
+   	m_Al_Hedges.clear();
+
+   	FileInput();
+   	return super.init();
+   }
+
+   //Main driver
+   public void execute() throws ExecutionException
+   {
+       FileOutput(Average());
+       coRefHedge();
+       fireProcessFinished();
+   }
+
+   public void reInit() throws ResourceInstantiationException
+   {
+       init();
+   }
+
+   //Brings in the fields from the file hedges.rank and stores them in the class HadgeValue
+   public void FileInput()
+   {
+   	String Temp = "";
+   	StringBuffer inchar = new StringBuffer();
+   	int i = 0, count = 0;
+   	FileReader Input = null;
+        HedgeValue HV = new HedgeValue();
+
+        if(DEBUG.booleanValue()) Out.prln("In Input/Hedger99");
+   	try
+   	{
+   	    Input = new FileReader(WORKING_DIR + "Modules/Hedger/" + Input_File);
+   	}catch(IOException ioe)
+   	{
+   	    Out.prln("IO error:" + ioe);
+   	}
+
+        if(DEBUG.booleanValue()) Out.prln("In Input/Hedger");
+	//loops through the file hedges.rank until the end of file
+        while(i != -1)
+   	{
+
+	    //Gets the three strings: Field name, Annot type, location of grammers
+   	    for(int x = 0; x < 2; x ++)
+   	    {
+   	    	if(i == ' ' || i == '\n')
+   	    		i = 0;
+
+   	    	//Gets a single string of above mentioned Fields
+   	    	while(i != ' ' && i != -1 && i != '\n')
+   	    	{
+   	    		try
+   	    		{
+   	    			i = Input.read();
+   	    		}catch(IOException ioe)
+   	    		{
+   	    			Out.prln("IO error:" + ioe);
+   	    		}
+   	    		if(i != -1 && i != '\n' && i != ' ')
+   	    		   inchar.append((char)i);
+   	    	}
+   	    	Temp = inchar.toString();
+                Temp = Temp.replace('\n', ' ');
+                Temp = Temp.trim();
+
+   	    	// assigns extracted string from file and stores it to current Field class
+   	    	if(Temp != "")
+   	    	{
+   	    		switch(x)
+   	    		{
+   	    			case 0:
+   	    				//assign to Fields class the Field name
+   	    				HV.Word = Temp;
+   	    				if(DEBUG.booleanValue())
+   	    				{
+   	    				    System.out.println("first: " + Temp);
+   	    				}
+   	    				break;
+   	    			case 1:
+   	    				//assign to m_Fields class the AnnotType
+                                if(DEBUG.booleanValue())
+                                    System.out.println("inputing into HV.Value,:"+Temp+": Input/Hedger");
+   	    				HV.Value = Float.parseFloat(Temp);
+   	    				if(DEBUG.booleanValue())
+   	    				{
+   	    				    System.out.println("Second: " + Temp);
+   	    				}
+   	    				break;
+  	    		}
+   	    		Temp = "";
+   	    		inchar.delete(0, inchar.length());
+   	    	}
+   	    }
+   	    //create a new Class of Field in Fields ArrayList
+   	    m_Al_Hedges.add(new HedgeValue(HV));
+   	    fireProgressChanged(count*20);
+   	    count++;
+   	}
+        if(DEBUG.booleanValue()) Out.prln("Going out of Input/Hedger");
+   	try{Input.close();}
+   	catch(IOException ioe){Out.prln("IO error:" + ioe);}
+        if(DEBUG.booleanValue()) Out.prln("2Going out of Input/Hedger");
+   }
+
+   //Calculates the average(mean) of the hedge words
+   private float Average()
+   {
+       HedgeValue Temphedge = new HedgeValue();
+       ArrayList Hedges = null;
+       float avg = (float)0.0, totdiv = (float)0.0;
+       int x = 0;
+       try
+       {
+           Hedges = GetAnnotations("Hedge");
+       }catch (ExecutionException ee)
+       {
+           Out.prln("Error. No Annotes of type hedge.");
+           return avg;
+       }
+
+       while(x < m_Al_Hedges.size())
+       {
+           //This will go through the words found in the document and find the
+           // associated value and take the average.
+           Temphedge = (HedgeValue)m_Al_Hedges.get(x);
+           for(int y = 0; y < Hedges.size(); y++)
+           {
+               if(DEBUG.booleanValue()) Out.prln(Hedges.get(y).toString().toLowerCase().trim() + " : " + Temphedge.Word.toLowerCase().trim() + "\n");
+                if(Hedges.get(y).toString().trim().equalsIgnoreCase(Temphedge.Word.trim())){
+                    avg += Temphedge.Value;
+                    totdiv += (float)1.0;
+                    if(DEBUG.booleanValue()) Out.prln(avg + "\n");
+                    break;
+                }
+           }
+           x++;
+       }
+
+       if(DEBUG.booleanValue()) Out.prln(avg + "\n");
+       avg = avg/totdiv;
+       if(DEBUG.booleanValue()) Out.prln(avg + "\n");
+       return avg;
+   }
+
+   //Extracts the supplied(Type) Annotations "words" from the current text and returns them
+   public ArrayList GetAnnotations(String Type) throws ExecutionException
+   {
+       ArrayList Names = new ArrayList();
+       AnnotationSet m_NameAllAnnots = document.getAnnotations();
+       AnnotationSet nameAnnots = m_NameAllAnnots.get(Type);
+       String annotString = null;
+
+       if ((nameAnnots == null) || nameAnnots.isEmpty())
+       {
+           if(DEBUG.booleanValue())
+           {
+               Out.prln("No annotations with type " + Type);
+           }
+           return Names;
+       }
+
+       Iterator iterNames = nameAnnots.iterator();
+       int count = 0;
+
+       while(iterNames.hasNext())
+       {
+           Annotation nameAnnot = (Annotation) iterNames.next();
+           Integer id = nameAnnot.getId();
+
+           try
+           {
+               annotString = document.getContent().getContent(
+               nameAnnot.getStartNode().getOffset(),
+               nameAnnot.getEndNode().getOffset()
+               ).toString();
+           }catch (InvalidOffsetException ioe)
+           {
+               throw new ExecutionException
+                             ("Invalid offset of the annotation");
+           }//end try catch
+
+           //check and correct for m_Output i.e. remove and replace spaces with underscores
+           //and remove newline characters.
+           fireProgressChanged(count *20);
+           count++;
+           String temp = annotString.replace('\n', ' ');
+           Names.add(temp.replace(' ', '_'));
+       }//end while
+       return Names;
+   }
+
+   //Formats the fields to the appropriate style and appends the output to a file *.tag
+   public void FileOutput(float avg)
+   {
+       if(DEBUG.booleanValue()) Out.prln("in FileOutput.");
+       FileWriter m_Output = null;
+       fireStatusChanged("Outputting to the file");
+       String StrAvg = String.valueOf(avg);
+       try
+       {
+           m_Output = new FileWriter(WORKING_DIR + Output_File, true);
+       }catch (IOException ioe)
+       {
+           Out.prln("IO error:" + ioe);
+       }
+       if(DEBUG.booleanValue()) Out.prln("Opened file for FileOutput.");
+
+       try
+       {
+           //if string not at end write string to file
+           //do the if for each field(varArray) until the end of all vars
+           m_Output.write("+ Belief\n");
+       }catch (IOException ioe)
+       {
+           Out.prln("IO error:" + ioe);
+       }
+       if(DEBUG.booleanValue()) Out.prln("Wrote first line for FileOutput.");
+           try
+           {
+               m_Output.write("> " + StrAvg + "\n");
+           }catch (IOException ioe)
+           {
+               Out.prln("IO error:" + ioe);
+           }
+       if(DEBUG.booleanValue()) Out.prln("Wrote second line for FileOutput.");
+       try
+       {
+           m_Output.close();
+       }catch (IOException ioe)
+       {
+           Out.prln("IO error:" + ioe);
+       }
+       if(DEBUG.booleanValue()) Out.prln("Close file for FileOutput.");
+   }
+
+   //This function is to reference the found hedge words with the associated noun that it effects
+   public void coRefHedge()
+   {
+       /* First it will gather all found hedge words into an array
+        * Then it will search the sentence that it was found in and look for the
+        * closest noun to the right before the end of the sentence or if not found
+        * to the right it will look to the left of the hedge word.
+        */
+       AnnotationSet AllAnnots = document.getAnnotations();
+       AnnotationSet hedgeAnnots = AllAnnots.get("Hedge");
+
+       Iterator it = hedgeAnnots.iterator();
+
+       if(DEBUG.booleanValue()) Out.prln("start of while");
+       while(it.hasNext())
+       {
+         Annotation hedgesAnnotsAnn = (Annotation)it.next();
+
+         AnnotationSet sentencesSet = document.getAnnotations().get("Sentence",
+             hedgesAnnotsAnn.getStartNode().getOffset(),
+             hedgesAnnotsAnn.getEndNode().getOffset());
+
+         if(DEBUG.booleanValue()) Out.prln("start of if");
+         if(sentencesSet != null && !sentencesSet.isEmpty())
+         {
+           Annotation sentenceAnn = (Annotation)sentencesSet.iterator().next();
+
+// This looks at each token in the sentence and finds out how far
+// away it is from the hedge word.  Then whether it is a noun, pronoun, tags it.
+           AnnotationSet TokenSet = document.getAnnotations().get("Token",
+               sentenceAnn.getStartNode().getOffset(),
+               sentenceAnn.getEndNode().getOffset());
+           FeatureMap tokenFeature = Factory.newFeatureMap();
+           tokenFeature.put("category", "NN");
+           AnnotationSet nounTokenSet = TokenSet.get("Token", tokenFeature);
+
+           Annotation nounTokenAnn = null, negateTokenAnn = null;
+           if(nounTokenSet != null)
+           {
+               nounTokenAnn = getclosesAnnot(nounTokenSet, hedgesAnnotsAnn, TokenSet);
+           }
+
+           AnnotationSet LookupSet = document.getAnnotations().get("Lookup",
+               sentenceAnn.getStartNode().getOffset(),
+               sentenceAnn.getEndNode().getOffset());
+           FeatureMap negtokenFeature = Factory.newFeatureMap();
+           negtokenFeature.put("majorType", "negatives");
+           AnnotationSet negTokenSet = LookupSet.get("Lookup", negtokenFeature);
+
+           if(DEBUG.booleanValue()) Out.prln("before a negative");
+           if(negTokenSet != null)
+           {
+               if(DEBUG.booleanValue()) Out.prln("got a negative");
+               negateTokenAnn = getclosesAnnot(negTokenSet, hedgesAnnotsAnn, TokenSet);
+           }
+
+           if(DEBUG.booleanValue()) Out.prln("Tagging sentence");
+
+           FeatureMap features = Factory.newFeatureMap();
+           features.put("hedgePart", "noun");
+           document.getAnnotations().add(nounTokenAnn.getStartNode(), nounTokenAnn.getEndNode(), "HedgedNoun", features);
+           if(negateTokenAnn != null)
+           {
+               FeatureMap nfeatures = Factory.newFeatureMap();
+               nfeatures.put("hedgePart", "negative");
+               document.getAnnotations().add(negateTokenAnn.getStartNode(), negateTokenAnn.getEndNode(), "NegateHedge", nfeatures);
+           }
+         }
+       }
+   }
+
+   public Annotation getclosesAnnot(AnnotationSet negTokenSet, Annotation hedgesAnnotsAnn, AnnotationSet TokenSet)
+   {
+      long Larger = 0, Smaller = 1000000;
+      Annotation negateTokenAnn = null, punctTokenAnn = null;
+      Annotation FinalAnnot = null, beforeAnnot = null, afterAnnot = null;
+      Iterator ntit = negTokenSet.iterator();
+
+           FeatureMap punctFeature = Factory.newFeatureMap();
+           punctFeature.put("kind", "punctuation");
+           AnnotationSet punctSet = TokenSet.get("Token", punctFeature);
+
+      Iterator punctit = punctSet.iterator();
+      //a way to find the punct closes to the hedge same as the while loop
+      //except for the finalannot would be before and after hedge.
+       while(punctit.hasNext())
+       {
+          punctTokenAnn = (Annotation)punctit.next();
+
+          if(punctTokenAnn.getStartNode().getOffset().longValue() < hedgesAnnotsAnn.getStartNode().getOffset().longValue() &&
+                punctTokenAnn.getStartNode().getOffset().longValue() > Larger)
+          {
+            Larger = punctTokenAnn.getStartNode().getOffset().longValue();
+            beforeAnnot = punctTokenAnn;
+          }
+
+          //simple check to see if negate is < punct.offset
+          if(punctTokenAnn.getStartNode().getOffset().longValue() > hedgesAnnotsAnn.getStartNode().getOffset().longValue() &&
+                punctTokenAnn.getStartNode().getOffset().longValue() < Smaller)
+          {
+            Smaller = punctTokenAnn.getStartNode().getOffset().longValue();
+            afterAnnot = punctTokenAnn;
+          }
+       }
+       Larger = 0;
+       Smaller = 1000000;
+
+      while(ntit.hasNext())
+      {
+         negateTokenAnn = (Annotation)ntit.next();
+
+         //if punct.offset is > hedges the just do following else
+         if(negateTokenAnn.getStartNode().getOffset().longValue() < hedgesAnnotsAnn.getStartNode().getOffset().longValue() &&
+               negateTokenAnn.getStartNode().getOffset().longValue() > Larger)
+         {
+           Larger = negateTokenAnn.getStartNode().getOffset().longValue();
+           FinalAnnot = negateTokenAnn;
+         }
+
+         //if punct.offset is < hedges then check to see if negate
+         // is < punct.offset then ignore else apply
+         if(negateTokenAnn.getStartNode().getOffset().longValue() > hedgesAnnotsAnn.getStartNode().getOffset().longValue() &&
+               negateTokenAnn.getStartNode().getOffset().longValue() < Smaller)
+         {
+           Smaller = negateTokenAnn.getStartNode().getOffset().longValue();
+           FinalAnnot = negateTokenAnn;
+         }
+      }
+      return FinalAnnot;
+   }
+
+} // class Hedger
+
+class HedgeValue
+{
+   HedgeValue()
+   {
+       Value = (float)0.0;
+       Word = "";
+   }
+
+   HedgeValue(HedgeValue HVin)
+   {
+       Value = HVin.Value;
+       Word = HVin.Word;
+   }
+
+   public String Word;
+   public float Value;
+}

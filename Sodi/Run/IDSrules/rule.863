@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI w3-msql access";flags: A+; uricontent:"/w3-msql/"; nocase; reference:bugtraq,591; reference:cve,CVE-1999-0276; reference:arachnids,210;classtype:attempted-recon; sid:861; rev:3;)

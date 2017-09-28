@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"EXPLOIT x86 windows MailMax overflow";flags: A+; content:"|eb45 eb20 5bfc 33c9 b182 8bf3 802b|"; reference:bugtraq,2312; reference:cve,CVE-1999-0404; classtype:attempted-admin; sid:310; rev:2;)

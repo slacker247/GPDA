@@ -1,0 +1,1 @@
+alert tcp $SQL_SERVERS 1433 -> $EXTERNAL_NET any (msg:"MS-SQL sa logon failed"; content: "Login failed for user |27|sa|27|"; flags: AP; offset:16; classtype:unsuccessful-user; sid:688; rev:1;)

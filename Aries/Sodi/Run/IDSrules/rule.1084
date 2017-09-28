@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC telnet attempt";flags: A+; content:"telnet.exe"; nocase; classtype:web-application-activity; sid:1066; rev:2;)

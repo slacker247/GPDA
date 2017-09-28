@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Router Advertisment"; itype: 9; icode: 0; reference:arachnids,173; sid:441;  classtype:misc-activity; rev:4;)

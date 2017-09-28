@@ -1,0 +1,617 @@
+
+
+This dataset contains information from the Aviation Safety Reporting System
+Database and some utilities to convert it to its graph format. In specific,
+the dataset contains information about reports where some damage or injury
+was the consequence of the report. The fields included are:
+
+acft_type
+activity
+airspc_typ
+alt_agl_hi
+alt_agl_lo
+alt_msl_hi
+alt_msl_lo
+anomalies
+ceiling
+consequenc
+crew_size
+engine_typ
+exp_gen
+exp_mil
+exp_supvr
+e_flag
+faa_class
+fac_id
+fac_type
+flt_condit
+flt_phase
+flt_plan
+flt_route
+index_num
+lighting
+lndg_gear
+location_i
+loctn_stat
+make_model
+mission
+miss_diagl
+miss_horiz
+miss_vertl
+num_engine
+operator
+partnum
+quarted_da
+ref_direct
+ref_dstanc
+ref_radial
+report_typ
+resolution
+role
+situations
+surface
+vis_high
+vis_low
+wings
+time_in_ty
+time_lst_9
+total_time
+year_month
+
+A description of the fields can be seen in the appendix at the end of the
+README file.
+
+
+
+CONTENT
+
+	FILENAME		DESCRIPTION
+----------------------------------------------------------------------------
+	README_AVIATION		This README file.
+	daminjsma		The dataset.
+	airportid.txt		Airport's location file.
+	mg.c			Program to convert to graph.
+	cg.c			Program to create Spatio-Temporal relations.
+	format_avfile.sed	Program to format the dataset to be used by
+				the mg.c program.
+
+
+
+CONVERSION TO GRAPH FORMAT
+
+1. First, we give format to the file daminjsma so that the program that
+   creates the graph can read it, we use the sed program format_avfile.sed:
+
+  $ format_avfile.sed daminjsma
+
+   the output will be the file: daminjsma.out
+
+   Then we move the file daminjsma.out to the file daminjsma:
+
+  $ mv daminjsma.out daminjsma
+
+2. Then we run the program mg with the file daminjsma to create the graph:
+
+  $ mg daminjsma
+
+   The output will consist of three files:
+
+	- daminjsma.vertex
+	- daminjsma.edges
+	- daminjsma.index
+
+3. Now we create the "near_to" connections using the program cg, the file
+   airportid.txt and the file daminjsma.index. We need to specify the
+   output file name "daminjsma.con":
+
+  $ cg airportid.txt daminjsma.index daminjsma.con
+
+   The result will be stored in the file daminjsma.con
+
+4. Finally, we put the graph together:
+
+  $ cp daminjsma.vertex daminjsma.g
+  $ cat daminjsma.edges >> daminjsma.g
+  $ cat daminjsma.con >> daminjsma.g
+
+   We are ready to use the graph file "daminjsma.g" as input to subdue.
+
+
+
+
+For any question e-mail to:
+
+Jesus A. Gonzalez
+gonzalez@cse.uta.edu
+
+
+
+
+APPENDIX: The Aviation Safety Reporting System Database 
+
+(Taken from Aeroknowledge, "ASRS CD-ROM MANUAL, Version 1.2", Aeroknowledge,
+Inc., 2425 Pennington Road Trenton, NJ, November 1994.)
+
+We show in this appendix a description of the fields in the ASRS database. This description was taken from the "ASRS CD ROM USER'S MANUAL."
+
+
+RECORD STRUCTURE
+Accession Number: Unique index number that identifies each incident.
+Single/Multiple Report: Indicates if the incident is a stand alone incident (SGL) or if there are several reports regarding this situation (MUL) and were combined into a single report.
+Report Type: To distinguish reports that describe discrete events (OCC), recurring events (ROC), and ongoing situations (SIT).
+
+DATE AND TIME OF OCCURRENCE
+Date of Occurrence: Year and month of occurrence (e.g. "8901" means Jan 1989).
+Day of Week: Day of the week of the incident (Sunday to Saturday).
+Quarter of Day: The quarter of the day in which the incident happened
+	0001_0600_LOCAL....0001:0600 Hours Local Time
+	0601_1200_LOCAL....0601:1200 Hours Local Time
+	1201_1800_LOCAL....1201:1800 Hours Local Time
+	1801_2400_LOCAL....1801:2400 Hours Local Time
+
+INCIDENT DESCRIPTION
+What Anomalies Occurred:
+ACFTEQUIPMENTPROBLEM/CRITICAL
+ACFTEQUIPMENTPROBLEM/LESSSEVERE
+ALTDEV/EXCURSIONFROMASSIGNED
+ALTDEV/OVERSHOOTONCLBORDES
+ALTDEV/UNDERSHOOTONCLBORDES
+ALTDEV/XINGRESTRICTIONNOTMET
+ALT-HDGRULEDEVIATION
+CONFLICT/AIRBORNELESSSEVERE
+CONFLICT/GROUNDCRITICAL
+CONFLICT/GROUNDLESSSEVERE
+CONFLICT/NMAC
+CONTROLLEDFLTTOWARDTERRAIN
+ERRONEOUSPENETRATIONOREXITAIRSPACE
+IN-FLTENCOUNTER/OTHER
+IN-FLTENCOUNTER/WX
+LESSTHANLEGALSEPARATION
+LOSSOFACFTCONTROL
+NOSPECIFICANOMALYOCURRED
+NONADHERENCELEGALRQMT/CLNC
+NONADHERENCELEGALRQMT/FAR
+NONADHERENCELEGALRQMT/OTHER
+NONADHERENCELEGALRQMT/PUBLISHEDPROC
+RWYORTXWYEXCURSION
+RWYTRANSGRESS/OTHER
+RWYTRANSGRESS/UNAUTHLNDG
+SPEEDDEVIATION
+TRACKORHDGDEVIATION
+UNCTRLEDARPTTRAFFICPATTERNDEVIATION
+VFRINIMC
+OTHER
+
+Independent Detectors: Who detected the anomaly:
+ATC				Air Traffic Control
+ATC/CTLR			Air Traffic Control (a controller)
+ATC/EQUIPMENT		Air Traffic Control (ATC equipment)
+COCKPIT			Someone or something in the cockpit
+COCKPIT/EQUIPMENT		Cockpit Equipment
+COCKPIT/FLC			A flight crew member
+OTHER				Other
+Action Taken to Resolve:
+ACFTDEPARTEDPENETRATEDAIRSPACE
+ACFTEQUIPPROBLEMRESOLVEDITSELF
+ACFTEXITEDADVERSEENVIRONMENT
+AUTOMATEDACFTSUBSYSTEMINTERVENED
+CTLRINTERVENED
+CTLRISSUEDNEWCLNC
+FLCABORTEDTKOF
+FLCAVOIDANCE-EVASIVEACTION
+FLCBECAMEREORIENTED
+FLCEXECUTEDGARORMAP
+FLCOVERCAMEEQUIPPROBLEM
+FLCREGAINEDACFTCONTROL
+FLCRETURNEDACFTTOORIGINALCLNCORINTENDEDCOUR
+NOTRESOLVED/ANOMALYACCEPTED
+NOTRESOLVED/DETECTEDAFTER-THE-FACT
+NOTRESOLVED/INSUFFICIENTTIME
+NOTRESOLVED/OTHER
+NOTRESOLVED/UNABLE
+OTHER
+
+Known Consequences:
+ACFTDAMAGED
+EMOTIONALTRAUMA
+FAAASSIGNEDORTHREATENEDPENALTIES
+FAAINVESTIGATORYFOLLOWUP
+FLC/ATCREVIEW
+INJURY
+NONE
+OTHER
+
+OTHER EVENT CATEGORIZATIONS
+FAA Air Traffic Incident: To categorize events using the terminology employed by the FAA:
+AMBIGUOUS			Ambiguous
+BOMB_THREAT			Bomb Threat
+EMERGENCY			Emergency
+FLIGHT_ASSIST			Flight Assist
+INTER_FACILITY_COORD		Interfacility Coordination
+INTRA_FACILITY_COORD		Intrafacility Coordination
+MIL_FACILITY_DEV			Military Controller Deviation
+MISCELLANEOUS			Miscellaneous
+NEAR_MIDAIR			Near Mid Air Collision
+NO_INCIDENT			None
+OPERATOR_DEV			CTLR Operational Dev., No Loss of Std. Separation
+OPERATOR_ERROR			Ctlr. Operational Error, Loss of Std. Separation
+PILOT_DEV			Pilot Deviation
+AIRSPC_SPILLIN			Spill Into Authorized Airspace
+AIRSPC_SPILLOUT			Spill Out of Authorized Airspace
+
+Situations Described: Codes the nature of the aviation safety situations or recurrent aviation safety anomalies commonly reported:
+ACHART(S)
+APUBLICATION(S)
+ACFTEQUIPMENT
+ANACFTTYPE
+ANINTXNNAMEOROTHERNAME
+DESIGN/AIRSPACE
+DESIGH/ROUTE
+OTHER
+PHYSICALFACILITY/ARPT
+PHYSICALFACILITY/ATC
+PHYSICALFACILITY/NAVAID
+PROCORPOLICY/ARPT
+PROCORPOLICY/ATCFACILITY
+PROCORPOLICY/COMPANY
+PROCORPOLICY/FAA
+
+Education Flag:
+EFLAG			Educational Flag (illustrative report/well written)
+NF			New Form (new ASRS reporting form c. 1988)
+Incident Synopsis <SYN>: A small free-text synopsis of the event.
+Reporter Narrative <NAR>: The free-text narratives of reporters explaining an occurrence.
+All Text <NAR,SYN,KEY>: Combined Synopsis and Reporter Narrative fields, and an additional Key Words field.
+
+ENVIRONMENTAL CONDITIONS
+Flight Conditions:
+IMC	Instrument Meteorological Conditions
+MARGINAL_VFR	Marginal Visual Flight Rule Meteorological Conditions
+MIXED_CONDITIONS	Mixed Visual/Instrument Meteorological Conditions
+SPECIAL_VFR	Special Visual Flight Rule Meteorological Conditions
+VMC	Visual Meteorological Conditions
+
+Lighting:
+DAWN			Dawn
+DUSK			Dusk
+DAYLIGHT		Daylight
+Night			Night
+
+Ceilling<FT>: Height of ceiling in feet.
+Visibility <MILES>: Visibility given by the reporter at the time of the event occurrence. There are a high and a low value.
+Rwy Vis Range<FT>: Runway Visual Range in feet. This is a range value and runs from low value to high.
+
+LOCATION
+Reference Facility ID: Reference Facility locational identifier. Uses standard FAA identifier codes.
+
+Facility State: The state in which the reference facility is located.
+
+Ref Point:
+- Distance <NM>: Nautical Miles (nm) from the reference facility.
+
+- Radial <DEG>: Precise bearing relative to the reference facility if provided by the reporter. Units in degrees.
+
+- Direction: General direction from the reference facility. Values given as compass points: N, NE, E, SE, S, SW, W, NW.
+MSL Altitude: Altitude above Mean Sea Level- a range from low to high in feet.
+AGL Altitude: Altitude above Ground Level - a range from low to high in feet.
+
+FACILITY ONE/TWO DETAIL
+Facility ID: This field uniquely identifies the facility involved (FAA id codes).
+Facility Number: Sequence number for this facility. (e.g., F1 is the first facility coded, F2 is the second facility coded, etc.)
+F1		Facility One
+F2		Facility Two
+F3		Facility Three
+Facility State: The state in which the reference facility is located.
+Facility Involved: The nature of involvement is coded in this field:
+ACFT_IN_COM	Aircraft in Communication, or Attempting Communication with Facility
+POSITIVE_CTL	Aircraft Under Positive Facility Control
+DEVIATION	Pilot or Controller Deviation from Facility Rules or Clearances
+FACILITY_NAV_PROB	Navigation Problem Involving Facility
+NO_ATC_CTRL	Aircraft Not Under Facility Control, But Required to Be
+ORG_DEST_30	Aircraft within 30 nautical miles of Origin or Destination Airport
+ON_GROUND	Event Occurred on Airport Surface
+FACILITY_PROBLEM	Problem with Facility Equipment, Procedures, or Staff
+Facility Type: The type of facility involved.
+AIRPORT			Airport
+ARTCC				Air Route Traffic Control Center
+BROADCAST_STATION		Broadcast Station
+COMMERCIAL_RADIO		Commercial Radio
+FSS				Flight Service Station
+ILS				Instrument Landing System
+MIL_FACILTY			Military Control Facility
+NDB				Non Directional Beacon
+TACAN				TACAN
+TRACON			Terminal Radar Approach Control
+TOWER				Control Tower
+VOR				VHF Omni Directional Range
+VORTAC			VHF Omni Directional Range/TACAN
+
+AIRSPACE ONE/TWO DETAIL
+Airspace ID: Unique standard FAA identifier.
+Airspace Involved:
+UNAUTH_AIRSPC_ENTRY	Unauthorized Entry to Airspace
+UNAUTH_AIRSPC_EXIT	Unauthorized Excursion from Airspace
+AIRSPC_OCCUPIED	Airspace Occupied during Occurrence
+AIRSPC_PROBLEM	Problem with Airspace Configuration, Charting or Publication
+AIRSPC_PROXIMITY	Proximate Airspace; Boundary Problem
+SHUD_OCCUPIED_ARSPC	Airspace should have been Occupied during Occurrence
+Airspace Type:
+ALERT_AREA	Alert Area
+CLASS_C	Class C Airspace, prev. Airport Radar Service Area (ARSA)
+CLASS_D	Class D Airspace, prev. Airport Traffic Area (ATA)
+AIRWAY	Airway
+CLASS_D_(CTRL_ZONE)	Class D Airspace, prev. Control Zone (CZN)
+MIL_INSTRMNT_ROUTE	Military Operations Area
+MOA	Military Operations Area
+OTH_CNTRLD_AIRSPC	Other Controlled Airspace
+SPECL_USE_ARSPC	Other Special Use Airspace
+CLASS_A	Class A Airspace, prev. Positive Control Airspace (PCA)
+PROHIBITED_AREA	Prohibited Area
+REFUELING_TRACK	Refueling Track
+RESTRICTED_AREA	Restricted Area
+CLASS_B	Class B Airspace, prev. Terminal Control Area (TCA)
+CLASS_C	Class C Airspace, prev, Terminal Radar Service Area (TRSA)
+CLASS_G	Class G Airspace, prev. Uncontrolled Airspace (UCA)
+MIL_VISUAL_ROUTE	Military Visual Training Route
+WARNING_AREA	Warning Area
+Airspace Handle: Sequence number for this airspace.
+S1				Air Space One
+S2				Air Space Two
+S3				Air Space Three
+
+PERSONNEL ONE/TWO DETAIL
+Affiliation: This field codes a person's affiliation.
+AIR_CARRIER	Air Carrier
+AIR_FORCE	Air Force
+AIR_TAXI	Air Taxi
+COMMERCIAL_GA	General Aviation Pilot, Flying for Compensation at Time of Occurrence.
+FAA	Federal Aviation Administration
+GOVERMENT	Government (except Military or FAA)
+MILITARY	Military, Reported Directly Not Through Channels
+NON_COMMERCIAL_GA	General Aviation Pilot, Not Flying for Compensation at Time of Occurrence
+NAVY	Navy
+OTHER	Other
+UNKNOWN_GA	General Aviation Pilot, Compensention Unknown
+Personnel Role: What was the person's role at the time of the incident occurrence.
+AIR_CARIER_INSPECTOR	Air Carrier inspector
+AIRPORT_MANAGER		Airport Manager
+FLIGHT_ATTENDANT		Cabin Attendant
+COMPANY_CHECK_PRSNL	Company Enroute Check Personnel
+CONTROLLER			Controller
+DISPATCHER			Dispatcher
+VEHICLE_DRIVER		Vehicle Driver
+FBO_PRSNL			Fixed Base Operator (Personnel)
+FLIGHT_CREW			Flight Crew
+FSS_PRSNL			Flight Service Station (Specialist)
+GROUND_CREW		Ground Crew
+OBSERVER			Observer
+OTHER				Other
+PASSENGER			Passenger
+SUPERVISOR			Supervisor
+UNICOM_OPERATOR		Unicom Operator
+Personnel Number: Sequence number for this person (e.g., P1 is the first person coded, P2 is the second person coded, etc.):
+P1				Person One
+P2				Person Two
+P3				Person Three
+General Cntl Exp: Number of general years in the air traffic control field.
+Military Cntl Exp: Years experience in military air traffic control.
+Non-Radar Cntl Exp: Years experience as a Non-Radar controller.
+Radar Cntl Exp: Years experience as a Radar Controller.
+Function Broad: Person's broad function category.
+ARTCC_CTLR			Center Controllers and Other Center Personnel
+FLIGHT_CREW			Flight Crew
+MISCELLANEOUS		Miscellaneous
+MIL_CTLR			Military Facility Operator or Controller
+TRACON_CTLR			Tracon Controllers and Other Tracon Personnel
+TOWER_CTLR			Tower Controllers and Other Tower Personnel
+Function Narrow: Person's narrow function.
+APPROACH_CTLR		Approach Controller
+INSPECTOR			Air Carrier Inspector
+AIRPORT_MANAGER		Airport Manager
+ARTCC_PERSONNEL		ARTCC (Center) Controllers and Other ARTCC Personnel
+FLIGHT_ATTENDANT		Cabin Attendant
+CAPITAIN			Capitain
+CLEARANCE_DELIVERY	Clearance Delivery Person
+COMPANY_CHECK_PRSNL	Company Enroute Check Personnel
+CHECK_PILOT			Check Pilot
+COORDINATOR		Coordinator
+DEPARTURE_CTLR		Departure Controller
+DISPATCHER			Dispatcher
+DATA_PERSON			Data Person, ARTCC
+VEHICLE_DRIVER		Vehicle Driver
+FBO_PRSNL			Fixed Base Operator (Personnel)
+FLIGHT_DATA_PRSNL		Flight Data Person
+FIRST_OFFICER		First Officer
+FSS_PRSNL			Flight Service Station (Specialist)
+GROUND_CTLR		Ground Controller
+GROUND_CREW		Ground Crew
+HANDOFF_CTLR		Handoff Controller
+INSTRUCTOR			Pilot Giving Instruction (Flight Instructor)
+LOCAL_CTLR			Local Controller
+MANUAL_CTLR			Manual Controller
+OBSERVER			Observer
+OTHER				Other
+PRECSN_APPROACH_CTLR	Precision Approach Radar (Controller)
+PASSENGER			Passenger
+PILOT_IN_COMMAND		Pilot in Command
+SINGLE_PILOT			Single Pilot
+RANGE_CTLR			Range Controller
+RADAR_CTLR			Radar Controller
+RADIO_HANDOFF_PRSNL	Radio Handoff Man
+RUNWAY_SUPVSRY_PRSNL	Runway Supervisory Unit Personnel
+SECOND_OFFICER		Second Officer
+SUPERVISOR			Supervisor
+TOWER_ADVSRY_OPRATR	Tower Advisory Operator
+TRAINEE			Pilot Undergoing Instruction
+UNICOM_OPERATOR		Unicom Operator
+Flight Time Last 90: Pilot's flight time (hours) in the last 90 days before the incident occurrence.
+Flight Time Total: Pilot's total career flight time (hours).
+Flight Time in Type: Pilot's flight time (hours) in the type of aircraft flown at the time of the incident occurrence.
+Relevant Activity: The persons relevant involvement with the incident occurrence.
+CTLR	Controlling one or more of the aircraft coded in the record
+FLYING	Flying an aircraft coded in the data record
+MONITOR	Monitoring or supporting the activities of someone whose performance was a factor in the occurrence (the "crew concept")
+OTHER	Other
+DIRECT_INVOLVEMENT	Direct Involvement, other than Flying or Controlling
+REPORTER	ASRS Reporter
+Qualifications: Person's qualifications.
+ATP				Air Transport Certificate
+CFI				Certified Flight Instructor
+COMMERCIAL			Commercial License
+DISPATCHER			Dispatcher Rating
+DEVELOPMENTAL_CTLR	Developmental Controller
+FLIGHTENGINEER		Flight Engineer Rating
+FSS_SPECIALIST		Certified Flight Service Specialist
+INDTRUMENT_RATING	Instrument Rating
+MILITARY_PILOT		Military Pilot License
+MILITARY_CTLR		Certified Military Controller
+NON_RADAR_CTLR		Certified Fully Proficient Non Radar Controller
+OTHER				Other
+PRIVATE			Private (Pilot License)
+RADAR_CTLR			Certified Fully Proficient Radar Controller
+STUDENT_PILOT		Student Pilot
+
+AIRCRAFT ONE/TWO DETAIL
+Advanced Cockpit: Advanced cockpit equipment installed on aircraft.
+EFIS_OR_HUD			CRT, HUD, and Other Advanced Displays
+INTEGRATED_NAV		FMS/FMC, INS, etc.
+NOT_ADVANCED		None
+Airframe Engines: Type of engine installed on the aircraft.
+NO_ENGINES			No engine (e.g., glider)
+RECIPROCATING		Reciprocating
+TURBOJET			Turbojet
+TURBOPROP			Turboprop
+Gear: Aircraft's landing gear type.
+FIXED_GEAR			Fixed gear
+NO_GEAR			No gear (e.g., balloon)
+RETRACTABLE			Retractable gear
+Operating Surfaces: Type of surface on which the aircraft can takeoff/land.
+AMPHIBIAN	Can takeoff/land from Land or Sea surfaces
+LAND_PLANE	Can takeoff/land from land surface only
+SEA_PLANE	Can takeoff/land from Sea surface only
+SKY_PLANE	Uses ski struts to takeoff/land on snow covered surfaces only
+Wings: Type of wing of the aircraft.
+BI_WING			Bi-wing
+HIGH_WING			High wing
+LOW_WING			Low wing
+MID_WING			Mid wing
+NO_WINGS			No wing (e.g., blimp, balloon)
+ROTARY_WING		Rotary wing (e.g., helicopter)
+Crew Size: The number of crew members on the aircraft not including observers or check airmen in the cockpit.
+0				Zero
+1				One
+2				Two
+3				Three
+4ORMORE			Four or More 
+Mission: Type of flying being done by the aircraft at the time of the incident.
+AGRICULTURAL		Agricultural
+AIR_AMBULANCE		Ambulance Service
+FERRY_FLIGHT		Ferrying
+FREIGHT			Freight
+LOW_LEVEL_HIGH_SPEED	Low Level, High Speed Operation
+OTHER				Other
+PASSENGER			Passenger
+PLEASURE			Pleasure or Recreation
+PERSONAL			Personal Business
+AIR_REFUELING		Refueling
+TACTICAL			Military Tactical Mission
+TEST_FLIGHT			Test Flight
+TRAINING			Training
+UTILITY			Utility Mission (Off shore Oil, Lumbering, etc.)
+Number of Engines: Number of engines for the aircraft.
+0				Zero
+1				One
+2				Two
+3				Three
+4				Four
+8				Eight
+Operator Organiz.: The aircraft organization's principal mode of operation.
+AIR_CARRIER			Air Carrier (Airline Operator)
+AIR_TAXI			Air Taxi (General Aviation)
+CORPORATE			Corporate (General Aviation)
+GOVERNMENT			Government (General Aviation) NOT Military
+MILITARY			Military
+OTHER_GA			Other (General Aviation)
+PRIVATE			Private (General Aviation)
+RENTAL			Rental (General Aviation)
+Flight Phase: This entry describes the specific phase or phases of flight the aircraft was in during the reported occurrence or situation.
+TAKEOFF_ABORTED		Abort Takeoff
+AIR_HOLDING			Airborne Holding
+APPROACH			Approach
+CLIMB				Climb
+CRUISE				Cruise
+DIVERSION			Diversion to Alternate
+DESCENT			Descent
+EMERGENCY			Emergency
+GO_AROUND			Go Around
+GROUND_HOLDING		Ground Holding
+INITIAL_CLIMB		Initial Climb
+LOW_LEVEL_HIGH_SPEED	Low Level, High Speed
+LANDING			Landing
+MISSED_APPROACH		Missed Approach
+MAINTAINING			Maintain
+MANEUVERING		Maneuvers
+OTHER				Other
+Parked				Park
+Traffic_Pattern			Traffic Pattern
+PRE_FLIGHT			Preflight
+TOUCH_AND_GO		Touch and Go
+TAXIING			Taxi
+TAKEOFF			Takeoff
+Route: This entry describes the specific route or routes in use by the aircraft during the reported occurrence or situation.
+ARRIVAL			Arrival
+ATLANTIC			Atlantic
+CIRCLING_APPROACH		Circling Approach
+CONTACT_APPROACH		Contact Approach
+DEPARTURE			Departure
+DIRECT_ROUTING		Direct
+MIL_TRAINING			Military Training
+NOISE_ABATEMENT		Noise Abatement
+NO_SPECIFIC_ROUTE		None
+OCEANIC_ROUTE		Organized Oceanic Route
+OTHER				Other
+PACIFIC			Pacific
+PROFILE_DESCENT		Profile Descent
+AREA_NAVIGATION		Area Navigation
+SID				Standard Instrument Departure
+STAR				Standard Terminal Arrival
+STRAIGHT_IN			Straight in Approach
+TRANSITION			Transition
+RADAR_VECTORS		On Vectors
+VISUAL_APPROACH		Visual Approach
+OVER_WATER			Overwater
+Flight Plan: Aircraft's flight plan at the time of the incident.
+COMBINED_VFR_AND_IFR	Combined Visual and Instrument Flight Rules
+DEFENSE_VFR	Defense Visual Flight Rules
+IFR	Instrument Flight Rules
+NO_FLIGHT_PLAN	None
+SPECIAL_VFR	Special Visual Flight Rules
+VFR	Visual Flight Rules
+Aircraft Handle: Sequence number for this aircraft (e.g., A1 is the first aircraft coded, A2 is the second aircraft coded, etc.)
+A1				Aircraft One
+A2				Aircraft Two
+A3				Aircraft Three
+Aircraft Type: Civilian aircraft types are differentiated by arbitrary gross takeoff weight ranges. Military aircraft types are shown by function.
+SMALL_ACFT	Small Aircraft-Less than 5,000 lbs.
+SMALL_TRANSPORT	Small Transport 5,001 to 14,500 lbs.
+LIGHT_TRANSPORT	Light Transport 14,501 to 30,000 lbs.
+MEDIUM_TRANSPORT	Medium Transport 30,001 to 60,000 lbs.
+MED_LARGE_TRANSPORT	Medium Large Transport 60,001 to 150,000 lbs.
+LARGE_TRANSPORT	Large Transport 150,001 to 300,000 lbs. EXCEPT Widebodies
+WIDE_BODY	Widebody Transport Over 300,000 lbs.
+SPECIAL_PURPOSE	Special Purpose Aircraft
+SAILPLANE	Sailplane or Glider
+ULTRALIGHT	Ultralight
+BOMBER	Bomber
+FIGHTER	Fighter
+MIL_TRANSPORT	Military Transport
+MIL_TRAINER	Military Trainer
+OTHER	Other
+
+CONFLICT
+Miss Dist. <FT>:
+- Horiz.: If stated by the reporter, this field codes conflict miss distance between two or more aircraft in the horizontal plane
+- Vert.: If stated by the reporter, this field codes conflict miss distance between two or more aircraft in the vertical plane.
+- Diag.: If a reporter states a miss distance between two or more conflicting aircraft without stating whether it is in the vertical or horizontal direction, that distance is coded in this field.
+ 
+

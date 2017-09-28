@@ -1,0 +1,1 @@
+alert ip $EXTERNAL_NET any -> $HOME_NET any (msg:"DOS IGMP dos attack"; content:"|00 00|"; depth: 2; ip_proto: 2; fragbits: M+; classtype:attempted-dos; sid:273; rev:1;)

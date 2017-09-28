@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible shs Worm"; content: ".shs"; nocase; sid:730;  classtype:misc-activity; rev:3;)

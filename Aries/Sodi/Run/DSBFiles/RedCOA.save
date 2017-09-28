@@ -1,0 +1,36 @@
+   6        # Levels, CaseID
+   0    6 Intelligence_Reports      Level #, Nodes this level, Hypothesis
+     0    0.452500 0.188542 26.299999   Mobilize_Troops
+     1    0.000000 0.000000 -999999.000000   Activate_Reserves
+     2    0.139667 0.046556 35.700001   Activate_Specialists
+     3    0.000000 0.000000 -999999.000000   Deploy_TEL_Assets
+     4    0.640535 0.169391 147.600006   Deploy_SAM_Assets
+     5    0.700000 0.200000 173.800003   Deploy_Special_Forces
+   1    6 Events      Level #, Nodes this level, Hypothesis
+     0    0.181000 0.075417 26.299999   Deploy_Troops
+     1    0.000000 0.000000 -999999.000000   Deploy_Aircraft
+     2    0.139667 0.046556 35.700001   Disrupt_Comms
+     3    0.125700 0.041900 35.700001   Activate_Missile_Sites
+     4    0.512428 0.135513 147.600006   Position_SA-6s
+     5    0.700000 0.200000 173.800003   Destroy_Enemy_IADS
+   2    5 Activities      Level #, Nodes this level, Hypothesis
+     0    0.181000 0.075417 26.299999   Ground_Attack
+     1    0.000000 0.000000 -999999.000000   Air_Attack
+     2    0.139667 0.046556 35.700001   Comm_Attack
+     3    0.125700 0.041900 35.700001   Missile_Attack
+     4    0.549742 0.139293 173.800003   Control_Airspace
+   3    6 Tactical_Objectives      Level #, Nodes this level, Hypothesis
+     0    0.260439 0.075953 173.800003   Disrupt_Infrastructure
+     1    0.144800 0.060333 26.299999   Destroy_Icons
+     2    0.252911 0.090282 35.700001   Inflict_Casualities
+     3    0.036200 0.015083 26.299999   Destroy_Enemy_Forces
+     4    0.027933 0.009311 35.700001   Deploy_WMD
+     5    0.075420 0.025140 35.700001   Incite_Riots
+   4    4 Operational_Objectives      Level #, Nodes this level, Hypothesis
+     0    0.313382 0.090399 173.800003   Overthrow_Government
+     1    0.234379 0.080875 35.700001   Demoralize_Poplulace
+     2    0.208351 0.060763 173.800003   Control_Media
+     3    0.243221 0.071374 173.800003   Remove_Enemy_Occupation
+   5    2 Strategic_Objectives      Level #, Nodes this level, Hypothesis
+     0    0.383203 0.102966 173.800003   Control_Territory
+     1    0.257085 0.074922 173.800003   Instill_Beliefs

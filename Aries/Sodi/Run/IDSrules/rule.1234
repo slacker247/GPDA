@@ -1,0 +1,1 @@
+alert tcp $HOME_NET any -> $EXTERNAL_NET 80 (msg:"WEB-MISC Outlook EML access"; uricontent:".ewl"; flags:A+; classtype:attempted-admin; sid:1233; rev:1;)

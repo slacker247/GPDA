@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET 60000 -> $HOME_NET 2140 (msg:"BACKDOOR DeepThroat 3.1 Server Password Remove Client Request"; content:"92"; reference:arachnids,106; sid:136;  classtype:misc-activity; rev:3;)

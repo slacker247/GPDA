@@ -1,0 +1,132 @@
+digraph generated {
+  ratio=fill;
+  ranksep=1.5;
+  node [style=filled];
+  top[color=yellow];
+
+  "animal_lover"[color=coral,fontcolor=black];
+  "person"-> {  "animal_lover"; };
+
+  "tabloid"[color=yellow,fontcolor=black];
+  "newspaper"-> {  "tabloid"; };
+
+  "haulage_truck_driver"[color=coral,fontcolor=black];
+  "person"-> {  "haulage_truck_driver"; };
+
+  "animal"[color=yellow,fontcolor=black];
+  {top} ->"animal";
+
+  "colour"[color=yellow,fontcolor=black];
+  {top} ->"colour";
+
+  "driver"[color=coral,fontcolor=black];
+  "person"-> {  "driver"; };
+
+  "van_driver"[color=coral,fontcolor=black];
+  "person"-> {  "van_driver"; };
+
+  "publication"[color=yellow,fontcolor=black];
+  {top} ->"publication";
+
+  "person"[color=yellow,fontcolor=black];
+  {top} ->"person";
+
+  "white_van_man"[color=coral,fontcolor=black];
+  "man"-> {  "white_van_man"; };
+
+  "dog_liker"[color=coral,fontcolor=black];
+  "person"-> {  "dog_liker"; };
+
+  "dog_owner"[color=coral,fontcolor=black];
+  "person"-> {  "dog_owner"; };
+
+  "quality_broadsheet"[color=yellow,fontcolor=black];
+  "broadsheet"-> {  "quality_broadsheet"; };
+
+  "bicycle"[color=yellow,fontcolor=black];
+  "vehicle"-> {  "bicycle"; };
+
+  "magazine"[color=yellow,fontcolor=black];
+  "publication"-> {  "magazine"; };
+
+  "boy"[color=coral,fontcolor=black];
+  "person"-> {  "boy"; };
+
+  "bus"[color=yellow,fontcolor=black];
+  "vehicle"-> {  "bus"; };
+
+  "car"[color=yellow,fontcolor=black];
+  "vehicle"-> {  "car"; };
+
+  "cat"[color=yellow,fontcolor=black];
+  "animal"-> {  "cat"; };
+
+  "dog"[color=yellow,fontcolor=black];
+  "animal"-> {  "dog"; };
+
+  "kid"[color=coral,fontcolor=black];
+  "person"-> {  "kid"; };
+
+  "man"[color=coral,fontcolor=black];
+  "person"-> {  "man"; };
+
+  "van"[color=yellow,fontcolor=black];
+  "vehicle"-> {  "van"; };
+
+  "girl"[color=coral,fontcolor=black];
+  "person"-> {  "girl"; };
+
+  "bus_company"[color=yellow,fontcolor=black];
+  "company"-> {  "bus_company"; };
+
+  "lorry"[color=yellow,fontcolor=black];
+  "vehicle"-> {  "lorry"; };
+
+  "truck"[color=yellow,fontcolor=black];
+  "vehicle"-> {  "truck"; };
+
+  "woman"[color=coral,fontcolor=black];
+  "person"-> {  "woman"; };
+
+  "lorry_driver"[color=coral,fontcolor=black];
+  "person"-> {  "lorry_driver"; };
+
+  "old_lady"[color=coral,fontcolor=black];
+  "person"-> {  "old_lady"; };
+
+  "grownup"[color=coral,fontcolor=black];
+  "person"-> {  "grownup"; };
+
+  "newspaper"[color=yellow,fontcolor=black];
+  "publication"-> {  "newspaper"; };
+
+  "vehicle"[color=yellow,fontcolor=black];
+  {top} ->"vehicle";
+
+  "haulage_worker"[color=coral,fontcolor=black];
+  {top} ->"haulage_worker";
+
+  "company"[color=yellow,fontcolor=black];
+  {top} ->"company";
+
+  "red_top"[color=yellow,fontcolor=black];
+  "tabloid"-> {  "red_top"; };
+
+  "bus_driver"[color=coral,fontcolor=black];
+  "person"-> {  "bus_driver"; };
+
+  "haulage_company"[color=yellow,fontcolor=black];
+  "company"-> {  "haulage_company"; };
+
+  "broadsheet"[color=yellow,fontcolor=black];
+  "newspaper"-> {  "broadsheet"; };
+
+  "cat_liker"[color=coral,fontcolor=black];
+  "person"-> {  "cat_liker"; };
+
+  "cat_owner"[color=coral,fontcolor=black];
+  "person"-> {  "cat_owner"; };
+
+  "pet_owner"[color=coral,fontcolor=black];
+  "person"-> {  "pet_owner"; };
+}

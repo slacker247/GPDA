@@ -1,0 +1,58 @@
+# AutoClass C Header file -- extension .hd2
+#
+num_db2_format_defs 2
+number of attributes 52
+separator_char ' '
+#
+0 dummy nil "Case_ID"
+1 discrete nominal "Hypothesis" range 10
+2 dummy nil "Belief"
+3 dummy nil "Disbelief"
+4 discrete nominal "Report Org" range 10
+5 discrete nominal "Report Affil" range 10
+6 discrete nominal "Report Desc" range 10
+7 discrete nominal "Report Name" range 10
+8 discrete nominal "Enemy Org" range 10
+9 discrete nominal "Enemy Affil" range 10
+10 discrete nominal "Enemy Desc" range 10
+11 discrete nominal "Enemy Name" range 10
+12 discrete nominal "Ally Org" range 10
+13 discrete nominal "Ally Affil" range 10
+14 discrete nominal "Ally Desc" range 10
+15 discrete nominal "Ally Name" range 10
+16 discrete nominal "Other Org" range 10
+17 discrete nominal "Other Affil" range 10
+18 discrete nominal "Other Desc" range 10
+19 discrete nominal "Other Name" range 10
+20 discrete nominal "Region" range 10
+21 discrete nominal "Nation" range 10
+22 discrete nominal "Locale" range 10
+23 discrete nominal "City" range 10
+24 discrete nominal "Structure" range 10
+25 discrete nominal "Latitude" range 10
+26 discrete nominal "Longitude" range 10
+27 discrete nominal "Altitude" range 10
+28 discrete nominal "Subject" range 10
+29 discrete nominal "Action" range 10
+30 discrete nominal "Objective" range 10
+31 discrete nominal "Strategic" range 10
+32 discrete nominal "Operation" range 10
+33 discrete nominal "Tactical" range 10
+34 discrete nominal "Task" range 10
+35 discrete nominal "Method" range 10
+36 discrete nominal "Desc_1" range 10
+37 discrete nominal "Desc_2" range 10
+38 discrete nominal "Desc_3" range 10
+39 discrete nominal "Casualties" range 10
+40 discrete nominal "Injuries" range 10
+41 discrete nominal "Cost" range 10
+42 discrete nominal "Adjective" range 10
+43 discrete nominal "Start_Time" range 10
+44 discrete nominal "End_Time" range 10
+45 discrete nominal "Duration" range 10
+46 discrete nominal "Time_Frame" range 10
+47 dummy nil " "
+48 dummy nil "Info-ID"
+49 dummy nil "Prepared"
+50 dummy nil "Prep-Date"
+51 dummy nil "Story"

@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"DDOS Stacheldraht client-spoofworks"; content: "|73 70 6F 6F 66 77 6F 72 6B 73|"; itype: 0; icmp_id: 1000; reference:arachnids,192; classtype:attempted-dos; sid:227; rev:1;)

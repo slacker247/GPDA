@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS admin-default access";flags: A+; uricontent:"/scripts/iisadmin/default.htm"; nocase; classtype:web-application-attack; sid:994; rev:2;)

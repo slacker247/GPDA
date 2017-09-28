@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC PHP strings overflow"; flags: A+; content: "|ba49feffff f7d2 b9bfffffff f7d1|"; reference:bugtraq,802; reference:arachnids,431; classtype:web-application-attack; sid:1085; rev:2;)

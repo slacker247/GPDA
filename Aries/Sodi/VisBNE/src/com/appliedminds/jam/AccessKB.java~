@@ -1,0 +1,86 @@
+/*
+ * AccessKB.java
+ *
+ * Created on March 26, 2003, 11:28 AM
+ */
+
+package com.appliedminds.jam;
+
+/**
+ *
+ * @author  jeffmac
+ */
+
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.io.File;
+
+public class AccessKB extends JDialog 
+{
+
+    private JPanel panel1 = new JPanel();
+    private JButton jCancelBTN = new JButton();
+    private JButton jOKBTN = new JButton();
+    
+    boolean OK = false;
+    
+    /** Creates a new instance of AccessKB */
+    public AccessKB(Frame frame, String title, boolean modal) 
+    {
+        super(frame, title, modal);
+        try 
+        {
+          jbInit();
+          pack();
+        }
+        catch(Exception ex) 
+        {
+          ex.printStackTrace();
+        }
+    }
+
+    public AccessKB() 
+    {
+      this(null, "KB Stories", false);
+    }
+    
+    private void jbInit() throws Exception 
+    {
+      panel1.setLayout(null);
+      jCancelBTN.setBounds(new Rectangle(435, 421, 95, 23));
+      jCancelBTN.setText("Cancel");
+      jCancelBTN.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(ActionEvent e) 
+        {
+            jCancelBTN_actionPerformed(e);
+        }
+      });
+      jOKBTN.setBounds(new Rectangle(325, 422, 95, 23));
+      jOKBTN.setText("OK");
+      jOKBTN.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(ActionEvent e) 
+        {
+          jOKBTN_actionPerformed(e);
+        }
+      });
+      getContentPane().add(panel1);
+      panel1.add(jCancelBTN, null);
+      panel1.add(jOKBTN, null);
+    }
+
+    void jOKBTN_actionPerformed(ActionEvent e)
+    {
+      this.setVisible(false);
+    }
+
+    void jCancelBTN_actionPerformed(ActionEvent e)
+    {
+      this.setVisible(false);
+    }
+
+    public File StoryToGMLFile()
+    {
+        return null;
+    }
+}

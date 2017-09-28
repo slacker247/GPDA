@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION parks access"; flags: A+; uricontent:"/cfdocs/examples/parks/detail.cfm"; nocase; reference:bugtraq,550; classtype:attempted-recon; sid:912; rev:2;)

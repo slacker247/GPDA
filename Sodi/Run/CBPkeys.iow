@@ -1,0 +1,67 @@
+    3
+#                  +-- Weighting (0=Low, 1=Med, 2=High, 3=Weight, 4=MustHave, 5=Not)
+#                  |    +-- Weight
+#                  |    |     +-- Constraint count
+#                  |    |     |    +-- Synonym count
+#                  |    |     |    |    +-- Indice enabled
+#                  |    |     |    |    |
+Intrusion          4
+Access             9  
+Ftp                3  -1.0    0    0    0
+Telnet             3  -1.0    0    0    0
+Tftp               3  -1.0    0    0    0
+Finger             3  -1.0    0    0    0
+Rservices          3  -1.0    0    0    0
+Smtp               3   1.0    0    0    1
+Netbios            3   1.0    0    0    1
+Rpc                3   1.0    0    0    1
+X11                3   1.0    0    0    1
+#
+Policy             3
+Policy             3  -1.0    0    0    0
+Porn               3  -1.0    0    0    0
+Icmp-Info          3  -1.0    0    0    0
+#
+Scanning           2
+Icmp               3  -1.0    0    0    0
+Scan               3  -1.0    0    0    0
+#
+Misc.              6
+Attack-Responses   3  -1.0    0    0    0
+Bad-traffic        3  -1.0    0    0    0
+Info               3  -1.0    0    0    0
+Sql                3  -1.0    0    0    1
+Misc               3  -1.0    0    0    0
+Local              3  -1.0    0    0    0
+###########################################
+Attacks            4
+Denial             2
+Dos                2
+Ddos               3  -1.0    0    0    0
+#
+Net-Hopping        1
+DNS                3  -1.0    0    0    0
+#
+Infection          3
+Backdoor           3  -1.0    0    0    0
+Shellcode          3  -1.0    0    0    0
+Virus              3  -1.0    0    0    0
+#
+IP_Spoofing        1
+Exploit            3  -1.0    0    0    1
+###########################################
+Web                4
+Attacks            1
+Web-Attacks        3  -1.0    0    0    0
+#
+Denial             1
+Web-IIS            3  -1.0    0    0    0
+#
+Deface             2
+Web-CGI            3  -1.0    0    0    0
+Web-FrontPage      3  -1.0    0    0    0
+#
+Misc.              2
+Web-ColdFusion     3  -1.0    0    0    1
+Web-Misc           3  -1.0    0    0    1
+[EOF]

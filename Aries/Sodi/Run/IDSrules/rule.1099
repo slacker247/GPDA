@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC amazon 1-click cookie theft"; flags: A+; content:"ref%3Cscript%20language%3D%22Javascript"; nocase; classtype:web-application-attack; sid:1082; rev:4; reference:bugtraq,1194; reference:cve,CVE-2000-0439;)

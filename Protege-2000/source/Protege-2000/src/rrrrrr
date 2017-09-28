@@ -1,0 +1,8 @@
+cd /home/dre/Protege-2000/source/Protege-2000/src/edu/stanford/smi/RemoteKBTab/toolbox
+javac *.java
+cd ..
+javac *.java
+rm W*.class
+cd /home/dre/Protege-2000/source/Protege-2000/src
+cp META-INF/MANIFEST.MF.remoteKB /home/dre/Protege-2000/plugins/meta-inf/manifest.mf
+jar cmf /home/dre/Protege-2000/plugins/meta-inf/manifest.mf /home/dre/Protege-2000/plugins/remoteKBTab.jar edu/stanford/smi/RemoteKBTab/toolbox/*.class edu/stanford/smi/RemoteKBTab/*.class

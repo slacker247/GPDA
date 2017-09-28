@@ -1,0 +1,24 @@
+constellation {
+  int icon 44
+  int n_rings 3
+  int n_per_ring 13
+  float altitude 1600.0
+  float inclination 65.0
+  float time 0.0
+  float turn_on_time 59000.0
+  logical on_off T
+  logical stagger T
+}
+
+BRILLIANT_EYE_SENSOR {
+  float scan_time 10.0
+  float rmin 0.0
+  float rmax 6000.0
+  float rdotmin 0.0
+  float signal 0.0
+  float luminosity 0.0
+  logical fixed F
+  logical los T
+  float error 2.0
+  int icon 44
+}

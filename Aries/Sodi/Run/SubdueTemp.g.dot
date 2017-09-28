@@ -1,0 +1,19 @@
+digraph G {
+	node [style=filled];
+SUBDUETEMP_G;
+ 	SUBDUETEMP_G [color=white, label="SUBDUETEMP_G"];
+	SUBDUETEMP_G -> Sub_1;
+ 	Sub_1 [color=green1, label="Sub_1 [9]\nCND Report-Org: UK_Gov\nCND Report-Affil: UN\nCND Report-Desc: Prime_Minister\nCND Report-Name: Tony_Blair\nCND Ally-Org: ?\nCND Ally-Affil: ?\nCND Ally-Desc: ?\nCND Ally-Name: ?\nCND Party-Org: ?\nCND Party-Affil: ?\nCND Party-Desc: ?\nCND Party-Name: ?\nCND Locale: ?\nCND City: ?\nCND Latitude: ?\nCND Longitude: ?\nCND Altitude: ?\nCND Desc-2: ?\nCND Desc-3: ?\nCND Cost: ?\nCND Adjective: ?\n"];
+	Sub_1 -> Sub_2;
+ 	Sub_2 [color=ivory2, label="Sub_2 [5]\nSub_1a Enemy-Affil: ?\nSub_1a Enemy-Desc: ?\nSub_1a Enemy-Name: Osama_bin_Laden\nSub_1a Region: ?\nSub_1a Structure: ?\nSub_1a Subject: Osama_bin_Laden\nSub_1a Strategic: Claim_Credit\nSub_1a Operation: ?\nSub_1a Desc-1: ?\nSub_1a Start-Time: 2002:1:1:1:1\nSub_1a End-Time: 2002:1:1:1:1\nSub_1a Duration: 0:0:0:1:0\nSub_1a Time-Frame: Near\n"];
+	Sub_2 -> Sub_4;
+ 	Sub_4 [color=orange1, label="Sub_4 [3]\nSub_2e Enemy-Org: ?\nSub_2e Nation: Kenya_&_Tanzania\nSub_2e Action: Attack\nSub_2e Objective: US_Embassy\nSub_2e Tactical: ?\nSub_2e Task: Attack_US_Embassy\nSub_2e Method: Allied_with_Taliban\nSub_2e Casualties: 224.000000\nSub_2e Injuries: 5000.000000\n"];
+	Sub_4 -> Sub_6;
+ 	Sub_6 [color=lightblue, label="Sub_6 [2]\nSub_4c Belief: Impossible\nSub_4c Disbelief: Impossible\n"];
+	Sub_2 -> Sub_7;
+ 	Sub_7 [color=orange1, label="Sub_7 [2]\nSub_2g Hypothesis: Open_Source\nSub_2g Disbelief: Very_Unlikely\n"];
+	Sub_1 -> Sub_3;
+ 	Sub_3 [color=ivory2, label="Sub_3 [3]\nSub_1i Hypothesis: SIGINT\nSub_1i Belief: Very_Likely\nSub_1i Disbelief: Very_Unlikely\nSub_1i Enemy-Org: al-Qaida\nSub_1i Enemy-Affil: Taliban\nSub_1i Enemy-Desc: Terrorist_Network\nSub_1i Enemy-Name: Osama_bin_Laden\nSub_1i Subject: Osama_bin_Laden\nSub_1i Action: Attack\nSub_1i Tactical: Pursue_Terrorist_Act.\nSub_1i Start-Time: 2000:1:1:2:2\nSub_1i End-Time: 2000:1:3:4:3\nSub_1i Duration: 2000:1:1:2:2\n"];
+	Sub_3 -> Sub_5;
+ 	Sub_5 [color=orange1, label="Sub_5 [2]\nSub_3f Region: ?\nSub_3f Nation: US\nSub_3f Structure: USS_Cole\nSub_3f Objective: US_Navy\nSub_3f Strategic: ?\nSub_3f Operation: Terrorist_Attack\nSub_3f Task: Attack_USS_Cole\nSub_3f Method: ?\nSub_3f Desc-1: ?\nSub_3f Time-Frame: Near\n"];
+}

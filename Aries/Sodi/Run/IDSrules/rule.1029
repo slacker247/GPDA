@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS iisadmpwd attempt";flags: A+; uricontent:"/iisadmpwd/aexp"; nocase; reference:bugtraq,2110; reference:cve,CVE-2000-0303; classtype:web-application-attack; sid:1018; rev:2;)

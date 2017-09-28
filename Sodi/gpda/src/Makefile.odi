@@ -1,0 +1,102 @@
+#----------------------------------------------------------------
+# Makefile for JTAMV Control
+#----------------------------------------------------------------
+
+#  Define the Architecture here once and for all
+
+#ARCH = SUN4
+#ARCH = SGI
+ARCH  = Linux
+#
+#----------------------------------------------------------------
+# directories
+#----------------------------------------------------------------
+#
+SPEEDESDIR = $(HOME)/Speedes
+PROXDIR    = $(SPEEDESDIR)/demos/prox
+SOURCEDIR  = $(SPEEDESDIR)/demos/prox/SimCmdr
+LIBDIR = $(PROXDIR)/lib/$(ARCH)
+BINDIR = $(PROXDIR)/bin/$(ARCH)
+EXEDIR = $(PROXDIR)/exe/$(ARCH)
+#
+#----------------------------------------------------------------
+# Include directories
+#----------------------------------------------------------------
+#
+INCLUDES = -I$(SPEEDESDIR)/src/speedes -I$(SPEEDESDIR)/src/comm/shmem \
+	-I$(SPEEDESDIR)/src/utilities -I$(SPEEDESDIR)/demos/prox/src \
+	-I/usr/X11R6/include \
+	-I$(HOME)/include \
+	-I$(SODIHOME)/Inc \
+	-I$(SODIHOME)Inc/X11 \
+	-I./include -I/usr/include/g++
+#
+#----------------------------------------------------------------
+# Library directories
+#----------------------------------------------------------------
+#
+SPEEDESLIB   = $(SPEEDESDIR)/lib/ArchitectureDirs/$(ARCH)
+SHMEMLIB     = $(SPEEDESDIR)/lib/ArchitectureDirs/$(ARCH)
+UTILITIESLIB = $(SPEEDESDIR)/lib/ArchitectureDirs/$(ARCH)
+#
+#----------------------------------------------------------------
+#  Fortran, C, and C++ compilers and flags:
+#----------------------------------------------------------------
+#
+C       = gcc
+C++     = g++
+FOR	= $(HOME)/bin/f90
+#
+FLAGS   = -D$(ARCH) -DCROS -DMERC -DHOST -DFASTCOMB -DCPP20 $(INCLUDES)
+CFLAGS  = $(FLAGS) -g -c -lm
+CCFLAGS = $(FLAGS) -g -c -lm
+FFLAGS  = -g -c -w -dusty $(INCLUDES)
+LFLAGS  = -L/usr/local/lib \
+	-L$(SPEEDESLIB) -l_speedes -l_utilities -l_prox3d \
+	-L$(SODIHOME)/Lib -lforms -lXpm \
+	-L$(SODIHOME)/Lib/X11 -lXm \
+	-L/usr/X11R6/lib -lXpm -lXt -lX11 -lXext -lXmu \
+	-lm
+#
+# external libraries (machine constants are in the PORT library)
+#
+# C++ language source files
+
+CCSRC = ODImain.C ODIforms.c
+
+EDCCSRC = jtamved.C VEDforms.c
+#
+# Object files:
+OBJECTS = $(CCSRC:.C=.o)  $(CSRC:.c=.o) $(FSRC:.f=.o)
+EDOBJS  = $(EDCCSRC:.C=.o)  $(EDCSRC:.c=.o) $(EDFSRC:.f=.o)
+
+all: odi jtamved
+
+odi: $(OBJECTS)
+	$(C++) -g -o odi $(INCLUDES) $(OBJECTS) $(LFLAGS)
+
+jtamved: $(EDOBJS)
+	$(C++) -g -o jtamved $(INCLUDES) $(EDOBJS) $(LFLAGS)
+
+#...............................................................
+# keep track of include file dependencies:
+.KEEP_STATE:
+#
+# clear suffix defaults and specify our own:
+.SUFORIXES:
+.SUFFIXES: .c .C .o .s .f
+#
+# specify how to make a .o file from a .c file
+.c.o:
+	$(C) $(CFLAGS) $<
+# specify how to make a .o file from a .c file
+.C.o:
+	$(C++) $(CCFLAGS) $<
+#specify how to make a .o file from a .f file
+.f.o:
+	$(FOR) $(FFLAGS) $<
+#
+#  end of Makefile
+#===============================================================
+
+

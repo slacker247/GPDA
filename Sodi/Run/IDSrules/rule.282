@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP site exec"; content: "site exec"; nocase; flags: A+; reference:bugtraq,2241; reference:arachnids,317; classtype:bad-unknown; sid:361; rev:2;)

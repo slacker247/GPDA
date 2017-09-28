@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"DOS ath0"; content: "+++ath0"; nocase; itype: 8; reference:arachnids,264; classtype:attempted-dos; sid:280; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS /bin/ls| command attempt"; flags:A+; uricontent:"/bin/ls|"; nocase; sid:1368; rev:1; classtype:web-application-attack;)

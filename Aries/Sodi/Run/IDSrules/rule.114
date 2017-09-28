@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (msg:"BACKDOOR MISC linux rootkit attempt";flags: A+; content:"wh00t!"; classtype:attempted-admin; sid:213; rev:1;)

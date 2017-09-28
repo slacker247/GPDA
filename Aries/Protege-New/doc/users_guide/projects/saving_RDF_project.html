@@ -1,0 +1,68 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Saving an RDF Project</title>
+</head>
+
+<body>
+
+<h1><img src="images/serving_nerd.gif" width="48" height="48">
+Saving an RDF Project<br>
+<img src="images/header_line.gif" width="590" height="6"></h1>
+
+<p>This version of Protégé-2000 provides support for creating and editing
+Resource Description Framework (RDF) <a href="http://www.w3.org/TR/PR-rdf-schema/">schema</a>
+and <a href="http://www.w3.org/TR/REC-rdf-syntax/">instance data</a>. (For more
+information about RDF, see <a href="http://w3.org/RDF">http://www.w3.org/RDF</a>.)
+You can use
+Protégé-2000 to design RDF schema and create the corresponding instance data. You can
+also view and edit your existing RDF files in Protégé-2000.</p>
+
+<p>You can save your Protégé-2000 project in RDF format in one of two ways:</p>
+<ul>
+  <li>When the project is first created, by selecting <b>Resource Description
+    Framework (RDF)</b> in the Select Format dialog box.</li>
+  <li>By selecting <b>Save in Format...</b> from the <b>Project</b> menu and
+    then selecting <b>Resource Description Framework (RDF)</b> in the Select
+    Format dialog box. Subclasses of :THING from a non-RDF project
+will become subclasses of rdfs:Resource when you save as RDF.</li>
+</ul>
+<p>After you have chosen your format, choose the name and location for the
+project as follows:</p>
+<ol>
+  <li>When you have selected <b>Resource Description Framework (RDF)</b>, the
+    RDF dialog box is displayed:<br>
+    <img border="0" src="images/saving_rdf.gif" width="468" height="312"></li>
+  <li>To select or change the name or location of the <b>pprj</b> file, enter
+    the information you want in the <b>Project</b> line of the dialog box. Be sure to give
+    the file a <b>pprj</b> 
+    extension. To browse for a new location, cllick the <img border="0" src="images/Add.gif" width="19" height="19">
+    button.&nbsp; If you do not
+    specify a location for the project, by default, the project is saved in the
+    directory where Protégé-2000 is installed.&nbsp;</li>
+  <li>Protégé-2000 will create two files: one for the schema (classes and
+    slots) and the other for the instances. By default, these use the name of the existing <b>pprj</b>
+    file. If you wish to change the name of the schema file,
+    type the new name in the Classes file name line of the dialog
+    box.&nbsp;Make sure to give the file an <b>.rdfs</b> extension.</li>
+  <li> If you wish to change the name of the instances file,
+    type the new name in the Instances file name line of the dialog
+    box.&nbsp;Make sure to give the file an <b>.rdf</b> extension.</li>
+  <li>Enter the RDF namespace for your project in the Namespace field. All
+    classes, slots, ad instances i the project are placed in this namespace.</li>
+  <li>Click OK.&nbsp;</li>
+</ol>
+
+<p>You should create new RDF classes as
+subclasses of <tt>rdfs:Resource</tt>.</p>
+
+<hr>
+<p><font size="3">Next: </font><font size="3"> <a href="building_a_project.html">Importing a Project</a></font></p>
+<p><a href="index.html"><font size="3">Project Table of Contents</font></a></p>
+
+</body>
+
+</html>

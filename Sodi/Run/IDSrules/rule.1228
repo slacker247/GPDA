@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC musicat access"; flags:A+; uricontent:"/empower"; nocase; classtype:attempted-recon; sid:1221; rev:1;)

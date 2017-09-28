@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS perl-browse20 attempt";flags: A+; content:"%20.pl"; nocase; classtype:web-application-attack; sid:1027; rev:2;)

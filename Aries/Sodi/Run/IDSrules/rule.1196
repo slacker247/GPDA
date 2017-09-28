@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC SalesLogix Eviewer web shutdown acess"; flags: A+; content:"/slxweb.dll/admin?command="; nocase; reference:bugtraq,1089; reference:cve,CAN-2000-0289; classtype:attempted-recon; sid:1187; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC tomcat server snoop access"; flags: A+; uricontent:"/jsp/snp/anything.snp"; nocase; reference:cve,CAN-2000-0760; reference:bugtraq,1532; classtype:attempted-recon; sid:1108; rev:2;)

@@ -1,0 +1,9 @@
+; Tue Apr 08 14:49:53 MDT 2003
+; 
+;+ (version "1.7")
+;+ (build "Build 930")
+
+
+(defclass :CLIPS_TOP_LEVEL_SLOT_CLASS
+	(is-a USER)
+	(role concrete))

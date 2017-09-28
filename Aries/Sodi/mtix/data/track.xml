@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by Steven Cohn (TRW Systems) -->
+<tracks version="KAT 2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="tracks.xsd">
+	<trackCollection>
+		<timeInterval>
+			<time name="START" format="dd MMM yyyy HH:mm:ss" zone="0">
+        17 JUL 2000 15:01:06.012
+      </time>
+			<time name="END" format="dd MMM yyyy HH:mm:ss" zone="0">
+        17 JUL 2000 15:01:06.012
+      </time>
+		</timeInterval>
+		<rbr halfHgt="3791.78" halfWid="3063.17" sinAng="0.000000" cosAng="1.000000">
+			<pt d="3">-1.316176 0.754424 0.00</pt>
+		</rbr>
+		<tracker id="A001"/>
+		<projection type="GEODETIC"/>
+		<track trackId="1T013" quality="1" transit="CONSTRAINED" classification="WHEELED">
+			<status>
+				<confirmed/>
+				<extrapolated/>
+				<screened/>
+			</status>
+			<normalEstimate>
+				<position>
+					<pt d="3">-1.316155 0.754741 159.01</pt>
+					<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+            246.052963 -58.096355 123.010002
+          </covMatrix>
+				</position>
+				<velocity vType="VECTOR">
+					<pt d="3">-25.16 10.00 0.00</pt>
+					<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+           0.175720 0.327346 0.869009
+          </covMatrix>
+				</velocity>
+				<acceleration>
+					<pt d="3">-25.16 10.00 0.00</pt>
+					<covMatrix nRows="2" nCols="2" type="UPPER_TRIANGULAR">
+           0.175720 0.327346 0.869009
+          </covMatrix>
+				</acceleration>
+			</normalEstimate>
+			<time name="UPDATE" format="dd MMM yyyy HH:mm:ss" zone="0">
+      17 JUL 2000 15:01:04.916
+      </time>
+		</track>
+	</trackCollection>
+</tracks>

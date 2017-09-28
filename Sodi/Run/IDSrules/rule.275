@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP iss scan";flags: A+; content:"pass -iss@iss"; reference:arachnids,331; classtype:suspicious-login; sid:354; rev:2;)

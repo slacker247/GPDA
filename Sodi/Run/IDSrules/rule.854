@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI wguest.exe access";flags: A+; uricontent:"/wguest.exe"; nocase; reference:cve,CAN-1999-0467; reference:bugtraq,2024; classtype:attempted-recon; sid:852; rev:2;)

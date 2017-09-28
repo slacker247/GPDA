@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS ISAPI .idq attempt"; uricontent:".idq?"; nocase; dsize:>239; flags:A+; reference:arachnids,553; classtype:web-application-attack; reference:cve,CAN-2000-0071; sid:1244; rev:2;)

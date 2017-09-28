@@ -1,0 +1,1 @@
+gcc -g -I$HOME/Sodi/Inc textform.c fl_edit.c textbuf.c -L$HOME/Sodi/Lib -lforms -L$SODIHOME/Lib/X11 -L/usr/X11R6/lib -lXm -lXt -lX11 -lXext -lXmu

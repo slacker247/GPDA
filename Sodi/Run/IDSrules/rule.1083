@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC rcmd attempt";flags: A+; content:"rcmd.exe"; nocase; classtype:web-application-activity; sid:1065; rev:2;)

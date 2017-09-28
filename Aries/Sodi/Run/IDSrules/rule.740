@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible NewApt.Worm - saddam.exe"; content: "filename=\"SADDAM.EXE\""; nocase; reference:MCAFEE,10540; sid:783;  classtype:misc-activity; rev:3;)

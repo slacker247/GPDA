@@ -1,0 +1,36 @@
+# (C) Copyright 2001, Martin Roesch, Brian Caswell, et al.  All rights reserved.
+# $Id: ftp.rules,v 1.12 2001/10/29 01:52:54 roesch Exp $
+#----------
+# FTP RULES
+#----------
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP .forward"; content: ".forward"; flags: A+;reference:arachnids,319; classtype:suspicious-filename-detect; sid:334; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP .rhosts";flags: A+; content:".rhosts"; reference:arachnids,328; classtype:suspicious-filename-detect; sid:335; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP CWD ~root"; content: "cwd ~root"; nocase; flags: A+;reference:arachnids,318; classtype:bad-unknown; sid:336; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT aix overflow";flags: A+;dsize:>1300; content:"CEL "; reference:arachnids,257; classtype:attempted-admin; sid:337; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT format string"; flags: A+; content: "SITE EXEC |25 30 32 30 64 7C 25 2E 66 25 2E 66 7C 0A|"; depth: 32; nocase; reference:arachnids,453; classtype:attempted-user; sid:338; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT openbsd ftpd"; flags: A+; content: " |90 31 C0 99 52 52 B017 CD80 68 CC 73 68|";reference:arachnids,446; classtype:attempted-user; sid:339; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT overflow";flags: A+; content:"|5057 440A 2F69|"; classtype:attempted-admin; sid:340; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT overflow";flags: A+; content:"|5858 5858 582F|"; classtype:attempted-admin; sid:341; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT solaris 2.8 format string"; flags: A+; content: "|901BC00F 82102017 91D02008|"; reference:bugtraq,1387; reference:cve,CAN-2000-0573; reference:arachnids,451; classtype:attempted-user; sid:342; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT wu-ftpd 2.6.0 bsd"; content: "|31c0 50 50 50 b07e cd80 31db 31c0|"; flags: A+; depth: 32; reference:arachnids,228; classtype:attempted-admin; sid:343; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT wu-ftpd 2.6.0 linux overflow"; content: "|31c031db 31c9b046 cd80 31c031db|"; flags: A+; reference:arachnids,287; classtype:attempted-admin; sid:344; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT wu-ftpd 2.6.0 site exec overflow"; content: "SITE EXEC %p"; nocase; flags: A+; depth: 16; reference:arachnids,285; classtype:attempted-admin; sid:345; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT wu-ftpd 2.6.0 site exec overflow"; content: "|66 25 2E 66 25 2E 66 25 2E 66 25 2E 66 25 2E|"; flags: A+; depth: 32; reference:arachnids,286; classtype:attempted-admin; sid:346; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT wu-ftpd 2.6.0 tf8"; flags: A+; content: "|31C0 31DB 31C9 B046 CD80 31C0 31DB 43 89D941 B03F CD80|"; reference:arachnids,458; classtype:attempted-admin; sid:347; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT wu-ftpd 2.6.0"; flags: A+; content: "|2e2e3131|venglin@";reference:arachnids,440; classtype:attempted-user; sid:348; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT x86 linux overflow";flags: A+; content:"MKD AAAAAA";reference:bugtraq,113; reference:cve,CVE-1999-0368; classtype:attempted-admin; sid:349; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT x86 linux overflow";flags: A+; content:"|31c0 31db b017 cd80 31c0 b017 cd80|"; reference:bugtraq,113; reference:cve,CVE-1999-0368; classtype:attempted-admin; sid:350; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT x86 linux overflow";flags: A+; content:"|31db 89d8 b017 cd80 eb2c|"; reference:bugtraq,113; reference:cve,CVE-1999-0368; classtype:attempted-admin; sid:351; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT x86 linux overflow";flags: A+; content:"|83 ec 04 5e 83 c6 70 83 c6 28 d5 e0 c0|";reference:bugtraq, 113; reference:cve, CVE-1999-0368; classtype:attempted-admin; sid:352; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP adm scan"; flags: A+; content:"PASS ddd@|0a|"; reference:arachnids,332; classtype:suspicious-login; sid:353; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP iss scan";flags: A+; content:"pass -iss@iss"; reference:arachnids,331; classtype:suspicious-login; sid:354; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP pass wh00t"; content: "pass wh00t"; nocase; flags: A+; reference:arachnids,324; classtype:suspicious-login; sid:355; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP passwd retreval attempt"; content:"RETR"; nocase; content:"passwd"; flags: A+;  reference:arachnids,213; classtype:suspicious-filename-detect; sid:356; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP piss scan";flags: A+; content:"pass -cklaus"; classtype:suspicious-login; sid:357; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP saint scan";flags: A+; content:"pass -saint"; reference:arachnids,330; classtype:suspicious-login; sid:358; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP satan scan";flags: A+; content:"pass -satan"; reference:arachnids,329; classtype:suspicious-login; sid:359; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP serv-u directory transversal"; flags: A+; content: ".%20."; nocase; classtype:bad-unknown; sid:360; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP site exec"; content: "site exec"; nocase; flags: A+; reference:bugtraq,2241; reference:arachnids,317; classtype:bad-unknown; sid:361; rev:2;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP tar parameters"; flags:A+; content:"RETR --use-compress-program"; nocase; reference:bugtraq,2240; reference:arachnids,134; reference:cve,CVE-1999-0202; classtype:bad-unknown; sid:362; rev:4;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP CWD ..."; flags:A+; content:"CWD ..."; classtype:bad-unknown; sid:1229; rev:1;)

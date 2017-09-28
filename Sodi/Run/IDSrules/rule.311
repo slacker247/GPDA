@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP Alternate Host Address (Undefined Code!)"; itype: 6; sid:391;  classtype:misc-activity; rev:4;)

@@ -1,0 +1,1 @@
+alert tcp any any -> any any (msg:"ATTACK RESPONSES id check returned root"; flags:A+; content: "uid=0(root)"; classtype:bad-unknown; sid:498; rev:2;)

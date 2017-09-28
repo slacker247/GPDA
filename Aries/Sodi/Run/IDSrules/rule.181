@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET any (msg:"DOS Teardrop attack"; id:242; fragbits:M; reference:bugtraq,124; classtype:attempted-dos; sid:270; rev:1;)

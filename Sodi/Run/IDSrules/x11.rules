@@ -1,0 +1,9 @@
+# (C) Copyright 2001, Martin Roesch, Brian Caswell, et al.  All rights reserved.
+# $Id: x11.rules,v 1.6 2001/10/29 01:52:54 roesch Exp $
+#----------
+# X11 RULES
+#----------
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET 6000 (msg:"X11 MITcookie"; flags: A+; content: "MIT-MAGIC-COOKIE-1"; reference:arachnids,396; classtype:bad-unknown; sid:1225; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 6000 (msg:"X11 xopen"; flags: A+; content: "|6c00 0b00 0000 0000 0000 0000|"; reference:arachnids,395; classtype:unknown; sid:1226; rev:1;)
+alert tcp $EXTERNAL_NET 6000:6005 -> $HOME_NET any (msg:"X11 outgoing"; flags: SA; reference:arachnids,126; classtype:unknown; sid:1227; rev:1;)

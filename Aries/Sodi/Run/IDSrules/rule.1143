@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC .htaccess access";flags: A+; content:".htaccess"; nocase; classtype:attempted-recon; sid:1129; rev:1;)

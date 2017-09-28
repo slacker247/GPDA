@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (msg:"TELNET SGI telnetd format bug"; flags: A+; content: "_RLD"; content: "/bin/sh";reference:arachnids,304; classtype:attempted-admin; sid:711; rev:1;)

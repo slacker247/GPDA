@@ -1,0 +1,245 @@
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Jess, the Java Expert System Shell - Creating Graphical User Interfaces in the Jess Language</title>
+<link title="style" href="stylesheet.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<h2>7.
+        Creating Graphical User Interfaces in the Jess Language</h2>
+
+Jess, being just a set of Java classes, is easily incorporated as a
+library into graphical applications written in Java. It is also
+possible, though, to write graphical applications in the Jess
+language itself. The details of this are outlined in this chapter.
+
+
+<a name="events">
+<h3>7.1. Handling Java AWT events</h3>
+</a>
+
+It should now be obvious that you can easily construct GUI objects from
+Jess. For example, here is a <tt>Button</tt>:
+
+<pre>
+  
+<b>Jess&gt; </b>(defglobal ?*b* = (new java.awt.Button "Hello"))
+</pre>
+
+What should not be obvious is how, from Jess, you can arrange to have something
+happen when the button is pressed. For this, I have provided a full set
+of <tt>EventListener</tt> classes:
+
+<ul>
+  
+<li>
+<tt>jess.awt.ActionListener</tt>
+</li>
+  
+<li>
+<tt>jess.awt.AdjustmentListener</tt>
+</li>
+  
+<li>
+<tt>jess.awt.ComponentListener</tt>
+</li>
+  
+<li>
+<tt>jess.awt.ContainerListener</tt>
+</li>
+  
+<li>
+<tt>jess.awt.FocusListener</tt>
+</li>
+  
+<li>
+<tt>jess.awt.ItemListener</tt>
+</li>
+  
+<li>
+<tt>jess.awt.KeyListener</tt>
+</li>
+  
+<li>
+<tt>jess.awt.MouseListener</tt>
+</li>
+  
+<li>
+<tt>jess.awt.MouseMotionListener</tt>
+</li>
+  
+<li>
+<tt>jess.awt.TextListener</tt>
+</li>
+  
+<li>
+<tt>jess.awt.WindowListener</tt>
+</li>
+
+</ul>
+
+Each of these classes implements one of the <tt>Listener</tt> interfaces
+from the <tt>java.awt.event</tt> package in Java 1.1 and later. Each implementation
+packages up any event notifications it receives and forwards them to a
+Jess function, which is supplied as a constructor argument
+to the <tt>Listener</tt> object.
+
+<p align=""></p>
+An example should clarify matters. Let's say that when the <tt>Hello</tt>
+button is pressed, you would like the string <tt>Hello, World!</tt> to
+be printed to standard output (how original!). What you need to do is:
+
+<ol>
+
+<li>
+Define a <tt>deffunction</tt> which prints the message. The <tt>deffunction</tt>
+will be called with one argument: the event object that would be passed
+to <tt>actionPerformed()</tt>. (If this is gibberish to you, pick up a
+book on Java AWT programming.)</li>
+
+
+<li>
+Create a <tt>jess.awt.ActionListener</tt> object, telling it about
+this <tt>deffunction</tt>, and also which Jess engine it belongs
+to. You simply use Jess' <a href="functions.html#new"><tt>new</tt></a> command to do this.</li>
+
+
+<li>
+Tell the <tt>Button</tt> about the <tt>ActionListener</tt> using the <tt>addActionListener</tt>
+method of <tt>java.awt.Button</tt>.</li>
+
+</ol>
+
+Here's a complete program in Jess:
+<pre>  
+  
+<b>Jess&gt; </b>;; Create the widgets
+  (defglobal ?*f* = (new java.awt.Frame "Button Demo"))
+  <b>Jess&gt; </b>(defglobal ?*b* = (new java.awt.Button "Hello"))
+        
+  <b>Jess&gt; </b>;; Define the deffunction
+  (deffunction say-hello "Unconditionally print a message" (?evt)
+    (printout t "Hello, World!" crlf))
+
+  <b>Jess&gt; </b>;; Connect the deffunction to the button
+  (?*b* addActionListener
+    (new jess.awt.ActionListener say-hello (engine)))
+       
+  <b>Jess&gt; </b>;; Assemble and display the GUI
+  (?*f* add ?*b*)
+  <b>Jess&gt; </b>(?*f* pack)
+  <b>Jess&gt; </b>(set ?*f* visible TRUE)
+</pre>
+
+The Jess <tt>engine</tt> function returns the <tt>jess.Rete</tt> object
+in which it is executed, as an external address. You'll have to quit
+this program using ^C. To fix this, you can add a 
+ <tt>WindowListener</tt> which handles <tt>WINDOW_CLOSING</tt>  
+events to the above program:
+<pre>
+
+  
+<b>Jess&gt; </b>;; If the event is a WINDOW_CLOSING event, exit the program
+  (deffunction frame-handler (?evt)
+    (if (= (?evt getID) (get-member ?evt WINDOW_CLOSING)) then 
+        (call (get ?evt source) dispose)
+        (exit)))
+
+  <b>Jess&gt; </b> ;; Connect this deffunction to the frame
+  (?*f* addWindowListener
+    (new jess.awt.WindowListener frame-handler (engine)))
+</pre>
+
+Now when you close the window Jess will exit. Notice how we can examine
+the <tt>?evt</tt> parameter for event information.
+
+<p align=""></p>
+We have used the "raw" AWT widgets here, but this same technique works
+fine with Swing as well (the new GUI toolkit for Java 1.2).
+
+<pre>
+  
+<b>Jess&gt; </b>(defglobal ?*f* = (new javax.swing.JFrame "Button Demo"))
+  <b>Jess&gt; </b>(defglobal ?*b* = (new javax.swing.JButton "Hello"))
+  <b>Jess&gt; </b>(defglobal ?*p* = (get ?*f* "contentPane"))
+        
+  <b>Jess&gt; </b>(deffunction say-hello (?evt)
+    (printout t "Hello, World!" crlf))
+
+  <b>Jess&gt; </b>(call ?*b* addActionListener
+    (new jess.awt.ActionListener say-hello (engine)))
+       
+  <b>Jess&gt; </b>(call ?*p* add ?*b*)
+  <b>Jess&gt; </b>(call ?*f* pack)
+  <b>Jess&gt; </b>(set ?*f* visible TRUE)
+
+  <b>Jess&gt; </b>(deffunction frame-handler (?evt)
+    (if (= (?evt getID) (get-member ?evt WINDOW_CLOSING)) then 
+        (call (get ?evt source) dispose)
+        (exit)))
+
+  <b>Jess&gt; </b>(?*f* addWindowListener
+    (new jess.awt.WindowListener frame-handler (engine)))
+</pre>
+
+
+<p align=""></p>
+See the demo <tt>examples/frame.clp</tt> for a slightly more complex
+example of how you can build an entire Java graphical interface from within
+Jess.
+
+
+
+<a name="painting">
+<h3>7.2. Screen Painting and Graphics</h3>
+</a>
+
+As you may know, the most common method of drawing pictures in Java is
+to subclass <tt>java.awt.Canvas</tt>, overriding the
+<tt>void paint(Graphics g)</tt> method to call the methods of the
+<tt>java.awt.Graphics</tt> argument to do the drawing. Well, Jess
+can't help you to subclass a Java class (at least not yet!), but it
+does provide an adaptor class, much like the event adaptors described
+above, that will help you draw pictures. The class is named
+<tt>jess.awt.Canvas</tt>, and it is a subclass of
+<tt>java.awt.Canvas.</tt> As such it can be used as a normal Java GUI
+component. When you construct an instance of this
+class, you pass in the name of a Jess function and a reference to the
+Rete engine. Whenever 
+<tt>paint()</tt> is called to render the <tt>jess.awt.Canvas,</tt>
+the <tt>jess.awt.Canvas</tt> in turn will call the
+given function. The function will be passed two arguments: the
+<tt>jess.awt.Canvas</tt> instance itself, and the
+<tt>java.awt.Graphics</tt> argument to <tt>paint().</tt> In this way,
+Jess code can draw pictures using Java calls. An example looks like
+this: 
+
+<pre>
+  
+<b>Jess&gt; </b>;; A painting deffunction. This function draws a red 'X' between the
+  ;; four corners of the Canvas on a blue field.
+        
+  (deffunction painter (?canvas ?graph)
+    (bind ?x (get-member (call ?canvas getSize) width))
+    (bind ?y (get-member (call ?canvas getSize) height))
+    (?graph setColor (get-member java.awt.Color blue))
+    (?graph fillRect 0 0 ?x ?y)
+    (?graph setColor (get-member java.awt.Color red))
+    (?graph drawLine 0 0 ?x ?y)
+    (?graph drawLine ?x 0 0 ?y))
+
+  <b>Jess&gt; </b>;; Create a canvas and install the paint routine.
+  (bind ?c (new jess.awt.Canvas painter (engine)))
+</pre>
+
+A simple but complete program built on this example is in the file
+<tt>examples/draw.clp</tt> in the Jess distribution.
+
+
+<p>
+<i><a href="index.html">Back to index</a></i>
+</p>
+</body>
+
+</html>

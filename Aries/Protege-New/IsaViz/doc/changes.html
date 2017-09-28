@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <title>IsaViz Overview</title>
+  <link href="isv.css" rel="stylesheet" type="text/css" />
+  <meta name="tidy:flags" content="-i -ascii -asxml" />
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+
+<a href="http://www.w3.org/"><img src="images/w3c_home.gif" alt="w3c_logo" border="0"/></a>
+     
+<h1>IsaViz - Changes</h1>
+
+<hr/>
+
+<p class="important">Important Note</p>
+<p>Several people have encountered difficulties importing local RDF files in IsaViz 1.2 (this will also be true for version 2.0): the model is not loaded, and the following error message is generated:</p>
+<p class="code">RDFErrorHandler.error: com.hp.hpl.jena.rdf.arp.MalformedURIException: No scheme found in URI.</p>
+<p>The source of this error is a bad <strong>Defaut Base URI</strong> in your preferences (e.g. &quot;online&quot;). To correct this, select Edit/Preferences, and set the Default Base URI value to blank or to the well-formed URI of your choice.</p>
+
+<hr/>
+      
+<h2>version 2.0-alpha-1 (preview release)</h2>
+
+<ul>
+<li>Support for <a href="http://www.hpl.hp.com/semweb/index.html">Jena</a> 2 preview 2 (up-to-date with respect to last call W3C candidate syntax specification, including datatypes)</li>
+<li>Support for <a href="graphstylesheets/gssmanual.html">GSS (Graph Stylesheets)</a>, except gss:layout (the graphical front-end is not part of this release)</li>
+<li>Import/Export plug-in interface featuring automatic detection (used by the <a href="http://sourceforge.net/projects/sesame/">Sesame plug-in</a>)</li>
+<li>Faster XML processing using <a href="http://xml.apache.org/xerces2-j/index.html">Xerces 2.2</a></li>
+<li>New navigation panel and keyboard shortcuts</li>
+</ul>
+
+<h2>version 1.2</h2>
+
+<ul>
+<li>Support for <a href="http://www.hpl.hp.com/semweb/index.html">Jena</a> 1.6.x (up-to-date with respect to last call W3C candidate syntax specification, except for datatypes which will be supported in IsaViz 2.0)</li>
+<li>Support for <a href="http://www.w3.org/2000/10/swap/Primer">Notation 3</a> import/export (through Jena)</li>
+<li>Uses latest features of <a href="http://zvtm.sourceforge.net">ZVTM</a> 0.8.2 (enhanced magnification capabilities, fonts, etc.)</li>
+<li>Better support for internationalization (i18n) provided input files use the UTF-8 charset (<a href="images/i18n.png">screenshot</a>)</li>
+<li>Customizable fonts and background color</li>
+<li>Printing capabilities</li>
+<li>A <a href="images/radar.png">radar window</a> to get an overview of the graph</li>
+<li>Added a <em>back</em> feature to return back to the previous location in the graph (multi-levels, available in the View menu or using keyboard shortcut Ctrl+B)</li>
+<li>User-changeable error mode (default, strict, lax)</li>
+<li>Modified makefiles and launch scripts to reflect the change of name XVTM -&gt; ZVTM</li>
+<li>Bug fixes</li>
+</ul>
+
+<h2>version 1.1</h2>
+
+<ul>    
+  <li>Includes new version of XVTM : the mouse cursor has been partially decoupled from Views and is therefore not always dependent on the view's refresh rate (which itself depends on the complexity of the graph). This means that it should make controlling the mouse cursor in large graphs much easier.</li>
+<li>Fixed a bug in the SVG Export module (vertical offset problem in some cases)</li>
+<li>Fixed the "looping spline" problem related to graphviz not taking into account the direction of the spline when encoding the SVG path coordinates</li>
+<li>Modified layout of items in the list of properties (property browser)</li>
+<li>Modified makefiles and launch scripts to reflect the change of name VTM -&gt; XVTM</li>
+<li>Fixed temporary file deletion bug (temp files were not deleted when exiting IsaViz)</li>
+<li>Updated RDFLoader to take into account changes in Jena 1.3.2 w.r.t separation between namespace and local name of a resource</li>
+</ul>
+
+<h2>version 1.0a</h2>
+
+<ul>    
+  <li>Adapted the dot/SVG module to support the new SVG output structure in Graphviz/dot 1.8.4</li>
+</ul>
+
+<h2>version 1.0</h2>
+
+<ul>    
+  <li>First public version</li>
+</ul>
+
+<hr/>
+<table>
+	<tr>
+	  <td><p><a href="http://validator.w3.org/check/referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0!" height="31" width="88" border="0"/></a></p></td>
+	  <td><p><em><small><a href="http://www.w3.org/People/Emmanuel/">Emmanuel Pietriga</a><br/>
+<!-- hhmts start -->
+Last modified: Mon May 12 13:30:08 Eastern Daylight Time 2003
+<!-- hhmts end -->
+</small></em></p></td>
+	</tr>
+</table>
+</body>
+</html>

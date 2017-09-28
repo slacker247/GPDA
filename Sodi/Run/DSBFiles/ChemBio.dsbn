@@ -1,0 +1,67 @@
+# Tree height, Name, DS_isContinuous, Start time, End time, Time unit
+3  HazMat_Alert  0  0.0  0.0  M
+
+5     Evidence
+  M-UAV     JSTARS_MTI_evidence_has_been_received       0.75  100.00
+  HazMat    Predator_video_evidence_has_been_received   0.75  100.00
+  OSINT     U-2_infrared_evidence_has_been_received     0.75  100.00
+  LA_EOC    AOC_TCT_cell_evidence_has_been_received     0.75  100.00
+  FEMA_DB   F-16_pilot_evidence_has_been_received       0.75  100.00
+
+5     Indicators
+  Imagery_Changes    the_target_has_been_found     0.75  100.00
+  Crowed_Hospitals   the_target_is_fixed           0.75  100.00
+  Chem/Bio_Fallout   the_target_is_being_tracked   0.75  100.00
+  Physical_Attack    target_is_complete            0.75  100.00
+  Seismic_Activity   execution_is_complete         0.75  100.00
+
+3     Outcomes
+  Accident            the_HazMat_is_a_result_of_an_accident           0.75  3.00
+  Hostile_Event       the_HazMat_is_a_result_of_a_terrorist_act       0.75  3.00
+  Natural_Phenomena   the_HazMat_is_a_result_of_a_natural_phenomena   0.75  3.00
+
+false   B and D matrices are listed separately
+# E0     E1     E2     E3     E4     H0     H1     H2     H3     H4     A0     A1     A2   
+#----   ----   ----   ----   ----   ----   ----   ----   ----   ----   ----   ----   ----   
+ 0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  E0
+#                                 |                                  |                    |
+ 0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  E1
+#                                 |                                  |                    |
+ 0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  E2
+#                                 |                                  |                    |
+ 0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  E3
+#                                 |                                  |                    |
+ 0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  E4
+#---------------------------------|----------------------------------|--------------------|
+ 0.80   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  H0
+#                                 |                                  |                    |
+ 0.00   0.00   0.70   0.00   0.00 | 0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  H1
+#                                 |                                  |                    |
+ 0.20   1.00   0.00   0.50   1.00 | 0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  H2
+#                                 |                                  |                    |
+ 0.00   0.00   0.00   0.50   0.00 | 0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  H3
+#                                 |                                  |                    |
+ 0.00   0.00   0.30   0.00   0.00 | 0.00   0.00   0.00   0.00   0.00 | 0.00   0.00   0.00 |#  H4
+#---------------------------------|----------------------------------|--------------------|
+ 0.00   0.00   0.00   0.00   0.00 | 1.00   0.10   0.10   0.00   0.00 | 0.00   0.00   0.00 |#  A0
+#                                 |                                  |                    |
+ 0.00   0.00   0.00   0.00   0.00 | 0.00   0.30   0.90   1.00   0.00 | 0.00   0.00   0.00 |#  A1
+#                                 |                                  |                    |
+ 0.00   0.00   0.00   0.00   0.00 | 0.00   0.60   0.00   0.00   1.00 | 0.00   0.00   0.00 |#  A2
+#---------------------------------|----------------------------------|--------------------|
+
+9  Possibilities
+0.00  0.00  impossible
+0.01  0.05  extremely_unlikely
+0.05  0.20  very_low_chance
+0.20  0.38  small_chance
+0.38  0.60  may
+0.60  0.79  meaningful_chance
+0.79  0.95  most_likely
+0.95  0.99  extremely_likely
+1.00  1.00  certain
+
+#  Evidence labels follow. Must be 3, each < 4 chars
+Lat      Lon      Alt
+#  Default time units follow. Must be: Sec, Min, Hour, or Days
+Min

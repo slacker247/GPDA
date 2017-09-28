@@ -1,0 +1,201 @@
+#! /bin/sh
+#
+# Copyright (c) 1994-1999. The MITRE Corporation (http://www.mitre.org/).
+# All rights reserved.
+# CVW comes with ABSOLUTELY NO WARRANTY. See license for details.
+#
+
+# xcvw launch script for version 3.0
+
+# Set DEFAULT_CVWHOME to the location of your CVW distribution
+# This script may be installed any where as long as DEFAULT_CVWHOME
+# variable is valid
+
+#####################################################################
+##################  ENTER DEFAULT_CVWHOME HERE  #####################
+# DEFAULT_CVWHOME is a colon separated path
+# Examples
+#
+DEFAULT_CVWHOME=/usr/local/CVW/Client
+#
+#
+#####################################################################
+#####################################################################
+
+# If you have used a version of xcvw before 2.8.1, you will no longer
+# need to set your CVWHOME environment variable if the DEFAULT_CVWHOME 
+# variable is set here !!!  However, you may override this by setting
+# your CVWHOME environment variable
+
+#### You do not need to change anything from here on !!! #####
+
+usage () {
+  echo "Usage:"
+  echo "  -server <name>   Select a CVW server by its CVW server name."
+  echo "  -host <name>     Select a CVW server by its host name."
+  echo "  -port <num>      Specify a CVW server port number. Only useful"
+  echo "                   in conjunction with -host."
+  echo "  -dshost <name>   Select a CVW document server by its host name"
+  echo "  -dsport <num>    Specify a CVW document server port number. Only"
+  echo "                   useful in conjunction with -dshost."
+  echo "  -login <file>    Get user and password information from <file>."
+  echo "  -home <path>     Specify CVW application environment."
+  echo "  -help            Display this message."
+  exit
+}
+
+checkpath () {
+  pathstocheck=$1
+  OIFS=$IFS
+  IFS=:
+  for ihome in ${pathstocheck} ; do
+    #echo "$ihome"
+    if [ -f $ihome/bin/cvw-ostype ] ; then
+      FOUND_CVWHOME=$ihome
+      break
+    fi
+  done
+  IFS=$OIFS
+}
+
+validarg () {
+  arg=$1
+  VALIDARG=1
+  FLAGS="-server -host -port -dshost -dsport -login -help -display"
+  for i in ${FLAGS} ; do
+    if [ "$arg" = "$i" ] ; then
+      VALIDARG=0
+    fi
+  done
+}
+
+runxcvw () {
+  osarch=`$FOUND_CVWHOME/bin/cvw-ostype`
+  if [ "$osarch" = "-1" ] ; then
+    echo
+    echo "  xcvw is not supported on this architecture!"
+    echo "  -------------------------------------------"
+    echo
+    exit
+  elif [ "$osarch" = "-2" ] ; then
+    echo
+    echo "  !!!!Could not find \"uname\" !!!!"
+    echo
+    exit
+  fi  
+
+  ### HPUX uses SHLIB_PATH instead of LD_LIBRARY_PATH
+  if [ "$osarch" = "PA-HPUX10" ] ; then
+    if [ $SHLIB_PATH ] ; then
+      SHLIB_PATH=$FOUND_CVWHOME/lib/$osarch:$SHLIB_PATH
+    else
+      SHLIB_PATH=$FOUND_CVWHOME/lib/$osarch
+   fi
+    export SHLIB_PATH
+  else
+    if [ $LD_LIBRARY_PATH ] ; then
+      LD_LIBRARY_PATH=$FOUND_CVWHOME/lib/$osarch:$LD_LIBRARY_PATH
+    else
+      LD_LIBRARY_PATH=$FOUND_CVWHOME/lib/$osarch
+    fi
+    export LD_LIBRARY_PATH
+  fi
+
+  # set PATH to look at our apps first
+  PATH=$FOUND_CVWHOME/bin:$FOUND_CVWHOME/bin/$osarch:$PATH
+
+  # set the real var now
+  CVWHOME=$FOUND_CVWHOME
+  export PATH CVWHOME
+
+  #echo "CVWHOME=$CVWHOME"
+  exec $CVWHOME/bin/$osarch/xcvw.app ${XCVWARGS}
+}
+
+###################################################################
+### Start here
+
+TCL_VERSION=7.6
+
+# get APPNAME (fullname of this script)
+#
+DIRNAME=`dirname $0`
+BASENAME=`basename $0`
+case $DIRNAME in
+  .)         
+     #echo "leading . in dirname  -- replace . with CWD"
+     DIRNAME=`pwd`;;
+  /*)
+     #echo "leading / in dirname  -- basename is correct"
+     ;;       
+  *)
+    #echo "leading nothing in dirname -- prepend CWD to dirname"
+    DIRNAME=`pwd`/"$DIRNAME";;
+esac
+APPNAME=$DIRNAME/$BASENAME
+
+# Check for "-home path:path" on command line and create XCVWARGS
+# to pass to xcvw.app
+#
+CMDLINE_HOME=""
+XCVWARGS=""
+while [ "x$1" != "x" ] ; do
+  case $1 in
+  -hom*) 
+    shift 
+    # It should be there but just in case
+    if [ "x$1" != "x" ] ; then
+      CMDLINE_HOME=$1
+      shift
+    else
+      usage 		# -home requires a path immediately following
+    fi
+    validarg $CMDLINE_HOME
+    if [ "$VALIDARG" = "0" ] ; then
+      usage		# missing argument after -home
+    fi;;
+  *)
+    XCVWARGS="$XCVWARGS $1"
+     shift;;
+  esac
+done
+
+# Test the CVWHOME variables
+
+FOUND_CVWHOME=0
+if [ "x$CMDLINE_HOME" != "x" ] ; then		# Check Cmd Line
+  checkpath $CMDLINE_HOME
+  if [ "$FOUND_CVWHOME" != 0 ] ; then
+    runxcvw
+  else
+    echo "  Error:  -home argument ($CMDLINE_HOME)"
+    echo "          does not contain the CVW program environment."
+    echo "          Trying CVWHOME environment variable."
+  fi
+fi
+if [ "x$CVWHOME" != "x" ] ; then		# Check ENV
+  checkpath $CVWHOME
+  if [ "$FOUND_CVWHOME" != 0 ] ; then
+    echo "  Notice: Using CVWHOME environment variable"
+    echo "          ($CVWHOME)"
+    runxcvw
+  else
+    echo "  Error:  CVWHOME environment variable  ($CVWHOME)"
+    echo "          does not contain the CVW program environment."
+    echo "          Using built in DEFAULT_CVWHOME variable."
+    echo "          (see $APPNAME)"
+  fi
+fi
+
+if [ "x$DEFAULT_CVWHOME" != "x" ] ; then	# Check Default
+  checkpath $DEFAULT_CVWHOME
+  if [ "$FOUND_CVWHOME" != 0 ] ; then
+    runxcvw
+  else
+    echo "  Error:  DEFAULT_CVWHOME variable ($DEFAULT_CVWHOME)"
+    echo "          in script $APPNAME"
+    echo "          does not contain the CVW program environment."
+  fi
+else
+  echo "  Error:  DEFAULT_CVWHOME not set in xcvw script"
+fi

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC ultraboard access"; flags:A+; uricontent:"/ultraboard"; nocase; classtype:attempted-recon; sid:1220; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC unify eWave ServletExec DOS"; flags: A+; uricontent:"/servlet/ServletExec"; classtype:web-application-activity; sid:1083; rev:2;)

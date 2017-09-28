@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS zone transfer"; content: "|00 00 FC|"; flags: A+; offset: 13; reference:arachnids,212; classtype:attempted-recon; sid:255; rev:2;)

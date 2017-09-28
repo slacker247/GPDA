@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC get32.exe access"; flags: A+; uricontent:"/get32.exe"; nocase; reference:bugtraq,1485; reference:arachnids,258; classtype:attempted-recon; sid:1180; rev:3;)

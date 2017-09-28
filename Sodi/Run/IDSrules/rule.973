@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE writeto.cnf access";flags: A+; uricontent:"_vti_pvt/writeto.cnf"; nocase; classtype:web-application-activity; sid:965; rev:2;)

@@ -1,0 +1,37 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+
+Rule: one
+(
+    {Lookup.majorType == hedge}
+)
+:one 
+-->
+:one.Test = {}
+
+Rule: two
+(
+    {Lookup.majorType == number}
+)
+:two
+-->
+:two.Number = {}
+
+Rule: three
+(
+    {Lookup.majorType == classification}
+)
+:three
+-->
+:three.Classification = {}
+
+Rule: four
+(
+    {Lookup.majorType == reportingorg}
+)
+:four
+-->
+:four.ReportOrg = {}

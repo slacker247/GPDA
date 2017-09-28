@@ -1,0 +1,29 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: ToPort
+Priority: 25
+
+    {Token.subkind == dashpunct}
+    {Token.kind == symbol}
+    {SpaceToken.kind == space}
+    {Address.kind == ip}
+    {Token.string == ":"}
+(
+    {Token.kind == number}
+):ToPort -->
+:ToPort.ToPort = {}
+
+
+Rule: FromPort
+Priority: 20
+
+    {Address.kind == ip}
+    {Token.string == ":"}
+(
+    {Token.kind == number}
+):FromPort -->
+:FromPort.FromPort = {}
+

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET 80 -> $HOME_NET any (msg:"PORN anal sex"; content:"anal sex"; nocase; flags:A+; classtype:kickass-porn; sid:1317; rev:1;)

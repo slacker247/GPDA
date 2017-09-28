@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC PHPLIB remote command attempt"; flags:A+; uricontent:"PHPLIB[libdir]"; reference:bugtraq,3079; classtype:attempted-user; sid:1254; rev:1;)

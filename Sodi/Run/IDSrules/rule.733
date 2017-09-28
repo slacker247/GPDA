@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible NewApt.Worm - copier.exe"; content: "filename=\"COPIER.EXE\""; nocase; reference:MCAFEE,10540; sid:776;  classtype:misc-activity; rev:3;)

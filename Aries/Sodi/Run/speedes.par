@@ -1,0 +1,143 @@
+//
+// Parameters that affect the configuration of SPEEDES
+//
+
+
+// Settings for mode are:
+//   SEQ			Automatically used when running on 1 node
+//   TIME_BUCKETS		Conservative = must have non-zero lookahead
+//   BREATHING_TIME_BUCKETS	Optimistic - Risk Free (no bad messages)
+//   TIME_WARP			Optimistic - Maximal Risk
+//   BREATHING_TIME_WARP	Optimistic - Controlled Risk
+
+
+// Settings for multiroute_type are:
+//   DOUBLE_ENDED_BUFF		Uses fixed sized buffer for storage
+//   CROSS_BAR				N-squared message approach
+//   THRESHOLD				N-squared message with threshold
+
+
+parameters {
+  string mode BREATHING_TIME_WARP		// Synchronization algorithm
+
+  string multiroute_type DOUBLE_ENDED_BUFF	// Multirouter type
+  int multiroute_bufsize 1000000		// Mmultirouter bufffer size
+  int multiroute_thresh 5000			// Threshold in bytes
+
+  int n_nodes 1					// Number of nodes (default)
+  float tend 65000				// End time for simulation
+  float lookahead 0.0			// Lookahead (if any)
+  logical scaled_time F			// Scale with wall clock
+  float scaler 1.0				// Scaling factor (2.0 means twice real-time)
+  logical statistics T			// Print out statistics
+  logical lazy T				// Globally enable/disable lazy cancellation
+  logical interactive T			// Support Host Router interactions
+  float spin 0.0				// Adds dummy processing to events (sec)
+  logical test_rollback F		// Rolls back events and reprocesses
+  logical check_reptime F		// Checks for repeated time tags
+  logical optimize_sequential T	// Flag for optimizing when on one node
+}
+//
+// GVT parameters that are used in Breathing Time Warp
+//
+gvt_parameters {
+  float Tgvt 1.000	// Timer (seconds) for GVT update
+  float Tasb 1.0	// Time between asynchronous broadcasts
+  int Ngvt 100		// Number of events processed between GVT updates
+  int Nrisk 500		// Number of events beyond GVT processed with risk
+  int Nopt 1000		// Number of events beyond GVT optimistically processed
+}
+//
+// SPEEDES Communications Server information. Both the SpeedesComm and
+// HostRouter servers are supported in the SpeedesServer executable. One
+// can run them separately using different ports/machines - or together
+// by using default values.
+//
+SpeedesServer {
+
+  string DefaultMachineName localhost	// Machine running the Comm Server
+  int DefaultPort 7654			// "Well known" port for Comm Server
+  logical DefaultStatistics T           // Gather statistics
+  int Group 1			        // Separates SPEEDES applications
+
+  SpeedesComm {
+    logical UseDefaults T         // Use defaults in SpeedesServer
+    string MachineName localhost  // Machine name for SPEEDES Comm.
+    int Port 7654                 // Port for Speedes comm. server
+    logical Statistics T          // Gather statistics in server
+  }
+
+  HostRouter {
+    logical UseDefaults T         // Use defaults in SpeedesServer
+    string MachineName localhost  // Machine name for Host Router
+    int Port 7654                 // Port for Host Router
+    logical Statistics F          // Gather statistics in Host Router
+  }
+
+}
+//
+// Old Host Router information
+//
+Host_Router {
+  string Host_Router_Name localhost // Machine running the Host Router
+  int Host_Router_Port 8125	    // "Well known" port for Host Router
+  int Host_Router_Hash 10000	    // Size of symbol hash table
+}
+//
+// Used to set up a trace file recording events that were processed
+//
+trace {
+  logical trace F		// T means turn on, F means turn off
+  string tracefile IntMgtTrace	// File name appended by node number
+}
+//
+// Used to output a record of lookahead values. This can be used to measure
+// how much lookahead an application has.
+//
+Lookahead {
+  logical WriteLookahead F	// T means turn on, F means turn off
+  string Lookaheadfile IntMgtL	// File name appended by node number
+}
+//
+// Statistics that get printed out
+//
+statistics {
+  logical CYCLE T			// GVT cycle number
+  logical GVT T				// Global virtual time
+  logical LVT T				// Local virtual time
+  logical BTW T				// times for BTW phases
+  logical CPU T				// CPU processing time
+  logical WALL T			// Total execution time
+  logical STAR T			// Simulation Time Advancement Rate
+  logical PROC T			// Total time spent processing events
+  logical COMMIT T			// Time spent processing committed events
+  logical PROCEFF T			// Processing efficiency
+  logical PHASE1 T			// Events processed optimistically in cycle
+  logical PHASE2 T			// Events committed in cycle
+  logical EVENTS T			// Cumulative events committed
+  logical EVTGVT T			// Cumulative events processed updating GVT
+  logical EVENTSCYCLE T		// Number of events committed per cycle
+  logical ROLLBACKS T		// Cumulative number of rollbacks
+  logical MESSAGES T		// Cumulative number of messages
+  logical ANTIMESSAGES T	// Cumulative number of antimessages
+  logical CANCELS T			// Cumulative number of user cancelled events
+  logical EXMESSAGES F		// Cumulative number of external messages
+  int ReportTime 1			// Minimum time between statistics reporting
+
+  logical WriteGvtStatistics F	// Writes gvt statistics by node
+  string FileName GvtStatistics	// File name appended by node number
+
+  string Timer WallClock		// Use CPU or WallClock for event timings
+
+  logical MemoryUsage F			// Collect memory statistics
+  logical MessageSending F		// Collect message statistics
+  logical EventProcessing F		// Collect event processing Statistics
+  logical ObjectProcessing F	// Collect Object processing statistics
+  logical CriticalPath F		// Collect critical path statistics
+
+  string Output_Method stderr   // Allowable choices: stderr, File, and Socket
+  string Stat_Output_Filename StatOutput
+  string Stat_Displayer localhost // Name of machine which displays statistics
+  int Port 1029			  		// "Well known" port for Stat_Displayer
+  logical STATS_BY_NODE F       // If stats are given by node or total
+}

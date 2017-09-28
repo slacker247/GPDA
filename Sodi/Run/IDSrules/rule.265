@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT wu-ftpd 2.6.0 linux overflow"; content: "|31c031db 31c9b046 cd80 31c031db|"; flags: A+; reference:arachnids,287; classtype:attempted-admin; sid:344; rev:1;)

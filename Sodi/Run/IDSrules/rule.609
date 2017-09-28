@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP majordomo ifs";flags: A+; content:"eply-to|3a| a~.`/bin/"; reference:cve,CVE-1999-0208; reference:arachnids,143; classtype:attempted-admin; sid:661; rev:1;)

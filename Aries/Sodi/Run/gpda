@@ -1,0 +1,9 @@
+#!/bin/tcsh
+#
+#   Set all the environment variables
+#
+source cshrc
+#
+#   Run the testbed
+#
+gpda.exe $1

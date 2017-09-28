@@ -1,0 +1,22 @@
+;;; Telecom Italia French Calls Model (Source 4)
+
+;;; Relations
+
+(defprimrelationship service-call_4 2)
+
+(impliesrel service-call_4 (and ($1 2 Service_4) ($2 2 Call_4)))
+
+;;; Entities
+
+(defprimconcept Service_4)
+(defprimconcept Call_4)
+
+;;; Assert cardinality constraints
+(implies Service_4 (atleast 1 $1 service-call_4))
+(implies Call_4 (and (atleast 1 $2 service-call_4) (atmost 1 $2 service-call_4)))
+
+;;; Integrity constraints
+(impliesrel service-call_4 service-call)
+
+(implies Service_4 Service)
+(implies Call_4 Call)

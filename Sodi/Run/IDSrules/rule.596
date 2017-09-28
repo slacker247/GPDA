@@ -1,0 +1,1 @@
+alert ip $EXTERNAL_NET any -> $HOME_NET any (msg:"SHELLCODE sparc NOOP"; content:"|a61c c013 a61c c013 a61c c013 a61c c013|"; reference:arachnids,355; classtype:shellcode-detect; sid:646; rev:2;)

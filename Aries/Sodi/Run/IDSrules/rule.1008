@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS admin.dll access";flags: A+; uricontent:"/scripts/iisadmin/ism.dll?http/dir"; nocase; reference:cve,CVE-2000-0630; reference:bugtraq,189; classtype:web-application-attack; sid:995; rev:3;)

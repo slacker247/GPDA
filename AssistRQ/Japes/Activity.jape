@@ -1,0 +1,111 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Activity1
+Priority: 25
+
+    {Token.string == "Activity"}
+    {Token.string == ":"}
+    {SpaceToken.kind == space}
+(
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+):Activity
+ -->
+:Activity.Activity = {}
+
+
+Rule: Activity2
+Priority: 23
+
+    {Token.string == "Activity"}
+    {Token.string == ":"}
+    {SpaceToken.kind == space}
+(
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+):Activity
+ -->
+:Activity.Activity = {}
+
+
+Rule: Activity3
+Priority: 21
+
+    {Token.string == "Activity"}
+    {Token.string == ":"}
+    {SpaceToken.kind == space}
+(
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+):Activity
+ -->
+:Activity.Activity = {}
+
+
+Rule: Activity4
+Priority: 19
+
+    {Token.string == "Activity"}
+    {Token.string == ":"}
+    {SpaceToken.kind == space}
+(
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+):Activity
+ -->
+:Activity.Activity = {}
+
+
+Rule: Activity5
+Priority: 17
+
+    {Token.string == "Activity"}
+    {Token.string == ":"}
+    {SpaceToken.kind == space}
+(
+    {Token.kind == word}
+    {SpaceToken.kind == space}
+    {Token.kind == word}
+):Activity
+ -->
+:Activity.Activity = {}
+
+
+Rule: Activity6
+Priority: 15
+
+    {Token.string == "Activity"}
+    {Token.string == ":"}
+    {SpaceToken.kind == space}
+(
+    {Token.kind == word}
+):Activity
+ -->
+:Activity.Activity = {}

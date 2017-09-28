@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE cfgwiz.exe access";flags: A+; uricontent:"/cfgqiz.exe"; nocase; classtype:web-application-activity; sid:950; rev:2;)

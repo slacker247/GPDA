@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <title>IsaViz - Installation Instructions</title>
+  <link href="isv.css" rel="stylesheet" type="text/css" />
+  <meta name="tidy:flags" content="-i -ascii -asxml" />
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+
+<a href="http://www.w3.org/"><img src="images/w3c_home.gif" alt="w3c_logo" border="0"/></a>
+<a href="http://www.w3.org/RDF/" title="RDF Resource Description Framework">
+<img border="0" src="http://www.w3.org/RDF/icons/rdf_developer_button.40" alt="RDF Resource Description Framework Developer Icon"/></a>
+<h1>IsaViz: Installation Instructions</h1>
+
+<hr/>
+
+<p class="important">Important Note</p>
+<p>Several people have encountered difficulties importing local RDF files in IsaViz 1.2 (this will also be true for version 2.0): the model is not loaded, and the following error message is generated:</p>
+<p class="code">RDFErrorHandler.error: com.hp.hpl.jena.rdf.arp.MalformedURIException: No scheme found in URI.</p>
+<p>The source of this error is a bad <strong>Defaut Base URI</strong> in your preferences (e.g. &quot;online&quot;). To correct this, select Edit/Preferences, and set the Default Base URI value to blank or to the well-formed URI of your choice.</p>
+
+<hr/>
+
+<h2>1. Quick Instructions</h2>
+
+<p>The following components are required to run IsaViz:</p>
+<ul>
+<li>A Java Virtual Machine version 1.3.0 or later (1.4 strongly recommended - see <a href="overview.html#bugs">Known problems</a>)</li>
+<li>A distribution of IsaViz, which contains the following Java JAR files:
+	<ul>
+	  <li>IsaViz itself <em>(isaviz.jar)</em></li>
+	  <li>Zoomable Visual Transformation Machine <em>(zvtm.jar)</em></li>
+	  <li>Jena version 1.6.x <em>(jena.jar, icu4j.jar, antlr.debug.jar)</em> or Jena 2 preview 2 for IsaViz 2.0</li>
+	  <li>Xerces-J version 1.4.4 <em>(xerces.jar)</em> or version 2 <em>(xercesImpl.jar,xmlParserAPIs.jar)</em> for IsaViz 2.0</li>
+	</ul>
+</li>
+<li>GraphViz from AT&amp;T version 1.8.x or later (version 1.7.x is no longer supported in IsaViz 2)</li>
+</ul>
+
+<p>More detailed information is available in the following sections.</p>
+
+<h2>2. Requirements</h2>
+
+<h3>2.1. Java Virtual Machine (JVM)</h3>
+
+<p>IsaViz is written in Java. The GUI is built on <a href="#vtm">ZVTM</a>, a ZUI toolkit that heavily relies on Java2D. This basically means that you will need a JVM version 1.3.0 or later.</p>
+
+<p>IsaViz has only been tested with Sun's JVM, which can be found at:<br />
+<a href="http://java.sun.com/j2se/1.4/">http://java.sun.com/j2se/1.4/</a><br />
+<a href="http://java.sun.com/j2se/1.3/">http://java.sun.com/j2se/1.3/</a>
+</p>
+
+<p>A JVM 1.4.0 or later is strongly recommended since Java2D 
+performances have been noticeably improved from 1.3 to 1.4 (read also <a href="overview.html#bugs">Known problems</a>).
+If you want to compile IsaViz, a JDK 1.4.x is required (IsaViz 
+uses the ImageIO API for the <a href="http://www.w3.org/Graphics/PNG/">PNG</a> export feature).</p>
+
+<h3><a name="vtm"></a>2.2. ZVTM (Zoomable Visual Transformation Machine)</h3>
+
+<p>ZVTM is the ZUI (Zoomable User Interface) toolkit on which is based IsaViz's GUI. It is included in this distribution <em>(zvtm.jar)</em>. More information is available at <a href="http://zvtm.sourceforge.net">http://zvtm.sourceforge.net</a></p>
+
+<h3>2.3. Graphviz/dot</h3>
+
+<p>AT&amp;T's GraphViz/dot is a tool for making hierarchical layouts 
+of directed graphs. It is used only to compute the initial 
+layout of imported RDF models and when the user wants IsaViz to
+suggest a new layout for an existing graph. It is therefore not
+required in order to run IsaViz, but major features will not be available
+if you do not install it.</p>
+
+<p>GraphViz is not implemented in Java, but is available on a wide range 
+of platforms (see Graphviz's web site for an up-to-date list):</p>
+<ul>
+<li>Windows</li>
+<li>Linux</li>
+<li>Solaris (x86 and Sparc)</li>
+<li>DEC Alpha</li>
+<li>HP-UX</li>
+<li>SGI Irix</li>
+<li>Mac OS X</li>
+</ul>
+
+<p>GraphViz is not included in the IsaViz distribution, but is freely available at <a href="http://www.research.att.com/sw/tools/graphviz/">http://www.research.att.com/sw/tools/graphviz/</a></p>
+
+<p>You must download version 1.7.6 (with support for SVG) or later. 
+IsaViz only requires the DOT program. I strongly suggest using version 
+1.8.9 or later as you may have some problems with earlier versions when 
+trying to import some RDF files (see <a href="overview.html#bugs">Known problems</a>).</p>
+
+<p><strong>Note:</strong> GraphViz can be installed in any location. You will 
+be able to configure it from IsaViz's Preferences window.</p>
+
+<h3>2.4. Jena Semantic Web Toolkit</h3>
+
+<p>HP's Jena is a Java API for manipulating RDF models. It is included in this distribution. More information is available at <a href="http://www.hpl.hp.com/semweb/index.html">http://www.hpl.hp.com/semweb/index.html</a></p>
+
+<h3>2.5. Xerces-J</h3>
+
+<p>Apache's Xerces-J is a java XML parser. It is included in this distribution. More information is available at <a href="http://xml.apache.org/xerces2-j/index.html">http://xml.apache.org/xerces2-j/index.html</a></p>
+
+<h2>3. Installation</h2>
+
+<p>The installation procedure should be fairly quick and simple.
+Unpack IsaViz.zip in any location you want. This will create 
+a directory named IsaViz which will contain the following files
+and directories, among others:</p>
+
+<p>IsaViz\<br />
+|<br />
+|<br />
+---isaviz.cfg    (configuration files where user preferences are saved)<br />
+|<br />
+|<br />
+---export\       (default directory for RDF/N-Triple/SVG and PNG files exported from IsaViz)<br />
+|<br />
+|<br />
+---lib\          (contains all JAR files required by IsaViz)<br />
+|<br />
+|<br />
+---projects\     (default directory for ISV (isaViz project) files)<br />
+|<br />
+|<br />
+---tmp\          (default directory where are stored temporary files used to communicate with GraphViz/dot)</p>
+
+<p>The top-level directory also contains launch scripts for Windows 
+<em>(run.bat)</em> and POSIX systems <em>(run.sh)</em> that should be working 
+immediately provided that java is in your <em>PATH</em>.</p>
+
+<p><strong>Note:</strong> IsaViz uses Jena and Xerces-J (included in the distribution). 
+You might want to use versions of these other than the ones included.
+The requirements are:</p>
+<ul>
+<li>for Jena, version 1.6.x (version included in this package: 1.6.1) - (Jena 2 preview 2 for IsaViz 2.0 alpha 1)</li>
+<li>for Xerces-Java 1, version 1.4.x (version included in this package: 1.4.4 ; Jena 1.6.x will not work with Xerces 2) - (Xerces 2 for IsaViz 2.0 alpha 1)</li>
+</ul>
+
+<p><strong>Note:</strong> GraphViz can be installed in any location. You will be 
+able to configure it from IsaViz's Preferences window.</p>
+
+<h2>4. Running IsaViz for the first time</h2>
+
+<p>Once you have the following installed:</p>
+<ul>
+<li>a JVM 1.3.0 or later  (1.4 (even beta or candidate release) strongly recommended: <a href="overview.html#bugs">Known problems</a>)</li>
+<li>GraphViz 1.7.6 or later  (only the dot program is required)</li>
+<li>IsaViz</li>
+</ul>
+<p>you should be able to run IsaViz by either:</p>
+<ul>
+<li>using one of the available scripts (<strong>run.bat</strong>) or (<strong>run.sh</strong>)</li>
+<li>entering the following command line <em>from the IsaViz directory</em><br />
+IsaViz 1.x on Windows: <strong>java -classpath lib\isaviz.jar;lib\zvtm.jar;lib\jena.jar;lib\xerces.jar;lib\icu4j.jar;lib\antlr.debug.jar org.w3c.IsaViz.Editor</strong><br />
+IsaViz 1.x on POSIX: <strong>java -classpath lib/isaviz.jar:lib/zvtm.jar:lib/jena.jar:lib/xerces.jar:lib/icu4j.jar:lib/antlr.debug.jar org.w3c.IsaViz.Editor</strong><br />
+IsaViz 2.0 on Windows: <strong>java -classpath lib\isaviz.jar;lib\zvtm.jar;lib\jena.jar;lib\xercesImpl.jar;lib\xmlParserAPIs.jar;lib\icu4j.jar;lib\antlr.debug.jar;lib\junit.jar;lib\log4j-1.2.7.jar;lib\jakarta-oro-2.0.5.jar org.w3c.IsaViz.Editor</strong><br />
+IsaViz 2.0 on POSIX: <strong>java -classpath lib/isaviz.jar:lib/zvtm.jar:lib/jena.jar:lib/xercesImpl.jar:lib/xmlParserAPIs.jar:lib/icu4j.jar:lib/antlr.debug.jar:lib/junit.jar:lib/log4j-1.2.7.jar:lib/jakarta-oro-2.0.5.jar org.w3c.IsaViz.Editor</strong>
+</li>
+</ul>
+
+<p>The main class is <strong>org.w3c.IsaViz.Editor</strong></p>
+
+<p>The last step consists in configuring some directories.
+Launch IsaViz, go to Edit->Preferences, choose the "Directories" 
+tab.</p>
+<img src="images/PrefWindow.png" alt="Preferences window snapshot" border="0"/>
+<p>You have to choose a valid directory for temporary files (e.g. <em>IsaViz/tmp</em> or <em>C:\Temp</em>).
+<br />Then you have to tell IsaViz where to find GraphViz/dot: browse to the location of the dot executable file<br />
+(e.g. <em>C:\Program Files\ATT\GraphViz\bin\dot.exe</em> or <em>/usr/local/graphviz/bin/dot</em>).</p>
+
+<p>The other directories are optional. You should point the font directory to the one containing the font you want to use for the Graph (see tab <em>Rendering</em> in the <em>Preferences</em> window).</p>
+
+<p>By default, IsaViz 1.x is configured for GraphViz 1.7.11 or later (IsaViz 2.0 does not offer any choice as it requires GraphViz 1.8 or later). If you are 
+using an earlier version, select the other option (the SVG output 
+format changed between both versions and IsaViz needs to know 
+which version of GraphViz/dot it deals with).</p>
+
+<p><strong>Note:</strong> if you want to add IsaViz to your CLASSPATH, you need the 
+following entries <br />(IsaViz 1.x):</p>
+<ul>
+<li>lib\isaviz.jar</li>
+<li>lib\zvtm.jar</li>
+<li>lib\jena.jar</li>
+<li>lib\xerces.jar</li>
+<li>lib\icu4j.jar</li>
+<li>lib\antlr.debug.jar</li>
+</ul>
+
+<p>(IsaViz 2.0):</p>
+<ul>
+<li>lib\isaviz.jar</li><li>lib\zvtm.jar</li><li>lib\jena.jar</li><li>lib\xercesImpl.jar</li><li>lib\xmlParserAPIs.jar</li><li>lib\icu4j.jar</li><li>lib\antlr.debug.jar</li><li>lib\junit.jar</li><li>lib\log4j-1.2.7.jar</li><li>lib\jakarta-oro-2.0.5.jar</li>
+</ul>
+
+<h2>Sample files</h2>
+
+<p>In order to test your installation, you can try to import sample RDF files located in the <em>export</em> directory. There is also a sample ISV project in the <em>projects</em> directory.</p>
+
+<hr/>
+<table>
+	<tr>
+	  <td><p><a href="http://validator.w3.org/check/referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0!" height="31" width="88" border="0"/></a></p></td>
+	  <td><p><em> <small><a href="http://www.w3.org/People/Emmanuel/">Emmanuel Pietriga</a><br />
+<!-- hhmts start -->
+Last modified: Mon May 12 13:20:51 Eastern Daylight Time 2003
+<!-- hhmts end -->
+</small></em></p></td>
+	</tr>
+</table>
+</body>
+</html>

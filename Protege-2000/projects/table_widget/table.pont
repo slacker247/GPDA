@@ -1,0 +1,92 @@
+; Fri Jul 21 15:54:37 PDT 2000
+
+
+(defclass :CLIPS_TOP_LEVEL_SLOT_CLASS
+	(is-a USER)
+	(role concrete)
+	(single-slot range-value
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot range-value-slots
+		(type INSTANCE)
+;+		(allowed-classes :SLOT)
+		(create-accessor read-write))
+	(single-slot entry-slot
+		(type INSTANCE)
+;+		(allowed-classes :SLOT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot domain-value-slots
+		(type INSTANCE)
+;+		(allowed-classes :SLOT)
+		(create-accessor read-write))
+	(single-slot domain-value
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass TableEntity
+	(is-a USER)
+	(role concrete))
+
+(defclass Entry
+	(is-a TableEntity)
+	(role abstract))
+
+(defclass DomainRangeObjectPairEntry
+	(is-a Entry)
+	(role abstract)
+	(single-slot range-value
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot domain-value
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass SingleObjectEntry
+	(is-a Entry)
+	(role abstract))
+
+(defclass EntryMetaclass
+	(is-a :STANDARD-CLASS TableEntity)
+	(role concrete)
+	(multislot range-value-slots
+		(type INSTANCE)
+;+		(allowed-classes :SLOT)
+		(create-accessor read-write))
+	(multislot domain-value-slots
+		(type INSTANCE)
+;+		(allowed-classes :SLOT)
+		(create-accessor read-write)))
+
+(defclass EnumeratedRelation
+	(is-a TableEntity)
+	(role abstract))
+
+(defclass EnumeratedFunction
+	(is-a EnumeratedRelation)
+	(role abstract))
+
+(defclass BoundedDomain_EnumeratedFunction
+	(is-a EnumeratedFunction)
+	(role abstract))
+
+(defclass MathematicalEnumeratedFunction
+	(is-a EnumeratedFunction)
+	(role abstract))
+
+(defclass EnumeratedRelationMetaclass
+	(is-a :STANDARD-CLASS TableEntity)
+	(role concrete)
+	(single-slot entry-slot
+		(type INSTANCE)
+;+		(allowed-classes :SLOT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

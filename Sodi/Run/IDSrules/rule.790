@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS nt admin addition attempt"; flags:A+; content:"net localgroup administrators /add";nocase; sid:1357; rev:1; classtype:web-application-attack;)

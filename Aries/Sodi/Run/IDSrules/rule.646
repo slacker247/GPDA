@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 139 (msg:"MS-SQL xp_peekqueue possible buffer overflow"; content: "x|00|p|00|_|00|p|00|e|00|e|00|k|00|q|00|u|00|e|00|u|00|e"; nocase; flags: AP; offset: 32; classtype:attempted-user; sid:697; rev:2;)

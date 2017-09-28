@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC whisker splice attack"; dsize: <5; flags: A+; content: "|09|";reference:arachnids,415; classtype:attempted-recon; sid:1087; rev:1;)

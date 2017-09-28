@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI finger access"; flags: A+; uricontent:"/finger"; nocase; reference:arachnids,221; reference:cve,CVE-1999-0612;classtype:attempted-recon; sid:839; rev:1;)

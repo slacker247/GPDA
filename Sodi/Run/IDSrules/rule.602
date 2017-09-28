@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $SMTP 25 (msg:"SMTP RCPT TO overflow"; flags:A+; content:"rcpt to|3a|"; dsize:>800; reference:cve,CAN-2001-0260; reference:bugtraq,2283; classtype:attempted-admin; sid:654; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Admin_files access"; flags:A+; uricontent:"/admin_files"; nocase; classtype:attempted-recon; sid:1212; rev:1;)

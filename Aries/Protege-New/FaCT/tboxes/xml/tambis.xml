@@ -1,0 +1,3981 @@
+<?xml version="1.0"?>
+<!DOCTYPE KNOWLEDGEBASE SYSTEM "fact.dtd">
+<KNOWLEDGEBASE>
+<DEFROLE NAME="Attribute"/>
+<DEFROLE NAME="DomainAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="DomainAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="Attribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="InverseDomainAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="InverseDomainAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="Attribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasPrecedence"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasPrecedence"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="Attribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isPrecedenceOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isPrecedenceOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="Attribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="ConstructiveAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="ConstructiveAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="DomainAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="inverseConstructiveAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="inverseConstructiveAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="InverseDomainAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="StructuralAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="StructuralAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="ConstructiveAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="inverseStructuralAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="inverseStructuralAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseConstructiveAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="FunctionalAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="FunctionalAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="ConstructiveAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="inverseFunctionalAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="inverseFunctionalAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseConstructiveAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="NumericalAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="NumericalAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="ConstructiveAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="inverseNumericalAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="inverseNumericalAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseConstructiveAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasIdentifier"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasIdentifier"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="NumericalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isIdentifierOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isIdentifierOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseNumericalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasAccessionNumber"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="hasAccessionNumber"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasAccessionNumber"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="hasIdentifier"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isAccessionNumberOf"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="isAccessionNumberOf"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isAccessionNumberOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="isIdentifierOf"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasNumberOfSubunits"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="hasNumberOfSubunits"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasNumberOfSubunits"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="NumericalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isNumberOfSubunitsOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isNumberOfSubunitsOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseNumericalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="ClassificationAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="ClassificationAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="StructuralAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="inverseClassificationAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="inverseClassificationAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseStructuralAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isStructuralClassificationOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isStructuralClassificationOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="ClassificationAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasStructuralClassification"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="hasStructuralClassification"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasStructuralClassification"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseClassificationAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasStructuralClassificationNumber"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="hasStructuralClassificationNumber"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasStructuralClassificationNumber"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="hasStructuralClassification"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isStructuralClassificationNumberOf"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="isStructuralClassificationNumberOf"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isStructuralClassificationNumberOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="isStructuralClassificationOf"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isFunctionalClassificationOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isFunctionalClassificationOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="ClassificationAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasFunctionalClassification"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="hasFunctionalClassification"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasFunctionalClassification"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseClassificationAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasECNumber"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="hasECNumber"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasECNumber"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="hasFunctionalClassification"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isECNumberOf"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="isECNumberOf"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isECNumberOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="isFunctionalClassificationOf"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isRepresentedBy"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="isRepresentedBy"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isRepresentedBy"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="StructuralAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="Represents"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="Represents"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="Represents"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseStructuralAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="StructurePartitiveAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="StructurePartitiveAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="StructuralAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="inverseStructurePartitiveAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="inverseStructurePartitiveAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseStructuralAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isComponentOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isComponentOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="StructurePartitiveAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasComponent"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasComponent"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseStructurePartitiveAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isProstheticGroupOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isProstheticGroupOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="isComponentOf"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasProstheticGroup"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasProstheticGroup"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="hasComponent"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isComplexOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isComplexOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="StructurePartitiveAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="formsPartOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="formsPartOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseStructurePartitiveAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isModificationOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isModificationOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="StructuralAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasModification"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasModification"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseStructuralAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasGrossSecondaryStructureContent"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="hasGrossSecondaryStructureContent"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasGrossSecondaryStructureContent"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="hasStructuralClassification"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isGrossSecondaryStructureContentOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isGrossSecondaryStructureContentOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="isStructuralClassificationOf"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasGrossSecondaryStructureArrangement"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="hasGrossSecondaryStructureArrangement"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasGrossSecondaryStructureArrangement"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="hasStructuralClassification"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isGrossSecondaryStructureArrangementOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="isStructuralClassificationOf"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="OrganismClassificationAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="OrganismClassificationAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="ClassificationAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="inverseOrganismClassificationAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="inverseOrganismClassificationAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseClassificationAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isOrganismClassificationOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isOrganismClassificationOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="OrganismClassificationAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasOrganismClassification"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="hasOrganismClassification"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasOrganismClassification"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseOrganismClassificationAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isCatalysedBy"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isCatalysedBy"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="FunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="catalyses"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="catalyses"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseFunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isReactionParticipantIn"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isReactionParticipantIn"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="FunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasReactionParticipant"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasReactionParticipant"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseFunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isSubstrateOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isSubstrateOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="isReactionParticipantIn"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasSubstrate"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasSubstrate"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="hasReactionParticipant"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isProductOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isProductOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="isReactionParticipantIn"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasProduct"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasProduct"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="hasReactionParticipant"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isCofactorIn"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isCofactorIn"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="isReactionParticipantIn"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasCofactor"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasCofactor"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="hasReactionParticipant"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="ModifierAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="ModifierAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="DomainAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="inverseModifierAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="inverseModifierAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="InverseDomainAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="SelectorAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="SelectorAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="ModifierAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="inverseSelectorAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="inverseSelectorAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseModifierAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasPolarity"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="hasPolarity"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasPolarity"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="SelectorAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isPolarityOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isPolarityOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseSelectorAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasSubunitSimilarity"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="hasSubunitSimilarity"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasSubunitSimilarity"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="SelectorAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isSubunitSimilarityOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isSubunitSimilarityOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseSelectorAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="PhysicalAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="PhysicalAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="StructuralAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="inversePhysicalAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="inversePhysicalAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseStructuralAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="MagnitudeAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="MagnitudeAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="PhysicalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="inverseMagnitudeAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="inverseMagnitudeAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inversePhysicalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasMagnitude"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="hasMagnitude"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasMagnitude"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="MagnitudeAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isMagnitudeOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isMagnitudeOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseMagnitudeAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasPhysicoChemicalProperty"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasPhysicoChemicalProperty"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="PhysicalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isPhysicoChemicalPropertyOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isPhysicoChemicalPropertyOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inversePhysicalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasElectricalCharge"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="hasElectricalCharge"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasElectricalCharge"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="hasPhysicoChemicalProperty"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isElectricalChargeOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isElectricalChargeOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="isPhysicoChemicalPropertyOf"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasPercentageMatch"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="hasPercentageMatch"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasPercentageMatch"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="MagnitudeAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isPercentageMatchOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isPercentageMatchOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseMagnitudeAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="SimilarityAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="SimilarityAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="FunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="inverseSimilarityAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="inverseSimilarityAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseFunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isHomologousTo"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isHomologousTo"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="SimilarityAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasHomologyWith"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasHomologyWith"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseSimilarityAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isLevelOfMatchOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isLevelOfMatchOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="SimilarityAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasLevelOfMatch"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="hasLevelOfMatch"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasLevelOfMatch"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseSimilarityAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasMethod"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasMethod"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="FunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isMethodOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isMethodOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseFunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isComparisonMethodOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isComparisonMethodOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="isMethodOf"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasComparisonMethod"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="hasComparisonMethod"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasComparisonMethod"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="hasMethod"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isAlignmentMethodOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isAlignmentMethodOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="isComparisonMethodOf"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasAlignmentMethod"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="hasAlignmentMethod"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasAlignmentMethod"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="hasComparisonMethod"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isAdditionOf"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="isAdditionOf"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isAdditionOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="FunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="reverseIsAdditionOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="reverseIsAdditionOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseFunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="indicatesFunction"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="indicatesFunction"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="indicatesFunction"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="FunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isIndicatedBy"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="isIndicatedBy"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isIndicatedBy"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseFunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isBindingOf"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="isBindingOf"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isBindingOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="FunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="reverseIsBindingOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="reverseIsBindingOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseFunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="binds"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="binds"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="FunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isBoundBy"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isBoundBy"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseFunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isFunctionOf"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isFunctionOf"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="FunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="hasFunction"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="hasFunction"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseFunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="functionsIn"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="functionsIn"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="FunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="inverseFunctionsIn"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="inverseFunctionsIn"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseFunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="StructuralFunctionalAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="StructuralFunctionalAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="StructuralAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="inverseStructuralFunctionalAttribute"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="inverseStructuralFunctionalAttribute"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseStructuralAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="isAssociatedWith"/>
+<FUNCTIONAL>
+	<PRIMROLE NAME="isAssociatedWith"/>
+</FUNCTIONAL>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="isAssociatedWith"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="StructuralFunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFROLE NAME="reverseIsAssociatedWith"/>
+<IMPLIESR>
+	<ROLE>
+		<PRIMROLE NAME="reverseIsAssociatedWith"/>
+	</ROLE>
+	<ROLE>
+		<PRIMROLE NAME="inverseStructuralFunctionalAttribute"/>
+	</ROLE>
+</IMPLIESR>
+<DEFCONCEPT NAME="TopCategory"/>
+<DEFCONCEPT NAME="SymbolicValueType"/>
+<DEFCONCEPT NAME="IntegerValueType"/>
+<DEFCONCEPT NAME="Unit"/>
+<DEFCONCEPT NAME="TopThing"/>
+<DEFCONCEPT NAME="DomainCategory"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="DomainCategory"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="TopThing"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Phenomenon"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Phenomenon"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="DomainCategory"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Modifier"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Modifier"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="DomainCategory"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="GeneralisedStructure"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="GeneralisedStructure"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Phenomenon"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="GeneralisedProcess"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="GeneralisedProcess"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Phenomenon"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="GeneralisedSubstance"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="GeneralisedSubstance"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Phenomenon"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="GeneralisedFunction"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="GeneralisedFunction"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Phenomenon"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="BiologicalFunction"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalFunction"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="GeneralisedFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="BiologicalProcess"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalProcess"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="GeneralisedProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ChemicalProcess"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalProcess"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="GeneralisedProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Reaction"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Reaction"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="EnzymicReaction"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="EnzymicReaction"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Reaction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Aspect"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Aspect"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Modifier"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Collection"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Collection"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Modifier"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Complex"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Complex"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Collection"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Feature"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Feature"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Modifier"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Selector"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Selector"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Aspect"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Property"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Property"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Aspect"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Role"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Role"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Aspect"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="PhysicoChemicalProperty"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="PhysicoChemicalProperty"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Property"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="HomologyProperty"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="HomologyProperty"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Property"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Similarity"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Similarity"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="HomologyProperty"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Identity"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Identity"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="HomologyProperty"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="PhysicalStructure"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="PhysicalStructure"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="GeneralisedStructure"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="AbstractStructure"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="AbstractStructure"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="GeneralisedStructure"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Pathway"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Pathway"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="AbstractStructure"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="MetabolicPathway"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="MetabolicPathway"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Pathway"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="BiomolecularStructure"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiomolecularStructure"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="PhysicalStructure"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Chemical"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Chemical"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="PhysicalStructure"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ChemicalCompound"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalCompound"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Chemical"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ChemicalElement"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalElement"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Chemical"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ChemicalGroup"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalGroup"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Chemical"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ProstheticGroup"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ProstheticGroup"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalGroup"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ReactionParticipant"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ReactionParticipant"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Chemical"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="OrganicCompound"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="OrganicCompound"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalCompound"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="InorganicCompound"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="InorganicCompound"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalCompound"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Classification"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Classification"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="AbstractStructure"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="AccessionNumber"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="AccessionNumber"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="AbstractStructure"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="StructuralClassification"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="StructuralClassification"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Classification"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="OrganismClassification"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="OrganismClassification"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Classification"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="FunctionalClassification"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="FunctionalClassification"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Classification"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ECNumber"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ECNumber"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="FunctionalClassification"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Sequence"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Sequence"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiomolecularStructure"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Structure"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Structure"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiomolecularStructure"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ComponentOfBiomolecularStructure"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ComponentOfBiomolecularStructure"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiomolecularStructure"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="SequenceComponent"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="SequenceComponent"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ComponentOfBiomolecularStructure"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="StructureComponent"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="StructureComponent"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ComponentOfBiomolecularStructure"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="TertiaryStructureComponent"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="TertiaryStructureComponent"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="StructureComponent"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="SecondaryStructureComponent"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="SecondaryStructureComponent"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="StructureComponent"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Domain"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Domain"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="TertiaryStructureComponent"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="SecondaryStructure"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="SecondaryStructure"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Structure"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="TertiaryStructure"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="TertiaryStructure"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Structure"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Equation"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Equation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="AbstractStructure"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ReactionEquation"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ReactionEquation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Equation"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ElectricalCharge"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ElectricalCharge"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="PhysicoChemicalProperty"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ValueType"/>
+<DEFCONCEPT NAME="RelativeValueType"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="RelativeValueType"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ValueType"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="LessThanOrEqualTo"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="LessThanOrEqualTo"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="RelativeValueType"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="GreaterThanOrEqualTo"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="GreaterThanOrEqualTo"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="RelativeValueType"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Method"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Method"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="AbstractStructure"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ComparisonMethod"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ComparisonMethod"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Method"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="MethodOfDeterminingStructure"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="MethodOfDeterminingStructure"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Method"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="AlignmentMethod"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="AlignmentMethod"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ComparisonMethod"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="LocalAlignment"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="LocalAlignment"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="AlignmentMethod"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="GlobalAlignment"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="GlobalAlignment"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="AlignmentMethod"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ExperimentalObservation"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ExperimentalObservation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="MethodOfDeterminingStructure"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Motif"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Motif"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="SequenceComponent"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Polarity"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Polarity"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Selector"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="HeterogeneitySelector"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="HeterogeneitySelector"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Selector"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Positive"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Positive"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Polarity"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Negative"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Negative"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Polarity"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Homogeneous"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Homogeneous"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="HeterogeneitySelector"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Heterogeneous"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heterogeneous"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="HeterogeneitySelector"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Species"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Species"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="OrganismClassification"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Biopolymer"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Biopolymer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="OrganicCompound"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Protein"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Protein"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Biopolymer"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="NucleicAcid"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="NucleicAcid"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Biopolymer"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Enzyme"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Enzyme"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Protein"/> <SOME> <PRIMROLE NAME="catalyses"/> <PRIMITIVE NAME="Reaction"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Cofactor"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Cofactor"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ReactionParticipant"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="IronSulphur"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="IronSulphur"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="InorganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="IronMolybdenum"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="IronMolybdenum"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="InorganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Ammonia"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Ammonia"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="InorganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ATP"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ATP"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="NAD"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="NAD"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Ascorbate"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Ascorbate"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Cobalamin"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Cobalamin"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="CoEnzymeA"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="CoEnzymeA"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Dipyrromethane"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Dipyrromethane"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="FlavinCompounds"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="FlavinCompounds"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="PyridoxalPhosphate"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="PyridoxalPhosphate"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ThyminePyrophosphate"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ThyminePyrophosphate"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Biotin"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Biotin"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Dithiothreitol"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Dithiothreitol"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Pterin"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Pterin"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Tetrahydropteridine"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Tetrahydropteridine"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="BileSalt"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="BileSalt"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="SixHydroxyDOPA"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="SixHydroxyDOPA"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Pyruvate"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Pyruvate"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="TTQ"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="TTQ"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Glutathione"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Glutathione"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="F450"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="F450"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="PQQ"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="PQQ"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="OrganicCompound"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="NADPH"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="NADPH"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="NAD"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Flavin"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Flavin"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="FlavinCompounds"/> <PRIMITIVE NAME="ProstheticGroup"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="FAD"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="FAD"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="FlavinCompounds"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ReducedFlavin"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ReducedFlavin"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="FlavinCompounds"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="FMN"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="FMN"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="FlavinCompounds"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Lipoyl"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Lipoyl"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ProstheticGroup"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Heme"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heme"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ProstheticGroup"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ProtohemeIX"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ProtohemeIX"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heme"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="HemeThiolate"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="HemeThiolate"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heme"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Siroheme"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Siroheme"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heme"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Metal"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Metal"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalElement"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="NonMetal"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="NonMetal"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalElement"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Ion"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Ion"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalElement"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Iron"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Iron"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Metal"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Cadmium"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Cadmium"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Metal"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Zinc"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Zinc"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Metal"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Magnesium"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Magnesium"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Metal"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Molybdenum"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Molybdenum"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Metal"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Nickel"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Nickel"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Metal"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Potassium"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Potassium"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Metal"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Sodium"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Sodium"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Metal"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Calcium"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Calcium"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Metal"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Tungsten"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Tungsten"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Metal"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Cobalt"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Cobalt"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Metal"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Copper"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Copper"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Metal"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Manganese"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Manganese"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Metal"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Vanadium"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Vanadium"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Metal"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Selenium"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Selenium"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="NonMetal"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Cation"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Cation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Ion"/> <SOME> <PRIMROLE NAME="hasElectricalCharge"/> <AND> <PRIMITIVE NAME="ElectricalCharge"/> <SOME> <PRIMROLE NAME="hasPolarity"/> <PRIMITIVE NAME="Positive"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Anion"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Anion"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Ion"/> <SOME> <PRIMROLE NAME="hasElectricalCharge"/> <AND> <PRIMITIVE NAME="ElectricalCharge"/> <SOME> <PRIMROLE NAME="hasPolarity"/> <PRIMITIVE NAME="Negative"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="DivalentCation"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="DivalentCation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Cation"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="MonovalentCation"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="MonovalentCation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Cation"/> <PRIMITIVE NAME="Cofactor"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Carbohydrate"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Carbohydrate"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Biopolymer"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Lipid"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Lipid"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Biopolymer"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Glycosaminoglycan"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Glycosaminoglycan"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Carbohydrate"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Amide"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Amide"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalGroup"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Hydroxyl"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Hydroxyl"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalGroup"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Carboxyl"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Carboxyl"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalGroup"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Methyl"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Methyl"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalGroup"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Phosphate"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Phosphate"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalGroup"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Sulphate"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Sulphate"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalGroup"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Myristoyl"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Myristoyl"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ChemicalGroup"/> <PRIMITIVE NAME="Lipid"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Prenyl"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Prenyl"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalGroup"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Phosphopantetheine"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Phosphopantetheine"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="OrganicCompound"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Iodine"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Iodine"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="NonMetal"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="GrossSecondaryStructureContent"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="GrossSecondaryStructureContent"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="StructuralClassification"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="GrossSecondaryStructureArrangement"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="GrossSecondaryStructureArrangement"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="StructuralClassification"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="StructuralSuperFamily"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="StructuralSuperFamily"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="StructuralClassification"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="HomologousSuperFamily"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="HomologousSuperFamily"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="StructuralClassification"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="MainlyAlpha"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="MainlyAlpha"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="GrossSecondaryStructureContent"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="MainlyBeta"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="MainlyBeta"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="GrossSecondaryStructureContent"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="MixedAlphaBeta"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="MixedAlphaBeta"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="GrossSecondaryStructureContent"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="FewSecondaryStructures"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="FewSecondaryStructures"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="GrossSecondaryStructureContent"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Ribbon"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Ribbon"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MainlyBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="SingleSheet"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="SingleSheet"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MainlyBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Trefoil"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Trefoil"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MainlyBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Roll"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Roll"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MainlyBeta"/> </SOME> </AND> </SOME> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MixedAlphaBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Barrel"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Barrel"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MainlyBeta"/> </SOME> </AND> </SOME> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MixedAlphaBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Clam"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Clam"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MainlyBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Sandwich"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Sandwich"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MainlyBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Prism"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Prism"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MainlyBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Propeller"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Propeller"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MainlyBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Solenoid"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Solenoid"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MainlyBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ComplexArrangement"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ComplexArrangement"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MainlyBeta"/> </SOME> </AND> </SOME> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MixedAlphaBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="FourPropeller"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="FourPropeller"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Propeller"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="SixPropeller"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="SixPropeller"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Propeller"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="SevenPropeller"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="SevenPropeller"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Propeller"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="EightPropeller"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="EightPropeller"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Propeller"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ThreeLayerSandwich"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ThreeLayerSandwich"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Sandwich"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="DistortedSandwich"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="DistortedSandwich"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Sandwich"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="TwoSolenoid"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="TwoSolenoid"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Solenoid"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ThreeSolenoid"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ThreeSolenoid"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Solenoid"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="OrthogonalPrism"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="OrthogonalPrism"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Prism"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="AlignedPrism"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="AlignedPrism"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Prism"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Bundle"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Bundle"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MainlyAlpha"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="NonBundle"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="NonBundle"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MainlyAlpha"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Horseshoe"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Horseshoe"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MainlyAlpha"/> </SOME> </AND> </SOME> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MixedAlphaBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Box"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Box"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MixedAlphaBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Geo02"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Geo02"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MixedAlphaBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="TwoLayerSandwich"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="TwoLayerSandwich"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Sandwich"/> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MixedAlphaBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="FourLayerSandwich"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="FourLayerSandwich"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Sandwich"/> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MixedAlphaBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ThreeLayerABASandwich"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ThreeLayerABASandwich"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ThreeLayerSandwich"/> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MixedAlphaBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ThreeLayerBBASandwich"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ThreeLayerBBASandwich"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ThreeLayerSandwich"/> <PRIMITIVE NAME="GrossSecondaryStructureArrangement"/> <SOME> <PRIMROLE NAME="isGrossSecondaryStructureArrangementOf"/> <AND> <PRIMITIVE NAME="Domain"/> <SOME> <PRIMROLE NAME="hasGrossSecondaryStructureContent"/> <PRIMITIVE NAME="MixedAlphaBeta"/> </SOME> </AND> </SOME> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Irregular"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Irregular"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="GrossSecondaryStructureArrangement"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="BiomolecularProcess"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiomolecularProcess"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="CellularProcess"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="CellularProcess"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="BodyProcess"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="BodyProcess"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="CellularGrowthAndProliferation"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="CellularGrowthAndProliferation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiomolecularProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Secretion"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Secretion"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiomolecularProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Transport"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Transport"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiomolecularProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="MolecularModification"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="MolecularModification"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiomolecularProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Binding"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Binding"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiomolecularProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="PostTranslationalModification"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="PostTranslationalModification"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="MolecularModification"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="PostTranscriptionalModification"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="PostTranscriptionalModification"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="MolecularModification"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="GeneralChemicalProcess"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="GeneralChemicalProcess"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="SpecificChemicalProcess"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="SpecificChemicalProcess"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ChemicalProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Substitution"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Substitution"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="SpecificChemicalProcess"/> <PRIMITIVE NAME="PostTranslationalModification"/> </AND>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ProteinSplicing"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ProteinSplicing"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="PostTranslationalModification"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="IonOrGroupTransport"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="IonOrGroupTransport"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Transport"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ElectronTransport"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ElectronTransport"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="IonOrGroupTransport"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Glycosylation"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Glycosylation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Substitution"/> <SOME> <PRIMROLE NAME="isAdditionOf"/> <PRIMITIVE NAME="Carbohydrate"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="GlycosaminoglycanSubstitution"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="GlycosaminoglycanSubstitution"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Substitution"/> <SOME> <PRIMROLE NAME="isAdditionOf"/> <PRIMITIVE NAME="Glycosaminoglycan"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Amidation"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Amidation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Substitution"/> <SOME> <PRIMROLE NAME="isAdditionOf"/> <PRIMITIVE NAME="Amide"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Hydroxylation"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Hydroxylation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Substitution"/> <SOME> <PRIMROLE NAME="isAdditionOf"/> <PRIMITIVE NAME="Hydroxyl"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Carboxylation"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Carboxylation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Substitution"/> <SOME> <PRIMROLE NAME="isAdditionOf"/> <PRIMITIVE NAME="Carboxyl"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Methylation"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Methylation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Substitution"/> <SOME> <PRIMROLE NAME="isAdditionOf"/> <PRIMITIVE NAME="Methyl"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Phosphorylation"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Phosphorylation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Substitution"/> <SOME> <PRIMROLE NAME="isAdditionOf"/> <PRIMITIVE NAME="Phosphate"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Sulphation"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Sulphation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Substitution"/> <SOME> <PRIMROLE NAME="isAdditionOf"/> <PRIMITIVE NAME="Sulphate"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="LipidSubstitution"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="LipidSubstitution"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Substitution"/> <SOME> <PRIMROLE NAME="isAdditionOf"/> <PRIMITIVE NAME="Lipid"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Myristoylation"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Myristoylation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Substitution"/> <SOME> <PRIMROLE NAME="isAdditionOf"/> <PRIMITIVE NAME="Myristoyl"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Prenylation"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Prenylation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Substitution"/> <SOME> <PRIMROLE NAME="isAdditionOf"/> <PRIMITIVE NAME="Prenyl"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="MaintenanceOfStructure"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="MaintenanceOfStructure"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="EnzymicFunction"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="EnzymicFunction"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Receptor"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Receptor"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Hormone"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Hormone"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Toxin"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Toxin"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Oxidoreductase"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Oxidoreductase"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="EnzymicFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Transferase"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Transferase"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="EnzymicFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Hydrolase"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Hydrolase"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="EnzymicFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Lyase"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Lyase"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="EnzymicFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Isomerase"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Isomerase"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="EnzymicFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Ligase"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Ligase"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="EnzymicFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="NucleicAcidBinding"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="NucleicAcidBinding"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Binding"/> <SOME> <PRIMROLE NAME="isBindingOf"/> <PRIMITIVE NAME="NucleicAcid"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Chelation"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Chelation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="SpecificChemicalProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Apoptosis"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Apoptosis"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="CellularProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Partition"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Partition"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="CellularProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Differentiation"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Differentiation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="CellularProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Endocytosis"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Endocytosis"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="CellularProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Phagocytosis"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Phagocytosis"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="CellularProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Iodination"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Iodination"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Substitution"/> <SOME> <PRIMROLE NAME="isAdditionOf"/> <PRIMITIVE NAME="Iodine"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="GeneExpressionProcess"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="GeneExpressionProcess"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiomolecularProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Regulation"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Regulation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiomolecularProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Metabolism"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Metabolism"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiomolecularProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Processing"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Processing"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiomolecularProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="DNAProcessing"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="DNAProcessing"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Processing"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="DNAReplication"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="DNAReplication"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="DNAProcessing"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="DNARepair"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="DNARepair"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="DNAProcessing"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Excision"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Excision"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="DNARepair"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Initiation"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Initiation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Regulation"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Termination"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Termination"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Regulation"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Inhibition"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Inhibition"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Regulation"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Cleavage"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Cleavage"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="PostTranscriptionalModification"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Respiration"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Respiration"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BodyProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Clotting"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Clotting"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BodyProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="DiseaseProcess"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="DiseaseProcess"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BodyProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Lactation"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Lactation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BodyProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Olfaction"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Olfaction"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BodyProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ReproductionProcess"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ReproductionProcess"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BodyProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="VascularControl"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="VascularControl"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BodyProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Fertilization"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Fertilization"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ReproductionProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Pregnancy"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Pregnancy"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ReproductionProcess"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Vascularization"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Vascularization"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="VascularControl"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Vasodilation"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Vasodilation"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="VascularControl"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Vasoconstriction"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Vasoconstriction"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="VascularControl"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Allergen"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Allergen"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Antigen"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Antigen"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Antibiotic"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Antibiotic"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Antioxidant"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Antioxidant"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Antiviral"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Antiviral"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Channel"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Channel"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Cytokine"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Cytokine"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="GrowthFactor"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="GrowthFactor"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Pheromone"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Pheromone"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="SignalAnchor"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="SignalAnchor"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Zymogen"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Zymogen"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="BiologicalFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Kinase"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Kinase"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="EnzymicFunction"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="SuperAntigen"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="SuperAntigen"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Antigen"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="BloodGroupAntigen"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="BloodGroupAntigen"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Antigen"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="TumourAntigen"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="TumourAntigen"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Antigen"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Neurotoxin"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Neurotoxin"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Toxin"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Endotoxin"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Endotoxin"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Toxin"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Cytotoxin"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Cytotoxin"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Toxin"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Substrate"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Substrate"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ReactionParticipant"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Product"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Product"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ReactionParticipant"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="Reactant"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Reactant"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="ReactionParticipant"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="ProteinComplex"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ProteinComplex"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Complex"/> <SOME> <PRIMROLE NAME="isComplexOf"/> <PRIMITIVE NAME="Protein"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Monomer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Monomer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ProteinComplex"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="one"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Dimer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Dimer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ProteinComplex"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="two"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Trimer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Trimer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ProteinComplex"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="three"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Tetramer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Tetramer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ProteinComplex"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="four"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Pentamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Pentamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ProteinComplex"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="five"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Hexamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Hexamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ProteinComplex"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="six"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Heptamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heptamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ProteinComplex"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="seven"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Octamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Octamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ProteinComplex"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="eight"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Nonamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Nonamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ProteinComplex"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="nine"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Decamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Decamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ProteinComplex"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="ten"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Dodecamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Dodecamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ProteinComplex"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="twelve"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Didecamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Didecamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ProteinComplex"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="twenty"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Homomer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Homomer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ProteinComplex"/> <SOME> <PRIMROLE NAME="hasSubunitSimilarity"/> <PRIMITIVE NAME="Homogeneous"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Heteromer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heteromer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ProteinComplex"/> <SOME> <PRIMROLE NAME="hasSubunitSimilarity"/> <PRIMITIVE NAME="Heterogeneous"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Homodimer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Homodimer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Homomer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="two"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Homotrimer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Homotrimer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Homomer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="three"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Homotetramer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Homotetramer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Homomer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="four"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Homopentamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Homopentamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Homomer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="five"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Homohexamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Homohexamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Homomer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="six"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Homoheptamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Homoheptamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Homomer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="seven"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Homooctamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Homooctamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Homomer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="eight"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Homononamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Homononamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Homomer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="nine"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Homodecamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Homodecamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Homomer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="ten"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Homododecamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Homododecamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Homomer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="twelve"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Homodidecamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Homodidecamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Homomer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="twenty"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Heterodimer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heterodimer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Heteromer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="two"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Heterotrimer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heterotrimer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Heteromer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="three"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Heterotetramer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heterotetramer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Heteromer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="four"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Heteropentamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heteropentamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Heteromer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="five"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Heterohexamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heterohexamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Heteromer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="six"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Heteroheptamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heteroheptamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Heteromer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="seven"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Heterooctamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heterooctamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Heteromer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="eight"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Heterononamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heterononamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Heteromer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="nine"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Heterodecamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heterodecamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Heteromer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="ten"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Heterododecamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heterododecamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Heteromer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="twelve"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Heterodidecamer"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Heterodidecamer"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Heteromer"/> <SOME> <PRIMROLE NAME="hasNumberOfSubunits"/> <PRIMITIVE NAME="twenty"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="Site"/>
+<IMPLIESC>
+	<CONCEPT>
+		<PRIMITIVE NAME="Site"/>
+	</CONCEPT>
+	<CONCEPT>
+		<PRIMITIVE NAME="Motif"/>
+	</CONCEPT>
+</IMPLIESC>
+<DEFCONCEPT NAME="BindingSite"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="BindingSite"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Site"/> <SOME> <PRIMROLE NAME="binds"/> <PRIMITIVE NAME="Chemical"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="ModifiedSite"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="ModifiedSite"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="Site"/> <SOME> <PRIMROLE NAME="hasModification"/> <PRIMITIVE NAME="MolecularModification"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="GlycosylationSite"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="GlycosylationSite"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ModifiedSite"/> <SOME> <PRIMROLE NAME="hasModification"/> <PRIMITIVE NAME="Glycosylation"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="LipidAttatchmentSite"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="LipidAttatchmentSite"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ModifiedSite"/> <SOME> <PRIMROLE NAME="hasModification"/> <PRIMITIVE NAME="LipidSubstitution"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="MyristoylationSite"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="MyristoylationSite"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="LipidAttatchmentSite"/> <SOME> <PRIMROLE NAME="hasModification"/> <PRIMITIVE NAME="Myristoylation"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="PhosphorylationSite"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="PhosphorylationSite"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ModifiedSite"/> <SOME> <PRIMROLE NAME="hasModification"/> <PRIMITIVE NAME="Phosphorylation"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="SulphationSite"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="SulphationSite"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ModifiedSite"/> <SOME> <PRIMROLE NAME="hasModification"/> <PRIMITIVE NAME="Sulphation"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="AmidationSite"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="AmidationSite"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ModifiedSite"/> <SOME> <PRIMROLE NAME="hasModification"/> <PRIMITIVE NAME="Amidation"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="HydroxylationSite"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="HydroxylationSite"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ModifiedSite"/> <SOME> <PRIMROLE NAME="hasModification"/> <PRIMITIVE NAME="Hydroxylation"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="MethylationSite"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="MethylationSite"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ModifiedSite"/> <SOME> <PRIMROLE NAME="hasModification"/> <PRIMITIVE NAME="Methylation"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="PrenylationSite"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="PrenylationSite"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ModifiedSite"/> <SOME> <PRIMROLE NAME="hasModification"/> <PRIMITIVE NAME="Prenylation"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+<DEFCONCEPT NAME="GlycosaminoglycanSubstitutionSite"/>
+<EQUALC>
+	<CONCEPT>
+		<PRIMITIVE NAME="GlycosaminoglycanSubstitutionSite"/>
+	</CONCEPT>
+	<CONCEPT>
+		<AND> <PRIMITIVE NAME="ModifiedSite"/> <SOME> <PRIMROLE NAME="hasModification"/> <PRIMITIVE NAME="GlycosaminoglycanSubstitution"/> </SOME> </AND>
+	</CONCEPT>
+</EQUALC>
+</KNOWLEDGEBASE>
+

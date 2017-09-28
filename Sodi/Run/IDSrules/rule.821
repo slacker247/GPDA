@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI dcforum.cgi invalid user addition attempt"; flags:A+; uricontent:"/dcboard.cgi"; content:"command=register"; content:"%7cadmin"; classtype:web-application-attack; sid:817; rev:2;)

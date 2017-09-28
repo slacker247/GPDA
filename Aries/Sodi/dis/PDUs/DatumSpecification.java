@@ -1,0 +1,341 @@
+/*
+ File:		DatumSpecification.java
+ CVS Info:	$Id: DatumSpecification.java,v 1.3 1998/01/28 08:28:19 mcgredo Exp $
+ Compiler:	jdk 1.3
+ */
+
+ package PDUs;
+ 
+ import java.util.*;                                           
+ import java.io.*;                                             
+ 
+ import mil.navy.nps.util.*;
+ import disEnumerations.*;
+
+
+/**
+ * Grouped datum information.
+ *
+ *@version 1.0
+ *@author Antonio Alexandre Rua (<A HREF="http://www.garfield.fe.up.pt/~alexrua">http://www.garfield.fe.up.pt/~alexrua</A>)
+ *
+ *<dt><b>Location:</b>
+ *<dd>Web:  <a href="http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/DatumSpecification.java">
+ *  http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/DatumSpecification.java</a>
+ *
+ *<dd>or locally:  <a href="../../../../../../mil/navy/nps/dis/DatumSpecification.java">
+ *  ~/mil/navy/nps/dis/DatumSpecification.java</a>
+ *
+ *<dt><b>Hierarchy Diagram:</b>
+ *<dd><a href="../../../../../../dis-java-vrml/images/PduClassHierarchy.jpg"><IMG SRC="../../../../../../dis-java-vrml/images/PduClassHierarchyButton.jpg" ALIGN=ABSCENTER WIDTH=150 HEIGHT=21></a>
+ *
+ *<dt><b>Summary:</b>
+ *<dd>The Datum Specification record is used to communicate grouped datum information.
+ *
+ *<dt><b>Explanation:</b>
+ *<dd> This record shall specify the number of Fixed Datums and Variable Datums,
+ *  as well as the records itself.
+ *  The Datum Specification is included in several PDU, as for example
+ *  the SetDataPDU, the CommentPdu...<p>
+ *  Note that our implementation might seem quite different from the representation of  a Datum
+ *  Specification Record in the DIS format, in fact we take advantage of the power of java where
+ *  we can use elaborate structures "transparently".
+ *
+ *  As with other things, the DatumSpecification record has to 
+ *  know how to serialize and deserialize itself, clone itself,
+ *  and print out its values.
+ *
+ *<dt><b>Note:</b>
+ *  DatumSpecification doesn't exist in the on-line Dis Data Dictionary.
+ *
+ *<dt><b>History:</b>
+ *<dd>		16Sep97	/Antonio Alexandre Rua	/New
+ *<dd>		8Dec97	/Ronan Fauglas		/changes for documentation templates + complements in documentation
+ *<dd>		11Dec97	/Ronan Fauglas		/changed access methods: thisVariable() --> getThisVariable()
+ *
+ *<dt><b>References:</b>
+ *<dd>		DIS-Java-VRML Working Group: <a href="http://www.web3d.org/WorkingGroups/vrtp/dis-java-vrml/"> 
+ *		http://www.web3d.org/WorkingGroups/vrtp/dis-java-vrml/</a>
+ *<dd>		DIS specification : IEEE 1278.1, Section 5.3.9
+ *
+ *@see ProtocolDataUnit
+ *@see PduElement 
+ *@see SerializationInterface
+ */
+public class DatumSpecification extends PduElement 
+ {
+   /**
+    *Elaborate structure that represents the list of fixed datums.
+    *One fixed datum is made of Datum ID --a 32 bit long and a variable datum--a 32 bit long.
+    */ 
+   protected Vector        fixedDatumList;          // list of fixed datums
+
+   /**
+    *Elaborate structure that represents the list of variable datums.
+    *When written on the wire One variable datum is made of Datum ID --a 32 bit long, 
+    *a variable length --a 32 bit long, and of variable datum value--padding bit long.
+    */ 
+   protected Vector        variableDatumList;       // List of variable datums
+ 
+   /**
+    *Constant value--size of a fixed data of the Datum Specification record (actually the 2 counters); here :<code>sizeOf = 8 bytes</code>.
+    */
+   public static final int sizeOf = 8;              // 8 bytes stands for fixed, counters
+ 
+
+/**
+ *Default constructor. Creates two empty lists of data.
+ */
+public DatumSpecification()                                             // default constructor
+{
+  fixedDatumList     = new Vector();
+  variableDatumList  = new Vector();
+ 
+  return;
+}
+ 
+
+public void  serialize(DataOutputStream outputStream)
+{
+  /**
+     Serialize our data out to the stream. We first call the superclass,
+     so that all the data there is written out to the buffer first.
+     Then we serialize each of our ivars to the stream, being careful
+     about the order.
+ */
+ 
+  UnsignedInt     fixedDatumCount;        // number of fixed datums
+  UnsignedInt     variableDatumCount;     // number of variable datums
+  Enumeration     listContents;           // easy way to loop thru vector
+ 
+  // write out the number of fixed and variable datums. 
+  fixedDatumCount    = new UnsignedInt(fixedDatumList.size());
+  variableDatumCount = new UnsignedInt(variableDatumList.size());
+     
+  fixedDatumCount.serialize(outputStream);
+  variableDatumCount.serialize(outputStream);
+ 
+  // loop thru and write out all the elements of the list of fixed datums.
+  listContents = fixedDatumList.elements();
+  while(listContents.hasMoreElements())
+  {
+    FixedDatum  aDatum = (FixedDatum)listContents.nextElement();
+    aDatum.serialize(outputStream);
+  }
+
+  // loop thru and write out all the elements of the list of variable datums.
+  listContents = variableDatumList.elements();
+  while(listContents.hasMoreElements())
+  {
+    VariableDatum  aDatum = (VariableDatum)listContents.nextElement();
+    aDatum.serialize(outputStream);
+  }
+    
+  return;
+}
+ 
+public void  deSerialize(DataInputStream inputStream)
+{
+  /**
+   deserialize our data from the stream. We first call the superclass,
+   so that all the data there is read into the buffer first.
+   Then we deserialize each of our ivars to the stream, being careful
+   about the order.
+  */
+ 
+  int             idx = 0;
+  UnsignedInt     variableDatumCount = new UnsignedInt(0), fixedDatumCount = new UnsignedInt(0);
+     
+  fixedDatumCount.deSerialize(inputStream);
+  variableDatumCount.deSerialize(inputStream);
+ 
+  // read in the correct number of fixed datums.
+  for(idx = 0; idx < fixedDatumCount.longValue(); idx++)
+  {
+    FixedDatum  aDatum = new FixedDatum();
+    aDatum.deSerialize(inputStream);
+    fixedDatumList.addElement(aDatum);
+  }
+
+  // read in the correct number of variable datums.
+  for(idx = 0; idx < variableDatumCount.longValue(); idx++)
+  {
+    VariableDatum   aDatum = new VariableDatum();
+    aDatum.deSerialize(inputStream);
+    variableDatumList.addElement(aDatum);
+  }
+ 
+  return;
+}
+ 
+public Object clone()
+{ 
+  /**
+  Clone the DatumSpecification, being careful to not share any pointers between the
+  new object and the old object.
+   */
+ 
+  DatumSpecification newDatumSpecification = (DatumSpecification)super.clone();
+  int fixedDatumCount;                     // number of fixedDatums
+  int variableDatumCount;                  // number of variableDatums
+  int idx;            
+ 
+  fixedDatumCount = fixedDatumList.size();
+  for(idx = 0; idx <fixedDatumCount; idx++)
+  {
+    newDatumSpecification.addFixedDatum(this.fixedDatumAt(idx)); // makes copy when retrieved
+  }
+
+  variableDatumCount = variableDatumList.size();
+  for(idx = 0; idx <variableDatumCount; idx++)
+  {
+    newDatumSpecification.addVariableDatum(this.variableDatumAt(idx)); // makes copy when retrieved
+  }
+ 
+ return newDatumSpecification;
+}
+ 
+public int length()
+{
+   /** calculate the length of the record on the fly. This should reflect the current length
+       of the record; if a variable datum is added, you have to call length() again
+       to find the current length. Note that this is the length of the RECORD AS WRITTEN TO 
+       THE WIRE.
+    */
+ 
+  int   currentLength = 0;
+  Enumeration datumEnum;
+ 
+  currentLength = sizeOf + (fixedDatumList.size() * FixedDatum.sizeOf); 
+
+  datumEnum = variableDatumList.elements();
+  while(datumEnum.hasMoreElements())
+  {
+    VariableDatum  aDatum = (VariableDatum)datumEnum.nextElement();
+    currentLength += aDatum.length();
+  }
+
+ 
+  return currentLength;
+}
+ 
+public void printValues(int indentLevel, PrintStream printStream)
+{
+  // print the values of the object out, with correct level of
+  // indentation on the page.
+ 
+   
+  StringBuffer indent = ProtocolDataUnit.getPaddingOfLength(indentLevel);
+  int          idx, superclassIndent = indentLevel;
+  Enumeration  datumEnum;
+ 
+  printStream.println(indent + "fixedDatumCount   : " + fixedDatumList.size());
+  printStream.println(indent + "variableDatumCount: " + variableDatumList.size());
+ 
+  // print out fixed datum values
+  idx = 1;
+  datumEnum = fixedDatumList.elements();
+  while(datumEnum.hasMoreElements())
+  {
+    printStream.println(indent + "FixedDatum: " + idx++);
+    FixedDatum  aDatum = (FixedDatum)datumEnum.nextElement();
+    aDatum.printValues(indentLevel + 4, printStream);
+  }
+
+  // print out variable datum values
+  idx = 1;
+  datumEnum = variableDatumList.elements();
+  while(datumEnum.hasMoreElements())
+  {
+    printStream.println(indent + "VariableDatum: " + idx++);
+    VariableDatum  aDatum = (VariableDatum)datumEnum.nextElement();
+    aDatum.printValues(indentLevel + 4, printStream);
+  }
+ 
+  return;
+}
+ 
+ 
+ // Accessor methods
+ 
+ 
+public int getFixedDatumCount()
+{ return fixedDatumList.size();
+}
+ 
+public int getVariableDatumCount()
+{
+  return variableDatumList.size();
+}
+
+/**
+ *Adds the specified component to the end of this Fixed Datum list, increasing its size by one. 
+ *
+ *@param pDatum the Datum to be inserted in the list.
+ */
+public void addFixedDatum(FixedDatum pDatum)
+{
+  fixedDatumList.addElement(pDatum);
+  return;
+}
+
+/**
+ *Gets the specified component to the end at the specified index of the Fixed Datum List.
+ *
+ *@param pIdx the index we want to get the value of.
+ */
+public FixedDatum fixedDatumAt(int pIdx)
+{
+  FixedDatum   aDatum;
+ 
+  aDatum = (FixedDatum)fixedDatumList.elementAt(pIdx);
+  return (FixedDatum)aDatum.clone();
+}
+
+/**
+ *Supress the existing Fixed Datum List (used in Comment PDU).
+ *
+ *@see CommentPdu
+ */
+public void dropFixedDatum()
+{
+     fixedDatumList = new Vector();
+}
+
+ 
+/**
+ *Adds the specified component to the end of this Variable Datum list, increasing its size by one. 
+ *
+ *@param pDatum the Datum to be inserted in the list.
+ */
+public void addVariableDatum(VariableDatum pDatum)
+{
+  variableDatumList.addElement(pDatum);
+  return;
+}
+
+/**
+ *Gets the specified component to the end at the specified index of the Variable Datum List.
+ *
+ *@param pIdx the index we want to get the value of.
+ */
+public VariableDatum variableDatumAt(int pIdx)
+{
+  VariableDatum   aDatum;
+ 
+  aDatum = (VariableDatum)variableDatumList.elementAt(pIdx);
+  return (VariableDatum)aDatum.clone();
+}
+
+/**
+ *Supress the existing Fixed Datum List.
+ *
+ *@see CommentPdu
+ */
+public void dropVariableDatum()
+{
+     variableDatumList = new Vector();
+}
+ 
+} 
+ 

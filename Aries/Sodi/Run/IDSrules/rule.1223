@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC filemail access"; flags:A+; uricontent:"/filemail"; nocase; classtype:attempted-recon; sid:1216; rev:1;)

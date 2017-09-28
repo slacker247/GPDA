@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any <- $HOME_NET 23 (msg:"TELNET root login"; content:"login\: root"; flags: A+; classtype:suspicious-login; sid:719; rev:1;)

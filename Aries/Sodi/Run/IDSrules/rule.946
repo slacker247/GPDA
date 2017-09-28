@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE _vti_rpc access"; flags: A+; uricontent:"/_vti_rpc"; nocase; reference:bugtraq,2144; classtype:web-application-activity; sid:937; rev:3;)

@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP redirect host";itype:5;icode:1; reference:arachnids,135; reference:cve,CVE-1999-0265; classtype:bad-unknown; sid:472; rev:1;)

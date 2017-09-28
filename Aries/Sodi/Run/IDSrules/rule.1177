@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC novell groupwise gwweb.exe access"; flags: A+; content:"/GWWEB.EXE?HELP="; nocase; reference:bugtraq,879; reference:cve,CAN-1999-1006; classtype:attempted-recon; sid:1165; rev:1;)

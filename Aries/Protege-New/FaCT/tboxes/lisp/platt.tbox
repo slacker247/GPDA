@@ -1,0 +1,718 @@
+;; A load of general stuff
+
+(defprimconcept Item)
+
+(defprimconcept Person)
+(defprimconcept Adult Person)
+(defprimconcept Man Adult)
+(defprimconcept Woman (and Adult (not Man)))
+(defprimconcept Child (and Person (not Adult)))
+(defprimconcept Boy Child)
+(defprimconcept Girl (and Child (not Boy)))
+
+(defprimconcept Occasion)
+(defprimconcept Ceremony Occasion)
+(defprimconcept Celebration Occasion)
+(defprimconcept Wedding (and Ceremony Celebration))
+(defprimconcept Christening (and Ceremony Celebration))
+(defprimconcept Funeral Ceremony)
+(defprimconcept Festival Celebration)
+
+(defprimconcept Activity)
+(defprimconcept Work Activity)
+(defprimconcept Motorcycling Activity)
+
+(defprimconcept Bathing Activity)
+(defprimconcept Leisure Activity)
+(defprimconcept Sport Activity)
+(defprimconcept Football Sport)
+(defprimconcept Rugby Sport)
+(defprimconcept Walking Activity)
+
+(defprimconcept Body_Part)
+(defprimconcept Hair Body_Part)
+(defprimconcept Head Body_Part)
+(defprimconcept Face Body_Part)
+(defprimconcept Arm Body_Part)
+(defprimconcept Hand Body_Part)
+(defprimconcept Leg Body_Part)
+(defprimconcept Foot Body_Part)
+(defprimconcept Neck Body_Part)
+(defprimconcept Waist Body_Part)
+(defprimconcept Stomach Body_Part)
+(defprimconcept Chest Body_Part)
+
+(defprimconcept Body_Region)
+(defprimconcept Above_Waist Body_Region)
+(defprimconcept Below_Waist Body_Region)
+
+(defprimconcept Role)
+(defprimconcept Outer Role)
+(defprimconcept Main Role)
+(defprimconcept Under Role)
+(defprimconcept Night Role)
+
+(defprimconcept Function)
+(defprimconcept Protection Function)
+(defprimconcept Decoration Function)
+(defprimconcept Support Function)
+(defprimconcept Safety Function)
+
+
+;;;(defprimconcept Material)
+
+(defprimconcept Material) 
+(defprimconcept Materialtype)
+(defprimconcept Natural Material_Type)
+(defprimconcept Manmade Material_Type)
+(defprimconcept Textile Material)
+
+(defprimconcept Crepe Material)
+(defprimconcept Muslin (and Textile Natural))
+(defprimconcept Velvet Textile)
+(defprimconcept Gold_Thread Material)
+(defprimconcept Gold Material)
+(defprimconcept Silver Material)
+(defprimconcept Polycarbonate (and Material Manmade))
+(defprimconcept Glass_fibre Material)
+(defprimconcept Plastic (and Material Manmade))
+(defprimconcept Cork (and Natural Material))
+(defprimconcept Vinyl (and Material Manmade))
+(defprimconcept Acrylic (and Material Manmade))
+(defprimconcept Nylon (and Material Manmade))
+(defprimconcept Fur (and Material Natural))
+(defprimconcept Wool (and Textile Natural))
+(defprimconcept Lambswool Wool)
+(defprimconcept Leather (and Material Natural))
+(defprimconcept Cotton (and Textile Natural))
+(defprimconcept Silk (and Textile Natural))
+(defprimconcept Linen (and Textile Natural))
+(defprimconcept Satin Textile)
+(defprimconcept Viscose (and Textile Natural))
+(defprimconcept Rayon (and Textile Manmade))
+
+(defprimrole has_pattern)
+
+(defprimconcept Pattern)
+(defprimconcept Camouflage Pattern)
+(defprimconcept Check Pattern)
+(defprimconcept Tartan Pattern)
+(defprimconcept Diamonds Pattern)
+(defprimconcept Squares Pattern)
+(defprimconcept Symmetrical Pattern)
+(defprimconcept Circles Pattern)
+(defprimconcept Chevrons Pattern)
+(defprimconcept Fish-Scale Pattern)
+(defprimconcept Chequerboard Pattern)
+(defprimconcept Floral Pattern)
+
+(defprimrole has_element)
+
+(defprimconcept Pattern_Element)
+(defprimconcept Bird Pattern_Element)
+(defprimconcept Animal Pattern_Element)
+(defprimconcept Flower Pattern_Element)
+(defprimconcept Insect Pattern_Element)
+(defprimconcept Fish Pattern_Element)
+(defprimconcept Plant Pattern_Element)
+
+(defprimconcept Technique)
+(defprimconcept Batik Technique)
+(defprimconcept Embroidery Technique)
+(defprimconcept Applique Technique)
+(defprimconcept Patchwork Technique)
+(defprimconcept Silkscreen Technique)
+
+;; parts of the body
+(defprimattribute worn_on)
+;; coverings
+(defprimattribute worn)
+;; activities
+(defprimattribute worn_during)
+;; Materials
+(defprimattribute worn_by)
+;; Materials
+(defprimrole made_from)
+;; Techniques
+(defprimrole made_using)
+
+;; Functions
+(defprimrole has_purpose)
+;; Form -- not really sure what to call this?
+(defprimrole has_role)
+;; Some Explicit Stuff
+
+;; Hats and the like
+(defprimconcept Hat Item)
+(implies Hat (some worn_on Head))
+(defprimconcept Coolie_Hat Hat)
+(defprimconcept Cap Item)
+(implies Cap (some worn_on Head))
+
+(defprimconcept Bonnet Item)
+(implies Bonnet (some worn_on Head))
+(defprimconcept Turban Item)
+(implies Turban (some worn_on Head))
+(defprimconcept Hood Item)
+(implies Hood (some worn_on Head))
+(defprimconcept Veil Item)
+(implies Veil (some worn_on Head))
+(defprimconcept Headscarf Item)
+(implies Headscarf (some worn_on Head))
+(defprimconcept Headcloth Item)
+(implies Headcloth (some worn_on Head))
+(defprimconcept Forehead_Cloth Item)
+(implies Forehead_Cloth (some worn_on Head))
+
+;; Hair coverings
+(defprimconcept Wig Item)
+(implies Wig (some worn_on Head))
+
+(defprimconcept Hairnet Item)
+(implies Hairnet (some worn_on Hair))
+(defprimconcept Hairband Item)
+(implies Hairband (some worn_on Hair))
+(defprimconcept Hairtie Item)
+(implies Hairtie (some worn_on Hair))
+
+(defprimconcept Moustache_Net Item)
+(implies Moustache_net (and (some worn_on Hair)))
+
+(defprimconcept Beard_Net Item)
+(implies Beard_net (and (some worn_on Hair)))
+
+(defprimconcept Boots Item)
+(implies Boots (some worn_on Foot))
+(defprimconcept Shoes Item)
+(implies Shoes (some worn_on Foot))
+(defprimconcept Overshoes Item)
+(implies Overshoes (some worn_on Foot))
+(defprimconcept Gaiter Item)
+(implies Gaiters (some worn_on Foot))
+(defprimconcept Spats Item)
+(implies Spats (some worn_on Foot))
+(defprimconcept Puttees Item)
+(implies Puttees (and 
+		  (some worn_on Foot)))
+
+(defprimconcept Socks Item)
+(implies Socks (some worn_on Foot))
+(defprimconcept Tights Item)
+(implies Tights (and (some worn_on Foot) (some worn_on Leg)))
+(defprimconcept Stockings Item)
+(implies Stockings (and (some worn_on Foot) (some worn_on Leg)))
+(defprimconcept Kneestockings Item)
+(implies Kneestockings (and (some worn_on Foot) (some worn_on Leg)))
+(defprimconcept Garter Item)
+(implies Garter (some worn_on Leg))
+
+;Worn on Head for Decoration
+(defprimconcept Wreath Item)
+(implies Wreath (and (some has_purpose Decoration) (some worn_on Head)))
+(defprimconcept Tiara Item)
+(implies Tiara (and (some has_purpose Decoration) (some worn_on Head)))
+(defprimconcept Comb Item)
+(implies Comb (and (some has_purpose Decoration) (some worn_on Head)))
+(defprimconcept Hairpin Item)
+(implies Hairpin (and (some has_purpose Decoration) (some worn_on Hair)))
+(defprimconcept Earrings Item)
+(implies Earrings (and (some has_purpose Decoration) (some worn_on Head)))
+
+;Worn on Body for Decoration
+(defprimconcept Brooch Item)
+(implies Brooch (and (some has_purpose Decoration) (some worn_on Body)))
+(defprimconcept Necklace Item)
+(implies Necklace (and (some has_purpose Decoration) (some worn_on Neck)))
+(defprimconcept Pendant Item)
+(implies Pendant (and (some has_purpose Decoration) (some worn_on Neck)))
+
+;Worn on Arms and Legs for Decoration
+(defprimconcept Bracelet Item)
+(implies Bracelet (and (some has_purpose Decoration) (some worn_on Arm)))
+(defprimconcept Ring Item)
+(implies Ring (and (some has_purpose Decoration) (some worn_on Hand)))
+(defprimconcept Anklet Item)
+(implies Anklet (and (some has_purpose Decoration) (some worn_on Leg)))
+
+;; Other decorative bits and bobs
+(defprimconcept Button Item)
+(implies Button (some has_purpose Decoration))
+
+(defprimconcept Beads Item)
+(implies Beads (some has_purpose Decoration))
+
+(defprimconcept Buckle Item)
+(implies Buckle (some has_purpose Decoration))
+
+(defprimconcept Tassle Item)
+(implies Tassle (some has_purpose Decoration))
+
+
+;; Protective Clothing
+(defprimconcept Overall Item)
+(implies Overall (some has_purpose Protection))
+(defprimconcept Pinafore Item)
+(implies Pinafore (some has_purpose Protection))
+(implies Pinafore (some worn (and Below_Waist Above_Waist)))
+
+(defprimconcept Apron Item)
+(implies Apron (some has_purpose Protection))
+(implies Apron (some worn Below_Waist))
+
+
+;; Protection from wet, rain, wind, sun etc. 
+
+;; Safety Clothing
+(defprimconcept Helmet Item)
+(implies Helmet (some has_purpose Safety))
+(implies Helmet (some worn_on Head))
+
+
+(defprimconcept Dress (and Item (some has_role Main)))
+(implies Dress (some worn (and Above_Waist Below_Waist)))
+
+(defprimconcept Bodice (and Item (some has_role Main)))
+(implies Bodice (some worn Above_Waist))
+
+(defprimconcept Blouse (and Item (some has_role Main)))
+(implies Blouse (some worn Above_Waist))
+
+(defprimconcept Tunic (and Item (some has_role Main)))
+(implies Tunic (some worn Above_Waist))
+
+(defprimconcept Cardigan (and Item (some has_role Main)))
+(implies Cardigan (some worn Above_Waist))
+
+(defprimconcept Pullover (and Item (some has_role Main)))
+(implies Pullover (some worn Above_Waist))
+
+(defprimconcept Tee_Shirt (and Item (some has_role Main)))
+(implies Tee_Shirt (some worn Above_Waist))
+
+(defprimconcept Skirt (and Item (some has_role Main)))
+(implies Skirt (some worn Below_Waist))
+
+(defprimconcept Trousers (and Item (some has_role Main)))
+(implies Trousers (some worn Below_Waist))
+
+(defprimconcept Shorts Trousers)
+(defprimconcept Knickerbockers Trousers)
+
+;; A Suit is made up of a combination of some of the things below,
+;; e.g. a Jacket and trousers or a jacket and waistcoat and trousers.
+(defprimconcept Jacket (and Item (some has_role Main)))
+(implies Jacket (some worn Above_Waist))
+
+(defprimconcept Waistcoat (and Item (some has_role Main)))
+(implies Waistcoat (some worn Above_Waist))
+
+(defprimconcept Gown (and Item (some has_role Main)))
+(implies Gown (some worn (and Above_Waist Below_Waist)))
+
+(defprimconcept Coat (and Item (some has_role Main)))
+(implies Coat (some worn Above_Waist))
+
+(defprimconcept Blazer (and Item (some has_role Main)))
+(implies Blazer (some worn Above_Waist))
+
+(defprimconcept Shirt (and Item (some has_role Main)))
+(implies Shirt (some worn Above_Waist))
+
+(defprimconcept Jerkin (and Item (some has_role Main)))
+(implies Jerkin (some worn Above_Waist))
+
+(defprimconcept Pantaloons Trousers)
+(defprimconcept OxfordBags Trousers)
+
+(defprimconcept Breeches (and Item (some has_role Main)))
+(implies Breeches (some worn Below_Waist))
+
+(defprimconcept Plus_Fours Breeches)
+
+(defprimconcept Kilt Skirt)
+
+
+;; Combination is something that's made up of other stuff.
+
+(defprimconcept Combination)
+(defprimrole composed_of)
+
+(defconcept Suit_1 (and Combination
+			 (some composed_of Coat)
+			 (some composed_of Trousers)
+			 (some composed_of Waistcoat)
+			 (all composed_of (or Coat 
+					      Trousers 
+					      Waistcoat))))
+
+(defconcept Suit_2 (and Combination
+			 (some composed_of Coat)
+			 (some composed_of Trousers)
+			 (all composed_of (or Coat 
+					      Trousers))))
+
+(defconcept Suit_3 (and Combination
+			 (some composed_of Coat)
+			 (some composed_of Waistcoat)
+			 (all composed_of (or Coat 
+					      Waistcoat))))
+
+(defconcept Suit_4 (and Combination
+			 (some composed_of Jacket)
+			 (some composed_of Trousers)
+			 (all composed_of (or Jacket 
+					      Trousers))))
+(defconcept Suit (or Suit_1
+		     Suit_2
+		     Suit_3
+		     Suit_4))
+
+;; Underwear -- women
+
+(defprimconcept Chemise (and Item (some has_role Under)))
+(implies Chemise (some worn (and Above_Waist  Below_Waist)))
+(defprimconcept Combinations (and Item (some has_role Under)))
+(implies Combinations (some worn (and Above_Waist Below_Waist)))
+(defprimconcept Camiknickers Combinations)
+
+(defprimconcept Underbodice (and Item (some has_role Under)))
+(implies Underbodice (some worn Above_Waist))
+(defprimconcept Camisole Underbodice) 
+(defprimconcept Spencer Underbodice)
+
+(defprimconcept Drawers (and Item (some has_role Under)))
+(implies Drawers (some worn Below_Waist))
+(defprimconcept French_Knickers Drawers)
+
+(defprimconcept Underdress (and Item (some has_role Under)))
+(implies Underdress (some worn (and Above_Waist Below_Waist)))
+
+(defprimconcept Petticoat (and Item (some has_role Under)))
+(implies Petticoat (some worn Below_Waist))
+
+(defprimconcept Slip Underdress)
+
+(defprimconcept Underskirt (and Item (some has_role Under)))
+(implies Underskirt (some worn Below_Waist))
+(defprimconcept Petticoat_Slip Underskirt)
+
+;; Underwear -- men
+(defprimconcept Undershirt (and Item (some has_role Under)))
+(implies Undershirt (some worn (and Above_Waist Below_Waist)))
+
+(defprimconcept Pants Drawers)
+(defprimconcept Trunks Drawers)
+(defprimconcept Linings Drawers)
+
+(defprimconcept Under_Waistcoat (and Item (some has_role Under)))
+(implies Under_Waistcoat (some worn Above_Waist))
+
+
+;; Outerwear -- women
+(defprimconcept Shawl (and Item (some has_role Outer)))
+(implies Shawl (some worn Above_Waist))
+
+(defprimconcept Cloak (and Item (some has_role Outer)))
+(implies Cloak (some worn (and Above_Waist Below_Waist)))
+
+;; Also has coat in here ??
+
+(defprimconcept Cape (and Item (some has_role Outer)))
+(implies Cape (some worn (and Above_Waist Below_Waist)))
+
+(defprimconcept Mantle (and Item (some has_role Outer)))
+(implies Mantle (some worn (and Above_Waist Below_Waist)))
+
+;; Outerwear -- men
+(defprimconcept Plain Shawl)
+
+(defprimconcept Overcoat (and Item (some has_role Outer)))
+(implies Overcoat (some worn (and Above_Waist Below_Waist)))
+
+(defprimconcept Mackintosh Overcoat)
+
+;; Supporting Garments -- women
+
+(defprimconcept Brassiere Item)
+(implies Brassiere (some worn Above_Waist))
+(implies Brassiere (some has_purpose Support))
+
+(defprimconcept Corset Item)
+(implies Corset (some worn (and Above_Waist Below_Waist)))
+(implies Corset (some has_purpose Support))
+
+(defprimconcept Collar_Support Item)
+(implies Collar_Support (some worn_on Neck))
+(implies Collar_Support (some has_purpose Support))
+
+(defprimconcept Bust_Improver Item)
+(implies Bust_Improver (some worn Above_Waist))
+(implies Bust_Improver (some has_purpose Support))
+
+(defprimconcept Sleeve_Support Item)
+(implies Sleeve_Support (some worn Above_Waist))
+(implies Sleeve_Support (some has_purpose Support))
+
+(defprimconcept Hoop Item)
+(implies Hoop (some worn Below_Waist))
+(implies Hoop (some has_purpose Support))
+
+(defprimconcept Crinoline_Frame Hoop)
+
+(defprimconcept Bustle Item)
+(implies Bustle (some worn Below_Waist))
+(implies Bustle (some has_purpose Support))
+
+(defprimconcept Suspender_Belt Item)
+(implies Suspender_Belt (some worn Below_Waist))
+(implies Suspender_Belt (some has_purpose Support))
+
+;; Supporting Garments -- men
+
+(defprimconcept Braces Item)
+(implies Braces (some has_purpose Support))
+
+(defprimconcept Belt Item)
+(implies Belt (some has_purpose Support))
+
+;; Accessories
+(defprimconcept Accessory Item)
+(defprimconcept Sleeve Accessory) 
+(implies Sleeve (some worn_on Arm))
+(defprimconcept Oversleeve Accessory)
+(implies Oversleeve (some worn_on Arm))
+(defprimconcept Undersleeve Accessory)
+(implies Undersleeve (some worn_on Arm))
+(defprimconcept Cuff Accessory)
+(implies Cuff (some worn_on Arm))
+(defprimconcept Sleeve_Ruffle Accessory)
+(implies Sleeve_Ruffle (some worn_on Arm))
+
+(defprimconcept Glove Accessory)
+(implies Glove (some worn_on Hand))
+(defprimconcept Mitten Accessory)
+(implies Mitten (some worn_on Hand))
+(defprimconcept Muff Accessory)
+(implies Muff (some worn_on Hand))
+
+(defprimconcept Mask Accessory)
+(implies Mask (some worn_on Face))
+(defprimconcept Patch Accessory)
+(implies Patch (some worn_on Face))
+(defprimconcept False_Eyelashes Accessory)
+(implies False_Eyelashes (some worn_on Face))
+(defprimconcept Spectacles Accessory)
+(implies Spectacles (some worn_on Face))
+(defprimconcept Sunglasses Spectacles)
+(defprimconcept Eyeglass Spectacles)
+
+(defprimconcept Neckcloth Accessory)
+(implies Neckcloth (some worn_on Neck))
+(defprimconcept Ruff Neckcloth)
+(defprimconcept Cravat Neckcloth)
+(defprimconcept Collar Accessory)
+(implies Collar (some worn_on Neck))
+
+(defprimconcept Tie Accessory)
+(implies Tie (some worn_on Neck))
+
+(defprimconcept Scarf Accessory)
+(implies Scarf (some worn_on Neck))
+
+(defprimconcept Stomacher Accessory)
+(implies Stomacher (some worn_on Stomach))
+
+;; Belt is already defined as a supporting garment
+(implies Belt Accessory)
+(implies Belt (some worn_on Waist))
+
+(defprimconcept Sash Accessory)
+(implies Sash (some worn_on Waist))
+
+(defprimconcept Chatelaine Accessory)
+(implies Chatelaine (some worn_on Waist))
+
+(defprimconcept Bag Accessory)
+(defprimconcept Pocket_Bag Accessory)
+(implies Pocket_Bag (some worn_on Waist))
+
+(defprimconcept Handbag Bag)
+
+(defprimconcept Purse Accessory)
+(defprimconcept Fan Accessory)
+(defprimconcept Bouqet Accessory)
+(defprimconcept Watch Accessory)
+(defprimconcept Umbrella Accessory)
+(defprimconcept Parasol Accessory)
+(defprimconcept Walking_Stick Accessory)
+(defprimconcept Handkerchief Accessory)
+
+(defprimconcept Fob Accessory)
+(implies Fob (some worn_on Waist))
+
+(defprimconcept Sword Accessory)
+(implies Sword (some worn_on Waist))
+
+
+;; Nightwear
+
+(defprimconcept Nightdress Item)
+(implies Nightdress (some has_role Night))
+(implies Nightdress (some worn (and Above_Waist Below_Waist)))
+
+;; How do we say that Pyjamas are comprised of a Jacket 
+;; and a Pair of Trousers? There are similar things around - e.g. suit 
+;; jackets and suit trousers.
+
+(defprimconcept Pyjama_Jacket Item)
+(implies Pyjama_Jacket (some has_role Night))
+(implies Pyjama_Jacket (some worn Above_Waist))
+
+(defprimconcept Pyjama_Trousers Item)
+(implies Pyjama_Trousers (some has_role Night))
+(implies Pyjama_Trousers (some worn Below_Waist))
+
+(defconcept Pyjamas (and Combination
+			 (some composed_of Pyjama_Jacket)
+			 (some composed_of Pyjama_Trousers)
+			 (all composed_of (or Pyjama_Jacket Pyjama_Trousers))))
+
+(defprimconcept Dressing_Gown Item)
+(implies Dressing_Gown (some has_role Night))
+(implies Dressing_Gown (some worn (and Above_Waist Below_Waist)))
+
+;; Some definitions
+
+(defconcept Main_Garment (and Item (some has_role Main)))
+(defconcept Underwear (and Item (some has_role Under)))
+(defconcept Outerwear (and Item (some has_role Outer)))
+(defconcept Nightwear (and Item (some has_role Night)))
+
+(defconcept Decorative_Item (and Item (some has_purpose Decoration)))
+(defconcept Protective_Garment (and Item (some has_purpose Protection)))
+(defconcept Safety_Item (and Item (some has_purpose Safety)))
+(defconcept Supporting_Structure (and Item (some has_purpose Support)))
+
+(defconcept Footwear (and Item (some worn_on Foot)))
+(defconcept Legwear (and Item (some worn_on Leg)))
+(defconcept Headwear (and Item (some worn_on Head)))
+(defconcept Neckwear (and Item (some worn_on Neck)))
+(defconcept Hairdressing (and Item (some worn_on Hair)))
+
+(defprimconcept Century)
+(defprimconcept _17th_Century Century)
+(defprimconcept _18th_Century Century)
+(defprimconcept _19th_Century Century)
+(defprimconcept _20th_Century Century)
+(defprimconcept Period) 
+(defprimconcept Early Period)
+(defprimconcept Middle Period)
+(defprimconcept Late Period)
+(defprimattribute part_of)
+
+(implies Period (some part_of Century))
+(defconcept Early_17th_Century (and Early (some part_of _17th_Century)))
+(defconcept Mid_17th_Century (and Middle (some part_of _17th_Century)))
+(defconcept Late_17th_Century (and Late (some part_of _17th_Century)))
+(defconcept Early_18th_Century (and Early (some part_of _18th_Century)))
+(defconcept Mid_18th_Century (and Middle (some part_of _18th_Century)))
+(defconcept Late_18th_Century (and Late (some part_of _18th_Century)))
+(defconcept Early_19th_Century (and Early (some part_of _19th_Century)))
+(defconcept Mid_19th_Century (and Middle (some part_of _19th_Century)))
+(defconcept Late_19th_Century (and Late (some part_of _19th_Century)))
+(defconcept Early_20th_Century (and Early (some part_of _20th_Century)))
+(defconcept Mid_20th_Century (and Middle (some part_of _20th_Century)))
+(defconcept Late_20th_Century (and Late (some part_of _20th_Century)))
+
+(defprimattribute dates_from)
+
+;;post-war
+
+(defprimconcept Country)
+(defprimconcept Continent)
+(defprimconcept Europe Continent)
+(defprimconcept Asia Continent)
+(defprimconcept Africa Continent)
+(defprimconcept Australasia Continent)
+(defprimconcept India (and Country (some part_of Asia)))
+(defprimconcept Pakistan (and Country (some part_of Asia)))
+(defprimconcept England (and Country (some part_of Europe)))
+(defprimconcept Scotland (and Country (some part_of Europe)))
+(defprimconcept Greece (and Country (some part_of Europe)))
+(defprimconcept Egypt (and Country (some part_of Africa)))
+(defprimconcept Australia (and Country (some part_of Australasia)))
+
+(defconcept Asian_Country (and Country (some part_of Asia)))
+(defconcept African_Country (and Country (some part_of Africa)))
+(defconcept European_Country (and Country (some part_of Europe)))
+(defconcept Australasian_Country (and Country (some part_of Australasia)))
+
+(defprimattribute originates_from)
+
+(defconcept Indian (some originates_from India))
+(defconcept Pakistani (some originates_from Pakistan))
+(defconcept English (some originates_from England))
+(defconcept Scottish (some originates_from Scotland))
+(defconcept Greek (some originates_from Greece))
+(defconcept Egyptian (some originates_from Egypt))
+
+;;Persian
+;;Hindu
+;;Australian
+;;Egyptian
+;;Abha
+;;Punjab
+
+
+;; Rules about body parts
+
+(implies Head (some part_of Above_Waist))
+(implies Face (some part_of Above_Waist))
+(implies Arm (some part_of Above_Waist))
+(implies Hand (some part_of Above_Waist))
+(implies Neck (some part_of Above_Waist))
+(implies Chest (some part_of Above_Waist))
+(implies Stomach (some part_of Above_Waist))
+(implies Leg (some part_of Below_Waist))
+(implies Foot (some part_of Below_Waist))
+
+(implies (and Item (some worn_on (some part_of Above_Waist)))
+	 (some worn Above_Waist))
+(implies (and Item (some worn_on (some part_of Below_Waist)))
+	 (some worn Below_Waist))
+
+;;(implies (some worn_on Head) (some worn Above_Waist))
+;;(implies (some worn_on Face) (some worn Above_Waist))
+;;(implies (some worn_on Arm) (some worn Above_Waist))
+;;(implies (some worn_on Hand) (some worn Above_Waist))
+;;(implies (some worn_on Neck) (some worn Above_Waist))
+;;(implies (some worn_on Chest) (some worn Above_Waist))
+;;(implies (some worn_on Stomach) (some worn Above_Waist))
+;;(implies (some worn_on Leg) (some worn Below_Waist))
+;;(implies (some worn_on Foot) (some worn Below_Waist))
+
+;; Rules about combinations
+
+(implies (and combination (some composed_of (some worn Above_Waist)))
+	 (some worn Above_Waist))
+(implies (and combination (some composed_of (some worn Below_Waist)))
+	 (some worn Below_Waist))
+(implies (and combination (some composed_of (some worn_on Head)))
+	 (some worn_on Head))
+(implies (and combination (some composed_of (some worn_on Face)))
+	 (some worn_on Face))
+(implies (and combination (some composed_of (some worn_on Arm)))
+	 (some worn_on Arm))
+(implies (and combination (some composed_of (some worn_on Hand)))
+	 (some worn_on Hand))
+(implies (and combination (some composed_of (some worn_on Neck)))
+	 (some worn_on Neck))
+(implies (and combination (some composed_of (some worn_on Chest)))
+	 (some worn_on Chest))
+(implies (and combination (some composed_of (some worn_on Stomach)))
+	 (some worn_on Stomach))
+(implies (and combination (some composed_of (some worn_on Leg)))
+	 (some worn_on Leg))
+(implies (and combination (some composed_of (some worn_on Foot)))
+	 (some worn_on Foot))
+

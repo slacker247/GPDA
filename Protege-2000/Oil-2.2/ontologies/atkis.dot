@@ -1,0 +1,153 @@
+digraph generated {
+  ratio=fill;
+  ranksep=1.5;
+  node [style=filled];
+  top[color=yellow];
+
+  "airport-installation"[color=yellow,fontcolor=black];
+  {top} ->"airport-installation";
+
+  "settlements"[color=coral,fontcolor=black];
+  "ATKIS-area"-> {  "settlements"; };
+
+  "cultivated-area"[color=coral,fontcolor=black];
+  "vegetation-area"-> {  "cultivated-area"; };
+
+  "industrial-area"[color=coral,fontcolor=black];
+  "settlements"-> {  "industrial-area"; };
+
+  "traffic-installation"[color=yellow,fontcolor=black];
+  {top} ->"traffic-installation";
+
+  "buildings"[color=yellow,fontcolor=black];
+  {top} ->"buildings";
+
+  "living"[color=yellow,fontcolor=black];
+  {top} ->"living";
+
+  "herbaceous-plants"[color=yellow,fontcolor=black];
+  {top} ->"herbaceous-plants";
+
+  "ATKIS-area"[color=coral,fontcolor=black];
+  "area"-> {  "ATKIS-area"; };
+
+  "road-networks"[color=yellow,fontcolor=black];
+  {top} ->"road-networks";
+
+  "shrubs"[color=yellow,fontcolor=black];
+  {top} ->"shrubs";
+
+  "special-function-area"[color=coral,fontcolor=black];
+  "settlements"-> {  "special-function-area"; };
+
+  "forest-area"[color=coral,fontcolor=black];
+  "vegetation-area"-> {  "forest-area"; };
+
+  "waters"[color=coral,fontcolor=black];
+  "ATKIS-area"-> {  "waters"; };
+
+  "no-plants"[color=yellow,fontcolor=black];
+  {top} ->"no-plants";
+
+  "port-installation"[color=yellow,fontcolor=black];
+  {top} ->"port-installation";
+
+  "moor-area"[color=coral,fontcolor=black];
+  "vegetation-area"-> {  "moor-area"; };
+
+  "wet-area"[color=coral,fontcolor=black];
+  {top} ->"wet-area";
+
+  "wetlands"[color=yellow,fontcolor=black];
+  {top} ->"wetlands";
+
+  "unclassified-area"[color=coral,fontcolor=black];
+  "vegetation-area"-> {  "unclassified-area"; };
+
+  "area"[color=yellow,fontcolor=black];
+  {top} ->"area";
+
+  "lake"[color=coral,fontcolor=black];
+  "waters"-> {  "lake"; };
+
+  "land"[color=yellow,fontcolor=black];
+  {top} ->"land";
+
+  "airport-area"[color=coral,fontcolor=black];
+  "traffic-area"-> {  "airport-area"; };
+
+  "ocean"[color=coral,fontcolor=black];
+  "waters"-> {  "ocean"; };
+
+  "river"[color=yellow,fontcolor=black];
+  {top} ->"river";
+
+  "trees"[color=yellow,fontcolor=black];
+  {top} ->"trees";
+
+  "water"[color=yellow,fontcolor=black];
+  {top} ->"water";
+
+  "watts"[color=coral,fontcolor=black];
+  "waters"-> {  "watts"; };
+
+  "vegetation-area"[color=coral,fontcolor=black];
+  "ATKIS-area"-> {  "vegetation-area"; };
+
+  "salt-water"[color=yellow,fontcolor=black];
+  {top} ->"salt-water";
+
+  "railroad-station"[color=coral,fontcolor=black];
+  "traffic-area"-> {  "railroad-station"; };
+
+  "railroad-installation"[color=yellow,fontcolor=black];
+  {top} ->"railroad-installation";
+
+  "fresh-water"[color=yellow,fontcolor=black];
+  {top} ->"fresh-water";
+
+  "dock-area"[color=coral,fontcolor=black];
+  "traffic-area"-> {  "dock-area"; };
+
+  "extraction"[color=yellow,fontcolor=black];
+  {top} ->"extraction";
+
+  "traffic-area"[color=coral,fontcolor=black];
+  "ATKIS-area"-> {  "traffic-area"; };
+
+  "plain-land"[color=yellow,fontcolor=black];
+  {top} ->"plain-land";
+
+  "port-area"[color=coral,fontcolor=black];
+  "traffic-area"-> {  "port-area"; };
+
+  "wetland"[color=yellow,fontcolor=black];
+  {top} ->"wetland";
+
+  "administration"[color=yellow,fontcolor=black];
+  {top} ->"administration";
+
+  "swamp-area"[color=coral,fontcolor=black];
+  "vegetation-area"-> {  "swamp-area"; };
+
+  "mining-area"[color=coral,fontcolor=black];
+  "settlements"-> {  "mining-area"; };
+
+  "cultivation"[color=yellow,fontcolor=black];
+  {top} ->"cultivation";
+
+  "production"[color=yellow,fontcolor=black];
+  {top} ->"production";
+
+  "transportation"[color=yellow,fontcolor=black];
+  {top} ->"transportation";
+
+  "barren-area"[color=coral,fontcolor=black];
+  "vegetation-area"-> {  "barren-area"; };
+
+  "sandbank"[color=coral,fontcolor=black];
+  "waters"-> {  "sandbank"; };
+
+  "residential-area"[color=coral,fontcolor=black];
+  "settlements"-> {  "residential-area"; };
+}

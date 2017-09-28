@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET any -> $HOME_NET any (msg:"RPC EXPLOIT statdx"; content: "/bin|c74604|/sh";reference:arachnids,442; classtype:attempted-admin; sid:1282; rev:1;)

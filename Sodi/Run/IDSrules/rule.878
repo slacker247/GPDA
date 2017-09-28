@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI win-c-sample.exe access"; flags: A+; uricontent: "/win-c-sample.exe"; nocase; reference:bugtraq,2078; reference:arachnids,231; reference:cve,CVE-1999-0178;classtype:attempted-recon; sid:875; rev:2;)

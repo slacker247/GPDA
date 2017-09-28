@@ -1,0 +1,1 @@
+java -cp ctour.jar -mx90M Alpha %1 %2

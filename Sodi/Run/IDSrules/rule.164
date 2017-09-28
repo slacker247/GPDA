@@ -1,0 +1,1 @@
+alert udp $EXTERNAL_NET 53 -> $HOME_NET any (msg:"DNS SPOOF query response PTR with TTL\: 1 min. and no authority"; content:"|85800001000100000000|"; content:"|c00c000c00010000003c000f|"; classtype:bad-unknown; sid:253; rev:2;)

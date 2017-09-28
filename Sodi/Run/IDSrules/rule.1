@@ -1,0 +1,1 @@
+alert tcp $HTTP_SERVERS 80 -> $EXTERNAL_NET any (msg:"ATTACK RESPONSES http dir listing"; content: "Volume Serial Number"; flags: A+; classtype:bad-unknown; sid:1292; rev:1;)

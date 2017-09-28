@@ -1,0 +1,11 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Structure
+(
+    {Lookup.majorType == structure}
+):Structure
+ -->
+:Structure.Structure = {}

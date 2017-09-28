@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-ATTACKS uname -a command attempt"; flags:A+; content:"uname%20-a";nocase; sid:1331; rev:1; classtype:web-application-attack;)

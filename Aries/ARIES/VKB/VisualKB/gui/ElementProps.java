@@ -1,0 +1,179 @@
+/*
+ * ElementProps.java
+ *
+ * Created on July 24, 2003, 1:48 PM
+ */
+
+package VisualKB.gui;
+
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+import com.appliedminds.martini.*;
+/**
+ *
+ * @author  s824685
+ */
+public class ElementProps extends JDialog {
+    
+    private JPanel MainPanel = new JPanel();
+    private JLabel msgLabel = new JLabel();
+    private JButton CancelBTN = new JButton();
+    private JButton OKBTN = new JButton();
+    private DrawableGraphElement dge = null;
+    private JTextField Btbx = new JTextField();
+    private JTextField Dtbx = new JTextField();
+    private JTextField Ntbx = new JTextField();
+    private JTextField Ltbx = new JTextField();
+    private JTextField Ctbx = new JTextField();
+    private JTextField Ttbx = new JTextField();
+    private JTextField Otbx = new JTextField();
+
+    public ElementProps(Frame frame, String title, boolean modal) 
+    {
+        super(frame, title, modal);
+        try {
+          pack();
+        }
+        catch(Exception ex) {
+          ex.printStackTrace();
+        }
+        setSize(200, 200);
+        MainPanel.setLayout(null);
+        CancelBTN.setSize(80, 20);
+        CancelBTN.setText("Cancel");
+        CancelBTN.addActionListener(new java.awt.event.ActionListener() {
+           public void actionPerformed(java.awt.event.ActionEvent evt) {
+               show(false);
+           }
+        });
+
+        OKBTN.setSize(80, 20);
+        OKBTN.setText("OK");
+        getContentPane().add(MainPanel);
+    }
+
+    /** Creates a new instance of ElementProps */
+    public ElementProps() {
+        this(null, "Element Properties", false);
+    }
+    
+    public void setElement(DrawableGraphElement inDGE)
+    {
+        dge = inDGE;
+        if(dge instanceof DrawableNode)
+        {
+            // Extract the properties from the Node and display them
+            // on the dialog.
+            setTitle("Node Properties");
+            JLabel BLbl = new JLabel();
+            BLbl.setText("Belief:");
+            BLbl.setBounds(20, 20, 80, 20);
+            Btbx.setText(((DrawableNode)dge).getProperty("Belief"));
+            Btbx.setBounds(90, 20, 180, 20);
+        MainPanel.add(BLbl);
+        MainPanel.add(Btbx);
+            JLabel DLbl = new JLabel();
+            DLbl.setBounds(20, 50, 80, 20);
+            DLbl.setText("Disbelief:");
+            Dtbx.setText(((DrawableNode)dge).getProperty("Disbelief"));
+            Dtbx.setBounds(90, 50, 180, 20);
+        MainPanel.add(DLbl);
+        MainPanel.add(Dtbx);
+            JLabel NLbl = new JLabel();
+            NLbl.setBounds(20, 80, 80, 20);
+            NLbl.setText("Node Name:");
+            Ntbx.setText(((DrawableNode)dge).getProperty("label"));
+            Ntbx.setBounds(90, 80, 180, 20);
+        MainPanel.add(NLbl);
+        MainPanel.add(Ntbx);
+            JLabel LLbl = new JLabel();
+            LLbl.setBounds(20, 110, 80, 20);
+            LLbl.setText("Level:");
+            Ltbx.setText(((DrawableNode)dge).getProperty("level"));
+            Ltbx.setBounds(90, 110, 180, 20);
+        MainPanel.add(LLbl);
+        MainPanel.add(Ltbx);
+            JLabel CLbl = new JLabel();
+            CLbl.setBounds(20, 140, 80, 20);
+            CLbl.setText("Comment:");
+            Ctbx.setText(((DrawableNode)dge).getProperty("Phrase"));
+            Ctbx.setBounds(90, 140, 180, 20);
+        MainPanel.add(CLbl);
+        MainPanel.add(Ctbx);
+            JLabel TLbl = new JLabel();
+            TLbl.setBounds(20, 170, 80, 20);
+            TLbl.setText("Threshold:");
+            Ttbx.setText(((DrawableNode)dge).getProperty("Threshold"));
+            Ttbx.setBounds(90, 170, 180, 20);
+        MainPanel.add(TLbl);
+        MainPanel.add(Ttbx);
+            JLabel OLbl = new JLabel();
+            OLbl.setBounds(20, 200, 80, 20);
+            OLbl.setText("Cutoff:");
+            Otbx.setText(((DrawableNode)dge).getProperty("Cutoff"));
+            Otbx.setBounds(90, 200, 180, 20);
+        MainPanel.add(OLbl);
+        MainPanel.add(Otbx);
+            setSize(300, 300);
+
+            CancelBTN.setLocation(160, 240);
+            MainPanel.add(CancelBTN);
+            OKBTN.setLocation(35, 240);
+            OKBTN.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    ((DrawableNode)dge).setProperty("Belief", Btbx.getText());
+                    ((DrawableNode)dge).setProperty("Disbelief", Dtbx.getText());
+                    ((DrawableNode)dge).setProperty("label", Ntbx.getText());
+                    ((DrawableNode)dge).setProperty("level", Ltbx.getText());
+                    ((DrawableNode)dge).setProperty("Phrase", Ctbx.getText());
+                    ((DrawableNode)dge).setProperty("Threshold", Ttbx.getText());
+                    ((DrawableNode)dge).setProperty("Cutoff", Otbx.getText());
+                    show(false);
+                }
+            });
+            MainPanel.add(OKBTN);
+        }else if(dge instanceof DrawableEdge)
+        {
+            // Extract the properties from the Edge and display them
+            // on the dialog.
+            setTitle("Edge Properties");
+            JLabel BLbl = new JLabel();
+            BLbl.setText("Label:");
+            BLbl.setBounds(20, 20, 80, 20);
+            Btbx.setText(((DrawableEdge)dge).getProperty("Link_Label"));
+            Btbx.setBounds(90, 20, 180, 20);
+        MainPanel.add(BLbl);
+        MainPanel.add(Btbx);
+            JLabel DLbl = new JLabel();
+            DLbl.setBounds(20, 50, 80, 20);
+            DLbl.setText("Disbelief:");
+            Dtbx.setText(((DrawableEdge)dge).getProperty("D_Weight"));
+            Dtbx.setBounds(90, 50, 180, 20);
+        MainPanel.add(DLbl);
+        MainPanel.add(Dtbx);
+            JLabel NLbl = new JLabel();
+            NLbl.setBounds(20, 80, 80, 20);
+            NLbl.setText("Belief:");
+            Ntbx.setText(((DrawableEdge)dge).getProperty("B_Weight"));
+            Ntbx.setBounds(90, 80, 180, 20);
+        MainPanel.add(NLbl);
+        MainPanel.add(Ntbx);
+            setSize(300, 300);
+
+            CancelBTN.setLocation(160, 240);
+            MainPanel.add(CancelBTN);
+            OKBTN.setLocation(35, 240);
+            OKBTN.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    ((DrawableEdge)dge).setProperty("Link_Label", Btbx.getText());
+                    ((DrawableEdge)dge).setProperty("D_Weight", Dtbx.getText());
+                    ((DrawableEdge)dge).setProperty("B_Weight", Ntbx.getText());
+                    show(false);
+                }
+            });
+            MainPanel.add(OKBTN);
+        }
+    }
+}

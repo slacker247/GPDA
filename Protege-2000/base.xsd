@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema elementFormDefault="qualified" targetNamespace="http://protege.stanford.edu/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="THING">
+    <xs:sequence></xs:sequence>
+    <xs:attribute name="id" type="xs:ID"></xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="STANDARD-CLASS">
+    <xs:sequence></xs:sequence>
+    <xs:attribute name="id" type="xs:ID"></xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="SlotType">
+    <xs:sequence>
+      <xs:element maxOccurs="1" minOccurs="0" name="ASSOCIATED-FACET" type="Instance"></xs:element>
+      <xs:element maxOccurs="-1" minOccurs="0" name="DIRECT-SUBSLOTS" type="Instance"></xs:element>
+      <xs:element maxOccurs="-1" minOccurs="0" name="DIRECT-SUPERSLOTS" type="Instance"></xs:element>
+      <xs:element maxOccurs="1" minOccurs="0" name="DIRECT-TYPE" type="Class"></xs:element>
+      <xs:element maxOccurs="-1" minOccurs="0" name="DOCUMENTATION" type="xs:string"></xs:element>
+      <xs:element maxOccurs="1" minOccurs="0" name="NAME" type="xs:string"></xs:element>
+      <xs:element maxOccurs="-1" minOccurs="0" name="SLOT-CONSTRAINTS" type="Instance"></xs:element>
+      <xs:element maxOccurs="-1" minOccurs="0" name="SLOT-DEFAULTS" type="xs:anyType"></xs:element>
+      <xs:element maxOccurs="1" minOccurs="0" name="SLOT-INVERSE" type="Instance"></xs:element>
+      <xs:element maxOccurs="1" minOccurs="0" name="SLOT-MAXIMUM-CARDINALITY" type="xs:integer"></xs:element>
+      <xs:element maxOccurs="1" minOccurs="0" name="SLOT-MINIMUM-CARDINALITY" type="xs:integer"></xs:element>
+      <xs:element maxOccurs="1" minOccurs="0" name="SLOT-NUMERIC-MAXIMUM" type="xs:float"></xs:element>
+      <xs:element maxOccurs="1" minOccurs="0" name="SLOT-NUMERIC-MINIMUM" type="xs:float"></xs:element>
+      <xs:element maxOccurs="-1" minOccurs="0" name="SLOT-VALUE-TYPE" type="xs:anyType"></xs:element>
+      <xs:element maxOccurs="-1" minOccurs="0" name="SLOT-VALUES" type="xs:anyType"></xs:element></xs:sequence>
+  </xs:complexType>
+  <xs:element name="Slot" type="SlotType">
+  </xs:element>
+  <xs:complexType name="Slot_Override_Type">
+    <xs:sequence>
+      <xs:element name="ClassName" type="xs:string"></xs:element>
+      <xs:element name="SlotName" type="xs:string"></xs:element>
+      <xs:element name="FacetName" type="xs:string"></xs:element>
+      <xs:element name="Value" type="xs:string"></xs:element></xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OSValue">
+    <xs:sequence>
+      <xs:element name="ClassName" type="xs:string"></xs:element>
+      <xs:element name="SlotName" type="xs:string"></xs:element>
+      <xs:element></xs:element></xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="Symbol">
+    <xs:restriction base="xs:string"></xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Instance">
+    <xs:restriction base="xs:string"></xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Class">
+    <xs:restriction base="xs:string"></xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SEPARATOR" type="xs:string">
+  </xs:element>
+</xs:schema>

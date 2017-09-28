@@ -1,0 +1,656 @@
+# Makefile.in generated automatically by automake 1.4 from Makefile.am
+
+# Copyright (C) 1994, 1995-8, 1999 Free Software Foundation, Inc.
+# This Makefile.in is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+
+SHELL = @SHELL@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+VPATH = @srcdir@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
+bindir = @bindir@
+sbindir = @sbindir@
+libexecdir = @libexecdir@
+datadir = @datadir@
+sysconfdir = @sysconfdir@
+sharedstatedir = @sharedstatedir@
+localstatedir = @localstatedir@
+libdir = @libdir@
+infodir = @infodir@
+mandir = @mandir@
+includedir = @includedir@
+oldincludedir = /usr/include
+
+DESTDIR =
+
+pkgdatadir = $(datadir)/@PACKAGE@
+pkglibdir = $(libdir)/@PACKAGE@
+pkgincludedir = $(includedir)/@PACKAGE@
+
+top_builddir = ..
+
+ACLOCAL = @ACLOCAL@
+AUTOCONF = @AUTOCONF@
+AUTOMAKE = @AUTOMAKE@
+AUTOHEADER = @AUTOHEADER@
+
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@ $(AM_INSTALL_PROGRAM_FLAGS)
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+transform = @program_transform_name@
+
+NORMAL_INSTALL = :
+PRE_INSTALL = :
+POST_INSTALL = :
+NORMAL_UNINSTALL = :
+PRE_UNINSTALL = :
+POST_UNINSTALL = :
+build_alias = @build_alias@
+build_triplet = @build@
+host_alias = @host_alias@
+host_triplet = @host@
+target_alias = @target_alias@
+target_triplet = @target@
+AS = @AS@
+AWK = @AWK@
+CC = @CC@
+CPP = @CPP@
+CXX = @CXX@
+CXXCPP = @CXXCPP@
+DLLTOOL = @DLLTOOL@
+DPMSINC = @DPMSINC@
+DPMSLIB = @DPMSLIB@
+ECHO = @ECHO@
+EXEEXT = @EXEEXT@
+GLINC = @GLINC@
+GLLIB = @GLLIB@
+GMSGFMT = @GMSGFMT@
+ICONV_CHAR_ENCODING = @ICONV_CHAR_ENCODING@
+ICONV_UNICODE_ENCODING = @ICONV_UNICODE_ENCODING@
+IDL = @IDL@
+INCLTDL = @INCLTDL@
+KDE_EXTRA_RPATH = @KDE_EXTRA_RPATH@
+KDE_INCLUDES = @KDE_INCLUDES@
+KDE_LDFLAGS = @KDE_LDFLAGS@
+KDE_RPATH = @KDE_RPATH@
+KDE_USE_FINAL_FALSE = @KDE_USE_FINAL_FALSE@
+KDE_USE_FINAL_TRUE = @KDE_USE_FINAL_TRUE@
+LEX = @LEX@
+LFLAGS = @LFLAGS@
+LIBADD_CRYPT = @LIBADD_CRYPT@
+LIBADD_DL = @LIBADD_DL@
+LIBCOMPAT = @LIBCOMPAT@
+LIBCRYPT = @LIBCRYPT@
+LIBDL = @LIBDL@
+LIBICONV = @LIBICONV@
+LIBJPEG = @LIBJPEG@
+LIBLTDL = @LIBLTDL@
+LIBMICO = @LIBMICO@
+LIBNSL = @LIBNSL@
+LIBPNG = @LIBPNG@
+LIBPTHREAD = @LIBPTHREAD@
+LIBPYTHON = @LIBPYTHON@
+LIBQIMGIO = @LIBQIMGIO@
+LIBSOCKET = @LIBSOCKET@
+LIBTIFF = @LIBTIFF@
+LIBTOOL = @LIBTOOL@
+LIBUCB = @LIBUCB@
+LIBZ = @LIBZ@
+LIB_KAB = @LIB_KAB@
+LIB_KDECORE = @LIB_KDECORE@
+LIB_KDEUI = @LIB_KDEUI@
+LIB_KFILE = @LIB_KFILE@
+LIB_KFM = @LIB_KFM@
+LIB_KFORMULA = @LIB_KFORMULA@
+LIB_KHTML = @LIB_KHTML@
+LIB_KIMGIO = @LIB_KIMGIO@
+LIB_KIO = @LIB_KIO@
+LIB_MEDIATOOL = @LIB_MEDIATOOL@
+LIB_QT = @LIB_QT@
+LIB_SMB = @LIB_SMB@
+LIB_VERSION = @LIB_VERSION@
+LIB_X11 = @LIB_X11@
+LN_S = @LN_S@
+MAKEINFO = @MAKEINFO@
+MICO_INCLUDES = @MICO_INCLUDES@
+MICO_LDFLAGS = @MICO_LDFLAGS@
+MOC = @MOC@
+MSGFMT = @MSGFMT@
+OBJDUMP = @OBJDUMP@
+OBJEXT = @OBJEXT@
+PACKAGE = @PACKAGE@
+PAMINC = @PAMINC@
+PAMLIBPATHS = @PAMLIBPATHS@
+PAMLIBS = @PAMLIBS@
+PTH_CFLAGS = @PTH_CFLAGS@
+PTH_CPPFLAGS = @PTH_CPPFLAGS@
+PTH_LDFLAGS = @PTH_LDFLAGS@
+PTH_LIBS = @PTH_LIBS@
+PYTHONINC = @PYTHONINC@
+PYTHONLIB = @PYTHONLIB@
+QT_INCLUDES = @QT_INCLUDES@
+QT_LDFLAGS = @QT_LDFLAGS@
+RANLIB = @RANLIB@
+READLINE = @READLINE@
+SHLIBEXT = @SHLIBEXT@
+STRIP = @STRIP@
+TOPSUBDIRS = @TOPSUBDIRS@
+USER_INCLUDES = @USER_INCLUDES@
+USER_LDFLAGS = @USER_LDFLAGS@
+USE_NLS = @USE_NLS@
+VERSION = @VERSION@
+XGETTEXT = @XGETTEXT@
+XPMINC = @XPMINC@
+XPMLIB = @XPMLIB@
+X_EXTRA_LIBS = @X_EXTRA_LIBS@
+X_INCLUDES = @X_INCLUDES@
+X_LDFLAGS = @X_LDFLAGS@
+YACC = @YACC@
+all_includes = @all_includes@
+all_libraries = @all_libraries@
+idldir = @idldir@
+kde_appsdir = @kde_appsdir@
+kde_bindir = @kde_bindir@
+kde_cgidir = @kde_cgidir@
+kde_confdir = @kde_confdir@
+kde_datadir = @kde_datadir@
+kde_htmldir = @kde_htmldir@
+kde_icondir = @kde_icondir@
+kde_includes = @kde_includes@
+kde_libraries = @kde_libraries@
+kde_locale = @kde_locale@
+kde_mimedir = @kde_mimedir@
+kde_minidir = @kde_minidir@
+kde_servicesdir = @kde_servicesdir@
+kde_servicetypesdir = @kde_servicetypesdir@
+kde_sounddir = @kde_sounddir@
+kde_toolbardir = @kde_toolbardir@
+kde_wallpaperdir = @kde_wallpaperdir@
+micodir = @micodir@
+msql_headers = @msql_headers@
+msql_libraries = @msql_libraries@
+qt_includes = @qt_includes@
+qt_libraries = @qt_libraries@
+x_includes = @x_includes@
+x_libraries = @x_libraries@
+
+libodbcinstQ_la_LDFLAGS =          -version-info 1:0:0 		-export-dynamic 		-export-symbols odbcinstQ.exp 	    -module
+
+
+@QT_TRUE@lib_LTLIBRARIES = libodbcinstQ.la
+
+@QT_TRUE@INCLUDES = -I../include @QT_INCLUDES@     -DSYSTEM_FILE_PATH=\"@sysconfdir@\" -DDEFLIB_PATH=\"@libdir@\" $(INCLTDL)
+
+@QT_TRUE@libodbcinstQ_la_LIBADD = @X_LDFLAGS@ 	@QT_LDFLAGS@ 	@USER_LDFLAGS@ 	@LIB_QT@ 	../odbcinst/libodbcinst.la 	../extras/libodbcextraslc.la 	../DriverManager/libodbc.la 
+
+@QT_TRUE@libodbcinstQ_la_DEPENDANCIES = 	../odbcinst/libodbcinst.la 	../extras/libodbcextraslc.la 	../DriverManager/libodbc.la
+
+@QT_TRUE@libodbcinstQ_la_SOURCES = 	CAbout.cpp 	CCredits.cpp 	CDLL.cpp 	CDSNList.cpp 	CDriverPrompt.cpp 	CDrivers.cpp 	CFileDSN.cpp 	CFileList.cpp 	CFileSelector.cpp 	CODBCConfig.cpp 	CProperties.cpp 	CPropertiesFrame.cpp 	CSplashDialog.cpp 	CStatDetails.cpp 	CStatSummary.cpp 	CStats.cpp 	CSystemDSN.cpp 	CTracing.cpp 	CUserDSN.cpp 	mCAbout.cpp 	mCCredits.cpp 	mCDSNList.cpp 	mCDriverPrompt.cpp 	mCDrivers.cpp 	mCFileDSN.cpp 	mCFileList.cpp 	mCFileSelector.cpp 	mCODBCConfig.cpp 	mCProperties.cpp 	mCPropertiesFrame.cpp 	mCStatDetails.cpp 	mCStatSummary.cpp 	mCStats.cpp 	mCSystemDSN.cpp 	mCTracing.cpp 	mCUserDSN.cpp 	SQLManageDataSources.cpp
+
+EXTRA_DIST =  	CAbout.h 	CTracing.h 	CStats.h 	CStatSummary.h 	CSplashDialog.h 	CStatDetails.h 	CDLL.h 	CDSNList.h 	CFileList.h 	CDriverPrompt.h 	CDrivers.h 	CFileSelector.h 	CODBCConfig.h 	CPropertiesFrame.h 	CProperties.h 	CSystemDSN.h 	CFileDSN.h 	CUserDSN.h 	CCredits.h 	Splash.xpm 	ODBC.xpm 	computer.xpm 	driver.xpm 	info.xpm 	checkOk.xpm 	checkCancel.xpm 	person.xpm 	server.xpm 	smallLinuxODBC.xpm 	ODBC.xpm 	Canada.xpm 	GreatBritain.xpm 	trace.xpm 	NoFlag.xpm 	odbcinstQ.exp
+
+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+CONFIG_CLEAN_FILES = 
+LTLIBRARIES =  $(lib_LTLIBRARIES)
+
+
+DEFS = @DEFS@ -I. -I$(srcdir) 
+CPPFLAGS = @CPPFLAGS@
+LDFLAGS = @LDFLAGS@
+LIBS = @LIBS@
+@QT_TRUE@libodbcinstQ_la_DEPENDENCIES =  ../odbcinst/libodbcinst.la \
+@QT_TRUE@../extras/libodbcextraslc.la ../DriverManager/libodbc.la
+@QT_TRUE@libodbcinstQ_la_OBJECTS =  CAbout.lo CCredits.lo CDLL.lo \
+@QT_TRUE@CDSNList.lo CDriverPrompt.lo CDrivers.lo CFileDSN.lo \
+@QT_TRUE@CFileList.lo CFileSelector.lo CODBCConfig.lo CProperties.lo \
+@QT_TRUE@CPropertiesFrame.lo CSplashDialog.lo CStatDetails.lo \
+@QT_TRUE@CStatSummary.lo CStats.lo CSystemDSN.lo CTracing.lo \
+@QT_TRUE@CUserDSN.lo mCAbout.lo mCCredits.lo mCDSNList.lo \
+@QT_TRUE@mCDriverPrompt.lo mCDrivers.lo mCFileDSN.lo mCFileList.lo \
+@QT_TRUE@mCFileSelector.lo mCODBCConfig.lo mCProperties.lo \
+@QT_TRUE@mCPropertiesFrame.lo mCStatDetails.lo mCStatSummary.lo \
+@QT_TRUE@mCStats.lo mCSystemDSN.lo mCTracing.lo mCUserDSN.lo \
+@QT_TRUE@SQLManageDataSources.lo
+CXXFLAGS = @CXXFLAGS@
+CXXCOMPILE = $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(LIBTOOL) --mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@
+DIST_COMMON =  README INSTALL Makefile.am Makefile.in
+
+
+DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
+
+TAR = gtar
+GZIP_ENV = --best
+SOURCES = $(libodbcinstQ_la_SOURCES)
+OBJECTS = $(libodbcinstQ_la_OBJECTS)
+
+all: all-redirect
+.SUFFIXES:
+.SUFFIXES: .S .c .cpp .lo .o .obj .s
+$(srcdir)/Makefile.in: Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
+	cd $(top_srcdir) && $(AUTOMAKE) --gnu --include-deps odbcinstQ/Makefile
+
+Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status
+	cd $(top_builddir) \
+	  && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= $(SHELL) ./config.status
+
+
+mostlyclean-libLTLIBRARIES:
+
+clean-libLTLIBRARIES:
+	-test -z "$(lib_LTLIBRARIES)" || rm -f $(lib_LTLIBRARIES)
+
+distclean-libLTLIBRARIES:
+
+maintainer-clean-libLTLIBRARIES:
+
+install-libLTLIBRARIES: $(lib_LTLIBRARIES)
+	@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(libdir)
+	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    echo "$(LIBTOOL)  --mode=install $(INSTALL) $$p $(DESTDIR)$(libdir)/$$p"; \
+	    $(LIBTOOL)  --mode=install $(INSTALL) $$p $(DESTDIR)$(libdir)/$$p; \
+	  else :; fi; \
+	done
+
+uninstall-libLTLIBRARIES:
+	@$(NORMAL_UNINSTALL)
+	list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+	  $(LIBTOOL)  --mode=uninstall rm -f $(DESTDIR)$(libdir)/$$p; \
+	done
+
+.c.o:
+	$(COMPILE) -c $<
+
+# FIXME: We should only use cygpath when building on Windows,
+# and only if it is available.
+.c.obj:
+	$(COMPILE) -c `cygpath -w $<`
+
+.s.o:
+	$(COMPILE) -c $<
+
+.S.o:
+	$(COMPILE) -c $<
+
+mostlyclean-compile:
+	-rm -f *.o core *.core
+	-rm -f *.$(OBJEXT)
+
+clean-compile:
+
+distclean-compile:
+	-rm -f *.tab.c
+
+maintainer-clean-compile:
+
+.c.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+.s.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+.S.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+mostlyclean-libtool:
+	-rm -f *.lo
+
+clean-libtool:
+	-rm -rf .libs _libs
+
+distclean-libtool:
+
+maintainer-clean-libtool:
+
+libodbcinstQ.la: $(libodbcinstQ_la_OBJECTS) $(libodbcinstQ_la_DEPENDENCIES)
+	$(CXXLINK) -rpath $(libdir) $(libodbcinstQ_la_LDFLAGS) $(libodbcinstQ_la_OBJECTS) $(libodbcinstQ_la_LIBADD) $(LIBS)
+.cpp.o:
+	$(CXXCOMPILE) -c $<
+.cpp.obj:
+	$(CXXCOMPILE) -c `cygpath -w $<`
+.cpp.lo:
+	$(LTCXXCOMPILE) -c $<
+
+tags: TAGS
+
+ID: $(HEADERS) $(SOURCES) $(LISP)
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	here=`pwd` && cd $(srcdir) \
+	  && mkid -f$$here/ID $$unique $(LISP)
+
+TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	test -z "$(ETAGS_ARGS)$$unique$(LISP)$$tags" \
+	  || (cd $(srcdir) && etags $(ETAGS_ARGS) $$tags  $$unique $(LISP) -o $$here/TAGS)
+
+mostlyclean-tags:
+
+clean-tags:
+
+distclean-tags:
+	-rm -f TAGS ID
+
+maintainer-clean-tags:
+
+distdir = $(top_builddir)/$(PACKAGE)-$(VERSION)/$(subdir)
+
+subdir = odbcinstQ
+
+distdir: $(DISTFILES)
+	@for file in $(DISTFILES); do \
+	  d=$(srcdir); \
+	  if test -d $$d/$$file; then \
+	    cp -pr $$/$$file $(distdir)/$$file; \
+	  else \
+	    test -f $(distdir)/$$file \
+	    || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
+	    || cp -p $$d/$$file $(distdir)/$$file || :; \
+	  fi; \
+	done
+CAbout.lo CAbout.o : CAbout.cpp CAbout.h CCredits.h info.xpm
+CCredits.lo CCredits.o : CCredits.cpp CCredits.h NoFlag.xpm Canada.xpm \
+	GreatBritain.xpm
+CDLL.lo CDLL.o : CDLL.cpp ../libltdl/ltdl.h CDLL.h
+CDriverPrompt.lo CDriverPrompt.o : CDriverPrompt.cpp CDriverPrompt.h \
+	CDrivers.h ../include/ini.h ../include/odbcinstext.h \
+	../libltdl/ltdl.h ../include/log.h ../include/lst.h \
+	../include/odbcinst.h ../include/sql.h ../include/sqltypes.h \
+	CPropertiesFrame.h CProperties.h CFileSelector.h
+CDrivers.lo CDrivers.o : CDrivers.cpp CDrivers.h ../include/ini.h \
+	../include/odbcinstext.h ../libltdl/ltdl.h ../include/log.h \
+	../include/lst.h ../include/odbcinst.h ../include/sql.h \
+	../include/sqltypes.h CPropertiesFrame.h CProperties.h \
+	CFileSelector.h driver.xpm
+CDSNList.lo CDSNList.o : CDSNList.cpp CDSNList.h ../include/ini.h \
+	../include/odbcinstext.h ../libltdl/ltdl.h ../include/log.h \
+	../include/lst.h ../include/odbcinst.h ../include/sql.h \
+	../include/sqltypes.h CDriverPrompt.h CDrivers.h \
+	CPropertiesFrame.h CProperties.h CFileSelector.h CDLL.h
+CFileDSN.lo CFileDSN.o : CFileDSN.cpp CFileDSN.h CFileList.h \
+	../include/ini.h ../include/odbcinstext.h ../libltdl/ltdl.h \
+	../include/log.h ../include/lst.h ../include/odbcinst.h \
+	../include/sql.h ../include/sqltypes.h CDriverPrompt.h \
+	CDrivers.h CPropertiesFrame.h CProperties.h CFileSelector.h \
+	CDLL.h server.xpm
+CFileList.lo CFileList.o : CFileList.cpp CFileList.h ../include/ini.h \
+	../include/odbcinstext.h ../libltdl/ltdl.h ../include/log.h \
+	../include/lst.h ../include/odbcinst.h ../include/sql.h \
+	../include/sqltypes.h CDriverPrompt.h CDrivers.h \
+	CPropertiesFrame.h CProperties.h CFileSelector.h CDLL.h
+CFileSelector.lo CFileSelector.o : CFileSelector.cpp CFileSelector.h
+CODBCConfig.lo CODBCConfig.o : CODBCConfig.cpp CODBCConfig.h CUserDSN.h \
+	CDSNList.h ../include/ini.h ../include/odbcinstext.h \
+	../libltdl/ltdl.h ../include/log.h ../include/lst.h \
+	../include/odbcinst.h ../include/sql.h ../include/sqltypes.h \
+	CDriverPrompt.h CDrivers.h CPropertiesFrame.h CProperties.h \
+	CFileSelector.h CDLL.h CSystemDSN.h CFileDSN.h CFileList.h \
+	CAbout.h CCredits.h CTracing.h CStats.h CStatSummary.h \
+	../include/uodbc_stats.h CStatDetails.h ODBC.xpm
+CPropertiesFrame.lo CPropertiesFrame.o : CPropertiesFrame.cpp \
+	CPropertiesFrame.h ../include/odbcinstext.h ../libltdl/ltdl.h \
+	../include/ini.h ../include/log.h ../include/lst.h \
+	../include/odbcinst.h ../include/sql.h ../include/sqltypes.h \
+	CProperties.h CFileSelector.h
+CProperties.lo CProperties.o : CProperties.cpp CProperties.h \
+	../include/odbcinstext.h ../libltdl/ltdl.h ../include/ini.h \
+	../include/log.h ../include/lst.h ../include/odbcinst.h \
+	../include/sql.h ../include/sqltypes.h CFileSelector.h \
+	checkOk.xpm checkCancel.xpm
+CSplashDialog.lo CSplashDialog.o : CSplashDialog.cpp CSplashDialog.h \
+	Splash.xpm
+CStatDetails.lo CStatDetails.o : CStatDetails.cpp CStatDetails.h \
+	../include/uodbc_stats.h info.xpm
+CStats.lo CStats.o : CStats.cpp CStats.h CStatSummary.h \
+	../include/uodbc_stats.h CStatDetails.h info.xpm
+CStatSummary.lo CStatSummary.o : CStatSummary.cpp CStatSummary.h \
+	../include/uodbc_stats.h info.xpm
+CSystemDSN.lo CSystemDSN.o : CSystemDSN.cpp CSystemDSN.h CDSNList.h \
+	../include/ini.h ../include/odbcinstext.h ../libltdl/ltdl.h \
+	../include/log.h ../include/lst.h ../include/odbcinst.h \
+	../include/sql.h ../include/sqltypes.h CDriverPrompt.h \
+	CDrivers.h CPropertiesFrame.h CProperties.h CFileSelector.h \
+	CDLL.h server.xpm
+CTracing.lo CTracing.o : CTracing.cpp CTracing.h \
+	../include/odbcinstext.h ../libltdl/ltdl.h ../include/ini.h \
+	../include/log.h ../include/lst.h ../include/odbcinst.h \
+	../include/sql.h ../include/sqltypes.h CFileSelector.h \
+	trace.xpm
+CUserDSN.lo CUserDSN.o : CUserDSN.cpp CUserDSN.h CDSNList.h \
+	../include/ini.h ../include/odbcinstext.h ../libltdl/ltdl.h \
+	../include/log.h ../include/lst.h ../include/odbcinst.h \
+	../include/sql.h ../include/sqltypes.h CDriverPrompt.h \
+	CDrivers.h CPropertiesFrame.h CProperties.h CFileSelector.h \
+	CDLL.h person.xpm
+mCAbout.lo mCAbout.o : mCAbout.cpp CAbout.h CCredits.h
+mCCredits.lo mCCredits.o : mCCredits.cpp CCredits.h
+mCDriverPrompt.lo mCDriverPrompt.o : mCDriverPrompt.cpp CDriverPrompt.h \
+	CDrivers.h ../include/ini.h ../include/odbcinstext.h \
+	../libltdl/ltdl.h ../include/log.h ../include/lst.h \
+	../include/odbcinst.h ../include/sql.h ../include/sqltypes.h \
+	CPropertiesFrame.h CProperties.h CFileSelector.h
+mCDrivers.lo mCDrivers.o : mCDrivers.cpp CDrivers.h ../include/ini.h \
+	../include/odbcinstext.h ../libltdl/ltdl.h ../include/log.h \
+	../include/lst.h ../include/odbcinst.h ../include/sql.h \
+	../include/sqltypes.h CPropertiesFrame.h CProperties.h \
+	CFileSelector.h
+mCDSNList.lo mCDSNList.o : mCDSNList.cpp CDSNList.h ../include/ini.h \
+	../include/odbcinstext.h ../libltdl/ltdl.h ../include/log.h \
+	../include/lst.h ../include/odbcinst.h ../include/sql.h \
+	../include/sqltypes.h CDriverPrompt.h CDrivers.h \
+	CPropertiesFrame.h CProperties.h CFileSelector.h CDLL.h
+mCFileDSN.lo mCFileDSN.o : mCFileDSN.cpp CFileDSN.h CFileList.h \
+	../include/ini.h ../include/odbcinstext.h ../libltdl/ltdl.h \
+	../include/log.h ../include/lst.h ../include/odbcinst.h \
+	../include/sql.h ../include/sqltypes.h CDriverPrompt.h \
+	CDrivers.h CPropertiesFrame.h CProperties.h CFileSelector.h \
+	CDLL.h
+mCFileList.lo mCFileList.o : mCFileList.cpp CFileList.h ../include/ini.h \
+	../include/odbcinstext.h ../libltdl/ltdl.h ../include/log.h \
+	../include/lst.h ../include/odbcinst.h ../include/sql.h \
+	../include/sqltypes.h CDriverPrompt.h CDrivers.h \
+	CPropertiesFrame.h CProperties.h CFileSelector.h CDLL.h
+mCFileSelector.lo mCFileSelector.o : mCFileSelector.cpp CFileSelector.h
+mCODBCConfig.lo mCODBCConfig.o : mCODBCConfig.cpp CODBCConfig.h \
+	CUserDSN.h CDSNList.h ../include/ini.h ../include/odbcinstext.h \
+	../libltdl/ltdl.h ../include/log.h ../include/lst.h \
+	../include/odbcinst.h ../include/sql.h ../include/sqltypes.h \
+	CDriverPrompt.h CDrivers.h CPropertiesFrame.h CProperties.h \
+	CFileSelector.h CDLL.h CSystemDSN.h CFileDSN.h CFileList.h \
+	CAbout.h CCredits.h CTracing.h CStats.h CStatSummary.h \
+	../include/uodbc_stats.h CStatDetails.h
+mCPropertiesFrame.lo mCPropertiesFrame.o : mCPropertiesFrame.cpp \
+	CPropertiesFrame.h ../include/odbcinstext.h ../libltdl/ltdl.h \
+	../include/ini.h ../include/log.h ../include/lst.h \
+	../include/odbcinst.h ../include/sql.h ../include/sqltypes.h \
+	CProperties.h CFileSelector.h
+mCProperties.lo mCProperties.o : mCProperties.cpp CProperties.h \
+	../include/odbcinstext.h ../libltdl/ltdl.h ../include/ini.h \
+	../include/log.h ../include/lst.h ../include/odbcinst.h \
+	../include/sql.h ../include/sqltypes.h CFileSelector.h
+mCStatDetails.lo mCStatDetails.o : mCStatDetails.cpp CStatDetails.h \
+	../include/uodbc_stats.h
+mCStats.lo mCStats.o : mCStats.cpp CStats.h CStatSummary.h \
+	../include/uodbc_stats.h CStatDetails.h
+mCStatSummary.lo mCStatSummary.o : mCStatSummary.cpp CStatSummary.h \
+	../include/uodbc_stats.h
+mCSystemDSN.lo mCSystemDSN.o : mCSystemDSN.cpp CSystemDSN.h CDSNList.h \
+	../include/ini.h ../include/odbcinstext.h ../libltdl/ltdl.h \
+	../include/log.h ../include/lst.h ../include/odbcinst.h \
+	../include/sql.h ../include/sqltypes.h CDriverPrompt.h \
+	CDrivers.h CPropertiesFrame.h CProperties.h CFileSelector.h \
+	CDLL.h
+mCTracing.lo mCTracing.o : mCTracing.cpp CTracing.h \
+	../include/odbcinstext.h ../libltdl/ltdl.h ../include/ini.h \
+	../include/log.h ../include/lst.h ../include/odbcinst.h \
+	../include/sql.h ../include/sqltypes.h CFileSelector.h
+mCUserDSN.lo mCUserDSN.o : mCUserDSN.cpp CUserDSN.h CDSNList.h \
+	../include/ini.h ../include/odbcinstext.h ../libltdl/ltdl.h \
+	../include/log.h ../include/lst.h ../include/odbcinst.h \
+	../include/sql.h ../include/sqltypes.h CDriverPrompt.h \
+	CDrivers.h CPropertiesFrame.h CProperties.h CFileSelector.h \
+	CDLL.h
+SQLManageDataSources.lo SQLManageDataSources.o : \
+	SQLManageDataSources.cpp ../include/odbcinstext.h \
+	../libltdl/ltdl.h ../include/ini.h ../include/log.h \
+	../include/lst.h ../include/odbcinst.h ../include/sql.h \
+	../include/sqltypes.h CODBCConfig.h CUserDSN.h CDSNList.h \
+	CDriverPrompt.h CDrivers.h CPropertiesFrame.h CProperties.h \
+	CFileSelector.h CDLL.h CSystemDSN.h CFileDSN.h CFileList.h \
+	CAbout.h CCredits.h CTracing.h CStats.h CStatSummary.h \
+	../include/uodbc_stats.h CStatDetails.h
+
+info-am:
+info: info-am
+dvi-am:
+dvi: dvi-am
+check-am: all-am
+check: check-am
+installcheck-am:
+installcheck: installcheck-am
+install-exec-am: install-libLTLIBRARIES
+install-exec: install-exec-am
+
+install-data-am:
+install-data: install-data-am
+
+install-am: all-am
+	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
+install: install-am
+uninstall-am: uninstall-libLTLIBRARIES
+uninstall: uninstall-am
+all-am: Makefile $(LTLIBRARIES)
+all-redirect: all-am
+install-strip:
+	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
+installdirs:
+	$(mkinstalldirs)  $(DESTDIR)$(libdir)
+
+
+mostlyclean-generic:
+
+clean-generic:
+
+distclean-generic:
+	-rm -f Makefile $(CONFIG_CLEAN_FILES)
+	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
+
+maintainer-clean-generic:
+mostlyclean-am:  mostlyclean-libLTLIBRARIES mostlyclean-compile \
+		mostlyclean-libtool mostlyclean-tags \
+		mostlyclean-generic
+
+mostlyclean: mostlyclean-am
+
+clean-am:  clean-libLTLIBRARIES clean-compile clean-libtool clean-tags \
+		clean-generic mostlyclean-am
+
+clean: clean-am
+
+distclean-am:  distclean-libLTLIBRARIES distclean-compile \
+		distclean-libtool distclean-tags distclean-generic \
+		clean-am
+	-rm -f libtool
+
+distclean: distclean-am
+
+maintainer-clean-am:  maintainer-clean-libLTLIBRARIES \
+		maintainer-clean-compile maintainer-clean-libtool \
+		maintainer-clean-tags maintainer-clean-generic \
+		distclean-am
+	@echo "This command is intended for maintainers to use;"
+	@echo "it deletes files that may require special tools to rebuild."
+
+maintainer-clean: maintainer-clean-am
+
+.PHONY: mostlyclean-libLTLIBRARIES distclean-libLTLIBRARIES \
+clean-libLTLIBRARIES maintainer-clean-libLTLIBRARIES \
+uninstall-libLTLIBRARIES install-libLTLIBRARIES mostlyclean-compile \
+distclean-compile clean-compile maintainer-clean-compile \
+mostlyclean-libtool distclean-libtool clean-libtool \
+maintainer-clean-libtool tags mostlyclean-tags distclean-tags \
+clean-tags maintainer-clean-tags distdir info-am info dvi-am dvi check \
+check-am installcheck-am installcheck install-exec-am install-exec \
+install-data-am install-data install-am install uninstall-am uninstall \
+all-redirect all-am all installdirs mostlyclean-generic \
+distclean-generic clean-generic maintainer-clean-generic clean \
+mostlyclean distclean maintainer-clean
+
+
+@QT_TRUE@mCDrivers.cpp: CDrivers.h
+@QT_TRUE@	@MOC@ CDrivers.h -o mCDrivers.cpp
+
+@QT_TRUE@mCODBCConfig.cpp: CODBCConfig.h
+@QT_TRUE@	@MOC@ CODBCConfig.h -o mCODBCConfig.cpp
+
+@QT_TRUE@mCSystemDSN.cpp: CSystemDSN.h
+@QT_TRUE@	@MOC@ CSystemDSN.h -o mCSystemDSN.cpp
+
+@QT_TRUE@mCFileDSN.cpp: CFileDSN.h
+@QT_TRUE@	@MOC@ CFileDSN.h -o mCFileDSN.cpp
+
+@QT_TRUE@mCUserDSN.cpp: CUserDSN.h
+@QT_TRUE@	@MOC@ CUserDSN.h -o mCUserDSN.cpp
+
+@QT_TRUE@mCTracing.cpp: CTracing.h
+@QT_TRUE@	@MOC@ CTracing.h -o mCTracing.cpp
+
+@QT_TRUE@mCStats.cpp: CStats.h
+@QT_TRUE@	@MOC@ CStats.h -o mCStats.cpp
+
+@QT_TRUE@mCStatSummary.cpp: CStatSummary.h
+@QT_TRUE@	@MOC@ CStatSummary.h -o mCStatSummary.cpp
+
+@QT_TRUE@mCStatDetails.cpp: CStatDetails.h
+@QT_TRUE@	@MOC@ CStatDetails.h -o mCStatDetails.cpp
+
+@QT_TRUE@mCAbout.cpp: CAbout.h
+@QT_TRUE@	@MOC@ CAbout.h -o mCAbout.cpp
+
+@QT_TRUE@mCDriverPrompt.cpp: CDriverPrompt.h
+@QT_TRUE@	@MOC@ CDriverPrompt.h -o mCDriverPrompt.cpp
+
+@QT_TRUE@mCPropertiesFrame.cpp: CPropertiesFrame.h
+@QT_TRUE@	@MOC@ CPropertiesFrame.h -o mCPropertiesFrame.cpp
+
+@QT_TRUE@mCProperties.cpp: CProperties.h
+@QT_TRUE@	@MOC@ CProperties.h -o mCProperties.cpp
+
+@QT_TRUE@mCFileSelector.cpp: CFileSelector.h
+@QT_TRUE@	@MOC@ CFileSelector.h -o mCFileSelector.cpp
+
+@QT_TRUE@mCDSNList.cpp: CDSNList.h
+@QT_TRUE@	@MOC@ CDSNList.h -o mCDSNList.cpp
+
+@QT_TRUE@mCFileList.cpp: CFileList.h
+@QT_TRUE@	@MOC@ CFileList.h -o mCFileList.cpp
+
+@QT_TRUE@mCCredits.cpp: CCredits.h
+@QT_TRUE@	@MOC@ CCredits.h -o mCCredits.cpp
+
+# Tell versions [3.59,3.63) of GNU make to not export all variables.
+# Otherwise a system limit (for SysV at least) may be exceeded.
+.NOEXPORT:

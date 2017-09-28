@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP EXPLOIT format string"; flags: A+; content: "SITE EXEC |25 30 32 30 64 7C 25 2E 66 25 2E 66 7C 0A|"; depth: 32; nocase; reference:arachnids,453; classtype:attempted-user; sid:338; rev:1;)

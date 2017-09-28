@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 4321 (msg:"EXPLOIT rwhoisd format string attempt"; content:"-soa %p"; flags:A+; reference:bugtraq,3474; classtype:misc-attack; sid:1323; rev:1;)

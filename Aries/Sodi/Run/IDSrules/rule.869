@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI post-query access";flags: A+; uricontent:"/post-query"; nocase;classtype:attempted-recon; sid:866; rev:1;)

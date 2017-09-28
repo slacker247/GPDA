@@ -1,0 +1,770 @@
+#VRML V2.0 utf8
+
+WorldInfo {
+	title 	"VRML:		EspduTransformPROTO.wrl"
+	
+	info [	"Author:	Don Brutzman"
+		"Revised:	7 September 2000"
+		"Script:	EspduTransform.java, .class"
+		"Purpose:	PROTO providing DIS ESPDU interface for a VRML entity"
+		"Browsers:	WinNT Netscape 4.7,4.08/CosmoPlayer 2.1.1"
+"http://web.nps.navy.mil/~brutzman/vrtp/mil/navy/nps/dis/EspduTransformPROTO.wrl"
+"http://www.web3D.org/WorkingGroups/vrtp/mil/navy/nps/dis/EspduTransformPROTO.wrl"
+	]
+}
+#################################################################################
+
+# Why a prototype rather than an Inline file?  Prototyping allows replacement of
+# standard VRML nodes (e.g. Transform) and can also expose events and fields
+# to the encapsulating top-level scene.
+
+# Ensure that instances of this node are placed at the top-most level and
+# not translated away from the local world coordinates origin.
+
+# CosmoPlayer bug:  SFTime values are rounded off to nearest integer, so
+# types for readInterval and writeInterval changed to SFFloat
+
+#################################################################################
+
+PROTO EspduTransform [
+
+# DIS ESPDU fields - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+eventOut	SFTime		timestamp			# DIS timestamp in VRML units
+field		SFString	marking		 ""		# 0..11 character label for entity
+field		SFTime		readInterval	 0.1		# seconds between read  updates
+field		SFTime		writeInterval	 0.0		# seconds between write updates
+								#  readInterval=0.0 means no reading,
+								# writeInterval=0.0 means no writing
+
+field		SFString	address		 "localhost"	# multicast address, or else "localhost"
+								#   listens to local defaultBridge
+field		SFInt32 	port		 8006		# multicast port,    or else 
+								#   listen to local defaultBridge
+
+field		SFInt32		siteID		 0		# EntityID: site
+field		SFInt32		applicationID	 1		# EntityID: application ID,
+								#  unique ID for app at that site
+field		SFInt32		entityID	 0		# unique ID for entity within that app
+
+# Standard VRML Transform fields - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+exposedField	MFNode		children	 [ ]
+exposedField	SFVec3f		translation	 0  0  0	# default prior to DIS update
+exposedField	SFRotation	rotation	 0  0  1  0	# default prior to DIS update
+exposedField	SFVec3f		scale		 1  1  1
+exposedField	SFRotation	scaleOrientation 0  0  1  0
+field		SFVec3f		bboxCenter	 0  0  0
+field		SFVec3f		bboxSize	-1 -1 -1
+exposedField	SFVec3f		center		 0  0  0
+eventIn		MFNode		addChildren
+eventIn		MFNode		removeChildren
+
+# Automatic MulticastRelayClient if no multicast heard - - - - - - - - - - - - - - - - - - - - - -
+
+field		SFString	multicastRelayHost	"devo.stl.nps.navy.mil"
+field		SFInt32 	multicastRelayPort	 8010
+
+field		SFBool		rtpHeaderExpected	FALSE	# whether RTP headers are prepended to DIS PDUs
+eventOut	SFBool		rtpHeaderHeard
+
+# Collision/Fire PDU heard, or recent active ESPDUs heard  - - - - - - - - - - - - - - - - - - - - 
+
+eventOut	SFBool		active		# have we had an update recently?
+eventOut	SFBool		collided	# has a CollisionPDU reported a collision?
+eventOut	SFTime		collideTime	# when were we collided with?
+eventOut	SFBool		detonated	# has a DetonationPDU reported a detonation?
+eventOut	SFTime		detonateTime	# when were we detonated?
+eventOut	SFBool		fired1		# have we shot a Fire (weapon) PDU (primary)?
+eventOut	SFBool		fired2		# have we shot a Fire (weapon) PDU (secondary)?
+eventOut	SFTime		firedTime	# when did we shoot a Fire (weapon) PDU?
+eventOut	SFVec3f		munitionStartPoint # exercise coordinates
+eventOut	SFVec3f		munitionEndPoint   # exercise coordinates
+
+# Articulated Parameter (user-defined payload) fields  - - - - - - - - - - - - - - - - - - - - - -
+
+eventOut	SFInt32		articulationParameterCount	# articulated parameters available
+eventOut	SFFloat		articulationParameterValue0	# user-defined payload value
+eventOut	SFFloat		articulationParameterValue1	# user-defined payload value
+eventOut	SFFloat		articulationParameterValue2	# user-defined payload value
+eventOut	SFFloat		articulationParameterValue3	# user-defined payload value
+eventOut	SFFloat		articulationParameterValue4	# user-defined payload value
+eventOut	SFFloat		articulationParameterValue5	# user-defined payload value
+eventOut	SFFloat		articulationParameterValue6	# user-defined payload value
+eventOut	SFFloat		articulationParameterValue7	# user-defined payload value
+eventOut	SFFloat		articulationParameterValue8	# user-defined payload value
+eventOut	SFFloat		articulationParameterValue9	# user-defined payload value
+eventOut	SFFloat		articulationParameterValue10	# user-defined payload value
+eventOut	SFFloat		articulationParameterValue11	# user-defined payload value
+eventOut	SFFloat		articulationParameterValue12	# user-defined payload value
+eventOut	SFFloat		articulationParameterValue13	# user-defined payload value
+eventOut	SFFloat		articulationParameterValue14	# user-defined payload value
+
+# Trace fields - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+exposedField	SFColor		traceColor	 0   1.0 1.0	# color of VRML trace text
+exposedField	SFVec3f		traceOffset	 0  -0.5 0.15	# VRML text position relative to entity
+exposedField	SFVec3f		traceSize	 1.0 1.0 1.0	# VRML text scale
+field		SFBool		traceJava	 FALSE		# Java console tracing enabled?
+]
+
+# dis-java-vrml default multicast:  address "224.2.181.145" & port 62040 
+#  old NPS AUV  default multicast:  address "224.2.244.141" & port  3111
+
+#################################################################################
+
+# PROTO Body
+{
+   Group # DEF FIRE_PDU_GROUP
+   {
+     children [
+    
+	DEF DIS_TRANSFORM_NODE Transform {
+
+		translation	 IS translation		# link Java to exposedField above
+		rotation	 IS rotation		# link Java to exposedField above
+		scale		 IS scale		# pass user VRML -> PROTO VRML
+		scaleOrientation IS scaleOrientation	# pass user VRML -> PROTO VRML
+		bboxCenter	 IS bboxCenter		# pass user VRML -> PROTO VRML
+		bboxSize	 IS bboxSize		# pass user VRML -> PROTO VRML
+		center		 IS center		# pass user VRML -> PROTO VRML
+
+		children [
+			Transform {			# DEF DIS_TRANSFORM_NODE_CHILDREN 
+		
+ 				children 	IS children		# pass user VRML -> PROTO VRML
+				addChildren	IS addChildren		# pass user VRML -> PROTO VRML
+				removeChildren	IS removeChildren	# pass user VRML -> PROTO VRML
+			}
+
+			DEF TOUCHSENSOR TouchSensor {}
+
+			LOD {
+			  range [ 300 3000 40000 ] # no trace text is drawn at intermediate ranges
+			  level [
+				# short-range LOD child:    - - - - - - - - - - - - - - - - - - - - -
+				Transform {
+					translation IS traceOffset
+					scale       IS traceSize
+					children [
+				   Billboard {
+					children [
+						Shape {
+							appearance Appearance {
+								material DEF TextColor Material {
+									diffuseColor  IS traceColor
+									emissiveColor IS traceColor
+								}
+							}
+							geometry DEF DEBUG_TRANSLATION Text {
+								string [ "" ]
+								fontStyle DEF TraceFont FontStyle {
+									size 0.25
+									justify "MIDDLE"
+								}
+							}
+						}
+						Transform {			
+							translation 0.0 -0.25 0
+							children [
+								Shape {
+									appearance Appearance {
+										material USE TextColor
+									}
+									geometry DEF DEBUG_ROTATION Text {
+										string [ "" ] 
+										fontStyle USE TraceFont
+									}
+								}
+							]
+						}
+						Transform {			
+							translation 0.0 -0.5 0
+							children [
+								Shape {
+									appearance Appearance {
+										material USE TextColor
+									}
+									geometry DEF DEBUG_MARKING_ADDRESS Text {
+										string [ "" ] # entity marking + host address
+										fontStyle USE TraceFont
+									}
+								}
+							]
+						}
+					]
+				      }
+				   ]
+				}
+
+				# medium-range LOD child:    - - - - - - - - - - - - - - - - - - - - -
+				WorldInfo {} # null node to make text disappear when outside LOD range
+
+				# long-range LOD child:      - - - - - - - - - - - - - - - - - - - - -
+				Billboard {
+				  axisOfRotation 0 0 0	# always face viewer
+				  children [
+				  	Transform {			
+				  		translation 0.0 800 0
+						children [
+						  Shape {
+							appearance Appearance {
+								material USE TextColor
+							}
+							geometry DEF LONG_RANGE_MARKING Text {
+								string [ "" ] 	# (marking)
+								fontStyle FontStyle {
+									size 125
+									style "BOLD"
+									justify "MIDDLE"
+								}
+							}
+						  }
+						]
+					}
+				  	Transform {			
+				  		translation 0.0 40 0	# lift center of box off of the ground
+						children [
+						  Shape {
+							appearance Appearance {
+								material USE TextColor
+							}
+							geometry Box {
+								size 50 50 50
+							}
+						  }
+						]
+					}
+				  ]
+				}
+				# too-far-range LOD child:    - - - - - - - - - - - - - - - - - - - - -
+				WorldInfo {} # null node to make text disappear when outside LOD range
+
+			  ]
+			}
+			# Debugger script excerpt part 2 end #####################################
+		]
+	}
+
+# Fire PDU references:
+#
+# file:///c|/vrtp/javadoc/dis-java-vrml/mil/navy/nps/dis/FirePdu.html
+# file:///c|/vrtp/javadoc/dis-java-vrml/mil/navy/nps/disEnumerations/DetonationResultField.html
+# file:///c|/vrtp/javadoc/dis-java-vrml/mil/navy/nps/disEnumerations/WarheadField.html
+
+	Shape {
+		appearance Appearance {
+			material Material {
+				emissiveColor .3 .15 .15
+			}
+		}
+		geometry IndexedLineSet {
+			color Color {
+				color [ 0 1 0, 1 0 0 ]
+			}
+			coord DEF LINE_OF_FIRE_COORDINATE_NODE Coordinate {
+				point [ 0 0 0, 0 0 20.0 ]	# initialize collapses to 0 0 0, invisible
+			}
+			coordIndex	[ 0 1 -1 ]	# does not change, single line segment
+			colorIndex	[ 0 1 -1 ]	# does not change, single line segment
+		#	colorPerVertex	TRUE		# [default]
+		}
+	}
+
+      ]
+   }
+
+#################################################################################
+
+#	Transform {
+#		Inline projectile
+#			projectilePositionInterpolator
+#			projectileOrientationInterpolator
+
+# Sound inside the PROTO is not working  :(
+# even though the code is identical to EXTERNPROTO examples,
+# possibly a CosmoPlayer 2.1.1 browser bug.
+# Implement sound in the entity, as shown in demos/helicopter/"tanks"
+#
+#	Sound {
+#		minBack		10	# m minimum radius containing max volume
+#		minFront	10
+#		maxBack		100	# m maximum radius reaching  zero volume
+#		maxFront	100
+#		spatialize	FALSE	# No spatialization for ambient sound
+#
+#		source DEF LAUNCH_AUDIO AudioClip {
+#			description "Launch explosion..."
+#			url [	# URL restriction:  can't use file:///C:/ -- must use file:///C|/etc.
+#			"file:///C|/vrtp/mil/navy/nps/dis/00015000.WAV" # default PC installation
+#			"file:///D|/vrtp/mil/navy/nps/dis/00015000.WAV" # alternate PC installation
+#	      "http://www.stl.nps.navy.mil/vrtp/mil/navy/nps/dis/00015000.WAV"
+#	     "http://devo.stl.nps.navy.mil/vrtp/mil/navy/nps/dis/00015000.WAV"
+#             "http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/00015000.WAV"
+#			 ]
+#		}
+#	}
+
+# possible future eventOuts that could be provided from FirePdu information:
+	
+# eventOut	SFVec3f	munitionRotation
+# eventOut	SFVec3f	munitionType
+# eventOut	SFInt32	burstDescriptorFuse
+# eventOut	SFInt32	burstDescriptorMunition
+# eventOut	SFInt32	burstDescriptorRate
+# eventOut	SFInt32	burstDescriptorQuantity
+# eventOut	SFInt32	burstDescriptorWarhead
+# eventOut	SFInt32	eventID
+# eventOut	SFInt32	fireMissionIndex
+# eventOut	SFInt32	firingEntityID
+# eventOut	SFInt32	locationInWorldCoordinate
+# eventOut	SFInt32	munitionID
+# eventOut	SFInt32	munitionID
+# eventOut	SFInt32	munitionID
+# eventOut	SFInt32	range
+# eventOut	SFInt32	targetEntityID
+# eventOut	SFInt32	velocity
+
+#################################################################################
+
+	DEF DIS_ESPDUTRANSFORM_SCRIPT_NODE Script {
+
+		mustEvaluate	TRUE	# FALSE can delay sending eventIns to script	# [default]	
+		directOutput	TRUE	# TRUE if writing values to field nodes, use
+					#   FALSE if only sending eventOuts to nodes
+
+		eventIn	SFTime	readPdu		# implicit event cycle provokes Script processEvent() and DIS PDU read, no explicit Java readPdu  method needed
+		eventIn	SFTime	writePdu	# implicit event cycle provokes Script processEvent() and DIS PDU read, no explicit Java writePdu method needed
+
+		# providing a Node as a Script field gives the Java Script direct access.
+		# No need to route between DIS_ESPDU_NODE and DIS_TRANSFORM_NODE since
+		# EspduReadTransformTrace modifies DIS_TRANSFORM_NODE as a field, directly.
+
+		field SFNode	transformNode		USE DIS_TRANSFORM_NODE
+
+		field SFString	marking				IS marking
+		field SFString	address				IS address
+		field SFInt32	port				IS port
+		field SFTime	readInterval			IS readInterval	
+		field SFTime	writeInterval			IS writeInterval	
+		field SFInt32	siteID				IS siteID
+		field SFInt32	applicationID			IS applicationID
+		field SFInt32	entityID			IS entityID
+		field SFBool	traceJava			IS traceJava
+		field SFString	multicastRelayHost		IS multicastRelayHost
+		field SFInt32	multicastRelayPort		IS multicastRelayPort
+		field SFBool	rtpHeaderExpected		IS rtpHeaderExpected
+		eventOut SFBool	rtpHeaderHeard			IS rtpHeaderHeard
+
+		eventOut SFTime  timestamp			IS timestamp
+		eventOut SFBool  active				IS active
+		eventOut SFBool  collided			IS collided
+		eventOut SFTime  collideTime			IS collideTime
+		eventOut SFBool  detonated			IS detonated
+		eventOut SFTime  detonateTime			IS detonateTime
+		eventOut SFBool  fired1				IS fired1
+		eventOut SFBool  fired2				IS fired2
+		eventOut SFTime  firedTime			IS firedTime
+		eventOut SFVec3f munitionStartPoint		IS munitionStartPoint
+		eventOut SFVec3f munitionEndPoint		IS munitionEndPoint
+
+		eventOut SFInt32 articulationParameterCount   IS articulationParameterCount
+		eventOut SFFloat articulationParameterValue0  IS articulationParameterValue0
+		eventOut SFFloat articulationParameterValue1  IS articulationParameterValue1
+		eventOut SFFloat articulationParameterValue2  IS articulationParameterValue2
+		eventOut SFFloat articulationParameterValue3  IS articulationParameterValue3
+		eventOut SFFloat articulationParameterValue4  IS articulationParameterValue4
+		eventOut SFFloat articulationParameterValue5  IS articulationParameterValue5
+		eventOut SFFloat articulationParameterValue6  IS articulationParameterValue6
+		eventOut SFFloat articulationParameterValue7  IS articulationParameterValue7
+		eventOut SFFloat articulationParameterValue8  IS articulationParameterValue8
+		eventOut SFFloat articulationParameterValue9  IS articulationParameterValue9
+		eventOut SFFloat articulationParameterValue10 IS articulationParameterValue10
+		eventOut SFFloat articulationParameterValue11 IS articulationParameterValue11
+		eventOut SFFloat articulationParameterValue12 IS articulationParameterValue12
+		eventOut SFFloat articulationParameterValue13 IS articulationParameterValue13
+		eventOut SFFloat articulationParameterValue14 IS articulationParameterValue14
+
+#			testing: _just_ have this url for the class and ensure it is in CLASSPATH for disk-drive independence
+		url [
+			"EspduTransform.class"
+		]
+
+#			"../mil/navy/nps/dis/EspduTransform.class"
+#			"../../mil/navy/nps/dis/EspduTransform.class"
+#			"../../../mil/navy/nps/dis/EspduTransform.class"
+#			"../../../../mil/navy/nps/dis/EspduTransform.class"
+#			"../../../../../mil/navy/nps/dis/EspduTransform.class"
+#			"../../../../../../mil/navy/nps/dis/EspduTransform.class"
+#			"../../../../../../../mil/navy/nps/dis/EspduTransform.class"
+# point directly to class:  have file dis-java-vrml-Signed.jar in classpath
+# do NOT change order!!
+# apparent bug in CosmoPlayer:  must point to correct directory first in list!  :(
+# URL restriction:  netscape can't use file:///C:/ -- must use file:///C|/etc.
+#			"../../mil/navy/nps/dis/EspduTransform.class"
+#			"file:///C:/vrtp/mil/navy/nps/dis/EspduTransform.class" #  default  PC installation
+#			"file:///D:/vrtp/mil/navy/nps/dis/EspduTransform.class" # alternate PC installation
+#			"file:///vrtp/mil/navy/nps/dis/EspduTransform.class"
+#
+#			"file:///C|/vrtp/mil/navy/nps/dis/EspduTransform.class" #  default  PC installation
+#			"file:///D|/vrtp/mil/navy/nps/dis/EspduTransform.class" # alternate PC installation
+#			"file:///vrtp/mil/navy/nps/dis/EspduTransform.class"
+#			"/vrtp/mil/navy/nps/dis/EspduTransform.class" #  attempted PC installation
+#			"EspduTransform.class" # local directory (but fails when invoked elsewhere)
+#			"../../vrtp/mil/navy/nps/dis/EspduTransform.class"
+#			"http://devo.stl.nps.navy.mil/vrtp/mil/navy/nps/dis/EspduTransform.class"
+#			"http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/EspduTransform.class"
+#			"../../../../dis-java-vrml/dis-java-vrml.jar#EspduTransform.class"  
+		
+	}
+	# Provoke a DIS buffer read (or dead reckoning update) every frame (30 Hz default)
+	# or at user-specified readInterval:
+	
+	DEF READ_INTERVAL_DIS TimeSensor {
+	# [default]	enabled		TRUE	
+			loop		TRUE
+			cycleInterval	IS readInterval 	# reset by TYPE_CONVERSION
+	}
+
+	DEF WRITE_INTERVAL_DIS TimeSensor {
+	# [default]	enabled		TRUE	
+			loop		TRUE
+			cycleInterval	IS writeInterval	# reset by TYPE_CONVERSION
+	}
+
+	#  debugging why audioclip event ignored...
+	DEF FIRE_SEQUENCE_SCRIPT Script {
+		mustEvaluate TRUE
+		eventIn  SFBool fired1
+		eventIn  SFBool fired2
+		eventOut SFTime fireTime
+		eventOut SFBool firstFired1 IS fired1
+		eventOut SFBool firstFired2 IS fired2
+		url	"javascript:
+				function fired1 (value, ts) {
+					if (value == true)
+					{
+						firstFired1 = true;
+						fireTime = ts;
+						print ('EspduTransformPROTO.wrl: fired1 FIRE_SEQUENCE_SCRIPT timestamp ' +
+							fireTime);
+					}
+				}
+				function fired2 (value, ts) {
+					if (value == true)
+					{
+						firstFired2 = true;
+						fireTime = ts;
+						print ('EspduTransformPROTO.wrl: fired2 FIRE_SEQUENCE_SCRIPT timestamp ' +
+							fireTime);
+					}
+				}
+			"
+	}
+
+	# Debugger script excerpt part 1 start ###############################
+	# Debugger script excerpt modified from The VRML 2.0 Sourcebook
+	# Copyright [1997] By
+	# Andrea L. Ames, David R. Nadeau, and John L. Moreland
+	# following code based on 30fig04.wrl, pp. 595..598
+
+	DEF DEBUG_JAVASCRIPT Script {
+		eventIn  SFBool		start
+		eventIn  SFVec3f	set_translation
+		eventIn  SFRotation	set_rotation
+		eventIn  SFTime		touch
+		eventOut MFString	translation_text # only sends single line
+		eventOut MFString	rotation_text
+		eventOut MFString	MFmarking
+		eventOut SFBool		result
+		eventIn  SFTime		timestamp
+		eventIn  SFBool		collided
+		eventIn  SFBool		detonated
+		field    SFBool		active	TRUE
+		field	 SFString	marking 	IS  marking
+		field	 SFString	address		IS  address
+		field	 SFInt32	port    	IS  port
+		field    SFInt32	siteID		IS  siteID
+		field    SFInt32	applicationID	IS  applicationID
+		field    SFInt32	entityID	IS  entityID
+		eventOut MFString 	marking_address_text
+
+		eventIn	SFInt32 articulationParameterCount
+		eventIn SFFloat articulationParameterValue0
+		eventIn SFFloat articulationParameterValue1
+		eventIn SFFloat articulationParameterValue2
+		eventIn SFFloat articulationParameterValue3
+		eventIn SFFloat articulationParameterValue4
+		eventIn SFFloat articulationParameterValue5
+		eventIn SFFloat articulationParameterValue6
+		eventIn SFFloat articulationParameterValue7
+		eventIn SFFloat articulationParameterValue8
+		eventIn SFFloat articulationParameterValue9
+		eventIn SFFloat articulationParameterValue10
+		eventIn SFFloat articulationParameterValue11
+		eventIn SFFloat articulationParameterValue12
+		eventIn SFFloat articulationParameterValue13
+		eventIn SFFloat articulationParameterValue14
+		eventIn SFBool	rtpHeaderHeard
+
+		# browsers used to have an 'initalize' spelling problem.  'initialize' now works.
+		url "javascript:
+			function initialize ( ) { 
+					translation_text[0]     = marking + ': awaiting DIS';
+					rotation_text   [0]     = 'translation and rotation updates';
+					marking_address_text[0] = 'multicast group: ' + address + '/' + port + ', ID: '
+						+ siteID + ',' + applicationID + ',' + entityID;
+					MFmarking[0] = marking;
+			}
+			function set_translation ( translation, ts ) {
+				if (active) {
+					// round to nearest tenth
+					translation.x = Math.round (translation.x * 10.0) / 10.0;
+					translation.y = Math.round (translation.y * 10.0) / 10.0;
+					translation.z = Math.round (translation.z * 10.0) / 10.0;
+					translation_text[0] = marking + ': translation ' + translation;
+				}
+			}
+			function set_rotation    ( rotation, ts ) {
+				if (active) {
+					// round terms to nearest thousandth
+					rotation.x     = Math.round (rotation.x     * 1000.0) / 1000.0;
+					rotation.y     = Math.round (rotation.y     * 1000.0) / 1000.0;
+					rotation.z     = Math.round (rotation.z     * 1000.0) / 1000.0;
+					rotation.angle = (rotation.angle * 180.0) / 3.141592653;
+					rotation.angle = Math.round (rotation.angle * 10.0) / 10.0;
+					rotation_text   [0] = 'rotation ' + rotation + ' axis/degrees';
+				}
+			}
+			function touch (value, time) {
+				active = !active;
+				result =  active;
+				if (result) {
+					translation_text[0]     = marking + ': awaiting DIS';
+					rotation_text   [0]     = 'translation and rotation updates';
+					marking_address_text[0] = 'multicast group: ' + address + '/' + port + ', ID: '
+						+ siteID + ',' + applicationID + ',' + entityID;
+					MFmarking[0] = marking;
+				} else {
+					translation_text[0] = '';
+					rotation_text   [0] = '';
+					marking_address_text[0] = '';
+					MFmarking[0] = '';
+				}
+			}
+			function timestamp    ( value, ts ) {
+				trace ('DIS timestamp=' + value + ', event timestamp=' + ts);
+			}
+			function collided    ( value, ts ) {
+				trace ('collided=' + value);
+			}
+			function detonated    ( value, ts ) {
+				trace ('detonated=' + value);
+			}
+			function articulationParameterCount    ( value, ts ) {
+				trace ('articulationParameterCount=' + value);
+			}
+			function articulationParameterValue0   ( value, ts ) {
+				trace ('articulationParameterValue0=' + value);
+			}
+			function articulationParameterValue1   ( value, ts ) {
+				trace ('articulationParameterValue1=' + value);
+			}
+			function articulationParameterValue2   ( value, ts ) {
+				trace ('articulationParameterValue2=' + value);
+			}
+			function articulationParameterValue3   ( value, ts ) {
+				trace ('articulationParameterValue3=' + value);
+			}
+			function articulationParameterValue4   ( value, ts ) {
+				trace ('articulationParameterValue4=' + value);
+			}
+			function articulationParameterValue5   ( value, ts ) {
+				trace ('articulationParameterValue5=' + value);
+			}
+			function articulationParameterValue6   ( value, ts ) {
+				trace ('articulationParameterValue6=' + value);
+			}
+			function articulationParameterValue7   ( value, ts ) {
+				trace ('articulationParameterValue7=' + value);
+			}
+			function articulationParameterValue8   ( value, ts ) {
+				trace ('articulationParameterValue8=' + value);
+			}
+			function articulationParameterValue9   ( value, ts ) {
+				trace ('articulationParameterValue9=' + value);
+			}
+			function articulationParameterValue10   ( value, ts ) {
+				trace ('articulationParameterValue10=' + value);
+			}
+			function articulationParameterValue11   ( value, ts ) {
+				trace ('articulationParameterValue11=' + value);
+			}
+			function articulationParameterValue12   ( value, ts ) {
+				trace ('articulationParameterValue12=' + value);
+			}
+			function articulationParameterValue13   ( value, ts ) {
+				trace ('articulationParameterValue13=' + value);
+			}
+			function articulationParameterValue14   ( value, ts ) {
+				trace ('articulationParameterValue14=' + value);
+			}
+			function munitionStartPoint   ( value, ts ) {
+				trace ('munitionStartPoint=' + value);
+			}
+			function munitionEndPoint   ( value, ts ) {
+				trace ('munitionEndPoint=' + value);
+			}
+			function rtpHeaderHeard   ( value, ts ) {
+				trace ('unexpected RTP header status, rtpHeaderHeard=' + value);
+			}
+			"
+	}
+	# Debugger script excerpt part 1 end #####################################
+
+	DEF DRAW_FIRE_LINES Script {
+		eventIn  	SFVec3f munitionStartPoint
+		eventIn  	SFVec3f munitionEndPoint
+		eventOut	MFVec3f pointArray
+		field		MFVec3f holdArray  []
+
+		# browsers used to have an 'initalize' spelling problem.  'initialize' now works.
+		url "javascript:
+			function initialize ( ) {
+				holdArray [0] = new SFVec3f (0.0, 0.0, 0.0);
+				holdArray [1] = new SFVec3f (0.0, 0.0, 0.0);
+				pointArray = holdArray;
+			}
+			function munitionStartPoint   ( value, ts ) {
+				holdArray [0] = value;
+			}
+			function munitionEndPoint   ( value, ts ) {
+				holdArray [1] = value;
+				trace ('fire line endpoints=' + holdArray);
+				pointArray = holdArray;
+			}
+			"
+	}
+
+# cycleIntervals type conversion and read/write latest PDU values
+	ROUTE READ_INTERVAL_DIS.cycleTime		TO DIS_ESPDUTRANSFORM_SCRIPT_NODE.readPdu
+	ROUTE WRITE_INTERVAL_DIS.cycleTime		TO DIS_ESPDUTRANSFORM_SCRIPT_NODE.writePdu
+
+# triggered if FirePdu heard
+	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.fired1	TO FIRE_SEQUENCE_SCRIPT.fired1
+	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.fired2	TO FIRE_SEQUENCE_SCRIPT.fired2
+
+#	ROUTE FIRE_SEQUENCE_SCRIPT.fireTime		TO LAUNCH_AUDIO.set_startTime	# start sound clip
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.firedTime	TO LAUNCH_AUDIO.set_startTime	# start sound clip
+
+# Clicking on the inlined entity toggles the trace text on/off
+# for translation/rotation/marking+hostname
+	
+	ROUTE TOUCHSENSOR.touchTime			TO DEBUG_JAVASCRIPT.touch
+
+#	ROUTE TOUCHSENSOR.touchTime			TO LAUNCH_AUDIO.set_startTime	# test sound clip
+#	ROUTE TOUCHSENSOR.isActive			TO FIRE_SEQUENCE_SCRIPT.fired1
+
+	ROUTE DIS_TRANSFORM_NODE.translation_changed	TO DEBUG_JAVASCRIPT.set_translation
+	ROUTE DIS_TRANSFORM_NODE.rotation_changed	TO DEBUG_JAVASCRIPT.set_rotation
+
+	ROUTE DEBUG_JAVASCRIPT.translation_text		TO DEBUG_TRANSLATION.set_string
+	ROUTE DEBUG_JAVASCRIPT.rotation_text		TO DEBUG_ROTATION.set_string
+	ROUTE DEBUG_JAVASCRIPT.marking_address_text	TO DEBUG_MARKING_ADDRESS.set_string
+	ROUTE DEBUG_JAVASCRIPT.MFmarking          	TO LONG_RANGE_MARKING.set_string
+
+	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.collided   TO DEBUG_JAVASCRIPT.collided
+	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.detonated  TO DEBUG_JAVASCRIPT.detonated
+
+#	ROUTEs for tracing articulationParameter variables:
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.articulationParameterCount   TO DEBUG_JAVASCRIPT.articulationParameterCount
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.articulationParameterValue0  TO DEBUG_JAVASCRIPT.articulationParameterValue0
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.articulationParameterValue1  TO DEBUG_JAVASCRIPT.articulationParameterValue1
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.articulationParameterValue2  TO DEBUG_JAVASCRIPT.articulationParameterValue2
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.articulationParameterValue3  TO DEBUG_JAVASCRIPT.articulationParameterValue3
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.articulationParameterValue4  TO DEBUG_JAVASCRIPT.articulationParameterValue4
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.articulationParameterValue5  TO DEBUG_JAVASCRIPT.articulationParameterValue5
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.articulationParameterValue6  TO DEBUG_JAVASCRIPT.articulationParameterValue6
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.articulationParameterValue7  TO DEBUG_JAVASCRIPT.articulationParameterValue7
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.articulationParameterValue8  TO DEBUG_JAVASCRIPT.articulationParameterValue8
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.articulationParameterValue9  TO DEBUG_JAVASCRIPT.articulationParameterValue9
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.articulationParameterValue10 TO DEBUG_JAVASCRIPT.articulationParameterValue10
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.articulationParameterValue11 TO DEBUG_JAVASCRIPT.articulationParameterValue11
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.articulationParameterValue12 TO DEBUG_JAVASCRIPT.articulationParameterValue12
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.articulationParameterValue13 TO DEBUG_JAVASCRIPT.articulationParameterValue13
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.articulationParameterValue14 TO DEBUG_JAVASCRIPT.articulationParameterValue14
+
+#	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.timestamp      TO DEBUG_JAVASCRIPT.timestamp
+	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.rtpHeaderHeard TO DEBUG_JAVASCRIPT.rtpHeaderHeard
+
+	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.munitionStartPoint TO DRAW_FIRE_LINES.munitionStartPoint
+	ROUTE DIS_ESPDUTRANSFORM_SCRIPT_NODE.munitionEndPoint   TO DRAW_FIRE_LINES.munitionEndPoint
+	ROUTE DRAW_FIRE_LINES.pointArray			TO LINE_OF_FIRE_COORDINATE_NODE.set_point
+
+#	Test code to provoke translation/rotation changes in absence of DIS PDUs follows.
+#	Uncomment the next lines to enable the translation/rotation animation test!!
+#
+#	DEF TIMESENSOR TimeSensor {
+#		cycleInterval	4
+#		loop		TRUE
+#		enabled		FALSE
+#	}
+#	DEF UPANDDOWN PositionInterpolator {
+#		key		[ 0 0.5 0.5 1 ]
+#		keyValue	[ 0 1 0, 0 -1 0, 0 -1 0, 0 1 0]
+#	}
+#	DEF ROTATE_ABOUT_Y OrientationInterpolator {
+#		key		[ 0 0.5 0.5 1 ]
+#		keyValue	[ 0 1 0 .36, 0 1 0 3.5, 0 1 0 3.5, 0 1 0 6.64]
+#	}
+#
+#	ROUTE TIMESENSOR.fraction_changed		TO UPANDDOWN.set_fraction
+#	ROUTE TIMESENSOR.fraction_changed		TO ROTATE_ABOUT_Y.set_fraction
+#	ROUTE UPANDDOWN.value_changed			TO DIS_TRANSFORM_NODE.translation
+#	ROUTE ROTATE_ABOUT_Y.value_changed		TO DIS_TRANSFORM_NODE.rotation
+#
+#	ROUTE TOUCHSENSOR.isActive			TO TIMESENSOR.enabled
+
+}  # end of PROTO body
+
+# 
+###########################################################################
+# Proto test is in EspduTransformEXAMPLE.wrl
+
+# Redirection text in case user examines this PROTO file directly via a 3D browser:
+
+Anchor {
+	url [
+				  "EspduTransformEXAMPLE.wrl"
+				  # URL restriction:  can't use file:///C:/ -- must use file:///C|/etc.
+				  "file:///C|/vrtp/mil/navy/nps/dis/EspduTransformEXAMPLE.wrl" # default PC installation
+				  "file:///C:/vrtp/mil/navy/nps/dis/EspduTransformEXAMPLE.wrl" # attempted PC installation
+		 "http://web.nps.navy.mil/~brutzman/vrtp/mil/navy/nps/dis/EspduTransformEXAMPLE.wrl"
+    	 	"http://www.web3d.org/WorkingGroups/vrtp/mil/navy/nps/dis/EspduTransformEXAMPLE.wrl"
+  	]
+
+	children [
+		Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor  0 1.0 1.0
+					emissiveColor 0 1.0 1.0
+				}
+			}
+			geometry Text {
+				string	[	"EspduTransformPROTO.wrl is a"
+						"PROTO definition file."
+						"To see an example scene,"
+						"click this text for"
+    						"EspduTransformEXAMPLE.wrl"
+  				]
+				fontStyle FontStyle {
+					justify [ "MIDDLE" "MIDDLE" ]
+				}
+			}
+		}
+	]
+}
+
+Viewpoint { position 0 0 15 }  # default viewpoint for this backup redirection scene
+

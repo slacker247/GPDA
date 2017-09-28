@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-FRONTPAGE fourdots request"; flags: A+; content: "|2e 2e 2e 2e 2f|"; nocase; reference:bugtraq,989; reference:cve,CAN-2000-0153; reference:arachnids,248; classtype:web-application-attack; sid:966; rev:2;)

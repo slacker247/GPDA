@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC netscape admin passwd"; flags: A+; uricontent:"/admin-serv/config/admpw"; nocase;reference:bugtraq,1579; classtype:web-application-attack; sid:1103; rev:3;)

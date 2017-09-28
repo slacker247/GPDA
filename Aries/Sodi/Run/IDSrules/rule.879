@@ -1,0 +1,1 @@
+alert tcp $HTTP_SERVERS 80 -> $EXTERNAL_NET any (msg:"WEB-CGI bugzilla 2.8 exploit "; flags: A+; content: "blaat@blaat.com"; nocase; reference:arachnids,276;classtype:web-application-attack; sid:876; rev:2;)

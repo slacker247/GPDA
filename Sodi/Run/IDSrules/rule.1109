@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC moreover shopping cart directory traversal"; flags: A+; uricontent:"/cached_feed.cgi"; content:"../"; reference:bugtraq,1762; classtype:web-application-attack; sid:1093; rev:2;)

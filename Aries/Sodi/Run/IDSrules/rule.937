@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-COLDFUSION application.cfm access"; flags: A+; uricontent: "/application.cfm"; nocase; reference:bugtraq,550; reference:arachnids,268; reference:cve,CAN-2000-0189; classtype:attempted-recon; sid:932; rev:1;)

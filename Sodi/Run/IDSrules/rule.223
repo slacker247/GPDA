@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 6666:7000 (msg:"EXPLOIT IRC topic overflow";flags: A+; content:"|eb 4b 5b 53 32 e4 83 c3 0b 4b 88 23 b8 50 77|"; reference:cve,CVE-1999-0672; reference:bugtraq,573; classtype:attempted-user; sid:307; rev:2;)

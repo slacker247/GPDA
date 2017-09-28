@@ -1,0 +1,230 @@
+<?xml version='1.0'?>
+<!--###################################################################
+# Configuration file for OilEd  
+# 
+# This file configures OilEd's parsers, renderers and other bits of
+# functionality. Parsers are specified within the <parsers>
+# section. Each entry is of the form:  
+# 
+# <parser class="CLASS" 
+#     extension="EXT" 
+#     description="DESC" 
+#     open="yes|no" 
+#     openURL="yes|no" 
+#     include="yes|no" 
+#     includeURL="yes|no"/> 
+# 
+# This informs OilEd that class CLASS is an Oil Parser (i.e. implements 
+# the uk.ac.man.cs.img.oil.parser.Parser interface) that expects to find 
+# files of type DESC, which it looks for using extension EXT.  The 
+# other attributes (open, openURL, include, includeURL) determine when 
+# the parser may be used. 
+# 
+# Similarly, each <renderers> section has a number of renderers 
+# (implementors of uk.ac.man.cs.img.oil.out.Renderer), each of which in 
+# turn specifies the menuItem text that it should appear under. The 
+# entire <renderers> section also specifies the overall heading for the 
+# menu bar. Multiple renderers sections can be specified, with 
+# each one producing a separate item on the main menu bar. A Renderer
+# entry is of the form:
+#
+#  <renderer class="CLASS"
+#      menuItem="ITEM TEXT"
+#      extension="EXT"
+#      description="DESC"/>
+# 
+###################################################################-->
+<config>
+
+<parsers>
+<!--###################################################################
+# Basic DAML+OIL Parser
+###################################################################-->
+    <parser class="uk.ac.man.cs.img.oil.parser.daml_oil_2001_03.jena.Parser"  
+      extension=".daml"  
+      description="DAML+OIL (2001-03)"
+      open="yes"
+      openURL="yes"
+      include="yes"
+      includeURL="yes"/>  
+
+<!--###################################################################
+# Basic DAML+OIL Parser (RDF)
+###################################################################-->
+    <parser class="uk.ac.man.cs.img.oil.parser.daml_oil_2001_03.jena.Parser"  
+      extension=".rdf"  
+      description="RDF"
+      open="yes"
+      openURL="yes"
+      include="yes"
+      includeURL="yes"/>  
+
+<!--###################################################################
+# Basic DAML+OIL Parser (RDFS)
+###################################################################-->
+    <parser class="uk.ac.man.cs.img.oil.parser.daml_oil_2001_03.jena.Parser"  
+      extension=".rdfs"  
+      description="RDFS"
+      open="yes"
+      openURL="yes"
+      include="yes"
+      includeURL="yes"/>  
+
+<!--###################################################################
+# Parser for Gene Ontology in XML
+    <parser class="uk.ac.man.cs.img.oil.parser.go.Parser"   
+      extension=".xml"   
+      description="GO" 
+      open="yes"
+      openURL="yes" 
+      include="yes" 
+      includeURL="yes"/>   
+###################################################################-->
+
+<!--###################################################################
+# Oil Text format parser
+###################################################################-->
+     <parser class="uk.ac.man.cs.img.oil.parser.text.Parser" 
+       extension=".oil"   
+       description="OIL Text" 
+       open="yes" 
+       openURL="yes" 
+       include="yes" 
+       includeURL="yes"/>   
+</parsers>
+
+<renderers menu="Export" mnemonic="e">
+<!--###################################################################
+# Simple RDFS Renderer 
+###################################################################-->
+  <renderer class="uk.ac.man.cs.img.oil.output.rdfs.Renderer"
+  menuItem="Simple RDFS"
+  extension=".rdfs"
+  description="RDFS"/>
+
+<!--###################################################################
+# DAML+OIL Rendererer 
+###################################################################-->
+  <renderer class="uk.ac.man.cs.img.oil.output.daml_oil_2001_03.Renderer"
+  menuItem="DAML+OIL (2001-03)"
+  extension=".daml"
+  description="DAML+OIL"/>
+
+
+# SHIQ Rendererer 
+   <renderer class="uk.ac.man.cs.img.oil.output.shiq.Renderer" 
+   menuItem="SHIQ" 
+   extension=".shq" 
+   description="SHIQ"/> 
+
+
+<!--###################################################################
+# HTML Rendererer 
+###################################################################-->
+  <renderer class="uk.ac.man.cs.img.oil.output.html.Renderer"
+   menuItem="HTML"
+   extension=".html"
+   description="HTML"/>
+
+<!--###################################################################
+# Dotty Rendererer 
+###################################################################-->
+  <renderer class="uk.ac.man.cs.img.oil.output.graph.DottyRenderer"
+  menuItem="Dotty"
+  extension=".dot"
+  description="Dotty"/>
+
+<!--###################################################################
+# Dotty Individual Rendererer 
+   <renderer class="uk.ac.man.cs.img.oil.output.graph.IndividualDottyRenderer"  
+   menuItem="Individual Graph"  
+   extension=".dot"  
+   description="Individual Graph"/>  -
+###################################################################-->
+
+<!--###################################################################
+# Cerebra Rendererer (Experimental) 
+    <renderer class="uk.ac.man.cs.img.oil.output.cerebra.Renderer"   
+    menuItem="Cerebra"   
+    extension=".xml"   
+    description="Cerebra"/>   
+###################################################################-->
+
+<!--###################################################################
+# Racer Rendererer (Experimental) 
+   <renderer class="uk.ac.man.cs.img.oil.output.racer.Renderer"  
+   menuItem="Racer"  
+   extension=".lisp"  
+   description="Lisp Files"/>  
+###################################################################-->
+
+<!--###################################################################
+# Dig Rendererer 
+###################################################################-->
+  <renderer class="uk.ac.man.cs.img.oil.output.dig.Renderer"
+   menuItem="DIG"
+   extension=".xml"
+   description="DIG"/>
+
+</renderers>
+<plugins> 
+
+<!--###################################################################
+# Plugins are still at the experimental stage, but allow us to add in
+# extra functionality (for example lexicon editors) without having to
+# recode the entire application. May also allow 3rd-party extensions. 
+<plugin class="uk.ac.man.cs.img.oil.ui.plugins.ImportsPluginPanel"/>  
+<plugin class="uk.ac.man.cs.img.oil.ui.plugins.MetadataPluginPanel"/>  
+<plugin class="uk.ac.man.cs.img.oil.ui.plugins.RacerPluginPanel"/>  
+<plugin class="uk.ac.man.cs.img.oil.ui.plugins.ChangeLogPluginPanel"/> 
+<plugin class="uk.ac.man.cs.img.oil.ui.plugins.LexiconPluginPanel"/>  
+<plugin class="uk.ac.man.cs.img.oil.ui.plugins.MetadataPluginPanel"/>  
+###################################################################-->
+</plugins>
+<preferences>
+
+<!--###################################################################
+# Reasoner settings. This controls the host/port for the default
+# reasoner connection and configures the settings for the translations.
+###################################################################-->
+<reasoner host="localhost" port="8000" 
+	  inverses = "yes"
+	  individualSupport = "yes"
+	  includeAxioms ="yes"
+	  includeDomains = "yes"
+	  includeRanges = "yes"/>
+<!-- Web Proxy Settings for grabbing Ontologies via URL -->
+<proxy host="wwwcache.mcc.ac.uk" port="3128"/>
+
+<!--###################################################################
+# Strict/non-strict export file extensions. If strict is set to yes,
+# then OilEd will only allow files to be exported with appropriate names
+###################################################################-->
+
+<exportExtensions strict="yes"/>
+
+<!--###################################################################
+# Show inherited restrictions and supers. If set to yes, panels will by
+# default show inherited restrictions (for classes) and inherited supers
+# (for individuals).
+###################################################################-->
+<inheritance restrictions="no" supers = "no"/>
+
+<!--###################################################################
+# Location for log files
+###################################################################-->
+<log dir="log" name="log.txt"/>
+
+<!--###################################################################
+# Location for temporary files. If this can't be found, the system
+# default (e.g. C:\TEMP under windows) will be used
+###################################################################-->
+<tmp dir="tmp"/>
+
+</preferences>
+</config>
+
+
+
+
+

@@ -1,0 +1,277 @@
+<html>
+    
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Jess, the Java Expert System Shell - Release Notes</title>
+<link title="style" href="stylesheet.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<h2>13.
+        Release Notes</h2>
+
+       
+<a name="changes">
+<h3>13.1. Important changes in Jess 6.1</h3>
+</a>
+      These are a few of the many things that changed between Jess 6.0 and
+      6.1 that are of particular interest. Also see the <a href="changes.html">change log</a> for more information.
+      <ul>
+                
+<li>
+                    The <tt>unique</tt> CE has been removed. For the
+                    time being, the parser will accept but ignore it.
+                    If your program depended on <tt>unique</tt> for
+                    correct operation, it may need to be rewritten.
+                    Note that the manual has always discouraged use of
+                    <tt>unique</tt> for anything other than
+                    optimization.
+                </li>
+
+                
+<li>
+                   The <tt>assert</tt> method in the <tt>Rete</tt>
+                   class is deprecated; use <tt>Rete.assertFact()</tt>
+                   instead. <tt>assert</tt> will be removed in the
+                   first post-6.1 release.
+                </li>
+
+                
+<li>
+                    
+<b>Nested conditional elements.</b> Jess 6.1
+                    supports full, arbitrary, and correct nesting of
+                    <tt>and</tt>, <tt>or</tt>, and <tt>not</tt>
+                    conditional elements.
+                </li>
+                       
+                
+<li>
+                    
+<b>
+                        <tt>logical</tt> facility Java interface.
+                    </b>
+                    There is now a public Java API (in the
+                    <tt>jess.Rete</tt> class) to the logical
+                    dependency facility.  There are also two Jess
+                    functions, <tt>dependencies</tt> and
+                    <tt>dependents</tt>, that give you logical
+                    information about a specific fact.
+                </li>
+    
+                
+<li>
+                  
+<b><tt>updateObject</tt> method.</b> You can call
+                  <tt>jess.Rete.updateObject()</tt> to notify Jess that
+                  the properties of a static definstance have changed.
+                </li>
+
+    
+</ul>
+
+    
+
+        
+<a name="porting">
+<h3>13.2. Porting from Jess 5 to Jess 6</h3>
+</a>
+            Jess 6 introduces many new features, but it is mostly backwards
+            compatible with Jess 5. This section lists a few specific areas
+            where Jess 5 applications may need to be changed to work with
+            Jess 6.
+            <ul>
+
+                
+<li>
+                    
+<b>
+                        Java 2 is required.
+                    </b>
+                    Jess 6 now requires a Java 2 compatible JVM (JDK 1.2 or
+                    later.) Jess 5 worked with JDK 1.1.
+                </li>
+
+                
+<li>
+                    
+<b>
+                        Batch files in JAR files.
+                    </b>
+                    The rules for loading a batch file from a JAR have
+                    changed. See the javadoc for java.lang.Class.getResource()
+                    for the appropriate way to reference a batch file in a JAR.
+                </li>
+
+                
+<li>
+                    
+<b>
+                        Strategy interface changed.
+                    </b>
+                    If you wrote any custom conflict resolution strategies for
+                    Jess 5, they need to be rewritten from scratch for Jess 6.
+                </li>
+
+                
+<li>
+                    
+<b>
+                        No functions are optional.
+                    </b>
+                    Under Jess 5, you had to load a number of optional
+                    Userpackages using Rete.loadPackage(). In Jess 6,
+                    there are -no- optional functions; everything is
+                    loaded by default. Loading packages redundantly
+                    does no harm, it's just inefficient. More
+                    seriously, some of the old optional packages
+                    either no longer exist, or no longer support the
+                    Userpackage interface. Simply delete any code you
+                    have in your app which calls Rete.addUserpackage()
+                    on a Jess-supplied package. In Jess 6.1, these
+                    classes are no longer public.
+                </li>
+
+                
+<li>
+                    
+<b>
+                        Script library loaded automatically.
+                    </b>
+                    Under Jess 5, you had to load the Jess script library
+                    manually; in Jess 6, it happens automatically. There's no
+                    harm in loading it redundantly, but there's no value in it,
+                    either.
+                </li>
+
+                
+<li>
+                    
+<b>
+                        Pattern bindings are
+                        <tt>jess.Fact</tt> objects.
+                    </b>
+                    Perhaps the biggest change is that pattern bindings, like
+                    <tt>?var</tt> in
+                    <pre>
+                        ?var &lt;- (pattern)
+                    </pre>
+                    are
+                    <tt>jess.Fact</tt> objects in Jess 6, not just integers
+                    as they were in Jess 5. That means that Jess 5 code like
+                    <pre>
+                        ;; Get the 'head' of a fact
+                        (get (call (engine) findFactById ?var) name)
+                    </pre>
+                    won't work. Instead, it can be replaced by the much simpler
+                    and much more efficient
+                    <pre>
+                        ;; Get the 'head' of a fact
+                        (get ?var name)
+                    </pre>
+                    Some fairly widely distributed code needs to be updated in
+                    this way.
+                </li>
+            
+</ul>
+        
+
+        
+<a name="old_limitations">
+<h3>13.3. Past problems now fixed</h3>
+</a>
+            The issues in this list were dealt with during the 6.1
+            development cycle and aren't problems any more.
+            <p align=""></p>
+            
+<ul>
+                
+<li>
+                    
+<b>
+                        <tt>breadth</tt> conflict
+                        resolution strategy.
+                    </b>
+                    Both built-in conflict-resolution strategies are
+                    now correct under all circumstances. Recall that
+                    the order of firing of rules activated by the same
+                    fact, with the same salience, is arbitrary. You
+                    may now also notice slight differences in this
+                    arbitrary ordering compared to previous versions
+                    of Jess. 
+          
+                </li>
+
+                
+<li>
+                    
+<b>
+                        Backwards chaining during
+                        <tt>run-query</tt>
+                    </b>
+                    You can now control how many rules can be fired
+                    during The <tt>run-query</tt> using the
+                    max-background-rules declaration.
+                </li>
+
+                
+<li>
+                    
+<b>
+                        Performance issues
+                    </b>
+                    The performance issues with earlier 6.1 alpha versions of
+                    Jess have been fixed. Jess 6.1 is faster than Jess
+                    6.0 on many problems.
+                </li>
+
+                
+<li>
+                    
+<b>
+                        Classloader issues
+                    </b>
+                    The Jess library now works perfectly if you
+                    install jess.jar as a standard extension under
+                    Java 2. You must use the "app object" constructor
+                    for the Rete class if you want Jess to be able to
+                    use reflection to manipulate classes from your
+                    class path. The classes <tt>jess.Main</tt> and
+                    <tt>jess.Console</tt> will work if you've
+                    installed them this way, but they <i>won't</i> be
+                    able to see any classes loaded via your
+                    classpath. This is an ongoing issue.
+                    <p align=""></p>
+                    The "app object" constructor now tells Jess only
+                    where to load user classes; it always loads its
+                    own scripts and classes from the class loader that
+                    loads <tt>jess.Rete</tt>.
+                    <p align=""></p>
+                    The manual doesn't yet mention any of this class
+                    loader stuff. 
+                </li>
+
+                
+<li>
+                    
+<b>
+                        Defclass and Deftemplate inheritance
+                    </b>
+                    <tt>defclass</tt> and
+                    <tt>deftemplate</tt> constructs can inherit from each other
+                    to the extent that this makes sense.
+                </li>
+
+
+            
+</ul>
+
+        
+
+
+    
+<p>
+<i><a href="index.html">Back to index</a></i>
+</p>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP passwd retreval attempt"; content:"RETR"; nocase; content:"passwd"; flags: A+;  reference:arachnids,213; classtype:suspicious-filename-detect; sid:356; rev:2;)

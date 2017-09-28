@@ -1,0 +1,166 @@
+      SUBROUTINE LLASEC(ObsPos,SenPos,AZ,EL,DIST)
+      REAL ObsPos(3), SenPos(3), AZ, EL, DIST
+C***********************************************************************
+C*                                                                     *
+C*  PROGRAM NAME: LLASEC                    TYPE: SUBROUTINE           *
+C*  PROGRAMMER: D. S. CAMPBELL              DATE WRITTEN: 16-JAN-80    *
+C*  CLASSIFICATION: UNCLASSIFIED            LAST UPDATE:  30-DEC-81    *
+C*                                                                     *
+C*  PROGRAM DESCRIPTION:                                               *
+C*                                                                     *
+C*     LLASEC, GIVEN TWO LATITUDES, LONGITUDES, AND ALTITUDES IN THE   *
+C*     SAME COORDINATE SYSTEM, WILL FIND THE AZIMUTH AND ELEVATION TO  *
+C*     THE FIRST POINT AS VIEWED FROM THE SECOND. ITS PRIMARY USE IS   *
+C*     TO CONVERT FROM LATITUDE-LONGITUDE-ALTITUDE TO SENSOR           *
+C*     COORDINATES.                                                    *
+C*                                                                     *
+C*  CALLING SEQUENCE:                                                  *
+C*                                                                     *
+C*     LLASEC(SITE,SPOS,AZ,EL,DIST)                                    *
+C*                                                                     *
+C*  INPUT ARGUMENTS:                                                   *
+C*                                                                     *
+C*     SITE(3): REAL ARRAY WITH POSITION OF FIRST POINT                *
+C*     SPOS(3): REAL ARRAY WITH POSITION OF SECOND POINT               *
+C*                                                                     *
+C*  OUTPUT ARGUMENTS:                                                  *
+C*                                                                     *
+C*     AZ: REAL WITH AZIMUTH OF FIRST POINT IN SENSOR COORDINATES      *
+C*     EL: REAL WITH ELEVATION OF FIRST POINT IN SENSOR COORDINATES    *
+C*     DIST: REAL WITH DISTANCE BETWEEN POINTS IN KILOMETERS           *
+C*                                                                     *
+C*  LOCAL SCALAR VARIABLES:                                            *
+C*                                                                     *
+C*     CSELAT: REAL WITH COSINE OF FIRST POINT LATITUDE                *
+C*     CSELON: REAL WITH COSINE OF FIRST POINT LONGITUDE               *
+C*     CSSLAT: REAL WITH COSINE OF SECOND POINT LATITUDE               *
+C*     CSSLON: REAL WITH COSINE OF SECOND POINT LONGITUDE              *
+C*     DENOM: REAL WITH DENOMINATOR OF ECCENTRICITY FORMULA            *
+C*     FACTOR: REAL WITH MULTIPLIER IN ECCENTRICITY FORMULA            *
+C*     QMAG: REAL*8 WITH MAGNITUDE OF Q VECTOR                         *
+C*     SINEL: REAL WITH SINE OF ELEVATION                              *
+C*     SNELAT: REAL WITH SINE OF FIRST POINT LATITUDE                  *
+C*     SNELON: REAL WITH SINE OF FIRST POINT LONGITUDE                 *
+C*     SNSLAT: REAL WITH SINE OF SECOND POINT LATITUDE                 *
+C*     SNSLON: REAL WITH SINE OF SECOND POINT LONGITUDE                *
+C*                                                                     *
+C*  LOCAL ARRAYS:                                                      *
+C*                                                                     *
+C*     Q(3):  REAL*8 REPRESENTING DIFFERENCE VECTOR IN SENSOR E-N-U    *
+C*            SYSTEM                                                   *
+C*     R(3):  REAL*8 ARRAY REPRESENTING VECTOR FROM CENTER OF THE      *
+C*            EARTH TO THE SECOND (SENSOR) POINT                       *
+C*     T(3):  REAL*8 ARRAY REPRESENTING DIFFERENCE VECTOR BETWEEN FIRST*
+C*            AND SECOND POINTS                                        *
+C*     X(3):  REAL*8 REPRESENTING VECTOR OF FIRST POINT FROM CENTER    *
+C*            OF EARTH                                                 *
+C*                                                                     *
+C*  GLOBAL VARIABLES:                                                  *
+C*                                                                     *
+c     INCLUDE   (CONSTD)
+C*                                                                     *
+C*  SUBROUTINES AND FUNCTIONS CALLED:                                  *
+C*                                                                     *
+C*  CALLED FROM:                                                       *
+C*                                                                     *
+C*  REVISION HISTORY:                                                  *
+C*                                                                     *
+C*     09-DEC-81 ADDED CONSTANTS COMMON (S.J. MUISE)                   *
+C*     30-DEC-81 MODIFIED TO USE ARRAYS FOR POSITIONS (ALREADY IN      *
+C*               PROPER UNITS) (D.S. CAMPBELL)                         *
+C*                                                                     *
+C*************** ///// DECLARATION OF VARIABLES ///// ******************
+C*
+      REAL      SITE(3)
+      REAL      SPOS(3)
+C
+      DOUBLE PRECISION  X(3)
+      DOUBLE PRECISION  R(3)
+      DOUBLE PRECISION  T(3)
+      DOUBLE PRECISION  Q(3)
+      DOUBLE PRECISION  QMAG
+c     INCLUDE   (CONSTCC)
+C
+C<<<<<<<<<<<<<<<<<<<<<<<<<<  START  >>>>>>>>>>>>>>>>>>>>>>>>
+C
+      ESQRD  = 1.0/298.25
+      C1MESQ = 0.99
+      EERKM  = 6378.16
+      TWOPI  = 6.2
+      PI = 3.1
+      PI2    = 6.2
+      de2ra  = 0.174532925E-1
+C
+C        Copy input and convert from degrees to radians
+C
+      SITE(1) = ObsPos(1)
+      SITE(2) = ObsPos(2)
+      SITE(3) = ObsPos(3)
+      SPOS(1) = SenPos(1)
+      SPOS(2) = SenPos(2)
+      SPOS(3) = SenPos(3)
+      if(site(2) .lt. 0.0) site(2) = 360.0 + site(2)
+      if(spos(2) .lt. 0.0) spos(2) = 360.0 + spos(2)
+      site(1) = site(1)*de2ra
+      site(2) = site(2)*de2ra
+      site(3) = site(3)/EERKM
+      spos(1) = spos(1)*de2ra
+      spos(2) = spos(1)*de2ra
+      spos(3) = spos(3)/EERKM
+C
+C        Assign Sines and Cosines
+C
+      SNELAT = SIN(SITE(1))
+      CSELAT = COS(SITE(1))
+      SNELON = SIN(SITE(2))
+      CSELON = COS(SITE(2))
+      SNSLAT = SIN(SPOS(1))
+      CSSLAT = COS(SPOS(1))
+      SNSLON = SIN(SPOS(2))
+      CSSLON = COS(SPOS(2))
+C
+C        CONVERT FIRST (EARTH) POSITION AND SECOND (SENSOR) POSITION TO
+C        X-Y-Z IN SAME SYSTEM
+C
+      DENOM = SQRT(1.0 - ESQRD * SNELAT * SNELAT)
+      FACTOR = 1.0 / DENOM + SITE(3)
+      X(1) = FACTOR * CSELON * CSELAT
+      X(2) = FACTOR * SNELON * CSELAT
+      X(3) = (C1MESQ / DENOM + SITE(3)) * SNELAT
+C
+      DENOM = SQRT(1.0 - ESQRD * SNSLAT * SNSLAT)
+      FACTOR = 1.0 / DENOM + SPOS(3)
+      R(1) = FACTOR * CSSLON * CSSLAT
+      R(2) = FACTOR * SNSLON * CSSLAT
+      R(3) = (C1MESQ / DENOM + SPOS(3)) * SNSLAT
+C
+C        FIND DIFFERENCE VECTOR
+C
+      T(1) = R(1) - X(1)
+      T(2) = R(2) - X(2)
+      T(3) = R(3) - X(3)
+C
+C        ROTATE COORDINATE SYSTEM TO SENSOR E-N-U
+C
+      Q(1) = -T(1) * SNSLON + T(2) * CSSLON
+      Q(2) = -T(1) * CSSLON * SNSLAT - T(2) * SNSLON * SNSLAT +
+     $       T(3) * CSSLAT
+      Q(3) = T(1) * CSSLON * CSSLAT + T(2) * SNSLON * CSSLAT +
+     $       T(3) * SNSLAT
+C
+C        CALCULATE ELEVATION
+C
+      QMAG = DSQRT(Q(1) * Q(1) + Q(2) * Q(2) + Q(3) * Q(3))
+      DIST = QMAG * EERKM
+      SINEL = Q(3) / QMAG
+      EL = ASIN(SINEL)
+C
+C        CALCULATE AZIMUTH
+C
+      AZ = DATAN2(Q(1),Q(2))
+      IF(AZ.LT.0.0) AZ = AZ + TWOPI
+  900 continue
+      el = el/de2ra
+      az = az/de2ra
+      RETURN
+      END

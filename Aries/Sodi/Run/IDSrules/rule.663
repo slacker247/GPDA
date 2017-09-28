@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any <- $HOME_NET 23 (msg:"TELNET Attempted SU from wrong group"; content: "to su root"; nocase; flags: A+; classtype:attempted-admin; sid:715; rev:2;)

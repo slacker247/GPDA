@@ -1,0 +1,354 @@
+/**********************************************************************
+  This loads the detailed Caribbean areas -- ugly but fast.
+  -- Tung, 3/18/93
+     
+********************************************************************/
+
+#include "GR_Region.H"
+#include "GR_work.H"
+#include "gltk.h"
+#include "texture.H"
+
+unsigned char *GR_Region::AlphaPadImage(int bufSize, unsigned char *inData, int alpha)
+{
+    unsigned char *outData, *out_ptr, *in_ptr;
+    int i;
+
+    outData = (unsigned char *) malloc(bufSize * 4);
+    out_ptr = outData;
+    in_ptr = inData;
+
+    for (i = 0; i < bufSize; i++) {
+        *out_ptr++ = *in_ptr++;
+        *out_ptr++ = *in_ptr++;
+        *out_ptr++ = *in_ptr++;
+        *out_ptr++ = alpha;
+    }
+
+    free (inData);
+    return outData;
+}
+
+GR_Region::GR_Region (char *fbasename, long type, int ntiles)
+{
+int             i, maxi;
+long            lon, lat;
+float           longitude, latitude;
+char            filename[20];
+static unsigned int   texnames[10];
+   
+   if (getgdesc(GD_TEXTURE) == 0) {
+      fprintf (stderr, "Sorry: Texture mapping not available.\n");
+      set_visible_flag (0);
+      return;
+   }
+   set_register_flag (0);
+
+   if (!fbasename)
+      p_filebase = "neasia";
+   else
+      p_filebase = fbasename;
+ 
+   for (i=0; i<ntiles; i++) {
+      sprintf (p_filename[i], "../RSD_Data/%s%d.rgb", p_filebase, i);
+   }
+
+   glGenTextures(ntiles, texnames);
+   maxi = texture_init(ntiles, texnames);
+
+   p_type = type;
+   lon = -135; //100;
+   lat = 30;  //40;
+
+   p_gr_objid = GR_genobj ();
+   GR_makeobj (p_gr_objid);
+   GR_color (255,255,255);
+
+   for (i=0; i<maxi; i++) {
+     //texbind (TX_TEXTURE_0, 102+i);
+     glBindTexture(GL_TEXTURE_2D, 1737+i /*texnames[i]*/);
+     /*
+     longitude = (float)(lon+30*(i%3));
+     latitude  = (float)(lat-15*(i/3));
+     DrawRegion(longitude, latitude, 30.0, 15.0);
+     */
+     longitude = (float)(lon + (40*(i%2)) );
+     latitude  = (float)(lat - (50*(i/2)) );
+     DrawRegion(longitude, latitude, 40.0, 50.0);
+   }
+
+   GR_closeobj ();
+}
+
+void GR_Region::objdraw ()
+{
+
+   GR_pushattributes ();
+   GR_pushmatrix();
+  /*
+   tevbind (TV_ENV0, 5);
+   GR_backface (TRUE);
+   GR_callobj (p_gr_objid);
+   GR_backface (FALSE);
+   tevbind (TV_ENV0, 0); // turn off texture;
+  */
+   glEnable(GL_TEXTURE_2D);
+
+   GR_backface (TRUE);
+   glEnable(GL_POLYGON_OFFSET_FILL);
+   glPolygonOffset(1.0, 1.0);
+
+   GR_callobj (p_gr_objid);
+
+   //glDisable(GL_POLYGON_OFFSET_FILL);
+   GR_backface (FALSE);
+   glDisable(GL_TEXTURE_2D);
+
+   GR_popmatrix();
+   GR_popattributes ();
+}
+      
+int GR_Region::texture_init(int ntiles, unsigned int *texnames)
+{
+//   unsigned long *image[9];
+int             i, tiles, maxi;
+float           stx,sty,edx,edy,tilesizex, tilesizey;
+char            msgstr[80];
+char            filename[80];
+TK_RGBImageRec  *image[9];
+GLint           sphereMap[] = {GL_SPHERE_MAP};
+
+   work_progress (0, "Reading image files");
+
+   glShadeModel(GL_FLAT);
+ 
+   for (i=0; i<ntiles; i++) {      
+      glBindTexture(GL_TEXTURE_2D, 1737+i /*texnames[i]*/);
+
+      p_texps[0] = TX_MINFILTER;
+      p_texps[1] = TX_POINT;
+      glTexParameterf(GL_TEXTURE_2D, (GLenum) p_texps[0], p_texps[1]);
+      p_texps[2] = TX_MAGFILTER;
+      p_texps[3] = TX_BILINEAR;
+      glTexParameterf(GL_TEXTURE_2D, (GLenum) p_texps[2], p_texps[3]);
+      p_texps[4] = TX_WRAP_S;
+      p_texps[5] = TX_CLAMP;
+      glTexParameterf(GL_TEXTURE_2D, (GLenum) p_texps[4], p_texps[5]);
+      p_texps[6] = TX_WRAP_T;
+      p_texps[7] = TX_CLAMP;
+      glTexParameterf(GL_TEXTURE_2D, (GLenum) p_texps[6], p_texps[7]);
+
+      p_texps[8]  = TX_TILE;
+      p_texps[9]  = 0.0;
+      p_texps[10] = 0.0;
+      p_texps[11] = .25;
+      p_texps[12] = .25;
+      p_texps[13] = TX_NULL;
+
+      p_tevps[0] = TV_NULL;
+      //tevdef(4, 1, p_tevps);
+      glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+      sprintf (msgstr, "Tile %d from [%s]\n", i, p_filename[i]);
+      fprintf(stderr, "%s", msgstr);
+      work_progress (1, msgstr); 
+
+      image[i] = tkRGBImageLoad(p_filename[i]); 
+      if (!image[i]) {
+         fprintf (stderr, "I cannot find the texture files.\n");
+         work_progress (3, NULL); 
+         return i;
+      }
+
+      image[i]->data = AlphaPadImage(image[i]->sizeX*image[i]->sizeY, image[i]->data, 128);
+      glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+      /*      
+      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image[i]->sizeX, image[i]->sizeY,
+		   0, GL_RGBA, GL_UNSIGNED_BYTE, image[i]->data);
+      */
+      gluBuild2DMipmaps(GL_TEXTURE_2D, 4, image[i]->sizeX, image[i]->sizeY,
+                        GL_RGBA, GL_UNSIGNED_BYTE, image[i]->data);
+
+      maxi = i;
+   }
+   maxi++;
+   work_progress (2, NULL);
+   work_progress (3, NULL);
+   return maxi;
+}
+  
+void GR_Region::DrawRegion(float lon, float lat, float Dlon, float Dlat)
+{
+/*
+**   lon   - Longitude of upper left corner of tile (degrees)
+**   lat   - Latitude of upper left corner of tile (degrees)
+**   Dlon  - Width of tile (degrees)
+**   Dlat  - Height of tile (degrees)
+*/
+int             j, k;
+int             nstrips = 12, nquads = 12;
+float           strips, quads;
+float           theta, phi, Dtheta, Dphi;
+float           theta_0, phi_0;                   // initial lon and lat in radians;
+float           vert[3];
+float           factor = 1.0010;
+float           d2r = M_PI/180.0;
+
+   theta_0 = lon * d2r;
+   phi_0   = lat * d2r;
+   strips  = (float)nstrips;
+   quads   = (float)nquads - 1.0;
+   Dtheta  = (Dlon/strips)*d2r;                   // = M_PI/36 = 5 degrees
+   Dphi    = (Dlat/quads)*d2r;
+
+   for (k=1, theta=theta_0; k<=nstrips; k++, theta+= Dtheta) {
+      GR_bgnqstrip ();
+      //printf("Quad Strip %d\n", k);
+      for (j=1, phi=phi_0; j<=nquads; j++, phi+= Dphi) {
+	 vert[0] = (k - 1) / strips;
+	 vert[1] = (j - 1) / quads;
+	 //printf ("  Quad %d t=%f, s=%f", j, vert[0], vert[1]);
+	 t2f (vert);
+	 vert[0] = cos(phi) * sin (theta) * factor;
+	 vert[1] = sin(phi) * factor;
+	 vert[2] = cos(phi) * cos (theta) * factor;
+	 GR_n3f (vert);
+         //printf(" x=%f, y=%f, z=%f\n", vert[0], vert[1], vert[2]);
+	 GR_v3f (vert);
+	 
+	 vert[0] = k / strips;
+	 vert[1] = (j - 1) / quads;
+	 //printf ("  Quad %d t=%f, s=%f", j, vert[0], vert[1]);
+	 t2f (vert);
+	 vert[0] = cos(phi) * sin (theta+Dtheta) * factor;
+	 vert[1] = sin(phi) * factor;
+	 vert[2] = cos(phi) * cos (theta+Dtheta) * factor;
+	 GR_n3f (vert);
+	 GR_v3f (vert);
+         //printf(" x=%f, y=%f, z=%f\n", vert[0], vert[1], vert[2]);
+      }
+      GR_endqstrip ();
+   }
+}
+
+
+unsigned long*
+GR_Region::take_rgbdata (char* infile)
+{
+   IMAGE* image;
+   int xsize, ysize;
+   unsigned long *base, *lptr;
+   unsigned char *rbuf, *gbuf, *bbuf, *abuf;
+   int y;
+
+   image = iopen (infile, "r");
+   if (!image)
+   {
+      perror("iopen\007");
+      return NULL;
+   }
+ 
+   xsize = image->xsize;
+   ysize = image->ysize;
+   p_xsize = xsize; // here to determine the real sizes...
+   p_ysize = ysize;
+
+     printf ("xsize=%d, ysize=%d, zsize=%d\n", p_xsize, p_ysize, image->zsize);
+ 
+ 
+   base = (unsigned long*) malloc (xsize*ysize*sizeof(unsigned long));
+   rbuf = (unsigned char*) malloc (xsize*sizeof(unsigned short));
+   gbuf = (unsigned char*) malloc (xsize*sizeof(unsigned short));
+   bbuf = (unsigned char*) malloc (xsize*sizeof(unsigned short));
+   abuf = (unsigned char*) malloc (xsize*sizeof(unsigned short));
+
+   if (!base || !rbuf || !gbuf || !abuf)
+   {
+      perror("malloc\007");
+      return NULL;
+   }
+
+   lptr = base;
+   for(y=0; y<ysize; y++)
+   {
+      if(image->zsize>=4)
+      {
+	 getrow(image,rbuf,y,0);
+	 getrow(image,gbuf,y,1);
+	 getrow(image,bbuf,y,2);
+	 getrow(image,abuf,y,3);
+	 rgbatocpack(rbuf,gbuf,bbuf,abuf,lptr,xsize);
+	 lptr += xsize;
+      }
+      else if(image->zsize==3)
+      {
+	 getrow(image,rbuf,y,0);
+	 getrow(image,gbuf,y,1);
+	 getrow(image,bbuf,y,2);
+	 rgbtocpack(rbuf,gbuf,bbuf,lptr,xsize);
+	 lptr += xsize;
+      }
+      else
+      {
+	 perror("wrong zsize \007");
+	 return NULL;
+      }
+      
+   }
+   iclose(image);
+   free(rbuf);
+   free(gbuf);
+   free(bbuf);
+   free(abuf);
+   return base;
+}
+/*
+void
+rgbatocpack (unsigned short* r, unsigned short* g, unsigned short* b,
+             unsigned short* a, unsigned long*  l, int n)
+{
+   while (n>=8)
+   {
+      l[0] = r[0] | (g[0]<<8) | (b[0]<<16) | (a[0]<<24);
+      l[1] = r[1] | (g[1]<<8) | (b[1]<<16) | (a[1]<<24);
+      l[2] = r[2] | (g[2]<<8) | (b[2]<<16) | (a[2]<<24);
+      l[3] = r[3] | (g[3]<<8) | (b[3]<<16) | (a[3]<<24);
+      l[4] = r[4] | (g[4]<<8) | (b[4]<<16) | (a[4]<<24);
+      l[5] = r[5] | (g[5]<<8) | (b[5]<<16) | (a[5]<<24);
+      l[6] = r[6] | (g[6]<<8) | (b[6]<<16) | (a[6]<<24);
+      l[7] = r[7] | (g[7]<<8) | (b[7]<<16) | (a[7]<<24);
+      l += 8;
+      r += 8;
+      g += 8;
+      b += 8;
+      a += 8;
+      n -= 8;
+   }
+   while (n--)
+     *l++ = *r++ | ((*g++)<<8) | ((*b++)<<16) | ((*a++)<<24);
+}
+
+void
+rgbtocpack (unsigned short* r, unsigned short* g, unsigned short* b,
+            unsigned long* l, int n)
+{
+   while (n>=8)
+   {
+      l[0] = r[0] | (g[0]<<8) | (b[0]<<16);
+      l[1] = r[1] | (g[1]<<8) | (b[1]<<16);
+      l[2] = r[2] | (g[2]<<8) | (b[2]<<16);
+      l[3] = r[3] | (g[3]<<8) | (b[3]<<16);
+      l[4] = r[4] | (g[4]<<8) | (b[4]<<16);
+      l[5] = r[5] | (g[5]<<8) | (b[5]<<16);
+      l[6] = r[6] | (g[6]<<8) | (b[6]<<16);
+      l[7] = r[7] | (g[7]<<8) | (b[7]<<16);
+      l += 8;
+      r += 8;
+      g += 8;
+      b += 8;
+      n -= 8;
+   }
+   while (n--)
+     *l++ = *r++ | ((*g++)<<8) | ((*b++)<<16);
+}
+*/

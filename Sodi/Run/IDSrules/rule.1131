@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC Lotus EditDoc attempt";flags: A+; content:"?EditDocument"; nocase; classtype:attempted-recon; sid:1117; rev:1;)

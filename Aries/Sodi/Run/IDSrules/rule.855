@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI wrap access"; flags: A+; uricontent: "/wrap"; reference:bugtraq,373; reference:arachnids,234; reference:cve,CVE-1999-0149;classtype:attempted-recon; sid:853; rev:2;)

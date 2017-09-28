@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET 80 -> $HOME_NET 1054 (msg:"BACKDOOR ACKcmdC trojan scan"; seq: 101058054; ack: 101058054; flags: A;reference:arachnids,445; sid:106;  classtype:misc-activity; rev:3;)

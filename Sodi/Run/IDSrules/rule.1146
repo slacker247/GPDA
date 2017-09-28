@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 457 (msg:"WEB-MISC netscape unixware overflow"; content: "|eb 5f 9a ff ff ff ff 07 ff c3 5e 31 c0 89 46 9d|"; flags: A+; reference:arachnids,180; classtype:attempted-recon; sid:1132; rev:1;)

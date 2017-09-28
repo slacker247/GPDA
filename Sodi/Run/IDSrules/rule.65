@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 5714 -> $EXTERNAL_NET any (msg:"BACKDOOR WinCrash 1.0 Server Active" ; flags:SA; content:"|B4 B4|";  reference:arachnids,36; sid:163;  classtype:misc-activity; rev:3;)

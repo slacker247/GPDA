@@ -1,0 +1,1 @@
+alert ip $EXTERNAL_NET any -> $HOME_NET any (msg:"SHELLCODE SGI NOOP"; content:"|03e0 f825 03e0 f825 03e0 f825 03e0 f825|"; reference:arachnids,356; classtype:shellcode-detect; sid:638; rev:2;)

@@ -1,0 +1,15 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+Rule: Prepared
+
+    {Token.string == "Sent"}
+    {Token.string == ":"}
+    ({SpaceToken})*
+(
+    {Date}
+):Prepared
+ -->
+:Prepared.Prepared = {}

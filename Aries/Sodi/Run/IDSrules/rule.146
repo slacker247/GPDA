@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 27665 (msg:"DDOS Trin00 Attacker to Master default mdie password";flags: A+; content:"killme"; classtype:bad-unknown; sid:235; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC O'Reilly args.bat access";flags: A+; uricontent:"/cgi-dos/args.bat"; nocase; classtype:attempted-recon; sid:1121; rev:1;)

@@ -1,0 +1,1 @@
+alert tcp $HOME_NET 23 -> $EXTERNAL_NET any (msg:"INFO wingate telnet active"; content:"WinGate>"; flags: A+; reference:arachnids,366; reference:cve,CAN-1999-0657; classtype:bad-unknown; sid:555; rev:1;)

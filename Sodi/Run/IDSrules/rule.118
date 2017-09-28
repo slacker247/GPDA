@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (msg:"BACKDOOR MISC sm4ck attempt";flags: A+; content:"hax0r"; classtype:attempted-admin; sid:217; rev:1;)

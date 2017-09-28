@@ -1,0 +1,34 @@
+<slider-resource id="MyWay">
+  <icon-base>resource:com/appliedminds/martinix/ui/resources</icon-base>
+
+  <!--- REQUIRED: "vertical" slider -->
+  <slider orientation="vertical">
+
+    <!--- REQURIED: the slider knob" -->
+    <knob state="default" image="vert_knob2.png" />
+
+    <!--- OPTIONAL: the slider knob when mouse pressed" -->
+    <knob state="down" image="vert_knob_down2.png" />
+
+    <!-- REQUIRED: the slider track images -->
+    <tracks value="1">
+      <track value="1"  image="vert_track2.png" />
+    </tracks>
+  </slider>
+
+  <!--- REQUIRED: "horizontal" slider -->
+  <slider orientation="horizontal">
+
+    <!--- REQURIED: the slider knob" -->
+    <knob state="default" image="horiz_knob2.png" />
+
+    <!--- OPTIONAL: the slider knob when mouse pressed" -->
+    <knob state="down" image="horiz_knob_down2.png" />
+
+    <!-- REQUIRED: the slider track images -->
+    <tracks value="1">
+      <track value="1"  image="horiz_track2.png" />
+    </tracks>
+  </slider>
+
+</slider-resource>

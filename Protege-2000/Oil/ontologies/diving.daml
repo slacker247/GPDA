@@ -1,0 +1,2270 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<rdf:RDF xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ns0="http://potato.cs.man.ac.uk/ontologies/diving#"
+    xmlns:oiled="http://img.cs.man.ac.uk/oil/oiled#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2000/10/XMLSchema#">
+    <daml:Ontology rdf:about="">
+        <dc:title>Diving and Diving Equipment</dc:title>
+        <dc:date></dc:date>
+        <dc:creator>Sean K. Bechhofer</dc:creator>
+        <dc:description>An ontology of scuba diving terms and equipment.</dc:description>
+        <dc:subject></dc:subject>
+        <daml:versionInfo>1.0</daml:versionInfo>
+    </daml:Ontology>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#CNS Oxygen Toxicity">
+        <rdfs:label>CNS Oxygen Toxicity</rdfs:label>
+        <rdfs:comment><![CDATA[The effects of breathing high-pressure O2. An
+            extremely dangerous manifestation which can include
+            convulsion and collapse. Although 1.6 Bar has been held as
+            the standard limit by NOAA, many divers prefer to restrict
+            their activities to no more than 1.4 Bar PPO2 for added
+            safety.  Recent tests by the US Navy suggest that CNS O2
+            Toxicity can be seen as low as 1.3 Bar PPO2. CNS O2 toxicity
+            can be prevented by a reduction in the PPO2 in the breathing
+            gas via a different gas mixture or via ascending.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#First Stage">
+        <rdfs:label>First Stage</rdfs:label>
+        <rdfs:comment><![CDATA[The part of the regulator that connects to the
+            cylinder. It acts as pressure reducing valve that reduces
+            the cylinder pressure (typically 232 Bar) to about 10 Bar.
+            This is connected to a hoseto the demand valve or second
+            stage.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Demand Valve">
+        <rdfs:label>Demand Valve</rdfs:label>
+        <rdfs:comment><![CDATA[The part of a regulator that you put in your mouth
+            and breathe from. It supplies air 'on demand' when
+            you want it and at the right (absolute) pressure.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Alveoli">
+        <rdfs:label>Alveoli</rdfs:label>
+        <rdfs:comment><![CDATA[Small air cells in the lungs.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Body Part"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Poor Mans Trimix">
+        <rdfs:label>Poor Mans Trimix</rdfs:label>
+        <rdfs:comment><![CDATA[Helium and Air     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Haemoglobin">
+        <rdfs:label>Haemoglobin</rdfs:label>
+        <rdfs:comment><![CDATA[The most important constituent of the red blood
+            cell is the molecule of haemoglobin, an iron containing
+            protein that has the ability to unite with oxygen and
+            transport it to cells throughout the body it also combines
+            with CO2 and adds in the transport and removal of CO2 from
+            the body.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Air embolism">
+        <rdfs:label>Air embolism</rdfs:label>
+        <rdfs:comment><![CDATA[Bubble of air in the blood stream.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Hyperventilation">
+        <rdfs:label>Hyperventilation</rdfs:label>
+        <rdfs:comment><![CDATA[The process of rapidly inhaling and exhaling to
+            purge the body of carbon dioxide, thus decreasing the
+            natural urge to breath. Hyperventilation is a potentially
+            dangerous practice and can lead to, hypocapnia, shallow
+            water blackout, unconsciousness and drowning.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Second Stage">
+        <rdfs:label>Second Stage</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Shot Line">
+        <rdfs:label>Shot Line</rdfs:label>
+        <rdfs:comment><![CDATA[A rope attached to a heavy weight at one end and a
+            buoy at the other. It is sank onto a wreck or other sea bed
+            feature and used to guide divers.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Alternate Air Source">
+        <rdfs:label>Alternate Air Source</rdfs:label>
+        <rdfs:comment><![CDATA[Second demand valve or regulator, sometimes referred to as an octopus.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Full Face Mask">
+        <rdfs:label>Full Face Mask</rdfs:label>
+        <rdfs:comment><![CDATA[A diving system with the regulator built into a
+            diving mask that completely covers the face, nose and mouth.
+            Provides extra safety margin with high PO2 exposures (helps
+            prevent drowning in case of a seizure) and is easily
+            adaptable to communication units.       ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Mask"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Hypocapnia">
+        <rdfs:label>Hypocapnia</rdfs:label>
+        <rdfs:comment><![CDATA[An insufficient amount of CO2 in the blood
+            (defined as pCO2 levels less than 35 mmHg), often the result
+            of hyperventilation.Hypocapnia can cause weakness,
+            faintness, headache, blurred vision and if untreated
+            possibly unconsciousness.   The body's breathing
+            stimulus results from the monitoring of the CO2 and oxygen
+            (the oxygen drive is only active at extremely low oxygen
+            levels, CO2 is the MAJOR controlling factor) levels in the
+            blood stream. An increase in CO2 and a decrease in oxygen
+            trigger the body to breathe. As the CO2 levels drop, so does
+            the body's natural stimulus to breathe. This is one of
+            the primary causes of shallow water blackout.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Auto Air/Air II">
+        <rdfs:label>Auto Air/Air II</rdfs:label>
+        <rdfs:comment><![CDATA[A form of alternate air source build into Buddy
+            stab jackets.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Manufacturer">
+        <rdfs:label>Manufacturer</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas analysis">
+        <rdfs:label>Gas analysis</rdfs:label>
+        <rdfs:comment><![CDATA[A procedure whereby the fractions of gas in a
+            breathing mixture are determined. Generally it is used to
+            determine the fraction of oxygen to within 1 %, to control
+            the effects of Oxygen toxicity. Most diving operations will
+            analyse for oxygen only. In more complex Trimixes, it is be
+            desirable to analyse for the inert gases as well.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Hyperbaric">
+        <rdfs:label>Hyperbaric</rdfs:label>
+        <rdfs:comment><![CDATA[Dealing with pressures greater than 1 bar.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Multi Level Dive">
+        <rdfs:label>Multi Level Dive</rdfs:label>
+        <rdfs:comment><![CDATA[A type of a dive that will not conform to a
+            maximum depth and time profile. Ideally, such dives are
+            conducted with the deepest sections first and then the diver
+            ascends progressively to various shallower depths.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Dive"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Dive Time">
+        <rdfs:label>Dive Time</rdfs:label>
+        <rdfs:comment><![CDATA[The time from leaving the surface to the first
+            decompression stop or 6m in no stop dives.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Timing Device">
+        <rdfs:label>Timing Device</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Instrument"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Visibility">
+        <rdfs:label>Visibility</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Global Positioning System">
+        <rdfs:label>Global Positioning System</rdfs:label>
+        <rdfs:comment><![CDATA[An electronic navigation device that uses satellites to give a precise display of your position.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Hydrostatic Pressure">
+        <rdfs:label>Hydrostatic Pressure</rdfs:label>
+        <rdfs:comment><![CDATA[The pressure exerted underwater by the surrounding
+            water column.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Pressure"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Bailout">
+        <rdfs:label>Bailout</rdfs:label>
+        <rdfs:comment><![CDATA[A small cylinder, (usually 3-4 litre) commonly
+            used as an emergency breathing system in commercial diving,
+            also known as a Pony bottle.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Hypothermia">
+        <rdfs:label>Hypothermia</rdfs:label>
+        <rdfs:comment><![CDATA[A condition in which the deep tissue or core
+            temperature of the body falls below the normal physiological
+            range, approximately 36.9C. Heat loss is the result of
+            exposure to cold, and most divers are exposed to water
+            temperatures below that of their body. The rate of the heat
+            loss is dependent on body area, the difference in the
+            temperature between the body and the surrounding
+            environment, body fat, external insulation and the level of
+            physical exertion. As the core temperature begins to drop
+            signs of hypothermia will begin to appear. This will trigger
+            the body to begin producing extra heat, usually in the form
+            of shivering. If the cooling is allowed to continue the core
+            temperature will begin to drop and all bodily processes will
+            slowly grind to a halt as pulse and respiration's slow.
+            Death will follow if the diver is not treated promptly.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Central Nervous System">
+        <rdfs:label>Central Nervous System</rdfs:label>
+        <rdfs:comment><![CDATA[Central nervous system     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Inflator Hose">
+        <rdfs:label>Inflator Hose</rdfs:label>
+        <rdfs:comment><![CDATA[Connects the first stage to a BCD or dry suit.]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:49 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Current Tissue Code">
+        <rdfs:label>Current Tissue Code</rdfs:label>
+        <rdfs:comment><![CDATA[The code which identifies a divers current
+            nitrogen saturation level. Calculated from the last
+            dive's surfacing code and the surface interval.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement">
+        <rdfs:label>Measurement</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Staged Decompression">
+        <rdfs:label>Staged Decompression</rdfs:label>
+        <rdfs:comment><![CDATA[Decompression performed at specific depths where
+            the diver remains for a period of time to offgas. This is
+            the most common form of decompression for divers. Continuous
+            decompression is generally not available to divers as it
+            requires a very controlled continuous ascent, generally this
+            is only available in a decompression chamber, or on dives
+            that require only a minimum of decompression.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Procedure"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Technical Diving">
+        <rdfs:label>Technical Diving</rdfs:label>
+        <rdfs:comment><![CDATA[A general term used to describe more advanced
+            diving that requires the use of different gas mixtures.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Absolute Pressure">
+        <rdfs:label>Absolute Pressure</rdfs:label>
+        <rdfs:comment><![CDATA[Absolute pressure is a measure of the pressure
+            exerted on an object from all sources; includes water
+            pressure and atmospheric pressure.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Pressure"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Lifting Bag">
+        <rdfs:label>Lifting Bag</rdfs:label>
+        <rdfs:comment><![CDATA[A bag like device that is inflated underwater to
+            lift objects from the bottom.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Buddy Breathing">
+        <rdfs:label>Buddy Breathing</rdfs:label>
+        <rdfs:comment><![CDATA[An emergency out-of-air procedure where two divers
+            share one second stage regulator while ascending to the
+            surface.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Procedure"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Oxygen Toxicity">
+        <rdfs:label>Oxygen Toxicity</rdfs:label>
+        <rdfs:comment><![CDATA[Short or long term physiological effects of
+            elevated partial pressures of Oxygen. Also referred to as
+            CNS Oxygen Toxicity.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Procedure">
+        <rdfs:label>Procedure</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Decompression Theory">
+        <rdfs:label>Decompression Theory</rdfs:label>
+        <rdfs:comment><![CDATA[The attempt to quantify gas dynamics in living
+            tissues while exposed to hyper- or hypobaric environments.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Cardiopulmonary Resuscitation">
+        <rdfs:label>Cardiopulmonary Resuscitation</rdfs:label>
+        <rdfs:comment><![CDATA[A process utilising the combination of external
+            heart massage and mouth-to-mouth respiration (artificial
+            ventilation) to artificially maintain the heartbeat and
+            respiration of a victim.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Procedure"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Recompression">
+        <rdfs:label>Recompression</rdfs:label>
+        <rdfs:comment><![CDATA[The accepted treatment for decompression sickness,
+            CAGE and Lung over expansion injuries. Treatment is
+            instituted by returning the diver to a higher pressure
+            environment in a Hyperbaric chamber.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Procedure"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Bottom Mix">
+        <rdfs:label>Bottom Mix</rdfs:label>
+        <rdfs:comment><![CDATA[A breathing mixture used at the deepest portion of
+            a dive.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Normoxic">
+        <rdfs:label>Normoxic</rdfs:label>
+        <rdfs:comment><![CDATA[A breathing mixture that yields a partial pressure
+            of Oxygen at normal (.21bar) levels.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Decompression Line">
+        <rdfs:label>Decompression Line</rdfs:label>
+        <rdfs:comment><![CDATA[A line used as a point of reference or loose
+            attachment for divers who are decompressing.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Decompression Stop">
+        <rdfs:label>Decompression Stop</rdfs:label>
+        <rdfs:comment><![CDATA[The actual time to be spent at the decompression
+            stop depth.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Twin Set">
+        <rdfs:label>Twin Set</rdfs:label>
+        <rdfs:comment><![CDATA[A dual cylinder diving configuration. They may be
+            ganged together or completely separate.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Atmospheric Pressure">
+        <rdfs:label>Atmospheric Pressure</rdfs:label>
+        <rdfs:comment><![CDATA[The local atmospheric pressure produced at a
+            particular altitude by current weather conditions.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Pressure"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Ambient pressure">
+        <rdfs:label>Ambient pressure</rdfs:label>
+        <rdfs:comment><![CDATA[The sum of air and water pressure at depth
+            expressed in terms of absolute pressure      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Pressure"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Oxygen Cleaned">
+        <rdfs:label>Oxygen Cleaned</rdfs:label>
+        <rdfs:comment><![CDATA[Refers to the cleanliness of the system or
+            component, or more specifically, the absence of
+            contaminants. Contaminants vary but the most serious are
+            those that act as a source of combustion such as oil,
+            grease, paint, fingerprints, soot, lint, dust, metal
+            particles, rust, cleaning solvents, and cleaning detergents.
+            New SCUBA equipment is generally NOT oxygen clean.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Wet Suit Jacket">
+        <rdfs:label>Wet Suit Jacket</rdfs:label>
+        <rdfs:comment><![CDATA[A jacket, normally combined with a Long John or
+            full suit. ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:54:22 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Wet Suit"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Low Pressure Port">
+        <rdfs:label>Low Pressure Port</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[2002-01-09T17:59:33Z]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Port"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Thermocline">
+        <rdfs:label>Thermocline</rdfs:label>
+        <rdfs:comment><![CDATA[A subsurface layer of water characterised by a
+            rapid change in temperature and density in a narrow range of
+            depth.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Barotrauma">
+        <rdfs:label>Barotrauma</rdfs:label>
+        <rdfs:comment><![CDATA[Injuries resulting from the inability of expanding
+            gasses to exit the body. For example, ear drum rupture, lung
+            over expansion injury, pneumothorax, squeeze, sinusitis.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Hyperthermia">
+        <rdfs:label>Hyperthermia</rdfs:label>
+        <rdfs:comment><![CDATA[Inadequate loss of heat from the body resulting in
+            a rise in core temperature.This is most commonly seen in
+            areas with high ambient temperatures and divers with low
+            body fluid levels.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Physiology">
+        <rdfs:label>Physiology</rdfs:label>
+        <rdfs:comment><![CDATA[The study of the body's actions and
+            reactions. Diving physiology is primarily concerned with the
+            effects of water pressure on the diver.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Celsius">
+        <rdfs:label>Celsius</rdfs:label>
+        <rdfs:comment><![CDATA[A unit of measure for temperature.  Celsius =
+            (Fahrenheit - 32) / 1.8 or 5/9 (Fahrenheit-32)      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#High Pressure Hose">
+        <rdfs:label>High Pressure Hose</rdfs:label>
+        <rdfs:comment><![CDATA[Connects the first stage to an SPG or Computer,
+            allowing monitoring of the cylinder pressure.]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:50:36 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#High Pressure Port">
+        <rdfs:label>High Pressure Port</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[2002-01-09T17:59:26Z]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Port"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Narcosis">
+        <rdfs:label>Narcosis</rdfs:label>
+        <rdfs:comment><![CDATA[The intoxicating effects of breathing inert gases,
+            such as Argon, Nitrogen or Hydrogen when the diver is
+            exposed to elevated partial pressures at depth. The
+            condition is generally alleviated upon ascending, or by
+            changing the mixture ratios to reduce the partial pressure
+            of the offending gas.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Rule of Thirds">
+        <rdfs:label>Rule of Thirds</rdfs:label>
+        <rdfs:comment><![CDATA[A rule used primarily by cave and wreck divers that basically states that after having consumed 1/3 of your gas supply you should begin your exit from the cave/wreck.     The remaining 2/3 of the gas supply is left for the exit, ascent and any emergency that may arise.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Recompression Chamber">
+        <rdfs:label>Recompression Chamber</rdfs:label>
+        <rdfs:comment><![CDATA[Hyperbaric chamber     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Hydrostatic Test">
+        <rdfs:label>Hydrostatic Test</rdfs:label>
+        <rdfs:comment><![CDATA[A test that is required every five years on SCUBA
+            cylinders. This test involves pressurising the cylinder to
+            test pressure.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Bottom Time">
+        <rdfs:label>Bottom Time</rdfs:label>
+        <rdfs:comment><![CDATA[Often calculated from the start of the
+            diver's descent until the beginning of his ascent, or
+            to the safety stop or first decompression stop.  Note: This
+            measurement varies widely from organisation to organisation,
+            and some divers do not calculate the safety stop into their
+            total bottom time.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Console">
+        <rdfs:label>Console</rdfs:label>
+        <rdfs:comment><![CDATA[ A term often used to describe the housing for
+            instruments such as the SPG, depth gauge and compass.   ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Restriction>
+                <daml:onProperty rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#has_part"/>
+                <daml:hasClass>
+                    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Submersible Pressure Gauge"/>
+                </daml:hasClass>
+            </daml:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <daml:Restriction>
+                <daml:onProperty rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#has_part"/>
+                <daml:hasClass>
+                    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Depth Gauge"/>
+                </daml:hasClass>
+            </daml:Restriction>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Square Profile Dive">
+        <rdfs:label>Square Profile Dive</rdfs:label>
+        <rdfs:comment><![CDATA[A type of dive that involves staying at one
+            particular depth for the entire bottom time and then
+            ascending directly to the surface.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Dive"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Redundancy">
+        <rdfs:label>Redundancy</rdfs:label>
+        <rdfs:comment><![CDATA[The concept of carrying fully functional backup
+            systems to replace primaries in the event of failure.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Nitrogen Narcosis">
+        <rdfs:label>Nitrogen Narcosis</rdfs:label>
+        <rdfs:comment><![CDATA[Loss of judgement and motor skills caused by the
+            narcotic effect of breathing the nitrogen component of any
+            breathing gas at elevated partial pressures (i.e. at depth).
+            The condition is alleviated upon ascending. Also known as
+            Rapture of the deep or narcs. Nitrogen narcosis, a common
+            form of inert gas narcosis, can be incurred at depths as
+            shallow as 30m, and possibly even shallower by individuals
+            who are more susceptible.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Dump Valve">
+        <rdfs:label>Dump Valve</rdfs:label>
+        <rdfs:comment><![CDATA[A term for the exhaust fittings on dry suits, lift
+            bags and BC's.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Decompression Sickness">
+        <rdfs:label>Decompression Sickness</rdfs:label>
+        <rdfs:comment><![CDATA[Decompression sickness. A condition caused by
+            Nitrogen bubbles forming in various parts of the body when a
+            diver ascends too quickly and/or exceeds their ceiling. Also
+            known as the bends The onset of DCS can be within minutes of
+            the ascent, though usually within 1 to 3 hours and
+            infrequently up to 12 hours.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Hyperbaric Chamber">
+        <rdfs:label>Hyperbaric Chamber</rdfs:label>
+        <rdfs:comment><![CDATA[A recompression chamber.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#A Clamp">
+        <rdfs:label>A Clamp</rdfs:label>
+        <rdfs:comment><![CDATA[A type of fitting for connecting the regulator 1st
+            stage to the cylinder pillar valve.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#CAGE">
+        <rdfs:label>CAGE</rdfs:label>
+        <rdfs:comment><![CDATA[Coronary Arterial Gas Embolism. A lung
+            over-expansion injury that involves air bubbles escaping
+            from the lungs into the pulmonary capillaries. The bubbles
+            can then travel to the heart and eventually follow the
+            circulatory route to the brain. In severe cases, CAGE can be
+            fatal.  Treatment is immediate O2 breathing and transport to
+            a recompression chamber. Also known as air embolism.
+            Symptoms may be similar to DCS.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Boat">
+        <rdfs:label>Boat</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#EANx">
+        <rdfs:label>EANx</rdfs:label>
+        <rdfs:comment><![CDATA[Enriched Air NITROX. A mixture containing more
+            than 21% oxygen.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Dive">
+        <rdfs:label>Dive</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Fins">
+        <rdfs:label>Fins</rdfs:label>
+        <rdfs:comment><![CDATA[Worn on the feet for faster swimming and to
+            increase maneuverability. They are not called flippers...
+            Flipper is a dolphin.]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Mask">
+        <rdfs:label>Mask</rdfs:label>
+        <rdfs:comment><![CDATA[A mask provides an air space around the eyes
+            allowing the diver to see underwater.]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Port">
+        <rdfs:label>Port</rdfs:label>
+        <rdfs:comment><![CDATA[A connection for hoses on the the first stage of a
+            regulator. The first stage may contain 4-6 of these and they
+            are usually marked with LP (low pressure) or HP (High
+            Pressure).     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Maximum Depth">
+        <rdfs:label>Maximum Depth</rdfs:label>
+        <rdfs:comment><![CDATA[The deepest depth reached during a dive.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Residual Nitrogen">
+        <rdfs:label>Residual Nitrogen</rdfs:label>
+        <rdfs:comment><![CDATA[The residual nitrogen (above normoxic levels) left
+            in the body as a result of a previous dive.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Long John">
+        <rdfs:label>Long John</rdfs:label>
+        <rdfs:comment><![CDATA[A Long John or Farmer John is a sleeveless wetsuit
+            with long legs, generally worn under a shortie or jacket.]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:52:55 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Wet Suit"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Repetitive Dive">
+        <rdfs:label>Repetitive Dive</rdfs:label>
+        <rdfs:comment><![CDATA[Any dive following a previous dive within a
+            particular time frame. This will vary according to the
+            particular decompression model being used.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Dive"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas Consumption">
+        <rdfs:label>Gas Consumption</rdfs:label>
+        <rdfs:comment><![CDATA[(RMV)*(Bar) = gas consumption at depth. Total gas
+            required for a dive= the sum of the gas required at each
+            stage of the dive. Gas required at each stage of the
+            dive=(Bar) x (RMV) x (Time) x (Work modifier). Bar= Pressure
+            at each stage Bar=(depth / 10)+1 RMV= Respiratory Minute
+            Volume (in litres per minute) Time= Time in minutes spent at
+            that stage/depth Work=A modifier to take into account that
+            you breath more when working. 1, at rest 1.5 working mildly
+            2 working moderately 3-5 working heavily  Descent
+            consumption = average depth plus time spent descending. Gas
+            consumption during ascent is calculated by average depth
+            method:(max. depth + 1st deco stop depth)/2. This average
+            depth is then used in the gas consumption equation.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification">
+        <rdfs:label>Qualification</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Restriction daml:minCardinalityQ="1">
+                <daml:onProperty rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#awarded_by"/>
+                <daml:hasClassQ>
+                    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Organisation"/>
+                </daml:hasClassQ>
+            </daml:Restriction>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Hypoxia">
+        <rdfs:label>Hypoxia</rdfs:label>
+        <rdfs:comment><![CDATA[A Condition brought on due to an insufficient
+            Partial Pressure of Oxygen (PPO2) in a breathing gas. A
+            failure of the tissues to receive sufficient Oxygen.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Pony Bottle">
+        <rdfs:label>Pony Bottle</rdfs:label>
+        <rdfs:comment><![CDATA[A small cylinder commonly used as an emergency
+            breathing system, also known as a Bailout Bottle.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Surfacing Code">
+        <rdfs:label>Surfacing Code</rdfs:label>
+        <rdfs:comment><![CDATA[The Code describing the degree of tissue
+            saturation on surfacing from a dive. BSAC use A (no
+            saturation) to G fully saturated).      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Mixed Gases">
+        <rdfs:label>Mixed Gases</rdfs:label>
+        <rdfs:comment><![CDATA[Any mixture of gas that deviates from normal
+            (normoxic) atmospheric air.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Ascent Rate">
+        <rdfs:label>Ascent Rate</rdfs:label>
+        <rdfs:comment><![CDATA[The speed in which a diver ascends. BSAC recommend
+            15m/min up to 6m and then 6m/min for the final 6m.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Carbon Dioxide (CO2)">
+        <rdfs:label>Carbon Dioxide (CO2)</rdfs:label>
+        <rdfs:comment><![CDATA[A gas generated by the metabolic process of
+            generating energy to sustain life. Carbon Dioxide (CO2) is
+            normally regulated through the breathing process where CO2
+            (with its high dissolved PPCO2) is moved out of the
+            bloodstream, and Oxygen (with its high ambient PPO2) is
+            moved into the bloodstream.In normoxic air the percentage of
+            CO2 is negligible, about 0.03%. CO2 appears to be a factor
+            in DCS, narcosis, hyperoxia and Hypoxia.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Decompression Stop Dive">
+        <rdfs:label>Decompression Stop Dive</rdfs:label>
+        <rdfs:comment><![CDATA[A dive which contains mandatory in water
+            decompression or"offgassing" stops.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Inert Gases">
+        <rdfs:label>Inert Gases</rdfs:label>
+        <rdfs:comment><![CDATA[Those gases present in a breathing mixture which
+            are not metabolised.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition">
+        <rdfs:label>Medical Condition</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Full Wet Suit">
+        <rdfs:label>Full Wet Suit</rdfs:label>
+        <rdfs:comment><![CDATA[A suit with long arms and legs. May be combined
+            with a shortie or jacket in colder water.]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:53:36 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Wet Suit"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Regulator">
+        <rdfs:label>Regulator</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <daml:Restriction>
+                <daml:onProperty rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#has_part"/>
+                <daml:hasClass>
+                    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Second Stage"/>
+                </daml:hasClass>
+            </daml:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <daml:Restriction>
+                <daml:onProperty rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#has_part"/>
+                <daml:hasClass>
+                    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#High Pressure Hose"/>
+                </daml:hasClass>
+            </daml:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <daml:Restriction>
+                <daml:onProperty rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#has_part"/>
+                <daml:hasClass>
+                    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Console"/>
+                </daml:hasClass>
+            </daml:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <daml:Restriction>
+                <daml:onProperty rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#has_part"/>
+                <daml:hasClass>
+                    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#First Stage"/>
+                </daml:hasClass>
+            </daml:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <daml:Restriction>
+                <daml:onProperty rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#has_part"/>
+                <daml:hasClass>
+                    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Port"/>
+                </daml:hasClass>
+            </daml:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <daml:Restriction>
+                <daml:onProperty rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#has_part"/>
+                <daml:hasClass>
+                    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Inflator Hose"/>
+                </daml:hasClass>
+            </daml:Restriction>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Oxygen Service">
+        <rdfs:label>Oxygen Service</rdfs:label>
+        <rdfs:comment><![CDATA[Refers to the suitability of a system or component
+            for use in an oxygen environment. Oxygen service requires
+            both oxygen clean and oxygen compatible components.       ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Apnea">
+        <rdfs:label>Apnea</rdfs:label>
+        <rdfs:comment><![CDATA[Cessation of breathing for short intervals of
+            time. If left untreated it will proceed to respiratory
+            arrest.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Argon">
+        <rdfs:label>Argon</rdfs:label>
+        <rdfs:comment><![CDATA[An inert gas which is very narcotic in the normal
+            diving range, twice that of Nitrogen. It is a good insulator
+            however and sometimes used in diving suits.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Buddy">
+        <rdfs:label>Buddy</rdfs:label>
+        <rdfs:comment><![CDATA[Your diving partner. BSAC strongly recommend that
+            divers always dive in pairs for safety.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Saturation">
+        <rdfs:label>Saturation</rdfs:label>
+        <rdfs:comment><![CDATA[When a tissue has absorbed all of a given gas at a
+            given depth that it can, it is considered saturated. The
+            amount of dissolved gas a tissue can hold is dependent on
+            the depth at which it is ongassing. The deeper the depth,
+            the greater the amount of ongassing that can occur. As a
+            rule it takes 6 halftimes for a tissue to become 99%
+            saturated.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Diluent">
+        <rdfs:label>Diluent</rdfs:label>
+        <rdfs:comment><![CDATA[An inert gas, usually nitrogen or helium, that
+            provides volume in a breathing mix to ensure the partial
+            pressure of oxygen remains within safe limits of exposure.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#SCUBA">
+        <rdfs:label>SCUBA</rdfs:label>
+        <rdfs:comment><![CDATA[Self Contained Underwater Breathing Apparatus.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#SEEDS">
+        <rdfs:label>SEEDS</rdfs:label>
+        <rdfs:comment><![CDATA[A BSAC pneumonic that can help to remember the
+            components of a dive briefing. It stands for: S=Safety -
+            safety aspects of dive e.g., currents, visibility E=Exercise
+            - what the dive plan is E=Equipment - special equipment
+            e.g., SMBs D=Discipline - leadership, positioning etc
+            S=Signals - signals that will be used in the dive      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Watch">
+        <rdfs:label>Watch</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Timing Device"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Partial Pressure">
+        <rdfs:label>Partial Pressure</rdfs:label>
+        <rdfs:comment><![CDATA[The portion of the total gas pressure exerted by a
+            single gas in a breathing mixture, expressed as Pg for an
+            unknown gas or PO2 in the case of Oxygen.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Pressure"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Pressure">
+        <rdfs:label>Pressure</rdfs:label>
+        <rdfs:comment><![CDATA[Absolute Pressure - Absolute pressure is a measure
+            of the pressure exerted on an object from all sources;
+            includes water (hydrostatic) and air (atmospheric) pressure.
+            Atmospheric Pressure -The measure of the weight of the
+            surrounding column of air. At Sea level this is about One
+            bar.  Hydrostatic Pressure - The measure of the weight of
+            the surrounding column of water.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#On Gassing">
+        <rdfs:label>On Gassing</rdfs:label>
+        <rdfs:comment><![CDATA[As a person breathes air or any mixture of gases,
+            a portion of those gases are absorbed through the lungs into
+            the blood stream. Ongassing occurs primarily in the alveoli
+            of the lungs (though it does occur at all levels, lungs,
+            blood, tissues). This absorbed (or dissolved) gas is carried
+            dissolved in the bloodstream and diffuses from areas of high
+            partial pressure to areas of lower partial pressure
+            throughout the various tissues (or compartments). As oxygen
+            is metabolised it is generally not considered to be
+            ongassing but does have limits as to how much can be
+            absorbed safely. Excessively high partial pressures of
+            oxygen can be absorbed and contribute to DCS, so ongassing
+            as a term can be applied to oxygen. However, the partial
+            pressures that can cause this are higher than those
+            considered safe in relation to CNS O2 toxicity, so this is
+            more an academic concern, rather than a real concern.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Procedure"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Dive profile">
+        <rdfs:label>Dive profile</rdfs:label>
+        <rdfs:comment><![CDATA[The depth/time measurements of a particular dive
+            usually expressed in a graphical form.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Buoyancy">
+        <rdfs:label>Buoyancy</rdfs:label>
+        <rdfs:comment><![CDATA[The upward force equal to the weight of water
+            which is being displaced by an immersed object.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Test Pressure">
+        <rdfs:label>Test Pressure</rdfs:label>
+        <rdfs:comment><![CDATA[The pressure to which a cylinder is taken to,
+            during hydrostatic testing.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Pressure"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Fahrenheit">
+        <rdfs:label>Fahrenheit</rdfs:label>
+        <rdfs:comment><![CDATA[A unit of measure for temperature. Fahrenheit (1.8
+            * C) + 32 or 9/5C +32)      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Hypercapnea">
+        <rdfs:label>Hypercapnea</rdfs:label>
+        <rdfs:comment><![CDATA[An undue amount of CO2 in the blood caused by
+            improper breathing habits and incomplete scrubbing of
+            breathing gases in closed circuit re-breathers or excessive
+            amounts in the breathing mixture.   As concentrations of CO2
+            approach a PPCO2 of 0.10ATM symptoms begin to appear.
+            Confusion & drowsiness, then muscle spasms, rigidity and
+            unconsciousness.   High PPO2, high gas density and high
+            breathing resistance add to the severity of Hypercapnea.
+            Treatment is a reduction of the PPCO2 and administration of
+            oxygen.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Pulmonary Oxygen Toxicity">
+        <rdfs:label>Pulmonary Oxygen Toxicity</rdfs:label>
+        <rdfs:comment><![CDATA[The cumulative effect (over time) of being exposed
+            to Oxygen while the body is under pressure.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Submersible Pressure Gauge">
+        <rdfs:label>Submersible Pressure Gauge</rdfs:label>
+        <rdfs:comment><![CDATA[The SPG or Submersible Pressure Gauge, is
+            sometimes also referred to, somewhat incorrectly, as the
+            contents gauge. The SPG allows you to monitor the air
+            pressure within your tank and gauge the quantity of air
+            remaining. The SPG is often combined within a housing
+            including other gauges like depth, temperature and a compass
+            and the complete unit is referred to as a console.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Instrument"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Hyperoxia">
+        <rdfs:label>Hyperoxia</rdfs:label>
+        <rdfs:comment><![CDATA[Elevated oxygen levels in the tissues. See oxygen
+            toxicity, CNS oxygen toxicity.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Shortie">
+        <rdfs:label>Shortie</rdfs:label>
+        <rdfs:comment><![CDATA[A short wet suit, worn either on its own in warmer
+            water, or over the top of a long john or full suit in colder water.]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:52:21 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Wet Suit"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Dyspnea">
+        <rdfs:label>Dyspnea</rdfs:label>
+        <rdfs:comment><![CDATA[Difficulty in breathing, in divers it can result
+            from an increase in depth or density of breathing gas.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Cylinder Markings">
+        <rdfs:label>Cylinder Markings</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Pillar Valve">
+        <rdfs:label>Pillar Valve</rdfs:label>
+        <rdfs:comment><![CDATA[The metal fitting on the neck of a cylinder. It
+            consists of an on/off valve and a connection point for the
+            regulator 1st stage.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Tidal Volume">
+        <rdfs:label>Tidal Volume</rdfs:label>
+        <rdfs:comment><![CDATA[The quantity of gas that is inhaled and exhaled
+            with each breath.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Stage Bottle">
+        <rdfs:label>Stage Bottle</rdfs:label>
+        <rdfs:comment><![CDATA[Extra breathing cylinder carried in addition to
+            the main gas supply. Usually carried on front or side mount
+            clips, but may be attached to a decompression line. These
+            cylinders are designed to provide additional bottom mix gas
+            supply or to provide alternate mixtures for decompression
+            efficiency.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#AD">
+        <rdfs:label>AD</rdfs:label>
+        <rdfs:comment><![CDATA[Advanced Diver. A BSAC diver qualification.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#AI">
+        <rdfs:label>AI</rdfs:label>
+        <rdfs:comment><![CDATA[Advanced Instructor. A BSAC instructor
+            qualification     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#AV">
+        <rdfs:label>AV</rdfs:label>
+        <rdfs:comment><![CDATA[Artificial Ventilation     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#CI">
+        <rdfs:label>CI</rdfs:label>
+        <rdfs:comment><![CDATA[Club Instructor. A BSAC instructor qualification     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Hypobaric">
+        <rdfs:label>Hypobaric</rdfs:label>
+        <rdfs:comment><![CDATA[Dealing with pressures less than 1 Bar     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Snorkel">
+        <rdfs:label>Snorkel</rdfs:label>
+        <rdfs:comment><![CDATA[A breathing tube enabling the user to breathe when
+            lying face down on the surface of the water. Snorkels can be
+            useful for preserving air during surface swims to and from
+            dive sites and are used during breath-hold or skin diving. ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment">
+        <rdfs:label>Equipment</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Squeeze">
+        <rdfs:label>Squeeze</rdfs:label>
+        <rdfs:comment><![CDATA[A pressure-related situation resulting from the
+            failure to equalise on descent. Air-filled cavities such as
+            sinuses, the middle ear, mask and dry-suits are the most
+            commonly affected.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Cyanosis">
+        <rdfs:label>Cyanosis</rdfs:label>
+        <rdfs:comment><![CDATA[A bluish discoloration of the skin that results
+            from an oxygen deficiency in the blood.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Organisation">
+        <rdfs:label>Organisation</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#No Stop Dive">
+        <rdfs:label>No Stop Dive</rdfs:label>
+        <rdfs:comment><![CDATA[A dive in which there are no decompression
+            or"offgassing" stops       ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Dive"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Exposure Suit">
+        <rdfs:label>Exposure Suit</rdfs:label>
+        <rdfs:comment><![CDATA[A suit worn over the skin for protection or to preserve heat. Different kinds of exposure suit are available for different conditions.]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[16:02:11 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Computer">
+        <rdfs:label>Computer</rdfs:label>
+        <rdfs:comment><![CDATA[An elecronic device either worn on the wrist or
+            console mounted which constantly displays information such
+            as current depth, maximum depth, dive time and remaining no
+            stop time. It can also calculate the decompression
+            requirements for the dive and provide other information such
+            as temperature ascent rates etc...      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Depth Gauge"/>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Timing Device"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Body Part">
+        <rdfs:label>Body Part</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Depth Gauge">
+        <rdfs:label>Depth Gauge</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Instrument"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Respiration">
+        <rdfs:label>Respiration</rdfs:label>
+        <rdfs:comment><![CDATA[The voluntary or involuntary movement of gas into
+            and out of the lungs and the associated metabolic process of
+            oxygen and carbon-dioxide transfer.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Adjustable Bouyancy Life Jacket">
+        <rdfs:label>Adjustable Bouyancy Life Jacket</rdfs:label>
+        <rdfs:comment><![CDATA[An older style of buoyancy device still used by some divers.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Bradycardia">
+        <rdfs:label>Bradycardia</rdfs:label>
+        <rdfs:comment><![CDATA[A heartbeat of less than 60 beats per minute.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Anoxia">
+        <rdfs:label>Anoxia</rdfs:label>
+        <rdfs:comment><![CDATA[The total lack of Oxygen to the tissues. Also see
+            Hypoxia     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Backup">
+        <rdfs:label>Backup</rdfs:label>
+        <rdfs:comment><![CDATA[The concept of carrying fully functional backup
+            systems to replace primaries in the event of failure.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Octopus">
+        <rdfs:label>Octopus</rdfs:label>
+        <rdfs:comment><![CDATA[An extra breathing second stage for use in the
+            event of a failure or an out-of-gas emergency with a diving
+            buddy. They are usually coloured yellow.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Second Stage"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Tachycardia">
+        <rdfs:label>Tachycardia</rdfs:label>
+        <rdfs:comment><![CDATA[A rapid heartbeat of over 100 beats per minute.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Descent Rate">
+        <rdfs:label>Descent Rate</rdfs:label>
+        <rdfs:comment><![CDATA[The speed in which a diver descends. BSAC
+            recommend 30m/min.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Wet Suit">
+        <rdfs:label>Wet Suit</rdfs:label>
+        <rdfs:comment><![CDATA[An exposure suit in which the diver is kept warm
+            by a layer of trapped water. Generally made of neoprene and
+            available in a range of thicknesses for different water
+            temperatures. Usually used in temperate waters. May consist
+            of a number of different pieces worn in combination, for
+            example a shortie and longjohn.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Exposure Suit"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Dry Suit">
+        <rdfs:label>Dry Suit</rdfs:label>
+        <rdfs:comment><![CDATA[A completely waterproof exposure suit for use in
+            cold water conditions. The diver stays dry and insulation is
+            thus provided by the layer of air trapped between the body
+            and the suit. Additional layers of protection, such as a
+            woolly bear, can be worn underneath.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Exposure Suit"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Stop Dive">
+        <rdfs:label>Stop Dive</rdfs:label>
+        <rdfs:comment><![CDATA[A dive which requires stops at certain depths for
+            a set period of time. This is done on the final ascent and
+            allows sufficient time to decompress.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Dive"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Hydrox">
+        <rdfs:label>Hydrox</rdfs:label>
+        <rdfs:comment><![CDATA[Breathing gas consisting of a mixture of Hydrogen
+            and Oxygen.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Safety Stop">
+        <rdfs:label>Safety Stop</rdfs:label>
+        <rdfs:comment><![CDATA[A procedure that calls for a making a safety stop
+            at 6m for 1-3 minutes at the end of every dive for degassing
+            purposes.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Procedure"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Ascent Check Depth">
+        <rdfs:label>Ascent Check Depth</rdfs:label>
+        <rdfs:comment><![CDATA[A point reached during the ascent where dive time
+            is checked against the plan. This is usually at the first
+            decompression stop or 6m for no-stop dives.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Off Gassing">
+        <rdfs:label>Off Gassing</rdfs:label>
+        <rdfs:comment><![CDATA[The process of eliminating excess dissolved gasses
+            from the body. The reverse of ongassing, more commonly
+            referred to as decompression.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Procedure"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Surface Interval">
+        <rdfs:label>Surface Interval</rdfs:label>
+        <rdfs:comment><![CDATA[The time from leaving the water at the end of one
+            dive to leaving the surface on the next dive. A minimum of
+            one hour is strongly recommended.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Dehydration">
+        <rdfs:label>Dehydration</rdfs:label>
+        <rdfs:comment><![CDATA[The loss of bodily fluids, can contribute to DCS.
+            In divers this can be brought about by diving with a
+            hangover, consuming caffeinated beverages prior to diving,
+            overexertion, or diving when ill. Immersion in water also
+            produces a diuresis (production of urine by the kidneys)
+            that can contribute to diver dehydration.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Nitrox">
+        <rdfs:label>Nitrox</rdfs:label>
+        <rdfs:comment><![CDATA[Literally, any breathing gas consisting of a
+            mixture of Nitrogen and Oxygen. Generically referred to when
+            the Oxygen percentage in the mix is in the range of 21-50%.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Otitis">
+        <rdfs:label>Otitis</rdfs:label>
+        <rdfs:comment><![CDATA[Otitis Externa - Inflammation of the external
+            auditory canal due to infection. Otitis Media - Inflammation
+            of the middle ear. This condition generally requires
+            treatment with antibiotics and may cause impairment of
+            balance.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Residual Volume">
+        <rdfs:label>Residual Volume</rdfs:label>
+        <rdfs:comment><![CDATA[The quantity of air remaining in the lungs after a
+            forceful exhalation.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas Mixing">
+        <rdfs:label>Gas Mixing</rdfs:label>
+        <rdfs:comment><![CDATA[Gas mixing or blending is accomplished via one of
+            four different ways: 1. By partial pressure,where only the
+            pressures of the constituent gases are considered in
+            determining their percentages in the final mix.  2. By
+            continuous flow, where the appropriate amount of each gas is
+            metered and injected into a gas flow stream, and then
+            delivered to a mixing chamber or compressor inlet.  3. By
+            volume, where known volumes of each gas are delivered to a
+            container near atmospheric pressure, then compressed into
+            high pressure cylinders.  4. By weight, where the gases are
+            proportioned in the final mixture by the weight that each
+            gas adds to the initial weight of the container.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Manifold">
+        <rdfs:label>Manifold</rdfs:label>
+        <rdfs:comment><![CDATA[A device that connects two cylinders of a twin set
+            together. It may contain its own 'isolation' valve
+            in the middle.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#ACI">
+        <rdfs:label>ACI</rdfs:label>
+        <rdfs:comment><![CDATA[Assistant Club Instructor. A BSAC instructor
+            qualification.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#ACR">
+        <rdfs:label>ACR</rdfs:label>
+        <rdfs:comment><![CDATA[Air Consumption Rate, same as SAC, Surface Air
+            Consumption.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Bar">
+        <rdfs:label>Bar</rdfs:label>
+        <rdfs:comment><![CDATA[A measure of pressure, 1 bar = atmospheric
+            pressure or about 15lbs per square inch.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#CPR">
+        <rdfs:label>CPR</rdfs:label>
+        <rdfs:comment><![CDATA[Cardio Pulmonary Resuscitation     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#DIN">
+        <rdfs:label>DIN</rdfs:label>
+        <rdfs:comment><![CDATA[(Deutsches Institut für Normung, or German
+            Institute for Standardisation). Valve and regulator fittings
+            featuring the"captured o-ring" design whereby the
+            regulator is screwed into the cylinder valve. This is
+            primarily used on the continent and for pressures exceeding
+            232 Bar.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#EAD">
+        <rdfs:label>EAD</rdfs:label>
+        <rdfs:comment><![CDATA[Equivalent Air Depth. A means of equating gas
+            mixes (such as Nitrox) to air.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#END">
+        <rdfs:label>END</rdfs:label>
+        <rdfs:comment><![CDATA[Equivalent Narcosis Depth. Means of equating the
+            relative narcotic influence of inert gases to air. See EAD      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#FSW">
+        <rdfs:label>FSW</rdfs:label>
+        <rdfs:comment><![CDATA[Depth measured in feet of sea water.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas">
+        <rdfs:label>Gas</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#MDT">
+        <rdfs:label>MDT</rdfs:label>
+        <rdfs:comment><![CDATA[Maximum Dive Time. The length of time that may be
+            spent at a given depth without being required to make a
+            mandatory decompression stop. Also referred to as No-Stop
+            Time and Non-Decompression Time.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#MGR">
+        <rdfs:label>MGR</rdfs:label>
+        <rdfs:comment><![CDATA[Mixed Gas Rebreather.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#PSI">
+        <rdfs:label>PSI</rdfs:label>
+        <rdfs:comment><![CDATA[Pounds per square inch.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#RIB">
+        <rdfs:label>RIB</rdfs:label>
+        <rdfs:comment><![CDATA[Rigid Inflatable Boat, commonly used by divers.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Boat"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#RMV">
+        <rdfs:label>RMV</rdfs:label>
+        <rdfs:comment><![CDATA[Respiratory Minute Volume. The amount of air that
+            is consumed in one minute on the surface.This is expressed
+            in cubic feet per minute.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#SAC">
+        <rdfs:label>SAC</rdfs:label>
+        <rdfs:comment><![CDATA[Surface Air Consumption. The rate of underwater
+            gas consumption converted to an equivalent surface rate,
+            commonly measured in litres per minute. The average is about
+            25 l/min.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Measurement"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#SMB">
+        <rdfs:label>SMB</rdfs:label>
+        <rdfs:comment><![CDATA[Surface Marker Buoy.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Buoyancy Control Device">
+        <rdfs:label>Buoyancy Control Device</rdfs:label>
+        <rdfs:comment><![CDATA[ An inflatable jacket worn by divers. This privides buoyance and holds the diving cylinder. Sometimes called a stab jacket (stability).]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Tables">
+        <rdfs:label>Tables</rdfs:label>
+        <rdfs:comment><![CDATA[These are tables from which you calculate how long
+            and how deep you can safely dive and also details of any
+            decompression stops you have to make on your ascent.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Trimix">
+        <rdfs:label>Trimix</rdfs:label>
+        <rdfs:comment><![CDATA[A breathing mixture of three gases, usually
+            Oxygen, Helium and Nitrogen.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Buddy Check">
+        <rdfs:label>Buddy Check</rdfs:label>
+        <rdfs:comment><![CDATA[A pre-dive check where two divers familiarise
+            themselves and check each others equipment prior to a dive.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Procedure"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Carbon Monoxide">
+        <rdfs:label>Carbon Monoxide</rdfs:label>
+        <rdfs:comment><![CDATA[Carbon monoxide (CO) is produced from the
+            incomplete combustion of organic fuels, most commonly
+            gasoline engines. Carbon monoxide is a colourless,
+            odourless, tasteless gas, and it is largely because CO
+            cannot be readily detected that it is so dangerous. Inhaled
+            CO will bond with haemoglobin with an affinity 200 times
+            greater than oxygen.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Pneumothorax">
+        <rdfs:label>Pneumothorax</rdfs:label>
+        <rdfs:comment><![CDATA[A lung over expansion injury that involves air
+            bubbles escaping into the chest area and causing lung
+            collapse. This can result from ascending to rapidly and/or
+            breath holding.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Medical Condition"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Instrument">
+        <rdfs:label>Instrument</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[12:43:10 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:subClassOf>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:subClassOf>
+    </daml:Class>
+    <daml:ObjectProperty rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#made_by">
+        <rdfs:label>made_by</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[18:02:39 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <daml:inverseOf rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#makes"/>
+    </daml:ObjectProperty>
+    <daml:ObjectProperty rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#awarded_by">
+        <rdfs:label>awarded_by</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:domain>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification"/>
+        </rdfs:domain>
+        <rdfs:range>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Organisation"/>
+        </rdfs:range>
+    </daml:ObjectProperty>
+    <daml:ObjectProperty rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#makes">
+        <rdfs:label>makes</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[18:02:34 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdfs:domain>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Manufacturer"/>
+        </rdfs:domain>
+        <rdfs:range>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Equipment"/>
+        </rdfs:range>
+    </daml:ObjectProperty>
+    <daml:ObjectProperty rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#has_part">
+        <rdfs:label>has_part</rdfs:label>
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+    </daml:ObjectProperty>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#BSAC 88 Tables">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[18:07:11 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Tables"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Nitrogen">
+        <rdfs:comment><![CDATA[A gas that makes up approximately 78% of the air
+            we breathe. It is usually the gas responsible for DCS when
+            diving on compressed air. It also causes narcosis from about
+            30m      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Sports Diver">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification"/>
+        </rdf:type>
+        <ns0:awarded_by rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#BSAC"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Advanced Diver">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification"/>
+        </rdf:type>
+        <ns0:awarded_by rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#BSAC"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Master Scuba Diver">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification"/>
+        </rdf:type>
+        <ns0:awarded_by rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#PADI"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Rescue Diver">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification"/>
+        </rdf:type>
+        <ns0:awarded_by rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#PADI"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Divemaster">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification"/>
+        </rdf:type>
+        <ns0:awarded_by rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#PADI"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Dive Leader">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification"/>
+        </rdf:type>
+        <ns0:awarded_by rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#BSAC"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#US Navy Tables">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[18:06:36 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Tables"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Assistant Instructor">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification"/>
+        </rdf:type>
+        <ns0:awarded_by rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#PADI"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#BSAC">
+        <rdfs:comment><![CDATA[British Sub Aqua Club.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Organisation"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#MK16">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[18:06:05 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#First Stage"/>
+        </rdf:type>
+        <rdf:type>
+            <daml:Restriction daml:cardinalityQ="5">
+                <daml:onProperty rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#has_part"/>
+                <daml:hasClassQ>
+                    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#High Pressure Port"/>
+                </daml:hasClassQ>
+            </daml:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <daml:Restriction daml:cardinalityQ="2">
+                <daml:onProperty rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#has_part"/>
+                <daml:hasClassQ>
+                    <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Low Pressure Port"/>
+                </daml:hasClassQ>
+            </daml:Restriction>
+        </rdf:type>
+        <ns0:made_by rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#Scubapro"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Neon">
+        <rdfs:comment><![CDATA[A gas sometimes used in diving.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#PADI">
+        <rdfs:comment><![CDATA[Professional Association of Diving Instructors     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Organisation"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#R380">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[18:05:44 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Second Stage"/>
+        </rdf:type>
+        <ns0:made_by rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#Scubapro"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#IANTD">
+        <rdfs:comment><![CDATA[International Association of Nitrox and Technical
+            Divers     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Organisation"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Mares">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Manufacturer"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Club Diver">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification"/>
+        </rdf:type>
+        <ns0:awarded_by rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#BSAC"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Recreational Dive Planner">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[18:06:56 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Tables"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#OW">
+        <rdfs:comment><![CDATA[Open Water. A PADI diver qualification     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification"/>
+        </rdf:type>
+        <ns0:awarded_by rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#PADI"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#First Class Diver">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification"/>
+        </rdf:type>
+        <ns0:awarded_by rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#BSAC"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Hydrogen">
+        <rdfs:comment><![CDATA[A gas that is easily eliminated from the body in
+            long dives and builds up fast in short dives. It has a
+            slight narcosis affect at depth and cause a large voice
+            distortion:      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Scubapro">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Manufacturer"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Heliox">
+        <rdfs:comment><![CDATA[A breathing gas consisting of a mixture of Helium
+            and Oxygen.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Helium">
+        <rdfs:comment><![CDATA[A gas which is easily eliminated from body in long
+            dives and builds up fast in short dives. It is the least
+            narcotic of standard gases and causes that "micky
+            mouse" voice effect.It is a poor insulator and
+            moderately costly.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Oxygen">
+        <rdfs:comment><![CDATA[A colourless, tasteless, odourless, non-flammable
+            gas that accounts for 20.95% of the air we breathe.      ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#AOW">
+        <rdfs:comment><![CDATA[Advanced Open Water. A PADI diver qualification     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification"/>
+        </rdf:type>
+        <ns0:awarded_by rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#PADI"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Air">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Gas"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#SAA">
+        <rdfs:comment><![CDATA[Sub Aqua Association. A UK based Diving club.     ]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Organisation"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Suunto">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Manufacturer"/>
+        </rdf:type>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Instructor">
+        <rdfs:comment><![CDATA[]]></rdfs:comment>
+        <oiled:creationDate><![CDATA[15:49:03 23.08.2001]]></oiled:creationDate>
+        <oiled:creator><![CDATA[seanb]]></oiled:creator>
+        <rdf:type>
+            <daml:Class rdf:about="http://potato.cs.man.ac.uk/ontologies/diving#Qualification"/>
+        </rdf:type>
+        <ns0:awarded_by rdf:resource="http://potato.cs.man.ac.uk/ontologies/diving#PADI"/>
+    </rdf:Description>
+</rdf:RDF>

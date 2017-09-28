@@ -1,0 +1,213 @@
+<HEAD><TITLE>Jess, the Java Expert System Shell - Table of Contents</TITLE><link rel="stylesheet" type="text/css" href="stylesheet.css" title="style"></HEAD>
+<BODY><CENTER><H2>Table of Contents</H2></CENTER>
+<dl>
+<dt>1. <a href="intro.html#">Introduction</a>
+<dl>
+<dt>1.1. <a href="intro.html#abstract">Abstract</a>
+<dt>1.2. <a href="intro.html#compatibility">Compatibility</a>
+<dt>1.3. <a href="intro.html#mail">Mailing List</a>
+<dt>1.4. <a href="intro.html#bugs">Bugs</a>
+<dt>1.5. <a href="intro.html#assumptions">Assumptions</a>
+<dt>1.6. <a href="intro.html#setup">Getting ready</a>
+<dl>
+<dt>1.6.1. <a href="intro.html#unpacking">Unpacking the Distribution</a>
+<dt>1.6.2. <a href="intro.html#compiling">Compiling Jess</a>
+<dt>1.6.3. <a href="intro.html#examples">Jess Example Programs</a>
+<dt>1.6.4. <a href="intro.html#cli">Command-line Interface</a>
+<dt>1.6.5. <a href="intro.html#applet">Jess as an Applet</a>
+</dl>
+<dt>1.7. <a href="intro.html#good_application">What makes a good Jess application?</a>
+<dl>
+<dt>1.7.1. <a href="intro.html#jess_vs_prolog">Jess vs. Prolog</a>
+</dl>
+<dt>1.8. <a href="intro.html#performance">About Jess and performance</a>
+<dl>
+<dt>1.8.1. <a href="intro.html#hotspot">Sun's HotSpot Virtual Machine</a>
+</dl>
+<dt>1.9. <a href="intro.html#application_types">Command-line, GUI, or embedded?</a>
+</dl>
+</dl>
+<dl>
+<dt>2. <a href="language.html#">The Jess Language</a>
+<dl>
+<dt>2.1. <a href="language.html#basics">Basics</a>
+<dl>
+<dt>2.1.1. <a href="language.html#atoms">Atoms</a>
+<dt>2.1.2. <a href="language.html#numbers">Numbers</a>
+<dt>2.1.3. <a href="language.html#strings">Strings</a>
+<dt>2.1.4. <a href="language.html#lists">Lists</a>
+<dt>2.1.5. <a href="language.html#comments">Comments</a>
+</dl>
+<dt>2.2. <a href="language.html#functions">Functions</a>
+<dt>2.3. <a href="language.html#variables">Variables</a>
+<dl>
+<dt>2.3.1. <a href="language.html#defglobals">Global variables (or defglobals)</a>
+</dl>
+<dt>2.4. <a href="language.html#deffunctions">Deffunctions</a>
+<dt>2.5. <a href="language.html#defadvice">Defadvice</a>
+<dt>2.6. <a href="language.html#reflection">Java reflection</a>
+<dt>2.7. <a href="language.html#knowledge">The knowledge base</a>
+<dl>
+<dt>2.7.1. <a href="language.html#ordered_facts">Ordered facts</a>
+<dt>2.7.2. <a href="language.html#unordered_facts">Unordered facts</a>
+<dt>2.7.3. <a href="language.html#deffacts">The deffacts construct</a>
+<dt>2.7.4. <a href="language.html#definstance_facts">Definstance facts</a>
+</dl>
+<dt>2.8. <a href="language.html#rules">Defrules</a>
+<dl>
+<dt>2.8.1. <a href="language.html#patterns">Basic Patterns</a>
+<dt>2.8.2. <a href="language.html#pattern_bindings">Pattern bindings</a>
+<dt>2.8.3. <a href="language.html#salience">Salience and conflict resolution</a>
+<dt>2.8.4. <a href="language.html#and_ce">The 'and' conditional element.</a>
+<dt>2.8.5. <a href="language.html#or_ce">The 'or' conditional element.</a>
+<dl>
+<dt>2.8.5.1. <a href="language.html#subrules">Subrule generation and the 'or' conditional element.</a>
+</dl>
+<dt>2.8.6. <a href="language.html#not_ce">The 'not' conditional element.</a>
+<dt>2.8.7. <a href="language.html#test_ce">The 'test' conditional element.</a>
+<dl>
+<dt>2.8.7.1. <a href="language.html#test_ce_calls">Time-varying method returns</a>
+</dl>
+<dt>2.8.8. <a href="language.html#logical_ce">The 'logical' conditional                element.</a>
+<dt>2.8.9. <a href="language.html#unique_ce">The 'unique' conditional element.</a>
+<dt>2.8.10. <a href="language.html#exists_ce">The 'exists' conditional element.</a>
+<dt>2.8.11. <a href="language.html#node_index_hash">Node index hash value.</a>
+<dt>2.8.12. <a href="language.html#chaining">Forward and backward chaining</a>
+</dl>
+<dt>2.9. <a href="language.html#queries">Defqueries</a>
+<dl>
+<dt>2.9.1. <a href="language.html#declare_variables">The variable declaration</a>
+<dt>2.9.2. <a href="language.html#max_background_rules">The max-background-rules declaration</a>
+<dt>2.9.3. <a href="language.html#run-query">The run-query command</a>
+<dt>2.9.4. <a href="language.html#count-query-results">The count-query-results command</a>
+<dt>2.9.5. <a href="language.html#defquery_future">The future of queries</a>
+</dl>
+<dt>2.10. <a href="language.html#defmodules">Defmodules</a>
+<dl>
+<dt>2.10.1. <a href="language.html#defining_modules">Defining constructs in modules</a>
+<dt>2.10.2. <a href="language.html#module_scope">Modules, scope, and name resolution</a>
+<dt>2.10.3. <a href="language.html#focus">Module focus and execution control</a>
+<dl>
+<dt>2.10.3.1. <a href="language.html#autofocus">The auto-focus declaration</a>
+<dt>2.10.3.2. <a href="language.html#return-from-rule">Returning from a rule RHS</a>
+</dl>
+</dl>
+</dl>
+</dl>
+<dl>
+<dt>3. <a href="programming.html#">Programming in the Jess Language</a>
+<dl>
+<dt>3.1. <a href="programming.html#editor">Using an External Editor</a>
+<dt>3.2. <a href="programming.html#efficiency">Efficiency of rule-based systems</a>
+<dt>3.3. <a href="programming.html#errors">Error Reporting and Debugging</a>
+<dt>3.4. <a href="programming.html#equals_and_hashcode">Putting Java Objects into          Fact Slots</a>
+</dl>
+</dl>
+<dl>
+<dt>4. <a href="library.html#">Introduction to Programming with Jess in Java</a>
+<dl>
+<dt>4.1. <a href="library.html#jess.JessException">The jess.JessException class</a>
+<dt>4.2. <a href="library.html#jess.Value">The jess.Value class</a>
+<dl>
+<dt>4.2.1. <a href="library.html#value_subclasses">The subclasses of jess.Value</a>
+<dl>
+<dt>4.2.1.1. <a href="library.html#jess_variable">The class jess.Variable</a>
+<dt>4.2.1.2. <a href="library.html#jess_funcallvalue">The class jess.FuncallValue</a>
+<dt>4.2.1.3. <a href="library.html#jess_longvalue">The class jess.LongValue</a>
+<dt>4.2.1.4. <a href="library.html#jess_factidvalue">The class jess.FactIDValue</a>
+</dl>
+<dt>4.2.2. <a href="library.html#resolution">Value resolution</a>
+</dl>
+<dt>4.3. <a href="library.html#jess.Context">The jess.Context class</a>
+<dt>4.4. <a href="library.html#jess.Rete">The jess.Rete class</a>
+<dl>
+<dt>4.4.1. <a href="library.html#equivalents">Equivalents for common Jess functions</a>
+<dt>4.4.2. <a href="library.html#executing">Executing other Jess commands</a>
+<dl>
+<dt>4.4.2.1. <a href="library.html#optional_commands">Optional commands</a>
+</dl>
+<dt>4.4.3. <a href="library.html#scriptlib">The script library</a>
+<dt>4.4.4. <a href="library.html#xfer">Transferring values between Jess and Java code</a>
+<dt>4.4.5. <a href="library.html#constructs">Methods for adding, finding and listing constructs</a>
+<dt>4.4.6. <a href="library.html#routers">I/O Routers</a>
+<dt>4.4.7. <a href="library.html#reader">jess.awt.TextAreaWriter and jess.awt.TextReader</a>
+</dl>
+<dt>4.5. <a href="library.html#jess.ValueVector">The jess.ValueVector class</a>
+<dt>4.6. <a href="library.html#jess.Funcall">The jess.Funcall class</a>
+<dt>4.7. <a href="library.html#jess.Fact">The jess.Fact class</a>
+<dl>
+<dt>4.7.1. <a href="library.html#unordered_fact">Constructing an Unordered Fact from Java</a>
+<dt>4.7.2. <a href="library.html#unordered_fact_multislot">Constructing a Multislot from Java</a>
+<dt>4.7.3. <a href="library.html#ordered_fact">Constructing an Ordered Fact from Java</a>
+</dl>
+<dt>4.8. <a href="library.html#jess.Deftemplate">The jess.Deftemplate class</a>
+<dt>4.9. <a href="library.html#jess.Token">The jess.Token class</a>
+<dt>4.10. <a href="library.html#events">The jess.JessEvent and jess.JessListener classes</a>
+<dl>
+<dt>4.10.1. <a href="library.html#jesseventadapter">Working with events from the Jess language</a>
+</dl>
+<dt>4.11. <a href="library.html#beanprops">Setting and Reading Java Bean Properties</a>
+<dt>4.12. <a href="library.html#prettyprinting">Formatting Jess Constructs</a>
+</dl>
+</dl>
+<dl>
+<dt>5. <a href="extending.html#">Adding Commands to Jess</a>
+<dl>
+<dt>5.1. <a href="extending.html#extensions">Writing Extensions</a>
+<dl>
+<dt>5.1.1. <a href="extending.html#implementing_userfunction">Implementing             your Userfunction</a>
+<dl>
+<dt>5.1.1.1. <a href="extending.html#userfunction_return_values">Legal return                values</a>
+</dl>
+<dt>5.1.2. <a href="extending.html#loading_userfunctions">Loading             your Userfunction</a>
+<dt>5.1.3. <a href="extending.html#assert_from_userfunctions">Calling assert             from a Userfunction</a>
+</dl>
+<dt>5.2. <a href="extending.html#packages">Writing Extension Packages</a>
+<dt>5.3. <a href="extending.html#getting_references">Obtaining References to Userfunction Objects</a>
+</dl>
+</dl>
+<dl>
+<dt>6. <a href="embedding.html#">Embedding Jess in a Java Application</a>
+<dl>
+<dt>6.1. <a href="embedding.html#jess.Main">Using the class jess.Main</a>
+<dt>6.2. <a href="embedding.html#manipulating">Manipulating Jess in other ways</a>
+</dl>
+</dl>
+<dl>
+<dt>7. <a href="jessgui.html#">Creating Graphical User Interfaces in the Jess Language</a>
+<dl>
+<dt>7.1. <a href="jessgui.html#events">Handling Java AWT events</a>
+<dt>7.2. <a href="jessgui.html#painting">Screen Painting and Graphics</a>
+</dl>
+</dl>
+<dl>
+<dt>8. <a href="functions.html#">The Jess Function List</a>
+</dl>
+<dt>9. <a href="api/index.html">Jess's Java APIs</a>
+<dl>
+<dt>10. <a href="rete.html#">The Rete Algorithm</a>
+</dl>
+<dl>
+<dt>11. <a href="changes.html#">Change History</a>
+</dl>
+<dl>
+<dt>12. <a href="references.html#">References</a>
+<dl>
+<dt>12.1. <a href="references.html#programming">Java and Java Programming</a>
+<dt>12.2. <a href="references.html#es">Expert Systems</a>
+</dl>
+</dl>
+<dl>
+<dt>13. <a href="release_notes.html#">Release Notes</a>
+<dl>
+<dt>13.1. <a href="release_notes.html#changes">Important changes in Jess 6.1</a>
+<dt>13.2. <a href="release_notes.html#porting">Porting from Jess 5 to Jess 6</a>
+<dt>13.3. <a href="release_notes.html#old_limitations">Past problems now fixed</a>
+</dl>
+</dl>
+<p>
+<i>
+<a href="index.html">Back to index</a>
+</i>
+</p>
+</BODY>

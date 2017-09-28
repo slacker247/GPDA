@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 110 (msg:"EXPLOIT pop3 x86 linux overflow";flags: A+; content:"|d840 cd80 e8d9 ffff ff|/bin/sh"; classtype:attempted-admin; sid:288; rev:1;)

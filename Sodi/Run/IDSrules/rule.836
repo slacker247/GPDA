@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI rwwwshell.pl access";flags: A+; uricontent:"/rwwwshell.pl"; nocase;classtype:attempted-recon; sid:834; rev:2;)

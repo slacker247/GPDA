@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any <- $HOME_NET 23 (msg:"TELNET access";flags: A+; content:"|FF FD 18 FF FD 1F FF FD 23 FF FD 27 FF FD 24|"; reference:arachnids,08; reference:cve,CAN-1999-0619; classtype:not-suspicious; sid:716; rev:1;)

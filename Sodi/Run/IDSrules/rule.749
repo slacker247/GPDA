@@ -1,0 +1,1 @@
+alert tcp any 110 -> any any (msg:"Virus - Possible Resume Worm"; content: "filename=\"RESUME1.DOC\""; nocase; reference:MCAFEE,98661; sid:792;  classtype:misc-activity; rev:3;)

@@ -1,0 +1,74 @@
+12,13d11
+< #include "clips.h"
+< 
+26c24,26
+<    void                *bp;
+---
+> 
+>    char			NoNa[5], DoNa[5];
+>    int			NoNu, DoNu, Dummy_Opcode, rtrn;
+45,47d44
+<    /*Initialize CLIPS environment so can call CLIPS functions.  */
+<    InitializeCLIPS();
+<   
+55c52,59
+<    switch (SCde.opcode)
+---
+>    rtrn =  Num_2_Char (NoNa,  &NoNu, DoNa, &DoNu, &SCde.DstID);
+> 
+>    if (rtrn == 0)
+>       Dummy_Opcode = SCde.opcode;
+>    else
+>       Dummy_Opcode = BAD_DESTID;
+> 
+>    switch (Dummy_Opcode)
+58c62
+<           
+---
+> 
+60,62c64
+<         
+<         
+<     
+---
+> 
+644c646
+<          if (SC_pot_event_body.Impact_Lon < 110.00)
+---
+>          if (SCde.gvt > 1237.0)
+888,904c890
+< 	   /* Initialize Environment to use CLIPS functions */
+< 	
+< 	 Load("INITIAL.CLP");	
+< 	 bp = MakeInstance("(bp of BATTLE_PLAN 
+<              (planner_mode SC_bp_body.SC_init_bp_body.BP_Mode)
+<               (target_value_cutoff SC_init_bp_body.BP_Tgt_Val_Cut_Off)
+<              (accept_kill_criteria   SC_init_bp_body.BP_Accept_Kill_Criteria)
+<              ( override_salvo  SC_init_bp_body.BP_Override_Salvo)
+<              (launch_mode  SC_init_bp_body.BP_Launch_Mode)
+<              (rv_threshold  SC_init_bp_body.BP_RV_Likelihood_Threshold)
+<              (pk_cutoff  SC_init_bp_body.BP_Pk_Cutoff)
+<              (weight_population  SC_init_bp_body.BP_Asset_Weight_Population)
+<              (weight_military  SC_init_bp_body.BP_Asset_Weight_Military)
+<              (weight_selfdefense  SC_init_bp_body.BP_Asset_Weight_Self_Defense)
+<              (weight_ncauthority  SC_init_bp_body.BP_Asset_Weight_NCA)
+<              (weight_industrial  SC_init_bp_body.BP_Asset_Weight_Industrial))");
+< 	  SaveInstances("bp.clp", LOCAL_SAVE, NULL, TRUE);
+---
+> 
+947a934,941
+>       case BAD_DESTID     :
+> 
+>          strcpy (SC_rtrn_err_body.ERR_TXT, ERR_DESTID);
+> 
+>          SCen.opcode = OP_RTRN_ERR;
+> 
+>          break;
+> 
+1062c1056
+<    
+---
+> 
+1064,1065d1057
+< UserFunctions()
+< {}

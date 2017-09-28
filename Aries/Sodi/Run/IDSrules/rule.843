@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI pfdisplay.cgi access";flags: A+; uricontent:"/pfdisplay.cgi"; nocase; reference:bugtraq,64; reference:cve,CVE-1999-0270;classtype:attempted-recon; sid:841; rev:2;)

@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI htmlscript access";flags: A+; uricontent:"/htmlscript"; nocase; reference:bugtraq,2001; reference:cve,CVE-1999-0264; classtype:attempted-recon; sid:826; rev:2;)

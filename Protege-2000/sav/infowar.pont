@@ -1,0 +1,527 @@
+; Wed May 08 12:29:53 MDT 2002
+; 
+;+ (version "1.7")
+;+ (build "Build 930")
+
+
+(defclass :CLIPS_TOP_LEVEL_SLOT_CLASS
+	(is-a USER)
+	(role concrete)
+	(single-slot REGION
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHERE)
+		(create-accessor read-write))
+	(single-slot ACTIONS
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHAT)
+		(create-accessor read-write))
+	(single-slot FUSE-TUNIT
+		(type STRING)
+		(default "H")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot TIME-UNIT
+		(type STRING)
+		(default "Min")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot RPTR-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-REPORTER)
+		(create-accessor read-write))
+	(single-slot RQ-WHEN
+		(type SYMBOL)
+;+		(allowed-parents)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PRTY-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-PARTY)
+		(create-accessor read-write))
+	(single-slot FUSE-MODE
+		(type INTEGER)
+		(default 1)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot PRTY-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-PARTY)
+		(create-accessor read-write))
+	(single-slot OPERATIONAL
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHY)
+		(create-accessor read-write))
+	(single-slot ALLY-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-ALLY)
+		(create-accessor read-write))
+	(multislot EVID-SOURCES
+		(type STRING)
+		(default "Cnt" "Rate" "Site")
+		(cardinality 3 6)
+		(create-accessor read-write))
+	(single-slot ALLY-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-ALLY)
+		(create-accessor read-write))
+	(single-slot ENMY-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-ENEMY)
+		(create-accessor read-write))
+	(single-slot CUTOFF
+		(type FLOAT)
+		(range 0.0 100000.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot LONGITUDE
+		(type FLOAT)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHERE)
+		(create-accessor read-write))
+	(single-slot STRUCTURE
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHERE)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type FLOAT)
+		(range 0.0 1.0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot LATITUDE
+		(type FLOAT)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHERE)
+		(create-accessor read-write))
+	(single-slot RPRT-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-REPORTER)
+		(create-accessor read-write))
+	(single-slot STRATEGIC
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHY)
+		(create-accessor read-write))
+	(single-slot COST
+		(type INTEGER)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-HOW)
+		(create-accessor read-write))
+	(multislot CONCEPTS
+		(type STRING)
+		(default "Evidence" "Indicators" "Outcomes")
+		(cardinality 3 6)
+		(create-accessor read-write))
+	(multislot WEIGHTS
+		(type FLOAT)
+		(range 0.0 1.0)
+		(default 1.0)
+		(cardinality 1 6)
+		(create-accessor read-write))
+	(single-slot DESC1
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-HOW)
+		(create-accessor read-write))
+	(single-slot RQ-WHERE
+		(type SYMBOL)
+;+		(allowed-parents)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot FUSE-START
+		(type FLOAT)
+		(default 0.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot TASK
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHY)
+		(create-accessor read-write))
+	(single-slot LOCALE
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHERE)
+		(create-accessor read-write))
+	(single-slot ENMY-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-ENEMY)
+		(create-accessor read-write))
+	(single-slot RQ-ALLY
+		(type SYMBOL)
+;+		(allowed-parents)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHO)
+		(create-accessor read-write))
+	(single-slot NATION
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHERE)
+		(create-accessor read-write))
+	(single-slot ADJECTIVE
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-HOW)
+		(create-accessor read-write))
+	(single-slot RQ-HOW
+		(type SYMBOL)
+;+		(allowed-parents)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot RQ-PARTY
+		(type SYMBOL)
+;+		(allowed-parents)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHO)
+		(create-accessor read-write))
+	(single-slot ALLY-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-ALLY)
+		(create-accessor read-write))
+	(single-slot ALTITUDE
+		(type FLOAT)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHERE)
+		(create-accessor read-write))
+	(single-slot MISSION
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot RPTR-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-REPORTER)
+		(create-accessor read-write))
+	(single-slot TIMEFRAME
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHEN)
+		(create-accessor read-write))
+	(single-slot TIMESTART
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHEN)
+		(create-accessor read-write))
+	(single-slot RQ-WHAT
+		(type SYMBOL)
+;+		(allowed-parents)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DESC3
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-HOW)
+		(create-accessor read-write))
+	(single-slot ALLY-DESC
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-ALLY)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type FLOAT)
+		(range 0.0 1.0)
+		(default 0.75)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot RQ-PREPARED
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot DESC2
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-HOW)
+		(create-accessor read-write))
+	(single-slot PRTY-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-PARTY)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type FLOAT)
+		(range 0.0 1.0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot WHO
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHAT)
+		(create-accessor read-write))
+	(single-slot RQ-REPORTER
+		(type SYMBOL)
+;+		(allowed-parents)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHO)
+		(create-accessor read-write))
+	(single-slot FUSE-END
+		(type FLOAT)
+		(default 0.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot RQ-WHO
+		(type SYMBOL)
+;+		(allowed-parents)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CITY
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHERE)
+		(create-accessor read-write))
+	(single-slot TACTICAL
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHY)
+		(create-accessor read-write))
+	(single-slot OBJECT
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHAT)
+		(create-accessor read-write))
+	(single-slot RQ-WHY
+		(type SYMBOL)
+;+		(allowed-parents)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ENMY-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-ENEMY)
+		(create-accessor read-write))
+	(single-slot CASUALTIES
+		(type INTEGER)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-HOW)
+		(create-accessor read-write))
+	(single-slot TIMESTOP
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHEN)
+		(create-accessor read-write))
+	(single-slot ACTION
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-HOW)
+		(create-accessor read-write))
+	(single-slot RQ-PREPDATE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot RQ-INFOID
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot RQ-ENEMY
+		(type SYMBOL)
+;+		(allowed-parents)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHO)
+		(create-accessor read-write))
+	(single-slot INJURIES
+		(type INTEGER)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-HOW)
+		(create-accessor read-write))
+	(single-slot SOURCE
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot PRTY-AFFIL
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-PARTY)
+		(create-accessor read-write))
+	(single-slot ENMY-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-ENEMY)
+		(create-accessor read-write))
+	(single-slot DURATION
+		(type FLOAT)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-WHEN)
+		(create-accessor read-write))
+	(single-slot RPTR-ORG
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of RQ-REPORTER)
+		(create-accessor read-write)))
+
+(defclass SYSTEM-CLASS "IW DCI Mission"
+	(is-a USER)
+	(role concrete)
+	(single-slot RQ-HOW
+		(type SYMBOL)
+;+		(allowed-parents)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot RQ-WHO
+		(type SYMBOL)
+;+		(allowed-parents)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot MISSION
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot DISBELIEF
+		(type FLOAT)
+		(range 0.0 1.0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot RQ-WHAT
+		(type SYMBOL)
+;+		(allowed-parents)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot RQ-WHY
+		(type SYMBOL)
+;+		(allowed-parents)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot CONCEPTS
+		(type STRING)
+		(default "Assessment Sources" "Operational Objective" "Strategic Objective" "Tactical Objective" "Task" "Threat")
+		(cardinality 3 6)
+		(create-accessor read-write))
+	(single-slot RQ-WHEN
+		(type SYMBOL)
+;+		(allowed-parents)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot RQ-PREPARED
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot RQ-PREPDATE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot RQ-INFOID
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot RQ-WHERE
+		(type SYMBOL)
+;+		(allowed-parents)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BELIEF
+		(type FLOAT)
+		(range 0.0 1.0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot SOURCE
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Expert
+	(is-a SYSTEM-CLASS)
+	(role concrete))
+
+(defclass Software_Bugs
+	(is-a Expert)
+	(role concrete))
+
+(defclass Protect_Software
+	(is-a Software_Bugs)
+	(role concrete))
+
+(defclass PSYOPS
+	(is-a SYSTEM-CLASS)
+	(role concrete))
+
+(defclass Psychological_Ops
+	(is-a PSYOPS)
+	(role concrete))
+
+(defclass Counter_PSYOPS
+	(is-a Psychological_Ops)
+	(role concrete))
+
+(defclass Deceive_Intruder
+	(is-a Counter_PSYOPS)
+	(role concrete))
+
+(defclass Disrupt_Attack
+	(is-a Counter_PSYOPS)
+	(role concrete))
+
+(defclass Exploit_Intercepts
+	(is-a Counter_PSYOPS)
+	(role concrete))
+
+(defclass Confuse_Enemy
+	(is-a Deceive_Intruder Exploit_Intercepts)
+	(role concrete)
+	(multislot WEIGHTS
+		(type FLOAT)
+		(range 0.0 1.0)
+		(default 0.47 0.7)
+		(cardinality 1 6)
+		(create-accessor read-write)))
+
+(defclass Site
+	(is-a SYSTEM-CLASS)
+	(role concrete))
+
+(defclass Denial_of_Service
+	(is-a Site)
+	(role concrete))
+
+(defclass Physical_Attack
+	(is-a Site)
+	(role concrete))
+
+(defclass Secure_Site
+	(is-a Physical_Attack)
+	(role concrete))
+
+(defclass System_Intrusion
+	(is-a Site)
+	(role concrete))
+
+(defclass Protect_Networks
+	(is-a Denial_of_Service System_Intrusion)
+	(role concrete))
+
+(defclass Deny_Access
+	(is-a Protect_Networks Protect_Software Secure_Site)
+	(role concrete))
+
+(defclass Delay_Effects
+	(is-a Deceive_Intruder Deny_Access Disrupt_Attack)
+	(role concrete))
+
+(defclass Inhibit_Intrusion
+	(is-a Deny_Access)
+	(role concrete))
+
+(defclass Exec_DCI_Mission
+	(is-a Confuse_Enemy Delay_Effects Inhibit_Intrusion)
+	(role concrete)
+	(single-slot CUTOFF
+		(type FLOAT)
+		(range 0.0 100000.0)
+		(default 100.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot THRESHOLD
+		(type FLOAT)
+		(range 0.0 1.0)
+		(default 0.75)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

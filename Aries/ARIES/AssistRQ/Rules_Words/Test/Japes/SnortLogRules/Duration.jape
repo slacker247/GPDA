@@ -1,0 +1,19 @@
+// java 
+
+Phase: first
+Options: control = appelt
+
+
+Rule: Duration
+(
+    {Token.kind == number}
+    {Token.string == ":"}
+    {Token.kind == number}
+    {Token.string == ":"}
+    {Token.kind == number}
+    {Token.string == "."}
+    {Token.kind == number}
+)
+:Duration 
+-->
+:Duration.Duration = {}

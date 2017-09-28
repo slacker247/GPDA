@@ -1,0 +1,26 @@
+   10
+    0     0     0       6700    62     0   Africa
+    0    37  -102       6700    62     0   N._America
+    0    33    45       6700    62     0   Middle_East
+    2    45   128       6700     1     0   Korea_(NEA)
+    0    23   -85       6700    42     0   C._America
+    0    29    47       7200    42     0   S._W._Asia
+    0    57   165       6700    42     0   N.E._Siberia
+    0    39   128       6700     8     0   ODI_Demo
+    0    90   105       6700    52     0   North_Pole
+    0    32    65       3200    29     0   Afghanistan
+
+# mode  lat   lon        alt   fov   azi   menu_name
+#
+# NOTE!! The above section should have at most 10 entries in it!!
+#
+#AREAS>
+    2      -- Regional areas --
+   30 -135   15   30    3     carib
+   40  100   50   40    2     neasia
+#
+# lat  lon  -deltas-   size   basename
+#
+# Also, don't use blanks in menu names and limit
+# menu names to 20 characters
+<EOF>

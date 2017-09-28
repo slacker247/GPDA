@@ -1,0 +1,100 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Viewing Referenced Classes</title>
+</head>
+
+<body>
+
+<h1><img src="images/serving_nerd.gif" WIDTH="48" HEIGHT="48">     Viewing Class
+Relationships<br>
+<img src="images/header_line.gif" width="590" height="6"></h1>
+
+<p>The Class Relationship Menu allows you to choose which relationship between classes
+is represented in the <a href="class_relationship_pane.html"> Class Relationship
+pane</a>. The following choices are available:</p>
+
+<ul>
+  <li><b>Superclass</b>: Displays all the classes in your project in a subclass-superclass relationship.
+    This is the default.</li>
+  <li><b>Reference</b>: Displays all the slot reference relationships. </li>
+  <li><b>Slot reference relationships</b>: When a class is selected, each of its slots of type <b>Class</b> or <b>Instance</b>
+    appears separately on the menu. Selecting the slot name displays classes
+    which are reference through the slot.</li>
+</ul>
+<p>The picture below shows the Class Relationship menu for the class <b>Editor</b>
+in the Newspaper example. <b>Editor</b> has two <b>Instance</b> slots, <b>responsible_for</b> and <b>sections</b>. Other
+    classes might show more slots, or only the <b>Superclass</b> and <b>Reference</b>
+choices.</p>
+<p align="center"><img border="0" src="images/superclass_menu.gif" width="180" height="106"></p>
+<p align="left">Certain actions can be performed in the <b>Superclass</b> relationship view <i>only</i>. These include creating a new class and
+rearranging the hierarchy using drag-and-drop.</p>
+<p align="left">&nbsp;The view in the <a href="superclasses_pane.html">Superclasses
+pane</a> does not change to reflect the choice on the Relationship menu.</p>
+<h2><a name="Subclass">Superclass</a></h2>
+
+<p>The default <b>Superclass</b> relationship displays the subclass-superclass structure of your knowledge base.
+All the classes in the knowledge base appear in the displayed tree. (Some
+classes may be hidden. You can choose
+      whether or not hidden classes are displayed in the Class Relationship pane
+      by choosing <b>Configure</b> from the <b>Project</b> menu, going to the <b>Display</b>
+      tab, and toggling the <b>Display Hidden Classes</b> option.) The <b>Superclass</b>
+view gives you an overall picture of the class structure. This choice is always
+shown on the menu.</p>
+
+<h2><a name="Reference">Reference</a></h2>
+
+<p>The <b>Reference</b> relationship displays the hierarchy of classes, starting
+at the selected class, that are related to each other through any of the slots
+for the class. The <b>Reference</b> view thus shows the union of all the <a href="viewing_referenced_classes.html#Reference">slot
+reference relationships</a>.&nbsp;</p>
+
+<h2><a name="Selected Slots">Slot</a><a name="Selected Slots">  Reference Relationships</a></h2>
+
+<p>If you select a class in <b>Superclass</b> view, the Class Relationship menu
+will list all the slots of type <b>Class</b> or <b>Instance</b> for that slot.
+Selecting a slot from the menu will show the hierarchy of classes, starting at
+the selected class, that are related to each other through the slot selected on
+the menu.&nbsp;</p>
+
+<p>For example, the class <b>Editor</b> in the <b>Newspaper</b> example has the <b>Instance</b>
+slot&nbsp;<b>  supervises</b>. The only <a href="../slots/value_type_menu.html#Instance">allowed
+class</a> for this slot is the class <b>Employee</b>. This is what is shown when
+<b>supervises</b> is selected.</p>
+
+<p align="center"><img border="0" src="images/viewin5.gif" width="201" height="78"></p>
+
+<p>In more complex knowledge bases, the displayed tree might be more extensive.
+Multiple classes can be related to the original class through the slot. A class
+that is related to the selected class through the slot might itself have that
+slot, and then its related classes would appear in the tree. This allows for a
+complex hierarchy that diagrams the slot relationship between classes.</p>
+
+<p>The different views can be read as &quot;parent-relationship-child,&quot;
+where &quot;relationship&quot; is displayed on the <b>Relationship</b> menu. For
+example, in the <b>responsible_for</b> 
+view, <b>Editor</b> - is <b>responsible for</b> - <b>Employee</b>. Similarly, in
+the <b>Superclass</b> view, <b>Employee</b> - is a <b>superclass</b> of -&nbsp;<b> Employee</b>.</p>
+
+<p>It is also possible to view a
+list of all the frames that reference a highlighted class using the
+Back-References <img border="0" src="../images/BackReferences.gif" width="13" height="13"> class button. See <a href="viewing_backreferences.html">Viewing
+Back-References</a> for more information.</p>
+
+<hr>
+
+<p><font size="3">Next: <a href="finding_a_class.html">Finding a Class</a></font></p>
+
+<p><a href="index.html"><font size="3">Classes Table of Contents</font></a></p>
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p style="padding-left: 5">&nbsp;</p>
+
+</body>
+
+</html>

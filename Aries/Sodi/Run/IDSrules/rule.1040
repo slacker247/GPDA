@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-IIS scripts-browse access";flags: A+; uricontent:"/scripts/|20|"; nocase; classtype:web-application-attack; sid:1029; rev:2;)

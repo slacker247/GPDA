@@ -1,0 +1,1 @@
+alert tcp $HOME_NET any <> $EXTERNAL_NET any (msg:"DDOS shaft synflood"; flags: S; seq: 674711609; reference:arachnids,253; classtype:attempted-dos; sid:241; rev:2;)

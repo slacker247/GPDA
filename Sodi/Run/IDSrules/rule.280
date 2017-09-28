@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP satan scan";flags: A+; content:"pass -satan"; reference:arachnids,329; classtype:suspicious-login; sid:359; rev:2;)

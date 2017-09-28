@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC count.cgi access";flags: A+; uricontent:"/count.cgi"; nocase; reference:bugtraq,550; reference:cve,CVE-1999-0021; classtype:attempted-recon; sid:1149; rev:2;)

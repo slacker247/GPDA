@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI AnyForm2 access";flags: A+; uricontent:"/AnyForm2"; nocase; reference:bugtraq,719; reference:cve,CVE-1999-0066; classtype:attempted-recon; sid:892; rev:3;)

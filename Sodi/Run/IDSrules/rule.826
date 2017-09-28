@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-CGI cvsweb.cgi access"; flags: A+; uricontent:"/cvsweb.cgi"; nocase; reference:cve,CVE-2000-0670; reference:bugtraq,1469;classtype:attempted-recon; sid:823; rev:1;)

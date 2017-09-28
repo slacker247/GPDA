@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Making a Metaclass</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><img src="../images/serving_nerd.gif" width="48" height="48"> Making a
+Metaclass From an Existing Class<br>
+<img src="../images/header_line.gif" width="590" height="6"></h1>
+
+<p>You can turn any existing class in your project into a metaclass. This allows
+you to take any class you have developed and use its attributes for classes that
+are unrelated in the hierarchy. You can make a class into a metaclass in one of
+two ways:</p>
+
+<ul>
+  <li>By adding a metaclass as an additional superclass of the class</li>
+  <li>By changing the superclass of the class to a metaclass</li>
+</ul>
+
+<h2>Adding a Metaclass as a Superclass</h2>
+
+<p>By adding a metaclass as an additional superclass of an existing class, you
+can&nbsp;</p>
+
+<h2>Replacing a Superclass with a Metaclass</h2>
+
+<p><font size="3">Unless a class already has multiple superclasses, changing its
+metaclass will remove it and all of its subclasses from the standard
+hierarchy.&nbsp; Its instances will not be visible in the Instance Tab. To
+change the superclass of a class to a metaclass:</font></p>
+
+<ol>
+  <li>Click on the class in the Class Relationship pane.&nbsp;</li>
+  <li>Drag the class to the desired metaclass. The selected superclass must itself be a metaclass, as indicated by a green
+    class icon <img border="0" src="../images/Metaclass.gif" WIDTH="15" HEIGHT="16">.&nbsp;</li>
+  <li><font size="3">
+ The superclass of the dragged class will change to the selected metaclass. The
+    dragged class, and all of its subclasses, will inherit the properties of the selected
+    metaclass.</font></li>
+</ol>
+<h2>&nbsp;</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><font size="3"><br>
+</font></p>
+
+<hr>
+
+<p><font size="3">Next:&nbsp; </font></p>
+
+<p><a href="../index.html"><font size="3">Classes Table of Contents</font></a></p>
+</body>
+</html>

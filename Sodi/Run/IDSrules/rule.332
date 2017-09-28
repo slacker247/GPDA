@@ -1,0 +1,1 @@
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ICMP IPV6 I-Am-Here (Undefined Code!"; itype: 34; sid:412;  classtype:misc-activity; rev:4;)

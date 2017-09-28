@@ -1,0 +1,1 @@
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 80 (msg:"WEB-MISC repost.asp access";flags: A+; uricontent:"/scripts/repost.asp"; nocase; classtype:web-application-activity; sid:1076; rev:2;)

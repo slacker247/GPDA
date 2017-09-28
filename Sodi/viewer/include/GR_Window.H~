@@ -1,0 +1,369 @@
+/* *********************************************************************
+   01/11/93: Attempted to merge new features from jbl's new code; Tung 
+   01/21/93: added timedraw routine here and in .C file; Tung
+ 
+*********************************************************************** */
+
+#ifndef GR_WINDOW
+#define GR_WINDOW
+
+#define INLINE inline
+
+#include "GR_DispList.H"
+#include "GR_Widget.H"
+#include "GR_DispObj.H"
+
+class GR_DispObj;
+class GR_DispList;
+
+#define	GR_ORTHO		1
+#define	GR_ORTHO2		2
+#define	GR_PERSPECTIVE		3
+
+#define GR_KEEP_ASPECT 		1
+
+#define GR_WIN_MAX_REQ 		32
+
+#define GR_EMPTY		5
+#define GR_GET_DRAG_EVENT       10
+#define GR_GET_PICK_EVENT       15
+#define GR_GET_KBD_EVENT        20
+#define GR_GET_RECT_EVENT       25
+#define GR_GET_RECT_EVENT_KA    30 // keep aspect
+#define GR_GET_RECT             35
+#define GR_GET_RECT_KA          40 // keep aspect
+#define GR_GET_OBJ              45
+#define GR_SELECT_OBJS          50
+
+typedef struct {
+   int buffer;
+   int mode;
+   int arg;
+} GLXconfig;
+
+struct InputRequest
+{
+   long       type;
+   GR_DispObj *requestObj;
+};
+
+union ViewParams
+{
+   struct
+   {
+      float left;
+      float right;
+      float bottom;
+      float top;
+      float near;
+      float far;
+   }orthoView;
+
+   struct 
+   {
+      long fov;
+      float aspect;
+      float near;
+      float far;
+   }perspectiveView;
+   
+};
+
+struct GR_DispListElem
+{
+   GR_DispList      *displist;
+   char		    *name;
+   GR_DispListElem  *next;
+};
+
+
+/* note the name change from "...WindowDraw..." to "...WinDraw..." below */
+//typedef void (*GR_WindowDrawFunction)();
+typedef void (*GR_WinDrawFunc)();
+
+
+class GR_Window : public GR_Widget
+{
+ private: // the first four are newly added from jbl's stuff:
+   long             p_lastDrawTime;
+   InputRequest     p_requestStack [GR_WIN_MAX_REQ];
+   long             p_nextRequest;
+   long             p_requestDraw;
+  
+   Widget		p_widget;
+   GR_MouseEvent	p_event;
+   GR_DispObj		*p_pickedDispObj;
+   
+   GLXconfig		p_glconfig [6];
+   
+   long		        p_viewmode;
+   long		        p_background_color;
+   ViewParams		p_viewparams;
+   GR_Point		p_viewpos;
+   GR_Point		p_lookvec;
+   long			p_twist;
+   short		p_width;
+   short		p_height;
+
+   // for now: ignore two new members: GR_CameraPanel & GR_LightSource;...
+   
+   void p_set_default_ortho ();
+   void p_set_default_perspective ();
+   //void (*p_drawfunction)();
+   GR_WinDrawFunc  p_drawfunction;
+   
+   friend void p_initCB (Widget, caddr_t, caddr_t);
+   friend void p_exposeCB (Widget, caddr_t, caddr_t);
+   friend void p_resizeCB (Widget, caddr_t, caddr_t);
+   friend void p_inputCB (Widget, caddr_t, caddr_t);
+
+   // added new stuff:
+   long p_pushRequest (long type, GR_DispObj*);
+   long p_doneRequest (long requestid);
+   void p_drawOverlayRect (long onoff, long keepaspect);
+   void p_processEvent ();
+
+   // add this on 1/18/93:
+   Boolean p_freeview;
+   
+   // added by Tung, 1/21/93:
+   long p_timedraw_period; 
+   friend void p_timedraw ();
+
+   // added by Tung, 2/5/93:
+   Boolean p_awake;
+
+ protected:
+   GR_DispListElem	*p_displist_list;
+   void getRectangle (long aspectflag = 0);
+   void cancel_getRectangle ();
+   virtual void rectEvent (short, short, short, short);
+   //virtual void rectEvent (short x1, short x2, short y1, short y2){};
+   virtual void drawBackground ();
+   Widget v_createWidget (char *name, Widget);
+
+ public:
+   GR_Window ();
+   virtual ~GR_Window ();
+   void draw ();
+   void draw (GR_DispObj *); // new stuff
+   void draw (GR_DispObj &); // new stuff
+   void request_draw ();     // new stuff
+
+   // newer, added by Tung, 1/21/93:
+   void request_draw (long period);
+   void set_timedraw_period (long period) { p_timedraw_period = period; }
+   long get_timedraw_period () { return p_timedraw_period; }
+   void set_requestDraw (long number) { p_requestDraw = number; } 
+   long get_requestDraw () { return p_requestDraw; }
+   XtIntervalId timeout_id;
+
+   // added by Tung, 2/5/93:
+   Boolean get_awake () { return p_awake; }
+   void set_awake (Boolean awake_status) { p_awake = awake_status; }
+
+
+   void setViewTrans ();     // new stuff
+   void set_viewmode (long viewmode);
+   long get_viewmode ();
+   void field_of_view (float value);
+   void aspect (float value);
+   void near (float value);
+   void far (float value);
+   void left (float value);
+   void right (float value);
+   void bottom (float value);
+   void top (float value);
+   float field_of_view ();
+   float aspect ();
+   float near ();
+   float far ();
+   float left ();
+   float right ();
+   float bottom ();
+   float top ();
+   void world (float left, float right, float bottom, float top);
+   void twist (float value);
+   void view_position (GR_Point position);
+   void view_position (float x, float y, float z);
+   void look_vector (GR_Point vector);
+   void look_vector (float x, float y, float z);
+   //void set_drawfunction (GR_WindowDrawFunction);
+   void set_drawfunction (GR_WinDrawFunc);
+
+   // reserve the first two of the following for now:
+   //void addDispList (char* name, GR_DispList *);
+   //void addDispList (char* name, GR_DispList &);
+   void addDispList (GR_DispList *, char* name=0);
+   void addDispList (GR_DispList &, char *name=0);
+
+   // these extras are my own stuff:
+   void remDispList (GR_DispList*, char*);
+   void rem_all_namedDispLists ();
+
+   // ignore three CameraPanel operations...
+
+   GR_DispObj* set_pickEvent ();
+   void set_pickEvent (GR_DispObj *object);
+   void set_pickEvent (GR_DispObj& object);
+   void set_dragEvent (GR_DispObj *object);
+   void set_dragEvent (GR_DispObj& object);
+   void set_keyEvent (GR_DispObj*);
+   void set_keyEvent (GR_DispObj&);
+   void doublebuffer ();
+   void rgbmode ();
+   void color (short, short, short);
+ 
+   void color (long);  // newly added 1/15/93;
+
+   void convert_screen2 (short x, short y, float &xwind, float &ywind);
+
+   GR_MouseEvent*	mouse_event();
+
+   // new stuff:
+   void mouse_getRectangle (short &x1, short &y1, short &x2, short &y2,
+			    long aspectflag=0);
+   GR_DispObj* mouse_getDispObj ();
+   void cancel_mouse_get ();
+   GR_DispList* getDispList (char *name=0);
+   long lastDrawTime ();
+   void setOverlay ();
+
+   // ignore LightSource operations...
+
+   //
+   void set_freeview (Boolean tf) { p_freeview = tf;}
+   Boolean get_freeview () { return p_freeview;}
+};
+
+
+// moved definition out from class def.,  7/29/93 by Tung
+void
+GR_Window::rectEvent (short, short, short, short)
+{
+}
+
+void
+GR_Window::drawBackground ()
+{
+}
+
+GR_Window::~GR_Window ()
+{
+}
+
+
+INLINE void
+GR_Window::draw (GR_DispObj &object)
+{
+   this->draw (&object);
+}
+
+INLINE void
+GR_Window::request_draw ()
+{
+   //p_requestDraw = 1;
+   p_requestDraw++;  // modified by Tung, 1/21/93
+}
+
+
+INLINE void 
+GR_Window::world (float lval, float rval, float bval, float tval)
+{
+   left (lval);
+   right (rval);
+   bottom (bval);
+   top (tval);
+}
+
+INLINE void
+GR_Window::getRectangle (long aspectflag)
+{
+   if (aspectflag)
+     p_pushRequest (GR_GET_RECT_EVENT_KA, 0);
+   else
+     p_pushRequest (GR_GET_RECT_EVENT, 0);
+}
+
+
+INLINE void
+GR_Window::set_dragEvent (GR_DispObj *object)
+{
+   p_pushRequest (GR_GET_DRAG_EVENT, object);
+}
+
+INLINE void
+GR_Window::set_dragEvent (GR_DispObj &object)
+{
+   p_pushRequest (GR_GET_DRAG_EVENT, &object);
+}
+
+INLINE void
+GR_Window::set_pickEvent (GR_DispObj *object)
+{
+   p_pushRequest (GR_GET_PICK_EVENT, object);
+}
+
+INLINE void
+GR_Window::set_pickEvent (GR_DispObj &object)
+{
+   p_pushRequest (GR_GET_PICK_EVENT, &object);
+}
+
+INLINE void
+GR_Window::set_keyEvent (GR_DispObj *object)
+{
+   p_pushRequest (GR_GET_KBD_EVENT, object);
+}
+
+INLINE void
+GR_Window::set_keyEvent (GR_DispObj &object)
+{
+   p_pushRequest (GR_GET_KBD_EVENT, &object);
+}
+
+INLINE GR_MouseEvent*
+GR_Window::mouse_event ()
+{
+   return &p_event;
+}
+
+INLINE void
+GR_Window::set_drawfunction (GR_WinDrawFunc drawfunction)
+{
+   p_drawfunction = drawfunction;
+}
+
+INLINE void
+GR_Window::addDispList (GR_DispList &displist, char *name)
+{
+   this->addDispList (&displist, name);
+}
+
+INLINE void
+GR_Window::doublebuffer ()
+{
+   p_glconfig [0].arg = TRUE;
+}
+
+INLINE void
+GR_Window::rgbmode ()
+{
+   p_glconfig [1].arg = TRUE;
+}
+
+INLINE void
+GR_Window::color (short red, short grn, short blu)
+{
+   p_background_color = GR_get_color (red, grn, blu);
+}
+
+INLINE void
+GR_Window::color (long color)
+{
+   p_background_color = color;
+}
+#endif
+
+
+
