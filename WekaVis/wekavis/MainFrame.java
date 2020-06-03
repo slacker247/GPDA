@@ -148,6 +148,7 @@ public class MainFrame extends JFrame {
     dlg.show();
   }
 
+  // Loads an ARFF file
   void jMenuFileOpen_actionPerformed(ActionEvent e)
   {
     JFileChooser OpenDlg = new JFileChooser();
