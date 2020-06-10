@@ -1,4 +1,5 @@
-GDPA\WekaViz\run.bat
+cd to GDPA\WekaViz\
+then run.bat
 select "rule tree" tab
 File -> Open From File
 Under GPDA\WekaViz\
